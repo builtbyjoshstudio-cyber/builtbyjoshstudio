@@ -629,9 +629,9 @@
     }
     .card-desc-bbj {
       font-family: 'Crimson Pro', serif;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--bbj-muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #b8aed0;
       margin-bottom: 1.1rem;
       font-style: italic;
     }
@@ -665,6 +665,10 @@
       gap: 0.4rem;
     }
     .btn-buy-bbj:hover {
+      background: var(--bbj-accent);
+      color: var(--bbj-bg);
+    }
+    .card-bbj:hover .btn-buy-bbj {
       background: var(--bbj-accent);
       color: var(--bbj-bg);
     }
@@ -797,6 +801,211 @@
       .fade-up { opacity: 1; transform: none; animation: none; }
     }
 
+    /* ── STUDIO INTRO ── */
+    .studio-intro {
+      background: linear-gradient(135deg, #1a1a2e 0%, #0b0813 100%);
+      padding: 1.8rem 5rem;
+      text-align: center;
+      margin-top: 64px;
+    }
+    .studio-intro p {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.55);
+      margin: 0;
+    }
+    .studio-intro p span.accent-t { color: var(--tynkr-accent); }
+    .studio-intro p span.accent-b { color: var(--bbj-accent); }
+
+    /* ── SOCIAL PROOF STRIP ── */
+    .social-proof {
+      background: var(--tynkr-accent2);
+      padding: 2.5rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3.5rem;
+      flex-wrap: wrap;
+    }
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: rgba(255,255,255,0.7);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+    }
+    .proof-icon {
+      font-size: 1.3rem;
+      opacity: 0.9;
+    }
+    .proof-item strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ── ABOUT SECTION (elevated) ── */
+    .about-section {
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f0c1a 100%);
+      padding: 5rem;
+      display: flex;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(232,80,10,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(201,168,76,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .about-content {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .about-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .about-label::before {
+      content: '';
+      display: inline-block;
+      width: 28px; height: 2px;
+      background: var(--tynkr-accent);
+    }
+    .about-content h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      line-height: 1.15;
+    }
+    .about-content h2 span { color: var(--bbj-accent); }
+    .about-content p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.55);
+      max-width: 540px;
+      margin-bottom: 1rem;
+    }
+    .about-brands {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .about-brand-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 1.5rem;
+      flex: 1;
+      min-width: 180px;
+    }
+    .about-brand-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+    .about-brand-card p {
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.45);
+      margin: 0;
+      max-width: none;
+    }
+    .about-brand-card.tynkr { border-top: 2px solid var(--tynkr-accent); }
+    .about-brand-card.bbj { border-top: 2px solid var(--bbj-accent); }
+
+    /* ── EMAIL CAPTURE ── */
+    .email-capture {
+      background: var(--tynkr-bg);
+      padding: 4rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--tynkr-border);
+      border-bottom: 1px solid var(--tynkr-border);
+    }
+    .email-capture-text h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--tynkr-text);
+      margin-bottom: 0.5rem;
+    }
+    .email-capture-text h3 span { color: var(--tynkr-accent); }
+    .email-capture-text p {
+      font-size: 0.88rem;
+      color: var(--tynkr-muted);
+      max-width: 420px;
+      line-height: 1.6;
+    }
+    .email-capture-form {
+      display: flex;
+      gap: 0;
+      flex-shrink: 0;
+    }
+    .email-capture-form input {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      padding: 0.8rem 1.2rem;
+      border: 1px solid var(--tynkr-border);
+      border-right: none;
+      background: #fff;
+      color: var(--tynkr-text);
+      width: 260px;
+      outline: none;
+    }
+    .email-capture-form input:focus {
+      border-color: var(--tynkr-accent);
+    }
+    .email-capture-form button {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.8rem 1.5rem;
+      background: var(--tynkr-accent);
+      color: #fff;
+      border: 1px solid var(--tynkr-accent);
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .email-capture-form button:hover { background: #c43d00; }
+
+    @media (max-width: 900px) {
+      .studio-intro { padding: 1.5rem 2rem; }
+      .social-proof { padding: 2rem; gap: 2rem; }
+      .about-section { flex-direction: column; padding: 3rem 2rem; gap: 2rem; }
+      .about-brands { flex-direction: column; }
+      .email-capture { flex-direction: column; padding: 3rem 2rem; text-align: center; }
+      .email-capture-form { flex-direction: column; width: 100%; }
+      .email-capture-form input { width: 100%; border-right: 1px solid var(--tynkr-border); border-bottom: none; }
+    }
+
     /* scroll reveal */
     .reveal {
       opacity: 1;
@@ -826,8 +1035,13 @@
     </ul>
   </nav>
 
+  <!-- STUDIO INTRO -->
+  <section class="studio-intro">
+    <p>A modern studio building <span class="accent-t">tools for your mind</span> and <span class="accent-b">art for your space</span></p>
+  </section>
+
   <!-- HERO SPLIT -->
-  <section class="hero-split">
+  <section class="hero-split" style="padding-top:0; min-height:calc(100vh - 64px - 58px);">
     <!-- Tynkr side -->
     <div class="hero-tynkr">
       <div class="tynkr-eyebrow fade-up">Tynkr Tools & Co</div>
@@ -860,6 +1074,14 @@
   </section>
 
   <div class="section-divider"></div>
+
+  <!-- SOCIAL PROOF -->
+  <div class="social-proof">
+    <div class="proof-item"><span class="proof-icon">⭐</span> <strong>5-star</strong>&nbsp;rated templates</div>
+    <div class="proof-item"><span class="proof-icon">📦</span> <strong>Instant</strong>&nbsp;digital delivery</div>
+    <div class="proof-item"><span class="proof-icon">🛡️</span> <strong>Stress-tested</strong>&nbsp;in real life</div>
+    <div class="proof-item"><span class="proof-icon">🔄</span> <strong>Free</strong>&nbsp;updates included</div>
+  </div>
 
   <!-- TYNKR SHOP -->
   <section id="tynkr">
@@ -1305,31 +1527,37 @@
     </div>
   </section>
 
-  <!-- SUBSTACK STRIP -->
-  <div style="background:#f0ede8; padding:3rem 5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; border-top:1px solid #e0ddd8;">
-    <div>
-      <div style="font-family:'Syne',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#e8500a; margin-bottom:0.6rem;">From the Blog</div>
-      <div style="font-family:'Syne',sans-serif; font-size:1.3rem; font-weight:800; color:#1c1c1c; margin-bottom:0.5rem;">Tynkr Tools & Co on Substack</div>
-      <div style="font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#6b6b6b; max-width:480px;">Finance tips, productivity systems, template breakdowns, and honest advice for creators who take their money seriously.</div>
+  <!-- EMAIL CAPTURE -->
+  <div class="email-capture">
+    <div class="email-capture-text">
+      <h3>Join the <span>Tynkr</span> newsletter</h3>
+      <p>Finance tips, productivity systems, template breakdowns, and honest advice for creators who take their money seriously.</p>
     </div>
-    <a href="https://tynkrtoolsco.substack.com/" target="_blank" style="display:inline-flex; align-items:center; gap:0.6rem; background:#e8500a; color:#fff; font-family:'Syne',sans-serif; font-weight:700; font-size:0.85rem; letter-spacing:0.04em; text-transform:uppercase; text-decoration:none; padding:0.9rem 2rem; flex-shrink:0;">
-      Read the Blog ↗
-    </a>
+    <form class="email-capture-form" action="https://tynkrtoolsco.substack.com/" target="_blank" method="get">
+      <input type="email" placeholder="your@email.com" required />
+      <button type="submit">Subscribe ↗</button>
+    </form>
   </div>
 
-  <!-- PARENT BRAND STRIP -->
-  <div class="parent-strip" id="about">
-    <div class="parent-strip-content">
-      <h3>Built By Josh Studio</h3>
-      <p>A one-person creative studio building digital tools and art that are actually worth your money. Every template is stress-tested in real life. Every print is made with intention. No filler, no bloat.</p>
+  <!-- ABOUT SECTION -->
+  <section class="about-section" id="about">
+    <div class="about-content">
+      <div class="about-label">About the Studio</div>
+      <h2>One person. Two brands.<br>Zero <span>filler.</span></h2>
+      <p>Built By Josh Studio is a one-person creative operation building digital tools and art that are actually worth your money. Every template is stress-tested in real life. Every print is made with intention.</p>
+      <p>Two brands, one philosophy: make things people actually use.</p>
     </div>
-    <div class="parent-strip-links">
-      <a href="#tynkr" class="strip-link"><span>🛠</span> Tynkr Tools &amp; Co</a>
-      <a href="#builtbyjosh" class="strip-link"><span>✨</span> Zodiac Art Prints</a>
-      <a href="https://payhip.com/tynkrtoolsco" class="strip-link" target="_blank"><span>↗</span> Shop on Payhip</a>
-      <a href="https://tynkrtoolsco.substack.com/" class="strip-link" target="_blank"><span>✍</span> Tynkr Blog on Substack</a>
+    <div class="about-brands">
+      <div class="about-brand-card tynkr">
+        <h4>Tynkr Tools & Co</h4>
+        <p>Notion OS systems, Excel and Google Sheets templates for budgeting, planning, and running a creator business.</p>
+      </div>
+      <div class="about-brand-card bbj">
+        <h4>Zodiac Art Prints</h4>
+        <p>Hand-crafted digital art prints for every zodiac sign. Designed with intention, ready to print and display.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
