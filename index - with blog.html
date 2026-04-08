@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Built By Josh Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Tynkr palette */
+      --tynkr-bg: #f7f6f2;
+      --tynkr-surface: #ffffff;
+      --tynkr-accent: #e8500a;
+      --tynkr-accent2: #1a1a2e;
+      --tynkr-text: #1c1c1c;
+      --tynkr-muted: #6b6b6b;
+      --tynkr-border: #e0ddd8;
+
+      /* Built By Josh palette */
+      --bbj-bg: #0b0813;
+      --bbj-surface: #120f1f;
+      --bbj-accent: #c9a84c;
+      --bbj-accent2: #7b4fa6;
+      --bbj-text: #ede8f5;
+      --bbj-muted: #8a7fa8;
+      --bbj-border: #2a2040;
+      --bbj-glow: rgba(201,168,76,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--tynkr-bg);
+      color: var(--tynkr-text);
+      overflow-x: hidden;
+    }
+
+    /* ── SITE NAV ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      background: rgba(247,246,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--tynkr-border);
+      transition: background 0.3s;
+    }
+    .site-nav.dark {
+      background: rgba(11,8,19,0.92);
+      border-bottom-color: var(--bbj-border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--tynkr-text);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .site-nav.dark .nav-logo { color: var(--bbj-text); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--tynkr-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--tynkr-accent); }
+    .site-nav.dark .nav-links a { color: var(--bbj-muted); }
+    .site-nav.dark .nav-links a:hover { color: var(--bbj-accent); }
+
+    /* ── HERO – DUAL SPLIT ── */
+    .hero-split {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 64px;
+    }
+
+    /* Tynkr side */
+    .hero-tynkr {
+      background: var(--tynkr-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-tynkr::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 360px; height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,80,10,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .tynkr-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .tynkr-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px; height: 2px;
+      background: var(--tynkr-accent);
+    }
+    .hero-tynkr h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--tynkr-text);
+      margin-bottom: 1.4rem;
+    }
+    .hero-tynkr h1 span {
+      color: var(--tynkr-accent);
+    }
+    .hero-tynkr p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--tynkr-muted);
+      max-width: 380px;
+      margin-bottom: 2.4rem;
+    }
+    .btn-primary-tynkr {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--tynkr-accent);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary-tynkr:hover { background: #c43d00; transform: translateY(-2px); }
+    .tynkr-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    .tynkr-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--tynkr-border);
+      color: var(--tynkr-muted);
+      padding: 0.3rem 0.8rem;
+    }
+
+    /* BBJ side */
+    .hero-bbj {
+      background: var(--bbj-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 5rem 5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bbj::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(123,79,166,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-bbj::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .bbj-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-bbj h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      color: var(--bbj-text);
+      margin-bottom: 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-bbj h2 span {
+      color: var(--bbj-accent);
+      font-style: italic;
+    }
+    .hero-bbj p {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--bbj-muted);
+      max-width: 380px;
+      margin-bottom: 2.4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-primary-bbj {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: var(--bbj-accent);
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border: 1px solid var(--bbj-accent);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-primary-bbj:hover {
+      background: var(--bbj-accent);
+      color: var(--bbj-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px var(--bbj-glow);
+    }
+    .stars {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0;
+      animation: twinkle var(--d) ease-in-out infinite var(--delay);
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(0.5); }
+      50% { opacity: var(--op); transform: scale(1); }
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        var(--tynkr-accent)  0%,
+        var(--tynkr-accent)  40%,
+        #a0386e              50%,
+        var(--bbj-accent2)   60%,
+        var(--bbj-accent)    100%
+      );
+    }
+
+    /* ── TYNKR SECTION ── */
+    #tynkr {
+      background: var(--tynkr-bg);
+      padding: 6rem 5rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--tynkr-border);
+    }
+    .section-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--tynkr-text);
+    }
+    .section-header h2 span { color: var(--tynkr-accent); }
+    .section-header p {
+      font-size: 0.85rem;
+      color: var(--tynkr-muted);
+      text-align: right;
+      max-width: 280px;
+    }
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--tynkr-border);
+      background: transparent;
+      color: var(--tynkr-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--tynkr-accent);
+      border-color: var(--tynkr-accent);
+      color: #fff;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card-tynkr.filtered-out {
+      display: none !important;
+    }
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-tynkr:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    }
+    .card-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      background: var(--tynkr-accent);
+      color: #fff;
+      z-index: 2;
+    }
+    .card-img-tynkr {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #f0ede8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tynkr-muted);
+      overflow: hidden;
+      position: relative;
+    }
+    .card-img-tynkr .preview-icon {
+      font-size: 2.5rem;
+      opacity: 0.3;
+    }
+    .card-body-tynkr {
+      padding: 1.25rem 1.4rem 1.4rem;
+    }
+    .card-platform {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .platform-icon {
+      width: 14px; height: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      line-height: 1;
+    }
+    /* Platform brand colors on card hover */
+    .card-tynkr:hover [data-platform="notion"] { color: #000; }
+    .card-tynkr:hover [data-platform="excel"]  { color: #1D6F42; }
+    .card-tynkr:hover [data-platform="sheets"] { color: #0F9D58; }
+    .card-title-tynkr {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--tynkr-text);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .card-desc-tynkr {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--tynkr-muted);
+      margin-bottom: 1.1rem;
+    }
+    .card-footer-tynkr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--tynkr-border);
+    }
+    .card-price-tynkr {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--tynkr-text);
+    }
+    .card-price-tynkr .old-price {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--tynkr-muted);
+      text-decoration: line-through;
+      margin-right: 0.3rem;
+    }
+    .btn-buy-tynkr {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.1rem;
+      background: var(--tynkr-accent2);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-buy-tynkr:hover { background: var(--tynkr-accent); }
+
+    /* ── BBJ SECTION ── */
+    #builtbyjosh {
+      background: var(--bbj-bg);
+      padding: 6rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #builtbyjosh::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 80%, rgba(123,79,166,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 10%, rgba(201,168,76,0.07) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .section-header-bbj {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--bbj-border);
+      position: relative;
+      z-index: 1;
+    }
+    .section-header-bbj h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--bbj-text);
+    }
+    .section-header-bbj h2 span { color: var(--bbj-accent); font-style: italic; }
+    .section-header-bbj p {
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.95rem;
+      color: var(--bbj-muted);
+      text-align: right;
+      max-width: 280px;
+    }
+    .filter-bar-bbj {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .filter-btn-bbj {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--bbj-border);
+      background: transparent;
+      color: var(--bbj-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn-bbj.active, .filter-btn-bbj:hover {
+      border-color: var(--bbj-accent);
+      color: var(--bbj-accent);
+      background: rgba(201,168,76,0.08);
+    }
+    .product-grid-bbj {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* BBJ product card */
+    .card-bbj {
+      background: var(--bbj-surface);
+      border: 1px solid var(--bbj-border);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-bbj:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(201,168,76,0.1);
+      border-color: rgba(201,168,76,0.3);
+    }
+    .card-bbj::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .card-img-bbj {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: linear-gradient(135deg, #1a1230 0%, #0d0a1a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-img-bbj::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(201,168,76,0.1) 0%, transparent 70%);
+    }
+    .zodiac-symbol {
+      font-size: 3.5rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 12px rgba(201,168,76,0.4));
+      transition: transform 0.3s, filter 0.3s;
+    }
+    .card-bbj:hover .zodiac-symbol {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 20px rgba(201,168,76,0.6));
+    }
+    .card-body-bbj {
+      padding: 1.25rem 1.4rem 1.4rem;
+    }
+    .card-sign {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+      margin-bottom: 0.4rem;
+    }
+    .card-title-bbj {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--bbj-text);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .card-desc-bbj {
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--bbj-muted);
+      margin-bottom: 1.1rem;
+      font-style: italic;
+    }
+    .card-footer-bbj {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--bbj-border);
+    }
+    .card-price-bbj {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--bbj-accent);
+    }
+    .btn-buy-bbj {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.1rem;
+      background: transparent;
+      color: var(--bbj-accent);
+      border: 1px solid var(--bbj-accent);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-buy-bbj:hover {
+      background: var(--bbj-accent);
+      color: var(--bbj-bg);
+    }
+
+    /* ── LOGO PLACEHOLDER ── */
+    .logo-placeholder {
+      width: 48px; height: 48px;
+      background: var(--tynkr-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .logo-placeholder.bbj {
+      background: var(--bbj-accent2);
+      color: var(--bbj-accent);
+      font-family: 'Cinzel', serif;
+    }
+
+    /* ── ABOUT / PARENT BRAND STRIP ── */
+    .parent-strip {
+      background: var(--tynkr-accent2);
+      padding: 4rem 5rem;
+      display: flex;
+      gap: 4rem;
+      align-items: center;
+    }
+    .parent-strip-content h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+    .parent-strip-content p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+      max-width: 520px;
+    }
+    .parent-strip-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      min-width: 200px;
+    }
+    .strip-link {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .strip-link:hover { color: #fff; }
+    .strip-link span { opacity: 0.4; font-size: 1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0a0f;
+      padding: 3rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-left {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-left strong { color: rgba(255,255,255,0.7); }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-split { grid-template-columns: 1fr; }
+      .hero-tynkr, .hero-bbj { padding: 4rem 2rem; }
+      #tynkr, #builtbyjosh { padding: 4rem 2rem; }
+      .section-header, .section-header-bbj { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .section-header p, .section-header-bbj p { text-align: left; }
+      .parent-strip { flex-direction: column; padding: 3rem 2rem; gap: 2rem; }
+      footer { flex-direction: column; padding: 2rem; }
+      .site-nav { padding: 0 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+    }
+
+    /* ── PAGE LOAD ANIMATION ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.7s ease forwards 0.05s;
+    }
+    @keyframes fadeUp {
+      0%   { opacity: 0; transform: translateY(24px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.27s; }
+    .delay-3 { animation-delay: 0.39s; }
+    .delay-4 { animation-delay: 0.51s; }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { opacity: 1; transform: none; animation: none; }
+    }
+
+    /* scroll reveal */
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.hidden {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav" id="mainNav">
+    <a href="#" class="nav-logo">Built By Josh Studio</a>
+    <ul class="nav-links">
+      <li><a href="#tynkr">Templates</a></li>
+      <li><a href="#builtbyjosh">Zodiac Art</a></li>
+      <li><a href="https://tynkrtoolsco.substack.com/" target="_blank">Blog</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SPLIT -->
+  <section class="hero-split">
+    <!-- Tynkr side -->
+    <div class="hero-tynkr">
+      <div class="tynkr-eyebrow fade-up">Tynkr Tools & Co</div>
+      <h1 class="fade-up delay-1">Plan smarter.<br>Build <span>better.</span></h1>
+      <p class="fade-up delay-2">Premium Notion, Excel, and Google Sheets templates for budgeting, planning, and productivity. Tools that actually work the way you think.</p>
+      <a href="#tynkr" class="btn-primary-tynkr fade-up delay-3">
+        Browse Templates
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <div class="tynkr-tags fade-up delay-4">
+        <span class="tynkr-tag">Notion</span>
+        <span class="tynkr-tag">Excel</span>
+        <span class="tynkr-tag">Google Sheets</span>
+        <span class="tynkr-tag">Finance</span>
+        <span class="tynkr-tag">Planning</span>
+      </div>
+    </div>
+
+    <!-- BBJ side -->
+    <div class="hero-bbj">
+      <div class="stars" id="starsContainer"></div>
+      <div class="bbj-eyebrow fade-up">Built By Josh Studio</div>
+      <h2 class="fade-up delay-1">Digital art for the <span>cosmic soul.</span></h2>
+      <p class="fade-up delay-2">Hand-crafted zodiac digital art prints. Each sign rendered with intention — perfect for instant download, print, and display.</p>
+      <a href="#builtbyjosh" class="btn-primary-bbj fade-up delay-3">
+        Explore the Collection
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- TYNKR SHOP -->
+  <section id="tynkr">
+    <div class="section-header reveal">
+      <h2>Tynkr Tools <span>&amp; Co</span></h2>
+      <p>Notion OS systems, spreadsheet tools, and bundles built for creators and professionals</p>
+    </div>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" onclick="filterTynkr(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterTynkr(this,'notion')">Notion OS</button>
+      <button class="filter-btn" onclick="filterTynkr(this,'bundle')">Bundles</button>
+      <button class="filter-btn" onclick="filterTynkr(this,'spreadsheet')">Spreadsheets</button>
+    </div>
+    <div class="product-grid" id="tynkrGrid">
+
+      <!-- BUNDLES -->
+      <div class="card-tynkr reveal" data-cat="bundle">
+        <span class="card-badge">Best Value</span>
+        <div class="card-img-tynkr">
+          <span class="preview-icon">🗂️</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="notion"><span class="platform-icon">𝗡</span> Notion Bundle</div>
+          <div class="card-title-tynkr">Creator Starter Bundle</div>
+          <div class="card-desc-tynkr">Content library and finance tracker combined — everything a creator needs to launch organized.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$44</div>
+            <a href="https://payhip.com/b/oJViK" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-tynkr reveal" data-cat="bundle">
+        <div class="card-img-tynkr">
+          <span class="preview-icon">💼</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="notion"><span class="platform-icon">𝗡</span> Notion Bundle</div>
+          <div class="card-title-tynkr">Creator Money Bundle</div>
+          <div class="card-desc-tynkr">Business pipeline and finance tracker in one — built for creators who take their revenue seriously.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$44</div>
+            <a href="https://payhip.com/b/U4uIX" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-tynkr reveal" data-cat="bundle">
+        <span class="card-badge">Most Complete</span>
+        <div class="card-img-tynkr">
+          <span class="preview-icon">⚡</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="notion"><span class="platform-icon">𝗡</span> Notion Bundle</div>
+          <div class="card-title-tynkr">Creator OS Stack</div>
+          <div class="card-desc-tynkr">The full creator system — content, business, and finance all in one stack. Built to run your whole operation.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$57</div>
+            <a href="https://payhip.com/b/w2p8m" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-tynkr reveal" data-cat="bundle">
+        <span class="card-badge" style="background:var(--tynkr-accent2)">New</span>
+        <div class="card-img-tynkr">
+          <span class="preview-icon">🏆</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="notion"><span class="platform-icon">𝗡</span> Notion Bundle</div>
+          <div class="card-title-tynkr">Creator OS Full Stack</div>
+          <div class="card-desc-tynkr">The complete creator OS — every system, every template, every tool in one bundle. Nothing left out.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$77</div>
+            <a href="https://payhip.com/b/lGiJA" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTION OS -->
+      <div class="card-tynkr reveal" data-cat="notion">
+        <div class="card-img-tynkr">
+          <span class="preview-icon">🚀</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="notion"><span class="platform-icon">𝗡</span> Notion OS</div>
+          <div class="card-title-tynkr">Creator Launch OS</div>
+          <div class="card-desc-tynkr">Launch planner, campaign tracker, and promo workflow — everything you need to ship without the chaos.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$27</div>
+            <a href="https://payhip.com/b/3O4XK" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-tynkr reveal" data-cat="notion">
+        <div class="card-img-tynkr">
+          <span class="preview-icon">🤝</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="notion"><span class="platform-icon">𝗡</span> Notion OS</div>
+          <div class="card-title-tynkr">Creator Business OS</div>
+          <div class="card-desc-tynkr">CRM built for creators — track brand deals, clients, leads, and partnerships all in one place.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$27</div>
+            <a href="https://payhip.com/b/WqSaI" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-tynkr reveal" data-cat="notion">
+        <div class="card-img-tynkr">
+          <span class="preview-icon">✍️</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="notion"><span class="platform-icon">𝗡</span> Notion OS</div>
+          <div class="card-title-tynkr">Creator Content OS</div>
+          <div class="card-desc-tynkr">Full content management system for creators — plan, produce, and track everything in one workspace.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$27</div>
+            <a href="https://payhip.com/b/u7zR1" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-tynkr reveal" data-cat="notion">
+        <div class="card-img-tynkr">
+          <span class="preview-icon">💰</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="notion"><span class="platform-icon">𝗡</span> Notion OS</div>
+          <div class="card-title-tynkr">Creator Finance OS</div>
+          <div class="card-desc-tynkr">Complete financial system for creators — income tracking, expense management, and revenue snapshots.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$27</div>
+            <a href="https://payhip.com/b/Te3db" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPREADSHEETS -->
+      <div class="card-tynkr reveal" data-cat="notion">
+        <span class="card-badge" style="background:var(--tynkr-accent2)">New</span>
+        <div class="card-img-tynkr">
+          <span class="preview-icon">📦</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="notion"><span class="platform-icon">𝗡</span> Notion OS</div>
+          <div class="card-title-tynkr">Creator Product OS</div>
+          <div class="card-desc-tynkr">The inventory and maintenance system your product catalog has been missing — track every file, listing, and version update.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$27</div>
+            <a href="https://payhip.com/b/4zk0L" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPREADSHEETS -->
+      <div class="card-tynkr reveal" data-cat="spreadsheet">
+        <div class="card-img-tynkr">
+          <span class="preview-icon">📊</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="excel"><span class="platform-icon">𝗫</span> Excel</div>
+          <div class="card-title-tynkr">Excel Bill Tracker with Macros</div>
+          <div class="card-desc-tynkr">Automated monthly budget spreadsheet with dynamic payment tracking and macro-powered calculations.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$9.95</div>
+            <a href="https://payhip.com/b/OZ3YA" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card-tynkr reveal" data-cat="bundle">
+        <div class="card-img-tynkr">
+          <span class="preview-icon">📋</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="sheets"><span class="platform-icon">▦</span> Excel + Sheets Bundle</div>
+          <div class="card-title-tynkr">Budget Spreadsheet Bundle</div>
+          <div class="card-desc-tynkr">23-tab monthly planner with dashboard and finance tracking — available in both Excel and Google Sheets.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$34.99</div>
+            <a href="https://payhip.com/b/WZn4e" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-tynkr reveal" data-cat="spreadsheet">
+        <div class="card-img-tynkr">
+          <span class="preview-icon">📊</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="sheets"><span class="platform-icon">▦</span> Google Sheets</div>
+          <div class="card-title-tynkr">Ultimate Budget Workbook</div>
+          <div class="card-desc-tynkr">23-tab personal finance spreadsheet for Google Sheets — dashboard, debt payoff, and full monthly planning.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$24.99</div>
+            <a href="https://payhip.com/b/cRwKD" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-tynkr reveal" data-cat="spreadsheet">
+        <div class="card-img-tynkr">
+          <span class="preview-icon">📈</span>
+        </div>
+        <div class="card-body-tynkr">
+          <div class="card-platform" data-platform="excel"><span class="platform-icon">𝗫</span> Excel</div>
+          <div class="card-title-tynkr">Budget Spreadsheet for Excel</div>
+          <div class="card-desc-tynkr">23-tab monthly planner with dashboard, debt payoff tracker, and net worth tracker — built for Excel.</div>
+          <div class="card-footer-tynkr">
+            <div class="card-price-tynkr">$24.99</div>
+            <a href="https://payhip.com/b/zUD1y" class="btn-buy-tynkr" target="_blank">Get It ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- BUILT BY JOSH STUDIO SHOP -->
+  <section id="builtbyjosh">
+    <div class="section-header-bbj reveal">
+      <h2>Zodiac <span>Art Prints</span></h2>
+      <p>Digital downloads — instant access, print at home or at a local shop</p>
+    </div>
+    <div class="filter-bar-bbj reveal">
+      <button class="filter-btn-bbj active" onclick="filterBBJ(this,'all')">All Signs</button>
+      <button class="filter-btn-bbj" onclick="filterBBJ(this,'fire')">🔥 Fire</button>
+      <button class="filter-btn-bbj" onclick="filterBBJ(this,'earth')">🌿 Earth</button>
+      <button class="filter-btn-bbj" onclick="filterBBJ(this,'air')">💨 Air</button>
+      <button class="filter-btn-bbj" onclick="filterBBJ(this,'water')">💧 Water</button>
+    </div>
+    <div class="product-grid-bbj" id="bbjGrid">
+      <!-- Sample zodiac cards — replace with your real products & Gumroad links -->
+      <div class="card-bbj reveal" data-elem="fire">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♈</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Aries · Fire · March 21 – April 19</div>
+          <div class="card-title-bbj">The Ram — Digital Art Print</div>
+          <div class="card-desc-bbj">Bold, driven, and first. A high-res digital print celebrating the warrior energy of Aries.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bbj reveal" data-elem="earth">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♉</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Taurus · Earth · April 20 – May 20</div>
+          <div class="card-title-bbj">The Bull — Digital Art Print</div>
+          <div class="card-desc-bbj">Grounded, luxurious, immovable. A rich print that captures Taurus in full golden-earth splendor.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bbj reveal" data-elem="air">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♊</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Gemini · Air · May 21 – June 20</div>
+          <div class="card-title-bbj">The Twins — Digital Art Print</div>
+          <div class="card-desc-bbj">Dual-natured, quick-witted, electric. A dynamic composition reflecting Gemini's fluid duality.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bbj reveal" data-elem="water">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♋</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Cancer · Water · June 21 – July 22</div>
+          <div class="card-title-bbj">The Crab — Digital Art Print</div>
+          <div class="card-desc-bbj">Intuitive, protective, lunar. A moonlit piece that honors the depth and tenderness of Cancer.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bbj reveal" data-elem="fire">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♌</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Leo · Fire · July 23 – Aug 22</div>
+          <div class="card-title-bbj">The Lion — Digital Art Print</div>
+          <div class="card-desc-bbj">Regal, radiant, magnetic. A golden-mane masterpiece for the sign that commands the room.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bbj reveal" data-elem="earth">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♍</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Virgo · Earth · Aug 23 – Sep 22</div>
+          <div class="card-title-bbj">The Maiden — Digital Art Print</div>
+          <div class="card-desc-bbj">Precise, devoted, quietly powerful. Clean lines and botanical detail honor Virgo's exacting nature.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bbj reveal" data-elem="air">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♎</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Libra · Air · Sep 23 – Oct 22</div>
+          <div class="card-title-bbj">The Scales — Digital Art Print</div>
+          <div class="card-desc-bbj">Balanced, beautiful, just. Symmetrical and serene — a print as harmonious as the sign itself.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bbj reveal" data-elem="water">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♏</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Scorpio · Water · Oct 23 – Nov 21</div>
+          <div class="card-title-bbj">The Scorpion — Digital Art Print</div>
+          <div class="card-desc-bbj">Intense, transformative, magnetic. Deep shadows and crimson accents for the sign that sees everything.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bbj reveal" data-elem="fire">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♐</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Sagittarius · Fire · Nov 22 – Dec 21</div>
+          <div class="card-title-bbj">The Archer — Digital Art Print</div>
+          <div class="card-desc-bbj">Free-spirited, philosophical, relentless. An expansive composition for the sign born to aim further.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bbj reveal" data-elem="earth">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♑</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Capricorn · Earth · Dec 22 – Jan 19</div>
+          <div class="card-title-bbj">The Sea-Goat — Digital Art Print</div>
+          <div class="card-desc-bbj">Patient, disciplined, relentlessly climbing. A structured, stone-and-shadow print built for the long game.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bbj reveal" data-elem="air">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♒</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Aquarius · Air · Jan 20 – Feb 18</div>
+          <div class="card-title-bbj">The Water-Bearer — Digital Art Print</div>
+          <div class="card-desc-bbj">Visionary, unconventional, electric. A stark, futuristic piece for the sign that lives ten years ahead.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bbj reveal" data-elem="water">
+        <div class="card-img-bbj"><span class="zodiac-symbol">♓</span></div>
+        <div class="card-body-bbj">
+          <div class="card-sign">Pisces · Water · Feb 19 – Mar 20</div>
+          <div class="card-title-bbj">The Fish — Digital Art Print</div>
+          <div class="card-desc-bbj">Dreamy, empathic, boundless. A soft, nebula-drenched print for the sign that blurs every edge.</div>
+          <div class="card-footer-bbj">
+            <div class="card-price-bbj">$5</div>
+            <a href="https://builtbyjoshstudio.etsy.com" class="btn-buy-bbj" target="_blank">Download ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSTACK STRIP -->
+  <div style="background:#f0ede8; padding:3rem 5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; border-top:1px solid #e0ddd8;">
+    <div>
+      <div style="font-family:'Syne',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#e8500a; margin-bottom:0.6rem;">From the Blog</div>
+      <div style="font-family:'Syne',sans-serif; font-size:1.3rem; font-weight:800; color:#1c1c1c; margin-bottom:0.5rem;">Tynkr Tools & Co on Substack</div>
+      <div style="font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#6b6b6b; max-width:480px;">Finance tips, productivity systems, template breakdowns, and honest advice for creators who take their money seriously.</div>
+    </div>
+    <a href="https://tynkrtoolsco.substack.com/" target="_blank" style="display:inline-flex; align-items:center; gap:0.6rem; background:#e8500a; color:#fff; font-family:'Syne',sans-serif; font-weight:700; font-size:0.85rem; letter-spacing:0.04em; text-transform:uppercase; text-decoration:none; padding:0.9rem 2rem; flex-shrink:0;">
+      Read the Blog ↗
+    </a>
+  </div>
+
+  <!-- PARENT BRAND STRIP -->
+  <div class="parent-strip" id="about">
+    <div class="parent-strip-content">
+      <h3>Built By Josh Studio</h3>
+      <p>A one-person creative studio building digital tools and art that are actually worth your money. Every template is stress-tested in real life. Every print is made with intention. No filler, no bloat.</p>
+    </div>
+    <div class="parent-strip-links">
+      <a href="#tynkr" class="strip-link"><span>🛠</span> Tynkr Tools &amp; Co</a>
+      <a href="#builtbyjosh" class="strip-link"><span>✨</span> Zodiac Art Prints</a>
+      <a href="https://payhip.com/tynkrtoolsco" class="strip-link" target="_blank"><span>↗</span> Shop on Payhip</a>
+      <a href="https://tynkrtoolsco.substack.com/" class="strip-link" target="_blank"><span>✍</span> Tynkr Blog on Substack</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <strong>Built By Josh Studio</strong> · All digital products — instant download
+    </div>
+    <ul class="footer-links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="https://payhip.com/tynkrtoolsco" target="_blank">Payhip</a></li>
+      <li><a href="https://tynkrtoolsco.substack.com/" target="_blank">Blog</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#30697f65626f757d71797c70697f6562747f7d71797e1e737f7d">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // ── Star field ──
+    const container = document.getElementById('starsContainer');
+    for (let i = 0; i < 80; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      s.style.cssText = `
+        left:${Math.random()*100}%;
+        top:${Math.random()*100}%;
+        --d:${2+Math.random()*4}s;
+        --delay:-${Math.random()*4}s;
+        --op:${0.3+Math.random()*0.7};
+        filter:blur(${Math.random() > 0.8 ? '1px' : '0px'});
+        width:${Math.random()>0.8?3:2}px;
+        height:${Math.random()>0.8?3:2}px;
+      `;
+      container.appendChild(s);
+    }
+
+    // ── Nav dark mode on scroll — tracks dark-bg sections ──
+    const nav = document.getElementById('mainNav');
+    const bbjSection = document.getElementById('builtbyjosh');
+    const parentStrip = document.getElementById('about');
+    const footerEl = document.querySelector('footer');
+    window.addEventListener('scroll', () => {
+      const bbjTop = bbjSection.getBoundingClientRect().top;
+      const bbjBottom = bbjSection.getBoundingClientRect().bottom;
+      const stripTop = parentStrip.getBoundingClientRect().top;
+      const stripBottom = parentStrip.getBoundingClientRect().bottom;
+      const footerTop = footerEl.getBoundingClientRect().top;
+      const inDark = (bbjTop < 64 && bbjBottom > 0) ||
+                     (stripTop < 64 && stripBottom > 0) ||
+                     (footerTop < 64);
+      nav.classList.toggle('dark', inDark);
+    });
+
+    // ── Scroll reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => {
+            e.target.classList.remove('hidden');
+            e.target.classList.add('visible');
+          }, i * 60);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(r => {
+      r.classList.add('hidden');
+      observer.observe(r);
+    });
+
+    // ── Tynkr filter ──
+    function filterTynkr(btn, cat) {
+      document.querySelectorAll('#tynkr .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#tynkrGrid .card-tynkr').forEach(card => {
+        const match = (cat === 'all' || card.dataset.cat?.includes(cat));
+        card.classList.toggle('filtered-out', !match);
+        if (match) {
+          card.classList.remove('hidden');
+          card.classList.add('visible');
+        }
+      });
+    }
+
+    // ── BBJ filter ──
+    function filterBBJ(btn, elem) {
+      document.querySelectorAll('#builtbyjosh .filter-btn-bbj').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#bbjGrid .card-bbj').forEach(card => {
+        const match = (elem === 'all' || card.dataset.elem === elem);
+        card.classList.toggle('filtered-out', !match);
+        if (match) {
+          card.classList.remove('hidden');
+          card.classList.add('visible');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
