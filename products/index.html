@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — Notion Templates & Digital Tools — Built By Josh Studio</title>
+  <meta name="description" content="Notion templates and digital tools for solo creators. Content, business, finance, launch, and product operating systems — all available on Etsy." />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/products/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Products — Built By Josh Studio" />
+  <meta property="og:description" content="Notion templates and digital tools for solo creators who want real business systems without starting from scratch." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/products/" />
+  <meta property="og:site_name" content="Built By Josh Studio" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bbj-bg: #0b0813;
+      --bbj-surface: #120f1f;
+      --bbj-accent: #c9a84c;
+      --bbj-accent2: #7b4fa6;
+      --bbj-text: #ede8f5;
+      --bbj-muted: #8a7fa8;
+      --bbj-border: #2a2040;
+      --body-read: #d6cee8;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bbj-bg);
+      color: var(--bbj-text);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      background: rgba(11,8,19,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--bbj-border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--bbj-text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--bbj-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--bbj-accent); }
+    .nav-links a.active { color: var(--bbj-accent); }
+
+    .shop-hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 20%, rgba(201,168,76,0.08) 0%, transparent 60%),
+        linear-gradient(180deg, #0b0813 0%, #0f0c1a 100%);
+      border-bottom: 1px solid var(--bbj-border);
+      position: relative;
+      overflow: hidden;
+    }
+    .shop-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(201,168,76,0.4) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--bbj-text);
+      margin-bottom: 1.4rem;
+      position: relative;
+    }
+    .hero-title span {
+      color: var(--bbj-accent);
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+    .hero-sub {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      color: var(--body-read);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .shop-section {
+      padding: 5rem 5rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--bbj-text);
+      text-align: center;
+      margin-bottom: 3rem;
+      letter-spacing: -0.01em;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+    }
+    .product-card {
+      background: var(--bbj-surface);
+      border: 1px solid var(--bbj-border);
+      padding: 0;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,168,76,0.35);
+      box-shadow: 0 16px 48px rgba(201,168,76,0.1);
+    }
+    .product-card > * { position: relative; z-index: 1; }
+    .card-meta {
+      padding: 1.5rem 1.6rem 0.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+    }
+    .card-title {
+      padding: 0 1.6rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--bbj-text);
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.005em;
+      line-height: 1.25;
+    }
+    .card-desc {
+      padding: 0 1.6rem 1.4rem;
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--body-read);
+      flex: 1;
+    }
+    .card-footer {
+      padding: 1.1rem 1.6rem 1.4rem;
+      border-top: 1px solid var(--bbj-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-price {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--bbj-accent);
+    }
+    .card-view {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+    }
+
+    .coming-soon {
+      background: rgba(255,255,255,0.015);
+      border: 1px dashed var(--bbj-border);
+      color: var(--bbj-muted);
+      cursor: default;
+    }
+    .coming-soon:hover { transform: none; border-color: var(--bbj-border); box-shadow: none; }
+    .coming-soon .card-title,
+    .coming-soon .card-price,
+    .coming-soon .card-view,
+    .coming-soon .card-meta { color: var(--bbj-muted); }
+    .coming-soon .card-view { letter-spacing: 0.14em; }
+
+    footer {
+      background: #0a0a0f;
+      padding: 3rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-left {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-left strong { color: rgba(255,255,255,0.7); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 960px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .shop-section { padding: 4rem 2rem; }
+    }
+    @media (max-width: 640px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .shop-hero { padding: 8rem 1.5rem 3rem; }
+      .site-nav { padding: 0 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      footer { flex-direction: column; padding: 2rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">Built By Josh Studio</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Templates</a></li>
+      <li><a href="../index.html#builtbyjosh">Zodiac Art</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="shop-hero">
+    <div class="hero-eyebrow">Tynkr Tools &amp; Co · The Template Shop</div>
+    <h1 class="hero-title">Notion Templates for <span>Solo Creators</span></h1>
+    <p class="hero-sub">Connected operating systems for the five operational areas of a creator business. Every template is available for instant download on Etsy.</p>
+  </header>
+
+  <section class="shop-section">
+    <div class="section-label">The Creator OS Line</div>
+    <h2 class="section-title">Five systems. One unified stack.</h2>
+
+    <div class="product-grid">
+
+      <a href="creator-content-os.html" class="product-card">
+        <div class="card-meta">Notion · Content System</div>
+        <div class="card-title">Creator Content OS</div>
+        <div class="card-desc">One workspace for every stage of content — library, pipeline, calendar, repurposing, campaigns, assets, and performance.</div>
+        <div class="card-footer">
+          <span class="card-price">$27</span>
+          <span class="card-view">View Product →</span>
+        </div>
+      </a>
+
+      <div class="product-card coming-soon">
+        <div class="card-meta">Notion · Creator Business</div>
+        <div class="card-title">Creator Business OS</div>
+        <div class="card-desc">Contacts, leads, deals, deliverables, offers, and invoices — a full business OS for solo creators without a team.</div>
+        <div class="card-footer">
+          <span class="card-price">$27</span>
+          <span class="card-view">Page Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="product-card coming-soon">
+        <div class="card-meta">Notion · Creator Finance</div>
+        <div class="card-title">Creator Finance OS</div>
+        <div class="card-desc">Revenue, expenses, budgets, goals, debt, and tax estimates for creators who want control without an accountant.</div>
+        <div class="card-footer">
+          <span class="card-price">$27</span>
+          <span class="card-view">Page Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="product-card coming-soon">
+        <div class="card-meta">Notion · Creator Launches</div>
+        <div class="card-title">Creator Launch OS</div>
+        <div class="card-desc">Launch command center, task management, asset tracker, and promo content coordination for product drops.</div>
+        <div class="card-footer">
+          <span class="card-price">$27</span>
+          <span class="card-view">Page Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="product-card coming-soon">
+        <div class="card-meta">Notion · Creator Catalog</div>
+        <div class="card-title">Creator Product OS</div>
+        <div class="card-desc">Digital product catalog management — products, files, cross-platform listings, bundles, versions, and support.</div>
+        <div class="card-footer">
+          <span class="card-price">$27</span>
+          <span class="card-view">Page Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="product-card coming-soon">
+        <div class="card-meta">Notion · Full Bundle</div>
+        <div class="card-title">Creator OS Full Stack</div>
+        <div class="card-desc">Every Creator OS template bundled into one unified operating system. Content, business, finance, launch, and product.</div>
+        <div class="card-footer">
+          <span class="card-price">$77</span>
+          <span class="card-view">Page Coming Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">
+      <strong>Built By Josh Studio</strong> · All digital products — instant download
+    </div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html">Products</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="https://www.etsy.com/shop/tynkrtoolsco" target="_blank" rel="noopener">Etsy</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
