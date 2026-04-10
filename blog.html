@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Studio Blog · Built By Josh Studio</title>
+  <meta name="description" content="Tutorials, tear-downs, and honest notes from a one-person studio building Notion systems, spreadsheet tools, and zodiac art." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bbj-bg: #0b0813;
+      --bbj-surface: #120f1f;
+      --bbj-accent: #c9a84c;
+      --bbj-accent2: #7b4fa6;
+      --bbj-text: #ede8f5;
+      --bbj-muted: #8a7fa8;
+      --bbj-border: #2a2040;
+      --bbj-charcoal: #15131c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bbj-bg);
+      color: var(--bbj-text);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── SITE NAV (dark by default on this page) ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      background: rgba(11,8,19,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--bbj-border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--bbj-text);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--bbj-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--bbj-accent); }
+    .nav-links a.active { color: var(--bbj-accent); }
+
+    /* ── HERO ── */
+    .blog-hero {
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 20%, rgba(201,168,76,0.08) 0%, transparent 60%),
+        linear-gradient(180deg, #0b0813 0%, #0f0c1a 100%);
+      border-bottom: 1px solid var(--bbj-border);
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(201,168,76,0.4) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--bbj-text);
+      margin-bottom: 1.4rem;
+      position: relative;
+    }
+    .hero-title span {
+      color: var(--bbj-accent);
+      font-style: italic;
+      font-family: 'Crimson Pro', serif;
+      font-weight: 400;
+    }
+    .hero-sub {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      font-style: italic;
+      color: var(--bbj-muted);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* ── SUBSTACK CAPTURE ── */
+    .substack-form {
+      display: flex;
+      max-width: 460px;
+      margin: 0 auto;
+      gap: 0;
+      position: relative;
+      border: 1px solid var(--bbj-border);
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.25s;
+    }
+    .substack-form:focus-within {
+      border-color: var(--bbj-accent);
+    }
+    .substack-form input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 1rem 1.2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--bbj-text);
+      letter-spacing: 0.02em;
+    }
+    .substack-form input::placeholder {
+      color: var(--bbj-muted);
+      opacity: 0.7;
+    }
+    .substack-form button {
+      background: var(--bbj-accent);
+      color: var(--bbj-bg);
+      border: none;
+      padding: 0 1.6rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .substack-form button:hover {
+      background: #e0bd5a;
+    }
+    .substack-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      color: var(--bbj-muted);
+      margin-top: 0.9rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── ARTICLES GRID ── */
+    .blog-section {
+      padding: 5rem 5rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--bbj-text);
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+    }
+
+    /* Article card — mirrors .card-bbj structure */
+    .article-card {
+      background: var(--bbj-surface);
+      border: 1px solid var(--bbj-border);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(201,168,76,0.1);
+      border-color: rgba(201,168,76,0.3);
+    }
+    .article-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .article-meta {
+      padding: 1.6rem 1.6rem 0.6rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+      position: relative;
+      z-index: 1;
+    }
+    .article-title {
+      padding: 0 1.6rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--bbj-text);
+      margin-bottom: 0.9rem;
+      letter-spacing: -0.01em;
+      position: relative;
+      z-index: 1;
+    }
+    .article-excerpt {
+      padding: 0 1.6rem 1.4rem;
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #b8aed0;
+      font-style: italic;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .article-footer {
+      padding: 1.1rem 1.6rem 1.4rem;
+      border-top: 1px solid var(--bbj-border);
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+      z-index: 1;
+    }
+    .read-more {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+    .article-card:hover .read-more { gap: 0.7rem; }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, #1a1230 0%, #0d0a1a 100%);
+      border-top: 1px solid var(--bbj-border);
+      border-bottom: 1px solid var(--bbj-border);
+    }
+    .cta-band h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--bbj-text);
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .cta-band h2 span {
+      color: var(--bbj-accent);
+      font-style: italic;
+      font-family: 'Crimson Pro', serif;
+      font-weight: 400;
+    }
+    .cta-band p {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      color: var(--bbj-muted);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 2rem;
+    }
+    .btn-etsy {
+      display: inline-block;
+      background: var(--bbj-accent);
+      color: var(--bbj-bg);
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-etsy:hover {
+      background: #e0bd5a;
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0a0f;
+      padding: 3rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-left {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-left strong { color: rgba(255,255,255,0.7); }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .article-grid { grid-template-columns: repeat(2, 1fr); }
+      .blog-section { padding: 4rem 2rem; }
+    }
+    @media (max-width: 640px) {
+      .article-grid { grid-template-columns: 1fr; }
+      .blog-hero { padding: 8rem 1.5rem 4rem; }
+      .substack-form { flex-direction: column; }
+      .substack-form button { padding: 0.9rem; }
+      .site-nav { padding: 0 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      footer { flex-direction: column; padding: 2rem; }
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">Built By Josh Studio</a>
+    <ul class="nav-links">
+      <li><a href="index.html#tynkr">Templates</a></li>
+      <li><a href="index.html#builtbyjosh">Zodiac Art</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="blog-hero">
+    <div class="hero-eyebrow">Built By Josh Studio · Field Notes</div>
+    <h1 class="hero-title">THE STUDIO <span>Blog</span></h1>
+    <p class="hero-sub">Tutorials, tear-downs, and honest notes from a one-person studio. New posts land in the newsletter first — no fluff, just what's actually working.</p>
+
+    <form class="substack-form" action="https://tynkrtoolsco.substack.com/subscribe" method="get" target="_blank">
+      <input type="email" name="email" placeholder="you@yourdomain.com" required aria-label="Email address" />
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="substack-note">Delivered via Substack · Unsubscribe anytime</div>
+  </header>
+
+  <!-- ARTICLES -->
+  <section class="blog-section">
+    <div class="section-label">Latest Posts</div>
+    <h2 class="section-title">Read the Studio</h2>
+
+    <div class="article-grid">
+
+      <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="article-card reveal">
+        <div class="article-meta">Notion · Tutorial</div>
+        <h3 class="article-title">How I Actually Use the Creator Client OS Every Week</h3>
+        <p class="article-excerpt">A walkthrough of the real workflow — not the pitch deck version. See which databases I touch daily and the three I almost never open.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="article-card reveal">
+        <div class="article-meta">Budgeting · Excel</div>
+        <h3 class="article-title">Why Your Budget Spreadsheet Keeps Dying After Two Weeks</h3>
+        <p class="article-excerpt">Most budget templates collapse the second life gets messy. Here's the one design choice that makes a workbook survive past week three.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="article-card reveal">
+        <div class="article-meta">Studio · Process</div>
+        <h3 class="article-title">Running Two Brands From One Tiny Studio in Kansas</h3>
+        <p class="article-excerpt">Templates on one side, zodiac art on the other — and one person in the middle. How I keep both shops running without burning out.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="article-card reveal">
+        <div class="article-meta">Notion · Deep Dive</div>
+        <h3 class="article-title">The Content Planner I Wish I Had Three Years Ago</h3>
+        <p class="article-excerpt">A breakdown of the system that finally stopped me from losing drafts between apps. Built in Notion, designed for people who post across four channels.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="article-card reveal">
+        <div class="article-meta">Zodiac Art · Studio</div>
+        <h3 class="article-title">What Goes Into a Zodiac Print Before It Hits Etsy</h3>
+        <p class="article-excerpt">From first sketch to final file — the unglamorous middle of making digital art people actually want to hang on a wall.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="article-card reveal">
+        <div class="article-meta">Tools · Opinion</div>
+        <h3 class="article-title">Notion vs Excel vs Sheets — What I Reach For and Why</h3>
+        <p class="article-excerpt">Three tools, three jobs, zero holy wars. The decision tree I use when a client asks which one they should build their system in.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <h2>Ready to stop reading and <span>start building?</span></h2>
+    <p>Every template I write about is available for instant download in the shop.</p>
+    <a href="https://www.etsy.com/shop/tynkrtoolsco" target="_blank" class="btn-etsy">Get the Template on Etsy →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <strong>Built By Josh Studio</strong> · All digital products — instant download
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="https://www.etsy.com/shop/tynkrtoolsco" target="_blank">Etsy</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
