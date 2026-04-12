@@ -60,6 +60,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/blog/home-buying-mortgage-workbook.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <!-- PRODUCTS INDEX -->
   <url>
