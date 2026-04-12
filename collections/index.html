@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zodiac Art Collections — Built By Josh Studio</title>
+  <meta name="description" content="Original zodiac art print collections for all 12 signs. Celestial, dark fantasy, watercolor, retro, cyberpunk, gothic horror, minimalist, and anime styles. Instant digital downloads." />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/collections/" />
+
+  <meta property="og:title" content="Zodiac Art Collections — Built By Josh Studio" />
+  <meta property="og:description" content="Original zodiac art prints for all 12 signs in 8 art styles. Instant digital downloads, high-resolution, print-ready." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/collections/" />
+  <meta property="og:site_name" content="Built By Josh Studio" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bbj-bg: #0b0813; --bbj-surface: #120f1f; --bbj-accent: #c9a84c; --bbj-text: #ede8f5; --bbj-muted: #8a7fa8; --bbj-border: #2a2040; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bbj-bg); color: var(--bbj-text); overflow-x: hidden; min-height: 100vh; }
+    .stars { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0; animation: twinkle var(--d) ease-in-out infinite var(--delay); }
+    @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: var(--op); transform: scale(1); } }
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 64px; background: rgba(11,8,19,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--bbj-border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--bbj-text); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--bbj-muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--bbj-accent); } .nav-links a.active { color: var(--bbj-accent); }
+
+    .shop-hero {
+      padding: 10rem 2rem 4rem; text-align: center; position: relative; overflow: hidden;
+      background: radial-gradient(ellipse at 50% 20%, rgba(201,168,76,0.08) 0%, transparent 60%), linear-gradient(180deg, #0b0813 0%, #0f0c1a 100%);
+      border-bottom: 1px solid var(--bbj-border);
+    }
+    .hero-eyebrow { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 1.2rem; position: relative; }
+    .hero-title { font-family: 'Cinzel', serif; font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 700; letter-spacing: 0.02em; line-height: 1.1; color: var(--bbj-text); margin-bottom: 1.4rem; position: relative; }
+    .hero-title span { color: var(--bbj-accent); font-family: 'Crimson Pro', serif; font-style: italic; font-weight: 400; }
+    .hero-sub { font-family: 'Crimson Pro', serif; font-style: italic; font-size: clamp(1rem, 1.6vw, 1.2rem); color: var(--bbj-muted); max-width: 600px; margin: 0 auto; line-height: 1.6; position: relative; }
+
+    .collections-section { padding: 5rem 5rem 6rem; max-width: 1400px; margin: 0 auto; }
+    .section-label { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-accent); text-align: center; margin-bottom: 0.6rem; }
+    .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--bbj-text); text-align: center; margin-bottom: 3rem; letter-spacing: 0.02em; }
+
+    .collection-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .collection-card {
+      background: var(--bbj-surface); border: 1px solid var(--bbj-border); text-decoration: none; color: inherit;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+    }
+    .collection-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%); pointer-events: none; }
+    .collection-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.35); box-shadow: 0 16px 48px rgba(201,168,76,0.1); }
+    .collection-card > * { position: relative; z-index: 1; }
+    .card-img { aspect-ratio: 1/1; overflow: hidden; background: linear-gradient(135deg, #1a1230 0%, #0d0a1a 100%); }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .collection-card:hover .card-img img { transform: scale(1.05); }
+    .card-body { padding: 1.25rem 1.4rem 1.4rem; }
+    .card-sign { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 0.4rem; }
+    .card-name { font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700; color: var(--bbj-text); margin-bottom: 0.4rem; }
+    .card-desc { font-family: 'Crimson Pro', serif; font-size: 0.9rem; font-style: italic; color: var(--bbj-muted); line-height: 1.5; margin-bottom: 1rem; }
+    .card-link { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bbj-accent); padding-top: 0.8rem; border-top: 1px solid var(--bbj-border); display: block; }
+
+    .coming-card { opacity: 0.45; cursor: default; }
+    .coming-card:hover { transform: none; border-color: var(--bbj-border); box-shadow: none; }
+
+    footer { background: #0a0a0f; padding: 3rem 5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-left { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .footer-left strong { color: rgba(255,255,255,0.7); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 1024px) { .collection-grid { grid-template-columns: repeat(3, 1fr); } .collections-section { padding: 4rem 2rem; } }
+    @media (max-width: 720px) { .collection-grid { grid-template-columns: repeat(2, 1fr); } .shop-hero { padding: 8rem 1.5rem 3rem; } .site-nav { padding: 0 1.5rem; } .nav-links { gap: 1.2rem; } footer { flex-direction: column; padding: 2rem; text-align: center; } }
+    @media (max-width: 480px) { .collection-grid { grid-template-columns: 1fr; } }
+    .nav-logo { white-space: nowrap; } .nav-logo .logo-short { display: none; }
+    @media (max-width: 720px) { .site-nav { padding: 0 1rem; } .nav-logo { font-size: 0.88rem; } .nav-logo .logo-full { display: none; } .nav-logo .logo-short { display: inline; } .nav-links { gap: 0.9rem; } .nav-links a { font-size: 0.72rem; letter-spacing: 0.04em; } }
+    @media (max-width: 420px) { .nav-logo { font-size: 0.78rem; } .nav-links { gap: 0.55rem; } .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; } }
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="starsContainer"></div>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#tynkr">Templates</a></li>
+      <li><a href="../index.html#builtbyjosh" class="active">Zodiac Art</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="shop-hero">
+    <div class="hero-eyebrow">Built By Josh Studio · Zodiac Art</div>
+    <h1 class="hero-title">Zodiac Art <span>Collections</span></h1>
+    <p class="hero-sub">Original digital art prints for every zodiac sign. Eight styles per sign, instant download, print-ready. Browse by sign below.</p>
+  </header>
+
+  <section class="collections-section">
+    <div class="section-label">Western Zodiac</div>
+    <h2 class="section-title">Browse by Sign</h2>
+
+    <div class="collection-grid">
+
+      <a href="aries-zodiac-art.html" class="collection-card">
+        <div class="card-img"><img src="../images/zodiac/aries.jpg" alt="Aries zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♈ Fire · Mar 21 – Apr 19</div>
+          <div class="card-name">Aries</div>
+          <span class="card-link">View Collection →</span>
+        </div>
+      </a>
+
+      <a href="taurus-zodiac-art.html" class="collection-card">
+        <div class="card-img"><img src="../images/zodiac/taurus.jpg" alt="Taurus zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♉ Earth · Apr 20 – May 20</div>
+          <div class="card-name">Taurus</div>
+          <span class="card-link">View Collection →</span>
+        </div>
+      </a>
+
+      <a href="gemini-zodiac-art.html" class="collection-card">
+        <div class="card-img"><img src="../images/zodiac/gemini.jpg" alt="Gemini zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♊ Air · May 21 – Jun 20</div>
+          <div class="card-name">Gemini</div>
+          <span class="card-link">View Collection →</span>
+        </div>
+      </a>
+
+      <a href="cancer-zodiac-art.html" class="collection-card">
+        <div class="card-img"><img src="../images/zodiac/cancer.jpg" alt="Cancer zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♋ Water · Jun 21 – Jul 22</div>
+          <div class="card-name">Cancer</div>
+          <span class="card-link">View Collection →</span>
+        </div>
+      </a>
+
+      <div class="collection-card coming-card">
+        <div class="card-img"><img src="../images/zodiac/leo.jpg" alt="Leo zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♌ Fire · Jul 23 – Aug 22</div>
+          <div class="card-name">Leo</div>
+          <span class="card-link">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="collection-card coming-card">
+        <div class="card-img"><img src="../images/zodiac/virgo.jpg" alt="Virgo zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♍ Earth · Aug 23 – Sep 22</div>
+          <div class="card-name">Virgo</div>
+          <span class="card-link">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="collection-card coming-card">
+        <div class="card-img"><img src="../images/zodiac/libra.jpg" alt="Libra zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♎ Air · Sep 23 – Oct 22</div>
+          <div class="card-name">Libra</div>
+          <span class="card-link">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="collection-card coming-card">
+        <div class="card-img"><img src="../images/zodiac/scorpio.jpg" alt="Scorpio zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♏ Water · Oct 23 – Nov 21</div>
+          <div class="card-name">Scorpio</div>
+          <span class="card-link">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="collection-card coming-card">
+        <div class="card-img"><img src="../images/zodiac/sagittarius.jpg" alt="Sagittarius zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♐ Fire · Nov 22 – Dec 21</div>
+          <div class="card-name">Sagittarius</div>
+          <span class="card-link">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="collection-card coming-card">
+        <div class="card-img"><img src="../images/zodiac/capricorn.jpg" alt="Capricorn zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♑ Earth · Dec 22 – Jan 19</div>
+          <div class="card-name">Capricorn</div>
+          <span class="card-link">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="collection-card coming-card">
+        <div class="card-img"><img src="../images/zodiac/aquarius.jpg" alt="Aquarius zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♒ Air · Jan 20 – Feb 18</div>
+          <div class="card-name">Aquarius</div>
+          <span class="card-link">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="collection-card coming-card">
+        <div class="card-img"><img src="../images/zodiac/pisces.jpg" alt="Pisces zodiac art" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-sign">♓ Water · Feb 19 – Mar 20</div>
+          <div class="card-name">Pisces</div>
+          <span class="card-link">Coming Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left"><strong>Built By Josh Studio</strong> · All digital products — instant download</div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html">Collections</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Etsy</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const container = document.getElementById('starsContainer');
+    for (let i = 0; i < 80; i++) { const s = document.createElement('div'); s.className = 'star'; s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:-${Math.random()*4}s;--op:${0.3+Math.random()*0.7};filter:blur(${Math.random()>0.8?'1px':'0px'});width:${Math.random()>0.8?3:2}px;height:${Math.random()>0.8?3:2}px;`; container.appendChild(s); }
+  </script>
+</body>
+</html>
