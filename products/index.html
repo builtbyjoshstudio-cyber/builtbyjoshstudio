@@ -15,26 +15,26 @@
   <meta property="og:site_name" content="Built By Josh Studio" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bbj-bg: #0b0813;
-      --bbj-surface: #120f1f;
-      --bbj-accent: #c9a84c;
-      --bbj-accent2: #7b4fa6;
-      --bbj-text: #ede8f5;
-      --bbj-muted: #8a7fa8;
-      --bbj-border: #2a2040;
-      --body-read: #d6cee8;
+      --tynkr-bg: #f7f6f2;
+      --tynkr-surface: #ffffff;
+      --tynkr-accent: #e8500a;
+      --tynkr-accent2: #1a1a2e;
+      --tynkr-text: #1c1c1c;
+      --tynkr-muted: #6b6b6b;
+      --tynkr-border: #e0ddd8;
+      --body-read: #3a3a3a;
     }
 
     html { scroll-behavior: smooth; }
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--bbj-bg);
-      color: var(--bbj-text);
+      background: var(--tynkr-bg);
+      color: var(--tynkr-text);
       overflow-x: hidden;
       min-height: 100vh;
     }
@@ -48,15 +48,15 @@
       justify-content: space-between;
       padding: 0 2.5rem;
       height: 64px;
-      background: rgba(11,8,19,0.92);
+      background: rgba(247,246,242,0.97);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--bbj-border);
+      border-bottom: 1px solid var(--tynkr-border);
     }
     .nav-logo {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
       font-size: 1.1rem;
-      color: var(--bbj-text);
+      color: var(--tynkr-text);
       text-decoration: none;
       letter-spacing: -0.02em;
     }
@@ -67,19 +67,19 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
-      color: var(--bbj-muted);
+      color: var(--tynkr-muted);
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--bbj-accent); }
-    .nav-links a.active { color: var(--bbj-accent); }
+    .nav-links a:hover { color: var(--tynkr-accent); }
+    .nav-links a.active { color: var(--tynkr-accent); }
 
     .shop-hero {
       padding: 10rem 2rem 4rem;
       text-align: center;
       background:
-        radial-gradient(ellipse at 50% 20%, rgba(201,168,76,0.08) 0%, transparent 60%),
-        linear-gradient(180deg, #0b0813 0%, #0f0c1a 100%);
-      border-bottom: 1px solid var(--bbj-border);
+        radial-gradient(ellipse at 50% 20%, rgba(232,80,10,0.05) 0%, transparent 60%),
+        linear-gradient(180deg, #f7f6f2 0%, #f0ede8 100%);
+      border-bottom: 1px solid var(--tynkr-border);
       position: relative;
       overflow: hidden;
     }
@@ -87,17 +87,17 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(201,168,76,0.4) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(232,80,10,0.3) 1px, transparent 1px);
       background-size: 40px 40px;
       opacity: 0.08;
       pointer-events: none;
     }
     .hero-eyebrow {
-      font-family: 'Cinzel', serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.72rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--bbj-accent);
+      color: var(--tynkr-accent);
       margin-bottom: 1.2rem;
       position: relative;
     }
@@ -107,18 +107,18 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.05;
-      color: var(--bbj-text);
+      color: var(--tynkr-text);
       margin-bottom: 1.4rem;
       position: relative;
     }
     .hero-title span {
-      color: var(--bbj-accent);
-      font-family: 'Crimson Pro', serif;
+      color: var(--tynkr-accent);
+      font-family: 'DM Sans', sans-serif;
       font-style: italic;
       font-weight: 400;
     }
     .hero-sub {
-      font-family: 'Crimson Pro', serif;
+      font-family: 'DM Sans', sans-serif;
       font-style: italic;
       font-size: clamp(1rem, 1.6vw, 1.2rem);
       color: var(--body-read);
@@ -134,11 +134,11 @@
       margin: 0 auto;
     }
     .section-label {
-      font-family: 'Cinzel', serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--bbj-accent);
+      color: var(--tynkr-accent);
       text-align: center;
       margin-bottom: 0.6rem;
     }
@@ -146,7 +146,7 @@
       font-family: 'Syne', sans-serif;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       font-weight: 800;
-      color: var(--bbj-text);
+      color: var(--tynkr-text);
       text-align: center;
       margin-bottom: 3rem;
       letter-spacing: -0.01em;
@@ -157,8 +157,8 @@
       gap: 1.6rem;
     }
     .product-card {
-      background: var(--bbj-surface);
-      border: 1px solid var(--bbj-border);
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
       padding: 0;
       text-decoration: none;
       color: inherit;
@@ -172,36 +172,36 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(232,80,10,0.03) 0%, transparent 60%);
       pointer-events: none;
     }
     .product-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(201,168,76,0.35);
-      box-shadow: 0 16px 48px rgba(201,168,76,0.1);
+      border-color: rgba(232,80,10,0.25);
+      box-shadow: 0 16px 48px rgba(232,80,10,0.06);
     }
     .product-card > * { position: relative; z-index: 1; }
     .card-meta {
       padding: 1.5rem 1.6rem 0.5rem;
-      font-family: 'Cinzel', serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--bbj-accent);
+      color: var(--tynkr-accent);
     }
     .card-title {
       padding: 0 1.6rem;
       font-family: 'Syne', sans-serif;
       font-size: 1.25rem;
       font-weight: 800;
-      color: var(--bbj-text);
+      color: var(--tynkr-text);
       margin-bottom: 0.7rem;
       letter-spacing: -0.005em;
       line-height: 1.25;
     }
     .card-desc {
       padding: 0 1.6rem 1.4rem;
-      font-family: 'Crimson Pro', serif;
+      font-family: 'DM Sans', sans-serif;
       font-style: italic;
       font-size: 0.98rem;
       line-height: 1.6;
@@ -210,7 +210,7 @@
     }
     .card-footer {
       padding: 1.1rem 1.6rem 1.4rem;
-      border-top: 1px solid var(--bbj-border);
+      border-top: 1px solid var(--tynkr-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -219,31 +219,31 @@
       font-family: 'Syne', sans-serif;
       font-size: 1.3rem;
       font-weight: 800;
-      color: var(--bbj-accent);
+      color: var(--tynkr-accent);
     }
     .card-view {
-      font-family: 'Cinzel', serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.68rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--bbj-accent);
+      color: var(--tynkr-accent);
     }
 
     .coming-soon {
-      background: rgba(255,255,255,0.015);
-      border: 1px dashed var(--bbj-border);
-      color: var(--bbj-muted);
+      background: rgba(232,80,10,0.02);
+      border: 1px dashed var(--tynkr-border);
+      color: var(--tynkr-muted);
       cursor: default;
     }
-    .coming-soon:hover { transform: none; border-color: var(--bbj-border); box-shadow: none; }
+    .coming-soon:hover { transform: none; border-color: var(--tynkr-border); box-shadow: none; }
     .coming-soon .card-title,
     .coming-soon .card-price,
     .coming-soon .card-view,
-    .coming-soon .card-meta { color: var(--bbj-muted); }
+    .coming-soon .card-meta { color: var(--tynkr-muted); }
     .coming-soon .card-view { letter-spacing: 0.14em; }
 
     footer {
-      background: #0a0a0f;
+      background: #f7f6f2;
       padding: 3rem 5rem;
       display: flex;
       align-items: center;
@@ -257,19 +257,19 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
+      color: rgba(0,0,0,0.35);
     }
-    .footer-left strong { color: rgba(255,255,255,0.7); }
+    .footer-left strong { color: rgba(0,0,0,0.7); }
     .footer-links { display: flex; gap: 1.5rem; list-style: none; }
     .footer-links a {
       font-size: 0.75rem;
-      color: rgba(255,255,255,0.3);
+      color: rgba(0,0,0,0.35);
       text-decoration: none;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    .footer-links a:hover { color: rgba(0,0,0,0.7); }
 
     @media (max-width: 960px) {
       .product-grid { grid-template-columns: repeat(2, 1fr); }
