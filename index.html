@@ -886,16 +886,17 @@
     /* ── STUDIO INTRO ── */
     .studio-intro {
       background: linear-gradient(135deg, #1a1a2e 0%, #0b0813 100%);
-      padding: 1.8rem 5rem;
+      padding: 2.8rem 5rem;
       text-align: center;
       margin-top: 64px;
     }
     .studio-intro p {
       font-family: 'Cinzel', serif;
-      font-size: clamp(0.85rem, 1.5vw, 1.05rem);
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.55);
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.65);
       margin: 0;
+      line-height: 1.6;
     }
     .studio-intro p span.accent-t { color: var(--tynkr-accent); }
     .studio-intro p span.accent-b { color: var(--bbj-accent); }
@@ -1079,7 +1080,7 @@
     .email-capture-form button:hover { background: #c43d00; }
 
     @media (max-width: 900px) {
-      .studio-intro { padding: 1.5rem 2rem; }
+      .studio-intro { padding: 2rem 2rem; }
       .social-proof { padding: 2rem; gap: 2rem; }
       .about-section { flex-direction: column; padding: 3rem 2rem; gap: 2rem; }
       .about-brands { flex-direction: column; }
@@ -1127,7 +1128,7 @@
   <nav class="site-nav" id="mainNav">
     <a href="#" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
     <ul class="nav-links">
-      <li><a href="#tynkr">Templates</a></li>
+      <li><a href="#tynkr">Tynkr Tools</a></li>
       <li><a href="#builtbyjosh">Zodiac Art</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="#about">About</a></li>
@@ -1146,6 +1147,7 @@
       <div class="tynkr-eyebrow fade-up">Tynkr Tools & Co</div>
       <h1 class="fade-up delay-1">Plan smarter.<br>Build <span>better.</span></h1>
       <p class="fade-up delay-2">Premium Notion, Excel, and Google Sheets templates for budgeting, planning, and productivity. Tools that actually work the way you think.</p>
+      <p class="cta-micro fade-up delay-3" style="font-family:'DM Sans',sans-serif;font-size:0.78rem;color:rgba(0,0,0,0.4);margin-bottom:0.6rem;letter-spacing:0.04em;">Find your system</p>
       <a href="#tynkr" class="btn-primary-tynkr fade-up delay-3">
         Browse Templates
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1165,6 +1167,7 @@
       <div class="bbj-eyebrow fade-up">Built By Josh Studio</div>
       <h2 class="fade-up delay-1">Digital art for the <span>cosmic soul.</span></h2>
       <p class="fade-up delay-2">Hand-crafted zodiac digital art prints. Each sign rendered with intention — perfect for instant download, print, and display.</p>
+      <p class="cta-micro fade-up delay-3" style="font-family:'Crimson Pro',serif;font-size:0.82rem;font-style:italic;color:rgba(255,255,255,0.4);margin-bottom:0.6rem;">Find your sign</p>
       <a href="#builtbyjosh" class="btn-primary-bbj fade-up delay-3">
         Explore the Collection
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1686,7 +1689,8 @@
       <li><a href="#">Privacy</a></li>
       <li><a href="#">Terms</a></li>
       <li><a href="https://www.etsy.com/shop/tynkrtoolsco" target="_blank">Etsy</a></li>
-      <li><a href="https://tynkrtoolsco.substack.com/" target="_blank">Blog</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="https://tynkrtoolsco.substack.com/" target="_blank">Substack</a></li>
       <li><a href="/cdn-cgi/l/email-protection#30697f65626f757d71797c70697f6562747f7d71797e1e737f7d">Contact</a></li>
     </ul>
   </footer>
