@@ -754,6 +754,25 @@
       color: var(--bbj-accent);
       background: rgba(201,168,76,0.08);
     }
+    .filter-count-bbj {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bbj-muted);
+      margin-left: 0.5rem;
+      opacity: 0.75;
+    }
+    .filter-count-bbj strong {
+      color: var(--bbj-accent);
+      font-weight: 600;
+    }
+    .card-bbj {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .card-bbj.filtered-out {
+      display: none !important;
+    }
     .product-grid-bbj {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -1619,6 +1638,7 @@
       <button class="filter-btn-bbj" onclick="filterBBJ(this,'earth')">🌿 Earth</button>
       <button class="filter-btn-bbj" onclick="filterBBJ(this,'air')">💨 Air</button>
       <button class="filter-btn-bbj" onclick="filterBBJ(this,'water')">💧 Water</button>
+      <span class="filter-count-bbj" id="bbjFilterCount">Showing <strong>12</strong> signs</span>
     </div>
     <div class="product-grid-bbj" id="bbjGrid">
       <!-- Sample zodiac cards — replace with your real products & Gumroad links -->
@@ -1999,14 +2019,21 @@
     function filterBBJ(btn, elem) {
       document.querySelectorAll('#builtbyjosh .filter-btn-bbj').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      let visibleCount = 0;
       document.querySelectorAll('#bbjGrid .card-bbj').forEach(card => {
         const match = (elem === 'all' || card.dataset.elem === elem);
         card.classList.toggle('filtered-out', !match);
         if (match) {
           card.classList.remove('hidden');
           card.classList.add('visible');
+          visibleCount++;
         }
       });
+      const label = elem === 'all'
+        ? `Showing <strong>${visibleCount}</strong> signs`
+        : `Showing <strong>${visibleCount}</strong> ${elem} ${visibleCount === 1 ? 'sign' : 'signs'}`;
+      const countEl = document.getElementById('bbjFilterCount');
+      if (countEl) countEl.innerHTML = label;
     }
   </script>
 </body>
