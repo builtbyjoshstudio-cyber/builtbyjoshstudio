@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home Buying & Mortgage Workbook — Tynkr Tools & Co</title>
+  <title>Home Buying & Mortgage Workbook | 15-Tab Spreadsheet — Tynkr Tools & Co</title>
   <meta name="description" content="A 15-tab home buying spreadsheet for Excel and Google Sheets. Affordability analysis, mortgage comparison, amortization, closing costs, and a property scorer — one workbook." />
   <meta name="keywords" content="home buying spreadsheet, mortgage calculator spreadsheet Excel, home affordability calculator template, rent vs buy spreadsheet, closing costs estimator spreadsheet, first time home buyer spreadsheet" />
   <link rel="canonical" href="https://builtbyjoshstudio.com/products/home-buying-mortgage-workbook.html" />
@@ -1090,6 +1090,178 @@
       .nav-links { gap: 0.55rem; }
       .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
     }
+
+    /* ── STUDIO GUARANTEE (sidebar) ── */
+    .studio-guarantee {
+      margin-top: 1.2rem;
+      padding: 1.1rem 1.2rem;
+      background: rgba(232,80,10,0.04);
+      border: 1px solid rgba(232,80,10,0.25);
+      border-left: 3px solid var(--tynkr-accent);
+    }
+    .studio-guarantee h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--tynkr-accent);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .studio-guarantee p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--tynkr-text);
+      margin: 0;
+    }
+
+    /* ── PERSONA SPOTLIGHTS ── */
+    .persona-spotlights {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .persona-spotlights .persona {
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
+      padding: 1.3rem 1.4rem;
+      list-style: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .persona-spotlights .persona::before { display: none !important; }
+    .persona-spotlights .persona:hover {
+      border-color: rgba(232,80,10,0.35);
+      transform: translateY(-2px);
+    }
+    .persona-spotlights .persona h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--tynkr-accent);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.005em;
+    }
+    .persona-spotlights .persona p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--tynkr-text);
+      margin: 0 !important;
+    }
+    @media (max-width: 720px) {
+      .persona-spotlights { grid-template-columns: 1fr; }
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .comparison-section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3rem 2rem 1rem;
+    }
+    .comparison-section .comp-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .comparison-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+      font-weight: 800;
+      color: var(--tynkr-text);
+      text-align: center;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .comparison-section .comp-intro {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--tynkr-muted);
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 0.95rem 1.1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--tynkr-border);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      vertical-align: top;
+    }
+    .comparison-table thead th {
+      background: var(--tynkr-surface-2);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--tynkr-text);
+    }
+    .comparison-table thead th.highlight-col { color: var(--tynkr-accent); }
+    .comparison-table td:first-child {
+      font-weight: 600;
+      color: var(--tynkr-text);
+      width: 28%;
+    }
+    .comparison-table td.neutral { color: var(--tynkr-muted); width: 36%; }
+    .comparison-table td.highlight {
+      color: var(--tynkr-text);
+      font-weight: 500;
+      background: rgba(232,80,10,0.03);
+      border-left: 1px solid rgba(232,80,10,0.15);
+      position: relative;
+      padding-left: 2rem;
+      width: 36%;
+    }
+    .comparison-table td.highlight::before {
+      content: '✔';
+      position: absolute;
+      left: 0.8rem;
+      top: 0.95rem;
+      color: var(--tynkr-accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    @media (max-width: 640px) {
+      .comparison-section { padding: 2.5rem 1.5rem 1rem; }
+      .comparison-table, .comparison-table thead, .comparison-table tbody,
+      .comparison-table tr, .comparison-table th, .comparison-table td {
+        display: block;
+        width: 100% !important;
+      }
+      .comparison-table thead { display: none; }
+      .comparison-table tr {
+        border-bottom: 2px solid var(--tynkr-border);
+        padding: 0.5rem 0;
+      }
+      .comparison-table td { border-bottom: none; padding: 0.5rem 1rem; }
+      .comparison-table td:first-child {
+        background: var(--tynkr-surface-2);
+        font-family: 'Syne', sans-serif;
+        font-size: 0.9rem;
+      }
+      .comparison-table td.neutral::before { content: 'Alternative: '; font-weight: 700; color: var(--tynkr-muted); }
+      .comparison-table td.highlight { padding-left: 2.2rem; }
+      .comparison-table td.highlight::before { top: 0.65rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -1115,7 +1287,7 @@
       <span>Home Buying & Mortgage Workbook</span>
     </div>
     <div class="hero-eyebrow">Spreadsheet · Home Buying System</div>
-    <h1 class="product-title">Buy a House With <span class="italic-accent">the Full Picture</span></h1>
+    <h1 class="product-title">Home Buying & Mortgage Workbook <span class="italic-accent">| 15-Tab First-Time Homebuyer Spreadsheet</span></h1>
     <p class="product-tagline">The biggest purchase of your life shouldn't run on guesswork and a lender's estimate. This 15-tab workbook puts affordability analysis, mortgage comparison, closing costs, amortization, and a property scorer in one file — so you make the decision with every number visible.</p>
     <div class="hero-meta-chips">
       <span class="chip"><strong>From $24.99</strong> · One-time</span>
@@ -1173,13 +1345,24 @@
 
       <section>
         <h2>Who It's For</h2>
-        <p>The Home Buying & Mortgage Workbook is built for:</p>
-        <ul>
-          <li>First-time home buyers who want to understand what they can actually afford before talking to a lender — not after.</li>
-          <li>Anyone comparing mortgage options who needs to see three loan scenarios side by side with total cost, monthly payment, and interest differences clearly laid out.</li>
-          <li>Renters deciding whether to buy who want a real break-even analysis — not a rule of thumb — over 5, 10, and 20-year horizons.</li>
-          <li>Buyers saving for a down payment who want to track progress toward their goal with a timeline and monthly contribution targets.</li>
-          <li>Homeowners in their first year who need a realistic budget that includes the expenses most buyers forget — maintenance, utilities, setup costs, and HOA fees.</li>
+                <p>The Home Buying & Mortgage Workbook is built for:</p>
+        <ul class="persona-spotlights">
+          <li class="persona">
+            <h4>The First-Time Homebuyer</h4>
+            <p>You're staring at 15 browser tabs trying to figure out if you can actually afford this — mortgage calculators, closing cost guides, rent-vs-buy articles. This puts all of that in one file with your actual numbers.</p>
+          </li>
+          <li class="persona">
+            <h4>The Rent-vs-Buy Decision-Maker</h4>
+            <p>You've been told to "run the numbers" and you're not sure what that means. The rent vs buy tab does the math with your rent, your target price, your timeline — and tells you what makes sense.</p>
+          </li>
+          <li class="persona">
+            <h4>The Pre-Approval Comparison Shopper</h4>
+            <p>You're shopping between two or three lenders. The mortgage comparison tab lays out three scenarios side-by-side with total interest and lifetime cost so you can see which offer actually wins.</p>
+          </li>
+          <li class="persona">
+            <h4>The Buyer Planning the First Year</h4>
+            <p>The mortgage is the payment; the first year is everything else. This workbook tracks closing costs, maintenance reserves, and year-one homeowner budget so you're not blindsided after closing day.</p>
+          </li>
         </ul>
       </section>
 
@@ -1323,9 +1506,38 @@
         <li>Works in Excel or Google Sheets</li>
         <li>No subscriptions</li>
       </ul>
+
+      <aside class="studio-guarantee">
+        <h3>The Studio Guarantee</h3>
+        <p>Real-world tested. No bloat, no filler. If it doesn't hold up in my own planning, it doesn't leave the studio. This is the exact system I use to run Built By Josh Studio — not a generic template repackaged for sale.</p>
+      </aside>
     </aside>
 
   </div>
+  <!-- COMPARISON TABLE -->
+  <section class="comparison-section">
+    <div class="comp-label">How It Compares</div>
+    <h2>Home Buying & Mortgage Workbook vs Browser-Tab Chaos</h2>
+    <p class="comp-intro">Most first-time buyers plan a home purchase by bouncing between 15 free calculators. Here's what that looks like replaced with one file.</p>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Browser-Tab Chaos</th>
+          <th class="highlight-col">Home Buying & Mortgage Workbook</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr><td>Where your numbers live</td><td class="neutral">Spread across 10+ websites</td><td class="highlight">One Excel or Google Sheets file</td></tr>
+          <tr><td>Affordability math</td><td class="neutral">Generic calculators with national averages</td><td class="highlight">Uses your income, debts, target price, and zip-code rates</td></tr>
+          <tr><td>Loan comparison</td><td class="neutral">Plug numbers into each lender's calculator separately</td><td class="highlight">Three scenarios side-by-side with lifetime cost</td></tr>
+          <tr><td>Closing costs</td><td class="neutral">Vague estimates that miss half the fees</td><td class="highlight">Itemized tab with customizable cost categories</td></tr>
+          <tr><td>Year-one budgeting</td><td class="neutral">Not covered anywhere</td><td class="highlight">Dedicated first-year homeowner budget tab</td></tr>
+          <tr><td>Data ownership</td><td class="neutral">Nothing saved — start over each time</td><td class="highlight">One file you keep, update, and reference forever</td></tr>
+      </tbody>
+    </table>
+  </section>
+
 
   <!-- FAQ SECTION -->
   <section class="faq-section">

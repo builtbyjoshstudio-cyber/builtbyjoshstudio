@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creator Product OS — Digital Product Catalog Template — Tynkr Tools & Co</title>
+  <title>Creator Product OS | Notion Inventory for Creators — Tynkr Tools & Co</title>
   <meta name="description" content="Manage your digital products, files, listings, bundles, versions, and support issues in one Notion workspace. Built for creators who sell across multiple platforms." />
   <meta name="keywords" content="Notion product catalog template for creators, digital product inventory Notion, product management Notion template, Notion template for digital sellers, product version tracker Notion, digital product operations system" />
   <link rel="canonical" href="https://builtbyjoshstudio.com/products/creator-product-os.html" />
@@ -888,6 +888,178 @@
       .nav-links { gap: 0.55rem; }
       .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
     }
+
+    /* ── STUDIO GUARANTEE (sidebar) ── */
+    .studio-guarantee {
+      margin-top: 1.2rem;
+      padding: 1.1rem 1.2rem;
+      background: rgba(232,80,10,0.04);
+      border: 1px solid rgba(232,80,10,0.25);
+      border-left: 3px solid var(--tynkr-accent);
+    }
+    .studio-guarantee h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--tynkr-accent);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .studio-guarantee p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--tynkr-text);
+      margin: 0;
+    }
+
+    /* ── PERSONA SPOTLIGHTS ── */
+    .persona-spotlights {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .persona-spotlights .persona {
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
+      padding: 1.3rem 1.4rem;
+      list-style: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .persona-spotlights .persona::before { display: none !important; }
+    .persona-spotlights .persona:hover {
+      border-color: rgba(232,80,10,0.35);
+      transform: translateY(-2px);
+    }
+    .persona-spotlights .persona h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--tynkr-accent);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.005em;
+    }
+    .persona-spotlights .persona p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--tynkr-text);
+      margin: 0 !important;
+    }
+    @media (max-width: 720px) {
+      .persona-spotlights { grid-template-columns: 1fr; }
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .comparison-section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3rem 2rem 1rem;
+    }
+    .comparison-section .comp-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .comparison-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+      font-weight: 800;
+      color: var(--tynkr-text);
+      text-align: center;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .comparison-section .comp-intro {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--tynkr-muted);
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 0.95rem 1.1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--tynkr-border);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      vertical-align: top;
+    }
+    .comparison-table thead th {
+      background: var(--tynkr-surface-2);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--tynkr-text);
+    }
+    .comparison-table thead th.highlight-col { color: var(--tynkr-accent); }
+    .comparison-table td:first-child {
+      font-weight: 600;
+      color: var(--tynkr-text);
+      width: 28%;
+    }
+    .comparison-table td.neutral { color: var(--tynkr-muted); width: 36%; }
+    .comparison-table td.highlight {
+      color: var(--tynkr-text);
+      font-weight: 500;
+      background: rgba(232,80,10,0.03);
+      border-left: 1px solid rgba(232,80,10,0.15);
+      position: relative;
+      padding-left: 2rem;
+      width: 36%;
+    }
+    .comparison-table td.highlight::before {
+      content: '✔';
+      position: absolute;
+      left: 0.8rem;
+      top: 0.95rem;
+      color: var(--tynkr-accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    @media (max-width: 640px) {
+      .comparison-section { padding: 2.5rem 1.5rem 1rem; }
+      .comparison-table, .comparison-table thead, .comparison-table tbody,
+      .comparison-table tr, .comparison-table th, .comparison-table td {
+        display: block;
+        width: 100% !important;
+      }
+      .comparison-table thead { display: none; }
+      .comparison-table tr {
+        border-bottom: 2px solid var(--tynkr-border);
+        padding: 0.5rem 0;
+      }
+      .comparison-table td { border-bottom: none; padding: 0.5rem 1rem; }
+      .comparison-table td:first-child {
+        background: var(--tynkr-surface-2);
+        font-family: 'Syne', sans-serif;
+        font-size: 0.9rem;
+      }
+      .comparison-table td.neutral::before { content: 'Alternative: '; font-weight: 700; color: var(--tynkr-muted); }
+      .comparison-table td.highlight { padding-left: 2.2rem; }
+      .comparison-table td.highlight::before { top: 0.65rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -913,7 +1085,7 @@
       <span>Creator Product OS</span>
     </div>
     <div class="hero-eyebrow">Notion · Creator Product System</div>
-    <h1 class="product-title">Know What You Sell and <span class="italic-accent">What Needs Fixing</span></h1>
+    <h1 class="product-title">Creator Product OS <span class="italic-accent">| Notion Inventory System for Digital Product Creators</span></h1>
     <p class="product-tagline">You've got products scattered across platforms, files in three different folders, and no clear picture of what's current, what's outdated, or what's broken. Creator Product OS puts your entire catalog, every file, every listing, and every version update in one connected workspace.</p>
     <div class="hero-meta-chips">
       <span class="chip"><strong>$27</strong> · One-time</span>
@@ -936,13 +1108,20 @@
 
       <section>
         <h2>Who It's For</h2>
-        <p>Creator Product OS is built for:</p>
-        <ul>
-          <li>Digital product sellers with a growing catalog who need to see what's live, what's draft, and what's outdated without opening five different tabs.</li>
-          <li>Creators selling across multiple platforms — Etsy, Shopify, and their own website — who need one place to track every listing and its status.</li>
-          <li>Template makers and spreadsheet sellers who ship updates regularly and need a version log to track what changed and when.</li>
-          <li>Creators who bundle products and need to manage which items belong to which offers without losing track of the individual pieces.</li>
-          <li>Anyone who has shipped a product update and then realized they forgot to update the listing on one of their platforms.</li>
+                <p>Creator Product OS is built for:</p>
+        <ul class="persona-spotlights">
+          <li class="persona">
+            <h4>The Digital Product Creator</h4>
+            <p>You've got templates, eBooks, maybe a course. Product files are scattered across Dropbox, Drive, and your desktop. You need one inventory system that knows what you sell and where every file lives.</p>
+          </li>
+          <li class="persona">
+            <h4>The Template Seller on Etsy</h4>
+            <p>You sell on Etsy, Gumroad, and maybe your own site. Each product has three variants and you've lost track of which version is current on which platform.</p>
+          </li>
+          <li class="persona">
+            <h4>The Course Creator With Multiple Offerings</h4>
+            <p>Course, mini-course, coaching offer, workbook bundle — your product line is growing, and you need a catalog that tracks versions, support tickets, and platform listings in one place.</p>
+          </li>
         </ul>
       </section>
 
@@ -1077,9 +1256,38 @@
         <li>Works with free Notion account</li>
         <li>No subscriptions</li>
       </ul>
+
+      <aside class="studio-guarantee">
+        <h3>The Studio Guarantee</h3>
+        <p>Real-world tested. No bloat, no filler. If it doesn't hold up in my own workflow, it doesn't leave the studio. This is the exact system I use to run Built By Josh Studio — not a generic template repackaged for sale.</p>
+      </aside>
     </aside>
 
   </div>
+  <!-- COMPARISON TABLE -->
+  <section class="comparison-section">
+    <div class="comp-label">How It Compares</div>
+    <h2>Creator Product OS vs Scattered File Storage</h2>
+    <p class="comp-intro">Most digital product creators end up with product files in five places and no single source of truth. Here's what that looks like fixed.</p>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Scattered Storage (Dropbox + Drive + Desktop)</th>
+          <th class="highlight-col">Creator Product OS</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr><td>Product inventory</td><td class="neutral">Folder of folders, no overview</td><td class="highlight">One database with every product, status, version</td></tr>
+          <tr><td>Version tracking</td><td class="neutral">File names like "_v3_FINAL_actually"</td><td class="highlight">Dedicated version log with changelog notes</td></tr>
+          <tr><td>Platform listings</td><td class="neutral">No centralized view of where each product sells</td><td class="highlight">Listings tracker — Etsy, Gumroad, Shopify, your site</td></tr>
+          <tr><td>Bundles</td><td class="neutral">Figure out pricing in your head each time</td><td class="highlight">Bundle builder with pricing and contents</td></tr>
+          <tr><td>Customer support</td><td class="neutral">Emails in your inbox, no record</td><td class="highlight">Support tracker linked to each product</td></tr>
+          <tr><td>Cost</td><td class="neutral">Free, but costs you hours</td><td class="highlight">One-time payment, saves hours every month</td></tr>
+      </tbody>
+    </table>
+  </section>
+
 
   <!-- FAQ SECTION -->
   <section class="faq-section">

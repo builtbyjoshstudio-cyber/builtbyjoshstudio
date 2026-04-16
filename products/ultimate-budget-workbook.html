@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ultimate Budget Workbook — Budget Spreadsheet — Tynkr Tools & Co</title>
+  <title>Ultimate Budget Workbook | 23-Tab Budget Spreadsheet — Tynkr Tools & Co</title>
   <meta name="description" content="A 23-tab budget spreadsheet for Excel and Google Sheets. Track income, expenses, bills, debt, savings, net worth, and the 50/30/20 rule — all in one workbook." />
   <meta name="keywords" content="budget spreadsheet template, monthly budget spreadsheet Excel, budget planner Google Sheets, personal finance spreadsheet template, debt payoff tracker spreadsheet, net worth tracker Excel" />
   <link rel="canonical" href="https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html" />
@@ -1090,6 +1090,178 @@
       .nav-links { gap: 0.55rem; }
       .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
     }
+
+    /* ── STUDIO GUARANTEE (sidebar) ── */
+    .studio-guarantee {
+      margin-top: 1.2rem;
+      padding: 1.1rem 1.2rem;
+      background: rgba(232,80,10,0.04);
+      border: 1px solid rgba(232,80,10,0.25);
+      border-left: 3px solid var(--tynkr-accent);
+    }
+    .studio-guarantee h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--tynkr-accent);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .studio-guarantee p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--tynkr-text);
+      margin: 0;
+    }
+
+    /* ── PERSONA SPOTLIGHTS ── */
+    .persona-spotlights {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .persona-spotlights .persona {
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
+      padding: 1.3rem 1.4rem;
+      list-style: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .persona-spotlights .persona::before { display: none !important; }
+    .persona-spotlights .persona:hover {
+      border-color: rgba(232,80,10,0.35);
+      transform: translateY(-2px);
+    }
+    .persona-spotlights .persona h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--tynkr-accent);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.005em;
+    }
+    .persona-spotlights .persona p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--tynkr-text);
+      margin: 0 !important;
+    }
+    @media (max-width: 720px) {
+      .persona-spotlights { grid-template-columns: 1fr; }
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .comparison-section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3rem 2rem 1rem;
+    }
+    .comparison-section .comp-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .comparison-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+      font-weight: 800;
+      color: var(--tynkr-text);
+      text-align: center;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .comparison-section .comp-intro {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--tynkr-muted);
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 0.95rem 1.1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--tynkr-border);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      vertical-align: top;
+    }
+    .comparison-table thead th {
+      background: var(--tynkr-surface-2);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--tynkr-text);
+    }
+    .comparison-table thead th.highlight-col { color: var(--tynkr-accent); }
+    .comparison-table td:first-child {
+      font-weight: 600;
+      color: var(--tynkr-text);
+      width: 28%;
+    }
+    .comparison-table td.neutral { color: var(--tynkr-muted); width: 36%; }
+    .comparison-table td.highlight {
+      color: var(--tynkr-text);
+      font-weight: 500;
+      background: rgba(232,80,10,0.03);
+      border-left: 1px solid rgba(232,80,10,0.15);
+      position: relative;
+      padding-left: 2rem;
+      width: 36%;
+    }
+    .comparison-table td.highlight::before {
+      content: '✔';
+      position: absolute;
+      left: 0.8rem;
+      top: 0.95rem;
+      color: var(--tynkr-accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    @media (max-width: 640px) {
+      .comparison-section { padding: 2.5rem 1.5rem 1rem; }
+      .comparison-table, .comparison-table thead, .comparison-table tbody,
+      .comparison-table tr, .comparison-table th, .comparison-table td {
+        display: block;
+        width: 100% !important;
+      }
+      .comparison-table thead { display: none; }
+      .comparison-table tr {
+        border-bottom: 2px solid var(--tynkr-border);
+        padding: 0.5rem 0;
+      }
+      .comparison-table td { border-bottom: none; padding: 0.5rem 1rem; }
+      .comparison-table td:first-child {
+        background: var(--tynkr-surface-2);
+        font-family: 'Syne', sans-serif;
+        font-size: 0.9rem;
+      }
+      .comparison-table td.neutral::before { content: 'Alternative: '; font-weight: 700; color: var(--tynkr-muted); }
+      .comparison-table td.highlight { padding-left: 2.2rem; }
+      .comparison-table td.highlight::before { top: 0.65rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -1115,7 +1287,7 @@
       <span>Ultimate Budget Workbook</span>
     </div>
     <div class="hero-eyebrow">Spreadsheet · Personal Budget System</div>
-    <h1 class="product-title">A Budget That Actually <span class="italic-accent">Runs Itself</span></h1>
+    <h1 class="product-title">Ultimate Budget Workbook <span class="italic-accent">| 23-Tab Personal Finance & Debt Payoff Spreadsheet</span></h1>
     <p class="product-tagline">You've tried budgeting before — a blank spreadsheet, good intentions, and a file you stopped opening by February. The Ultimate Budget Workbook is a 23-tab system where you enter your numbers once in the Control Panel and every monthly sheet, dashboard, and summary updates automatically.</p>
     <div class="hero-meta-chips">
       <span class="chip"><strong>From $24.99</strong> · One-time</span>
@@ -1173,13 +1345,24 @@
 
       <section>
         <h2>Who It's For</h2>
-        <p>The Ultimate Budget Workbook is built for:</p>
-        <ul>
-          <li>People who have tried budgeting with a blank spreadsheet and abandoned it because there was too much manual setup and nothing connected to anything.</li>
-          <li>Couples or households managing shared finances who want one workbook that tracks income, bills, debt, and savings in a single file.</li>
-          <li>Anyone paying off debt who needs to see their payoff timeline alongside their monthly budget — not in a separate app.</li>
-          <li>People who prefer spreadsheets over apps and want full control over their data without syncing bank accounts or paying a subscription.</li>
-          <li>First-time budgeters who need a structured system with clear instructions, color-coded cells, and a step-by-step setup guide.</li>
+                <p>The Ultimate Budget Workbook is built for:</p>
+        <ul class="persona-spotlights">
+          <li class="persona">
+            <h4>The Debt-Payoff Beginner</h4>
+            <p>You're ready to tackle credit cards, student loans, or both — but every debt tool wants you to enter 40 data points and sync your bank. You just want a clear spreadsheet that shows the payoff timeline.</p>
+          </li>
+          <li class="persona">
+            <h4>The New Couple Combining Finances</h4>
+            <p>Two incomes, merged expenses, and "whose turn is it to pay the electric bill?" This is one workbook you can both edit — shared visibility without a subscription or an account.</p>
+          </li>
+          <li class="persona">
+            <h4>The Side-Hustler Tracking Multiple Income Streams</h4>
+            <p>Day job, freelance gig, side business. You need to see all of it in one place without your bank trying to categorize your Etsy payout as "miscellaneous."</p>
+          </li>
+          <li class="persona">
+            <h4>The Spreadsheet Loyalist Who Quit Apps</h4>
+            <p>You tried Mint, YNAB, Monarch. They all broke something, changed pricing, or went away. You want your data in a file you own, not a cloud you rent.</p>
+          </li>
         </ul>
       </section>
 
@@ -1335,9 +1518,38 @@
         <li>Works in Excel or Google Sheets</li>
         <li>No subscriptions</li>
       </ul>
+
+      <aside class="studio-guarantee">
+        <h3>The Studio Guarantee</h3>
+        <p>Real-world tested. No bloat, no filler. If it doesn't hold up in my own finances, it doesn't leave the studio. This is the exact system I use to run Built By Josh Studio — not a generic template repackaged for sale.</p>
+      </aside>
     </aside>
 
   </div>
+  <!-- COMPARISON TABLE -->
+  <section class="comparison-section">
+    <div class="comp-label">How It Compares</div>
+    <h2>Ultimate Budget Workbook vs a Budgeting App Subscription</h2>
+    <p class="comp-intro">Subscription budgeting apps own your data and cost more every year. Here's the trade-off.</p>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Budgeting App Subscription</th>
+          <th class="highlight-col">Ultimate Budget Workbook</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr><td>Pricing model</td><td class="neutral">$10–15/month forever ($120–180/year)</td><td class="highlight">One-time payment, yours forever</td></tr>
+          <tr><td>Data ownership</td><td class="neutral">Lives on the vendor's servers</td><td class="highlight">An Excel or Google Sheets file you own</td></tr>
+          <tr><td>Works offline</td><td class="neutral">No — requires internet + account</td><td class="highlight">Yes, works fully offline in Excel</td></tr>
+          <tr><td>Customization</td><td class="neutral">Fixed categories, rigid rules</td><td class="highlight">Rename anything, add columns, restructure freely</td></tr>
+          <tr><td>Bank login required</td><td class="neutral">Yes</td><td class="highlight">No — you enter transactions manually</td></tr>
+          <tr><td>Learning curve</td><td class="neutral">Forced onboarding, constant prompts</td><td class="highlight">Open the file, read the Read Me tab, start</td></tr>
+      </tbody>
+    </table>
+  </section>
+
 
   <!-- FAQ SECTION -->
   <section class="faq-section">

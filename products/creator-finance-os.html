@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creator Finance OS — Notion Finance Tracker — Tynkr Tools & Co</title>
+  <title>Creator Finance OS | Notion Finance for Solopreneurs — Tynkr Tools & Co</title>
   <meta name="description" content="Track income, expenses, budgets, savings goals, debt payoff, and estimated taxes in one Notion workspace. Built for solo creators and freelancers who need financial clarity." />
   <meta name="keywords" content="Notion finance tracker for creators, creator income expense tracker Notion, Notion budget template for freelancers, creator money management system, Notion tax estimator template, freelance revenue tracker Notion" />
   <link rel="canonical" href="https://builtbyjoshstudio.com/products/creator-finance-os.html" />
@@ -888,6 +888,178 @@
       .nav-links { gap: 0.55rem; }
       .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
     }
+
+    /* ── STUDIO GUARANTEE (sidebar) ── */
+    .studio-guarantee {
+      margin-top: 1.2rem;
+      padding: 1.1rem 1.2rem;
+      background: rgba(232,80,10,0.04);
+      border: 1px solid rgba(232,80,10,0.25);
+      border-left: 3px solid var(--tynkr-accent);
+    }
+    .studio-guarantee h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--tynkr-accent);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .studio-guarantee p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--tynkr-text);
+      margin: 0;
+    }
+
+    /* ── PERSONA SPOTLIGHTS ── */
+    .persona-spotlights {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .persona-spotlights .persona {
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
+      padding: 1.3rem 1.4rem;
+      list-style: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .persona-spotlights .persona::before { display: none !important; }
+    .persona-spotlights .persona:hover {
+      border-color: rgba(232,80,10,0.35);
+      transform: translateY(-2px);
+    }
+    .persona-spotlights .persona h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--tynkr-accent);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.005em;
+    }
+    .persona-spotlights .persona p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--tynkr-text);
+      margin: 0 !important;
+    }
+    @media (max-width: 720px) {
+      .persona-spotlights { grid-template-columns: 1fr; }
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .comparison-section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3rem 2rem 1rem;
+    }
+    .comparison-section .comp-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .comparison-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+      font-weight: 800;
+      color: var(--tynkr-text);
+      text-align: center;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .comparison-section .comp-intro {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--tynkr-muted);
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 0.95rem 1.1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--tynkr-border);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      vertical-align: top;
+    }
+    .comparison-table thead th {
+      background: var(--tynkr-surface-2);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--tynkr-text);
+    }
+    .comparison-table thead th.highlight-col { color: var(--tynkr-accent); }
+    .comparison-table td:first-child {
+      font-weight: 600;
+      color: var(--tynkr-text);
+      width: 28%;
+    }
+    .comparison-table td.neutral { color: var(--tynkr-muted); width: 36%; }
+    .comparison-table td.highlight {
+      color: var(--tynkr-text);
+      font-weight: 500;
+      background: rgba(232,80,10,0.03);
+      border-left: 1px solid rgba(232,80,10,0.15);
+      position: relative;
+      padding-left: 2rem;
+      width: 36%;
+    }
+    .comparison-table td.highlight::before {
+      content: '✔';
+      position: absolute;
+      left: 0.8rem;
+      top: 0.95rem;
+      color: var(--tynkr-accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    @media (max-width: 640px) {
+      .comparison-section { padding: 2.5rem 1.5rem 1rem; }
+      .comparison-table, .comparison-table thead, .comparison-table tbody,
+      .comparison-table tr, .comparison-table th, .comparison-table td {
+        display: block;
+        width: 100% !important;
+      }
+      .comparison-table thead { display: none; }
+      .comparison-table tr {
+        border-bottom: 2px solid var(--tynkr-border);
+        padding: 0.5rem 0;
+      }
+      .comparison-table td { border-bottom: none; padding: 0.5rem 1rem; }
+      .comparison-table td:first-child {
+        background: var(--tynkr-surface-2);
+        font-family: 'Syne', sans-serif;
+        font-size: 0.9rem;
+      }
+      .comparison-table td.neutral::before { content: 'Alternative: '; font-weight: 700; color: var(--tynkr-muted); }
+      .comparison-table td.highlight { padding-left: 2.2rem; }
+      .comparison-table td.highlight::before { top: 0.65rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -913,7 +1085,7 @@
       <span>Creator Finance OS</span>
     </div>
     <div class="hero-eyebrow">Notion · Creator Finance System</div>
-    <h1 class="product-title">Finally Know Where <span class="italic-accent">Every Dollar</span> Stands</h1>
+    <h1 class="product-title">Creator Finance OS <span class="italic-accent">| Notion Financial System for Solopreneurs</span></h1>
     <p class="product-tagline">You're earning money from multiple sources, spending across a dozen categories, and guessing at your tax obligation every quarter. Creator Finance OS puts revenue, expenses, budgets, savings, debt, and tax estimates in one workspace — updated in minutes each month.</p>
     <div class="hero-meta-chips">
       <span class="chip"><strong>$27</strong> · One-time</span>
@@ -936,13 +1108,20 @@
 
       <section>
         <h2>Who It's For</h2>
-        <p>Creator Finance OS is built for:</p>
-        <ul>
-          <li>Full-time creators earning from brand deals, ad revenue, digital products, and freelance work who need one place to see all income sources together.</li>
-          <li>Freelancers and solopreneurs who track expenses across multiple categories and want to know exactly where their money goes each month.</li>
-          <li>Creators preparing for quarterly tax payments who need a simple estimator based on their actual recorded revenue — not guesswork.</li>
-          <li>Side-hustle creators building toward full-time who want to track savings goals and debt payoff alongside their business income.</li>
-          <li>Anyone who has tried budgeting in spreadsheets and abandoned it because the system was too manual to maintain consistently.</li>
+                <p>Creator Finance OS is built for:</p>
+        <ul class="persona-spotlights">
+          <li class="persona">
+            <h4>The Solo Creator With Messy Finances</h4>
+            <p>Your income lands in five places, your expenses live in your head, and tax season is pure chaos. You need one workspace to log everything and know where you stand.</p>
+          </li>
+          <li class="persona">
+            <h4>The Part-Time Creator Going Full-Time</h4>
+            <p>You're building the runway to quit your day job. You need a real financial picture — revenue trends, savings progress, tax reserves — before you pull the trigger.</p>
+          </li>
+          <li class="persona">
+            <h4>The Multi-Income Freelancer</h4>
+            <p>YouTube, brand deals, digital products, freelance gigs — money hits from everywhere on different schedules. This ties every income source into one system with real monthly visibility.</p>
+          </li>
         </ul>
       </section>
 
@@ -1091,9 +1270,38 @@
         <li>Works with free Notion account</li>
         <li>No subscriptions</li>
       </ul>
+
+      <aside class="studio-guarantee">
+        <h3>The Studio Guarantee</h3>
+        <p>Real-world tested. No bloat, no filler. If it doesn't hold up in my own workflow, it doesn't leave the studio. This is the exact system I use to run Built By Josh Studio — not a generic template repackaged for sale.</p>
+      </aside>
     </aside>
 
   </div>
+  <!-- COMPARISON TABLE -->
+  <section class="comparison-section">
+    <div class="comp-label">How It Compares</div>
+    <h2>Creator Finance OS vs a Budgeting App</h2>
+    <p class="comp-intro">Apps like Mint or YNAB are built for consumers with one paycheck. Creator income doesn't work that way.</p>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Budgeting App</th>
+          <th class="highlight-col">Creator Finance OS</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr><td>Pricing model</td><td class="neutral">$10–15/month subscription</td><td class="highlight">One-time payment, lifetime updates</td></tr>
+          <tr><td>Income tracking</td><td class="neutral">Built for one W-2 paycheck</td><td class="highlight">Designed for 5+ creator income streams</td></tr>
+          <tr><td>Data ownership</td><td class="neutral">Bank login required, vendor-held</td><td class="highlight">One Notion workspace, zero bank connections</td></tr>
+          <tr><td>Tax estimation</td><td class="neutral">Not included</td><td class="highlight">Built-in estimator for quarterly self-employment taxes</td></tr>
+          <tr><td>Customization</td><td class="neutral">Fixed categories, rigid structure</td><td class="highlight">Fully editable — your categories, your rules</td></tr>
+          <tr><td>Privacy</td><td class="neutral">Your financial data lives in the cloud</td><td class="highlight">Private Notion workspace you fully control</td></tr>
+      </tbody>
+    </table>
+  </section>
+
 
   <!-- FAQ SECTION -->
   <section class="faq-section">
