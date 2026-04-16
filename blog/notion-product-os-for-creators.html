@@ -503,6 +503,19 @@
       .nav-links { gap: 0.55rem; }
       .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
     }
+  
+    .post-summary{background:var(--bbj-surface);border-left:3px solid var(--bbj-accent);padding:1.25rem 1.5rem 1.25rem 1.5rem;margin:0 0 2.5rem 0;font-family:'DM Sans',sans-serif}
+    .post-summary strong{display:block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:.7rem}
+    .post-summary ul{list-style:none;margin:0;padding:0}
+    .post-summary li{position:relative;padding-left:1.1rem;margin-bottom:.55rem;font-size:.96rem;line-height:1.55;color:var(--body-read)}
+    .post-summary li:last-child{margin-bottom:0}
+    .post-summary li::before{content:'\2022';position:absolute;left:0;color:var(--bbj-accent);font-weight:700}
+    .author-bio{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--bbj-border);font-family:'DM Sans',sans-serif}
+    .author-bio strong{display:block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:.6rem}
+    .author-bio p{font-size:.95rem;line-height:1.6;color:var(--body-read);margin:0 0 .7rem 0}
+    .author-bio a{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bbj-accent);text-decoration:none}
+    .author-bio a:hover{text-decoration:underline}
+
   </style>
 </head>
 <body>
@@ -534,8 +547,15 @@
 
   <!-- ARTICLE BODY -->
   <article class="article-body">
-
-    <p>The first digital product you sell is easy to manage. You built it, you listed it, you know where everything is.</p>
+    <div class="post-summary">
+      <strong>Key Takeaways</strong>
+      <ul>
+        <li>Digital products feel infinite and disposable, so creators don't manage them — until a stale Etsy price, a broken link, or a lost mockup file quietly costs them sales.</li>
+        <li>Every digital product lives in multiple forms (master file, per-platform listing, bundle membership, version history, support trail) that need a single source of truth.</li>
+        <li>The Creator Product OS is a Notion workspace that centralizes a creator's entire digital product catalog across Etsy, Gumroad, their own site, and anywhere else they sell.</li>
+      </ul>
+    </div>
+    <p>The first digital product you sell is easy to manage. You built it, you listed it, you know where everything is. The <a href="../products/creator-product-os.html">Creator Product OS</a> is the central catalog this kind of business actually needs.</p>
 
     <p>The tenth product is a different story. You've got templates on Etsy, courses on Gumroad, and freebies on your website. Some products have been updated twice, others haven't been touched since launch. One of your Etsy listings still shows the old price. A customer emailed about a broken link three days ago and you forgot to fix it. The mockup images for your newest template are in a folder somewhere but you can't remember which one.</p>
 
@@ -683,6 +703,12 @@
       <li>Catalog Snapshot dashboard — active catalog, items needing attention, drafts in progress, and recent updates at a glance</li>
       <li>Start Here guide — guided walkthrough with sample data you can explore then remove</li>
     </ul>
+    <div class="author-bio">
+      <strong>About the Author</strong>
+      <p>Josh is the founder of Built By Josh Studio and Tynkr Tools &amp; Co — a one-person creative operation based in Kansas building Notion templates, spreadsheets, and zodiac digital art. He's also the author of <em>Overlayed Echoes</em>.</p>
+      <a href="../index.html#about">Learn more →</a>
+    </div>
+  
 
   </article>
 

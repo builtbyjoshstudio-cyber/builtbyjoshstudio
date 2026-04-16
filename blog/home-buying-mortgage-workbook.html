@@ -520,6 +520,19 @@
       .nav-links { gap: 0.55rem; }
       .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
     }
+  
+    .post-summary{background:var(--bbj-surface);border-left:3px solid var(--bbj-accent);padding:1.25rem 1.5rem 1.25rem 1.5rem;margin:0 0 2.5rem 0;font-family:'DM Sans',sans-serif}
+    .post-summary strong{display:block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:.7rem}
+    .post-summary ul{list-style:none;margin:0;padding:0}
+    .post-summary li{position:relative;padding-left:1.1rem;margin-bottom:.55rem;font-size:.96rem;line-height:1.55;color:var(--body-read)}
+    .post-summary li:last-child{margin-bottom:0}
+    .post-summary li::before{content:'\2022';position:absolute;left:0;color:var(--bbj-accent);font-weight:700}
+    .author-bio{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--bbj-border);font-family:'DM Sans',sans-serif}
+    .author-bio strong{display:block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:.6rem}
+    .author-bio p{font-size:.95rem;line-height:1.6;color:var(--body-read);margin:0 0 .7rem 0}
+    .author-bio a{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bbj-accent);text-decoration:none}
+    .author-bio a:hover{text-decoration:underline}
+
   </style>
 </head>
 <body>
@@ -551,8 +564,15 @@
 
   <!-- ARTICLE BODY -->
   <article class="article-body">
-
-    <p>Nobody fails at buying a home because they can't do math. They fail because the math is scattered across twelve browser tabs that don't talk to each other.</p>
+    <div class="post-summary">
+      <strong>Key Takeaways</strong>
+      <ul>
+        <li>Most people don't fail at buying a home because of the math — they fail because the math is scattered across twelve browser tabs that don't share data.</li>
+        <li>A complete home-buying spreadsheet connects income, debt, purchase price, interest rate, and closing costs in one model, not a patchwork of single-purpose calculators.</li>
+        <li>The Home Buying & Mortgage Workbook covers affordability, 3-loan comparison, full PMI-aware amortization, closing cost estimates, and rent-vs-buy in both Excel and Google Sheets.</li>
+      </ul>
+    </div>
+    <p>Nobody fails at buying a home because they can't do math. They fail because the math is scattered across twelve browser tabs that don't talk to each other. That's the gap the <a href="../products/home-buying-mortgage-workbook.html">Home Buying & Mortgage Workbook</a> fills.</p>
 
     <p>You run your mortgage payment through an online calculator. You Google "how much house can I afford" and get a number that doesn't account for your actual debts. You find an amortization table that doesn't include PMI. You try to compare two loan options by hand and give up after five minutes. The rent vs. buy question lives entirely in your gut.</p>
 
@@ -661,6 +681,12 @@
     <div class="disclaimer">
       <strong>Important note:</strong> This workbook is intended for financial tracking and planning purposes only. It does not constitute financial, tax, or legal advice. Users should consult a qualified professional for guidance specific to their situation.
     </div>
+    <div class="author-bio">
+      <strong>About the Author</strong>
+      <p>Josh is the founder of Built By Josh Studio and Tynkr Tools &amp; Co — a one-person creative operation based in Kansas building Notion templates, spreadsheets, and zodiac digital art. He's also the author of <em>Overlayed Echoes</em>.</p>
+      <a href="../index.html#about">Learn more →</a>
+    </div>
+  
 
   </article>
 

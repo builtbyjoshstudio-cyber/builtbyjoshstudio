@@ -520,6 +520,19 @@
       .nav-links { gap: 0.55rem; }
       .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
     }
+  
+    .post-summary{background:var(--bbj-surface);border-left:3px solid var(--bbj-accent);padding:1.25rem 1.5rem 1.25rem 1.5rem;margin:0 0 2.5rem 0;font-family:'DM Sans',sans-serif}
+    .post-summary strong{display:block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:.7rem}
+    .post-summary ul{list-style:none;margin:0;padding:0}
+    .post-summary li{position:relative;padding-left:1.1rem;margin-bottom:.55rem;font-size:.96rem;line-height:1.55;color:var(--body-read)}
+    .post-summary li:last-child{margin-bottom:0}
+    .post-summary li::before{content:'\2022';position:absolute;left:0;color:var(--bbj-accent);font-weight:700}
+    .author-bio{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--bbj-border);font-family:'DM Sans',sans-serif}
+    .author-bio strong{display:block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:.6rem}
+    .author-bio p{font-size:.95rem;line-height:1.6;color:var(--body-read);margin:0 0 .7rem 0}
+    .author-bio a{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bbj-accent);text-decoration:none}
+    .author-bio a:hover{text-decoration:underline}
+
   </style>
 </head>
 <body>
@@ -551,8 +564,15 @@
 
   <!-- ARTICLE BODY -->
   <article class="article-body">
-
-    <p>You know where your money goes this month. You have no idea whether you're actually getting ahead.</p>
+    <div class="post-summary">
+      <strong>Key Takeaways</strong>
+      <ul>
+        <li>Banking apps and free spreadsheets show where money went — but neither connects daily spending to net worth, debt payoff, or long-term goals in one place.</li>
+        <li>A budget spreadsheet that actually sticks has to connect spending, savings, net worth, and debt into one dashboard you can check in under a minute.</li>
+        <li>The Ultimate Budget Workbook covers all of it — spending, savings goals, net worth, debt paydown, and a command dashboard — available for Excel and Google Sheets.</li>
+      </ul>
+    </div>
+    <p>You know where your money goes this month. You have no idea whether you're actually getting ahead. The <a href="../products/ultimate-budget-workbook.html">Ultimate Budget Workbook</a> is built on exactly this architecture.</p>
 
     <p>That is the gap most budgeting tools leave wide open. Banking apps show transactions. Free spreadsheets track monthly spending. But none of them connect your daily spending to the bigger questions: Is your net worth growing? When will your debt be gone? Are you saving enough for the things that matter? How does January compare to August?</p>
 
@@ -668,6 +688,12 @@
     <div class="disclaimer">
       <strong>Important note:</strong> This workbook is intended for financial tracking and planning purposes only. It does not constitute financial, tax, or legal advice. Users should consult a qualified professional for guidance specific to their situation.
     </div>
+    <div class="author-bio">
+      <strong>About the Author</strong>
+      <p>Josh is the founder of Built By Josh Studio and Tynkr Tools &amp; Co — a one-person creative operation based in Kansas building Notion templates, spreadsheets, and zodiac digital art. He's also the author of <em>Overlayed Echoes</em>.</p>
+      <a href="../index.html#about">Learn more →</a>
+    </div>
+  
 
   </article>
 

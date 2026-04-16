@@ -503,6 +503,19 @@
       .nav-links { gap: 0.55rem; }
       .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
     }
+  
+    .post-summary{background:var(--bbj-surface);border-left:3px solid var(--bbj-accent);padding:1.25rem 1.5rem 1.25rem 1.5rem;margin:0 0 2.5rem 0;font-family:'DM Sans',sans-serif}
+    .post-summary strong{display:block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:.7rem}
+    .post-summary ul{list-style:none;margin:0;padding:0}
+    .post-summary li{position:relative;padding-left:1.1rem;margin-bottom:.55rem;font-size:.96rem;line-height:1.55;color:var(--body-read)}
+    .post-summary li:last-child{margin-bottom:0}
+    .post-summary li::before{content:'\2022';position:absolute;left:0;color:var(--bbj-accent);font-weight:700}
+    .author-bio{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--bbj-border);font-family:'DM Sans',sans-serif}
+    .author-bio strong{display:block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:.6rem}
+    .author-bio p{font-size:.95rem;line-height:1.6;color:var(--body-read);margin:0 0 .7rem 0}
+    .author-bio a{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bbj-accent);text-decoration:none}
+    .author-bio a:hover{text-decoration:underline}
+
   </style>
 </head>
 <body>
@@ -534,8 +547,15 @@
 
   <!-- ARTICLE BODY -->
   <article class="article-body">
-
-    <p>Launching something is the most stressful thing a solo creator does. Not because the work is harder than usual — but because everything has to happen at the same time.</p>
+    <div class="post-summary">
+      <strong>Key Takeaways</strong>
+      <ul>
+        <li>Most creator launches fail at the coordination level, not the marketing level — a task gets forgotten, an asset isn't finished, and the launch limps over the line half-polished.</li>
+        <li>A launch system doesn't make the work easier; it makes the work visible, showing what's done, what isn't, and what's about to become a problem.</li>
+        <li>The Creator Launch OS is a Notion workspace for planning and executing product, course, and campaign launches as a solo creator.</li>
+      </ul>
+    </div>
+    <p>Launching something is the most stressful thing a solo creator does. Not because the work is harder than usual — but because everything has to happen at the same time. The <a href="../products/creator-launch-os.html">Creator Launch OS</a> is built to replace that scramble with a repeatable process.</p>
 
     <p>You need the product finished. You need the sales page live. You need the graphics done. You need the email sequence written. You need promo posts scheduled across three platforms. You need the checkout tested. You need to coordinate all of this with a launch date that is coming whether you're ready or not.</p>
 
@@ -672,6 +692,12 @@
       <li>Start Here guide — 3-step onboarding with sample data you can explore then remove</li>
       <li>Quick action buttons for fast entry during active launch windows</li>
     </ul>
+    <div class="author-bio">
+      <strong>About the Author</strong>
+      <p>Josh is the founder of Built By Josh Studio and Tynkr Tools &amp; Co — a one-person creative operation based in Kansas building Notion templates, spreadsheets, and zodiac digital art. He's also the author of <em>Overlayed Echoes</em>.</p>
+      <a href="../index.html#about">Learn more →</a>
+    </div>
+  
 
   </article>
 
