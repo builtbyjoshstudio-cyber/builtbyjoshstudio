@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to Build a Notion Content System That Actually Works for Creators</title>
@@ -741,6 +749,48 @@
       <li><a href="../index.html#about">About</a></li>
     </ul>
   </footer>
+    <!-- Etsy click-out tracking -->
+    <script>
+      document.addEventListener('click', function(e) {
+        var link = e.target.closest('a[href*="etsy.com"]');
+        if (!link) return;
+        var card = link.closest('[data-animal],[data-landscape],[data-realm],[data-sign],[data-product]');
+        var section = 'other';
+        if (card) {
+          if (card.dataset.animal) section = 'chinese-zodiac';
+          else if (card.dataset.landscape) section = 'oil-landscapes';
+          else if (card.dataset.realm) section = 'realms';
+          else if (card.dataset.sign) section = 'western-zodiac';
+          else if (card.dataset.product) section = 'tynkr-product';
+        } else if (link.closest('aside,.sidebar,.product-sidebar')) {
+          section = 'product-sidebar';
+        } else if (window.location.pathname.indexOf('/blog/') !== -1) {
+          section = 'blog-cta';
+        } else if (window.location.pathname.indexOf('/products/') !== -1) {
+          section = 'product-page';
+        } else if (window.location.pathname.indexOf('/collections/') !== -1) {
+          section = 'collection-page';
+        } else {
+          section = 'homepage';
+        }
+        var productName = 'unknown';
+        if (card) {
+          var heading = card.querySelector('h2,h3');
+          if (heading) productName = heading.textContent.trim();
+        } else if (link.textContent.trim().length > 0 && link.textContent.trim().length < 120) {
+          productName = link.textContent.trim();
+        }
+        if (typeof gtag === 'function') {
+          gtag('event', 'click_out_to_etsy', {
+            etsy_url: link.href,
+            product_name: productName,
+            source_page: window.location.pathname,
+            source_section: section
+          });
+        }
+      });
+    </script>
+
 
 </body>
 </html>
