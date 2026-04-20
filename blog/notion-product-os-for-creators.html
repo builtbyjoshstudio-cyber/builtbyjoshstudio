@@ -521,6 +521,17 @@
     .author-bio a{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bbj-accent);text-decoration:none}
     .author-bio a:hover{text-decoration:underline}
 
+  
+    .related-posts{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--bbj-border)}
+    .related-posts-label{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:1.4rem}
+    .related-posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+    .related-post-card{display:block;padding:1.2rem 1.3rem;background:var(--bbj-surface);border:1px solid var(--bbj-border);text-decoration:none;color:inherit;transition:border-color .2s,background .2s}
+    .related-post-card:hover{border-color:rgba(201,168,76,.35);background:var(--bbj-surface-2)}
+    .related-post-card h3{font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;color:var(--bbj-text);margin-bottom:.5rem;line-height:1.3;letter-spacing:.01em}
+    .related-post-card p{font-family:'Crimson Pro',serif;font-size:.88rem;line-height:1.5;color:var(--bbj-muted);margin-bottom:.7rem}
+    .related-post-card .related-link{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bbj-accent)}
+    @media(max-width:900px){.related-posts-grid{grid-template-columns:1fr}}
+
   </style>
 </head>
 <body>
@@ -708,7 +719,30 @@
       <li>Catalog Snapshot dashboard — active catalog, items needing attention, drafts in progress, and recent updates at a glance</li>
       <li>Start Here guide — guided walkthrough with sample data you can explore then remove</li>
     </ul>
-    <div class="author-bio">
+    
+    <div class="related-posts">
+      <div class="related-posts-label">Related Reading</div>
+      <div class="related-posts-grid">
+        <a href="complete-notion-os-for-creator-business.html" class="related-post-card">
+          <h3>The Complete Notion Operating System for Running a Creator Business</h3>
+          <p>A full five-pillar operating system for solo content creators — content, clients, finances, launches, and products in one connected Notion workspace.</p>
+          <span class="related-link">Read the post ↗</span>
+        </a>
+
+        <a href="notion-launch-os-for-creators.html" class="related-post-card">
+          <h3>How to Plan and Execute a Product Launch in Notion as a Solo Creator</h3>
+          <p>A launch system that makes the work visible — what is done, what is not, and what is about to become a problem.</p>
+          <span class="related-link">Read the post ↗</span>
+        </a>
+
+        <a href="notion-business-os-for-creators.html" class="related-post-card">
+          <h3>How to Run a Creator Business in Notion Without Hiring a Team</h3>
+          <p>A creator-first business OS for brand deals, custom projects, and deliverables that vary project by project — no enterprise CRM required.</p>
+          <span class="related-link">Read the post ↗</span>
+        </a>
+      </div>
+    </div>
+  <div class="author-bio">
       <strong>About the Author</strong>
       <p>Josh is the founder of Built By Josh Studio and Tynkr Tools &amp; Co — a one-person creative operation based in Kansas building Notion templates, spreadsheets, and zodiac digital art. He's also the author of <em>Overlayed Echoes</em>.</p>
       <a href="../index.html#about">Learn more →</a>
