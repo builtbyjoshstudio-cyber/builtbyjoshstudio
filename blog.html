@@ -19,14 +19,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bbj-bg: #0b0813;
-      --bbj-surface: #120f1f;
-      --bbj-accent: #c9a84c;
-      --bbj-accent2: #7b4fa6;
-      --bbj-text: #ede8f5;
-      --bbj-muted: #8a7fa8;
-      --bbj-border: #2a2040;
-      --bbj-charcoal: #15131c;
+      --bbj-bg: #f7f4f2;
+      --bbj-surface: #ffffff;
+      --bbj-accent: #e8500a;
+      --bbj-accent2: #c43d00;
+      --bbj-text: #0c0813;
+      --bbj-muted: #6b6170;
+      --bbj-border: #e4ddd2;
+      --bbj-charcoal: #f0ede8;
     }
 
     html { scroll-behavior: smooth; }
@@ -49,7 +49,7 @@
       justify-content: space-between;
       padding: 0 2.5rem;
       height: 64px;
-      background: rgba(11,8,19,0.92);
+      background: rgba(247, 246, 242, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--bbj-border);
     }
@@ -84,8 +84,9 @@
       padding: 10rem 2rem 5rem;
       text-align: center;
       background:
-        radial-gradient(ellipse at 50% 20%, rgba(232, 80, 10, 0.08) 0%, transparent 60%),
-        linear-gradient(180deg, #0b0813 0%, #0f0c1a 100%);
+        radial-gradient(ellipse at 50% 20%, rgba(232, 80, 10, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 90%, rgba(255, 210, 180, 0.15) 0%, transparent 55%),
+        linear-gradient(180deg, #f7f4f2 0%, #f0ede8 100%);
       border-bottom: 1px solid var(--bbj-border);
       position: relative;
       overflow: hidden;
@@ -144,7 +145,7 @@
       gap: 0;
       position: relative;
       border: 1px solid var(--bbj-border);
-      background: rgba(255,255,255,0.02);
+      background: #ffffff;
       transition: border-color 0.25s;
     }
     .substack-form:focus-within {
@@ -167,7 +168,7 @@
     }
     .substack-form button {
       background: var(--bbj-accent);
-      color: var(--bbj-bg);
+      color: #ffffff;
       border: none;
       padding: 0 1.6rem;
       font-family: 'DM Sans', sans-serif;
@@ -331,7 +332,7 @@
     .btn-etsy {
       display: inline-block;
       background: var(--bbj-accent);
-      color: var(--bbj-bg);
+      color: #ffffff;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.78rem;
       font-weight: 700;
