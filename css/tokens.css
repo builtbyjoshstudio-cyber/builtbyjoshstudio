@@ -657,6 +657,162 @@
   }
 }
 
+/* ─────────────────────────────────────────────────────────────────
+   G8 — BLOG POST 2-COLUMN LAYOUT WITH STICKY PRODUCT SIDEBAR
+   Mirrors the Tynkr product page layout on blog posts: main reading
+   column (720px max, optimal reading width) + a sticky product
+   sidebar that stays visible throughout the read. Completes the
+   "echo Tynkr Tools & Co" identity and adds a persistent conversion
+   CTA to every long-form post.
+
+   Applied via <div class="article-main"> wrapper around each post's
+   existing <article class="article-body">. Sidebar is <aside
+   class="article-sidebar">. Layout collapses to single column at
+   1024px breakpoint; sidebar becomes static and appears below
+   content on mobile.
+   ───────────────────────────────────────────────────────────────── */
+
+.article-main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 720px) 280px;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Override the blog posts' inline .article-body max-width/margin/
+   padding so the grid handles layout. Compound selector beats the
+   single-class inline rule. */
+.article-main .article-body {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.article-sidebar {
+  position: relative;
+}
+
+.article-sidebar-sticky {
+  position: sticky;
+  top: 88px;
+  background: #ffffff;
+  border: 1px solid var(--bbj-border);
+  padding: 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 4px 18px rgba(12, 8, 19, 0.05);
+}
+
+.sidebar-thumb {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 1.1rem;
+  border: 1px solid var(--bbj-border);
+}
+
+.sidebar-kicker {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bbj-muted);
+  margin-bottom: 0.6rem;
+}
+
+.sidebar-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--bbj-text);
+  margin-bottom: 0.9rem;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+
+.sidebar-price-block {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--bbj-accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.sidebar-price-block .from-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--bbj-muted);
+  margin-right: 0.4rem;
+  vertical-align: top;
+  position: relative;
+  top: 0.2rem;
+}
+
+.sidebar-cta-btn {
+  display: block;
+  background: var(--bbj-accent);
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.9rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 1.1rem;
+  transition: background 0.2s, transform 0.2s;
+}
+.sidebar-cta-btn:hover {
+  background: #ff6a2a;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.sidebar-checklist {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid var(--bbj-border);
+}
+.sidebar-checklist li {
+  font-size: 0.82rem;
+  color: var(--body-read);
+  padding: 0.4rem 0 0.4rem 1.3rem !important;
+  position: relative;
+  line-height: 1.45;
+  margin: 0 !important;
+  list-style: none !important;
+}
+.sidebar-checklist li::before {
+  content: '✓' !important;
+  position: absolute;
+  left: 0;
+  color: var(--bbj-accent) !important;
+  font-weight: 700;
+  font-size: 0.88rem;
+  top: 0.45rem !important;
+}
+
+@media (max-width: 1024px) {
+  .article-main {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+    gap: 2rem;
+    padding: 2rem 1.5rem 3rem;
+  }
+  .article-sidebar-sticky {
+    position: static;
+  }
+}
+
 /* Hero meta chips — frosted pills. Previously solid orange-tint
    with plain border. Now they're actual glass elements with a
    bright rim and soft blur so the glass language reads in small
