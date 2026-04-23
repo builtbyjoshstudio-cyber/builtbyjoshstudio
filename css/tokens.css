@@ -31,7 +31,7 @@
   /* Glass surfaces (10-12) */
   --glass-bg:     rgba(0, 0, 0, 0.20);               /* black 20% */
   --glass-border: rgba(255, 255, 255, 0.08);
-  --rim-light:    rgba(255, 215, 128, 0.45);         /* gold rim 45% */
+  --rim-light:    rgba(255, 215, 128, 0.70);         /* gold rim */
 
   /* Ambient washes (13-14) */
   --wash-a:       rgba(201, 168, 76, 0.18);          /* gold corner */
@@ -61,7 +61,7 @@
   --negative:     #b23a1a;                           /* rust */
   --glass-bg:     rgba(255, 255, 255, 0.15);
   --glass-border: rgba(0, 0, 0, 0.08);
-  --rim-light:    rgba(255, 255, 255, 0.75);
+  --rim-light:    rgba(255, 255, 255, 0.95);
   --wash-a:       rgba(232, 80, 10, 0.14);           /* orange corner */
   --wash-b:       rgba(255, 210, 180, 0.20);         /* peach corner */
   --nav-bg:       rgba(247, 246, 242, 0.72);         /* Tynkr cream pages */
@@ -84,7 +84,7 @@
   --negative:     #c68888;                           /* dusty brick */
   --glass-bg:     rgba(255, 255, 255, 0.08);
   --glass-border: rgba(255, 255, 255, 0.12);
-  --rim-light:    rgba(200, 215, 225, 0.42);         /* silver rim 42% */
+  --rim-light:    rgba(200, 215, 225, 0.65);         /* silver rim */
   --wash-a:       rgba(143, 177, 198, 0.18);         /* dusty blue */
   --wash-b:       rgba(180, 195, 205, 0.14);         /* silver */
   --nav-bg:       rgba(63, 69, 76, 0.72);
@@ -144,24 +144,28 @@
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
   border-bottom: 1px solid var(--nav-border);
+  box-shadow: 0 6px 24px -10px rgba(0, 0, 0, 0.45);
 }
 
+/* Top rim-light: a visible bright edge with a soft halo that fades
+   into the nav body. Matches the "top sheen" from the PDF (p.3). */
 .site-nav::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--rim-light) 25%,
-    var(--rim-light) 75%,
+    var(--rim-light) 15%,
+    var(--rim-light) 85%,
     transparent 100%
   );
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
+  box-shadow: 0 0 14px var(--rim-light);
 }
 
 /* Safari fallback: if backdrop-filter isn't supported, bump opacity
