@@ -308,24 +308,28 @@
 }
 
 /* Sticky sidebar: frosted glass primitive.
-   Background: white at 55% opacity with backdrop-filter blur + saturate.
-   Inset box-shadow provides the top rim-light sheen (1px inner highlight).
-   Outer box-shadow provides a subtle lift. */
+   Dropped bg opacity 55% -> 42% for a clearer glass signature.
+   Brighter rim-light (2px), plus an outer warm glow so the sidebar
+   visibly "floats" off the page. */
 [data-glass="prototype"] .sticky-sidebar {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    0 10px 36px -10px rgba(0, 0, 0, 0.14);
+    inset 0 2px 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+    0 18px 48px -12px rgba(232, 80, 10, 0.18),
+    0 10px 36px -12px rgba(0, 0, 0, 0.16);
 }
 
-/* Bump the existing ::before orange wash on the sidebar from 4% to
-   7% so it reads as a warm accent on the frosted surface instead of
-   disappearing. */
+/* Beef up the ::before orange wash on the sidebar so the frosted
+   surface has visible color to react to (backdrop-filter needs
+   something colorful behind it or the glass effect disappears). */
 [data-glass="prototype"] .sticky-sidebar::before {
-  background: linear-gradient(135deg, rgba(232, 80, 10, 0.08) 0%, transparent 55%);
+  background:
+    radial-gradient(ellipse at top right, rgba(232, 80, 10, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(255, 180, 120, 0.10) 0%, transparent 60%);
 }
 
 /* Sidebar CTA: keep solid orange fill for conversion weight, add a
@@ -347,6 +351,27 @@
   -webkit-backdrop-filter: blur(6px) saturate(130%);
 }
 
+/* Hero meta chips — frosted pills. Previously solid orange-tint
+   with plain border. Now they're actual glass elements with a
+   bright rim and soft blur so the glass language reads in small
+   elements too, not just the big sidebar surface. */
+[data-glass="prototype"] .chip {
+  background: rgba(255, 255, 255, 0.50);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 2px 8px -2px rgba(232, 80, 10, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+[data-glass="prototype"] .chip:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 4px 14px -2px rgba(232, 80, 10, 0.22);
+}
+
 /* Safari fallback: without backdrop-filter, bump the background
    opacity so the sidebar + guarantee stay readable. */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -355,5 +380,8 @@
   }
   [data-glass="prototype"] .studio-guarantee {
     background: rgba(255, 255, 255, 0.78);
+  }
+  [data-glass="prototype"] .chip {
+    background: rgba(255, 255, 255, 0.85);
   }
 }
