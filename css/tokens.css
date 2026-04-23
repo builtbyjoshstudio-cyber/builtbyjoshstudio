@@ -1,0 +1,122 @@
+/* ─────────────────────────────────────────────────────────────────
+   TYNKR DESIGN SYSTEM TOKENS — v1
+   Shared 14-token architecture matching the Tynkr Glass Design System.
+
+   Default root = Cosmic Midnight Dark (matches current BBJ site tone).
+   Theme switch: set data-theme="light" | "mist" | "dark" on <html>.
+
+   This file is ADDITIVE. Existing per-page CSS variables (e.g.
+   --bbj-bg, --tynkr-accent) are untouched and continue to work
+   exactly as before. Future glass work and theme switching reference
+   the tokens defined here.
+   ───────────────────────────────────────────────────────────────── */
+
+:root,
+[data-theme="dark"] {
+  /* Foundation (1-5) */
+  --bg:           #0b0813;
+  --surface:      #120f1f;
+  --text:         #ede8f5;
+  --muted:        #8a7fa8;
+  --border:       #2a2040;
+
+  /* Accents (6-7) */
+  --accent:       #c9a84c;                           /* warm gold */
+  --accent-soft:  rgba(201, 168, 76, 0.15);          /* hover wash */
+
+  /* Semantic (8-9) */
+  --positive:     #6fd19a;                           /* mint */
+  --negative:     #e88a6a;                           /* coral */
+
+  /* Glass surfaces (10-12) */
+  --glass-bg:     rgba(0, 0, 0, 0.20);               /* black 20% */
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --rim-light:    rgba(255, 215, 128, 0.45);         /* gold rim 45% */
+
+  /* Ambient washes (13-14) */
+  --wash-a:       rgba(201, 168, 76, 0.18);          /* gold corner */
+  --wash-b:       rgba(123, 79, 166, 0.14);          /* purple corner */
+
+  /* Typography stack */
+  --font-display: 'Cinzel', 'Syne', serif;
+  --font-body:    'Crimson Pro', 'DM Sans', sans-serif;
+  --font-ui:      'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+[data-theme="light"] {
+  --bg:           #f7f4f2;
+  --surface:      #ffffff;
+  --text:         #0c0813;
+  --muted:        #6b6170;
+  --border:       #e4ddd2;
+  --accent:       #e8500a;                           /* vibrant orange */
+  --accent-soft:  rgba(232, 80, 10, 0.10);
+  --positive:     #1f7a4d;                           /* forest */
+  --negative:     #b23a1a;                           /* rust */
+  --glass-bg:     rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --rim-light:    rgba(255, 255, 255, 0.75);
+  --wash-a:       rgba(232, 80, 10, 0.14);           /* orange corner */
+  --wash-b:       rgba(255, 210, 180, 0.20);         /* peach corner */
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-ui:      'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+[data-theme="mist"] {
+  --bg:           #3f454c;
+  --surface:      #4a5159;
+  --text:         #e8ebed;                           /* cool white */
+  --muted:        #a3adb6;
+  --border:       #55606a;
+  --accent:       #8fb1c6;                           /* dusty blue */
+  --accent-soft:  rgba(143, 177, 198, 0.15);
+  --positive:     #95b8a5;                           /* sage */
+  --negative:     #c68888;                           /* dusty brick */
+  --glass-bg:     rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --rim-light:    rgba(200, 215, 225, 0.42);         /* silver rim 42% */
+  --wash-a:       rgba(143, 177, 198, 0.18);         /* dusty blue */
+  --wash-b:       rgba(180, 195, 205, 0.14);         /* silver */
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-ui:      'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   MONOSPACE NUMERIC DISPLAY
+   Tabular monospace for prices and financial data — aligns digits
+   vertically in sidebars and comparison tables. Uses font-variant-numeric
+   to force equal-width digits even when the font isn't strictly monospace.
+   ───────────────────────────────────────────────────────────────── */
+
+.sidebar-price,
+.sidebar-price-strike,
+.sidebar-price-save,
+.format-price,
+.opt-price,
+.price,
+.tynkr-price,
+.offer-price,
+[data-price] {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.005em;
+}
+
+/* "FROM" label sits next to a price — keep its own font but reduce
+   the visual weight so the price reads cleanly. */
+.from-label {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Apply tabular-nums to comparison tables in blog posts. Digits align
+   in vertical columns without changing the surrounding prose font. */
+.article-body table,
+.comparison-table,
+.feature-table {
+  font-variant-numeric: tabular-nums;
+}
