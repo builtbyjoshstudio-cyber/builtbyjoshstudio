@@ -37,6 +37,11 @@
   --wash-a:       rgba(201, 168, 76, 0.18);          /* gold corner */
   --wash-b:       rgba(123, 79, 166, 0.14);          /* purple corner */
 
+  /* Nav-specific glass (translucent enough for backdrop-filter to show,
+     opaque enough to keep the nav legible at a glance) */
+  --nav-bg:       rgba(11, 8, 19, 0.72);             /* dark pages */
+  --nav-border:   rgba(255, 255, 255, 0.06);
+
   /* Typography stack */
   --font-display: 'Cinzel', 'Syne', serif;
   --font-body:    'Crimson Pro', 'DM Sans', sans-serif;
@@ -59,6 +64,8 @@
   --rim-light:    rgba(255, 255, 255, 0.75);
   --wash-a:       rgba(232, 80, 10, 0.14);           /* orange corner */
   --wash-b:       rgba(255, 210, 180, 0.20);         /* peach corner */
+  --nav-bg:       rgba(247, 246, 242, 0.72);         /* Tynkr cream pages */
+  --nav-border:   rgba(0, 0, 0, 0.06);
   --font-display: 'Syne', sans-serif;
   --font-body:    'DM Sans', sans-serif;
   --font-ui:      'DM Sans', sans-serif;
@@ -80,6 +87,8 @@
   --rim-light:    rgba(200, 215, 225, 0.42);         /* silver rim 42% */
   --wash-a:       rgba(143, 177, 198, 0.18);         /* dusty blue */
   --wash-b:       rgba(180, 195, 205, 0.14);         /* silver */
+  --nav-bg:       rgba(63, 69, 76, 0.72);
+  --nav-border:   rgba(255, 255, 255, 0.08);
   --font-display: 'Syne', sans-serif;
   --font-body:    'DM Sans', sans-serif;
   --font-ui:      'DM Sans', sans-serif;
@@ -119,4 +128,46 @@
 .comparison-table,
 .feature-table {
   font-variant-numeric: tabular-nums;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   GLASS NAV — Step G1 of the Tynkr Glass Design System rollout.
+   Upgrades the existing .site-nav on every page to the design-system
+   frosted-acrylic treatment. Background uses --nav-bg (theme-aware)
+   so Tynkr pages stay cream-tinted, BBJ pages stay dark-tinted.
+   A 1px top rim-light gradient provides the "top sheen" from the
+   glass primitive anatomy (PDF p.3).
+   ───────────────────────────────────────────────────────────────── */
+
+.site-nav {
+  background: var(--nav-bg);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-bottom: 1px solid var(--nav-border);
+}
+
+.site-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--rim-light) 25%,
+    var(--rim-light) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Safari fallback: if backdrop-filter isn't supported, bump opacity
+   so the nav remains legible without the blur effect. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-nav {
+    background: var(--bg);
+  }
 }
