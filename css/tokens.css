@@ -247,3 +247,113 @@
   filter: blur(8px);
   pointer-events: none;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   G3 — GLASS PROTOTYPE (SCOPED)
+   All rules here are gated to [data-glass="prototype"] so they only
+   apply to the single page opted in via that attribute on <html>.
+   This is the exploratory prototype for full-page glass treatment
+   — hero ambient wash, frosted sidebar, and CTA rim-light.
+   If the prototype looks right, the pattern rolls out to other
+   product pages. If it doesn't, the attribute is removed and zero
+   other pages are affected.
+   ───────────────────────────────────────────────────────────────── */
+
+/* Hero: contain ambient washes within the hero box */
+[data-glass="prototype"] .product-hero {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Bold orange bloom from top-right (replaces the existing weak
+   5%-opacity radial gradient) */
+[data-glass="prototype"] .product-hero::before {
+  content: '';
+  position: absolute;
+  top: -15%;
+  right: -10%;
+  bottom: auto;
+  left: auto;
+  width: 65%;
+  height: 130%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(232, 80, 10, 0.18) 0%,
+    rgba(232, 80, 10, 0.08) 40%,
+    transparent 75%
+  );
+  filter: blur(24px);
+  pointer-events: none;
+  inset: auto;
+}
+
+/* Peach bloom from bottom-left — new ::after */
+[data-glass="prototype"] .product-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 55%;
+  height: 110%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 180, 120, 0.18) 0%,
+    rgba(255, 210, 180, 0.08) 40%,
+    transparent 75%
+  );
+  filter: blur(32px);
+  pointer-events: none;
+}
+
+/* Sticky sidebar: frosted glass primitive.
+   Background: white at 55% opacity with backdrop-filter blur + saturate.
+   Inset box-shadow provides the top rim-light sheen (1px inner highlight).
+   Outer box-shadow provides a subtle lift. */
+[data-glass="prototype"] .sticky-sidebar {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 10px 36px -10px rgba(0, 0, 0, 0.14);
+}
+
+/* Bump the existing ::before orange wash on the sidebar from 4% to
+   7% so it reads as a warm accent on the frosted surface instead of
+   disappearing. */
+[data-glass="prototype"] .sticky-sidebar::before {
+  background: linear-gradient(135deg, rgba(232, 80, 10, 0.08) 0%, transparent 55%);
+}
+
+/* Sidebar CTA: keep solid orange fill for conversion weight, add a
+   subtle top-inner rim-light + warm outer glow so it reads as the
+   "lit" primary action without being watered down by glass. */
+[data-glass="prototype"] .sidebar-cta {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 4px 18px -4px rgba(232, 80, 10, 0.40);
+}
+
+/* Studio Guarantee nested block: subtle glass so it reads as a
+   distinct surface inside the already-frosted sidebar without
+   stacking heavy glass on heavy glass. */
+[data-glass="prototype"] .studio-guarantee {
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(6px) saturate(130%);
+  -webkit-backdrop-filter: blur(6px) saturate(130%);
+}
+
+/* Safari fallback: without backdrop-filter, bump the background
+   opacity so the sidebar + guarantee stay readable. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-glass="prototype"] .sticky-sidebar {
+    background: rgba(255, 255, 255, 0.92);
+  }
+  [data-glass="prototype"] .studio-guarantee {
+    background: rgba(255, 255, 255, 0.78);
+  }
+}
