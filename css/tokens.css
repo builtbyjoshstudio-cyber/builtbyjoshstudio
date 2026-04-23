@@ -443,6 +443,134 @@
   #tynkr .card-tynkr { background: rgba(255, 255, 255, 0.94); }
 }
 
+/* ─────────────────────────────────────────────────────────────────
+   G6 — COSMIC GLASS (BBJ SIDE)
+   Applied to 15 zodiac collection pages via data-glass="cosmic" on
+   <html>. Kept separate from data-glass="prototype" (Tynkr) so the
+   two design families can evolve independently. Uses the PDF's
+   Dark theme corner-wash matrix (gold + purple + coral) and dark
+   frosted glass surfaces with gold rim-lights.
+
+   Covers:
+   - .collection-hero  (14 pages — Western + Chinese + Landscapes)
+   - .sticky-sidebar   (14 pages)
+   - .chip             (14 pages)
+   - .sidebar-cta      (14 pages)
+   - .style-card       (12 Western pages)
+   - .animal-card      (Chinese zodiac page)
+   - .landscape-card   (Landscapes page)
+   ───────────────────────────────────────────────────────────────── */
+
+/* Hero: contain washes */
+[data-glass="cosmic"] .collection-hero {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Cosmic ambient washes — matches the G2 BBJ homepage hero language
+   (purple + gold + coral corner blooms) so the collection page heroes
+   feel like extensions of the homepage. */
+[data-glass="cosmic"] .collection-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 45%, rgba(123, 79, 166, 0.34) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 55% at 85% 15%, rgba(201, 168, 76, 0.28) 0%, transparent 55%),
+    radial-gradient(ellipse 65% 50% at 80% 85%, rgba(232, 140, 100, 0.12) 0%, transparent 65%);
+  filter: blur(10px);
+  pointer-events: none;
+  inset: auto;
+}
+
+/* Sticky sidebar: dark frosted glass with gold rim + purple halo lift.
+   Mirrors the Tynkr G3 sidebar pattern but in dark-theme values. */
+[data-glass="cosmic"] .sticky-sidebar {
+  background: rgba(11, 8, 19, 0.48);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 215, 128, 0.38),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 18px 48px -12px rgba(123, 79, 166, 0.28),
+    0 10px 36px -12px rgba(0, 0, 0, 0.55);
+}
+
+/* Sidebar ::before: dual radial wash behind the frost so the glass
+   has visible color to react to. */
+[data-glass="cosmic"] .sticky-sidebar::before {
+  background:
+    radial-gradient(ellipse at top right, rgba(201, 168, 76, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(123, 79, 166, 0.12) 0%, transparent 60%);
+}
+
+/* Sidebar CTA: keep gold fill (conversion weight), add inset rim +
+   warm outer glow. */
+[data-glass="cosmic"] .sidebar-cta {
+  box-shadow:
+    inset 0 1px 0 rgba(11, 8, 19, 0.35),
+    0 4px 18px -4px rgba(201, 168, 76, 0.45);
+}
+
+/* Chip pills — dark frosted with gold accent rim */
+[data-glass="cosmic"] .chip {
+  background: rgba(11, 8, 19, 0.38);
+  border: 1px solid rgba(201, 168, 76, 0.38);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 215, 128, 0.28),
+    0 2px 8px -2px rgba(201, 168, 76, 0.16);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+[data-glass="cosmic"] .chip:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 215, 128, 0.42),
+    0 4px 14px -2px rgba(201, 168, 76, 0.30);
+}
+
+/* Style cards (Western zodiac, 12 per page), Animal cards (Chinese),
+   Landscape cards (Landscapes). All three use the .glass-lite pattern
+   (PDF p.10) — lighter blur(10px), no saturate — safer on GPU when
+   tiling 12-24 cards per page. The image area is untouched; only the
+   card container and text body get the frost treatment. */
+[data-glass="cosmic"] .style-card,
+[data-glass="cosmic"] .animal-card,
+[data-glass="cosmic"] .landscape-card {
+  background: rgba(11, 8, 19, 0.32);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 168, 76, 0.20);
+  box-shadow: inset 0 1px 0 rgba(255, 215, 128, 0.22);
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+[data-glass="cosmic"] .style-card:hover,
+[data-glass="cosmic"] .animal-card:hover,
+[data-glass="cosmic"] .landscape-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 168, 76, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 215, 128, 0.40),
+    0 14px 36px -10px rgba(201, 168, 76, 0.20);
+}
+
+/* Safari fallback — higher opacity so dark glass elements stay
+   readable if backdrop-filter is unsupported */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-glass="cosmic"] .sticky-sidebar { background: rgba(11, 8, 19, 0.92); }
+  [data-glass="cosmic"] .chip { background: rgba(11, 8, 19, 0.82); }
+  [data-glass="cosmic"] .style-card,
+  [data-glass="cosmic"] .animal-card,
+  [data-glass="cosmic"] .landscape-card {
+    background: rgba(11, 8, 19, 0.88);
+  }
+}
+
 /* Hero meta chips — frosted pills. Previously solid orange-tint
    with plain border. Now they're actual glass elements with a
    bright rim and soft blur so the glass language reads in small
