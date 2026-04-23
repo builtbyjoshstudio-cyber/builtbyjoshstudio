@@ -571,6 +571,92 @@
   }
 }
 
+/* ─────────────────────────────────────────────────────────────────
+   G7 — COSMIC GLASS ON HOMEPAGE BBJ SECTIONS
+   Brings the three BBJ homepage grids (#builtbyjosh Western zodiac,
+   #chinese-zodiac, #landscapes) into the cosmic glass language
+   established on the collection pages. Scope is selector-based on
+   the three section IDs (not data-glass) because index.html is
+   dual-brand and only the BBJ sections opt in.
+
+   Uses the .glass-lite pattern (PDF p.10) — lighter blur(10px), no
+   saturate boost — because 36 cards total tile across the three
+   grids. GPU-safe for scroll.
+   ───────────────────────────────────────────────────────────────── */
+
+/* Boost the existing #builtbyjosh::before wash + add matching
+   washes to #chinese-zodiac and #landscapes. Same recipe as the
+   collection hero washes so the page reads as one cosmic flow. */
+#builtbyjosh::before,
+#chinese-zodiac::before,
+#landscapes::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 65% 55% at 12% 75%, rgba(123, 79, 166, 0.26) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 50% at 88% 15%, rgba(201, 168, 76, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 45% at 82% 85%, rgba(232, 140, 100, 0.10) 0%, transparent 60%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+/* Filter buttons (Fire/Earth/Air/Water on Western zodiac section):
+   default = dark frosted pill with gold-accent border, hover/active
+   = brighter gold border + gold rim glow. */
+#builtbyjosh .filter-btn-bbj {
+  background: rgba(11, 8, 19, 0.42);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid rgba(201, 168, 76, 0.30);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 215, 128, 0.28),
+    0 2px 8px -3px rgba(201, 168, 76, 0.14);
+  transition: transform 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s;
+}
+#builtbyjosh .filter-btn-bbj:hover,
+#builtbyjosh .filter-btn-bbj.active {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: rgba(201, 168, 76, 0.65);
+  color: var(--bbj-accent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 215, 128, 0.45),
+    0 4px 14px -3px rgba(201, 168, 76, 0.30);
+}
+
+/* BBJ cards across all three homepage grids — glass-lite for GPU
+   safety at 36-card scale. Dark frost, gold rim, gold halo lift
+   on hover. Works for Western zodiac, Chinese zodiac, and
+   Landscapes uniformly (they all use .card-bbj). */
+#builtbyjosh .card-bbj,
+#chinese-zodiac .card-bbj,
+#landscapes .card-bbj {
+  background: rgba(11, 8, 19, 0.32);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 215, 128, 0.25);
+}
+#builtbyjosh .card-bbj:hover,
+#chinese-zodiac .card-bbj:hover,
+#landscapes .card-bbj:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 168, 76, 0.50);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 215, 128, 0.45),
+    0 16px 42px -10px rgba(201, 168, 76, 0.20);
+}
+
+/* Safari fallback for G7 glass */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  #builtbyjosh .filter-btn-bbj { background: rgba(11, 8, 19, 0.85); }
+  #builtbyjosh .card-bbj,
+  #chinese-zodiac .card-bbj,
+  #landscapes .card-bbj {
+    background: rgba(11, 8, 19, 0.90);
+  }
+}
+
 /* Hero meta chips — frosted pills. Previously solid orange-tint
    with plain border. Now they're actual glass elements with a
    bright rim and soft blur so the glass language reads in small
