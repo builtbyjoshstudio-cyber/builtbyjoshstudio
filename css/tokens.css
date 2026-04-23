@@ -679,7 +679,9 @@
   display: grid;
   grid-template-columns: minmax(0, 720px) 280px;
   gap: 3rem;
-  align-items: start;
+  /* No align-items: start — sidebar must stretch to article height
+     so its inner sticky child has enough scroll track to actually
+     stick all the way through the post. */
 }
 
 /* Override the blog posts' inline .article-body max-width/margin/
