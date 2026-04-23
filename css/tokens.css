@@ -815,6 +815,131 @@
   }
 }
 
+/* ─────────────────────────────────────────────────────────────────
+   G9 — HOMEPAGE TAIL SECTIONS (newsletter, about, FAQ)
+   The three remaining homepage sections that didn't have glass:
+   - .email-capture   (Tynkr light — newsletter signup)
+   - .about-section   (BBJ dark — about the studio)
+   - .home-faq        (Tynkr light — homepage FAQ)
+   Selector-scoped so it only affects these specific elements.
+   ───────────────────────────────────────────────────────────────── */
+
+/* Email capture — Tynkr light section, soft warm ambient wash +
+   frosted form input + lit CTA button. */
+.email-capture {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.email-capture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 15% 50%, rgba(232, 80, 10, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 75% at 85% 50%, rgba(255, 180, 120, 0.12) 0%, transparent 60%);
+  filter: blur(28px);
+  pointer-events: none;
+}
+.email-capture-form input {
+  background: rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+.email-capture-form button {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.40),
+    0 4px 16px -4px rgba(232, 80, 10, 0.40);
+}
+
+/* About the Studio — BBJ dark cosmic section. Pump up the existing
+   weak ::before washes (6% -> 22% gold/purple/coral matching G6/G7)
+   and frost the brand cards. */
+.about-section::before {
+  background:
+    radial-gradient(ellipse 70% 65% at 18% 50%, rgba(123, 79, 166, 0.34) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 55% at 82% 18%, rgba(201, 168, 76, 0.28) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 85%, rgba(232, 140, 100, 0.14) 0%, transparent 65%) !important;
+  filter: blur(10px);
+}
+.about-brand-card {
+  background: rgba(11, 8, 19, 0.32) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 168, 76, 0.22) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 215, 128, 0.25),
+    0 6px 18px -8px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.about-brand-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201, 168, 76, 0.45) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 215, 128, 0.40),
+    0 14px 32px -10px rgba(201, 168, 76, 0.20);
+}
+/* Preserve the brand-tinted top accent borders */
+.about-brand-card.tynkr {
+  border-top: 2px solid var(--tynkr-accent) !important;
+}
+.about-brand-card.bbj {
+  border-top: 2px solid var(--bbj-accent) !important;
+}
+
+/* Home FAQ — Tynkr light section. Soft warm ambient wash behind the
+   list + each .home-faq-item becomes a frosted card with a hover lift
+   instead of just border-bottom dividers. */
+.home-faq {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.home-faq::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 40% at 12% 18%, rgba(232, 80, 10, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 45% at 88% 82%, rgba(255, 180, 120, 0.10) 0%, transparent 60%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+.home-faq-inner {
+  position: relative;
+}
+.home-faq-list {
+  border-top: none !important;
+  display: grid;
+  gap: 0.85rem;
+}
+.home-faq-item {
+  border-bottom: none !important;
+  padding: 1.4rem 1.6rem !important;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.80);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 4px 14px -6px rgba(12, 8, 19, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.home-faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 10px 24px -8px rgba(232, 80, 10, 0.14);
+}
+
+/* Safari fallback for G9 sections */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .email-capture-form input { background: rgba(255, 255, 255, 0.92) !important; }
+  .home-faq-item { background: rgba(255, 255, 255, 0.92); }
+  .about-brand-card { background: rgba(11, 8, 19, 0.85) !important; }
+}
+
 /* Hero meta chips — frosted pills. Previously solid orange-tint
    with plain border. Now they're actual glass elements with a
    bright rim and soft blur so the glass language reads in small
