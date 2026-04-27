@@ -75,7 +75,7 @@
   }
   </script>
 
-  <!-- Schema.org: Product + AggregateOffer -->
+  <!-- Schema.org: Product + Offer -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -90,20 +90,13 @@
     "url": "https://builtbyjoshstudio.com/products/home-buying-mortgage-workbook.html",
     "image": "https://builtbyjoshstudio.com/images/products/home-buying-mortgage-workbook.png",
     "offers": {
-      "@type": "AggregateOffer",
+      "@type": "Offer",
+      "name": "Home Buying & Mortgage Workbook — Excel + Google Sheets Bundle",
+      "url": "https://www.etsy.com/listing/4485295506/home-buying-mortgage-workbook-bundle",
+      "price": "34.99",
       "priceCurrency": "USD",
-      "lowPrice": "24.99",
-      "highPrice": "34.99",
-      "offerCount": 3,
-      "offers": [
-        {
-          "@type": "Offer",
-          "name": "Excel + Google Sheets Bundle",
-          "url": "https://www.etsy.com/listing/4485295506/home-buying-mortgage-workbook-bundle",
-          "price": "34.99",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "seller": { "@type": "Organization", "name": "Tynkr Tools & Co" },
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "Tynkr Tools & Co" },
       "shippingDetails": {
         "@type": "OfferShippingDetails",
         "shippingRate": {
@@ -121,60 +114,6 @@
         "applicableCountry": "US",
         "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
       }
-        },
-        {
-          "@type": "Offer",
-          "name": "Google Sheets Only",
-          "url": "https://www.etsy.com/listing/4485280533/google-sheets-home-buying-mortgage",
-          "price": "24.99",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "seller": { "@type": "Organization", "name": "Tynkr Tools & Co" },
-      "shippingDetails": {
-        "@type": "OfferShippingDetails",
-        "shippingRate": {
-          "@type": "MonetaryAmount",
-          "value": "0",
-          "currency": "USD"
-        },
-        "shippingDestination": {
-          "@type": "DefinedRegion",
-          "geoTargetName": "Worldwide"
-        }
-      },
-      "hasMerchantReturnPolicy": {
-        "@type": "MerchantReturnPolicy",
-        "applicableCountry": "US",
-        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-      }
-        },
-        {
-          "@type": "Offer",
-          "name": "Excel Only",
-          "url": "https://www.etsy.com/listing/4484845220/excel-home-buying-mortgage-workbook",
-          "price": "24.99",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "seller": { "@type": "Organization", "name": "Tynkr Tools & Co" },
-      "shippingDetails": {
-        "@type": "OfferShippingDetails",
-        "shippingRate": {
-          "@type": "MonetaryAmount",
-          "value": "0",
-          "currency": "USD"
-        },
-        "shippingDestination": {
-          "@type": "DefinedRegion",
-          "geoTargetName": "Worldwide"
-        }
-      },
-      "hasMerchantReturnPolicy": {
-        "@type": "MerchantReturnPolicy",
-        "applicableCountry": "US",
-        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-      }
-        }
-      ]
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -197,7 +136,7 @@
         "name": "Does this work in Google Sheets or just Excel?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Both. The workbook is available as an Excel file and a Google Sheets version. You can buy either individually for $24.99 or get both in the bundle for $34.99. All formulas and formatting work in both platforms."
+          "text": "Both. The bundle includes the workbook in both Excel and Google Sheets formats — same 15 tabs, same formulas. Use whichever platform you prefer, or both. One purchase, both files."
         }
       },
       {
@@ -1272,6 +1211,11 @@
 
   </style>
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/checkout.css" />
+
+  <!-- Checkout wiring: central URL config + button wiring (Lemon Squeezy overlay or Etsy fallback) -->
+  <script src="/js/checkout-config.js" defer></script>
+  <script src="/js/checkout.js" defer></script>
 
 </head>
 <body>
@@ -1300,7 +1244,7 @@
     <h1 class="product-title">Home Buying & Mortgage Workbook <span class="italic-accent">| 15-Tab First-Time Homebuyer Spreadsheet</span></h1>
     <p class="product-tagline">The biggest purchase of your life shouldn't run on guesswork and a lender's estimate. This 15-tab workbook puts affordability analysis, mortgage comparison, closing costs, amortization, and a property scorer in one file — so you make the decision with every number visible.</p>
     <div class="hero-meta-chips">
-      <span class="chip"><strong>From $24.99</strong> · One-time</span>
+      <span class="chip"><strong>$34.99</strong> · One-time</span>
       <span class="chip">Excel + Google Sheets</span>
       <span class="chip">15 Pre-Built Tabs</span>
       <span class="chip">Instant Download</span>
@@ -1319,35 +1263,37 @@
         <p>The workbook includes an <strong>Affordability Dashboard</strong> with debt-to-income analysis, a <strong>Rent vs Buy</strong> break-even calculator over 5, 10, and 20-year horizons, a <strong>Down Payment</strong> savings tracker, a side-by-side <strong>Mortgage Comparison</strong> for three loan scenarios, a full month-by-month <strong>Amortization Schedule</strong> with auto PMI drop, an <strong>Extra Payments</strong> impact calculator, a 23-line-item <strong>Closing Costs</strong> estimator with estimate vs actual columns, a weighted <strong>Home Search Scorer</strong> for comparing up to five properties, a <strong>First-Year Homeowner Budget</strong> for expenses most buyers forget, a <strong>Maintenance Reserve</strong> tracker for big-ticket repair planning, and a <strong>Net Worth Projector</strong> comparing buying vs renting and investing. It also includes a Beginner Guide for first-time buyers and a Pro Strategy Guide covering DTI optimization, ARM vs fixed analysis, and points strategy.</p>
       </section>
 
+      <!-- TRY THE LITE VERSION FREE — hidden until LS lite product goes live -->
+      <section data-lite-section class="lite-banner" style="display: none;">
+        <div class="lite-eyebrow">Try It Free First</div>
+        <h2>Get the <span class="italic-accent">Lite Version</span> — Free</h2>
+        <p class="lite-desc">A stripped-back preview of the Home Buying &amp; Mortgage Workbook. See how the system works, then upgrade with a discount code — redeemable here or on Etsy, your choice.</p>
+        <a data-checkout="home-buying-lite"
+           data-cta-label-live="Download the Free Lite Version"
+           class="lite-cta"
+           style="display: none;">
+          <span data-cta-label>Download the Free Lite Version</span>
+        </a>
+      </section>
+
       <section id="choose-format">
-        <h2>Choose Your Format</h2>
-        <p>Three purchase options — Excel only, Google Sheets only, or both in the bundle. Same workbook, same 15 tabs, same formulas. Pick the format you'll actually use.</p>
+        <h2>Get the Workbook</h2>
+        <p>The complete 15-tab workbook in both Excel and Google Sheets. Same formulas, same Control Panel, both files included in one purchase.</p>
 
-        <div class="format-picker">
+        <div class="format-picker single">
 
-          <a href="https://www.etsy.com/listing/4485295506/home-buying-mortgage-workbook-bundle" target="_blank" rel="noopener" class="format-card featured">
-            <span class="format-badge">Best Value</span>
+          <a data-checkout="home-buying-bundle"
+             data-cta-label-live="Buy the Workbook"
+             href="https://www.etsy.com/listing/4485295506/home-buying-mortgage-workbook-bundle"
+             target="_blank"
+             rel="noopener"
+             class="format-card featured">
+            <span class="format-badge">Both Formats Included</span>
             <div class="format-platform">Excel + Google Sheets</div>
-            <h3>Complete Bundle</h3>
+            <h3>Complete Workbook</h3>
             <div class="format-price">$34.99</div>
-            <p class="format-desc">Both formats in one purchase. Run your numbers in Excel at home, collaborate with a partner in Google Sheets — same workbook, your choice.</p>
-            <div class="format-cta">Get the Bundle ↗</div>
-          </a>
-
-          <a href="https://www.etsy.com/listing/4485280533/google-sheets-home-buying-mortgage" target="_blank" rel="noopener" class="format-card">
-            <div class="format-platform">Google Sheets</div>
-            <h3>Google Sheets Only</h3>
-            <div class="format-price">$24.99</div>
-            <p class="format-desc">The full 15-tab workbook for Google Sheets. Copy to your Drive and start running scenarios in minutes.</p>
-            <div class="format-cta">Get Google Sheets ↗</div>
-          </a>
-
-          <a href="https://www.etsy.com/listing/4484845220/excel-home-buying-mortgage-workbook" target="_blank" rel="noopener" class="format-card">
-            <div class="format-platform">Microsoft Excel</div>
-            <h3>Excel Only</h3>
-            <div class="format-price">$24.99</div>
-            <p class="format-desc">The full 15-tab workbook as an Excel file. Download, open, and start analyzing affordability the same day.</p>
-            <div class="format-cta">Get Excel ↗</div>
+            <p class="format-desc">The full 15-tab workbook in both Excel and Google Sheets formats. Run scenarios in Excel, collaborate with a partner in Sheets — both files included in one purchase.</p>
+            <div class="format-cta"><span data-cta-label>Get the Workbook on Etsy ↗</span></div>
           </a>
 
         </div>
@@ -1483,31 +1429,35 @@
     <!-- STICKY SIDEBAR -->
     <aside class="sticky-sidebar">
       <div class="sidebar-label">Price</div>
-      <div class="sidebar-price"><span class="from-label">FROM</span>$24.99</div>
-      <div class="sidebar-price-note">one-time payment · instant download · 3 formats available Visit Etsy for current sales and promotions.</div>
+      <div class="sidebar-price">$34.99</div>
+      <div class="sidebar-price-note">one-time payment · instant download · Excel + Google Sheets included</div>
 
-      <div class="sidebar-options-label">Choose Your Format</div>
+      <div class="sidebar-options-label">Get the Workbook</div>
       <div class="sidebar-options">
 
-        <a href="https://www.etsy.com/listing/4485295506/home-buying-mortgage-workbook-bundle" target="_blank" rel="noopener" class="sidebar-option primary">
-          <span class="opt-badge">Best Value</span>
+        <a data-checkout="home-buying-bundle"
+           data-cta-label-live="Buy the Workbook — $34.99"
+           href="https://www.etsy.com/listing/4485295506/home-buying-mortgage-workbook-bundle"
+           target="_blank"
+           rel="noopener"
+           class="sidebar-option primary">
+          <span class="opt-badge">Both Formats</span>
           <div class="opt-platform">Excel + Google Sheets</div>
-          <div class="opt-name">Complete Bundle</div>
+          <div class="opt-name">Complete Workbook</div>
           <div class="opt-price">$34.99</div>
         </a>
 
-        <a href="https://www.etsy.com/listing/4485280533/google-sheets-home-buying-mortgage" target="_blank" rel="noopener" class="sidebar-option">
-          <div class="opt-platform">Google Sheets</div>
-          <div class="opt-name">Google Sheets Only</div>
-          <div class="opt-price">$24.99</div>
-        </a>
+      </div>
 
-        <a href="https://www.etsy.com/listing/4484845220/excel-home-buying-mortgage-workbook" target="_blank" rel="noopener" class="sidebar-option">
-          <div class="opt-platform">Microsoft Excel</div>
-          <div class="opt-name">Excel Only</div>
-          <div class="opt-price">$24.99</div>
+      <!-- TRY THE LITE VERSION FREE — sidebar mirror, hidden until LS lite goes live -->
+      <div data-lite-section class="sidebar-lite" style="display: none;">
+        <div class="sidebar-lite-label">Or try free first</div>
+        <a data-checkout="home-buying-lite"
+           data-cta-label-live="Download Lite — Free"
+           class="sidebar-lite-cta"
+           style="display: none;">
+          <span data-cta-label>Download Lite — Free</span>
         </a>
-
       </div>
 
       <ul class="sidebar-trust">
@@ -1562,7 +1512,7 @@
 
       <div class="faq-item">
         <h3>Does this work in Google Sheets or just Excel?</h3>
-        <p>Both. The workbook is available as an Excel file and a Google Sheets version. You can buy either individually for $24.99 or get both in the bundle for $34.99. All formulas and formatting work in both platforms.</p>
+        <p>Both. The bundle includes the workbook in both Excel and Google Sheets formats — same 15 tabs, same formulas. Use whichever platform you prefer, or both. One purchase, both files.</p>
       </div>
 
       <div class="faq-item">
@@ -1629,8 +1579,14 @@
     <h2>Make the Biggest Purchase of Your Life With <span class="italic-accent">Every Number Visible</span></h2>
     <p class="cta-sub">Download the workbook, enter your numbers in the Control Panel, and see your full financial picture in five minutes. Affordability, mortgage comparison, closing costs, and first-year planning — one file, no guesswork.</p>
     <div class="cta-buttons">
-      <a href="https://www.etsy.com/listing/4485295506/home-buying-mortgage-workbook-bundle" target="_blank" rel="noopener" class="btn-etsy">Get the Bundle — $34.99 →</a>
-      <a href="#choose-format" class="btn-etsy secondary">See All 3 Formats</a>
+      <a data-checkout="home-buying-bundle"
+         data-cta-label-live="Buy the Workbook — $34.99"
+         href="https://www.etsy.com/listing/4485295506/home-buying-mortgage-workbook-bundle"
+         target="_blank"
+         rel="noopener"
+         class="btn-etsy">
+        <span data-cta-label>Get the Workbook on Etsy — $34.99 →</span>
+      </a>
     </div>
   </section>
 

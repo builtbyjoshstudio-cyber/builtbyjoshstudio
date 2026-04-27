@@ -1,0 +1,108 @@
+/* ==========================================================================
+   Tynkr Tools & Co — Checkout shared styles
+   ==========================================================================
+   Loaded by every product page. Defines the "Try It Free First" lite banner,
+   its sidebar mirror, and a single-card variant of the format picker (used
+   when a product page sells one bundle instead of multiple format options).
+
+   Color tokens fall back gracefully if a page hasn't loaded its own theme
+   variables — but every product page already defines --tynkr-* variables.
+   ========================================================================== */
+
+/* ===== TRY THE LITE VERSION FREE — main banner above the buy CTA ===== */
+.lite-banner {
+  background: #fff;
+  border: 1px solid var(--tynkr-border, #e0ddd8);
+  border-left: 4px solid var(--tynkr-accent, #e8500a);
+  border-radius: 12px;
+  padding: 1.6rem 1.8rem;
+  margin: 2rem 0;
+}
+
+.lite-banner .lite-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tynkr-accent, #e8500a);
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+}
+
+.lite-banner h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+  color: var(--tynkr-text, #1c1c1c);
+  line-height: 1.25;
+}
+
+.lite-banner .lite-desc {
+  color: var(--body-read, #3a3a3a);
+  line-height: 1.55;
+  margin-bottom: 1.1rem;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.lite-cta {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  background: var(--tynkr-accent, #e8500a);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.lite-cta:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+/* ===== Sidebar mirror — compact lite CTA below the primary buy button ===== */
+.sidebar-lite {
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 1px dashed var(--tynkr-border, #e0ddd8);
+}
+
+.sidebar-lite-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tynkr-muted, #6b6b6b);
+  margin-bottom: 0.55rem;
+  font-weight: 600;
+}
+
+.sidebar-lite-cta {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: transparent;
+  color: var(--tynkr-accent, #e8500a);
+  border: 1.5px solid var(--tynkr-accent, #e8500a);
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar-lite-cta:hover {
+  background: var(--tynkr-accent, #e8500a);
+  color: #fff;
+}
+
+/* ===== Single-card format picker (used when a page sells 1 bundle, not 3) ===== */
+.format-picker.single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 540px;
+}

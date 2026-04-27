@@ -1070,6 +1070,11 @@
 
   </style>
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/checkout.css" />
+
+  <!-- Checkout wiring: central URL config + button wiring (Lemon Squeezy overlay or Etsy fallback) -->
+  <script src="/js/checkout-config.js" defer></script>
+  <script src="/js/checkout.js" defer></script>
 
 </head>
 <body>
@@ -1114,6 +1119,19 @@
         <h2>What Is Creator Finance OS?</h2>
         <p>Creator Finance OS is a Notion finance tracker for creators who earn from multiple sources and need one workspace to manage all of it — revenue, expenses, budgets, savings, debt, and estimated taxes. It replaces disconnected spreadsheets and mental math with a linked system where every transaction you log automatically flows into your budget, annual overview, and tax estimates.</p>
         <p>The template includes eight modules organized across three layers: an income and expense tracking layer with auto-calculated fields, a planning layer for monthly budgets, savings goals, and debt payoff, and a tools layer with a tax estimator and setup guide. A Financial Snapshot dashboard on the homepage surfaces your current revenue, expenses, net income, top income source, and biggest expense at a glance. The system is designed for efficient monthly maintenance — log transactions as they happen, then review and adjust once a month. Setup takes roughly ten minutes.</p>
+      </section>
+
+      <!-- TRY THE LITE VERSION FREE — hidden until LS lite product goes live -->
+      <section data-lite-section class="lite-banner" style="display: none;">
+        <div class="lite-eyebrow">Try It Free First</div>
+        <h2>Get the <span class="italic-accent">Lite Version</span> — Free</h2>
+        <p class="lite-desc">A stripped-back preview of Creator Finance OS. See how the system works, then upgrade with a discount code — redeemable here or on Etsy, your choice.</p>
+        <a data-checkout="creator-finance-os-lite"
+           data-cta-label-live="Download the Free Lite Version"
+           class="lite-cta"
+           style="display: none;">
+          <span data-cta-label>Download the Free Lite Version</span>
+        </a>
       </section>
 
       <section>
@@ -1272,7 +1290,25 @@
         <li>Sample data + setup guide</li>
       </ul>
 
-      <a href="https://www.etsy.com/listing/4480393057/notion-finance-template-creator-budget" target="_blank" rel="noopener" class="sidebar-cta">Get It on Etsy →</a>
+      <a data-checkout="creator-finance-os"
+         data-cta-label-live="Buy Creator Finance OS — $27"
+         href="https://www.etsy.com/listing/4480393057/notion-finance-template-creator-budget"
+         target="_blank"
+         rel="noopener"
+         class="sidebar-cta">
+        <span data-cta-label>Get It on Etsy →</span>
+      </a>
+
+      <!-- TRY THE LITE VERSION FREE — sidebar mirror, hidden until LS lite goes live -->
+      <div data-lite-section class="sidebar-lite" style="display: none;">
+        <div class="sidebar-lite-label">Or try free first</div>
+        <a data-checkout="creator-finance-os-lite"
+           data-cta-label-live="Download Lite — Free"
+           class="sidebar-lite-cta"
+           style="display: none;">
+          <span data-cta-label>Download Lite — Free</span>
+        </a>
+      </div>
 
       <ul class="sidebar-trust">
         <li>Instant download</li>
@@ -1392,7 +1428,14 @@
     <div class="cta-eyebrow">Get the Template</div>
     <h2>Stop Guessing Your Numbers and <span class="italic-accent">Start Knowing Them</span></h2>
     <p class="cta-sub">Duplicate the template, log your first few transactions, and see your full financial picture in under ten minutes. Revenue, expenses, budgets, taxes — one workspace, always current.</p>
-    <a href="https://www.etsy.com/listing/4480393057/notion-finance-template-creator-budget" target="_blank" rel="noopener" class="btn-etsy">Download on Etsy →</a>
+    <a data-checkout="creator-finance-os"
+       data-cta-label-live="Buy Creator Finance OS"
+       href="https://www.etsy.com/listing/4480393057/notion-finance-template-creator-budget"
+       target="_blank"
+       rel="noopener"
+       class="btn-etsy">
+      <span data-cta-label>Download on Etsy →</span>
+    </a>
   </section>
 
   <!-- FOOTER -->
