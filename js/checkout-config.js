@@ -13,13 +13,21 @@
  *
  * GOING LIVE WITH LEMON SQUEEZY
  * -----------------------------
+ * LS store URL:    https://tynkrtoolsco.lemonsqueezy.com/
+ * Buy URL format:  https://tynkrtoolsco.lemonsqueezy.com/buy/<product-uuid>
+ * Upgrade code:    UPGRADE35  (set up matching codes on LS AND Etsy so lite users
+ *                  can redeem on either platform per the in-file upgrade prompt)
+ * Lite pricing:    $0 lead magnet — LS captures email, delivers file, builds list
+ *
  * When LS account verification completes:
- *   1) Replace every "PENDING" with the corresponding LS overlay URL.
- *      Format: https://[storename].lemonsqueezy.com/buy/[product-uuid]
- *   2) Commit + deploy this file. No HTML changes required.
- *   3) Every buy button on the site flips to LS overlay simultaneously.
- *   4) Update Product schema offers.url on the 8 product pages (separate task).
- *   5) Submit the Merchant Center reconsideration request.
+ *   1) Replace every "PENDING" with the corresponding LS Buy URL from the LS
+ *      dashboard (Products tab → click product → Share → copy Buy URL).
+ *   2) Update Product schema `offers.url` on the 8 product pages (Etsy URL → LS URL).
+ *   3) Commit + push to GitHub. GitHub Pages deploys in ~60s.
+ *   4) Test one purchase end-to-end on the live site (use UPGRADE35 + LS test mode
+ *      coupon if needed).
+ *   5) Submit the Merchant Center reconsideration request describing the move
+ *      from Etsy redirects to native overlay checkout.
  *
  * NEVER hardcode a checkout URL outside this file. Every change goes through here.
  */
