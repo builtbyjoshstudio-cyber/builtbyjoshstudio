@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QDSPBB7S9J');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — Tynkr Tools &amp; Co</title>
+  <meta name="description" content="Terms of Service for Tynkr Tools &amp; Co products and builtbyjoshstudio.com. Read our usage terms, license grant, prohibited uses, and governing law." />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/terms.html" />
+
+  <meta property="og:title" content="Terms of Service — Tynkr Tools &amp; Co" />
+  <meta property="og:description" content="Usage terms, license grant, prohibited uses, and governing law for Tynkr Tools &amp; Co digital products." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/terms.html" />
+  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Terms of Service — Tynkr Tools &amp; Co" />
+  <meta name="twitter:description" content="Usage terms, license grant, prohibited uses, and governing law for Tynkr Tools &amp; Co digital products." />
+
+  <!-- Schema.org BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://builtbyjoshstudio.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Terms of Service", "item": "https://builtbyjoshstudio.com/terms.html"}
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/tokens.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tynkr-bg: #f7f6f2;
+      --tynkr-surface: #ffffff;
+      --tynkr-accent: #e8500a;
+      --tynkr-text: #1c1c1c;
+      --tynkr-muted: #6b6b6b;
+      --tynkr-border: #e0ddd8;
+      --body-read: #3a3a3a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--tynkr-bg);
+      color: var(--tynkr-text);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-top: 80px;
+    }
+
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(247, 246, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--tynkr-border);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--tynkr-text);
+      text-decoration: none;
+    }
+    .logo-short { display: none; }
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tynkr-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--tynkr-accent); }
+    @media (max-width: 700px) {
+      .logo-full { display: none; }
+      .logo-short { display: inline; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.75rem; }
+    }
+
+    .policy-page {
+      max-width: 760px;
+      margin: 3rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+    .policy-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .policy-page h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      color: var(--tynkr-text);
+    }
+    .policy-page .last-updated {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--tynkr-muted);
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    .policy-page .intro {
+      font-size: 1.08rem;
+      color: var(--body-read);
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--tynkr-border);
+    }
+    .policy-page section { margin-bottom: 2.2rem; }
+    .policy-page h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      color: var(--tynkr-text);
+    }
+    .policy-page p {
+      color: var(--body-read);
+      margin-bottom: 0.85rem;
+    }
+    .policy-page p:last-child { margin-bottom: 0; }
+    .policy-page a {
+      color: var(--tynkr-accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    footer {
+      background: var(--tynkr-surface);
+      border-top: 1px solid var(--tynkr-border);
+      padding: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-left {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--tynkr-muted);
+    }
+    .footer-left strong { color: var(--tynkr-text); }
+    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.4rem; }
+    .footer-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--tynkr-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--tynkr-accent); }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#tynkr">Tynkr Tools</a></li>
+      <li><a href="index.html#builtbyjosh">Zodiac Art</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+  </nav>
+
+  <main class="policy-page">
+    <div class="policy-eyebrow">Tynkr Tools &amp; Co</div>
+    <h1>Terms of Service</h1>
+    <p class="last-updated">Last updated: April 28, 2026</p>
+
+    <p class="intro">By purchasing, accessing, or using any Tynkr Tools &amp; Co product or visiting builtbyjoshstudio.com, you agree to the following terms. These terms apply to all digital products sold by Tynkr Tools &amp; Co, including Creator OS Notion templates, consumer financial workbooks, and any free lite versions or lead magnets.</p>
+
+    <section>
+      <h2>License Grant</h2>
+      <p>All Tynkr Tools &amp; Co products are licensed — not sold — for individual use only. You are granted a non-transferable, non-exclusive license to use the product for your own personal or business purposes. This license does not transfer ownership of any intellectual property.</p>
+    </section>
+
+    <section>
+      <h2>Permitted Uses</h2>
+      <p>You may use our products for your own personal or business planning and management. You may modify templates and workbooks for your own workflow. You may print workbook pages for your own reference.</p>
+    </section>
+
+    <section>
+      <h2>Prohibited Uses</h2>
+      <p>You may NOT, under any circumstances, resell, redistribute, or sublicense any Tynkr Tools &amp; Co product in any form. You may not share product files or template links publicly or privately with others. You may not provide access to products to clients, teams, or communities. You may not copy, recreate, or modify any product for commercial use or resale. You may not upload any product to a template marketplace, file-sharing site, or public repository. You may not use any product's content, structure, or design to train or develop any machine learning or artificial intelligence system.</p>
+    </section>
+
+    <section>
+      <h2>Intellectual Property</h2>
+      <p>All content, structure, design, database logic, formulas, and instructional materials within Tynkr Tools &amp; Co products are the intellectual property of Tynkr Tools &amp; Co, a Built By Josh Studio company. These materials are protected under applicable copyright and intellectual property laws. Unauthorized use may result in immediate revocation of access, formal infringement claims, or legal action.</p>
+    </section>
+
+    <section>
+      <h2>No Guarantees</h2>
+      <p>All products are provided "as is" without warranty of any kind. Tynkr Tools &amp; Co makes no guarantees regarding business outcomes, financial results, or any other results from using our products. Our products do not constitute financial, legal, tax, or business advice. Consult a licensed professional before making any significant decisions.</p>
+    </section>
+
+    <section>
+      <h2>Limitation of Liability</h2>
+      <p>To the maximum extent permitted by applicable law, Tynkr Tools &amp; Co's total liability shall not exceed the amount you paid for the product. We are not liable for any indirect, incidental, or consequential damages arising from use of our products.</p>
+    </section>
+
+    <section>
+      <h2>Governing Law</h2>
+      <p>These terms are governed by the laws of the State of Kansas. Any disputes shall be brought exclusively in the state or federal courts located in Shawnee County, Kansas.</p>
+    </section>
+
+    <section>
+      <h2>Changes to These Terms</h2>
+      <p>Tynkr Tools &amp; Co may update these terms at any time. The current version will always be available at <a href="https://builtbyjoshstudio.com/terms.html">builtbyjoshstudio.com/terms.html</a>. Continued use of our products after an update constitutes acceptance of the revised terms.</p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p>Questions about these terms? Contact us at <a href="mailto:tynkrtoolsco@gmail.com">tynkrtoolsco@gmail.com</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-left">
+      <strong>Built By Josh Studio</strong> · All digital products — instant download
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="https://www.etsy.com/shop/tynkrtoolsco" target="_blank" rel="noopener">Etsy</a></li>
+      <li><a href="refunds.html">Refunds</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="terms.html">Terms</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>

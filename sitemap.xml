@@ -235,4 +235,24 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- LEGAL PAGES -->
+  <url>
+    <loc>https://builtbyjoshstudio.com/refunds.html</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/privacy.html</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/terms.html</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
