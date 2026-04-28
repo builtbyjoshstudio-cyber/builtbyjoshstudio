@@ -1,67 +1,169 @@
 # builtbyjoshstudio.com — robots.txt
-# All search and AI crawlers are explicitly allowed.
-# Personal finance content benefits from AI engine citation; we want
-# ChatGPT, Claude, Perplexity, etc. retrieving and citing this site.
+#
+# Strategy
+# --------
+#   1. Default-allow for all crawlers
+#   2. Block infrastructure paths from everyone (/cdn-cgi/, *.json)
+#   3. Block AI TRAINING crawlers from JS/CSS plumbing (/js/, /css/)
+#      — they get the content, not the build artifacts
+#   4. Search engines and AI LIVE-RETRIEVAL crawlers keep full access
+#      so page rendering works correctly for indexing and citations
+#
+# Bot categories
+# --------------
+#   TRAINING       (no /js/ /css/): GPTBot, ClaudeBot, anthropic-ai,
+#                                   Google-Extended, Applebot-Extended,
+#                                   meta-externalagent, CCBot
+#   LIVE RETRIEVAL (full access):  ChatGPT-User, OAI-SearchBot, Claude-Web,
+#                                   PerplexityBot, Perplexity-User
+#   SEARCH ENGINES (full access):  Googlebot, Bingbot, BingPreview, Applebot,
+#                                   DuckDuckBot, YouBot, FacebookExternalHit
 
-# Standard search engines
+# ============================================================================
+# DEFAULT — applies to any crawler without its own block
+# ============================================================================
 User-agent: *
+Disallow: /cdn-cgi/
+Disallow: /*.json$
 Allow: /
 
-# AI / LLM crawlers — explicit allowlist
-# OpenAI (ChatGPT browsing + training)
+# ============================================================================
+# AI TRAINING — content only, no /js/ /css/
+# ============================================================================
+
+# OpenAI training (ChatGPT)
 User-agent: GPTBot
-Allow: /
-User-agent: OAI-SearchBot
-Allow: /
-User-agent: ChatGPT-User
+Disallow: /cdn-cgi/
+Disallow: /js/
+Disallow: /css/
+Disallow: /*.json$
 Allow: /
 
-# Anthropic (Claude)
+# Anthropic training (Claude) — current
 User-agent: ClaudeBot
+Disallow: /cdn-cgi/
+Disallow: /js/
+Disallow: /css/
+Disallow: /*.json$
 Allow: /
-User-agent: Claude-Web
-Allow: /
+
+# Anthropic training (Claude) — legacy
 User-agent: anthropic-ai
+Disallow: /cdn-cgi/
+Disallow: /js/
+Disallow: /css/
+Disallow: /*.json$
 Allow: /
 
-# Perplexity
-User-agent: PerplexityBot
-Allow: /
-User-agent: Perplexity-User
-Allow: /
-
-# Google (search + Gemini training opt-in)
-User-agent: Googlebot
-Allow: /
+# Google AI training (Gemini opt-in)
 User-agent: Google-Extended
+Disallow: /cdn-cgi/
+Disallow: /js/
+Disallow: /css/
+Disallow: /*.json$
 Allow: /
 
-# Microsoft / Bing (search + Copilot)
-User-agent: Bingbot
-Allow: /
-User-agent: BingPreview
-Allow: /
-
-# Apple (Apple Intelligence + Spotlight)
-User-agent: Applebot
-Allow: /
+# Apple AI training (Apple Intelligence opt-in)
 User-agent: Applebot-Extended
+Disallow: /cdn-cgi/
+Disallow: /js/
+Disallow: /css/
+Disallow: /*.json$
 Allow: /
 
-# Meta / DuckDuckGo
-User-agent: FacebookExternalHit
-Allow: /
+# Meta AI training
 User-agent: meta-externalagent
+Disallow: /cdn-cgi/
+Disallow: /js/
+Disallow: /css/
+Disallow: /*.json$
 Allow: /
+
+# Common Crawl — feeds many open-source training datasets
+User-agent: CCBot
+Disallow: /cdn-cgi/
+Disallow: /js/
+Disallow: /css/
+Disallow: /*.json$
+Allow: /
+
+# ============================================================================
+# AI LIVE RETRIEVAL — full access (needs /js/ /css/ to render answers)
+# ============================================================================
+
+# OpenAI live retrieval (ChatGPT browsing)
+User-agent: ChatGPT-User
+Disallow: /cdn-cgi/
+Disallow: /*.json$
+Allow: /
+
+# OpenAI live search index
+User-agent: OAI-SearchBot
+Disallow: /cdn-cgi/
+Disallow: /*.json$
+Allow: /
+
+# Anthropic live retrieval (Claude.ai web fetch)
+User-agent: Claude-Web
+Disallow: /cdn-cgi/
+Disallow: /*.json$
+Allow: /
+
+# Perplexity search index
+User-agent: PerplexityBot
+Disallow: /cdn-cgi/
+Disallow: /*.json$
+Allow: /
+
+# Perplexity live retrieval
+User-agent: Perplexity-User
+Disallow: /cdn-cgi/
+Disallow: /*.json$
+Allow: /
+
+# ============================================================================
+# STANDARD SEARCH ENGINES — full access (need /js/ /css/ to render & rank)
+# ============================================================================
+
+# Google search
+User-agent: Googlebot
+Disallow: /cdn-cgi/
+Disallow: /*.json$
+Allow: /
+
+# Bing search + Copilot
+User-agent: Bingbot
+Disallow: /cdn-cgi/
+Disallow: /*.json$
+Allow: /
+
+User-agent: BingPreview
+Disallow: /cdn-cgi/
+Disallow: /*.json$
+Allow: /
+
+# Apple search (Siri, Spotlight)
+User-agent: Applebot
+Disallow: /cdn-cgi/
+Disallow: /*.json$
+Allow: /
+
+# Meta link previews
+User-agent: FacebookExternalHit
+Disallow: /cdn-cgi/
+Disallow: /*.json$
+Allow: /
+
+# DuckDuckGo
 User-agent: DuckDuckBot
+Disallow: /cdn-cgi/
+Disallow: /*.json$
 Allow: /
 
 # You.com
 User-agent: YouBot
-Allow: /
-
-# Common Crawl (training data for many open models)
-User-agent: CCBot
+Disallow: /cdn-cgi/
+Disallow: /*.json$
 Allow: /
 
 Sitemap: https://builtbyjoshstudio.com/sitemap.xml
