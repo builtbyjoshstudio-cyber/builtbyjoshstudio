@@ -1,4 +1,67 @@
+# builtbyjoshstudio.com — robots.txt
+# All search and AI crawlers are explicitly allowed.
+# Personal finance content benefits from AI engine citation; we want
+# ChatGPT, Claude, Perplexity, etc. retrieving and citing this site.
+
+# Standard search engines
 User-agent: *
+Allow: /
+
+# AI / LLM crawlers — explicit allowlist
+# OpenAI (ChatGPT browsing + training)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+
+# Google (search + Gemini training opt-in)
+User-agent: Googlebot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft / Bing (search + Copilot)
+User-agent: Bingbot
+Allow: /
+User-agent: BingPreview
+Allow: /
+
+# Apple (Apple Intelligence + Spotlight)
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta / DuckDuckGo
+User-agent: FacebookExternalHit
+Allow: /
+User-agent: meta-externalagent
+Allow: /
+User-agent: DuckDuckBot
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Common Crawl (training data for many open models)
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://builtbyjoshstudio.com/sitemap.xml
