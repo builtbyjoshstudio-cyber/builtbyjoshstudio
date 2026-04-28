@@ -1,0 +1,59 @@
+# Built By Josh Studio
+
+> A one-person creative studio in Kansas building Notion OS templates, Excel and Google Sheets workbooks, and zodiac digital art prints. Two distinct brands operate under one roof: Tynkr Tools & Co (productivity) and Built By Josh Studio (zodiac art).
+
+Built By Josh Studio is the parent studio, founded in 2025 by Josh. The studio publishes a small, opinionated set of digital products under two brand identities. Tynkr Tools & Co (founded 2026) covers personal finance and creator business productivity tools — Notion templates and Excel/Google Sheets workbooks. The Built By Josh Studio brand also publishes Western zodiac, Chinese zodiac, and zodiac landscape digital art prints. Josh is the author of the novel *Overlayed Echoes* and the creator of the *Tales of Ink & Shadows Studio* YouTube channel.
+
+All products are digital with instant download. Native checkout via Lemon Squeezy on this domain; products are also available on Etsy.
+
+## About
+
+- [About the studio and Josh](https://builtbyjoshstudio.com/about.html): Canonical About page covering the founder's background, the two-brand split, the book, the YouTube channel, and how to reach the studio.
+
+## Tynkr Tools & Co — productivity products
+
+- [Ultimate Budget Workbook](https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html): 23-tab Excel + Google Sheets budget system with sinking funds, debt payoff, net worth tracker, 50/30/20 analyzer.
+- [Home Buying & Mortgage Workbook](https://builtbyjoshstudio.com/products/home-buying-mortgage-workbook.html): 15-tab home buying spreadsheet with affordability analysis, amortization, rent vs buy break-even, closing-cost estimator.
+- [Creator Business OS](https://builtbyjoshstudio.com/products/creator-business-os.html): Notion CRM for solo creators — contacts, leads, deals, deliverables, invoices.
+- [Creator Content OS](https://builtbyjoshstudio.com/products/creator-content-os.html): Notion content planning system — library, pipeline, calendar, repurposing, performance tracking.
+- [Creator Finance OS](https://builtbyjoshstudio.com/products/creator-finance-os.html): Notion finance tracker for creators — revenue, expenses, budgets, debt payoff, tax estimates.
+- [Creator Launch OS](https://builtbyjoshstudio.com/products/creator-launch-os.html): Notion launch planner with a six-phase workflow for product launches.
+- [Creator Product OS](https://builtbyjoshstudio.com/products/creator-product-os.html): Notion product catalog — files, listings across platforms, bundles, version log, support tracking.
+- [Creator OS Full Stack](https://builtbyjoshstudio.com/products/creator-os-full-stack.html): All five Creator OS templates bundled together at a $58 discount.
+- [Products index](https://builtbyjoshstudio.com/products/): All Creator OS templates in one place.
+
+## Built By Josh Studio — zodiac art
+
+- [Zodiac art collections](https://builtbyjoshstudio.com/collections/): Western zodiac, Chinese zodiac, and zodiac landscape print series.
+
+## Blog — personal finance and creator business
+
+- [Sinking Funds Explained](https://builtbyjoshstudio.com/blog/sinking-funds-explained.html): How to budget for non-monthly expenses with the math and the spreadsheet mechanics.
+- [How to Build a Zero-Based Budget in Excel](https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html): Step-by-step build with formulas; works in Google Sheets too.
+- [First-Time Homebuyer Mistakes](https://builtbyjoshstudio.com/blog/first-time-homebuyer-mistakes.html): Common errors first-time buyers make and how to avoid them.
+- [The Ultimate Budget Workbook breakdown](https://builtbyjoshstudio.com/blog/ultimate-budget-workbook.html): Detailed walkthrough of the workbook architecture.
+- [The Home Buying & Mortgage Workbook breakdown](https://builtbyjoshstudio.com/blog/home-buying-mortgage-workbook.html): Walkthrough of the home buying system.
+- [The complete Notion OS for a creator business](https://builtbyjoshstudio.com/blog/complete-notion-os-for-creator-business.html): How the five Creator OS modules connect into a single operating system.
+- [Notion Content OS deep dive](https://builtbyjoshstudio.com/blog/notion-content-os-for-creators.html)
+- [Notion Business OS deep dive](https://builtbyjoshstudio.com/blog/notion-business-os-for-creators.html)
+- [Notion Finance OS deep dive](https://builtbyjoshstudio.com/blog/notion-finance-os-for-creators.html)
+- [Notion Launch OS deep dive](https://builtbyjoshstudio.com/blog/notion-launch-os-for-creators.html)
+- [Notion Product OS deep dive](https://builtbyjoshstudio.com/blog/notion-product-os-for-creators.html)
+- [Blog index](https://builtbyjoshstudio.com/blog.html): All posts.
+
+## Beyond the studio
+
+- [Overlayed Echoes — Josh's novel on Amazon](https://a.co/d/04YzP4o4): Fiction project from the same studio.
+- [Tales of Ink & Shadows Studio on YouTube](https://www.youtube.com/@TalesofInkShadowsStudio): Creative channel covering writing, the studio process, and creative rabbit holes.
+- [Tynkr Tools & Co newsletter on Substack](https://tynkrtoolsco.substack.com/): The studio's newsletter.
+- [Linktree](https://linktr.ee/builtbyjoshstudio): All studio links in one place.
+
+## Policies
+
+- [Refund Policy](https://builtbyjoshstudio.com/refunds.html): All sales final on digital products; technical issues always resolved.
+- [Privacy Policy](https://builtbyjoshstudio.com/privacy.html): Static site, no direct collection; Etsy and Lemon Squeezy handle their own data.
+- [Terms of Service](https://builtbyjoshstudio.com/terms.html): License grant, permitted/prohibited uses, governed by Kansas law.
+
+## Contact
+
+Email: josh@builtbyjoshstudio.com
