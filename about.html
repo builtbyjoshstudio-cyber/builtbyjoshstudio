@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QDSPBB7S9J');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Josh — Built By Josh Studio &amp; Tynkr Tools &amp; Co</title>
+  <meta name="description" content="Solo creator and founder of Built By Josh Studio and Tynkr Tools &amp; Co. Builds Notion OS templates, Excel and Google Sheets workbooks, and zodiac digital art prints. Author of Overlayed Echoes." />
+  <meta name="keywords" content="Josh Tran, Built By Josh Studio founder, Tynkr Tools and Co founder, Notion template creator, spreadsheet workbook builder, zodiac digital art creator, Overlayed Echoes author" />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/about.html" />
+
+  <meta property="og:title" content="About Josh — Built By Josh Studio &amp; Tynkr Tools &amp; Co" />
+  <meta property="og:description" content="Solo creator behind Notion OS templates, Excel and Google Sheets workbooks, and zodiac digital art. Founder of Built By Josh Studio and Tynkr Tools &amp; Co. Author of Overlayed Echoes." />
+  <meta property="og:type" content="profile" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/about.html" />
+  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/logo/josh-author.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About Josh — Built By Josh Studio &amp; Tynkr Tools &amp; Co" />
+  <meta name="twitter:description" content="Solo creator behind Notion OS templates, financial workbooks, zodiac art, and the novel Overlayed Echoes." />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/logo/josh-author.webp" />
+
+  <!-- Schema.org BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://builtbyjoshstudio.com/"},
+      {"@type": "ListItem", "position": 2, "name": "About", "item": "https://builtbyjoshstudio.com/about.html"}
+    ]
+  }
+  </script>
+
+  <!-- Schema.org Person — canonical entity record for Josh -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Josh",
+    "url": "https://builtbyjoshstudio.com/about.html",
+    "image": "https://builtbyjoshstudio.com/images/logo/josh-author.webp",
+    "jobTitle": "Founder",
+    "description": "Solo creator and founder of Built By Josh Studio and Tynkr Tools & Co. Builds Notion OS templates, Excel and Google Sheets workbooks, and zodiac digital art prints. Author of the novel Overlayed Echoes and creator of the Tales of Ink & Shadows Studio YouTube channel.",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Built By Josh Studio",
+      "url": "https://builtbyjoshstudio.com"
+    },
+    "knowsAbout": [
+      "Personal finance",
+      "Budgeting",
+      "Notion templates",
+      "Spreadsheet design",
+      "Microsoft Excel",
+      "Google Sheets",
+      "Creator economy",
+      "Digital products",
+      "Zodiac art",
+      "Fiction writing"
+    ],
+    "email": "mailto:josh@builtbyjoshstudio.com",
+    "sameAs": [
+      "https://linktr.ee/builtbyjoshstudio",
+      "https://tynkrtoolsco.substack.com/",
+      "https://www.youtube.com/@TalesofInkShadowsStudio",
+      "https://www.etsy.com/shop/tynkrtoolsco",
+      "https://www.etsy.com/shop/BuiltByJoshStudio",
+      "https://tynkrtoolsco.lemonsqueezy.com/",
+      "https://a.co/d/04YzP4o4"
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/tokens.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tynkr-bg: #f7f6f2;
+      --tynkr-surface: #ffffff;
+      --tynkr-accent: #e8500a;
+      --tynkr-text: #1c1c1c;
+      --tynkr-muted: #6b6b6b;
+      --tynkr-border: #e0ddd8;
+      --body-read: #3a3a3a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--tynkr-bg);
+      color: var(--tynkr-text);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-top: 80px;
+    }
+
+    /* NAV — matches site standard */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(247, 246, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--tynkr-border);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--tynkr-text);
+      text-decoration: none;
+    }
+    .logo-short { display: none; }
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tynkr-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--tynkr-accent); }
+    @media (max-width: 700px) {
+      .logo-full { display: none; }
+      .logo-short { display: inline; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.75rem; }
+    }
+
+    /* HERO */
+    .about-hero {
+      max-width: 920px;
+      margin: 3rem auto 1.5rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .headshot {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .about-hero .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .about-hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      color: var(--tynkr-text);
+    }
+    .about-hero h1 .accent {
+      color: var(--tynkr-accent);
+      font-style: italic;
+      font-weight: 700;
+    }
+    .about-hero .tagline {
+      font-size: 1.1rem;
+      color: var(--body-read);
+      line-height: 1.5;
+    }
+    @media (max-width: 700px) {
+      .about-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .headshot {
+        margin: 0 auto;
+        width: 160px;
+        height: 160px;
+      }
+      .about-hero h1 { font-size: 2rem; }
+    }
+
+    /* BODY CONTENT */
+    .about-body {
+      max-width: 720px;
+      margin: 2rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+    .about-body section {
+      margin-bottom: 2.4rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--tynkr-border);
+    }
+    .about-body section:last-of-type {
+      border-bottom: none;
+    }
+    .about-body h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: var(--tynkr-text);
+    }
+    .about-body p {
+      color: var(--body-read);
+      margin-bottom: 0.85rem;
+    }
+    .about-body p:last-child { margin-bottom: 0; }
+    .about-body a {
+      color: var(--tynkr-accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+      font-weight: 500;
+    }
+
+    /* BRAND STACK — visual representation of the two brands + projects */
+    .brand-stack {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 1.4rem 0;
+    }
+    .brand-card {
+      background: #fff;
+      border: 1px solid var(--tynkr-border);
+      border-radius: 12px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .brand-card img {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      align-self: flex-start;
+    }
+    .brand-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--tynkr-text);
+    }
+    .brand-card p {
+      font-size: 0.92rem;
+      color: var(--body-read);
+      line-height: 1.5;
+      margin: 0 !important;
+    }
+    @media (max-width: 600px) {
+      .brand-stack { grid-template-columns: 1fr; }
+    }
+
+    /* CONNECT LIST */
+    .connect-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .connect-list li {
+      padding: 0.7rem 1rem;
+      background: #fff;
+      border: 1px solid var(--tynkr-border);
+      border-radius: 8px;
+      transition: border-color 0.15s;
+    }
+    .connect-list li:hover {
+      border-color: var(--tynkr-accent);
+    }
+    .connect-list li a {
+      text-decoration: none;
+      color: var(--tynkr-text);
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: block;
+    }
+    .connect-list li .label {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--tynkr-muted);
+      font-weight: 500;
+      margin-bottom: 0.15rem;
+    }
+    @media (max-width: 600px) {
+      .connect-list { grid-template-columns: 1fr; }
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--tynkr-surface);
+      border-top: 1px solid var(--tynkr-border);
+      padding: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-left {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--tynkr-muted);
+    }
+    .footer-left strong { color: var(--tynkr-text); }
+    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.4rem; }
+    .footer-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--tynkr-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--tynkr-accent); }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#tynkr">Tynkr Tools</a></li>
+      <li><a href="index.html#builtbyjosh">Zodiac Art</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="about-hero">
+    <img src="images/logo/josh-author.webp" alt="Josh, founder of Built By Josh Studio" class="headshot" width="200" height="200" />
+    <div>
+      <div class="eyebrow">About the Studio</div>
+      <h1>One person. <span class="accent">Two brands.</span> Zero filler.</h1>
+      <p class="tagline">Built By Josh Studio is a one-person creative studio in Kansas, building digital products and art that I'd actually use myself. If it doesn't hold up in my own workflow, it doesn't leave the studio.</p>
+    </div>
+  </header>
+
+  <main class="about-body">
+
+    <section>
+      <h2>Hi, I'm Josh.</h2>
+      <p>Built By Josh Studio is the parent studio I founded in 2025 to publish a small set of well-designed digital products under one roof. The work splits across two distinct lines, by design — productivity tools that solve a real problem, and art that means something on a wall. Each line is its own brand, with its own voice and visual identity, but everything ships from the same studio with the same standard: real-world tested, no bloat, no filler.</p>
+      <p>I run all of it solo. That's not a constraint — it's the point. Every workbook formula, every Notion module, every zodiac palette is decided by one person who actually uses the thing. There's no committee, no roadmap-by-vote, no "minimum viable product" with broken corners. The studio is small on purpose so the work can be opinionated and complete.</p>
+    </section>
+
+    <section>
+      <h2>The Two Brands</h2>
+      <div class="brand-stack">
+        <div class="brand-card">
+          <img src="images/logo/logo-tynkr.webp" alt="Tynkr Tools &amp; Co logo" width="64" height="64" />
+          <h3>Tynkr Tools &amp; Co</h3>
+          <p>Founded 2026. Notion OS templates and Excel / Google Sheets workbooks for budgeting, planning, and creator business management. The productivity-first arm of the studio.</p>
+        </div>
+        <div class="brand-card">
+          <img src="images/logo/logo.webp" alt="Built By Josh Studio logo" width="64" height="64" />
+          <h3>Built By Josh Studio (Zodiac Art)</h3>
+          <p>The art arm. Western and Chinese zodiac digital prints, oil-landscape series, and Lunar New Year landscape collections — designed to print, frame, and last.</p>
+        </div>
+      </div>
+      <p style="margin-top:1.4rem;">Same studio, two distinct product lines. They share the brand voice — useful, well-built, no nonsense — but the audience and use case are entirely separate.</p>
+    </section>
+
+    <section>
+      <h2>Beyond the Studio</h2>
+      <p>I write fiction under the same roof. <a href="https://a.co/d/04YzP4o4" target="_blank" rel="noopener"><em>Overlayed Echoes</em></a> is my novel — a story project that runs alongside the digital products work. The studio's voice carries over: I'd rather write the kind of book I'd want to read than chase trends.</p>
+      <p>I also publish on YouTube as <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener">Tales of Ink &amp; Shadows Studio</a> — a creative channel covering the writing, the studio process, and the occasional rabbit hole.</p>
+    </section>
+
+    <section>
+      <h2>Where the Studio Lives</h2>
+      <p>Built By Josh Studio is based in Kansas. All products are digital and delivered as instant downloads. Customer support, pre-purchase questions, and partnership inquiries all come to one inbox: <a href="mailto:josh@builtbyjoshstudio.com">josh@builtbyjoshstudio.com</a>. Response time is typically 1–2 business days.</p>
+      <p>Tynkr Tools &amp; Co products are sold on <a href="https://www.etsy.com/shop/tynkrtoolsco" target="_blank" rel="noopener">Etsy</a> and on this site directly. Zodiac art prints are on <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">the BBJ Studio Etsy shop</a>. Both shops handle digital delivery automatically — no waiting, no accounts.</p>
+    </section>
+
+    <section>
+      <h2>Connect With the Studio</h2>
+      <p>Find the studio elsewhere on the web:</p>
+      <ul class="connect-list">
+        <li>
+          <a href="https://linktr.ee/builtbyjoshstudio" target="_blank" rel="noopener">
+            <span class="label">Linktree</span>
+            All studio links in one place
+          </a>
+        </li>
+        <li>
+          <a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener">
+            <span class="label">Substack</span>
+            Tynkr Tools &amp; Co newsletter
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener">
+            <span class="label">YouTube</span>
+            Tales of Ink &amp; Shadows Studio
+          </a>
+        </li>
+        <li>
+          <a href="https://www.etsy.com/shop/tynkrtoolsco" target="_blank" rel="noopener">
+            <span class="label">Etsy</span>
+            Tynkr Tools &amp; Co shop
+          </a>
+        </li>
+        <li>
+          <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">
+            <span class="label">Etsy</span>
+            Built By Josh Studio shop
+          </a>
+        </li>
+        <li>
+          <a href="https://a.co/d/04YzP4o4" target="_blank" rel="noopener">
+            <span class="label">Amazon</span>
+            <em>Overlayed Echoes</em> — the novel
+          </a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-left">
+      <strong>Built By Josh Studio</strong> · All digital products — instant download
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://www.etsy.com/shop/tynkrtoolsco" target="_blank" rel="noopener">Etsy</a></li>
+      <li><a href="refunds.html">Refunds</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="terms.html">Terms</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>

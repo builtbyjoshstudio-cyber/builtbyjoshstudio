@@ -9,6 +9,15 @@
     <priority>1.0</priority>
   </url>
 
+
+  <!-- ABOUT -->
+  <url>
+    <loc>https://builtbyjoshstudio.com/about.html</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- BLOG INDEX -->
   <url>
     <loc>https://builtbyjoshstudio.com/blog.html</loc>
