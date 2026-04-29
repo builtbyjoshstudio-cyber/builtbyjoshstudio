@@ -127,10 +127,25 @@
   }
 
   function loadLemonScript() {
-    if (document.querySelector('script[src*="lemonsqueezy.com/js/lemon.js"]')) return;
+    // Canonical URL is assets.lemonsqueezy.com/lemon.js
+    // (app.lemonsqueezy.com/js/lemon.js 301-redirects, which some browsers/CSPs
+    // refuse to follow for <script> tags — caused silent overlay failures.)
+    if (document.querySelector('script[src*="lemonsqueezy.com"][src*="lemon.js"]')) return;
     var s = document.createElement("script");
-    s.src = "https://app.lemonsqueezy.com/js/lemon.js";
+    s.src = "https://assets.lemonsqueezy.com/lemon.js";
     s.defer = true;
+    s.onload = function () {
+      if (window.LemonSqueezy && typeof window.LemonSqueezy.Setup === "function") {
+        try {
+          window.LemonSqueezy.Setup({});
+          if (typeof window.LemonSqueezy.Refresh === "function") {
+            window.LemonSqueezy.Refresh();
+          }
+        } catch (err) {
+          console.warn("[checkout] LemonSqueezy.Setup() failed:", err);
+        }
+      }
+    };
     document.head.appendChild(s);
   }
 
