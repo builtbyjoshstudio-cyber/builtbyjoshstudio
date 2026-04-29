@@ -56,8 +56,18 @@
 
       var lsLive = product.ls && product.ls !== "PENDING";
       var hasEtsy = !!product.etsy;
+      var isFree = product.price === 0;
 
-      if (lsLive) {
+      if (lsLive && isFree) {
+        // Free / lead-magnet items: skip the lemon.js overlay entirely and open
+        // the LS hosted checkout in a new tab. The overlay path adds a "Confirm
+        // Checkout" pre-modal for $0 SKUs that then top-level-redirects to LS
+        // anyway, with a broken close affordance — net negative UX. The hosted
+        // checkout page is clean (split-screen email capture) and keeps the
+        // customer's builtbyjoshstudio.com tab open behind the new tab.
+        wireDirectLink(el, product);
+      } else if (lsLive) {
+        // Paid items: native LS overlay on builtbyjoshstudio.com
         wireLemonSqueezy(el, product);
         needsLemonScript = true;
       } else if (hasEtsy) {
@@ -83,6 +93,22 @@
     el.classList.add("lemonsqueezy-button");
 
     var liveLabel = el.getAttribute("data-cta-label-live") || "Buy Now";
+    setLabel(el, liveLabel);
+
+    revealElement(el);
+  }
+
+  function wireDirectLink(el, product) {
+    // Strip ?embed=1 so the user gets the full LS hosted checkout (split-screen
+    // email-capture layout), not the embed-mode variant.
+    var url = product.ls.replace(/\?embed=1$/, "");
+    el.setAttribute("href", url);
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
+    // DO NOT add lemonsqueezy-button class — bypassing lemon.js overlay on purpose.
+    el.classList.remove("lemonsqueezy-button");
+
+    var liveLabel = el.getAttribute("data-cta-label-live") || "Get It Free";
     setLabel(el, liveLabel);
 
     revealElement(el);
