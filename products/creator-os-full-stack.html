@@ -1085,6 +1085,7 @@
 
   </style>
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/gallery.css" />
   <link rel="stylesheet" href="/css/checkout.css" />
 
   <!-- Checkout wiring: central URL config + button wiring (Lemon Squeezy overlay or Etsy fallback) -->
@@ -1125,7 +1126,50 @@
     </div>
   </header>
 
-  <!-- HYBRID MAIN LAYOUT -->
+  <!-- PRODUCT GALLERY START -->
+  <section class="product-gallery" aria-label="Product previews">
+    <div class="gallery-inner">
+      <div class="gallery-eyebrow">The Full Stack · 5 workspaces</div>
+      <h2 class="gallery-heading">All Five <span>Notion Systems</span></h2>
+      <p class="gallery-intro">Five complete Notion workspaces — every one shown below is included in the bundle. Click any tile to expand.</p>
+
+      <div class="gallery-grid" data-gallery>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-os-full-stack-business.webp" data-caption="Creator Business OS · Hero" aria-label="View Creator Business OS · Hero">
+          <img src="/images/products/additional/creator-os-full-stack-business.webp" alt="Creator Business OS · Hero" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Creator Business OS · Hero</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-os-full-stack-content.webp" data-caption="Creator Content OS · Hero" aria-label="View Creator Content OS · Hero">
+          <img src="/images/products/additional/creator-os-full-stack-content.webp" alt="Creator Content OS · Hero" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Creator Content OS · Hero</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-os-full-stack-finance.webp" data-caption="Creator Finance OS · Hero" aria-label="View Creator Finance OS · Hero">
+          <img src="/images/products/additional/creator-os-full-stack-finance.webp" alt="Creator Finance OS · Hero" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Creator Finance OS · Hero</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-os-full-stack-launch.webp" data-caption="Creator Launch OS · Hero" aria-label="View Creator Launch OS · Hero">
+          <img src="/images/products/additional/creator-os-full-stack-launch.webp" alt="Creator Launch OS · Hero" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Creator Launch OS · Hero</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-os-full-stack-product.webp" data-caption="Creator Product OS · Hero" aria-label="View Creator Product OS · Hero">
+          <img src="/images/products/additional/creator-os-full-stack-product.webp" alt="Creator Product OS · Hero" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Creator Product OS · Hero</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="gallery-lightbox" data-lightbox data-open="false" aria-hidden="false">
+    <div class="gallery-lightbox-inner">
+      <button class="gallery-lightbox-close" aria-label="Close">&times;</button>
+      <button class="gallery-lightbox-prev" aria-label="Previous image">&lsaquo;</button>
+      <img class="gallery-lightbox-image" alt="" />
+      <div class="gallery-lightbox-caption"></div>
+      <div class="gallery-lightbox-counter"></div>
+      <button class="gallery-lightbox-next" aria-label="Next image">&rsaquo;</button>
+    </div>
+  </div>
+  <!-- PRODUCT GALLERY END -->
+<!-- HYBRID MAIN LAYOUT -->
   <div class="product-main">
 
     <!-- MAIN CONTENT COLUMN -->
@@ -1510,5 +1554,6 @@
     </script>
 
 
+  <script src="/js/gallery.js" defer></script>
 </body>
 </html>

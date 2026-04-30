@@ -1069,6 +1069,7 @@
 
   </style>
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/gallery.css" />
   <link rel="stylesheet" href="/css/checkout.css" />
 
   <!-- Checkout wiring: central URL config + button wiring (Lemon Squeezy overlay or Etsy fallback) -->
@@ -1109,7 +1110,58 @@
     </div>
   </header>
 
-  <!-- HYBRID MAIN LAYOUT -->
+  <!-- PRODUCT GALLERY START -->
+  <section class="product-gallery" aria-label="Product previews">
+    <div class="gallery-inner">
+      <div class="gallery-eyebrow">See It In Action · 7 screens</div>
+      <h2 class="gallery-heading">Inside <span>the Workspace</span></h2>
+      <p class="gallery-intro">Every screen below is a real view from inside the actual Notion workspace. Click any tile to expand.</p>
+
+      <div class="gallery-grid" data-gallery>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-launch-os-hero.webp" data-caption="Hero" aria-label="View Hero">
+          <img src="/images/products/additional/creator-launch-os-hero.webp" alt="Hero" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Hero</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-launch-os-homepage.webp" data-caption="Homepage" aria-label="View Homepage">
+          <img src="/images/products/additional/creator-launch-os-homepage.webp" alt="Homepage" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Homepage</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-launch-os-assets.webp" data-caption="Assets" aria-label="View Assets">
+          <img src="/images/products/additional/creator-launch-os-assets.webp" alt="Assets" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Assets</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-launch-os-launch-content.webp" data-caption="Launch Content" aria-label="View Launch Content">
+          <img src="/images/products/additional/creator-launch-os-launch-content.webp" alt="Launch Content" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Launch Content</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-launch-os-launch-tasks.webp" data-caption="Launch Tasks" aria-label="View Launch Tasks">
+          <img src="/images/products/additional/creator-launch-os-launch-tasks.webp" alt="Launch Tasks" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Launch Tasks</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-launch-os-launches.webp" data-caption="Launches" aria-label="View Launches">
+          <img src="/images/products/additional/creator-launch-os-launches.webp" alt="Launches" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Launches</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-launch-os-offers-products.webp" data-caption="Offers &amp; Products" aria-label="View Offers &amp; Products">
+          <img src="/images/products/additional/creator-launch-os-offers-products.webp" alt="Offers &amp; Products" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Offers &amp; Products</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="gallery-lightbox" data-lightbox data-open="false" aria-hidden="false">
+    <div class="gallery-lightbox-inner">
+      <button class="gallery-lightbox-close" aria-label="Close">&times;</button>
+      <button class="gallery-lightbox-prev" aria-label="Previous image">&lsaquo;</button>
+      <img class="gallery-lightbox-image" alt="" />
+      <div class="gallery-lightbox-caption"></div>
+      <div class="gallery-lightbox-counter"></div>
+      <button class="gallery-lightbox-next" aria-label="Next image">&rsaquo;</button>
+    </div>
+  </div>
+  <!-- PRODUCT GALLERY END -->
+<!-- HYBRID MAIN LAYOUT -->
   <div class="product-main">
 
     <!-- MAIN CONTENT COLUMN -->
@@ -1493,5 +1545,6 @@
     </script>
 
 
+  <script src="/js/gallery.js" defer></script>
 </body>
 </html>

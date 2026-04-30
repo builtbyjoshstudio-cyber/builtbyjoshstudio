@@ -1069,6 +1069,7 @@
 
   </style>
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/gallery.css" />
   <link rel="stylesheet" href="/css/checkout.css" />
 
   <!-- Checkout wiring: central URL config + button wiring (Lemon Squeezy overlay or Etsy fallback) -->
@@ -1109,7 +1110,74 @@
     </div>
   </header>
 
-  <!-- HYBRID MAIN LAYOUT -->
+  <!-- PRODUCT GALLERY START -->
+  <section class="product-gallery" aria-label="Product previews">
+    <div class="gallery-inner">
+      <div class="gallery-eyebrow">See It In Action · 11 screens</div>
+      <h2 class="gallery-heading">Inside <span>the Workspace</span></h2>
+      <p class="gallery-intro">Every screen below is a real view from inside the actual Notion workspace. Click any tile to expand.</p>
+
+      <div class="gallery-grid" data-gallery>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-business-os-hero.webp" data-caption="Hero" aria-label="View Hero">
+          <img src="/images/products/additional/creator-business-os-hero.webp" alt="Hero" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Hero</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-business-os-homepage.webp" data-caption="Homepage" aria-label="View Homepage">
+          <img src="/images/products/additional/creator-business-os-homepage.webp" alt="Homepage" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Homepage</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-business-os-clients.webp" data-caption="Clients" aria-label="View Clients">
+          <img src="/images/products/additional/creator-business-os-clients.webp" alt="Clients" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Clients</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-business-os-companies-and-brands.webp" data-caption="Companies And Brands" aria-label="View Companies And Brands">
+          <img src="/images/products/additional/creator-business-os-companies-and-brands.webp" alt="Companies And Brands" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Companies And Brands</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-business-os-contacts.webp" data-caption="Contacts" aria-label="View Contacts">
+          <img src="/images/products/additional/creator-business-os-contacts.webp" alt="Contacts" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Contacts</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-business-os-deals-and-opportunities.webp" data-caption="Deals And Opportunities" aria-label="View Deals And Opportunities">
+          <img src="/images/products/additional/creator-business-os-deals-and-opportunities.webp" alt="Deals And Opportunities" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Deals And Opportunities</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-business-os-deliverables.webp" data-caption="Deliverables" aria-label="View Deliverables">
+          <img src="/images/products/additional/creator-business-os-deliverables.webp" alt="Deliverables" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Deliverables</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-business-os-invoices-and-payments.webp" data-caption="Invoices And Payments" aria-label="View Invoices And Payments">
+          <img src="/images/products/additional/creator-business-os-invoices-and-payments.webp" alt="Invoices And Payments" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Invoices And Payments</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-business-os-leads.webp" data-caption="Leads" aria-label="View Leads">
+          <img src="/images/products/additional/creator-business-os-leads.webp" alt="Leads" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Leads</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-business-os-offers-and-services.webp" data-caption="Offers And Services" aria-label="View Offers And Services">
+          <img src="/images/products/additional/creator-business-os-offers-and-services.webp" alt="Offers And Services" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Offers And Services</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-business-os-partnerships.webp" data-caption="Partnerships" aria-label="View Partnerships">
+          <img src="/images/products/additional/creator-business-os-partnerships.webp" alt="Partnerships" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Partnerships</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="gallery-lightbox" data-lightbox data-open="false" aria-hidden="false">
+    <div class="gallery-lightbox-inner">
+      <button class="gallery-lightbox-close" aria-label="Close">&times;</button>
+      <button class="gallery-lightbox-prev" aria-label="Previous image">&lsaquo;</button>
+      <img class="gallery-lightbox-image" alt="" />
+      <div class="gallery-lightbox-caption"></div>
+      <div class="gallery-lightbox-counter"></div>
+      <button class="gallery-lightbox-next" aria-label="Next image">&rsaquo;</button>
+    </div>
+  </div>
+  <!-- PRODUCT GALLERY END -->
+<!-- HYBRID MAIN LAYOUT -->
   <div class="product-main">
 
     <!-- MAIN CONTENT COLUMN -->
@@ -1519,5 +1587,6 @@
     </script>
 
 
+  <script src="/js/gallery.js" defer></script>
 </body>
 </html>

@@ -1069,6 +1069,7 @@
 
   </style>
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/gallery.css" />
   <link rel="stylesheet" href="/css/checkout.css" />
 
   <!-- Checkout wiring: central URL config + button wiring (Lemon Squeezy overlay or Etsy fallback) -->
@@ -1109,7 +1110,66 @@
     </div>
   </header>
 
-  <!-- HYBRID MAIN LAYOUT -->
+  <!-- PRODUCT GALLERY START -->
+  <section class="product-gallery" aria-label="Product previews">
+    <div class="gallery-inner">
+      <div class="gallery-eyebrow">See It In Action · 9 screens</div>
+      <h2 class="gallery-heading">Inside <span>the Workspace</span></h2>
+      <p class="gallery-intro">Every screen below is a real view from inside the actual Notion workspace. Click any tile to expand.</p>
+
+      <div class="gallery-grid" data-gallery>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-content-os-hero.webp" data-caption="Hero" aria-label="View Hero">
+          <img src="/images/products/additional/creator-content-os-hero.webp" alt="Hero" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Hero</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-content-os-home-page.webp" data-caption="Home Page" aria-label="View Home Page">
+          <img src="/images/products/additional/creator-content-os-home-page.webp" alt="Home Page" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Home Page</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-content-os-assets-vault.webp" data-caption="Assets Vault" aria-label="View Assets Vault">
+          <img src="/images/products/additional/creator-content-os-assets-vault.webp" alt="Assets Vault" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Assets Vault</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-content-os-campains.webp" data-caption="Campains" aria-label="View Campains">
+          <img src="/images/products/additional/creator-content-os-campains.webp" alt="Campains" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Campains</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-content-os-content-caldendar.webp" data-caption="Content Caldendar" aria-label="View Content Caldendar">
+          <img src="/images/products/additional/creator-content-os-content-caldendar.webp" alt="Content Caldendar" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Content Caldendar</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-content-os-content-library.webp" data-caption="Content Library" aria-label="View Content Library">
+          <img src="/images/products/additional/creator-content-os-content-library.webp" alt="Content Library" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Content Library</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-content-os-content-pipeline.webp" data-caption="Content Pipeline" aria-label="View Content Pipeline">
+          <img src="/images/products/additional/creator-content-os-content-pipeline.webp" alt="Content Pipeline" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Content Pipeline</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-content-os-performance-tracker.webp" data-caption="Performance Tracker" aria-label="View Performance Tracker">
+          <img src="/images/products/additional/creator-content-os-performance-tracker.webp" alt="Performance Tracker" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Performance Tracker</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-content-os-repurposing-hub.webp" data-caption="Repurposing Hub" aria-label="View Repurposing Hub">
+          <img src="/images/products/additional/creator-content-os-repurposing-hub.webp" alt="Repurposing Hub" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Repurposing Hub</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="gallery-lightbox" data-lightbox data-open="false" aria-hidden="false">
+    <div class="gallery-lightbox-inner">
+      <button class="gallery-lightbox-close" aria-label="Close">&times;</button>
+      <button class="gallery-lightbox-prev" aria-label="Previous image">&lsaquo;</button>
+      <img class="gallery-lightbox-image" alt="" />
+      <div class="gallery-lightbox-caption"></div>
+      <div class="gallery-lightbox-counter"></div>
+      <button class="gallery-lightbox-next" aria-label="Next image">&rsaquo;</button>
+    </div>
+  </div>
+  <!-- PRODUCT GALLERY END -->
+<!-- HYBRID MAIN LAYOUT -->
   <div class="product-main">
 
     <!-- MAIN CONTENT COLUMN -->
@@ -1500,5 +1560,6 @@
     </script>
 
 
+  <script src="/js/gallery.js" defer></script>
 </body>
 </html>

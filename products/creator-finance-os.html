@@ -1069,6 +1069,7 @@
 
   </style>
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/gallery.css" />
   <link rel="stylesheet" href="/css/checkout.css" />
 
   <!-- Checkout wiring: central URL config + button wiring (Lemon Squeezy overlay or Etsy fallback) -->
@@ -1109,7 +1110,66 @@
     </div>
   </header>
 
-  <!-- HYBRID MAIN LAYOUT -->
+  <!-- PRODUCT GALLERY START -->
+  <section class="product-gallery" aria-label="Product previews">
+    <div class="gallery-inner">
+      <div class="gallery-eyebrow">See It In Action · 9 screens</div>
+      <h2 class="gallery-heading">Inside <span>the Workspace</span></h2>
+      <p class="gallery-intro">Every screen below is a real view from inside the actual Notion workspace. Click any tile to expand.</p>
+
+      <div class="gallery-grid" data-gallery>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-finance-os-hero.webp" data-caption="Hero" aria-label="View Hero">
+          <img src="/images/products/additional/creator-finance-os-hero.webp" alt="Hero" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Hero</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-finance-os-home-page.webp" data-caption="Home Page" aria-label="View Home Page">
+          <img src="/images/products/additional/creator-finance-os-home-page.webp" alt="Home Page" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Home Page</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-finance-os-annual-overview.webp" data-caption="Annual Overview" aria-label="View Annual Overview">
+          <img src="/images/products/additional/creator-finance-os-annual-overview.webp" alt="Annual Overview" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Annual Overview</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-finance-os-debt-payoff.webp" data-caption="Debt Payoff" aria-label="View Debt Payoff">
+          <img src="/images/products/additional/creator-finance-os-debt-payoff.webp" alt="Debt Payoff" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Debt Payoff</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-finance-os-expense-tracker.webp" data-caption="Expense Tracker" aria-label="View Expense Tracker">
+          <img src="/images/products/additional/creator-finance-os-expense-tracker.webp" alt="Expense Tracker" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Expense Tracker</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-finance-os-monthly-budget.webp" data-caption="Monthly Budget" aria-label="View Monthly Budget">
+          <img src="/images/products/additional/creator-finance-os-monthly-budget.webp" alt="Monthly Budget" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Monthly Budget</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-finance-os-revenue-tracker.webp" data-caption="Revenue Tracker" aria-label="View Revenue Tracker">
+          <img src="/images/products/additional/creator-finance-os-revenue-tracker.webp" alt="Revenue Tracker" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Revenue Tracker</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-finance-os-savings-goals.webp" data-caption="Savings Goals" aria-label="View Savings Goals">
+          <img src="/images/products/additional/creator-finance-os-savings-goals.webp" alt="Savings Goals" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Savings Goals</span>
+        </button>
+        <button class="gallery-thumb" data-src="/images/products/additional/creator-finance-os-tax-esitmator.webp" data-caption="Tax Esitmator" aria-label="View Tax Esitmator">
+          <img src="/images/products/additional/creator-finance-os-tax-esitmator.webp" alt="Tax Esitmator" loading="lazy" decoding="async" />
+          <span class="thumb-caption">Tax Esitmator</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="gallery-lightbox" data-lightbox data-open="false" aria-hidden="false">
+    <div class="gallery-lightbox-inner">
+      <button class="gallery-lightbox-close" aria-label="Close">&times;</button>
+      <button class="gallery-lightbox-prev" aria-label="Previous image">&lsaquo;</button>
+      <img class="gallery-lightbox-image" alt="" />
+      <div class="gallery-lightbox-caption"></div>
+      <div class="gallery-lightbox-counter"></div>
+      <button class="gallery-lightbox-next" aria-label="Next image">&rsaquo;</button>
+    </div>
+  </div>
+  <!-- PRODUCT GALLERY END -->
+<!-- HYBRID MAIN LAYOUT -->
   <div class="product-main">
 
     <!-- MAIN CONTENT COLUMN -->
@@ -1507,5 +1567,6 @@
     </script>
 
 
+  <script src="/js/gallery.js" defer></script>
 </body>
 </html>
