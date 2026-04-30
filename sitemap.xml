@@ -26,6 +26,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- RESOURCES (video walkthroughs) -->
+  <url>
+    <loc>https://builtbyjoshstudio.com/resources/</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- BLOG POSTS -->
   <url>
     <loc>https://builtbyjoshstudio.com/blog/sinking-funds-explained.html</loc>
