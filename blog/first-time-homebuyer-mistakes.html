@@ -160,7 +160,23 @@
       "highPrice": "34.99",
       "offerCount": 3,
       "availability": "https://schema.org/InStock",
-      "url": "https://builtbyjoshstudio.com/products/home-buying-mortgage-workbook.html"
+      "url": "https://builtbyjoshstudio.com/products/home-buying-mortgage-workbook.html",
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "0",
+          "currency": "USD"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "US"
+        },"deliveryTime":{"@type":"ShippingDeliveryTime","handlingTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"},"transitTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"}}},
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "US",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+      }
     },
   "aggregateRating": {
     "@type": "AggregateRating",
