@@ -636,6 +636,7 @@
   </style>
   <link rel="stylesheet" href="/css/tokens.css" />
 
+  <link rel="stylesheet" href="/css/mobile-nav.css" />
 </head>
 <body>
 
@@ -649,6 +650,11 @@
       <li><a href="../resources/" class="active">Resources</a></li>
       <li><a href="../about.html">About</a></li>
     </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -906,5 +912,6 @@
     reveals.forEach(r => observer.observe(r));
   </script>
 
+  <script src="/js/mobile-nav.js" defer></script>
 </body>
 </html>

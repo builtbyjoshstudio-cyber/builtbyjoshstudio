@@ -1,0 +1,115 @@
+/* ─────────────────────────────────────────────────────────────────
+   MOBILE NAV — hamburger + slide-down drawer
+   Shared across all pages. Loaded after page-local <style> blocks
+   so !important is used selectively to override inline rules without
+   touching every page's CSS.
+
+   Two responsibilities:
+   1. html overflow-x: hidden — defensive fix for any fixed-position
+      element that pokes past viewport (the existing per-page rules
+      only cover body, which doesn't constrain position:fixed)
+   2. Hamburger toggle below 720px — replaces the 5-item nav row
+      that overflows on phones (~404px content in 375px viewport)
+   ───────────────────────────────────────────────────────────────── */
+
+/* Root-level overflow guard — applies everywhere, no exceptions */
+html { overflow-x: hidden; }
+
+/* Hamburger button — always present, hidden above 720px */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  gap: 5px;
+  color: inherit;
+  margin-left: auto;
+}
+.nav-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+
+/* When drawer is open, animate hamburger -> X */
+body.nav-open .nav-toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+body.nav-open .nav-toggle span:nth-child(2) {
+  opacity: 0;
+}
+body.nav-open .nav-toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile breakpoint — hide horizontal nav, show hamburger,
+   slide-down drawer when .nav-open is on body. !important is used
+   on display rules to defeat per-page inline overrides. */
+@media (max-width: 720px) {
+  .site-nav .nav-links {
+    display: none !important;
+  }
+  .site-nav .nav-toggle {
+    display: flex !important;
+  }
+
+  /* Drawer panel — appears below the fixed 64px nav bar.
+     NOTE: .site-nav has backdrop-filter, which creates a containing
+     block for position:fixed descendants. Using explicit height
+     (calc with vh) keeps the drawer viewport-sized regardless. */
+  body.nav-open .site-nav .nav-links {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 64px);
+    margin: 0;
+    padding: 2rem 1.5rem !important;
+    gap: 0.5rem !important;
+    background: rgba(247, 244, 242, 0.98);
+    z-index: 99;
+    overflow-y: auto;
+  }
+
+  /* Dark-themed nav (homepage hero, etc.) gets a dark drawer */
+  body.nav-open .site-nav.dark .nav-links {
+    background: rgba(11, 8, 19, 0.98);
+  }
+
+  /* Drawer link styling — bigger tap targets, more breathing room */
+  body.nav-open .site-nav .nav-links a {
+    display: block;
+    font-size: 1rem !important;
+    letter-spacing: 0.08em !important;
+    padding: 0.9rem 0.4rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  body.nav-open .site-nav.dark .nav-links a {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Prevent body scroll behind drawer */
+  body.nav-open {
+    overflow: hidden;
+  }
+}
+
+/* Reduced motion: skip the hamburger animation */
+@media (prefers-reduced-motion: reduce) {
+  .nav-toggle span { transition: none; }
+}
