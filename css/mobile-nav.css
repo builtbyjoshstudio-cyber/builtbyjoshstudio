@@ -111,24 +111,26 @@ body.nav-open .nav-toggle span:nth-child(3) {
 
 /* ─────────────────────────────────────────────────────────────────
    FOOTER LEGAL — copyright + LLC attribution line
-   Sits below the existing footer-left / footer-links row across
-   light and dark themed pages. Uses opacity: 0.6 against the parent
-   footer's already-themed color so it stays readable on both.
+   Sits below the existing footer-left / footer-links row.
+
+   The site mixes light-cream footers (most pages) and a near-black
+   footer (homepage #0a0a0f). Using `inherit` or `currentColor`
+   produces invisible text on the homepage because the body color
+   cascade is dark. An explicit mid-gray with its own alpha works
+   on both backgrounds without needing theme detection.
    ───────────────────────────────────────────────────────────────── */
 .footer-legal {
   flex-basis: 100%;
   width: 100%;
   padding-top: 1.4rem;
   margin-top: 0.4rem;
-  border-top: 1px solid currentColor;
+  border-top: 1px solid rgba(127, 127, 127, 0.22);
   font-family: 'DM Sans', sans-serif;
   font-size: 0.7rem;
   letter-spacing: 0.04em;
   line-height: 1.5;
   text-align: center;
-  opacity: 0.55;
-  /* The border-top inherits color via currentColor — reduce its
-     visibility independently so the line is subtle. */
+  color: rgba(140, 140, 140, 0.95);
 }
 .footer-legal br + * { margin-top: 0.2rem; }
 @media (max-width: 720px) {
