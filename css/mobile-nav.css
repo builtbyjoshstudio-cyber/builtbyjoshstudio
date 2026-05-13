@@ -109,6 +109,32 @@ body.nav-open .nav-toggle span:nth-child(3) {
   }
 }
 
+/* ─────────────────────────────────────────────────────────────────
+   FOOTER LEGAL — copyright + LLC attribution line
+   Sits below the existing footer-left / footer-links row across
+   light and dark themed pages. Uses opacity: 0.6 against the parent
+   footer's already-themed color so it stays readable on both.
+   ───────────────────────────────────────────────────────────────── */
+.footer-legal {
+  flex-basis: 100%;
+  width: 100%;
+  padding-top: 1.4rem;
+  margin-top: 0.4rem;
+  border-top: 1px solid currentColor;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  text-align: center;
+  opacity: 0.55;
+  /* The border-top inherits color via currentColor — reduce its
+     visibility independently so the line is subtle. */
+}
+.footer-legal br + * { margin-top: 0.2rem; }
+@media (max-width: 720px) {
+  .footer-legal { font-size: 0.65rem; padding-top: 1.1rem; }
+}
+
 /* Reduced motion: skip the hamburger animation */
 @media (prefers-reduced-motion: reduce) {
   .nav-toggle span { transition: none; }
