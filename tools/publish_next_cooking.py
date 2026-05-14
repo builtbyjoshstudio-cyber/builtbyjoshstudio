@@ -33,6 +33,8 @@ def run(cmd, capture=True):
         cmd,
         capture_output=capture,
         text=True,
+        encoding="utf-8",
+        errors="replace",
         cwd=REPO_ROOT,
     )
     return result.returncode, (result.stdout or ""), (result.stderr or "")
