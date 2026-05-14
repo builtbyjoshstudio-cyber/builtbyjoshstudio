@@ -12,7 +12,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Studio Blog · Built By Josh Studio</title>
-  <meta name="description" content="Tutorials, tear-downs, and honest notes from a one-person studio building Notion systems, spreadsheet tools, and zodiac art." />
+  <meta name="description" content="Templates, learning, and projects from Built by Josh Studio LLC and Tynkr Tools & Co — Notion OS templates, spreadsheet workbooks, and software utilities." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -190,12 +190,45 @@
       letter-spacing: 0.04em;
     }
 
+    /* ── ANCHOR NAV (under hero, above first section) ── */
+    .blog-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.6rem 2rem;
+      background: rgba(247, 246, 242, 0.6);
+      border-bottom: 1px solid var(--bbj-border);
+      flex-wrap: wrap;
+    }
+    .blog-nav a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--bbj-text);
+      padding: 0.6rem 1.3rem;
+      border: 1px solid var(--bbj-border);
+      background: var(--bbj-surface);
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .blog-nav a:hover {
+      background: var(--bbj-accent);
+      color: #ffffff;
+      border-color: var(--bbj-accent);
+      transform: translateY(-1px);
+    }
+
     /* ── ARTICLES GRID ── */
     .blog-section {
       padding: 5rem 5rem 6rem;
       max-width: 1400px;
       margin: 0 auto;
+      scroll-margin-top: 90px;
     }
+    .blog-section + .blog-section { padding-top: 3rem; }
     .section-label {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.7rem;
@@ -213,6 +246,18 @@
       color: var(--bbj-text);
       text-align: center;
       margin-bottom: 3.5rem;
+    }
+    .blog-section[id] .section-title { margin-bottom: 1rem; }
+    .section-intro {
+      font-family: 'DM Sans', sans-serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--bbj-muted);
+      max-width: 640px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      padding: 0 1rem;
     }
     .article-grid {
       display: grid;
@@ -430,6 +475,67 @@
   <link rel="stylesheet" href="/css/tokens.css" />
 
   <link rel="stylesheet" href="/css/mobile-nav.css" />
+
+  <!-- Schema.org: ItemList — Templates section -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Templates — Tynkr Tools & Co Blog",
+    "description": "Walkthroughs, breakdowns, and free versions of every product in the Tynkr Tools & Co catalog.",
+    "url": "https://builtbyjoshstudio.com/blog.html#templates",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1,  "url": "https://builtbyjoshstudio.com/blog/30-minute-solopreneur-setup-free-system.html", "name": "The 30-Minute Solopreneur Setup: Free, No Subscriptions" },
+      { "@type": "ListItem", "position": 2,  "url": "https://builtbyjoshstudio.com/blog/free-home-buying-spreadsheet-mortgage-affordability.html", "name": "Free Home Buying Spreadsheet: Affordability + Down Payment Calculator" },
+      { "@type": "ListItem", "position": 3,  "url": "https://builtbyjoshstudio.com/blog/free-budget-spreadsheet-excel-google-sheets.html", "name": "Free Budget Spreadsheet for Excel and Google Sheets: Try Before You Buy" },
+      { "@type": "ListItem", "position": 4,  "url": "https://builtbyjoshstudio.com/blog/free-notion-templates-creators-no-email.html", "name": "Free Notion Templates for Creators (No Email Required)" },
+      { "@type": "ListItem", "position": 5,  "url": "https://builtbyjoshstudio.com/blog/home-buying-mortgage-workbook.html", "name": "Home Buying Spreadsheet That Covers Your Entire Purchase" },
+      { "@type": "ListItem", "position": 6,  "url": "https://builtbyjoshstudio.com/blog/ultimate-budget-workbook.html", "name": "A Budget Spreadsheet That Tracks Your Entire Financial Life" },
+      { "@type": "ListItem", "position": 7,  "url": "https://builtbyjoshstudio.com/blog/notion-content-os-for-creators.html", "name": "How to Build a Notion Content System That Actually Works for Creators" },
+      { "@type": "ListItem", "position": 8,  "url": "https://builtbyjoshstudio.com/blog/notion-business-os-for-creators.html", "name": "How to Run a Creator Business in Notion Without Hiring a Team" },
+      { "@type": "ListItem", "position": 9,  "url": "https://builtbyjoshstudio.com/blog/notion-finance-os-for-creators.html", "name": "How to Track Creator Business Finances in Notion Without an Accountant" },
+      { "@type": "ListItem", "position": 10, "url": "https://builtbyjoshstudio.com/blog/notion-launch-os-for-creators.html", "name": "How to Plan and Execute a Product Launch in Notion as a Solo Creator" },
+      { "@type": "ListItem", "position": 11, "url": "https://builtbyjoshstudio.com/blog/notion-product-os-for-creators.html", "name": "How to Manage a Digital Product Catalog in Notion as a Solo Creator" },
+      { "@type": "ListItem", "position": 12, "url": "https://builtbyjoshstudio.com/blog/complete-notion-os-for-creator-business.html", "name": "The Complete Notion Operating System for Running a Creator Business" }
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: ItemList — Learning section -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Learning — Tynkr Tools & Co Blog",
+    "description": "Concepts, philosophy, and how-to writing on Notion, spreadsheets, and building lean creator businesses.",
+    "url": "https://builtbyjoshstudio.com/blog.html#learning",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "url": "https://builtbyjoshstudio.com/blog/what-lite-actually-means.html", "name": "What \"Lite\" Actually Means: Why I Built Free Versions of Every Paid Template" },
+      { "@type": "ListItem", "position": 2, "url": "https://builtbyjoshstudio.com/blog/how-to-plan-content-year-without-burnout.html", "name": "How to Plan a Year of Content Without Burning Out" },
+      { "@type": "ListItem", "position": 3, "url": "https://builtbyjoshstudio.com/blog/why-solo-creators-stay-stuck-under-5k.html", "name": "The Real Reason Most Solo Creators Stay Stuck Under $5K/Month" },
+      { "@type": "ListItem", "position": 4, "url": "https://builtbyjoshstudio.com/blog/how-to-launch-digital-product-without-audience.html", "name": "How to Launch a Digital Product Without an Audience" },
+      { "@type": "ListItem", "position": 5, "url": "https://builtbyjoshstudio.com/blog/50-30-20-rule-outdated-budgeting-2026.html", "name": "The 50/30/20 Rule Is Outdated — Here's What Actually Works in 2026" },
+      { "@type": "ListItem", "position": 6, "url": "https://builtbyjoshstudio.com/blog/how-much-house-can-you-actually-afford.html", "name": "How Much House Can You Actually Afford? (The Honest Math)" },
+      { "@type": "ListItem", "position": 7, "url": "https://builtbyjoshstudio.com/blog/sinking-funds-explained.html", "name": "Sinking Funds Explained: How to Budget for Expenses That Aren't Monthly" },
+      { "@type": "ListItem", "position": 8, "url": "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html", "name": "How to Build a Zero-Based Budget in Excel (Step by Step)" },
+      { "@type": "ListItem", "position": 9, "url": "https://builtbyjoshstudio.com/blog/first-time-homebuyer-mistakes.html", "name": "First-Time Homebuyer Mistakes: The Mortgage Math Most Buyers Skip" }
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: ItemList — Projects section -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Projects — Tynkr Tools & Co Blog",
+    "description": "Software utilities, side builds, and hobby projects shipped under Built by Josh Studio LLC.",
+    "url": "https://builtbyjoshstudio.com/blog.html#projects",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "url": "https://builtbyjoshstudio.com/blog/building-the-universal-recipe-scaler.html", "name": "Building the Universal Recipe Scaler: A Local-First, Ad-Free Kitchen Utility" }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -463,21 +569,19 @@
     <div class="substack-note">Delivered via Substack · Unsubscribe anytime</div>
   </header>
 
-  <!-- ARTICLES -->
-  <section class="blog-section">
-    <div class="section-label">Latest Posts</div>
-    <h2 class="section-title">Read the Studio</h2>
+  <!-- ANCHOR NAV -->
+  <nav class="blog-nav" aria-label="Blog sections">
+    <a href="#templates">Templates</a>
+    <a href="#learning">Learning</a>
+    <a href="#projects">Projects</a>
+  </nav>
+
+  <!-- TEMPLATES -->
+  <section id="templates" aria-labelledby="templates-heading" class="blog-section">
+    <h2 id="templates-heading" class="section-title">Templates</h2>
+    <p class="section-intro">Walkthroughs, breakdowns, and free versions of every product in the Tynkr Tools &amp; Co catalog.</p>
 
     <div class="article-grid">
-
-      <a href="blog/building-the-universal-recipe-scaler.html" class="article-card reveal">
-        <div class="article-meta">Hobbies &amp; Projects · Vanilla JS Build</div>
-        <h3 class="article-title">Building the Universal Recipe Scaler: A Local-First, Ad-Free Kitchen Utility</h3>
-        <p class="article-excerpt">A free, instant recipe scaler — vanilla HTML/CSS/JS, no backend, browser localStorage. The regex problem nobody mentions, scale-lock for temperatures, and the glassmorphism UI.</p>
-        <div class="article-footer">
-          <span class="read-more">Read More ↗</span>
-        </div>
-      </a>
 
       <a href="blog/30-minute-solopreneur-setup-free-system.html" class="article-card reveal">
         <div class="article-meta">Solopreneur · Lite Versions</div>
@@ -497,15 +601,6 @@
         </div>
       </a>
 
-      <a href="blog/what-lite-actually-means.html" class="article-card reveal">
-        <div class="article-meta">Building in Public · Lite Versions</div>
-        <h3 class="article-title">What "Lite" Actually Means: Why I Built Free Versions of Every Paid Template</h3>
-        <p class="article-excerpt">A Lite version is not a trial, a demo, or crippleware. The four kinds of "free" — and why only one of them actually earns the name.</p>
-        <div class="article-footer">
-          <span class="read-more">Read More ↗</span>
-        </div>
-      </a>
-
       <a href="blog/free-budget-spreadsheet-excel-google-sheets.html" class="article-card reveal">
         <div class="article-meta">Spreadsheet · Lite Version</div>
         <h3 class="article-title">Free Budget Spreadsheet for Excel and Google Sheets: Try Before You Buy</h3>
@@ -519,6 +614,97 @@
         <div class="article-meta">Notion OS · Lite Versions</div>
         <h3 class="article-title">Free Notion Templates for Creators (No Email Required)</h3>
         <p class="article-excerpt">Five working Lite Notion systems for creators — content, business, finance, launch, and product. Available on Etsy, Notion Marketplace, no signup wall.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="blog/home-buying-mortgage-workbook.html" class="article-card reveal">
+        <div class="article-meta">Spreadsheet · Home Buying &amp; Mortgage</div>
+        <h3 class="article-title">Home Buying Spreadsheet That Covers Your Entire Purchase</h3>
+        <p class="article-excerpt">Most mortgage spreadsheets stop at the monthly payment. This one covers affordability, loan comparison, closing costs, rent vs. buy, and 30-year projections in one 15-tab Excel and Google Sheets workbook.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="blog/ultimate-budget-workbook.html" class="article-card reveal">
+        <div class="article-meta">Spreadsheet · Ultimate Budget Workbook</div>
+        <h3 class="article-title">A Budget Spreadsheet That Tracks Your Entire Financial Life</h3>
+        <p class="article-excerpt">Monthly budgets answer one question. A financial system answers all of them. Here's what a 23-tab budget workbook looks like when your Control Panel, dashboard, net worth, debt payoff, and 50/30/20 analyzer all connect.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="blog/notion-content-os-for-creators.html" class="article-card reveal">
+        <div class="article-meta">Notion · Creator Systems</div>
+        <h3 class="article-title">How to Build a Notion Content System That Actually Works for Creators</h3>
+        <p class="article-excerpt">Most creators don't have a content problem — they have a systems problem. Here's what a complete Notion content OS actually looks like, module by module.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="blog/notion-business-os-for-creators.html" class="article-card reveal">
+        <div class="article-meta">Notion · Creator Business</div>
+        <h3 class="article-title">How to Run a Creator Business in Notion Without Hiring a Team</h3>
+        <p class="article-excerpt">Your CRM shouldn't charge you monthly. Here's a full business OS — contacts, leads, deals, deliverables, invoices — built for solo creators in Notion.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="blog/notion-finance-os-for-creators.html" class="article-card reveal">
+        <div class="article-meta">Notion · Creator Finance</div>
+        <h3 class="article-title">How to Track Creator Business Finances in Notion Without an Accountant</h3>
+        <p class="article-excerpt">Spreadsheets die. Bookkeepers are expensive. Here's the full finance OS — revenue, expenses, budgets, goals, debt, and tax estimates — built for solo creators.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="blog/notion-launch-os-for-creators.html" class="article-card reveal">
+        <div class="article-meta">Notion · Creator Launches</div>
+        <h3 class="article-title">How to Plan and Execute a Product Launch in Notion as a Solo Creator</h3>
+        <p class="article-excerpt">Launches fail at the coordination level, not the marketing level. Here's the full launch OS — Command Center, tasks, assets, promo content — built for solo creators.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="blog/notion-product-os-for-creators.html" class="article-card reveal">
+        <div class="article-meta">Notion · Creator Catalog</div>
+        <h3 class="article-title">How to Manage a Digital Product Catalog in Notion as a Solo Creator</h3>
+        <p class="article-excerpt">Ten products across five platforms is not manageable in your head. Here's the full product OS — catalog, files, listings, bundles, versions, and support — built for digital sellers.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+      <a href="blog/complete-notion-os-for-creator-business.html" class="article-card reveal">
+        <div class="article-meta">Notion · The Full Stack</div>
+        <h3 class="article-title">The Complete Notion Operating System for Running a Creator Business</h3>
+        <p class="article-excerpt">Five connected workspaces — Content, Business, Finance, Launches, Products — in one unified bundle. The full operating system for solo creators who are done juggling scattered tools.</p>
+        <div class="article-footer">
+          <span class="read-more">Read More ↗</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- LEARNING -->
+  <section id="learning" aria-labelledby="learning-heading" class="blog-section">
+    <h2 id="learning-heading" class="section-title">Learning</h2>
+    <p class="section-intro">Concepts, philosophy, and how-to writing on Notion, spreadsheets, and building lean creator businesses.</p>
+
+    <div class="article-grid">
+
+      <a href="blog/what-lite-actually-means.html" class="article-card reveal">
+        <div class="article-meta">Building in Public · Lite Versions</div>
+        <h3 class="article-title">What "Lite" Actually Means: Why I Built Free Versions of Every Paid Template</h3>
+        <p class="article-excerpt">A Lite version is not a trial, a demo, or crippleware. The four kinds of "free" — and why only one of them actually earns the name.</p>
         <div class="article-footer">
           <span class="read-more">Read More ↗</span>
         </div>
@@ -596,73 +782,20 @@
         </div>
       </a>
 
-      <a href="blog/home-buying-mortgage-workbook.html" class="article-card reveal">
-        <div class="article-meta">Spreadsheet · Home Buying &amp; Mortgage</div>
-        <h3 class="article-title">Home Buying Spreadsheet That Covers Your Entire Purchase</h3>
-        <p class="article-excerpt">Most mortgage spreadsheets stop at the monthly payment. This one covers affordability, loan comparison, closing costs, rent vs. buy, and 30-year projections in one 15-tab Excel and Google Sheets workbook.</p>
-        <div class="article-footer">
-          <span class="read-more">Read More ↗</span>
-        </div>
-      </a>
+    </div>
+  </section>
 
-      <a href="blog/ultimate-budget-workbook.html" class="article-card reveal">
-        <div class="article-meta">Spreadsheet · Ultimate Budget Workbook</div>
-        <h3 class="article-title">A Budget Spreadsheet That Tracks Your Entire Financial Life</h3>
-        <p class="article-excerpt">Monthly budgets answer one question. A financial system answers all of them. Here's what a 23-tab budget workbook looks like when your Control Panel, dashboard, net worth, debt payoff, and 50/30/20 analyzer all connect.</p>
-        <div class="article-footer">
-          <span class="read-more">Read More ↗</span>
-        </div>
-      </a>
+  <!-- PROJECTS -->
+  <section id="projects" aria-labelledby="projects-heading" class="blog-section">
+    <h2 id="projects-heading" class="section-title">Projects</h2>
+    <p class="section-intro">Software utilities, side builds, and hobby projects shipped under Built by Josh Studio LLC.</p>
 
-      <a href="blog/notion-content-os-for-creators.html" class="article-card reveal">
-        <div class="article-meta">Notion · Creator Systems</div>
-        <h3 class="article-title">How to Build a Notion Content System That Actually Works for Creators</h3>
-        <p class="article-excerpt">Most creators don't have a content problem — they have a systems problem. Here's what a complete Notion content OS actually looks like, module by module.</p>
-        <div class="article-footer">
-          <span class="read-more">Read More ↗</span>
-        </div>
-      </a>
+    <div class="article-grid">
 
-      <a href="blog/notion-business-os-for-creators.html" class="article-card reveal">
-        <div class="article-meta">Notion · Creator Business</div>
-        <h3 class="article-title">How to Run a Creator Business in Notion Without Hiring a Team</h3>
-        <p class="article-excerpt">Your CRM shouldn't charge you monthly. Here's a full business OS — contacts, leads, deals, deliverables, invoices — built for solo creators in Notion.</p>
-        <div class="article-footer">
-          <span class="read-more">Read More ↗</span>
-        </div>
-      </a>
-
-      <a href="blog/notion-finance-os-for-creators.html" class="article-card reveal">
-        <div class="article-meta">Notion · Creator Finance</div>
-        <h3 class="article-title">How to Track Creator Business Finances in Notion Without an Accountant</h3>
-        <p class="article-excerpt">Spreadsheets die. Bookkeepers are expensive. Here's the full finance OS — revenue, expenses, budgets, goals, debt, and tax estimates — built for solo creators.</p>
-        <div class="article-footer">
-          <span class="read-more">Read More ↗</span>
-        </div>
-      </a>
-
-      <a href="blog/notion-launch-os-for-creators.html" class="article-card reveal">
-        <div class="article-meta">Notion · Creator Launches</div>
-        <h3 class="article-title">How to Plan and Execute a Product Launch in Notion as a Solo Creator</h3>
-        <p class="article-excerpt">Launches fail at the coordination level, not the marketing level. Here's the full launch OS — Command Center, tasks, assets, promo content — built for solo creators.</p>
-        <div class="article-footer">
-          <span class="read-more">Read More ↗</span>
-        </div>
-      </a>
-
-      <a href="blog/notion-product-os-for-creators.html" class="article-card reveal">
-        <div class="article-meta">Notion · Creator Catalog</div>
-        <h3 class="article-title">How to Manage a Digital Product Catalog in Notion as a Solo Creator</h3>
-        <p class="article-excerpt">Ten products across five platforms is not manageable in your head. Here's the full product OS — catalog, files, listings, bundles, versions, and support — built for digital sellers.</p>
-        <div class="article-footer">
-          <span class="read-more">Read More ↗</span>
-        </div>
-      </a>
-
-      <a href="blog/complete-notion-os-for-creator-business.html" class="article-card reveal">
-        <div class="article-meta">Notion · The Full Stack</div>
-        <h3 class="article-title">The Complete Notion Operating System for Running a Creator Business</h3>
-        <p class="article-excerpt">Five connected workspaces — Content, Business, Finance, Launches, Products — in one unified bundle. The full operating system for solo creators who are done juggling scattered tools.</p>
+      <a href="blog/building-the-universal-recipe-scaler.html" class="article-card reveal">
+        <div class="article-meta">Hobbies &amp; Projects · Vanilla JS Build</div>
+        <h3 class="article-title">Building the Universal Recipe Scaler: A Local-First, Ad-Free Kitchen Utility</h3>
+        <p class="article-excerpt">A free, instant recipe scaler — vanilla HTML/CSS/JS, no backend, browser localStorage. The regex problem nobody mentions, scale-lock for temperatures, and the glassmorphism UI.</p>
         <div class="article-footer">
           <span class="read-more">Read More ↗</span>
         </div>
