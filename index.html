@@ -1353,6 +1353,89 @@
       .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
     }
 
+    /* ── FREE WEB TOOLS ── */
+    .home-tools {
+      background: var(--tynkr-bg);
+      padding: 5rem 5rem 6rem;
+      border-top: 1px solid var(--tynkr-border);
+    }
+    .home-tools-inner { max-width: 980px; margin: 0 auto; }
+    .home-tools-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+    .home-tools h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      font-weight: 800;
+      color: var(--tynkr-text);
+      text-align: center;
+      margin-bottom: 0.9rem;
+      letter-spacing: -0.01em;
+    }
+    .home-tools h2 span { color: var(--tynkr-accent); font-style: italic; font-weight: 400; }
+    .home-tools-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--tynkr-muted);
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 3rem;
+    }
+    .home-tools-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .home-tool-card {
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .home-tool-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--tynkr-text);
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.01em;
+    }
+    .home-tool-card p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--tynkr-muted);
+      margin-bottom: 1.6rem;
+      flex: 1;
+    }
+    .home-tool-btn {
+      align-self: flex-start;
+      display: inline-block;
+      background: var(--tynkr-accent);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.6rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .home-tool-btn:hover { background: #c43d00; transform: translateY(-2px); }
+    @media (max-width: 760px) {
+      .home-tools { padding: 4rem 1.5rem; }
+      .home-tools-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── HOMEPAGE FAQ ── */
     .home-faq {
       background: var(--tynkr-bg);
@@ -2095,6 +2178,28 @@
       <div class="about-brand-card bbj">
         <h4>Zodiac Art Prints</h4>
         <p>Hand-crafted digital art prints for every zodiac sign. Designed with intention, ready to print and display.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FREE WEB TOOLS -->
+  <section class="home-tools" id="free-tools">
+    <div class="home-tools-inner">
+      <div class="home-tools-label">Free Web Tools</div>
+      <h2>Built to use, <span>not to sell.</span></h2>
+      <p class="home-tools-sub">Two free browser utilities — no signup, no email, no ads. They run entirely on your device and stay free, forever.</p>
+      <div class="home-tools-grid">
+        <div class="home-tool-card">
+          <h3>Universal Recipe Scaler</h3>
+          <p>Scale any recipe up or down and convert US imperial to metric instantly. Paste the ingredients, set your serving count, done.</p>
+          <a href="https://builtbyjoshstudio-cyber.github.io/universal-recipe-scaler/" target="_blank" rel="noopener" class="home-tool-btn">Open the Recipe Scaler →</a>
+        </div>
+        <div class="home-tool-card">
+          <h3>Reverse Roasting Timeline Calculator</h3>
+          <p>Enter the protein, weight, and target dinner time — get the full backward schedule: when to preheat, cook, rest, and serve.</p>
+          <a href="https://builtbyjoshstudio-cyber.github.io/reverse-roasting-calculator/" target="_blank" rel="noopener" class="home-tool-btn">Open the Calculator →</a>
+        </div>
       </div>
     </div>
   </section>
