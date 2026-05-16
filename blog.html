@@ -391,6 +391,31 @@
       background: #ff6a2a;
       transform: translateY(-2px);
     }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--bbj-accent);
+      border: 1px solid var(--bbj-accent);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: calc(1rem - 1px) calc(2.2rem - 1px);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover {
+      background: var(--bbj-accent);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -871,9 +896,12 @@
 
   <!-- CTA -->
   <section class="cta-band">
-    <h2>Ready to stop reading and <span>start building?</span></h2>
-    <p>Every template I write about is available for instant download in the shop.</p>
-    <a href="https://tynkrtoolsandco.etsy.com" target="_blank" class="btn-etsy">Get the Template on Etsy →</a>
+    <h2>Stop doing the math. <span>Let the tools do it.</span></h2>
+    <p>Both cooking utilities are free, run entirely in your browser, and never ask for an email. Scale any recipe or reverse-engineer a roast schedule in seconds.</p>
+    <div class="cta-buttons">
+      <a href="https://builtbyjoshstudio-cyber.github.io/universal-recipe-scaler/" target="_blank" rel="noopener" class="btn-etsy">Open the Recipe Scaler →</a>
+      <a href="https://builtbyjoshstudio-cyber.github.io/reverse-roasting-calculator/" target="_blank" rel="noopener" class="btn-secondary">Open the Roasting Calculator →</a>
+    </div>
   </section>
 
   <!-- FOOTER -->
