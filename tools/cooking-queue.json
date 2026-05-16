@@ -1,5 +1,12 @@
 [
   {
+    "slug": "reverse-roasting-timeline-calculator",
+    "card_title": "The Reverse Roasting Timeline Calculator: Why Cooking Math Is Harder Than It Looks",
+    "card_meta": "Projects · Software Utilities",
+    "card_excerpt": "The second free, local-first cooking utility — enter the protein, weight, and target dinner time and it outputs the entire backward schedule. Plus an honest writeup of why modeling cooking time is four engineering problems, not one multiplication.",
+    "schema_name": "The Reverse Roasting Timeline Calculator: Why Cooking Math Is Harder Than It Looks"
+  },
+  {
     "slug": "what-i-actually-keep-in-my-kitchen",
     "card_title": "What I Actually Keep in My Kitchen: The Seven-Ingredient System Behind Daily Cooking",
     "card_meta": "Projects · Cooking",
