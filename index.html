@@ -1359,7 +1359,7 @@
       padding: 5rem 5rem 6rem;
       border-top: 1px solid var(--tynkr-border);
     }
-    .home-tools-inner { max-width: 980px; margin: 0 auto; }
+    .home-tools-inner { max-width: 1180px; margin: 0 auto; }
     .home-tools-label {
       font-family: 'Cinzel', serif;
       font-size: 0.7rem;
@@ -1390,7 +1390,7 @@
     }
     .home-tools-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
     }
     .home-tool-card {
@@ -1439,7 +1439,7 @@
       transition: background 0.2s, transform 0.2s;
     }
     .home-tool-btn:hover { background: #c43d00; transform: translateY(-2px); }
-    @media (max-width: 760px) {
+    @media (max-width: 980px) {
       .home-tools { padding: 4rem 1.5rem; }
       .home-tools-grid { grid-template-columns: 1fr; }
     }
@@ -2197,7 +2197,7 @@
     <div class="home-tools-inner">
       <div class="home-tools-label">Free Web Tools</div>
       <h2>Built to use, <span>not to sell.</span></h2>
-      <p class="home-tools-sub">Two free browser utilities — no signup, no email, no ads. They run entirely on your device and stay free, forever.</p>
+      <p class="home-tools-sub">Three free browser utilities — no signup, no email, no ads. They run entirely on your device and stay free, forever.</p>
       <div class="home-tools-grid">
         <div class="home-tool-card">
           <img src="images/products/universal-recipe-scaler.webp" alt="Universal Recipe Scaler — app screenshot" class="home-tool-thumb" loading="lazy" />
@@ -2210,6 +2210,11 @@
           <h3>Reverse Roasting Timeline Calculator</h3>
           <p>Enter the protein, weight, and target dinner time — get the full backward schedule: when to preheat, cook, rest, and serve.</p>
           <a href="https://builtbyjoshstudio-cyber.github.io/reverse-roasting-calculator/" target="_blank" rel="noopener" class="home-tool-btn">Open the Calculator →</a>
+        </div>
+        <div class="home-tool-card">
+          <h3>Baking Pan Swap Calculator</h3>
+          <p>Pick the pan a recipe calls for and the pan you actually own — square, round, rectangle, muffin tin, or Bundt — and get the exact ingredient multiplier plus a bake-time warning.</p>
+          <a href="https://builtbyjoshstudio-cyber.github.io/pan-swap-calculator/" target="_blank" rel="noopener" class="home-tool-btn">Open the Pan Swap Calculator →</a>
         </div>
       </div>
     </div>
