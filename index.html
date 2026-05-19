@@ -634,14 +634,15 @@
       gap: 1.5rem;
     }
 
-    .card-tynkr.filtered-out {
-      display: none !important;
-    }
+    .card-tynkr {
       background: var(--tynkr-surface);
       border: 1px solid var(--tynkr-border);
       transition: transform 0.25s, box-shadow 0.25s;
       position: relative;
       overflow: hidden;
+    }
+    .card-tynkr.filtered-out {
+      display: none !important;
     }
     .card-tynkr:hover {
       transform: translateY(-4px);
