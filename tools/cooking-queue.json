@@ -1,5 +1,12 @@
 [
   {
+    "slug": "perfect-roast-pull-temp-calculator",
+    "card_title": "The Perfect Roast Pull Temp Calculator: When to Pull Brisket, Duck, and Venison Off the Heat",
+    "card_meta": "Projects · Software Utilities",
+    "card_excerpt": "The fourth free, local-first kitchen utility — pick the meat, the cut size, and your target doneness, and it returns the exact temperature to pull from the heat. Hardcoded carryover logic for the cuts the internet ruins: brisket, duck breast, venison, and delicate fish.",
+    "schema_name": "The Perfect Roast Pull Temp Calculator: When to Pull Brisket, Duck, and Venison Off the Heat"
+  },
+  {
     "slug": "why-home-cooks-should-batch-broths",
     "card_title": "Why More Home Cooks Should Batch Broths: The Single Best Habit I've Ever Built",
     "card_meta": "Projects · Cooking",
