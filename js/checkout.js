@@ -163,7 +163,17 @@
     s.onload = function () {
       if (window.LemonSqueezy && typeof window.LemonSqueezy.Setup === "function") {
         try {
-          window.LemonSqueezy.Setup({});
+          window.LemonSqueezy.Setup({
+            // Forward every Lemon Squeezy event to ga4-events.js (if loaded).
+            // Per LS docs the integration uses a Setup({ eventHandler }) callback;
+            // see /js/ga4-events.js for the GA4 dispatch logic. No-op if ga4-events
+            // isn't loaded, so checkout still works on pages without analytics.
+            eventHandler: function (event) {
+              if (typeof window.__ga4LemonSqueezyHandler === "function") {
+                window.__ga4LemonSqueezyHandler(event);
+              }
+            }
+          });
           if (typeof window.LemonSqueezy.Refresh === "function") {
             window.LemonSqueezy.Refresh();
           }
