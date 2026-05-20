@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dough Hydration Calculator — Baker's Percentages by Tynkr Tools &amp; Co</title>
+  <meta name="description" content="A free calculator for bread, pizza, pasta, and noodle dough using professional baker's percentages. Flour-specific absorbency warnings, egg conversion for fresh pasta, kansui math for ramen." />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/blog/dough-hydration-calculator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dough Hydration Calculator — Baker's Percentages by Tynkr Tools &amp; Co" />
+  <meta property="og:description" content="A free calculator for bread, pizza, pasta, and noodle dough using professional baker's percentages. Flour-specific absorbency warnings, egg conversion for fresh pasta, kansui math for ramen." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/blog/dough-hydration-calculator.html" />
+  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/products/dough-hydration-calculator.webp" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dough Hydration Calculator — Baker's Percentages by Tynkr Tools &amp; Co" />
+  <meta name="twitter:description" content="A free calculator for bread, pizza, pasta, and noodle dough using professional baker's percentages. Flour-specific absorbency warnings, egg conversion for fresh pasta, kansui math for ramen." />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/products/dough-hydration-calculator.webp" />
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Dough Hydration Calculator: Baker's Percentages, Flour Absorbency Math, and a Tool I Built Without Ever Baking My Own Bread",
+  "description": "A free calculator for bread, pizza, pasta, and noodle dough using professional baker's percentages. Flour-specific absorbency warnings, egg conversion for fresh pasta, kansui math for ramen.",
+  "author": {
+    "@type": "Person",
+    "name": "Josh",
+    "url": "https://builtbyjoshstudio.com/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Built by Josh Studio LLC",
+    "url": "https://builtbyjoshstudio.com"
+  },
+  "mainEntityOfPage": "https://builtbyjoshstudio.com/blog/dough-hydration-calculator.html",
+  "image": "https://builtbyjoshstudio.com/images/products/dough-hydration-calculator.webp",
+  "datePublished": "2026-05-14T00:00:00Z",
+  "dateModified": "2026-05-14T00:00:00Z"
+}
+  </script>
+
+  <!-- Schema.org BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://builtbyjoshstudio.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://builtbyjoshstudio.com/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "The Dough Hydration Calculator: Baker's Percentages, Flour Absorbency Math, and a Tool I Built Without Ever Baking My Own Bread", "item": "https://builtbyjoshstudio.com/blog/dough-hydration-calculator.html" }
+  ]
+}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bbj-bg: #f7f4f2; --bbj-surface: #ffffff; --bbj-accent: #e8500a; --bbj-text: #0c0813; --bbj-muted: #6b6170; --bbj-border: #e4ddd2; --body-read: #2d2533; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bbj-bg); color: var(--bbj-text); overflow-x: hidden; min-height: 100vh; }
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 64px; background: rgba(247, 246, 242, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--bbj-border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--bbj-text); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--bbj-muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--bbj-accent); }
+    .nav-links a.active { color: var(--bbj-accent); }
+    .article-header { padding: 9rem 2rem 3rem; max-width: 820px; margin: 0 auto; text-align: center; position: relative; }
+    .article-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(232, 80, 10, 0.08) 0%, transparent 60%); pointer-events: none; }
+    .breadcrumb { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-muted); margin-bottom: 1.4rem; position: relative; }
+    .breadcrumb a { color: var(--bbj-accent); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .article-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 1.2rem; position: relative; }
+    h1.article-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; color: var(--bbj-text); margin-bottom: 1.4rem; position: relative; }
+    h1.article-title span { color: var(--bbj-accent); font-style: italic; font-family: 'DM Sans', sans-serif; font-weight: 400; }
+    .hero-tagline { font-family: 'DM Sans', sans-serif; font-style: italic; font-size: clamp(1.05rem, 1.6vw, 1.18rem); line-height: 1.6; color: var(--bbj-muted); max-width: 640px; margin: 0 auto 1.5rem; position: relative; }
+    .article-meta { display: flex; align-items: center; justify-content: center; gap: 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--bbj-muted); letter-spacing: 0.04em; position: relative; }
+    .article-meta .dot { opacity: 0.5; }
+    .article-main { display: grid; grid-template-columns: minmax(0, 720px) 320px; gap: 3rem; max-width: 1180px; margin: 0 auto; padding: 2rem 2rem 4rem; align-items: start; }
+    @media (max-width: 1100px) { .article-main { grid-template-columns: 1fr; padding: 2rem 1.5rem 3rem; } }
+    .article-body { font-family: 'DM Sans', sans-serif; font-size: 1.18rem; line-height: 1.75; color: var(--body-read); }
+    .article-body p { margin-bottom: 1.5rem; }
+    .article-body p strong { color: var(--bbj-text); font-weight: 600; }
+    .article-body h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.5rem, 2.8vw, 2rem); font-weight: 800; letter-spacing: -0.01em; color: var(--bbj-text); margin: 3rem 0 1.2rem; line-height: 1.25; padding-top: 2rem; border-top: 1px solid var(--bbj-border); }
+    .article-body h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .article-body a { color: var(--bbj-accent); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body a:hover { color: #ff6a2a; }
+    .article-body em { font-style: italic; color: var(--bbj-muted); }
+    .article-body ol, .article-body ul { margin: 0 0 1.6rem 1.4rem; padding: 0; }
+    .article-body ul li { margin-bottom: 0.6rem; list-style: none; position: relative; padding-left: 1.2rem; }
+    .article-body ul li::before { content: '\25C6'; position: absolute; left: 0; color: var(--bbj-accent); font-size: 0.7rem; top: 0.55rem; }
+    .article-body ol li { margin-bottom: 0.6rem; padding-left: 0.4rem; }
+    .article-body blockquote.schedule { background: var(--bbj-surface); border: 1px solid var(--bbj-border); border-left: 3px solid var(--bbj-accent); padding: 1.3rem 1.6rem; margin: 0 0 1.6rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; line-height: 1.9; color: var(--body-read); }
+    .article-body blockquote.schedule strong { color: var(--bbj-text); }
+    .post-summary { background: var(--bbj-surface); border-left: 3px solid var(--bbj-accent); padding: 1.25rem 1.5rem; margin: 0 0 2.5rem 0; }
+    .post-summary strong { display: block; font-family: 'DM Sans', sans-serif; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: .7rem; }
+    .post-summary p { margin: 0; font-size: 1rem; line-height: 1.65; color: var(--body-read); font-style: italic; }
+    .inline-cta { background: var(--bbj-surface); border: 1px solid var(--bbj-border); padding: 2rem; margin: 2.5rem 0; position: relative; overflow: hidden; }
+    .inline-cta::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232, 80, 10, 0.05) 0%, transparent 60%); pointer-events: none; }
+    .inline-cta .inline-label { font-family: 'DM Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 0.6rem; position: relative; }
+    .inline-cta h4 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--bbj-text); margin-bottom: 0.6rem; line-height: 1.25; position: relative; }
+    .inline-cta p { font-family: 'DM Sans', sans-serif; font-style: italic; color: var(--bbj-muted); font-size: 1rem; margin-bottom: 1.2rem !important; position: relative; }
+    .inline-cta .btn-inline { display: inline-block; background: transparent; color: var(--bbj-accent); border: 1px solid var(--bbj-accent); font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.8rem 1.6rem; text-decoration: none; transition: background 0.2s, color 0.2s; position: relative; }
+    .inline-cta .btn-inline:hover { background: var(--bbj-accent); color: #fff; text-decoration: none; }
+    .article-sidebar { position: sticky; top: 92px; align-self: start; }
+    .article-sidebar-sticky { background: var(--bbj-surface); border: 1px solid var(--bbj-border); padding: 1.4rem; }
+    .sidebar-thumb { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; display: block; margin-bottom: 1rem; background: #f0ede8; border: 1px solid var(--bbj-border); }
+    .sidebar-kicker { font-family: 'DM Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 0.4rem; }
+    .sidebar-name { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--bbj-text); margin-bottom: 0.3rem; line-height: 1.25; }
+    .sidebar-price-block { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--bbj-text); margin-bottom: 1rem; }
+    .sidebar-cta-btn { display: block; text-align: center; background: var(--bbj-accent); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 1rem; text-decoration: none; transition: background 0.2s; margin-bottom: 1rem; }
+    .sidebar-cta-btn:hover { background: #ff6a2a; }
+    .sidebar-checklist { list-style: none; margin: 0; padding: 0; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--body-read); line-height: 1.5; }
+    .sidebar-checklist li { padding-left: 1.1rem; position: relative; margin-bottom: 0.4rem; }
+    .sidebar-checklist li::before { content: '\2713'; position: absolute; left: 0; color: var(--bbj-accent); font-weight: 700; }
+    .author-bio { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--bbj-border); font-family: 'DM Sans', sans-serif; }
+    .author-bio strong { display: block; font-family: 'DM Sans', sans-serif; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: .6rem; }
+    .author-bio p { font-size: .95rem; line-height: 1.6; color: var(--body-read); margin: 0 0 .7rem 0; }
+    .author-bio a { font-family: 'DM Sans', sans-serif; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--bbj-accent); text-decoration: none; }
+    .author-bio a:hover { text-decoration: underline; }
+    .related-posts { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--bbj-border); }
+    .related-posts-label { font-family: 'DM Sans', sans-serif; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 1.4rem; }
+    .related-posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .related-post-card { display: block; padding: 1.2rem 1.3rem; background: var(--bbj-surface); border: 1px solid var(--bbj-border); text-decoration: none; color: inherit; transition: border-color .2s, background .2s; }
+    .related-post-card:hover { border-color: rgba(232, 80, 10, .35); }
+    .related-post-card h3 { font-family: 'DM Sans', sans-serif; font-size: .95rem; font-weight: 700; color: var(--bbj-text); margin-bottom: .5rem; line-height: 1.3; }
+    .related-post-card p { font-family: 'DM Sans', sans-serif; font-size: .88rem; line-height: 1.5; color: var(--bbj-muted); margin-bottom: .7rem; }
+    .related-post-card .related-link { font-family: 'DM Sans', sans-serif; font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bbj-accent); }
+    @media (max-width: 900px) { .related-posts-grid { grid-template-columns: 1fr; } }
+    .cta-band { padding: 5rem 2rem; text-align: center; background: linear-gradient(135deg, #fff 0%, #f0ede8 100%); border-top: 1px solid var(--bbj-border); border-bottom: 1px solid var(--bbj-border); }
+    .cta-band .cta-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 1rem; }
+    .cta-band h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3.2vw, 2.4rem); font-weight: 800; color: var(--bbj-text); margin-bottom: 0.8rem; letter-spacing: -0.01em; max-width: 720px; margin-left: auto; margin-right: auto; }
+    .cta-band h2 span { color: var(--bbj-accent); font-style: italic; font-family: 'DM Sans', sans-serif; font-weight: 400; }
+    .cta-band .cta-sub { font-family: 'DM Sans', sans-serif; font-style: italic; color: var(--bbj-muted); font-size: 1.1rem; max-width: 560px; margin: 0 auto 2rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; background: var(--bbj-accent); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 1.1rem 2.4rem; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+    .btn-primary:hover { background: #ff6a2a; transform: translateY(-2px); }
+    .btn-secondary { display: inline-block; background: transparent; color: var(--bbj-accent); border: 1px solid var(--bbj-accent); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: calc(1.1rem - 1px) calc(2.4rem - 1px); text-decoration: none; transition: background 0.2s, color 0.2s, transform 0.2s; }
+    .btn-secondary:hover { background: var(--bbj-accent); color: #fff; transform: translateY(-2px); }
+    .cta-band .contact { margin-top: 1.6rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--bbj-muted); }
+    .cta-band .contact a { color: var(--bbj-accent); text-decoration: none; }
+    .back-to-blog { text-align: center; padding: 3rem 2rem 0; }
+    .back-to-blog a { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bbj-muted); text-decoration: none; transition: color 0.2s; }
+    .back-to-blog a:hover { color: var(--bbj-accent); }
+    footer { background: #f0ede8; padding: 3rem 5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-top: 4rem; }
+    .footer-left { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(12, 8, 19, 0.45); }
+    .footer-left strong { color: rgba(12, 8, 19, 0.75); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 0.75rem; color: rgba(12, 8, 19, 0.45); text-decoration: none; transition: color 0.2s; letter-spacing: 0.06em; text-transform: uppercase; }
+    .footer-links a:hover { color: rgba(12, 8, 19, 0.75); }
+    .studio-sig { max-width: 720px; margin: 0 auto; padding: 2rem; font-family: 'DM Sans', sans-serif; font-style: italic; font-size: 0.95rem; color: var(--bbj-muted); text-align: center; }
+    @media (max-width: 720px) { .article-header { padding: 7rem 1.5rem 2rem; } .article-body { font-size: 1.1rem; } .site-nav { padding: 0 1.5rem; } .nav-links { gap: 1.2rem; } footer { flex-direction: column; padding: 2rem; } }
+    .nav-logo { white-space: nowrap; } .nav-logo .logo-short { display: none; }
+    @media (max-width: 720px) { .site-nav { padding: 0 1rem; } .nav-logo { font-size: 0.88rem; } .nav-logo .logo-full { display: none; } .nav-logo .logo-short { display: inline; } .nav-links { gap: 0.9rem; } .nav-links a { font-size: 0.72rem; letter-spacing: 0.04em; } }
+  </style>
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/mobile-nav.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#tynkr">Templates</a></li>
+      <li><a href="../index.html#builtbyjosh">Zodiac Art</a></li>
+      <li><a href="../blog.html" class="active">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../index.html#free-tools">Free Tools</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="breadcrumb"><a href="../blog.html">← The Studio Blog</a></div>
+    <div class="article-eyebrow">Projects · Software Utilities</div>
+    <h1 class="article-title">The Dough Hydration Calculator: Baker's Percentages, Flour Absorbency Math, and a Tool I Built <span>Without Ever Baking My Own Bread</span></h1>
+    <p class="hero-tagline">A free utility for calculating bread, pizza, pasta, and noodle doughs using professional baker's percentages. With flour-specific absorbency warnings, an egg conversion matrix for fresh pasta, and kansui math for authentic ramen. Built because the math problem was interesting, even though I've never baked a loaf in twenty-five years of cooking.</p>
+    <div class="article-meta">
+      <span>May 14, 2026</span>
+      <span class="dot">·</span>
+      <span>8 min read</span>
+      <span class="dot">·</span>
+      <span>Built by Josh Studio LLC</span>
+    </div>
+  </header>
+
+  <!-- ARTICLE BODY -->
+  <div class="article-main">
+
+    <article class="article-body">
+
+      <div class="post-summary"><strong>The Short Version</strong><p>This is the seventh free utility in the Tynkr Tools kit and the first one in the baking sub-track alongside the Pan Swap Calculator. It calculates dough ingredients using professional baker's percentages — flour locked at 100%, everything else as a percentage of that flour mass. Two calculation modes (target total dough weight or target flour mass), eleven flour types across four chemical-classification groups, six traditional baking presets (Neapolitan, sourdough, baguette, ciabatta, Tokyo ramen, soba), and four specialized state-management protocols that handle the edge cases generic dough calculators miss — flour-specific absorbency limits, unleavened noodle logic, kansui rebranding for ramen, and an egg conversion matrix for fresh pasta.</p></div>
+
+      <h2>I Built This Tool Without Ever Baking My Own Bread</h2>
+      <p>In twenty-five years of cooking, I have never baked my own bread. I have never made my own noodles from scratch. I have never rolled fresh pasta. I cook every night. I have strong opinions about phở and rice and broth and steak doneness and what to keep in a pantry. Bread and noodles I buy.</p>
+      <p>So this is the first post in the Projects section where I'm not going to pretend to be the expert. The Dough Hydration Calculator exists because the <em>math problem</em> was interesting, not because I needed it myself. I built it for the home bakers who have asked me, over the years, why their pizza dough never matches the recipe and why their bread loaves come out denser than the ones at the bakery. The answer is almost always the same: they're measuring in cups and the recipe was calibrated in grams, or they're using a flour with different absorbency than the recipe assumed, or they're scaling without understanding how baker's percentages actually work.</p>
+      <p>The tool fixes all three of those problems. The reason it exists is that home bakers shouldn't have to fight the math on top of fighting the dough. The math should be handled, in the browser, in zero seconds, with the right warnings firing when the inputs would produce a structural failure. That's the entire premise.</p>
+
+      <h2>Why Baker's Percentages Are the Right Framework</h2>
+      <p>In professional baking — actual bakeries, actual pizzerias, actual ramen shops — recipes don't get written in cups and tablespoons. They get written in baker's percentages: the flour is always <strong>100%</strong>, and every other ingredient is calculated as a percentage of that flour mass. Water might be 65%, salt 2%, yeast 1%, and so on. A recipe written this way scales infinitely — you can make a 500-gram batch or a 50-kilogram batch using the same percentages, and the dough behaves the same way.</p>
+      <p>The reason this matters is that cup measurements are unreliable at scale. A cup of flour from a freshly-opened bag and a cup of flour scooped from the bottom of a stale bag don't weigh the same thing. Humidity changes the density. Compaction during scooping changes the density. Two home bakers following the same recipe with the same flour can end up with substantially different doughs because their cups don't weigh the same. Baker's percentages bypass that entire problem by working from weight.</p>
+      <p>The calculator handles the math two ways depending on what you actually want to do.</p>
+      <p><strong>Mode A — Target Total Dough Weight.</strong> You input the final dough weight you want (say, 36 ounces because you're making four 9-ounce pizza balls). The calculator solves the equation backwards: it sums all the recipe percentages into a global divisor, isolates the base flour weight, and then scales the other ingredients off that flour weight. The total always comes out exactly to your input. This is the mode most home bakers actually want, because they know how much dough their pan or recipe calls for; they don't necessarily know how much flour that requires.</p>
+      <p><strong>Mode B — Target Flour Mass.</strong> You input a specific flour mass (say, 500 grams of specialty flour you have on hand). The calculator treats that flour weight as the 100% baseline and scales the water, salt, and yeast upward proportionally. This is the mode for "I have this much flour, what do I do with it" situations.</p>
+      <p>Both modes use the same underlying engine. The choice is just which variable is fixed.</p>
+
+      <h2>The Four Protocols That Make This Different From Other Hydration Calculators</h2>
+      <p>A basic baker's percentage calculator is not hard to build. The harder problem — and the more interesting one — is handling the edge cases that come from the fact that <em>different flours and different dough types behave fundamentally differently</em>. Most online hydration calculators ignore this completely. The Tynkr calculator handles it through four specific protocols.</p>
+      <p><strong>The Absorbency Interceptor.</strong> Different flours absorb water at different rates because of their gluten structure, starch content, and processing. A standard absorbency range for Tipo 00 pizza flour is roughly 55% to 62% hydration; push past 62% and the dough gets unworkably sticky. All-Purpose flour handles 60% to 65% well; past that you start getting structural collapse during the rise. Gluten-Free baking blends are the opposite — they <em>need</em> high hydration (above 75%) because they have no gluten to absorb water through, and the starches alone require more moisture to fully hydrate. Below that and you get dry, crumbly, clay-like dough that cracks instead of stretching.</p>
+      <p>The calculator knows all of this. The moment you select a flour type, the absorbency interceptor recalibrates. If you set a hydration percentage outside the safe range for that flour, the tool fires an automated warning explaining exactly what will go wrong — <em>excessive stickiness, structural collapse, dry crumbling</em>. The warning doesn't stop you from trying; it just tells you what you're committing to. That's the right balance for a home baker who might be experimenting on purpose versus one who's about to ruin a batch by accident.</p>
+      <p><strong>The Unleavened Noodle Logic Override.</strong> This is the protocol I'd argue is the most quietly clever. Bread and pizza dough use yeast. Noodles and pasta don't. Most calculators online treat dough as a single category and either include yeast on everything (wrong for pasta) or leave it off everything (wrong for bread). The Tynkr calculator handles this by category-detecting.</p>
+      <p>The moment you select a noodle or pasta flour — buckwheat for soba, semolina for egg pasta, ramen flour — the engine executes an unleavened state shift. It removes the Yeast Mass row from the output entirely. It also alters the mathematical inverse divisor (in Mode A) to omit the yeast percentage from the equation, because including a zero-yeast term would skew the back-calculation. The result is that the math stays accurate across both dough categories without the user having to know that there's a difference.</p>
+      <p>This is the kind of detail that signals the tool was built by someone who thought about cooking categorically, not as one undifferentiated mass. Pasta is not bread. The tool knows it.</p>
+      <p><strong>The Ramen Kansui Transformer.</strong> Ramen is its own case within the noodle category, and it required its own override. Authentic ramen is made with alkaline flour — flour treated with kansui, a solution of sodium carbonate and potassium carbonate — which is what gives ramen noodles their distinctive yellow color, chewy bite, and resistance to softening in hot broth. The kansui ratio is approximately 1% of the flour mass, but calling it "yeast" on the output (which is what most calculators would do, because the calculator doesn't know it's not yeast) would be wrong and misleading.</p>
+      <p>The Kansui Transformer fixes this. When Ramen / Alkaline Flour is selected, the calculator intercepts the standard yeast output label and dynamically rebrands it to <strong>"Alkaline Salts / Kansui (1%)"</strong>. The 1% ratio stays mathematically the same as the yeast percentage in a bread recipe; only the label and the meaning change. This is the kind of thing that matters to anyone who has actually researched how to make ramen at home and discovered that "yeast" is wildly wrong terminology for what's actually happening in the dough.</p>
+      <p><strong>The Thermodynamic Egg Conversion Matrix.</strong> Traditional Italian fresh pasta is not hydrated with water. It's hydrated with whole eggs. Egg yolks bring fat, protein, and color; egg whites bring water and structural protein. The total liquid in a fresh pasta recipe should be roughly 35-40% of the flour weight, but expressing that as "water" gives the home cook the wrong picture entirely — water and eggs aren't substitutable.</p>
+      <p>The calculator handles this by detecting when Semolina / Egg Pasta Flour is selected and activating a culinary calculation badge at the base of the screen. The badge dynamically converts the required liquid mass into whole egg equivalents using the standard professional baseline of one large egg ≈ 50 grams (or 1.8 ounces). So if the calculator says you need 200g of liquid for a particular batch of pasta, the badge tells you that translates to roughly four large eggs. The cook reads "four eggs" instead of "200g of water," which is the conversion that actually maps to what they'll do at the counter.</p>
+      <p>This is the protocol I'd point to if someone asked what makes this calculator different from the ten other dough hydration calculators on the first page of Google. The egg conversion is genuinely chef-grade math. Almost nothing else handles it.</p>
+
+      <h2>The Eleven Flour Types and Six Presets</h2>
+      <p>The calculator covers eleven specific flour types, organized into four chemical-classification groups in the dropdown:</p>
+      <ul>
+        <li><strong>Standard Wheat:</strong> All-Purpose Flour, Bread Flour</li>
+        <li><strong>Artisanal &amp; Whole Grains:</strong> Whole Wheat Flour, Dark Rye Flour, Spelt / Einkorn</li>
+        <li><strong>Pizza Specialists:</strong> Tipo 00 Flour (Neapolitan), High-Gluten / NY Style Flour</li>
+        <li><strong>Noodle &amp; Pasta Specialists:</strong> Buckwheat Flour (Soba), Ramen / Alkaline Flour, Semolina / Egg Pasta Flour</li>
+        <li><strong>Alternative Blends:</strong> Gluten-Free Baking Blend</li>
+      </ul>
+      <p>On top of those flour types, the calculator includes six <strong>Baking Style Presets</strong> that snap the hydration slider to the traditional ratio for that style:</p>
+      <ul>
+        <li>Neapolitan Pizza — 60% hydration</li>
+        <li>Sourdough Boule — 72% hydration</li>
+        <li>French Baguette — 65% hydration</li>
+        <li>Italian Ciabatta — 82% hydration</li>
+        <li>Tokyo Ramen — 35% hydration</li>
+        <li>100% Soba Noodles — 40% hydration</li>
+      </ul>
+      <p>The presets matter because they encode the actual industry-standard hydration ranges for each dough type. A ciabatta is supposed to be a wet dough — that's what gives it the open-crumb structure with the irregular holes. A Tokyo-style ramen dough is supposed to be a very dry dough by bread standards — that's what gives the noodles their firm bite. A home baker working without a preset might pick a hydration percentage that's "in range" generally but wrong for the specific dough they're trying to make. The presets fix that with a single click.</p>
+
+      <h2>Where This Tool Sits in the Toolkit</h2>
+      <p>The Dough Hydration Calculator is the seventh utility shipped under Built by Josh Studio LLC, and it marks something I should be honest about: the toolkit isn't one workflow anymore, it's becoming two.</p>
+      <p>The first six tools — Recipe Scaler, Reverse Roasting Timeline, Brine Calculator, Pull Temp Calculator, Meat Thawing Planner, and the universal Recipe Scaler — together form a complete roasting workflow. Thaw the protein, brine it, schedule the cook, calculate the pull temperature. That set is built.</p>
+      <p>The Dough Hydration Calculator and the <a href="baking-pan-swap-calculator.html">Baking Pan Swap Calculator</a> together form an emerging <strong>baking</strong> workflow. Calculate the dough percentages, then use the Pan Swap math to scale that dough to whatever vessel you're actually using. The Dough Hydration Calculator's footer links forward to the Pan Swap Calculator for exactly this reason — once you've got your dough weights, the next question is "does this fit in the pan I have." The Pan Swap Calculator answers that.</p>
+      <p>Two workflows, sharing the same Recipe Scaler at the universal layer, sharing the same Tynkr Glass design system, sharing the same no-signup, ad-free, local-first promise. That's the structure the kit is taking.</p>
+
+      <h2>The Honest Disclaimer</h2>
+      <p>Hydration ratios and flour absorption rates vary depending on ambient humidity, brand processing, and milling precision. The calculator gives you accurate baker's-percentage math against industry-standard absorbency ranges. Your specific flour, your specific kitchen, your specific climate may behave slightly differently. Adjust flour or water by small amounts during mixing to achieve target gluten structure — the calculator gets you to the starting point, your hands get you the rest of the way.</p>
+      <p>This is the same principle the rest of the toolkit operates on. The math gets you close. Attention and adjustment get you the rest of the way.</p>
+
+      <h2>Same Stack, Same Promise</h2>
+      <p>Same philosophy as the other six tools. Vanilla HTML, CSS, and JavaScript. No framework, no backend, no loading screen, no forced sign-up, and no ads. It runs entirely locally in the browser and is hosted as a single static page on GitHub Pages. A JSON-LD <code>WebApplication</code> schema is injected so search engines and AI assistants understand exactly what it is: a free, ad-free software utility published by Built by Josh Studio LLC. It's built on the Tynkr Glass design system that runs across the newer tools, with the same Light / Mist / Dark theme toggle and the Imperial / Metric unit synchronization that the rest of the kit shares.</p>
+      <p>The footer links forward to the Pan Swap Calculator with the dough weights pre-filled through URL parameters. If you're working out a bread recipe and you want to know whether the resulting dough will fit your pan, that flow is one click away.</p>
+
+      <!-- INLINE CTA -->
+      <div class="inline-cta">
+        <div class="inline-label">Try the Tool</div>
+        <h4>Open the Dough Hydration Calculator.</h4>
+        <p>Free, instant, no signup. Pick the flour, pick the preset or set custom hydration, enter your target weight, and the math is done. Built for the home bakers who want professional ratios without doing the math themselves.</p>
+        <a href="https://builtbyjoshstudio-cyber.github.io/dough-hydration-calculator/" target="_blank" rel="noopener" class="btn-inline">Open the Calculator →</a>
+      </div>
+
+      <h2>The Honest Closing</h2>
+      <p>I built this tool for bakers I'm not. The math problem was interesting. The four protocols that make it more than a basic calculator are interesting. The fact that I've never personally baked a loaf of bread doesn't make the tool less useful — if anything, building it gave me a much deeper respect for what real bakers actually deal with when they're scaling a recipe, and a clear sense of why most online hydration calculators are inadequate.</p>
+      <p>Maybe one day I'll actually use it for my own first loaf. Until then, it's there for the people who do this work every weekend, every week, every day. Bookmark it. Share it with the home baker in your life. The math is yours.</p>
+
+      <div class="related-posts">
+        <div class="related-posts-label">Related Reading</div>
+        <div class="related-posts-grid">
+          <a href="baking-pan-swap-calculator.html" class="related-post-card">
+            <h3>The Baking Pan Swap Calculator</h3>
+            <p>The other half of the baking sub-track. Once you've got your dough weights, this tells you whether it fits the pan you actually own.</p>
+            <span class="related-link">Read the post ↗</span>
+          </a>
+          <a href="building-the-universal-recipe-scaler.html" class="related-post-card">
+            <h3>Building the Universal Recipe Scaler</h3>
+            <p>The first tool in the kit — scaling ingredient amounts and converting units. The universal-layer companion to dough math.</p>
+            <span class="related-link">Read the post ↗</span>
+          </a>
+          <a href="brine-calculator.html" class="related-post-card">
+            <h3>The Brine Calculator</h3>
+            <p>The same baker's-percentage thinking applied to brining — exact grams, four salt-type densities, and an equilibrium mode for long-clock cuts.</p>
+            <span class="related-link">Read the post ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="author-bio">
+        <strong>About the Author</strong>
+        <p>Josh is the founder of Built By Josh Studio and Tynkr Tools &amp; Co — a one-person creative operation based in Kansas building Notion templates, spreadsheets, zodiac digital art, and the occasional vanilla-JS side project. He's also the author of <em>Overlayed Echoes</em>.</p>
+        <a href="../about.html">Learn more →</a>
+      </div>
+
+    </article>
+
+    <aside class="article-sidebar">
+      <div class="article-sidebar-sticky">
+        <img src="../images/products/dough-hydration-calculator.webp" alt="Dough Hydration Calculator — app screenshot" class="sidebar-thumb" loading="lazy" />
+        <div class="sidebar-kicker">Free Web App</div>
+        <h3 class="sidebar-name">Dough Hydration Calculator</h3>
+        <div class="sidebar-price-block">Free</div>
+        <a href="https://builtbyjoshstudio-cyber.github.io/dough-hydration-calculator/" target="_blank" rel="noopener" class="sidebar-cta-btn">Open the Calculator →</a>
+        <ul class="sidebar-checklist">
+          <li>Baker's percentages — 11 flour types, 6 style presets</li>
+          <li>Flour-specific absorbency warnings (Tipo 00, GF, more)</li>
+          <li>Kansui rebrand for ramen + egg conversion for fresh pasta</li>
+          <li>Pre-fills the Pan Swap Calculator with your dough weights</li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FINAL CTA -->
+  <section class="cta-band">
+    <div class="cta-eyebrow">Try the Tool</div>
+    <h2>Bookmark it now. <span>Use it on your next batch of dough.</span></h2>
+    <p class="cta-sub">The Dough Hydration Calculator is free, local-first, and lives at a single URL. Real baker's percentages, real flour-specific absorbency math, no signup, no email, no data collection.</p>
+    <div class="cta-buttons">
+      <a href="https://builtbyjoshstudio-cyber.github.io/dough-hydration-calculator/" target="_blank" rel="noopener" class="btn-primary">Open the Dough Hydration Calculator →</a>
+      <a href="https://builtbyjoshstudio-cyber.github.io/pan-swap-calculator/" target="_blank" rel="noopener" class="btn-secondary">Try the Pan Swap Calculator →</a>
+    </div>
+    <div class="contact">Questions or feedback? Reach out at <a href="mailto:josh@builtbyjoshstudio.com">josh@builtbyjoshstudio.com</a></div>
+  </section>
+
+  <div class="back-to-blog">
+    <a href="../blog.html">← Back to The Studio Blog</a>
+  </div>
+
+  <p class="studio-sig">Budget smarter. Create better. Plan further.</p>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <strong>Built By Josh Studio</strong> · All digital products — instant download
+    </div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../refunds.html">Refunds</a></li>
+      <li><a href="../privacy.html">Privacy</a></li>
+      <li><a href="../terms.html">Terms</a></li>
+    </ul>
+    <div class="footer-legal">
+      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
+      Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.
+    </div>
+  </footer>
+
+  <script src="/js/mobile-nav.js" defer></script>
+</body>
+</html>
