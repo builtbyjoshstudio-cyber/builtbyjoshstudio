@@ -12,7 +12,8 @@
         link_url: link.href,
         link_domain: 'etsy.com',
         link_text: (link.innerText || '').trim().substring(0, 100),
-        outbound: true
+        outbound: true,
+        transport_type: 'beacon'
       });
     }
   });
