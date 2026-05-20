@@ -76,9 +76,10 @@
     "url": "https://builtbyjoshstudio.com"
   },
   "featureList": [
-    "Instant ingredient quantity scaling (up or down)",
-    "US imperial to metric unit conversion",
-    "Automatic kg/L formatting for large quantities",
+    "Quick-scale buttons (0.5× / 1× / 2× / 3×) plus custom servings calculator",
+    "Smart Egg Math handler for fractional eggs (Chef's Tip with grams + tablespoons)",
+    "3×+ volumetric scaling warning (recommends switching to weight)",
+    "US imperial to metric unit conversion with auto kg/L formatting",
     "Scale-lock for temperatures and dimensions",
     "Browser localStorage — recipe saved between sessions",
     "Interactive prep checklist with strikethrough",
@@ -370,6 +371,13 @@
         <p>The scaler ignores temperatures and dimensional measurements (inch, cm, mm) automatically. They pass through unchanged. Only ingredient quantities — the things measured in cups, tablespoons, ounces, grams, etc. — get scaled and converted.</p>
         <p>To make this airtight in the UI, the tool explicitly guides users to paste <em>only</em> the ingredient list, not the full recipe with instructions. That input constraint sidesteps the harder problem of distinguishing "preheat oven to 400°F for 30 minutes" (don't scale anything) from "mix 30 oz of flour" (scale this).</p>
         <p>Constrained input, simpler logic, fewer edge cases. The right tradeoff for a tool meant to be used in ten seconds.</p>
+        <h2>Two Pro-Chef Helpers Most Recipe Tools Skip</h2>
+        <p>Two small features that pay for themselves the first time you hit them.</p>
+        <p><strong>Smart Egg Math.</strong> When you scale a recipe down (or up to an awkward number) and end up with "1.4 eggs" or "0.5 eggs," the tool flags the row and pops a Chef's Tip explaining how to actually measure a fractional egg: <em>"1 whole egg equals roughly 3 Tablespoons (or 46g). For 0.5 eggs, use exactly 1.5 Tablespoons. For smaller fractions, use a single egg yolk or a splash of milk."</em> No other scaler I've seen handles this — and fractional eggs are the most common ratio mistake people make when scaling baked goods.</p>
+        <p><strong>3×+ Volumetric Warning.</strong> If you scale a recipe up by 3× or more and your ingredients are measured in cups, tablespoons, or teaspoons, the tool throws a Chef's Note: <em>"Volumetric baking measurements (cups) become highly inaccurate when scaled up massively due to compaction. For bulletproof professional results, consider converting your core ingredients to weight (grams)."</em> Volume measures pack tighter as the quantity grows — the same "cup of flour" that's roughly 120g at a single batch becomes effectively heavier when you scoop it from a giant mixing bowl. At 3× and above the error compounds. The warning saves the cake before the math does.</p>
+        <p>Both Chef's Notes appear inline below the scaled recipe — only when they're relevant — and disappear when the input doesn't trigger them.</p>
+        <h2>Quick-Scale Buttons (and Custom Servings)</h2>
+        <p>For the most common cases there are four one-tap scale buttons across the top of the tool — <strong>0.5× / 1× / 2× / 3×</strong> — so you don't have to type anything if you're just halving or doubling. For everything else, a small "Original Servings → Target Servings" pair lets you derive the multiplier directly: a recipe written for 4, cooking for 6, gets a clean 1.5× without manual math. Whichever route you take, the live multiplier display in the top corner of the scaled output tells you exactly what factor is being applied.</p>
         <h2>Glassmorphism Over Culinary Warmth</h2>
         <p>The visual design is a frosted-glass card layered over a warm food-photo background. The look sits somewhere between premium iOS app and modern recipe magazine.</p>
         <p>The point isn't aesthetics for their own sake. A recipe scaler that looks like a free 2008 utility is a recipe scaler that gets used once and abandoned. Looking like a tool you'd pay for makes it a tool you'll come back to.</p>
@@ -441,9 +449,9 @@
         <div class="sidebar-price-block">Free</div>
         <a href="https://builtbyjoshstudio-cyber.github.io/universal-recipe-scaler/" target="_blank" rel="noopener" class="sidebar-cta-btn">Open the App →</a>
         <ul class="sidebar-checklist">
-          <li>Vanilla HTML/CSS/JS — runs entirely in your browser</li>
+          <li>Quick-scale 0.5× / 1× / 2× / 3× + custom servings</li>
+          <li>Smart Egg Math + 3×+ volumetric warning</li>
           <li>Imperial → metric with auto kg/L formatting</li>
-          <li>Scale-lock ignores temperatures and dimensions</li>
           <li>Interactive prep checklist, copy &amp; print</li>
         </ul>
       </div>
