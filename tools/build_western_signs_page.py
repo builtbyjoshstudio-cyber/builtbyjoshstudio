@@ -36,7 +36,7 @@ SIGN_META = {
     'Libra':        dict(slug='libra',       symbol='♎', element='Air',   modality='Cardinal', planet='Venus',   symbol_label='The Scales',       dates='September 23 – October 22',dates_short='Sep 23 – Oct 22', sister_signs='Gemini, Aquarius',     sku='BBJ-WS-LIBRA',       etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
     'Scorpio':      dict(slug='scorpio',     symbol='♏', element='Water', modality='Fixed',    planet='Pluto',   symbol_label='The Scorpion',     dates='October 23 – November 21', dates_short='Oct 23 – Nov 21', sister_signs='Cancer, Pisces',       sku='BBJ-WS-SCORPIO',     etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
     'Sagittarius':  dict(slug='sagittarius', symbol='♐', element='Fire',  modality='Mutable',  planet='Jupiter', symbol_label='The Archer',       dates='November 22 – December 21',dates_short='Nov 22 – Dec 21', sister_signs='Aries, Leo',           sku='BBJ-WS-SAGITTARIUS', etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
-    'Capricorn':    dict(slug='capricorn',   symbol='♑', element='Earth', modality='Cardinal', planet='Saturn',  symbol_label='The Sea-Goat',     dates='December 22 – January 19', dates_short='Dec 22 – Jan 19', sister_signs='Taurus, Virgo',        sku='BBJ-WS-CAPRICORN',   etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
+    'Capricorn':    dict(slug='capricorn',   symbol='♑', element='Earth', modality='Cardinal', planet='Saturn',  symbol_label='The Goat',         dates='December 22 – January 19', dates_short='Dec 22 – Jan 19', sister_signs='Taurus, Virgo',        sku='BBJ-WS-CAPRICORN',   etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
     'Aquarius':     dict(slug='aquarius',    symbol='♒', element='Air',   modality='Fixed',    planet='Uranus',  symbol_label='The Water Bearer', dates='January 20 – February 18', dates_short='Jan 20 – Feb 18', sister_signs='Gemini, Libra',        sku='BBJ-WS-AQUARIUS',    etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
     'Pisces':       dict(slug='pisces',      symbol='♓', element='Water', modality='Mutable',  planet='Neptune', symbol_label='The Fish',         dates='February 19 – March 20',   dates_short='Feb 19 – Mar 20', sister_signs='Cancer, Scorpio',      sku='BBJ-WS-PISCES',       etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
 }
@@ -83,8 +83,210 @@ ARIES_STYLE_COPY = {
     'watercolor-2':         'A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.',
 }
 
-# Map sign to its style copy. Message 5 will provide per-sign overrides.
-STYLE_COPY_BY_SIGN = {'Aries': ARIES_STYLE_COPY}
+# Per-sign style copy. Each sub-dict has 14 entries keyed by the same folder
+# slugs as STYLE_ORDER. Brief 5A.3 §3 — 2-3 sentences each, describing the style
+# as applied to that specific sign.
+TAURUS_STYLE_COPY = {
+    'anime':                "Stylized, Japanese-illustration-inspired. Taurus rendered with grounded power and slow-burn presence rather than kinetic motion — the bull as anime archetype, drawn with weight and a quieter kind of gravitas.",
+    'celestial-animals':    "Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the bull positioned as a celestial archetype — horned silhouette anchored in geometry rather than literal animal portraiture.",
+    'halloween':            "Seasonal but not costume-y. Taurus energy filtered through pumpkin-light, autumn palettes, and harvest-festival atmosphere. The bull recast as the heaviest presence at the gathering, designed to work year-round on a wall.",
+    'halloween-horrors':    "The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. The bull as something ancient and unmoved — earth tones bleeding into obsidian, with the weight of something that has seen this all before.",
+    'hyper-realistic-signs':"Photoreal portraiture with cinematic lighting and material detail. Skin texture, horn weight, the mass of muscle. Designed for buyers who want gallery-quality realism rather than symbolic stylization.",
+    'mythic-guardians':     "Hyper-realistic warrior portraiture — horned warriors in earth-toned armor, bovine iconography, cinematic mythological figures. The signature hero-pose look of the catalog, rendered in bronze and forest palettes rather than crimson.",
+    'punk':                 "Bold, graphic, attitude-forward. Taurus reimagined with punk-rock visual language — heavy lines, immovable poses, defiant stillness. Loud on purpose, but never frantic.",
+    'punk-oil':             "The Punk style brushed through oil-painting texture. Painterly weight applied to the bull's natural gravitas — more layered, slightly more vintage in feel, still planted.",
+    'silhouette-aspects':   "Pure form against atmospheric backdrop. The bull and Taurus iconography stripped to silhouette, with mood carried by sky and palette — golden hours, harvest light, low horizons.",
+    'silhouettes':          "Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. Designed to anchor a multi-sign or multi-style wall arrangement.",
+    'silhouettes-fantasy':  "Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians.",
+    'vintage-posters':      "Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera — the kind of design that suits the Taurus appreciation for things built to last.",
+    'watercolor-1':         "Soft painterly washes — earth tones, gold, and Venusian rose. Fluid movement, organic edges, gentler but no less anchored. The studio's classic watercolor approach applied to Taurus's slow weight.",
+    'watercolor-2':         "A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.",
+}
+
+GEMINI_STYLE_COPY = {
+    'anime':                "Stylized, Japanese-illustration-inspired. The Gemini twins rendered with anime motion — synchronized poses, mirrored expressions, the kinetic feel of two minds moving in step.",
+    'celestial-animals':    "Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the twins positioned as a celestial archetype — paired figures bound by geometry rather than narrative.",
+    'halloween':            "Seasonal but not costume-y. Gemini energy filtered through pumpkin-light, autumn palettes, and the playful mischief that suits the sign. Two-faced rather than two-headed — designed to work year-round on a wall.",
+    'halloween-horrors':    "The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. Gemini doubled into something off — twins where one of them isn't quite right.",
+    'hyper-realistic-signs':"Photoreal portraiture with cinematic lighting and material detail. Two faces, identical bone structure, subtly different expressions. Designed for buyers who want gallery-quality realism rather than symbolic stylization.",
+    'mythic-guardians':     "Hyper-realistic warrior portraiture — paired warriors, twin armor sets, cinematic mythological figures. The signature hero-pose look of the catalog applied to a sign that comes pre-doubled.",
+    'punk':                 "Bold, graphic, attitude-forward. Gemini reimagined with punk-rock visual language — split compositions, defiant duality, high-contrast color. Loud on purpose, in stereo.",
+    'punk-oil':             "The Punk style brushed through oil-painting texture. Painterly weight applied to the mirrored attitude — more layered, slightly more vintage in feel, still loud, still doubled.",
+    'silhouette-aspects':   "Pure form against atmospheric backdrop. The twin profiles stripped to silhouette, with mood carried by sky and palette behind them — paired figures against open air.",
+    'silhouettes':          "Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. The twins reduced to two graphic shapes, designed to anchor a multi-sign or multi-style wall arrangement.",
+    'silhouettes-fantasy':  "Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians, with the doubling intact.",
+    'vintage-posters':      "Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera from a Gemini's commonplace book — clever, conversational, double-sided.",
+    'watercolor-1':         "Soft painterly washes — Mercurial blues, soft yellows, and air-sign clarity. Fluid movement, organic edges, gentler but no less Gemini. The studio's classic watercolor approach.",
+    'watercolor-2':         "A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with the Watercolor 1 series the same way the twins pair with each other.",
+}
+
+CANCER_STYLE_COPY = {
+    'anime':                "Stylized, Japanese-illustration-inspired. Cancer rendered with anime sensitivity — expressive eyes, soft palettes, the tidal pull of feeling carried in posture rather than action.",
+    'celestial-animals':    "Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the crab positioned as a celestial archetype — armored geometry against a moonlit ground.",
+    'halloween':            "Seasonal but not costume-y. Cancer energy filtered through pumpkin-light, autumn palettes, and harvest-tide atmosphere. The crab tucked into shadow, designed to work year-round on a wall.",
+    'halloween-horrors':    "The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. Cancer rendered with deep-sea menace — pale silver against abyssal black, with the quiet of things that watch from below.",
+    'hyper-realistic-signs':"Photoreal portraiture with cinematic lighting and material detail. Carapace, claw, the wet sheen of shell. Designed for buyers who want gallery-quality realism rather than symbolic stylization.",
+    'mythic-guardians':     "Hyper-realistic warrior portraiture — armored guardians with crustacean motifs, lunar palettes, cinematic mythological figures. The signature hero-pose look of the catalog rendered in pearl and midnight.",
+    'punk':                 "Bold, graphic, attitude-forward. Cancer reimagined with punk-rock visual language — sharp angles around soft centers, the contradiction the sign already lives. Loud on purpose, defensive by design.",
+    'punk-oil':             "The Punk style brushed through oil-painting texture. Painterly weight applied to a sign that already protects itself — more layered, slightly more vintage in feel, still guarded.",
+    'silhouette-aspects':   "Pure form against atmospheric backdrop. The crab and Cancer iconography stripped to silhouette, with mood carried by tidal palettes — moon-rise, lunar wash, deep water behind.",
+    'silhouettes':          "Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. Designed to anchor a multi-sign or multi-style wall arrangement.",
+    'silhouettes-fantasy':  "Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians, with the moon always somewhere in frame.",
+    'vintage-posters':      "Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera — nostalgic warmth that suits the Cancer love of held memory.",
+    'watercolor-1':         "Soft painterly washes — pearl, silver, deep teal. Fluid movement, organic edges, gentler but no less Cancer. The studio's classic watercolor approach applied to a sign that already feels like water.",
+    'watercolor-2':         "A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.",
+}
+
+LEO_STYLE_COPY = {
+    'anime':                "Stylized, Japanese-illustration-inspired. Leo rendered with anime swagger — manes drawn like flame, regal stillness alternating with cinematic motion. Reads like a key visual from an animated series.",
+    'celestial-animals':    "Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the lion positioned as a celestial archetype — solar geometry around a regal silhouette.",
+    'halloween':            "Seasonal but not costume-y. Leo energy filtered through pumpkin-light, autumn palettes, and harvest-court atmosphere. The lion at the head of the table, designed to work year-round on a wall.",
+    'halloween-horrors':    "The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. Leo rendered with infernal authority — molten gold against obsidian, the lion as something older and hungrier than ceremony.",
+    'hyper-realistic-signs':"Photoreal portraiture with cinematic lighting and material detail. Mane texture, gold-flecked eyes, the weight of muscle in repose. Designed for buyers who want gallery-quality realism rather than symbolic stylization.",
+    'mythic-guardians':     "Hyper-realistic warrior portraiture — golden-armored sovereigns, sun-king regalia, cinematic mythological figures. The signature hero-pose look of the catalog, rendered in solar gold and battle-worn bronze.",
+    'punk':                 "Bold, graphic, attitude-forward. Leo reimagined with punk-rock visual language — sharp angles, defiant compositions, high-contrast color. Loud on purpose, never apologetic about it.",
+    'punk-oil':             "The Punk style brushed through oil-painting texture. Painterly weight applied to the regal swagger — more layered, slightly more vintage in feel, still loud.",
+    'silhouette-aspects':   "Pure form against atmospheric backdrop. The lion and Leo iconography stripped to silhouette, with mood carried by sky and palette — sunrise, late gold, the colors of a kingdom at its peak.",
+    'silhouettes':          "Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. Designed to anchor a multi-sign or multi-style wall arrangement.",
+    'silhouettes-fantasy':  "Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians.",
+    'vintage-posters':      "Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera — the kind of golden-age design that suits a sign built for the spotlight.",
+    'watercolor-1':         "Soft painterly washes — gold, amber, warm earth tones. Fluid movement, organic edges, gentler but no less Leo. The studio's classic watercolor approach applied to solar weight.",
+    'watercolor-2':         "A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.",
+}
+
+VIRGO_STYLE_COPY = {
+    'anime':                "Stylized, Japanese-illustration-inspired. Virgo rendered with anime restraint — careful linework, deliberate composition, expressions that hold the room rather than command it.",
+    'celestial-animals':    "Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the maiden positioned as a celestial archetype — botanical geometry, careful symmetry, nothing wasted.",
+    'halloween':            "Seasonal but not costume-y. Virgo energy filtered through pumpkin-light, autumn palettes, and the precise quiet of late harvest. The maiden in her own deliberate atmosphere, designed to work year-round on a wall.",
+    'halloween-horrors':    "The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. Virgo rendered with antiseptic dread — sterile white against deep wound red, the horror that comes from things being too clean.",
+    'hyper-realistic-signs':"Photoreal portraiture with cinematic lighting and material detail. Skin texture, fabric weave, the precise architecture of a face. Designed for buyers who want gallery-quality realism rather than symbolic stylization.",
+    'mythic-guardians':     "Hyper-realistic warrior portraiture — armored maidens, sacred wards, cinematic mythological figures. The signature hero-pose look of the catalog rendered with the precision the sign demands.",
+    'punk':                 "Bold, graphic, attitude-forward. Virgo reimagined with punk-rock visual language — sharp angles, controlled compositions, defiance that still respects the layout. Loud on purpose, intentional about every choice.",
+    'punk-oil':             "The Punk style brushed through oil-painting texture. Painterly weight applied to a sign that values craft — more layered, slightly more vintage in feel, still composed.",
+    'silhouette-aspects':   "Pure form against atmospheric backdrop. The maiden and Virgo iconography stripped to silhouette, with mood carried by sky and palette — late harvest light, botanical greens, careful tonal work.",
+    'silhouettes':          "Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. The kind of minimalism a Virgo would design themselves.",
+    'silhouettes-fantasy':  "Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians.",
+    'vintage-posters':      "Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera — the kind of carefully-typeset design that suits the sign's love of craft.",
+    'watercolor-1':         "Soft painterly washes — sage, parchment, late-summer earth tones. Fluid movement, organic edges, gentler but no less Virgo. The studio's classic watercolor approach applied to a sign that lives in detail.",
+    'watercolor-2':         "A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.",
+}
+
+LIBRA_STYLE_COPY = {
+    'anime':                "Stylized, Japanese-illustration-inspired. Libra rendered with anime grace — symmetrical compositions, elegant lines, the kind of beauty that announces itself without raising its voice.",
+    'celestial-animals':    "Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the scales positioned as a celestial archetype — perfectly balanced geometry against the cosmos.",
+    'halloween':            "Seasonal but not costume-y. Libra energy filtered through pumpkin-light, autumn palettes, and the careful elegance of harvest-court ceremony. The scales held by candlelight, designed to work year-round on a wall.",
+    'halloween-horrors':    "The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. Libra rendered with the horror of judgment — beautiful figures, terrible verdicts.",
+    'hyper-realistic-signs':"Photoreal portraiture with cinematic lighting and material detail. The exact weight of brass, the precise tilt of a beam, the architecture of a balanced face. Designed for buyers who want gallery-quality realism.",
+    'mythic-guardians':     "Hyper-realistic warrior portraiture — robed arbiters, ceremonial armor, cinematic mythological figures. The signature hero-pose look of the catalog applied to a sign that judges with composure.",
+    'punk':                 "Bold, graphic, attitude-forward. Libra reimagined with punk-rock visual language — sharp angles, balanced asymmetry, defiance that still respects composition. Loud on purpose, never disordered.",
+    'punk-oil':             "The Punk style brushed through oil-painting texture. Painterly weight applied to a sign built around aesthetic — more layered, slightly more vintage in feel, still balanced.",
+    'silhouette-aspects':   "Pure form against atmospheric backdrop. The scales and Libra iconography stripped to silhouette, with mood carried by symmetry and palette — sunset gradients, balanced horizons.",
+    'silhouettes':          "Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. Designed to anchor a multi-sign or multi-style wall arrangement.",
+    'silhouettes-fantasy':  "Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians.",
+    'vintage-posters':      "Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera — the kind of considered design that suits a sign devoted to aesthetic balance.",
+    'watercolor-1':         "Soft painterly washes — rose, gold, twilight blue. Fluid movement, organic edges, gentler but no less Libra. The studio's classic watercolor approach applied to a sign that lives in harmony.",
+    'watercolor-2':         "A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.",
+}
+
+SCORPIO_STYLE_COPY = {
+    'anime':                "Stylized, Japanese-illustration-inspired. Scorpio rendered with anime intensity — narrowed eyes, deep palettes, the kinetic feel of something about to strike. Reads like a key visual from a darker animated series.",
+    'celestial-animals':    "Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the scorpion positioned as a celestial archetype — venom-tipped geometry against the deepest cosmic black.",
+    'halloween':            "Seasonal but not costume-y. Scorpio energy filtered through pumpkin-light, autumn palettes, and the season the sign was born to own. The scorpion at the height of its hour, designed to work year-round on a wall.",
+    'halloween-horrors':    "The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. Scorpio rendered without restraint — blood-deep crimson, obsidian sting, the horror this sign carries by default.",
+    'hyper-realistic-signs':"Photoreal portraiture with cinematic lighting and material detail. Chitin texture, venom gleam, the exact weight of a curved tail. Designed for buyers who want gallery-quality realism rather than symbolic stylization.",
+    'mythic-guardians':     "Hyper-realistic warrior portraiture — black-armored assassins, venomous guardians, cinematic mythological figures. The signature hero-pose look of the catalog rendered in obsidian and blood.",
+    'punk':                 "Bold, graphic, attitude-forward. Scorpio reimagined with punk-rock visual language — sharp angles, defiant compositions, high-contrast color. Loud on purpose, intentionally menacing.",
+    'punk-oil':             "The Punk style brushed through oil-painting texture. Painterly weight applied to a sign already built around intensity — more layered, slightly more vintage in feel, still dangerous.",
+    'silhouette-aspects':   "Pure form against atmospheric backdrop. The scorpion and Scorpio iconography stripped to silhouette, with mood carried by sky and palette — blood moons, deep dusk, the colors of something hunting.",
+    'silhouettes':          "Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. Designed to anchor a multi-sign or multi-style wall arrangement.",
+    'silhouettes-fantasy':  "Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians.",
+    'vintage-posters':      "Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera from a darker era — the kind of design that suits a sign comfortable in shadow.",
+    'watercolor-1':         "Soft painterly washes — crimson, deep purple, ink black. Fluid movement, organic edges, gentler but no less Scorpio. The studio's classic watercolor approach applied to a sign that bleeds.",
+    'watercolor-2':         "A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.",
+}
+
+SAGITTARIUS_STYLE_COPY = {
+    'anime':                "Stylized, Japanese-illustration-inspired. Sagittarius rendered with anime momentum — drawn bow, mid-stride compositions, the cinematic feel of a hero already moving toward the next chapter.",
+    'celestial-animals':    "Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the centaur archer positioned as a celestial archetype — drawn-arrow geometry against open sky.",
+    'halloween':            "Seasonal but not costume-y. Sagittarius energy filtered through pumpkin-light, autumn palettes, and the late-fall restlessness that suits a fire sign at the edge of winter. Designed to work year-round on a wall.",
+    'halloween-horrors':    "The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. The archer rendered as wild hunt — antlered, primal, dangerous in the way only freedom can be.",
+    'hyper-realistic-signs':"Photoreal portraiture with cinematic lighting and material detail. Sinew, drawn bowstring, the focus of an aim already locked. Designed for buyers who want gallery-quality realism rather than symbolic stylization.",
+    'mythic-guardians':     "Hyper-realistic warrior portraiture — centaur archers, kinetic warriors mid-draw, cinematic mythological figures. The signature hero-pose look of the catalog rendered in flame-gold and forge-bronze.",
+    'punk':                 "Bold, graphic, attitude-forward. Sagittarius reimagined with punk-rock visual language — kinetic compositions, defiant motion, high-contrast color. Loud on purpose, restless on principle.",
+    'punk-oil':             "The Punk style brushed through oil-painting texture. Painterly weight applied to a sign that never stops moving — more layered, slightly more vintage in feel, still aimed forward.",
+    'silhouette-aspects':   "Pure form against atmospheric backdrop. The archer and Sagittarius iconography stripped to silhouette, with mood carried by sky and palette — sunset wandering, open horizon, the colors of arrival just over the next ridge.",
+    'silhouettes':          "Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. Designed to anchor a multi-sign or multi-style wall arrangement.",
+    'silhouettes-fantasy':  "Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians.",
+    'vintage-posters':      "Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera from a traveler's wall — the kind of design that suits a sign always on its way somewhere.",
+    'watercolor-1':         "Soft painterly washes — flame gold, dust red, late-autumn earth tones. Fluid movement, organic edges, gentler but no less Sagittarius. The studio's classic watercolor approach.",
+    'watercolor-2':         "A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.",
+}
+
+CAPRICORN_STYLE_COPY = {
+    'anime':                "Stylized, Japanese-illustration-inspired. Capricorn rendered with anime gravitas — stoic poses, ancient palettes, the slow burn of a sign that's already calculated the next ten moves.",
+    'celestial-animals':    "Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the sea-goat positioned as a celestial archetype — stone-carved geometry against deep starlit black.",
+    'halloween':            "Seasonal but not costume-y. Capricorn energy filtered through pumpkin-light, autumn palettes, and the cold-edged threshold of late fall. Designed to work year-round on a wall.",
+    'halloween-horrors':    "The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. Capricorn rendered as something old — horned, stone-still, watching from the frozen peak.",
+    'hyper-realistic-signs':"Photoreal portraiture with cinematic lighting and material detail. Horn texture, mountain wind in fur, the weight of an immovable creature. Designed for buyers who want gallery-quality realism rather than symbolic stylization.",
+    'mythic-guardians':     "Hyper-realistic warrior portraiture — armored sentinels, ancient guardians, cinematic mythological figures. The signature hero-pose look of the catalog rendered in slate, iron, and weathered bronze.",
+    'punk':                 "Bold, graphic, attitude-forward. Capricorn reimagined with punk-rock visual language — sharp angles, immovable poses, defiance that doesn't move because it doesn't have to. Loud on purpose, never unstable.",
+    'punk-oil':             "The Punk style brushed through oil-painting texture. Painterly weight applied to a sign that already feels ancient — more layered, slightly more vintage in feel, still solid.",
+    'silhouette-aspects':   "Pure form against atmospheric backdrop. The sea-goat and Capricorn iconography stripped to silhouette, with mood carried by sky and palette — mountain dusk, deep cold blues, the colors of an arduous climb.",
+    'silhouettes':          "Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. Designed to anchor a multi-sign or multi-style wall arrangement.",
+    'silhouettes-fantasy':  "Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians.",
+    'vintage-posters':      "Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera — the kind of design that suits a sign that respects what was built to last.",
+    'watercolor-1':         "Soft painterly washes — slate, granite gray, deep evergreen. Fluid movement, organic edges, gentler but no less Capricorn. The studio's classic watercolor approach applied to enduring weight.",
+    'watercolor-2':         "A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.",
+}
+
+AQUARIUS_STYLE_COPY = {
+    'anime':                "Stylized, Japanese-illustration-inspired. Aquarius rendered with anime futurism — cool palettes, asymmetric compositions, the cinematic feel of something only just arriving from further ahead.",
+    'celestial-animals':    "Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the water bearer positioned as a celestial archetype — radial geometry pouring outward, the figure as transmission rather than person.",
+    'halloween':            "Seasonal but not costume-y. Aquarius energy filtered through pumpkin-light, autumn palettes, and a cool-detached take on the season. Designed to work year-round on a wall.",
+    'halloween-horrors':    "The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. Aquarius rendered as something that arrives unexpectedly — angular, otherworldly, electric in the worst way.",
+    'hyper-realistic-signs':"Photoreal portraiture with cinematic lighting and material detail. The exact pour of water against glass, the gleam of an unfamiliar metal, the architecture of an idea made literal. Designed for buyers who want gallery-quality realism.",
+    'mythic-guardians':     "Hyper-realistic warrior portraiture — robed seers, electric prophets, cinematic mythological figures. The signature hero-pose look of the catalog rendered in arc-blue and station-white.",
+    'punk':                 "Bold, graphic, attitude-forward. Aquarius reimagined with punk-rock visual language — angular figures, anti-establishment compositions, high-contrast color. Loud on purpose, future-facing on principle.",
+    'punk-oil':             "The Punk style brushed through oil-painting texture. Painterly weight applied to a sign that already invents new conventions — more layered, slightly more vintage in feel, still ahead of itself.",
+    'silhouette-aspects':   "Pure form against atmospheric backdrop. The water bearer and Aquarius iconography stripped to silhouette, with mood carried by sky and palette — predawn blue, station-light, the colors of something not from here.",
+    'silhouettes':          "Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. Designed to anchor a multi-sign or multi-style wall arrangement.",
+    'silhouettes-fantasy':  "Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians.",
+    'vintage-posters':      "Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera — but specifically the kind a futurist would have collected, retro in service of looking forward.",
+    'watercolor-1':         "Soft painterly washes — silver, ice blue, arc violet. Fluid movement, organic edges, gentler but no less Aquarius. The studio's classic watercolor approach applied to a sign made of frequencies.",
+    'watercolor-2':         "A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.",
+}
+
+PISCES_STYLE_COPY = {
+    'anime':                "Stylized, Japanese-illustration-inspired. Pisces rendered with anime softness — expressive eyes, flowing palettes, the cinematic feel of a character carrying entire interior worlds invisibly.",
+    'celestial-animals':    "Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the paired fish positioned as a celestial archetype — circular geometry, two figures in eternal opposite motion.",
+    'halloween':            "Seasonal but not costume-y. Pisces energy filtered through pumpkin-light, autumn palettes, and the misty in-between atmosphere the sign already lives in. Designed to work year-round on a wall.",
+    'halloween-horrors':    "The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. Pisces rendered with deep-sea dread — pale shapes against black water, the horror of things glimpsed but never fully seen.",
+    'hyper-realistic-signs':"Photoreal portraiture with cinematic lighting and material detail. Scale shimmer, water refraction, the exact weight of light underwater. Designed for buyers who want gallery-quality realism rather than symbolic stylization.",
+    'mythic-guardians':     "Hyper-realistic warrior portraiture — pearl-armored guardians, coral-crowned figures, cinematic mythological warriors. The signature hero-pose look of the catalog rendered in oceanic palettes.",
+    'punk':                 "Bold, graphic, attitude-forward. Pisces reimagined with punk-rock visual language — fluid compositions, soft defiance, high-contrast color. Loud on purpose, but in the way water can be loud — relentless rather than aggressive.",
+    'punk-oil':             "The Punk style brushed through oil-painting texture. Painterly weight applied to a sign already comfortable with formlessness — more layered, slightly more vintage in feel, still moving.",
+    'silhouette-aspects':   "Pure form against atmospheric backdrop. The two fish and Pisces iconography stripped to silhouette, with mood carried by sky and palette — predawn fog, deep water, the colors of the in-between hour.",
+    'silhouettes':          "Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. Designed to anchor a multi-sign or multi-style wall arrangement.",
+    'silhouettes-fantasy':  "Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians.",
+    'vintage-posters':      "Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera — the kind of dreamlike design that suits a sign that lives partly elsewhere.",
+    'watercolor-1':         "Soft painterly washes — sea-foam, deep indigo, iridescent pearl. Fluid movement, organic edges, gentler but no less Pisces. The studio's classic watercolor approach applied to a sign that already is watercolor.",
+    'watercolor-2':         "A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.",
+}
+
+STYLE_COPY_BY_SIGN = {
+    'Aries':       ARIES_STYLE_COPY,
+    'Taurus':      TAURUS_STYLE_COPY,
+    'Gemini':      GEMINI_STYLE_COPY,
+    'Cancer':      CANCER_STYLE_COPY,
+    'Leo':         LEO_STYLE_COPY,
+    'Virgo':       VIRGO_STYLE_COPY,
+    'Libra':       LIBRA_STYLE_COPY,
+    'Scorpio':     SCORPIO_STYLE_COPY,
+    'Sagittarius': SAGITTARIUS_STYLE_COPY,
+    'Capricorn':   CAPRICORN_STYLE_COPY,
+    'Aquarius':    AQUARIUS_STYLE_COPY,
+    'Pisces':      PISCES_STYLE_COPY,
+}
 
 
 def style_copy_for(sign):
@@ -659,9 +861,9 @@ def build_page(sign, manifest):
     </div>
     <div class="hero-eyebrow">{m['symbol']} {sign} · {m['element']} Sign · {m['dates']}</div>
     <h1 class="collection-title">{sign} Zodiac Art Bundle — 144 Print-Ready Files</h1>
-    <p class="collection-tagline">24 original {sign} designs across 14 art styles — celestial, dark fantasy, watercolor, vintage poster, anime, hyper-realistic, silhouette, mythic guardian, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.</p>
+    <p class="collection-tagline">{hero_tagline_for(sign)}</p>
     <div class="hero-image">
-      <img src="../images/zodiac/{slug}.webp" alt="{sign} zodiac art bundle preview — 14 art styles including celestial, dark fantasy, watercolor, and mythic guardians, from Built By Josh Studio" />
+      <img src="../images/zodiac/{slug}.webp" alt="{sign} zodiac art bundle preview — 14 art styles including celestial animals, mythic guardians, watercolor, Halloween Horrors, and vintage posters, from Built By Josh Studio" />
     </div>
   </header>
 
@@ -694,8 +896,8 @@ def build_page(sign, manifest):
           <li><strong>Dates:</strong> {m['dates']}</li>
           <li><strong>Sister {m['element']} Signs:</strong> {m['sister_signs']}</li>
         </ul>
-        <p>{sign} is the {ordinal_of(sign)} sign of the zodiac, spanning {m['dates']}. It is a {m['element'].lower()} sign ruled by {m['planet']}{aries_extra(sign)}</p>
-        {aries_what_makes_extra(sign)}
+        <p>{sign} is the {ordinal_of(sign)} sign of the zodiac, spanning {m['dates']}. It is {indef_article_for(m['element'])} {m['element'].lower()} sign ruled by {m['planet']}{planet_symbol_tail(sign)}</p>
+        {what_makes_paras(sign)}
       </section>
 
       <section>
@@ -757,7 +959,7 @@ def build_page(sign, manifest):
     <aside class="sticky-sidebar">
       <div class="sidebar-label">Bundle Price</div>
       <div class="sidebar-price">$24.99</div>
-      <div class="sidebar-price-note">One-time payment · Instant digital download · Etsy checkout</div>
+      <div class="sidebar-price-note">One-time payment · Instant digital download · Secure Lemon Squeezy checkout</div>
 
       <div class="sidebar-included-label">What's Included</div>
       <ul class="sidebar-included">
@@ -945,24 +1147,118 @@ def ordinal_of(sign):
     return ORDINAL_BY_SIGN.get(sign, 'first')
 
 
-def aries_extra(sign):
-    """Per-sign tail after 'ruled by <planet>'. Aries gets the brief-preserved
-    descriptive sentence; other signs get a clean period."""
-    if sign == 'Aries':
-        return ' — the planet of drive, aggression, and action. Aries is represented by the ram, a symbol of headfirst momentum and refusal to back down.'
-    return '.'
+# Indefinite article by element — fixes "a earth sign" / "a air sign" bug.
+INDEF_ARTICLE_BY_ELEMENT = {'Fire': 'a', 'Earth': 'an', 'Air': 'an', 'Water': 'a'}
 
 
-def aries_what_makes_extra(sign):
-    """Preserve the original Aries paragraphs (Brief 1.6 says keep this section
-    as-is for Aries). Other signs get nothing extra for now — Message 5 will
-    provide per-sign equivalents."""
-    if sign == 'Aries':
-        return (
-            '        <p>People born under Aries are often described as bold, competitive, and direct. They tend to be initiators — the ones who start the project, make the first move, and set the pace. Aries energy is forward motion. It doesn\'t wait for permission and it doesn\'t look back.</p>\n'
-            '        <p>That energy defines this entire collection. Whether rendered in sacred geometry and gold leaf or in neon cyberpunk circuitry, every Aries piece is designed to feel like it\'s moving — even standing still.</p>'
-        )
-    return ''
+def indef_article_for(element):
+    return INDEF_ARTICLE_BY_ELEMENT.get(element, 'a')
+
+
+# Per-sign tail completing the first sentence: " — <planet descriptor>. <sign> is
+# represented by <symbol>, <symbol descriptor>."  Lifted from existing live page
+# astrological prose where present (Brief 5A.3 §2 — lift if quality copy exists).
+PLANET_SYMBOL_TAIL_BY_SIGN = {
+    'Aries':       ' — the planet of drive, aggression, and action. Aries is represented by the ram, a symbol of headfirst momentum and refusal to back down.',
+    'Taurus':      ' — the planet of beauty, pleasure, and material value. Taurus is represented by the bull, a symbol of endurance, determination, and grounded strength.',
+    'Gemini':      ' — the planet of communication, intellect, and adaptability. Gemini is represented by the twins, a symbol of duality, curiosity, and the ability to hold two truths at once.',
+    'Cancer':      ' — the celestial body of emotion, memory, and intuition. Cancer is represented by the crab, a symbol of protection, sensitivity, and the instinct to guard what matters most.',
+    'Leo':         ' — the only sign in the zodiac governed by a star rather than a planet. Leo is represented by the lion, a symbol of sovereignty, courage, and the kind of presence that doesn\'t need to announce itself.',
+    'Virgo':       ' — the planet of intellect, communication, and analysis. Virgo is represented by the maiden, a symbol of purity not in the moral sense but in the sense of precision — the drive to refine, to improve, to get every detail right.',
+    'Libra':       ' — the planet of beauty, love, and aesthetic value. Libra is represented by the scales, the only inanimate symbol in the zodiac — a sign defined not by instinct or force but by the pursuit of balance.',
+    'Scorpio':     ' — the planet of transformation, death, and rebirth (with Mars as traditional co-ruler). Scorpio is represented by the scorpion, a symbol of intensity, resilience, and the willingness to go where other signs won\'t.',
+    'Sagittarius': ' — the planet of expansion, philosophy, and boundless optimism. Sagittarius is represented by the archer, a centaur drawing back a bow, aiming at something just beyond the horizon.',
+    'Capricorn':   ' — the planet of structure, discipline, and time. Capricorn is represented by the sea-goat, a mythic creature that climbs mountains and navigates depths — a symbol of ambition that operates in both the visible world and the one beneath the surface.',
+    'Aquarius':    ' — the planet of rebellion, innovation, and sudden change (with Saturn as traditional co-ruler). The water bearer pours knowledge and truth, not water — making Aquarius the sign of ideas, not emotions.',
+    'Pisces':      ' — the planet of dreams, illusion, and the subconscious (with Jupiter as traditional co-ruler). Pisces is represented by two fish swimming in opposite directions, a symbol of the sign\'s constant pull between the real world and the one they carry inside their head.',
+}
+
+
+def planet_symbol_tail(sign):
+    return PLANET_SYMBOL_TAIL_BY_SIGN.get(sign, '.')
+
+
+# Per-sign paras 2+3 of "What Makes X, X" — para 2 = personality/energy lift from
+# existing live page; para 3 rewritten to reference the new 14 styles instead of
+# the deprecated style names (Moonlit Lagoon / Frost Demon / cyberpunk edition /
+# etc.) that the old pages used.  Brief 5A.3 §2.
+WHAT_MAKES_PARAS_BY_SIGN = {
+    'Aries':       (
+        "<p>People born under Aries are often described as bold, competitive, and direct. They tend to be initiators — the ones who start the project, make the first move, and set the pace. Aries energy is forward motion. It doesn't wait for permission and it doesn't look back.</p>\n"
+        "        <p>That energy defines this entire collection. Whether rendered in the gold-line sacred geometry of the Celestial Animals, the molten authority of the Mythic Guardians, or the crimson menace of the Halloween Horrors — every Aries piece is designed to feel like it's moving, even standing still.</p>"
+    ),
+    'Taurus':      (
+        "<p>People born under Taurus are often described as reliable, patient, and deeply sensory. They value quality over quantity, comfort over chaos, and tend to build things meant to last. Taurus energy is slow and deliberate — it doesn't rush, but it doesn't quit either.</p>\n"
+        "        <p>That steadiness runs through every piece in this collection. Whether expressed in the rich gold linework of the Celestial Animals, the painterly weight of the Punk Oil and Vintage Posters, or the soft permanence of the watercolor washes — every Taurus print is designed to feel anchored and intentional, the way the sign itself moves through the world.</p>"
+    ),
+    'Gemini':      (
+        "<p>People born under Gemini are often described as quick-witted, versatile, and endlessly curious. They move between ideas, conversations, and interests with a fluidity that other signs can't match. Gemini energy is mental speed — the sign that's already three thoughts ahead of the room.</p>\n"
+        "        <p>That duality defines this entire collection. Every piece plays with the idea of two — mirrored figures, split compositions, contrasting palettes. Whether rendered in the gold-line geometry of the Celestial Animals or the paired Silhouette Aspects, the Gemini prints are designed to feel like they're in conversation with themselves.</p>"
+    ),
+    'Cancer':      (
+        "<p>People born under Cancer are often described as nurturing, emotionally perceptive, and deeply loyal. They feel everything at full volume but don't always show it — the hard shell exists for a reason. Cancer energy is tidal. It pulls inward, holds tight, and moves according to rhythms most people can't feel.</p>\n"
+        "        <p>That lunar, tidal quality defines this entire collection. Whether rendered in pearlescent watercolor washes, the deep shadow-work of the Halloween Horrors, or the armored vigilance of the Mythic Guardians — every Cancer piece is designed to feel like it holds more beneath the surface than what's visible at first glance.</p>"
+    ),
+    'Leo':         (
+        "<p>People born under Leo are often described as confident, generous, and magnetically warm. They lead naturally — not by force but by gravity. People orient around them. Leo energy is solar: it radiates outward, it lights up a room, and it expects the room to notice.</p>\n"
+        "        <p>That commanding, luminous quality defines this entire collection. Whether rendered in sacred geometry and gold leaf, the cinematic weight of the Mythic Guardians, or the molten roar of the Halloween Horrors — every Leo piece is designed to feel like the centerpiece of whatever wall it hangs on. Nothing in this collection was made to blend in.</p>"
+    ),
+    'Virgo':       (
+        "<p>People born under Virgo are often described as analytical, practical, and deeply attentive to quality. They notice what others miss. They build systems that work. They care about doing things well — not for applause but because doing it badly would bother them more than doing it right. Virgo energy is quiet competence, the kind that runs everything behind the scenes while louder signs take the credit.</p>\n"
+        "        <p>That exacting, botanical clarity runs through this entire collection. Whether expressed in the intricate sacred geometry of the Celestial Animals, the careful linework of the Silhouettes, or the precise composition of the Vintage Posters — every Virgo piece is designed with the same attention to detail that defines the sign itself.</p>"
+    ),
+    'Libra':       (
+        "<p>People born under Libra are often described as diplomatic, aesthetically driven, and deeply attuned to fairness. They seek harmony in their relationships, their environments, and even the visual composition of their living spaces. Libra energy is measured, intentional, and always considering both sides — but beneath the composure is a sign that cares fiercely about justice.</p>\n"
+        "        <p>That tension between beauty and consequence runs through this entire collection. Whether expressed through the symmetrical sacred geometry of the Celestial Animals, the cold authority of the Mythic Guardians, or the haunting balance of the Halloween Horrors — every Libra piece is designed to look perfectly composed while carrying real weight underneath.</p>"
+    ),
+    'Scorpio':     (
+        "<p>People born under Scorpio are often described as deeply passionate, fiercely loyal, and emotionally magnetic. They don't do anything halfway. They observe, they commit, and once they're in, they're all the way in. Scorpio energy is undercurrent — powerful, hidden, and capable of reshaping everything it touches.</p>\n"
+        "        <p>That intensity defines this entire collection. Whether rendered in the dark sacred geometry of the Celestial Animals, the visceral menace of the Halloween Horrors, or the quiet authority of the Silhouettes — every Scorpio piece is designed to feel like it's watching you back. Nothing in this collection is passive.</p>"
+    ),
+    'Sagittarius': (
+        "<p>People born under Sagittarius are often described as adventurous, honest to a fault, and perpetually reaching for something bigger. They chase truth, freedom, and meaning with the same intensity other signs chase stability. Sagittarius energy is forward momentum — the arrow already in flight, the next destination already chosen before the last one's finished.</p>\n"
+        "        <p>That restless, expansive energy defines this entire collection. Whether rendered in the blazing sacred geometry of the Celestial Animals, the cinematic motion of the Mythic Guardians, or the untamed warmth of the watercolor washes — every Sagittarius piece is designed to feel like it's going somewhere. Nothing in this collection stands still.</p>"
+    ),
+    'Capricorn':   (
+        "<p>People born under Capricorn are often described as driven, patient, and quietly relentless. They don't chase flashy wins — they build empires stone by stone. Capricorn energy is long-term: it plays the game that takes years, not minutes, and it rarely loses because it never stops working.</p>\n"
+        "        <p>That ancient, structural power defines this entire collection. Whether rendered in the stone-carved sacred geometry of the Celestial Animals, the armored authority of the Mythic Guardians, or the patient weight of the Vintage Posters — every Capricorn piece is designed to feel like something built to outlast everything around it.</p>"
+    ),
+    'Aquarius':    (
+        "<p>People born under Aquarius are often described as independent, unconventional, and quietly radical. They think in systems rather than sentiments. They care deeply about humanity in the abstract — about progress, fairness, and the future — even when they seem detached from the individual people around them. Aquarius energy is electric: it arrives suddenly, disrupts what was comfortable, and leaves something better in its wake.</p>\n"
+        "        <p>That inventive, future-facing energy defines this entire collection. Whether rendered in the luminous geometry of the Celestial Animals, the angular intelligence of the Punk and Punk Oil series, or the spectral authority of the Mythic Guardians — every Aquarius piece is designed to feel like it came from somewhere ahead of the present moment.</p>"
+    ),
+    'Pisces':      (
+        "<p>People born under Pisces are often described as deeply empathetic, creatively gifted, and emotionally porous. They absorb the feelings around them like water absorbs light — everything goes in, and the surface barely shows it. Pisces energy is oceanic: vast, shapeless, and capable of holding far more than it appears to from the shore.</p>\n"
+        "        <p>That dreaming, dissolving quality defines this entire collection. Whether rendered in the luminous sacred geometry of the Celestial Animals, the abyssal weight of the Halloween Horrors, or the soft iridescence of the watercolor washes — every Pisces piece is designed to feel like it exists between two worlds, the way the sign itself does.</p>"
+    ),
+}
+
+
+def what_makes_paras(sign):
+    return f'        {WHAT_MAKES_PARAS_BY_SIGN.get(sign, "")}' if WHAT_MAKES_PARAS_BY_SIGN.get(sign) else ''
+
+
+# Per-sign hero tagline (under H1) — bespoke per-sign opening with sign's
+# signature energy descriptor. Brief 5A.3 §1 gives Taurus, Scorpio, Pisces
+# examples; the rest follow the same pattern.
+HERO_TAGLINE_BY_SIGN = {
+    'Aries':       "24 original Aries designs across 14 art styles — bold, kinetic, refusing to wait. Crimson-armored mythic guardians, infernal Halloween Horrors, gold-line celestial geometry, anime motion, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Taurus':      "24 original Taurus designs across 14 art styles — grounded, sensual, and unhurried. Watercolor washes, vintage gold-leaf posters, mythic guardian armor, gothic-tinged silhouettes, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Gemini':      "24 original Gemini designs across 14 art styles — quick, dualistic, never quite settling. Mercurial line work, mirrored silhouettes, paired vintage posters, twin watercolor interpretations, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Cancer':      "24 original Cancer designs across 14 art styles — tidal, protective, emotionally layered. Pearlescent watercolor washes, shell-armored mythic guardians, moonlit silhouettes, deep-shadow Halloween Horrors, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Leo':         "24 original Leo designs across 14 art styles — solar, sovereign, impossible to ignore. Gold-leaf celestial work, cinematic mythic guardian portraiture, molten Halloween Horrors, vintage poster regalia, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Virgo':       "24 original Virgo designs across 14 art styles — precise, considered, never overstated. Botanical sacred geometry, clean-lined silhouettes, refined vintage poster compositions, careful watercolor washes, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Libra':       "24 original Libra designs across 14 art styles — composed, deliberate, beautiful and consequential at once. Symmetrical sacred geometry, balanced silhouettes, refined vintage posters, watercolor harmony pieces, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Scorpio':     "24 original Scorpio designs across 14 art styles — depth, intensity, and what's underneath. From the visceral menace of the Halloween Horrors to softer watercolor interpretations, mythic guardian armor in obsidian, vintage poster regalia, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Sagittarius': "24 original Sagittarius designs across 14 art styles — kinetic, expansive, always aiming further. Blazing celestial geometry, mid-draw mythic guardians, untamed watercolor warmth, vintage poster wanderlust, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Capricorn':   "24 original Capricorn designs across 14 art styles — structural, patient, built to outlast. Stone-cut celestial geometry, armored mythic guardians, weathered vintage posters, layered watercolor textures, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Aquarius':    "24 original Aquarius designs across 14 art styles — inventive, electric, ahead of the room. Luminous celestial geometry, angular punk-oil portraits, spectral mythic guardians, refracted watercolor washes, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Pisces':      "24 original Pisces designs across 14 art styles — dreamlike, fluid, and emotionally layered. Watercolor washes, ethereal silhouettes, oceanic mythic guardian armor, abyssal Halloween Horrors, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+}
+
+
+def hero_tagline_for(sign):
+    return HERO_TAGLINE_BY_SIGN.get(sign, HERO_TAGLINE_BY_SIGN['Aries'])
 
 
 def main():
