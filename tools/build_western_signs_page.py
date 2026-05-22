@@ -150,7 +150,7 @@ def faq_data(sign, styles_csv):
         (f'What is included in the {sign} Zodiac Art Bundle?',
          f'The {sign} bundle includes 144 print-ready digital files covering 24 original {sign} designs across 14 art-style series — {styles_csv}. Every design ships in three aspect ratios (1:1, 4:5, 2:3) and both PNG and JPG formats, at 300 DPI. The bundle also includes a License Agreement and a Print Guide as PDFs.'),
         (f'How much does the {sign} Zodiac Art Bundle cost?',
-         f'The {sign} bundle is priced at $24.99 — one-time payment, instant digital download. That works out to roughly $1.04 per individual design. Visit the Etsy listing for current promotional pricing if any sale is active.'),
+         f'The {sign} bundle is priced at $24.99 — one-time payment, instant digital download. That works out to roughly $1.04 per individual design.'),
         (f'Can I use the {sign} Zodiac Art Bundle for print-on-demand or commercial sales?',
          'Yes. The license includes print-on-demand rights for up to 100 physical units per individual design, cumulative across all formats, vendors, and time periods combined. You can sell framed prints, posters, canvases, mugs, t-shirts, and similar physical products made from the designs within that cap. For more than 100 prints of any single design, contact Built by Josh Studio LLC about extended commercial licensing.'),
         (f'What sizes can I print the {sign} art at?',
@@ -159,20 +159,29 @@ def faq_data(sign, styles_csv):
          f"The {sign} designs were created by Built by Josh Studio LLC using a combination of human creative direction and AI image generation tools, including Leonardo.ai. Every design is selected, curated, refined, and finalized by the studio's founder. This is disclosed in full in the license agreement included with every bundle."),
         ('What formats and color profiles do the files use?',
          'All files are delivered in both PNG (lossless) and JPG (92% quality compression) formats. Color profile is sRGB — the standard for virtually every print-on-demand service and consumer printer, requiring no color conversion before printing.'),
-        (f'Where can I buy the {sign} Zodiac Art Bundle right now?',
-         f'The {sign} bundle is sold through the Built By Josh Studio Etsy shop. The shop is currently on a brief verification pause while the IRS finalizes EIN verification for the LLC. The bundle, pricing, and license structure are unchanged during the pause — the shop will resume normal operation once verification clears.'),
+        (f'Where can I buy the {sign} Zodiac Art Bundle?',
+         f'The {sign} bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {sign} Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built By Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
         ('Do you have art for other zodiac signs and the Chinese zodiac?',
          'Yes. Built By Josh Studio publishes 12 sign-specific bundles for all Western zodiac signs (Aries through Pisces, identical structure to the Aries bundle), 12 sign-specific bundles in the Western Realms landscape series, a full 12-landscape Western Landscapes Collection, 12 animal-specific Chinese Signs bundles, and a single Chinese Realms Collection covering all 12 Chinese animals.'),
     ]
 
 
 def faq_schema_data(sign, styles_csv):
-    """Schema variants: same Q/A but with inch-marks replaced for safe JSON."""
+    """Schema variants: same Q/A but with inch-marks and curly quotes replaced
+    for safe JSON. Q7 in particular has double-quoted button label which gets
+    flattened to a quote-free form."""
     data = faq_data(sign, styles_csv)
     out = []
     for q, a in data:
-        # Replace " inch marks with the word "by" or "inches" for clean JSON
-        a_schema = a.replace('20" × 30"', '20 by 30 inches').replace('40" × 60"', '40 by 60 inches').replace('8×10', '8x10').replace('16×20', '16x20').replace('×', 'x')
+        a_schema = (
+            a
+            .replace('20" × 30"', '20 by 30 inches')
+            .replace('40" × 60"', '40 by 60 inches')
+            .replace('8×10', '8x10')
+            .replace('16×20', '16x20')
+            .replace('×', 'x')
+            .replace(f'"Buy the {sign} Bundle"', f'Buy the {sign} Bundle')
+        )
         out.append({'q': q, 'a': a_schema})
     return out
 
@@ -361,11 +370,6 @@ def build_page(sign, manifest):
     .short-version-label {{ font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 0.9rem; }}
     .short-version p {{ font-family: 'Crimson Pro', serif; font-size: 1.05rem; line-height: 1.75; color: var(--body-read); margin: 0; }}
 
-    /* Etsy vacation notice */
-    .etsy-notice {{ max-width: 1000px; margin: 1.5rem auto 0; padding: 1.4rem 1.7rem; background: rgba(123,79,166,0.07); border: 1px solid rgba(123,79,166,0.25); border-left: 4px solid var(--bbj-accent2); }}
-    .etsy-notice-label {{ font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 0.5rem; }}
-    .etsy-notice p {{ font-family: 'Crimson Pro', serif; font-size: 0.98rem; line-height: 1.6; color: var(--body-read); margin: 0; }}
-
     /* Main grid */
     .collection-main {{ max-width: 1200px; margin: 2rem auto 0; padding: 2rem 2rem 4rem; display: grid; grid-template-columns: 1fr 340px; gap: 3rem; align-items: start; }}
     .main-column {{ font-family: 'Crimson Pro', serif; font-size: 1.15rem; line-height: 1.75; color: var(--body-read); min-width: 0; }}
@@ -395,6 +399,22 @@ def build_page(sign, manifest):
     .style-card:hover {{ border-color: rgba(201,168,76,0.35); background: var(--bbj-surface-2); }}
     .style-card img {{ width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; display: block; background: linear-gradient(135deg, #1a1230 0%, #0d0a1a 100%); border-bottom: 1px solid var(--bbj-border); }}
     .style-card-body {{ padding: 0.9rem 1.1rem 1rem; }}
+
+    /* Lemon Squeezy checkout button (sidebar + final CTA) */
+    .ls-checkout-btn {{ display: block; width: 100%; background: var(--bbj-accent); color: var(--bbj-bg); border: none; font-family: 'Cinzel', serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 1.05rem 1rem; text-align: center; cursor: pointer; transition: background 0.2s, transform 0.2s; margin-bottom: 0.7rem; }}
+    .ls-checkout-btn:hover:not(:disabled) {{ background: #e0bd5a; transform: translateY(-1px); }}
+    .ls-checkout-btn:disabled {{ background: transparent; color: var(--bbj-muted); border: 1px solid var(--bbj-border); cursor: default; font-weight: 600; letter-spacing: 0.12em; font-size: 0.74rem; }}
+    .ls-checkout-btn--large {{ display: inline-block; width: auto; padding: 1.15rem 2.5rem; font-size: 0.82rem; margin: 0; }}
+    .ls-checkout-btn--large:disabled {{ font-size: 0.78rem; padding: 1.1rem 2.2rem; }}
+    .ls-checkout-sub {{ display: block; font-size: 0.74rem; font-style: italic; color: var(--bbj-muted); text-align: center; margin-bottom: 1.4rem; line-height: 1.45; }}
+
+    /* Secondary Etsy reference block (muted, courtesy link only — not a competing sales path) */
+    .etsy-secondary {{ margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid rgba(42,32,64,0.5); }}
+    .etsy-secondary .etsy-secondary-label {{ font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-muted); margin-bottom: 0.5rem; }}
+    .etsy-secondary p {{ font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: var(--bbj-muted); line-height: 1.5; margin-bottom: 0.5rem; }}
+    .etsy-secondary a {{ color: var(--bbj-muted); text-decoration: underline; text-decoration-color: rgba(138,127,168,0.4); }}
+    .etsy-secondary a:hover {{ color: var(--bbj-accent); text-decoration-color: var(--bbj-accent); }}
+    .etsy-secondary .etsy-pause-note {{ font-style: italic; font-size: 0.72rem; opacity: 0.75; margin-top: 0.4rem; margin-bottom: 0; }}
 
     /* License & POD block */
     .license-block {{ background: var(--bbj-surface); border: 1px solid var(--bbj-border); padding: 2rem 2.2rem; margin-top: 2rem; }}
@@ -476,8 +496,6 @@ def build_page(sign, manifest):
     .cta-band h2 {{ font-family: 'Cinzel', serif; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; color: var(--bbj-text); margin-bottom: 0.8rem; letter-spacing: 0.02em; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.2; }}
     .cta-band h2 .italic-accent {{ color: var(--bbj-accent); font-style: italic; font-family: 'Crimson Pro', serif; font-weight: 400; }}
     .cta-band .cta-sub {{ font-family: 'Crimson Pro', serif; color: var(--body-read); font-size: 1.05rem; max-width: 620px; margin: 0 auto 2rem; line-height: 1.6; }}
-    .btn-etsy {{ display: inline-block; background: var(--bbj-accent); color: var(--bbj-bg); font-family: 'Cinzel', serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 1.15rem 2.5rem; text-decoration: none; transition: background 0.2s, transform 0.2s; }}
-    .btn-etsy:hover {{ background: #e0bd5a; transform: translateY(-2px); }}
     .cta-band .cta-sub-line {{ display: block; font-family: 'Crimson Pro', serif; font-style: italic; font-size: 0.9rem; color: var(--bbj-muted); margin-top: 1rem; }}
 
     /* Footer */
@@ -653,12 +671,6 @@ def build_page(sign, manifest):
     <p>The {sign} Zodiac Art Bundle from Built By Josh Studio is a digital art collection containing 144 print-ready image files. Each bundle covers one Western zodiac sign and includes 24 original designs across 14 art-style series — {styles_csv}. Every design is delivered in three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) at 300 DPI, in both PNG and JPG formats, with maximum dimensions of 6000 × 9000 pixels. The bundle is priced at $24.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
   </aside>
 
-  <!-- Etsy vacation notice -->
-  <aside class="etsy-notice">
-    <div class="etsy-notice-label">Currently available via Etsy — temporary verification pause</div>
-    <p>The Built By Josh Studio Etsy shop is briefly paused while the IRS finalizes our new LLC's EIN verification. The full {sign} Zodiac Art Bundle is queued and will be available for direct purchase again as soon as Etsy completes verification. Bookmark this page or follow the studio's Substack for the relaunch — no changes to pricing, file structure, or licensing during the pause.</p>
-  </aside>
-
   <!-- MAIN LAYOUT -->
   <div class="collection-main">
 
@@ -759,15 +771,21 @@ def build_page(sign, manifest):
         <li>Instant download — no shipping</li>
       </ul>
 
-      <a href="{m['etsy_section_url']}" target="_blank" rel="noopener" class="sidebar-cta">Buy on Etsy →</a>
-      <span class="sidebar-cta-sub">Etsy shop on brief verification pause — bookmark and check back</span>
+      <button class="ls-checkout-btn" disabled data-checkout-url="" data-product-name="{sign} Zodiac Art Bundle" data-product-price="24.99">Buy the {sign} Bundle — Coming Soon</button>
+      <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
 
       <ul class="sidebar-trust">
         <li>Instant digital download</li>
         <li>300 DPI print-ready files</li>
         <li>Real Kansas LLC + clear POD license</li>
-        <li>4.7★ shop rating on Etsy</li>
+        <li>Secure direct checkout via Lemon Squeezy</li>
       </ul>
+
+      <div class="etsy-secondary">
+        <div class="etsy-secondary-label">Looking for something different?</div>
+        <p>The Built By Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
+        <p class="etsy-pause-note">Etsy storefront currently on a brief verification pause while the IRS finalizes EIN verification — {sign} bundle purchases above are unaffected.</p>
+      </div>
     </aside>
 
   </div>
@@ -854,8 +872,8 @@ def build_page(sign, manifest):
     <div class="cta-eyebrow">Browse the Collection</div>
     <h2>14 Styles. 24 Designs. <span class="italic-accent">One {sign} Bundle.</span></h2>
     <p class="cta-sub">Every art-style series in one $24.99 bundle. Print at home, print at a shop, sell on-demand up to 100 prints per design. Instant download, real license, no subscription.</p>
-    <a href="{m['etsy_section_url']}" target="_blank" rel="noopener" class="btn-etsy">Buy the {sign} Bundle on Etsy →</a>
-    <span class="cta-sub-line">Etsy currently on brief verification pause — bookmark this page and check back</span>
+    <button class="ls-checkout-btn ls-checkout-btn--large" disabled data-checkout-url="" data-product-name="{sign} Zodiac Art Bundle" data-product-price="24.99">Buy the {sign} Bundle — Coming Soon</button>
+    <span class="cta-sub-line">Instant download — 144 print-ready files in your inbox the moment checkout completes.</span>
   </section>
 
   <!-- FOOTER -->
