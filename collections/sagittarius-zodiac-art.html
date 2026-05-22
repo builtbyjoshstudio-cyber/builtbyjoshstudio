@@ -21,11 +21,11 @@
   <meta property="og:type" content="product" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/collections/sagittarius-zodiac-art.html" />
   <meta property="og:site_name" content="Built By Josh Studio" />
-  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/sagittarius.jpg" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/sagittarius.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sagittarius Zodiac Art Prints | Celestial, Vintage & Dark Fantasy" />
   <meta name="twitter:description" content="16 original Sagittarius digital art prints capturing the wandering spirit of the archer. Available in 12 distinct styles including Celestial, Dark Fantasy, Hyper-Realistic, Oil Painting, and Vintage. Instant download from Built By Josh Studio." />
-  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/sagittarius.jpg" />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/sagittarius.webp" />
 
   <script type="application/ld+json">
   { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -40,7 +40,7 @@
     "description": "16 original Sagittarius zodiac art prints spanning twelve distinct styles — celestial, dark fantasy, watercolor, vintage posters, cyberpunk, gothic horror, minimalist, anime-inspired, hyper-realistic, oil painting, macabre horror, and silhouette. All prints are instant digital downloads, high-resolution (up to 6000x9000), and print-ready.",
     "brand": { "@type": "Brand", "name": "Built By Josh Studio" },
     "category": "Digital Art Print",
-    "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius.jpg",
+    "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius.webp",
     "url": "https://builtbyjoshstudio.com/collections/sagittarius-zodiac-art.html",
     "offers": { "@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": "5.99", "highPrice": "11.99", "offerCount": 16, "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883", "availability": "https://schema.org/InStock" }
   }
@@ -156,7 +156,8 @@
     }
     .styles-grid .style-card img {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      height: auto;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
       display: block;
       background: linear-gradient(135deg, #1a1230 0%, #0d0a1a 100%);
@@ -167,6 +168,15 @@
     }
     .styles-grid .style-card .style-card-body h3 { margin-bottom: 0.5rem; }
     .styles-grid .style-card .style-card-body p { margin-bottom: 0 !important; }
+
+    /* ── PHASE 5: 14-STYLE GROUPED LAYOUT ── */
+    .styles-grouped { display: flex; flex-direction: column; gap: 2rem; margin-top: 1.5rem; }
+    .style-block { display: flex; flex-direction: column; gap: 1rem; }
+    .style-block-title {
+      font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700;
+      color: var(--bbj-text); letter-spacing: 0.04em; text-transform: uppercase;
+      padding-bottom: 0.6rem; border-bottom: 1px solid var(--bbj-border); margin: 0;
+    }
 
   </style>
   <script type="application/ld+json">
@@ -189,91 +199,175 @@
   "mainEntity": {
     "@type": "ItemList",
     "name": "Sagittarius Zodiac Art Print Styles",
-    "numberOfItems": 12,
+    "numberOfItems": 24,
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Celestial Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/celestial-thumb.jpg"
+        "name": "Anime — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/anime-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Dark Fantasy Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/dark-fantasy-thumb.jpg"
+        "name": "Celestial Animals — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/celestial-animals-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Watercolor Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/watercolor-thumb.jpg"
+        "name": "Halloween — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/halloween-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 4,
-        "name": "Vintage Poster Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/retro-thumb.jpg"
+        "name": "Halloween — Variant 2 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/halloween-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 5,
-        "name": "Cyberpunk Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/cyberpunk-thumb.jpg"
+        "name": "Halloween Horrors — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/halloween-horrors-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 6,
-        "name": "Gothic Horror Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/gothic-horror-thumb.jpg"
+        "name": "Halloween Horrors — Variant 2 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/halloween-horrors-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 7,
-        "name": "Minimalist Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/minimalist-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/hyper-realistic-signs-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 8,
-        "name": "Anime Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/anime-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 2 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/hyper-realistic-signs-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 9,
-        "name": "Hyper-Realistic Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/hyper-realistic-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 3 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/hyper-realistic-signs-3.webp"
       },
       {
         "@type": "ListItem",
         "position": 10,
-        "name": "Oil Painting Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/oil-painting-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 4 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/hyper-realistic-signs-4.webp"
       },
       {
         "@type": "ListItem",
         "position": 11,
-        "name": "Macabre Horror Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/macabre-horror-thumb.jpg"
+        "name": "Mythic Guardians — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/mythic-guardians-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 12,
-        "name": "Silhouette Sagittarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131883",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/silhouette-thumb.jpg"
+        "name": "Punk — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/punk-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "name": "Punk Oil — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/punk-oil-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "name": "Silhouette Aspects — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/silhouette-aspects-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "name": "Silhouette Aspects — Variant 2 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/silhouette-aspects-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "name": "Silhouettes — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/silhouettes-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "name": "Silhouettes — Variant 2 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/silhouettes-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "name": "Silhouettes Fantasy — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/silhouettes-fantasy-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "name": "Vintage Posters — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/vintage-posters-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 20,
+        "name": "Vintage Posters — Variant 2 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/vintage-posters-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 21,
+        "name": "Watercolor 1 — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/watercolor-1-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 22,
+        "name": "Watercolor 1 — Variant 2 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/watercolor-1-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 23,
+        "name": "Watercolor 2 — Variant 1 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/watercolor-2-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 24,
+        "name": "Watercolor 2 — Variant 2 (Sagittarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/sagittarius/watercolor-2-2.webp"
       }
     ]
   }
@@ -299,7 +393,7 @@
     <div class="hero-eyebrow">♐ Sagittarius · Fire Sign · November 22 – December 21</div>
     <h1 class="collection-title">Sagittarius Zodiac Art Prints — <span class="italic-accent">Aim Higher, Print Bolder</span></h1>
     <p class="collection-tagline">16 original digital art prints built around the restless ambition, wild optimism, and unapologetic freedom of the archer. Celestial gold, dark fantasy, gothic horror, watercolor, and more — all instant download, all print-ready.</p>
-    <div class="hero-image"><img src="../images/zodiac/sagittarius.jpg" alt="Sagittarius zodiac art print — cosmic centaur from the Mythic Guardians series" /></div>
+    <div class="hero-image"><img src="../images/zodiac/sagittarius.webp" alt="Sagittarius zodiac art print — cosmic centaur from the Mythic Guardians series" /></div>
     <div class="hero-meta-chips"><span class="chip"><strong>From $5.99</strong> · Digital Download</span><span class="chip">16 Prints · 8 Styles</span><span class="chip">Up to 6000×9000 px</span><span class="chip">Instant Access</span></div>
   </header>
 
@@ -322,95 +416,273 @@
       <section>
         <h2>Sagittarius Art Print Styles — Find Your Version</h2>
         <p>Every Sagittarius in this collection carries the same untameable energy, but no two prints express it the same way. Here's what's available across the full range of styles.</p>
-        <div class="styles-grid">
+        <div class="styles-grouped">
+
+        <div class="style-block">
+          <h3 class="style-block-title">Anime</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/sagittarius/celestial-thumb.jpg" alt="Celestial Sagittarius Zodiac Art Print with gold, amethyst, and cosmic sacred geometry" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/sagittarius/anime-1.webp" alt="Anime Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Celestial Collection</h3>
-              <p>The signature Built By Josh Studio style. Blazing gold and amber tones with sacred geometry arcing outward like a drawn bow. This is celestial Sagittarius wall art at its most kinetic — the archer rendered in cosmic detail with Jupiter symbolism and expansive depth. The original series that set the zodiac catalog in motion.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Celestial Animals</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/sagittarius/dark-fantasy-thumb.jpg" alt="Dark Fantasy Sagittarius Zodiac Art Print with hyper-realistic crimson and obsidian tones" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/sagittarius/celestial-animals-1.webp" alt="Celestial Animals Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Dark Fantasy Series</h3>
-              <p>Hyper-realistic and epic. These dark fantasy Sagittarius art prints feature mounted archers, wildfire plains, and mythic centaur warriors mid-charge. Cinematic scope and burning palettes dominate. Designed for anyone who wants their Sagittarius wall art to feel like the opening scene of a quest, not a decorative afterthought.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
-          <div class="style-card">
-            <img src="../images/zodiac/sagittarius/watercolor-thumb.jpg" alt="Watercolor Sagittarius Zodiac Art Print with fluid washes and soft painterly tones" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Watercolor Prints</h3>
-              <p>Warm and untamed. These watercolor Sagittarius zodiac prints use amber, sunset orange, and wild gold washes that feel like they're still moving across the page. Loose and energetic — the kind of art that brings adventurous warmth into a room without being constrained by clean lines. Perfect for living rooms and creative spaces.</p>
-            </div>
+
           </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/sagittarius/retro-thumb.jpg" alt="Vintage Poster Sagittarius Zodiac Art Print with classic printed-poster warmth" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/sagittarius/halloween-1.webp" alt="Halloween Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Vintage Posters</h3>
-              <p>Classic vintage poster aesthetic. Adventurer's palette, printed-poster texture, and the open-road feel of a vintage travel poster. This vintage poster Sagittarius zodiac print captures the archer with the optimism and scope of framed mid-century wanderlust.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/sagittarius/cyberpunk-thumb.jpg" alt="Cyberpunk Sagittarius Zodiac Art Print with neon circuitry and electric futurism" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Cyberpunk Edition</h3>
-              <p>The archer reimagined through electric circuitry and neon trajectory lines. Cyberpunk Sagittarius zodiac art for the sign that's always targeting something beyond the current reality. Blazing, futuristic, and aimed forward — designed for bold spaces that match Sagittarius energy at full volume.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/sagittarius/gothic-horror-thumb.jpg" alt="Gothic Horror Sagittarius Zodiac Art Print with macabre shadow and crimson palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Gothic Horror</h3>
-              <p>The hunt turned haunted. A blazing stag, cursed arrows, and a forest where the fire never stops burning. Gothic horror Sagittarius wall decor that takes the sign's relentless forward motion and imagines what happens when there's nowhere left to run. Wall art for someone who knows that every adventure has a dark chapter.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/sagittarius/minimalist-thumb.jpg" alt="Minimalist Sagittarius Zodiac Art Print with clean geometric line art on neutral palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Minimalist Line Art</h3>
-              <p>Clean trajectory, bow geometry, and nothing standing in the way. The archer stripped down to pure directional energy — aim and release, no clutter. Minimalist Sagittarius wall art for contemporary spaces, offices, and anyone who wants their sign on the wall with the same clarity the archer brings to the shot.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/sagittarius/anime-thumb.jpg" alt="Anime Sagittarius Zodiac Art Print with dynamic Japanese-inspired illustration palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Anime / Illustrated</h3>
-              <p>A flame-cloaked archer in full motion, rendered in dynamic Japanese-inspired illustration with blazing trajectory lines and wild energy. Anime Sagittarius zodiac art for collectors and fans of illustrated wall prints who want their sign channeled through a character that never stops moving forward.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/sagittarius/hyper-realistic-thumb.jpg" alt="Hyper-Realistic Sagittarius Zodiac Art Print with cinematic photoreal lighting and skin texture" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/sagittarius/halloween-2.webp" alt="Halloween Variant 2 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Hyper-Realistic</h3>
-              <p>Photoreal portraiture, expansive cinematic lighting. The Sagittarius archer rendered with skin texture, motion, and open-sky presence. Hyper-realistic Sagittarius zodiac art for collectors drawn to portraiture quality.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween Horrors</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/halloween-horrors-1.webp" alt="Halloween Horrors Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/sagittarius/oil-painting-thumb.jpg" alt="Oil Painting Sagittarius Zodiac Art Print with painterly brushwork over electric neon color" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/sagittarius/halloween-horrors-2.webp" alt="Halloween Horrors Variant 2 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Oil Painting</h3>
-              <p>Painterly brushwork with cosmic motion. Oil-painting texture applied to a Sagittarius archer mid-draw. Digital oil painting Sagittarius zodiac art for anyone drawn to painterly craft and adventurous atmosphere.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Hyper Realistic Signs</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/hyper-realistic-signs-1.webp" alt="Hyper Realistic Signs Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/sagittarius/macabre-horror-thumb.jpg" alt="Macabre Horror Sagittarius Zodiac Art Print with demonic crimson atmosphere and horror iconography" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/sagittarius/hyper-realistic-signs-2.webp" alt="Hyper Realistic Signs Variant 2 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Macabre Horror</h3>
-              <p>Horror with cosmic dread. A shadowed archer loosing arrows into crimson sky. Macabre Sagittarius wall art for horror collectors drawn to apocalyptic, mythic imagery.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/sagittarius/silhouette-thumb.jpg" alt="Silhouette Sagittarius Zodiac Art Print with high-contrast silhouette against atmospheric sky" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/sagittarius/hyper-realistic-signs-3.webp" alt="Hyper Realistic Signs Variant 3 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Silhouette</h3>
-              <p>Archer silhouette against wide atmospheric sky. The figure reduced to pure contour, drawn and ready. Silhouette Sagittarius zodiac art for gallery walls that want kinetic, open-horizon iconography.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 3</h4>
             </div>
           </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/hyper-realistic-signs-4.webp" alt="Hyper Realistic Signs Variant 4 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 4</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Mythic Guardians</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/mythic-guardians-1.webp" alt="Mythic Guardians Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/punk-1.webp" alt="Punk Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk Oil</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/punk-oil-1.webp" alt="Punk Oil Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouette Aspects</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/silhouette-aspects-1.webp" alt="Silhouette Aspects Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/silhouette-aspects-2.webp" alt="Silhouette Aspects Variant 2 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/silhouettes-1.webp" alt="Silhouettes Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/silhouettes-2.webp" alt="Silhouettes Variant 2 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes Fantasy</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/silhouettes-fantasy-1.webp" alt="Silhouettes Fantasy Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Vintage Posters</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/vintage-posters-1.webp" alt="Vintage Posters Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/vintage-posters-2.webp" alt="Vintage Posters Variant 2 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 1</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/watercolor-1-1.webp" alt="Watercolor 1 Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/watercolor-1-2.webp" alt="Watercolor 1 Variant 2 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 2</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/watercolor-2-1.webp" alt="Watercolor 2 Variant 1 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/sagittarius/watercolor-2-2.webp" alt="Watercolor 2 Variant 2 — Sagittarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
 
         </div>
       </section>

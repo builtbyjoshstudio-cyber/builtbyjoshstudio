@@ -21,11 +21,11 @@
   <meta property="og:type" content="product" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/collections/capricorn-zodiac-art.html" />
   <meta property="og:site_name" content="Built By Josh Studio" />
-  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/capricorn.jpg" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/capricorn.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Capricorn Zodiac Art Prints | Dark Fantasy, Celestial & Minimalist" />
   <meta name="twitter:description" content="16 original Capricorn digital art prints capturing the patient ambition of the sea-goat. Available in 12 distinct styles including Celestial, Dark Fantasy, Hyper-Realistic, Oil Painting, and Vintage. Instant download from Built By Josh Studio." />
-  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/capricorn.jpg" />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/capricorn.webp" />
 
   <script type="application/ld+json">
   { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -40,7 +40,7 @@
     "description": "16 original Capricorn zodiac art prints spanning twelve distinct styles — celestial, dark fantasy, watercolor, vintage posters, cyberpunk, gothic horror, minimalist, anime-inspired, hyper-realistic, oil painting, macabre horror, and silhouette. All prints are instant digital downloads, high-resolution (up to 6000x9000), and print-ready.",
     "brand": { "@type": "Brand", "name": "Built By Josh Studio" },
     "category": "Digital Art Print",
-    "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn.jpg",
+    "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn.webp",
     "url": "https://builtbyjoshstudio.com/collections/capricorn-zodiac-art.html",
     "offers": { "@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": "5.99", "highPrice": "11.99", "offerCount": 16, "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893", "availability": "https://schema.org/InStock" }
   }
@@ -156,7 +156,8 @@
     }
     .styles-grid .style-card img {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      height: auto;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
       display: block;
       background: linear-gradient(135deg, #1a1230 0%, #0d0a1a 100%);
@@ -167,6 +168,15 @@
     }
     .styles-grid .style-card .style-card-body h3 { margin-bottom: 0.5rem; }
     .styles-grid .style-card .style-card-body p { margin-bottom: 0 !important; }
+
+    /* ── PHASE 5: 14-STYLE GROUPED LAYOUT ── */
+    .styles-grouped { display: flex; flex-direction: column; gap: 2rem; margin-top: 1.5rem; }
+    .style-block { display: flex; flex-direction: column; gap: 1rem; }
+    .style-block-title {
+      font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700;
+      color: var(--bbj-text); letter-spacing: 0.04em; text-transform: uppercase;
+      padding-bottom: 0.6rem; border-bottom: 1px solid var(--bbj-border); margin: 0;
+    }
 
   </style>
   <script type="application/ld+json">
@@ -189,91 +199,175 @@
   "mainEntity": {
     "@type": "ItemList",
     "name": "Capricorn Zodiac Art Print Styles",
-    "numberOfItems": 12,
+    "numberOfItems": 24,
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Celestial Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/celestial-thumb.jpg"
+        "name": "Anime — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/anime-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Dark Fantasy Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/dark-fantasy-thumb.jpg"
+        "name": "Celestial Animals — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/celestial-animals-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Watercolor Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/watercolor-thumb.jpg"
+        "name": "Halloween — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/halloween-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 4,
-        "name": "Vintage Poster Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/retro-thumb.jpg"
+        "name": "Halloween — Variant 2 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/halloween-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 5,
-        "name": "Cyberpunk Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/cyberpunk-thumb.jpg"
+        "name": "Halloween Horrors — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/halloween-horrors-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 6,
-        "name": "Gothic Horror Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/gothic-horror-thumb.jpg"
+        "name": "Halloween Horrors — Variant 2 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/halloween-horrors-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 7,
-        "name": "Minimalist Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/minimalist-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/hyper-realistic-signs-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 8,
-        "name": "Anime Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/anime-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 2 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/hyper-realistic-signs-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 9,
-        "name": "Hyper-Realistic Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/hyper-realistic-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 3 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/hyper-realistic-signs-3.webp"
       },
       {
         "@type": "ListItem",
         "position": 10,
-        "name": "Oil Painting Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/oil-painting-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 4 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/hyper-realistic-signs-4.webp"
       },
       {
         "@type": "ListItem",
         "position": 11,
-        "name": "Macabre Horror Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/macabre-horror-thumb.jpg"
+        "name": "Mythic Guardians — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/mythic-guardians-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 12,
-        "name": "Silhouette Capricorn Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131893",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/silhouette-thumb.jpg"
+        "name": "Punk — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/punk-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "name": "Punk Oil — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/punk-oil-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "name": "Silhouette Aspects — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/silhouette-aspects-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "name": "Silhouette Aspects — Variant 2 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/silhouette-aspects-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "name": "Silhouettes — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/silhouettes-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "name": "Silhouettes — Variant 2 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/silhouettes-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "name": "Silhouettes Fantasy — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/silhouettes-fantasy-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "name": "Vintage Posters — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/vintage-posters-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 20,
+        "name": "Vintage Posters — Variant 2 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/vintage-posters-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 21,
+        "name": "Watercolor 1 — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/watercolor-1-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 22,
+        "name": "Watercolor 1 — Variant 2 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/watercolor-1-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 23,
+        "name": "Watercolor 2 — Variant 1 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/watercolor-2-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 24,
+        "name": "Watercolor 2 — Variant 2 (Capricorn Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/capricorn/watercolor-2-2.webp"
       }
     ]
   }
@@ -299,7 +393,7 @@
     <div class="hero-eyebrow">♑ Capricorn · Earth Sign · December 22 – January 19</div>
     <h1 class="collection-title">Capricorn Zodiac Art Prints — <span class="italic-accent">Built to Last, Made to Climb</span></h1>
     <p class="collection-tagline">16 original digital art prints built around the discipline, ambition, and ancient power of the sea-goat. Celestial, dark fantasy, gothic horror, watercolor, cyberpunk, and more — all instant download, all print-ready.</p>
-    <div class="hero-image"><img src="../images/zodiac/capricorn.jpg" alt="Capricorn zodiac art print — goat warden from the Mythic Guardians series" /></div>
+    <div class="hero-image"><img src="../images/zodiac/capricorn.webp" alt="Capricorn zodiac art print — goat warden from the Mythic Guardians series" /></div>
     <div class="hero-meta-chips"><span class="chip"><strong>From $5.99</strong> · Digital Download</span><span class="chip">16 Prints · 8 Styles</span><span class="chip">Up to 6000×9000 px</span><span class="chip">Instant Access</span></div>
   </header>
 
@@ -322,95 +416,273 @@
       <section>
         <h2>Capricorn Art Print Styles — Find Your Version</h2>
         <p>Every Capricorn in this collection carries the same unyielding ambition, but no two prints express it the same way. Here's what's available across the full range of styles.</p>
-        <div class="styles-grid">
+        <div class="styles-grouped">
+
+        <div class="style-block">
+          <h3 class="style-block-title">Anime</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/capricorn/celestial-thumb.jpg" alt="Celestial Capricorn Zodiac Art Print with gold, amethyst, and cosmic sacred geometry" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/capricorn/anime-1.webp" alt="Anime Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Celestial Collection</h3>
-              <p>The signature Built By Josh Studio style. Deep earth tones, obsidian, and antiqued gold with sacred geometry that feels carved from stone rather than drawn. This is celestial Capricorn wall art at its most monumental — the sea-goat rendered in cosmic detail with Saturn symbolism and geological depth. The original series that anchors the zodiac catalog with the weight Capricorn demands.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Celestial Animals</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/capricorn/dark-fantasy-thumb.jpg" alt="Dark Fantasy Capricorn Zodiac Art Print with hyper-realistic crimson and obsidian tones" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/capricorn/celestial-animals-1.webp" alt="Celestial Animals Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Dark Fantasy Series</h3>
-              <p>Hyper-realistic and monolithic. These dark fantasy Capricorn art prints feature mountain-born titans, stone-armored guardians, and frozen thrones at the peak of impossible summits. Designed for anyone who wants their Capricorn wall art to feel like the view from the top — earned, permanent, and alone.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
-          <div class="style-card">
-            <img src="../images/zodiac/capricorn/watercolor-thumb.jpg" alt="Watercolor Capricorn Zodiac Art Print with fluid washes and soft painterly tones" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Watercolor Prints</h3>
-              <p>Earthy and composed. These watercolor Capricorn zodiac prints use slate, moss green, and muted gold washes with a controlled fluidity that mirrors the sign's disciplined nature. Nothing spills where it shouldn't. Perfect for home offices, studies, and spaces that benefit from grounded, sophisticated energy.</p>
-            </div>
+
           </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/capricorn/retro-thumb.jpg" alt="Vintage Poster Capricorn Zodiac Art Print with classic printed-poster warmth" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/capricorn/halloween-1.webp" alt="Halloween Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Vintage Posters</h3>
-              <p>Classic vintage poster aesthetic. Earth-and-stone palette, printed-poster texture, and the grounded authority of a historic civic engraving. This vintage poster Capricorn zodiac print has the stately weight and enduring quality of an archival wall plate.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/capricorn/cyberpunk-thumb.jpg" alt="Cyberpunk Capricorn Zodiac Art Print with neon circuitry and electric futurism" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Cyberpunk Edition</h3>
-              <p>The sea-goat rendered through industrial circuitry and cold neon precision. Cyberpunk Capricorn zodiac art for the sign that builds systems — now visualized as one. Steel, data, and calculated ambition translated into electric blue and metallic palettes. For spaces that value structure as much as Capricorn does.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/capricorn/gothic-horror-thumb.jpg" alt="Gothic Horror Capricorn Zodiac Art Print with macabre shadow and crimson palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Gothic Horror</h3>
-              <p>The Frost Demon. A frozen peak, a throne of ice, and a Capricorn that has outlived everything that once stood beside it. Gothic horror Capricorn wall decor that takes the sign's relationship with time, isolation, and authority to its coldest, most atmospheric extreme. Wall art for someone who understands that reaching the top means leaving everything else behind.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/capricorn/minimalist-thumb.jpg" alt="Minimalist Capricorn Zodiac Art Print with clean geometric line art on neutral palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Minimalist Line Art</h3>
-              <p>Mountain geometry, horn silhouettes, and nothing wasted. The sea-goat reduced to its structural essence — peak, climb, summit. Minimalist Capricorn wall art for contemporary spaces, executive offices, and anyone who wants their sign rendered with the same economy of effort that Capricorn applies to everything.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/capricorn/anime-thumb.jpg" alt="Anime Capricorn Zodiac Art Print with dynamic Japanese-inspired illustration palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Anime / Illustrated</h3>
-              <p>An armored mountain guardian rendered in dynamic Japanese-inspired illustration with stone textures and glacial determination. Anime Capricorn zodiac art for collectors and fans of illustrated wall prints who want their sign channeled through a character that embodies patience, power, and the long climb.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/capricorn/hyper-realistic-thumb.jpg" alt="Hyper-Realistic Capricorn Zodiac Art Print with cinematic photoreal lighting and skin texture" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/capricorn/halloween-2.webp" alt="Halloween Variant 2 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Hyper-Realistic</h3>
-              <p>Photoreal portraiture, mountain cinematic lighting. The Capricorn figure rendered with armor detail, horned gravitas, and ascending presence. Hyper-realistic Capricorn zodiac art for collectors who want portraiture-grade execution.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween Horrors</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/halloween-horrors-1.webp" alt="Halloween Horrors Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/capricorn/oil-painting-thumb.jpg" alt="Oil Painting Capricorn Zodiac Art Print with painterly brushwork over electric neon color" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/capricorn/halloween-horrors-2.webp" alt="Halloween Horrors Variant 2 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Oil Painting</h3>
-              <p>Painterly brushwork over icy cosmic palette. Oil-painting texture applied to a Capricorn figure on obsidian peaks. Digital oil painting Capricorn zodiac art for anyone drawn to painterly craft with cold, high-altitude atmosphere.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Hyper Realistic Signs</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/hyper-realistic-signs-1.webp" alt="Hyper Realistic Signs Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/capricorn/macabre-horror-thumb.jpg" alt="Macabre Horror Capricorn Zodiac Art Print with demonic crimson atmosphere and horror iconography" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/capricorn/hyper-realistic-signs-2.webp" alt="Hyper Realistic Signs Variant 2 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Macabre Horror</h3>
-              <p>Mountain horror with horned menace. Frozen heights, shadowed figure, and the weight of something ancient that climbs. Macabre Capricorn wall art for horror collectors drawn to gothic mountain imagery.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/capricorn/silhouette-thumb.jpg" alt="Silhouette Capricorn Zodiac Art Print with high-contrast silhouette against atmospheric sky" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/capricorn/hyper-realistic-signs-3.webp" alt="Hyper Realistic Signs Variant 3 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Silhouette</h3>
-              <p>Horned silhouette against frozen sky. The sea-goat reduced to pure contour — ascending, deliberate, austere. Silhouette Capricorn zodiac art for interiors that want architectural restraint.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 3</h4>
             </div>
           </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/hyper-realistic-signs-4.webp" alt="Hyper Realistic Signs Variant 4 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 4</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Mythic Guardians</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/mythic-guardians-1.webp" alt="Mythic Guardians Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/punk-1.webp" alt="Punk Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk Oil</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/punk-oil-1.webp" alt="Punk Oil Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouette Aspects</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/silhouette-aspects-1.webp" alt="Silhouette Aspects Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/silhouette-aspects-2.webp" alt="Silhouette Aspects Variant 2 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/silhouettes-1.webp" alt="Silhouettes Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/silhouettes-2.webp" alt="Silhouettes Variant 2 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes Fantasy</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/silhouettes-fantasy-1.webp" alt="Silhouettes Fantasy Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Vintage Posters</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/vintage-posters-1.webp" alt="Vintage Posters Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/vintage-posters-2.webp" alt="Vintage Posters Variant 2 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 1</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/watercolor-1-1.webp" alt="Watercolor 1 Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/watercolor-1-2.webp" alt="Watercolor 1 Variant 2 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 2</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/watercolor-2-1.webp" alt="Watercolor 2 Variant 1 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/capricorn/watercolor-2-2.webp" alt="Watercolor 2 Variant 2 — Capricorn Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
 
         </div>
       </section>

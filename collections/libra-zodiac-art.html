@@ -21,11 +21,11 @@
   <meta property="og:type" content="product" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/collections/libra-zodiac-art.html" />
   <meta property="og:site_name" content="Built By Josh Studio" />
-  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/libra.jpg" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/libra.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Libra Zodiac Art Prints | Celestial, Watercolor & Vintage" />
   <meta name="twitter:description" content="16 original Libra digital art prints capturing the balanced beauty of the scales. Available in 12 distinct styles including Celestial, Dark Fantasy, Hyper-Realistic, Oil Painting, and Vintage. Instant download from Built By Josh Studio." />
-  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/libra.jpg" />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/libra.webp" />
 
   <script type="application/ld+json">
   { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -40,7 +40,7 @@
     "description": "16 original Libra zodiac art prints spanning twelve distinct styles — celestial, dark fantasy, watercolor, vintage posters, cyberpunk, gothic horror, minimalist, anime-inspired, hyper-realistic, oil painting, macabre horror, and silhouette. All prints are instant digital downloads, high-resolution (up to 6000x9000), and print-ready.",
     "brand": { "@type": "Brand", "name": "Built By Josh Studio" },
     "category": "Digital Art Print",
-    "image": "https://builtbyjoshstudio.com/images/zodiac/libra.jpg",
+    "image": "https://builtbyjoshstudio.com/images/zodiac/libra.webp",
     "url": "https://builtbyjoshstudio.com/collections/libra-zodiac-art.html",
     "offers": { "@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": "5.99", "highPrice": "11.99", "offerCount": 16, "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875", "availability": "https://schema.org/InStock" }
   }
@@ -254,7 +254,8 @@
     }
     .styles-grid .style-card img {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      height: auto;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
       display: block;
       background: linear-gradient(135deg, #1a1230 0%, #0d0a1a 100%);
@@ -265,6 +266,15 @@
     }
     .styles-grid .style-card .style-card-body h3 { margin-bottom: 0.5rem; }
     .styles-grid .style-card .style-card-body p { margin-bottom: 0 !important; }
+
+    /* ── PHASE 5: 14-STYLE GROUPED LAYOUT ── */
+    .styles-grouped { display: flex; flex-direction: column; gap: 2rem; margin-top: 1.5rem; }
+    .style-block { display: flex; flex-direction: column; gap: 1rem; }
+    .style-block-title {
+      font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700;
+      color: var(--bbj-text); letter-spacing: 0.04em; text-transform: uppercase;
+      padding-bottom: 0.6rem; border-bottom: 1px solid var(--bbj-border); margin: 0;
+    }
 
   </style>
   <script type="application/ld+json">
@@ -287,91 +297,175 @@
   "mainEntity": {
     "@type": "ItemList",
     "name": "Libra Zodiac Art Print Styles",
-    "numberOfItems": 12,
+    "numberOfItems": 24,
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Celestial Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/celestial-thumb.jpg"
+        "name": "Anime — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/anime-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Dark Fantasy Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/dark-fantasy-thumb.jpg"
+        "name": "Celestial Animals — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/celestial-animals-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Watercolor Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/watercolor-thumb.jpg"
+        "name": "Halloween — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/halloween-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 4,
-        "name": "Vintage Poster Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/retro-thumb.jpg"
+        "name": "Halloween — Variant 2 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/halloween-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 5,
-        "name": "Cyberpunk Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/cyberpunk-thumb.jpg"
+        "name": "Halloween Horrors — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/halloween-horrors-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 6,
-        "name": "Gothic Horror Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/gothic-horror-thumb.jpg"
+        "name": "Halloween Horrors — Variant 2 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/halloween-horrors-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 7,
-        "name": "Minimalist Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/minimalist-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/hyper-realistic-signs-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 8,
-        "name": "Anime Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/anime-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 2 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/hyper-realistic-signs-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 9,
-        "name": "Hyper-Realistic Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/hyper-realistic-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 3 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/hyper-realistic-signs-3.webp"
       },
       {
         "@type": "ListItem",
         "position": 10,
-        "name": "Oil Painting Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/oil-painting-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 4 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/hyper-realistic-signs-4.webp"
       },
       {
         "@type": "ListItem",
         "position": 11,
-        "name": "Macabre Horror Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/macabre-horror-thumb.jpg"
+        "name": "Mythic Guardians — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/mythic-guardians-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 12,
-        "name": "Silhouette Libra Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131875",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/silhouette-thumb.jpg"
+        "name": "Punk — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/punk-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "name": "Punk Oil — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/punk-oil-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "name": "Silhouette Aspects — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/silhouette-aspects-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "name": "Silhouette Aspects — Variant 2 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/silhouette-aspects-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "name": "Silhouettes — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/silhouettes-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "name": "Silhouettes — Variant 2 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/silhouettes-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "name": "Silhouettes Fantasy — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/silhouettes-fantasy-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "name": "Vintage Posters — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/vintage-posters-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 20,
+        "name": "Vintage Posters — Variant 2 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/vintage-posters-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 21,
+        "name": "Watercolor 1 — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/watercolor-1-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 22,
+        "name": "Watercolor 1 — Variant 2 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/watercolor-1-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 23,
+        "name": "Watercolor 2 — Variant 1 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/watercolor-2-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 24,
+        "name": "Watercolor 2 — Variant 2 (Libra Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/libra/watercolor-2-2.webp"
       }
     ]
   }
@@ -411,7 +505,7 @@
     <h1 class="collection-title">Libra Zodiac Art Prints — <span class="italic-accent">Balanced, Beautiful, Uncompromising</span></h1>
     <p class="collection-tagline">16 original digital art prints built around the harmony, justice, and refined eye of the scales. Celestial gold, dark fantasy, gothic horror, watercolor, and more — all instant download, all print-ready.</p>
     <div class="hero-image">
-      <img src="../images/zodiac/libra.jpg" alt="Libra zodiac art print — golden nymph from the Mythic Guardians series" />
+      <img src="../images/zodiac/libra.webp" alt="Libra zodiac art print — golden nymph from the Mythic Guardians series" />
     </div>
     <div class="hero-meta-chips">
       <span class="chip"><strong>From $5.99</strong> · Digital Download</span>
@@ -441,95 +535,273 @@
       <section>
         <h2>Libra Art Print Styles — Find Your Version</h2>
         <p>Every Libra in this collection carries the same deliberate equilibrium, but no two prints interpret it the same way. Here's what's available across the full range of styles.</p>
-        <div class="styles-grid">
+        <div class="styles-grouped">
+
+        <div class="style-block">
+          <h3 class="style-block-title">Anime</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/libra/celestial-thumb.jpg" alt="Celestial Libra Zodiac Art Print with gold, amethyst, and cosmic sacred geometry" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/libra/anime-1.webp" alt="Anime Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Celestial Collection</h3>
-              <p>The signature Built By Josh Studio style. Gold and amethyst tones with perfectly symmetrical sacred geometry. This is celestial Libra wall art at its most refined — the scales rendered in balanced cosmic composition with starlight and precision. The original series that set the standard for the zodiac catalog.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Celestial Animals</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/libra/dark-fantasy-thumb.jpg" alt="Dark Fantasy Libra Zodiac Art Print with hyper-realistic crimson and obsidian tones" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/libra/celestial-animals-1.webp" alt="Celestial Animals Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Dark Fantasy Series</h3>
-              <p>Hyper-realistic and commanding. These dark fantasy Libra art prints feature armored judges, celestial courtrooms, and scales suspended in impossible light. Cinematic weight and authority in every frame. Designed for anyone who wants their Libra wall art to feel like a verdict being rendered, not a decorative accent.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
-          <div class="style-card">
-            <img src="../images/zodiac/libra/watercolor-thumb.jpg" alt="Watercolor Libra Zodiac Art Print with fluid washes and soft painterly tones" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Watercolor Prints</h3>
-              <p>Elegant and fluid. These watercolor Libra zodiac prints use soft golds, rose washes, and balanced compositions that mirror the sign's natural sense of proportion. Light and graceful but never flimsy — the kind of art that makes a room feel curated without feeling overdone.</p>
-            </div>
+
           </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/libra/retro-thumb.jpg" alt="Vintage Poster Libra Zodiac Art Print with classic printed-poster warmth" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/libra/halloween-1.webp" alt="Halloween Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Vintage Posters</h3>
-              <p>Classic vintage poster aesthetic. Balanced palette, printed-poster texture, and the measured elegance of a 1930s civic poster. This vintage poster Libra zodiac print has the quiet symmetry and composed beauty of framed archival design.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/libra/cyberpunk-thumb.jpg" alt="Cyberpunk Libra Zodiac Art Print with neon circuitry and electric futurism" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Cyberpunk Edition</h3>
-              <p>Scale's Pastel Balance. Neon-tinted scales suspended in digital space, soft pastels colliding with electric circuitry. Cyberpunk Libra zodiac art that reimagines balance as a technological act — algorithmic, precise, and unexpectedly gentle. For the Libra whose sense of justice runs on code as much as intuition.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/libra/gothic-horror-thumb.jpg" alt="Gothic Horror Libra Zodiac Art Print with macabre shadow and crimson palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Gothic Horror</h3>
-              <p>The Weighing of Souls. Skeletal figures, blood moons, and ancient scales measuring something that can't be undone. Gothic horror Libra wall decor that takes the sign's obsession with fairness to its darkest conclusion — judgment as finality. Wall art for someone who knows that balance sometimes means reckoning.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/libra/minimalist-thumb.jpg" alt="Minimalist Libra Zodiac Art Print with clean geometric line art on neutral palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Minimalist Line Art</h3>
-              <p>Perfect symmetry, clean lines, and nothing unnecessary. The scales reduced to their purest geometric form — balance expressed through negative space and precision. Minimalist Libra wall art for contemporary spaces, offices, and anyone whose aesthetic sensibility demands restraint over excess.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/libra/anime-thumb.jpg" alt="Anime Libra Zodiac Art Print with dynamic Japanese-inspired illustration palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Anime / Illustrated</h3>
-              <p>Celestial Arbiter. A robed figure holding judgment with calm authority, rendered in flowing Japanese-inspired illustration. Anime Libra zodiac art for collectors and fans of illustrated wall prints who want their sign channeled through a character that embodies grace, power, and deliberation.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/libra/hyper-realistic-thumb.jpg" alt="Hyper-Realistic Libra Zodiac Art Print with cinematic photoreal lighting and skin texture" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/libra/halloween-2.webp" alt="Halloween Variant 2 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Hyper-Realistic</h3>
-              <p>Photoreal portraiture, balanced cinematic lighting. The Libra archetype rendered with skin texture, poised gesture, and classical presence. Hyper-realistic Libra zodiac art for collectors drawn to portraiture-grade execution.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween Horrors</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/halloween-horrors-1.webp" alt="Halloween Horrors Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/libra/oil-painting-thumb.jpg" alt="Oil Painting Libra Zodiac Art Print with painterly brushwork over electric neon color" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/libra/halloween-horrors-2.webp" alt="Halloween Horrors Variant 2 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Oil Painting</h3>
-              <p>Painterly brushwork with elegant duality. Oil-painting texture applied to a Libra figure rendered with graceful tension. Digital oil painting Libra zodiac art for anyone drawn to painterly craft and measured drama.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Hyper Realistic Signs</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/hyper-realistic-signs-1.webp" alt="Hyper Realistic Signs Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/libra/macabre-horror-thumb.jpg" alt="Macabre Horror Libra Zodiac Art Print with demonic crimson atmosphere and horror iconography" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/libra/hyper-realistic-signs-2.webp" alt="Hyper Realistic Signs Variant 2 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Macabre Horror</h3>
-              <p>Gothic horror with tilted-scale menace. Shadowed figure, moonlit justice, and the weight of balance disturbed. Macabre Libra wall art for horror collectors drawn to imagery of judgment in shadow.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/libra/silhouette-thumb.jpg" alt="Silhouette Libra Zodiac Art Print with high-contrast silhouette against atmospheric sky" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/libra/hyper-realistic-signs-3.webp" alt="Hyper Realistic Signs Variant 3 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Silhouette</h3>
-              <p>Elegant silhouette against atmospheric sky. Scales and poised figure reduced to pure contour. Silhouette Libra zodiac art for gallery walls that want composed, symmetrical iconography.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 3</h4>
             </div>
           </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/hyper-realistic-signs-4.webp" alt="Hyper Realistic Signs Variant 4 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 4</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Mythic Guardians</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/mythic-guardians-1.webp" alt="Mythic Guardians Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/punk-1.webp" alt="Punk Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk Oil</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/punk-oil-1.webp" alt="Punk Oil Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouette Aspects</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/silhouette-aspects-1.webp" alt="Silhouette Aspects Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/silhouette-aspects-2.webp" alt="Silhouette Aspects Variant 2 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/silhouettes-1.webp" alt="Silhouettes Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/silhouettes-2.webp" alt="Silhouettes Variant 2 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes Fantasy</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/silhouettes-fantasy-1.webp" alt="Silhouettes Fantasy Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Vintage Posters</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/vintage-posters-1.webp" alt="Vintage Posters Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/vintage-posters-2.webp" alt="Vintage Posters Variant 2 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 1</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/watercolor-1-1.webp" alt="Watercolor 1 Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/watercolor-1-2.webp" alt="Watercolor 1 Variant 2 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 2</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/watercolor-2-1.webp" alt="Watercolor 2 Variant 1 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/libra/watercolor-2-2.webp" alt="Watercolor 2 Variant 2 — Libra Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
 
         </div>
       </section>

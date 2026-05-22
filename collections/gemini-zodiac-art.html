@@ -21,11 +21,11 @@
   <meta property="og:type" content="product" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/collections/gemini-zodiac-art.html" />
   <meta property="og:site_name" content="Built By Josh Studio" />
-  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/gemini.jpg" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/gemini.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Gemini Zodiac Art Prints | Celestial, Cyberpunk & Minimalist" />
   <meta name="twitter:description" content="16 original Gemini digital art prints capturing the dual mind of the twins. Available in 12 distinct styles including Celestial, Dark Fantasy, Hyper-Realistic, Oil Painting, and Vintage. Instant download from Built By Josh Studio." />
-  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/gemini.jpg" />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/gemini.webp" />
 
   <script type="application/ld+json">
   {
@@ -46,7 +46,7 @@
     "description": "16 original Gemini zodiac art prints spanning twelve distinct styles — celestial, dark fantasy, watercolor, vintage posters, cyberpunk, gothic horror, minimalist, anime-inspired, hyper-realistic, oil painting, macabre horror, and silhouette. All prints are instant digital downloads, high-resolution (up to 6000x9000), and print-ready.",
     "brand": { "@type": "Brand", "name": "Built By Josh Studio" },
     "category": "Digital Art Print",
-    "image": "https://builtbyjoshstudio.com/images/zodiac/gemini.jpg",
+    "image": "https://builtbyjoshstudio.com/images/zodiac/gemini.webp",
     "url": "https://builtbyjoshstudio.com/collections/gemini-zodiac-art.html",
     "offers": {
       "@type": "AggregateOffer",
@@ -271,7 +271,8 @@
     }
     .styles-grid .style-card img {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      height: auto;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
       display: block;
       background: linear-gradient(135deg, #1a1230 0%, #0d0a1a 100%);
@@ -282,6 +283,15 @@
     }
     .styles-grid .style-card .style-card-body h3 { margin-bottom: 0.5rem; }
     .styles-grid .style-card .style-card-body p { margin-bottom: 0 !important; }
+
+    /* ── PHASE 5: 14-STYLE GROUPED LAYOUT ── */
+    .styles-grouped { display: flex; flex-direction: column; gap: 2rem; margin-top: 1.5rem; }
+    .style-block { display: flex; flex-direction: column; gap: 1rem; }
+    .style-block-title {
+      font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700;
+      color: var(--bbj-text); letter-spacing: 0.04em; text-transform: uppercase;
+      padding-bottom: 0.6rem; border-bottom: 1px solid var(--bbj-border); margin: 0;
+    }
 
   </style>
   <script type="application/ld+json">
@@ -304,91 +314,175 @@
   "mainEntity": {
     "@type": "ItemList",
     "name": "Gemini Zodiac Art Print Styles",
-    "numberOfItems": 12,
+    "numberOfItems": 24,
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Celestial Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/celestial-thumb.jpg"
+        "name": "Anime — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/anime-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Dark Fantasy Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/dark-fantasy-thumb.jpg"
+        "name": "Celestial Animals — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/celestial-animals-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Watercolor Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/watercolor-thumb.jpg"
+        "name": "Halloween — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/halloween-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 4,
-        "name": "Vintage Poster Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/retro-thumb.jpg"
+        "name": "Halloween — Variant 2 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/halloween-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 5,
-        "name": "Cyberpunk Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/cyberpunk-thumb.jpg"
+        "name": "Halloween Horrors — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/halloween-horrors-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 6,
-        "name": "Gothic Horror Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/gothic-horror-thumb.jpg"
+        "name": "Halloween Horrors — Variant 2 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/halloween-horrors-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 7,
-        "name": "Minimalist Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/minimalist-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/hyper-realistic-signs-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 8,
-        "name": "Anime Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/anime-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 2 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/hyper-realistic-signs-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 9,
-        "name": "Hyper-Realistic Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/hyper-realistic-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 3 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/hyper-realistic-signs-3.webp"
       },
       {
         "@type": "ListItem",
         "position": 10,
-        "name": "Oil Painting Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/oil-painting-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 4 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/hyper-realistic-signs-4.webp"
       },
       {
         "@type": "ListItem",
         "position": 11,
-        "name": "Macabre Horror Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/macabre-horror-thumb.jpg"
+        "name": "Mythic Guardians — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/mythic-guardians-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 12,
-        "name": "Silhouette Gemini Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115940",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/silhouette-thumb.jpg"
+        "name": "Punk — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/punk-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "name": "Punk Oil — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/punk-oil-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "name": "Silhouette Aspects — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/silhouette-aspects-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "name": "Silhouette Aspects — Variant 2 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/silhouette-aspects-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "name": "Silhouettes — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/silhouettes-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "name": "Silhouettes — Variant 2 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/silhouettes-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "name": "Silhouettes Fantasy — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/silhouettes-fantasy-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "name": "Vintage Posters — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/vintage-posters-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 20,
+        "name": "Vintage Posters — Variant 2 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/vintage-posters-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 21,
+        "name": "Watercolor 1 — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/watercolor-1-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 22,
+        "name": "Watercolor 1 — Variant 2 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/watercolor-1-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 23,
+        "name": "Watercolor 2 — Variant 1 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/watercolor-2-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 24,
+        "name": "Watercolor 2 — Variant 2 (Gemini Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/gemini/watercolor-2-2.webp"
       }
     ]
   }
@@ -429,7 +523,7 @@
     <h1 class="collection-title">Gemini Zodiac Art Prints — <span class="italic-accent">Two Sides, Every Style</span></h1>
     <p class="collection-tagline">16 original digital art prints exploring the duality, curiosity, and restless brilliance of the twins. Celestial, dark fantasy, retro, cyberpunk, watercolor, and more — all instant download, all print-ready.</p>
     <div class="hero-image">
-      <img src="../images/zodiac/gemini.jpg" alt="Gemini zodiac art print — twin spirits from the Mythic Guardians series" />
+      <img src="../images/zodiac/gemini.webp" alt="Gemini zodiac art print — twin spirits from the Mythic Guardians series" />
     </div>
     <div class="hero-meta-chips">
       <span class="chip"><strong>From $5.99</strong> · Digital Download</span>
@@ -459,95 +553,273 @@
       <section>
         <h2>Gemini Art Print Styles — Find Your Version</h2>
         <p>Every Gemini in this collection carries the same dual energy, but no two prints interpret it the same way. Here's what's available across the full range of styles.</p>
-        <div class="styles-grid">
+        <div class="styles-grouped">
+
+        <div class="style-block">
+          <h3 class="style-block-title">Anime</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/gemini/celestial-thumb.jpg" alt="Celestial Gemini Zodiac Art Print with gold, amethyst, and cosmic sacred geometry" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/gemini/anime-1.webp" alt="Anime Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Celestial Collection</h3>
-              <p>The signature Built By Josh Studio style. Violet and cosmic purple tones with mirrored twin figures and sacred geometry. This is celestial Gemini wall art at its most expressive — fluid, luminous, and built around the idea of two halves creating something whole. The original series that started the zodiac catalog.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Celestial Animals</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/gemini/dark-fantasy-thumb.jpg" alt="Dark Fantasy Gemini Zodiac Art Print with hyper-realistic crimson and obsidian tones" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/gemini/celestial-animals-1.webp" alt="Celestial Animals Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Dark Fantasy Series</h3>
-              <p>Hyper-realistic and cinematic. These dark fantasy Gemini art prints feature the Twin Spirits — spectral figures rendered with atmospheric lighting, shadow play, and mythic weight. Designed for anyone who wants their Gemini wall art to feel like a scene from a dark epic, not a horoscope card.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
-          <div class="style-card">
-            <img src="../images/zodiac/gemini/watercolor-thumb.jpg" alt="Watercolor Gemini Zodiac Art Print with fluid washes and soft painterly tones" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Watercolor Prints</h3>
-              <p>Vibrant and fluid. These watercolor Gemini zodiac prints use bright washes and organic movement to capture the sign's restless energy. Color bleeds and soft edges mirror the way Gemini moves between moods and ideas — nothing stays fixed, and that's the point.</p>
-            </div>
+
           </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/gemini/retro-thumb.jpg" alt="Vintage Poster Gemini Zodiac Art Print with classic printed-poster warmth" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/gemini/halloween-1.webp" alt="Halloween Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Vintage Posters</h3>
-              <p>Classic vintage poster aesthetic. Duotone palette, printed-poster texture, and the playful duality of two figures in perfect mirror. This vintage poster Gemini zodiac print carries the charm of an old theatre poster — stylish, conversational, and full of story.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/gemini/cyberpunk-thumb.jpg" alt="Cyberpunk Gemini Zodiac Art Print with neon circuitry and electric futurism" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Cyberpunk Edition</h3>
-              <p>Twin's Neon Trickery. Glitched-out twin figures in electric neon, split-screen compositions, and digital interference patterns. Cyberpunk Gemini zodiac art for the sign that lives in multiple realities at once. Loud, fractured, and completely intentional.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/gemini/gothic-horror-thumb.jpg" alt="Gothic Horror Gemini Zodiac Art Print with macabre shadow and crimson palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Gothic Horror</h3>
-              <p>The Mirror Crypt. Macabre, atmospheric, and built on the horror of the double. Cracked mirrors, spectral reflections, and the unsettling beauty of something that looks like you but isn't. Gothic horror Gemini wall decor for anyone whose idea of twins leans more Shining than sitcom.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/gemini/minimalist-thumb.jpg" alt="Minimalist Gemini Zodiac Art Print with clean geometric line art on neutral palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Minimalist Line Art</h3>
-              <p>Clean lines, mirrored symmetry, and modern restraint. The twins reduced to their purest geometric form — two figures, one composition, zero noise. Minimalist Gemini wall art for contemporary spaces, offices, and anyone who prefers elegant simplicity on their walls.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/gemini/anime-thumb.jpg" alt="Anime Gemini Zodiac Art Print with dynamic Japanese-inspired illustration palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Anime / Illustrated</h3>
-              <p>Twin Mirage. Stylized dual figures with dynamic poses, flowing energy, and Japanese-inspired illustration technique. Anime Gemini zodiac art for collectors and fans of illustrated wall prints who want their sign rendered with character, motion, and visual storytelling.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/gemini/hyper-realistic-thumb.jpg" alt="Hyper-Realistic Gemini Zodiac Art Print with cinematic photoreal lighting and skin texture" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/gemini/halloween-2.webp" alt="Halloween Variant 2 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Hyper-Realistic</h3>
-              <p>Photoreal portraiture, cinematic lighting. Twin figures rendered with skin texture, fabric detail, and real-world intimacy. Hyper-realistic Gemini zodiac art for collectors drawn to portraiture-grade execution.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween Horrors</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/halloween-horrors-1.webp" alt="Halloween Horrors Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/gemini/oil-painting-thumb.jpg" alt="Oil Painting Gemini Zodiac Art Print with painterly brushwork over electric neon color" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/gemini/halloween-horrors-2.webp" alt="Halloween Horrors Variant 2 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Oil Painting</h3>
-              <p>Painterly brushwork with electric neon duality. Oil-painting texture applied to mirrored twin figures in motion. Digital oil painting Gemini zodiac art for anyone who wants painterly craft with contemporary color theatrics.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Hyper Realistic Signs</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/hyper-realistic-signs-1.webp" alt="Hyper Realistic Signs Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/gemini/macabre-horror-thumb.jpg" alt="Macabre Horror Gemini Zodiac Art Print with demonic crimson atmosphere and horror iconography" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/gemini/hyper-realistic-signs-2.webp" alt="Hyper Realistic Signs Variant 2 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Macabre Horror</h3>
-              <p>Twin demonic horror — two figures, one shadow. Crimson atmosphere and mirrored menace. Macabre Gemini wall art for horror collectors and Halloween seasonal buyers drawn to dark-twin imagery.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/gemini/silhouette-thumb.jpg" alt="Silhouette Gemini Zodiac Art Print with high-contrast silhouette against atmospheric sky" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/gemini/hyper-realistic-signs-3.webp" alt="Hyper Realistic Signs Variant 3 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Silhouette</h3>
-              <p>Twin silhouettes against atmospheric backdrop. The dual figures reduced to pure contour, intimate and mirrored. Silhouette Gemini zodiac art for gallery walls that want quiet, symmetrical power.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 3</h4>
             </div>
           </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/hyper-realistic-signs-4.webp" alt="Hyper Realistic Signs Variant 4 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 4</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Mythic Guardians</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/mythic-guardians-1.webp" alt="Mythic Guardians Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/punk-1.webp" alt="Punk Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk Oil</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/punk-oil-1.webp" alt="Punk Oil Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouette Aspects</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/silhouette-aspects-1.webp" alt="Silhouette Aspects Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/silhouette-aspects-2.webp" alt="Silhouette Aspects Variant 2 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/silhouettes-1.webp" alt="Silhouettes Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/silhouettes-2.webp" alt="Silhouettes Variant 2 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes Fantasy</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/silhouettes-fantasy-1.webp" alt="Silhouettes Fantasy Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Vintage Posters</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/vintage-posters-1.webp" alt="Vintage Posters Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/vintage-posters-2.webp" alt="Vintage Posters Variant 2 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 1</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/watercolor-1-1.webp" alt="Watercolor 1 Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/watercolor-1-2.webp" alt="Watercolor 1 Variant 2 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 2</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/watercolor-2-1.webp" alt="Watercolor 2 Variant 1 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/gemini/watercolor-2-2.webp" alt="Watercolor 2 Variant 2 — Gemini Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
 
         </div>
       </section>

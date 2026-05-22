@@ -21,11 +21,11 @@
   <meta property="og:type" content="product" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/collections/pisces-zodiac-art.html" />
   <meta property="og:site_name" content="Built By Josh Studio" />
-  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/pisces.jpg" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/pisces.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Pisces Zodiac Art Prints | Watercolor, Celestial & Gothic" />
   <meta name="twitter:description" content="16 original Pisces digital art prints capturing the dreaming depth of the fish. Available in 12 distinct styles including Celestial, Dark Fantasy, Hyper-Realistic, Oil Painting, and Vintage. Instant download from Built By Josh Studio." />
-  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/pisces.jpg" />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/pisces.webp" />
 
   <script type="application/ld+json">
   { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -40,7 +40,7 @@
     "description": "16 original Pisces zodiac art prints spanning twelve distinct styles — celestial, dark fantasy, watercolor, vintage posters, cyberpunk, gothic horror, minimalist, anime-inspired, hyper-realistic, oil painting, macabre horror, and silhouette. All prints are instant digital downloads, high-resolution (up to 6000x9000), and print-ready.",
     "brand": { "@type": "Brand", "name": "Built By Josh Studio" },
     "category": "Digital Art Print",
-    "image": "https://builtbyjoshstudio.com/images/zodiac/pisces.jpg",
+    "image": "https://builtbyjoshstudio.com/images/zodiac/pisces.webp",
     "url": "https://builtbyjoshstudio.com/collections/pisces-zodiac-art.html",
     "offers": { "@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": "5.99", "highPrice": "11.99", "offerCount": 16, "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950", "availability": "https://schema.org/InStock" }
   }
@@ -156,7 +156,8 @@
     }
     .styles-grid .style-card img {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      height: auto;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
       display: block;
       background: linear-gradient(135deg, #1a1230 0%, #0d0a1a 100%);
@@ -167,6 +168,15 @@
     }
     .styles-grid .style-card .style-card-body h3 { margin-bottom: 0.5rem; }
     .styles-grid .style-card .style-card-body p { margin-bottom: 0 !important; }
+
+    /* ── PHASE 5: 14-STYLE GROUPED LAYOUT ── */
+    .styles-grouped { display: flex; flex-direction: column; gap: 2rem; margin-top: 1.5rem; }
+    .style-block { display: flex; flex-direction: column; gap: 1rem; }
+    .style-block-title {
+      font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700;
+      color: var(--bbj-text); letter-spacing: 0.04em; text-transform: uppercase;
+      padding-bottom: 0.6rem; border-bottom: 1px solid var(--bbj-border); margin: 0;
+    }
 
   </style>
   <script type="application/ld+json">
@@ -189,91 +199,175 @@
   "mainEntity": {
     "@type": "ItemList",
     "name": "Pisces Zodiac Art Print Styles",
-    "numberOfItems": 12,
+    "numberOfItems": 24,
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Celestial Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/celestial-thumb.jpg"
+        "name": "Anime — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/anime-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Dark Fantasy Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/dark-fantasy-thumb.jpg"
+        "name": "Celestial Animals — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/celestial-animals-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Watercolor Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/watercolor-thumb.jpg"
+        "name": "Halloween — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/halloween-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 4,
-        "name": "Vintage Poster Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/retro-thumb.jpg"
+        "name": "Halloween — Variant 2 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/halloween-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 5,
-        "name": "Cyberpunk Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/cyberpunk-thumb.jpg"
+        "name": "Halloween Horrors — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/halloween-horrors-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 6,
-        "name": "Gothic Horror Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/gothic-horror-thumb.jpg"
+        "name": "Halloween Horrors — Variant 2 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/halloween-horrors-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 7,
-        "name": "Minimalist Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/minimalist-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/hyper-realistic-signs-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 8,
-        "name": "Anime Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/anime-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 2 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/hyper-realistic-signs-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 9,
-        "name": "Hyper-Realistic Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/hyper-realistic-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 3 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/hyper-realistic-signs-3.webp"
       },
       {
         "@type": "ListItem",
         "position": 10,
-        "name": "Oil Painting Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/oil-painting-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 4 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/hyper-realistic-signs-4.webp"
       },
       {
         "@type": "ListItem",
         "position": 11,
-        "name": "Macabre Horror Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/macabre-horror-thumb.jpg"
+        "name": "Mythic Guardians — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/mythic-guardians-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 12,
-        "name": "Silhouette Pisces Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115950",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/silhouette-thumb.jpg"
+        "name": "Punk — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/punk-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "name": "Punk Oil — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/punk-oil-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "name": "Silhouette Aspects — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/silhouette-aspects-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "name": "Silhouette Aspects — Variant 2 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/silhouette-aspects-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "name": "Silhouettes — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/silhouettes-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "name": "Silhouettes — Variant 2 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/silhouettes-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "name": "Silhouettes Fantasy — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/silhouettes-fantasy-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "name": "Vintage Posters — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/vintage-posters-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 20,
+        "name": "Vintage Posters — Variant 2 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/vintage-posters-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 21,
+        "name": "Watercolor 1 — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/watercolor-1-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 22,
+        "name": "Watercolor 1 — Variant 2 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/watercolor-1-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 23,
+        "name": "Watercolor 2 — Variant 1 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/watercolor-2-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 24,
+        "name": "Watercolor 2 — Variant 2 (Pisces Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/pisces/watercolor-2-2.webp"
       }
     ]
   }
@@ -299,7 +393,7 @@
     <div class="hero-eyebrow">♓ Pisces · Water Sign · February 19 – March 20</div>
     <h1 class="collection-title">Pisces Zodiac Art Prints — <span class="italic-accent">Deeper Than the Surface</span></h1>
     <p class="collection-tagline">16 original digital art prints built around the imagination, empathy, and boundless depth of the fish. Celestial, dark fantasy, gothic horror, watercolor, cyberpunk, and more — all instant download, all print-ready.</p>
-    <div class="hero-image"><img src="../images/zodiac/pisces.jpg" alt="Pisces zodiac art print — sea siren from the Mythic Guardians series" /></div>
+    <div class="hero-image"><img src="../images/zodiac/pisces.webp" alt="Pisces zodiac art print — sea siren from the Mythic Guardians series" /></div>
     <div class="hero-meta-chips"><span class="chip"><strong>From $5.99</strong> · Digital Download</span><span class="chip">16 Prints · 8 Styles</span><span class="chip">Up to 6000×9000 px</span><span class="chip">Instant Access</span></div>
   </header>
 
@@ -322,95 +416,273 @@
       <section>
         <h2>Pisces Art Print Styles — Find Your Version</h2>
         <p>Every Pisces in this collection carries the same oceanic depth, but no two prints surface the same way. Here's what's available across the full range of styles.</p>
-        <div class="styles-grid">
+        <div class="styles-grouped">
+
+        <div class="style-block">
+          <h3 class="style-block-title">Anime</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/pisces/celestial-thumb.jpg" alt="Celestial Pisces Zodiac Art Print with gold, amethyst, and cosmic sacred geometry" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/pisces/anime-1.webp" alt="Anime Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Celestial Collection</h3>
-              <p>The signature Built By Josh Studio style. Teal, emerald, and cosmic silver with sacred geometry that flows like currents. This is celestial Pisces wall art at its most transcendent — the twin fish rendered in luminous cosmic detail with Neptunian symbolism and dreamlike depth. The original series and one of the most emotionally resonant in the zodiac catalog.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Celestial Animals</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/pisces/dark-fantasy-thumb.jpg" alt="Dark Fantasy Pisces Zodiac Art Print with hyper-realistic crimson and obsidian tones" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/pisces/celestial-animals-1.webp" alt="Celestial Animals Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Dark Fantasy Series</h3>
-              <p>Hyper-realistic and submerged. These dark fantasy Pisces art prints feature deep-sea kingdoms, bioluminescent depths, and mythic fish guardians in impossible waters. Dark blues and spectral light dominate. Designed for anyone who wants their Pisces wall art to feel like a descent into something ancient and unreachable.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
-          <div class="style-card">
-            <img src="../images/zodiac/pisces/watercolor-thumb.jpg" alt="Watercolor Pisces Zodiac Art Print with fluid washes and soft painterly tones" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Watercolor Prints</h3>
-              <p>Iridescent and flowing. These watercolor Pisces zodiac prints use seafoam, lavender, and pearlescent washes that shift and bleed the way Pisces emotions do — soft, layered, and always in motion. The most naturally Pisces style in the collection. Perfect for bedrooms, bathrooms, and any space that benefits from gentle, dreamy energy.</p>
-            </div>
+
           </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/pisces/retro-thumb.jpg" alt="Vintage Poster Pisces Zodiac Art Print with classic printed-poster warmth" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/pisces/halloween-1.webp" alt="Halloween Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Vintage Posters</h3>
-              <p>Classic vintage poster aesthetic. Dreamlike palette, printed-poster texture, and the watercolor-and-ink softness of an antique fairytale plate. This vintage poster Pisces zodiac print has the quiet reverie of framed storybook illustration.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/pisces/cyberpunk-thumb.jpg" alt="Cyberpunk Pisces Zodiac Art Print with neon circuitry and electric futurism" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Cyberpunk Edition</h3>
-              <p>The fish reimagined through digital currents and neon bioluminescence. Cyberpunk Pisces zodiac art that takes the sign's fluidity and translates it into data streams, electric scales, and submerged circuitry. An unexpected pairing that works precisely because Pisces has always lived in a reality adjacent to everyone else's.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/pisces/gothic-horror-thumb.jpg" alt="Gothic Horror Pisces Zodiac Art Print with macabre shadow and crimson palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Gothic Horror</h3>
-              <p>The Abyssal Maw. The deep, dark bottom of the ocean where light doesn't reach and things have teeth. Gothic horror Pisces wall decor that takes the sign's connection to the subconscious and drags it all the way down to the trench floor. Wall art for someone who knows that the ocean's beauty and its horror are the same thing.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/pisces/minimalist-thumb.jpg" alt="Minimalist Pisces Zodiac Art Print with clean geometric line art on neutral palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Minimalist Line Art</h3>
-              <p>Two fish, one circle, clean flowing lines. The Pisces symbol distilled to its purest form — movement and duality expressed through negative space and elegant curves. Minimalist Pisces wall art for contemporary spaces, bedrooms, and anyone who wants their sign on the wall with quiet grace rather than visual noise.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/pisces/anime-thumb.jpg" alt="Anime Pisces Zodiac Art Print with dynamic Japanese-inspired illustration palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Anime / Illustrated</h3>
-              <p>A mystical figure surrounded by flowing water and twin fish companions, rendered in soft Japanese-inspired illustration with ethereal light and dreamlike composition. Anime Pisces zodiac art for collectors and fans of illustrated wall prints who want their sign channeled through a character that embodies intuition, compassion, and otherworldly calm.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/pisces/hyper-realistic-thumb.jpg" alt="Hyper-Realistic Pisces Zodiac Art Print with cinematic photoreal lighting and skin texture" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/pisces/halloween-2.webp" alt="Halloween Variant 2 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Hyper-Realistic</h3>
-              <p>Photoreal portraiture, oceanic cinematic lighting. The Pisces figure rendered with water detail, dreamlike atmosphere, and soft real-world presence. Hyper-realistic Pisces zodiac art for collectors who want portraiture quality.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween Horrors</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/halloween-horrors-1.webp" alt="Halloween Horrors Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/pisces/oil-painting-thumb.jpg" alt="Oil Painting Pisces Zodiac Art Print with painterly brushwork over electric neon color" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/pisces/halloween-horrors-2.webp" alt="Halloween Horrors Variant 2 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Oil Painting</h3>
-              <p>Painterly brushwork over dreamlike aqua palette. Oil-painting texture applied to a Pisces figure suspended between worlds. Digital oil painting Pisces zodiac art for anyone drawn to painterly craft with ethereal color.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Hyper Realistic Signs</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/hyper-realistic-signs-1.webp" alt="Hyper Realistic Signs Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/pisces/macabre-horror-thumb.jpg" alt="Macabre Horror Pisces Zodiac Art Print with demonic crimson atmosphere and horror iconography" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/pisces/hyper-realistic-signs-2.webp" alt="Hyper Realistic Signs Variant 2 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Macabre Horror</h3>
-              <p>Deep-water horror with siren menace. Shadowed fish, crimson-tinged depths, and the stillness of something that sings from below. Macabre Pisces wall art for horror collectors drawn to oceanic dread.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/pisces/silhouette-thumb.jpg" alt="Silhouette Pisces Zodiac Art Print with high-contrast silhouette against atmospheric sky" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/pisces/hyper-realistic-signs-3.webp" alt="Hyper Realistic Signs Variant 3 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Silhouette</h3>
-              <p>Twin-fish silhouette against tidal sky. The figures reduced to pure contour — fluid, intertwined, quietly powerful. Silhouette Pisces zodiac art for interiors that want soft, atmospheric iconography.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 3</h4>
             </div>
           </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/hyper-realistic-signs-4.webp" alt="Hyper Realistic Signs Variant 4 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 4</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Mythic Guardians</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/mythic-guardians-1.webp" alt="Mythic Guardians Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/punk-1.webp" alt="Punk Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk Oil</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/punk-oil-1.webp" alt="Punk Oil Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouette Aspects</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/silhouette-aspects-1.webp" alt="Silhouette Aspects Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/silhouette-aspects-2.webp" alt="Silhouette Aspects Variant 2 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/silhouettes-1.webp" alt="Silhouettes Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/silhouettes-2.webp" alt="Silhouettes Variant 2 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes Fantasy</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/silhouettes-fantasy-1.webp" alt="Silhouettes Fantasy Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Vintage Posters</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/vintage-posters-1.webp" alt="Vintage Posters Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/vintage-posters-2.webp" alt="Vintage Posters Variant 2 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 1</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/watercolor-1-1.webp" alt="Watercolor 1 Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/watercolor-1-2.webp" alt="Watercolor 1 Variant 2 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 2</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/watercolor-2-1.webp" alt="Watercolor 2 Variant 1 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/pisces/watercolor-2-2.webp" alt="Watercolor 2 Variant 2 — Pisces Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
 
         </div>
       </section>

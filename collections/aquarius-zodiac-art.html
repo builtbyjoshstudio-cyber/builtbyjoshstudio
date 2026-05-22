@@ -21,11 +21,11 @@
   <meta property="og:type" content="product" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/collections/aquarius-zodiac-art.html" />
   <meta property="og:site_name" content="Built By Josh Studio" />
-  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/aquarius.jpg" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/zodiac/aquarius.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Aquarius Zodiac Art Prints | Cyberpunk, Celestial & Watercolor" />
   <meta name="twitter:description" content="16 original Aquarius digital art prints capturing the visionary clarity of the water-bearer. Available in 12 distinct styles including Celestial, Dark Fantasy, Hyper-Realistic, Oil Painting, and Vintage. Instant download from Built By Josh Studio." />
-  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/aquarius.jpg" />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/zodiac/aquarius.webp" />
 
   <script type="application/ld+json">
   { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -40,7 +40,7 @@
     "description": "16 original Aquarius zodiac art prints spanning twelve distinct styles — celestial, dark fantasy, watercolor, vintage posters, cyberpunk, gothic horror, minimalist, anime-inspired, hyper-realistic, oil painting, macabre horror, and silhouette. All prints are instant digital downloads, high-resolution (up to 6000x9000), and print-ready.",
     "brand": { "@type": "Brand", "name": "Built By Josh Studio" },
     "category": "Digital Art Print",
-    "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius.jpg",
+    "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius.webp",
     "url": "https://builtbyjoshstudio.com/collections/aquarius-zodiac-art.html",
     "offers": { "@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": "5.99", "highPrice": "11.99", "offerCount": 16, "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887", "availability": "https://schema.org/InStock" }
   }
@@ -156,7 +156,8 @@
     }
     .styles-grid .style-card img {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      height: auto;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
       display: block;
       background: linear-gradient(135deg, #1a1230 0%, #0d0a1a 100%);
@@ -167,6 +168,15 @@
     }
     .styles-grid .style-card .style-card-body h3 { margin-bottom: 0.5rem; }
     .styles-grid .style-card .style-card-body p { margin-bottom: 0 !important; }
+
+    /* ── PHASE 5: 14-STYLE GROUPED LAYOUT ── */
+    .styles-grouped { display: flex; flex-direction: column; gap: 2rem; margin-top: 1.5rem; }
+    .style-block { display: flex; flex-direction: column; gap: 1rem; }
+    .style-block-title {
+      font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700;
+      color: var(--bbj-text); letter-spacing: 0.04em; text-transform: uppercase;
+      padding-bottom: 0.6rem; border-bottom: 1px solid var(--bbj-border); margin: 0;
+    }
 
   </style>
   <script type="application/ld+json">
@@ -189,91 +199,175 @@
   "mainEntity": {
     "@type": "ItemList",
     "name": "Aquarius Zodiac Art Print Styles",
-    "numberOfItems": 12,
+    "numberOfItems": 24,
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Celestial Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/celestial-thumb.jpg"
+        "name": "Anime — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/anime-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Dark Fantasy Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/dark-fantasy-thumb.jpg"
+        "name": "Celestial Animals — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/celestial-animals-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Watercolor Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/watercolor-thumb.jpg"
+        "name": "Halloween — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/halloween-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 4,
-        "name": "Vintage Poster Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/retro-thumb.jpg"
+        "name": "Halloween — Variant 2 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/halloween-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 5,
-        "name": "Cyberpunk Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/cyberpunk-thumb.jpg"
+        "name": "Halloween Horrors — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/halloween-horrors-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 6,
-        "name": "Gothic Horror Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/gothic-horror-thumb.jpg"
+        "name": "Halloween Horrors — Variant 2 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/halloween-horrors-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 7,
-        "name": "Minimalist Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/minimalist-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/hyper-realistic-signs-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 8,
-        "name": "Anime Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/anime-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 2 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/hyper-realistic-signs-2.webp"
       },
       {
         "@type": "ListItem",
         "position": 9,
-        "name": "Hyper-Realistic Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/hyper-realistic-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 3 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/hyper-realistic-signs-3.webp"
       },
       {
         "@type": "ListItem",
         "position": 10,
-        "name": "Oil Painting Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/oil-painting-thumb.jpg"
+        "name": "Hyper Realistic Signs — Variant 4 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/hyper-realistic-signs-4.webp"
       },
       {
         "@type": "ListItem",
         "position": 11,
-        "name": "Macabre Horror Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/macabre-horror-thumb.jpg"
+        "name": "Mythic Guardians — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/mythic-guardians-1.webp"
       },
       {
         "@type": "ListItem",
         "position": 12,
-        "name": "Silhouette Aquarius Zodiac Art Print",
-        "url": "https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58131887",
-        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/silhouette-thumb.jpg"
+        "name": "Punk — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/punk-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "name": "Punk Oil — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/punk-oil-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "name": "Silhouette Aspects — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/silhouette-aspects-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "name": "Silhouette Aspects — Variant 2 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/silhouette-aspects-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "name": "Silhouettes — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/silhouettes-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "name": "Silhouettes — Variant 2 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/silhouettes-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "name": "Silhouettes Fantasy — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/silhouettes-fantasy-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "name": "Vintage Posters — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/vintage-posters-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 20,
+        "name": "Vintage Posters — Variant 2 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/vintage-posters-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 21,
+        "name": "Watercolor 1 — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/watercolor-1-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 22,
+        "name": "Watercolor 1 — Variant 2 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/watercolor-1-2.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 23,
+        "name": "Watercolor 2 — Variant 1 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/watercolor-2-1.webp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 24,
+        "name": "Watercolor 2 — Variant 2 (Aquarius Zodiac Art Print)",
+        "url": "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "image": "https://builtbyjoshstudio.com/images/zodiac/aquarius/watercolor-2-2.webp"
       }
     ]
   }
@@ -299,7 +393,7 @@
     <div class="hero-eyebrow">♒ Aquarius · Air Sign · January 20 – February 18</div>
     <h1 class="collection-title">Aquarius Zodiac Art Prints — <span class="italic-accent">Different by Design</span></h1>
     <p class="collection-tagline">16 original digital art prints built around the independence, vision, and electric originality of the water bearer. Celestial, dark fantasy, gothic horror, watercolor, cyberpunk, and more — all instant download, all print-ready.</p>
-    <div class="hero-image"><img src="../images/zodiac/aquarius.jpg" alt="Aquarius zodiac art print — water spirit from the Mythic Guardians series" /></div>
+    <div class="hero-image"><img src="../images/zodiac/aquarius.webp" alt="Aquarius zodiac art print — water spirit from the Mythic Guardians series" /></div>
     <div class="hero-meta-chips"><span class="chip"><strong>From $5.99</strong> · Digital Download</span><span class="chip">16 Prints · 8 Styles</span><span class="chip">Up to 6000×9000 px</span><span class="chip">Instant Access</span></div>
   </header>
 
@@ -322,95 +416,273 @@
       <section>
         <h2>Aquarius Art Print Styles — Find Your Version</h2>
         <p>Every Aquarius in this collection carries the same visionary energy, but no two prints express it the same way. Here's what's available across the full range of styles.</p>
-        <div class="styles-grid">
+        <div class="styles-grouped">
+
+        <div class="style-block">
+          <h3 class="style-block-title">Anime</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/aquarius/celestial-thumb.jpg" alt="Celestial Aquarius Zodiac Art Print with gold, amethyst, and cosmic sacred geometry" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/aquarius/anime-1.webp" alt="Anime Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Celestial Collection</h3>
-              <p>The signature Built By Josh Studio style. Teal, electric blue, and cosmic silver with sacred geometry that feels more futuristic than ancient. This is celestial Aquarius wall art at its most luminous — the water bearer rendered in expansive cosmic detail with Uranian symbolism and an otherworldly glow. The original series that helped define the zodiac catalog's identity.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Celestial Animals</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/aquarius/dark-fantasy-thumb.jpg" alt="Dark Fantasy Aquarius Zodiac Art Print with hyper-realistic crimson and obsidian tones" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/aquarius/celestial-animals-1.webp" alt="Celestial Animals Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Dark Fantasy Series</h3>
-              <p>Hyper-realistic and otherworldly. These dark fantasy Aquarius art prints feature ethereal figures channeling cosmic water through impossible architecture — floating temples, fractured skies, and gravity-defying compositions. Designed for anyone who wants their Aquarius wall art to feel like a portal, not a poster.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
-          <div class="style-card">
-            <img src="../images/zodiac/aquarius/watercolor-thumb.jpg" alt="Watercolor Aquarius Zodiac Art Print with fluid washes and soft painterly tones" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Watercolor Prints</h3>
-              <p>Fluid and electric. These watercolor Aquarius zodiac prints use cerulean, violet, and silver washes that flow with the same unpredictability the sign is known for. Not soft — luminous. The kind of art that looks different every time you look at it. Perfect for creative spaces, studios, and rooms that benefit from visual energy.</p>
-            </div>
+
           </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween</h3>
+          <div class="styles-grid">
+
           <div class="style-card">
-            <img src="../images/zodiac/aquarius/retro-thumb.jpg" alt="Vintage Poster Aquarius Zodiac Art Print with classic printed-poster warmth" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/aquarius/halloween-1.webp" alt="Halloween Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Vintage Posters</h3>
-              <p>Classic vintage poster aesthetic. Mineral palette, printed-poster texture, and the modernist cool of a 1960s exhibition poster. This vintage poster Aquarius zodiac print carries forward-thinking clarity with the nostalgic texture of framed gallery ephemera.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/aquarius/cyberpunk-thumb.jpg" alt="Cyberpunk Aquarius Zodiac Art Print with neon circuitry and electric futurism" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Cyberpunk Edition</h3>
-              <p>The sign most at home in the cyberpunk genre. Circuit-mapped water flows, holographic bearers, and neon networks that pulse with data. Cyberpunk Aquarius zodiac art for the sign that was already living in the future before the rest of the zodiac caught up. This is arguably the most natural style fit in the entire catalog.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/aquarius/gothic-horror-thumb.jpg" alt="Gothic Horror Aquarius Zodiac Art Print with macabre shadow and crimson palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Gothic Horror</h3>
-              <p>The Undead Emissary. A spectral bearer of forbidden knowledge, rising from ruins with water that glows wrong. Gothic horror Aquarius wall decor that takes the sign's relationship with truth and asks what happens when the truth is something nobody wanted to hear. Wall art for someone whose vision of the future includes the ruins of the present.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/aquarius/minimalist-thumb.jpg" alt="Minimalist Aquarius Zodiac Art Print with clean geometric line art on neutral palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Minimalist Line Art</h3>
-              <p>Clean geometry, flowing lines, and the water bearer distilled to pure concept — stream and figure, nothing more. Minimalist Aquarius wall art for contemporary spaces, offices, and anyone who appreciates the sign's ability to strip away everything unnecessary and focus on the essential idea.</p>
-            </div>
-          </div>
-          <div class="style-card">
-            <img src="../images/zodiac/aquarius/anime-thumb.jpg" alt="Anime Aquarius Zodiac Art Print with dynamic Japanese-inspired illustration palette" loading="lazy" width="400" height="400">
-            <div class="style-card-body">
-              <h3>Anime / Illustrated</h3>
-              <p>A cosmic water bearer in flowing motion, rendered in dynamic Japanese-inspired illustration with electric blue energy and futuristic detailing. Anime Aquarius zodiac art for collectors and fans of illustrated wall prints who want their sign channeled through a character that radiates quiet revolution and visionary calm.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/aquarius/hyper-realistic-thumb.jpg" alt="Hyper-Realistic Aquarius Zodiac Art Print with cinematic photoreal lighting and skin texture" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/aquarius/halloween-2.webp" alt="Halloween Variant 2 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Hyper-Realistic</h3>
-              <p>Photoreal portraiture, electric cinematic lighting. The Aquarius figure rendered with texture, cosmic detail, and forward-leaning presence. Hyper-realistic Aquarius zodiac art for collectors drawn to portraiture-grade execution.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Halloween Horrors</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/halloween-horrors-1.webp" alt="Halloween Horrors Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/aquarius/oil-painting-thumb.jpg" alt="Oil Painting Aquarius Zodiac Art Print with painterly brushwork over electric neon color" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/aquarius/halloween-horrors-2.webp" alt="Halloween Horrors Variant 2 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Oil Painting</h3>
-              <p>Painterly brushwork with electric water and neon. Oil-painting texture applied to an Aquarius figure mid-pour. Digital oil painting Aquarius zodiac art for anyone drawn to painterly craft and modernist color.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Hyper Realistic Signs</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/hyper-realistic-signs-1.webp" alt="Hyper Realistic Signs Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/aquarius/macabre-horror-thumb.jpg" alt="Macabre Horror Aquarius Zodiac Art Print with demonic crimson atmosphere and horror iconography" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/aquarius/hyper-realistic-signs-2.webp" alt="Hyper Realistic Signs Variant 2 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Macabre Horror</h3>
-              <p>Horror with electric menace. Shadowed water-bearer, static-charged atmosphere, and the tension of something about to break open. Macabre Aquarius wall art for horror collectors drawn to futurist dread.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
             </div>
           </div>
 
           <div class="style-card">
-            <img src="../images/zodiac/aquarius/silhouette-thumb.jpg" alt="Silhouette Aquarius Zodiac Art Print with high-contrast silhouette against atmospheric sky" loading="lazy" width="400" height="400">
+            <img src="../images/zodiac/aquarius/hyper-realistic-signs-3.webp" alt="Hyper Realistic Signs Variant 3 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
             <div class="style-card-body">
-              <h3>Silhouette</h3>
-              <p>Water-bearer silhouette against electric sky. The figure reduced to pure contour — poised, elemental, forward-facing. Silhouette Aquarius zodiac art for gallery walls that want contemporary, current-powered iconography.</p>
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 3</h4>
             </div>
           </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/hyper-realistic-signs-4.webp" alt="Hyper Realistic Signs Variant 4 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 4</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Mythic Guardians</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/mythic-guardians-1.webp" alt="Mythic Guardians Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/punk-1.webp" alt="Punk Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Punk Oil</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/punk-oil-1.webp" alt="Punk Oil Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouette Aspects</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/silhouette-aspects-1.webp" alt="Silhouette Aspects Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/silhouette-aspects-2.webp" alt="Silhouette Aspects Variant 2 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/silhouettes-1.webp" alt="Silhouettes Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/silhouettes-2.webp" alt="Silhouettes Variant 2 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Silhouettes Fantasy</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/silhouettes-fantasy-1.webp" alt="Silhouettes Fantasy Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Vintage Posters</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/vintage-posters-1.webp" alt="Vintage Posters Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/vintage-posters-2.webp" alt="Vintage Posters Variant 2 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 1</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/watercolor-1-1.webp" alt="Watercolor 1 Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/watercolor-1-2.webp" alt="Watercolor 1 Variant 2 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="style-block">
+          <h3 class="style-block-title">Watercolor 2</h3>
+          <div class="styles-grid">
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/watercolor-2-1.webp" alt="Watercolor 2 Variant 1 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <img src="../images/zodiac/aquarius/watercolor-2-2.webp" alt="Watercolor 2 Variant 2 — Aquarius Zodiac Art Print" loading="lazy" width="720" height="900">
+            <div class="style-card-body">
+              <h4 style="font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
+            </div>
+          </div>
+
+          </div>
+        </div>
 
         </div>
       </section>
