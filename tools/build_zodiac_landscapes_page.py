@@ -1,0 +1,684 @@
+"""Build collections/zodiac-landscapes.html — Brief Msg 5E master pattern.
+
+Single-bundle landing page for the Western Landscapes Collection — all 12
+oil-painted zodiac landscapes sold as one $19.99 bundle. Replaces the
+prior Etsy-primary, per-landscape-CTA structure with the master pattern:
+LS-direct sidebar + final CTA, License & POD Trust block, secondary Etsy
+block, Product/FAQPage/BreadcrumbList/Organization schemas.
+
+The 12 landscape titles and atmospheric descriptions are lifted verbatim
+from the prior page (the voice was already good per brief 5E.1). Per-
+landscape Etsy buttons removed; single bundle CTA at top of grid replaces
+them.
+
+Writes: collections/zodiac-landscapes.html
+"""
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+OUT_PATH = ROOT / 'collections' / 'zodiac-landscapes.html'
+
+# 12 landscapes in Western zodiac order. Titles + per-sign descriptions
+# lifted verbatim from the prior page (brief 5E.1 — voice is right).
+LANDSCAPES = [
+    dict(sign='Aries',       element='Fire',  slug='aries',
+         title='The Forge of Aries',
+         desc="A volcanic forge world where rivers of molten metal cut through obsidian ridges. Every surface glows with the heat of creation — the elemental home of the sign that begins the zodiac."),
+    dict(sign='Taurus',      element='Earth', slug='taurus',
+         title='The Verdant Grove',
+         desc="A sunlit sanctuary deep in ancient woods. Moss-covered stone, golden hour light through the canopy, and the quiet weight of a place that has stood for centuries. Taurus in landscape form."),
+    dict(sign='Gemini',      element='Air',   slug='gemini',
+         title='The Rift of Gemini',
+         desc="Two worlds split by a luminous rift — one side day, one side night, both real. A landscape designed around duality, reflection, and the Gemini refusal to choose a single truth."),
+    dict(sign='Cancer',      element='Water', slug='cancer',
+         title='The Moonlit Lagoon',
+         desc="A silvered lagoon at full moon — still water, soft bioluminescence, and the hush of tides that only move when no one is watching. Cancer as emotional geography."),
+    dict(sign='Leo',         element='Fire',  slug='leo',
+         title='The Sunfire Expanse',
+         desc="A vast golden plain under a sun that never quite sets. Heat rises off the land, light catches every surface, and the whole horizon glows with Leo-scale presence. A landscape that performs."),
+    dict(sign='Virgo',       element='Earth', slug='virgo',
+         title='The Crystal Archive',
+         desc="A luminous library carved from crystal — every surface precise, every angle intentional. The Virgo landscape is a place that has been thought through. Order given a cathedral."),
+    dict(sign='Libra',       element='Air',   slug='libra',
+         title='The Celestial Balance',
+         desc="A moonlit hall where enormous scales hang from the sky itself, never quite tilting. The Libra landscape holds all decisions in suspension — refined, symmetrical, eternally in balance."),
+    dict(sign='Scorpio',     element='Water', slug='scorpio',
+         title='The Abyss of Scorpio',
+         desc="A deep-ocean void lit only by what stirs beneath it. Crimson pressure-glow, impossible depth, and the certainty that something patient is watching. Scorpio as place, not figure."),
+    dict(sign='Sagittarius', element='Fire',  slug='sagittarius',
+         title="The Archer's Expanse",
+         desc="A horizon with no edge. The Sagittarius landscape is pure scope — open plains, open sky, the kind of view that exists to be aimed toward. A room-sized piece of cosmic wanderlust."),
+    dict(sign='Capricorn',   element='Earth', slug='capricorn',
+         title='The Obsidian Peaks',
+         desc="Sheer black summits above the cloud line. Austere, ancient, and architecturally still. The Capricorn landscape is the altitude itself — a place that only exists if you're willing to climb."),
+    dict(sign='Aquarius',    element='Air',   slug='aquarius',
+         title='The Starfall Cascade',
+         desc="A waterfall made of falling stars. Electric, impossible, forward-leaning — an Aquarius landscape that treats physics as a suggestion and beauty as a given."),
+    dict(sign='Pisces',      element='Water', slug='pisces',
+         title='The Dreaming Tides',
+         desc="A luminous oceanic dreamscape where the line between water and sky has softened into the same color. The Pisces landscape is pure reverie — the place you end up when you stop trying to be anywhere."),
+]
+
+
+def build_landscape_block(ls):
+    """Single landscape sub-section: h3 title + sub-line + description + image card."""
+    return (
+        f'        <div class="landscape-block" id="{ls["slug"]}">\n'
+        f'          <h3 class="landscape-block-title">{ls["title"]}</h3>\n'
+        f'          <div class="landscape-meta">{ls["sign"]} · {ls["element"]}</div>\n'
+        f'          <p class="landscape-block-desc">{ls["desc"]}</p>\n'
+        '          <div class="landscape-img">\n'
+        f'            <img src="../images/zodiac/landscapes/{ls["slug"]}.jpg" alt="{ls["title"]} — Western zodiac landscape oil painting representing {ls["sign"]}, from Built By Josh Studio" loading="lazy" width="900" height="900">\n'
+        '          </div>\n'
+        '        </div>'
+    )
+
+
+def faq_data():
+    return [
+        ('What is included in the Western Landscapes Bundle?',
+         'The Western Landscapes Bundle includes 72 print-ready digital files covering all 12 Western zodiac signs — Aries through Pisces — each rendered as an oil-painted mythic landscape. That\'s 12 unique landscape designs, each delivered in three aspect ratios (1:1, 4:5, 2:3) and both PNG and JPG formats, at 300 DPI. The bundle also includes a License Agreement and a Print Guide as PDFs.'),
+        ('How much does the Western Landscapes Bundle cost?',
+         'The Western Landscapes Bundle is priced at $19.99 — one-time payment, instant digital download. That works out to roughly $1.67 per unique landscape — a complete 12-sign environmental set at a single-bundle price.'),
+        ('Can I use the bundle for print-on-demand or commercial sales?',
+         'Yes. The license includes print-on-demand rights for up to 100 physical units per individual design, cumulative across all formats, vendors, and time periods combined. You can sell framed prints, posters, canvases, mugs, t-shirts, and similar physical products made from the landscape designs within that cap. For more than 100 prints of any single design, contact Built by Josh Studio LLC about extended commercial licensing.'),
+        ('What sizes can I print the landscapes at?',
+         'The largest file (6000 × 9000 pixels) prints crisply up to 20" × 30" at full 300 DPI. With a print provider running 150 DPI for large-format jobs, prints up to roughly 40" × 60" still look excellent. The bundle also includes 1:1 files (4800 × 4800) for square framing and 4:5 files (4800 × 6000) for standard portrait sizes like 8×10 and 16×20. Wider panoramic crops also work well for landscape-format frames.'),
+        ('How were the landscape designs created?',
+         "The Western Landscape designs were created by Built by Josh Studio LLC using a combination of human creative direction and AI image generation tools, including Leonardo.ai. Every design is selected, curated, refined, and finalized by the studio's founder. This is disclosed in full in the license agreement included with every bundle."),
+        ('What formats and color profiles do the files use?',
+         'All files are delivered in both PNG (lossless) and JPG (92% quality compression) formats. Color profile is sRGB — the standard for virtually every print-on-demand service and consumer printer, requiring no color conversion before printing.'),
+        ('Where can I buy the Western Landscapes Bundle?',
+         'The Western Landscapes Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Western Landscapes Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built By Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
+        ('How do the landscapes pair with the Western Signs and Western Realms bundles?',
+         "The Western Signs Collection ($24.99 per sign × 12 signs) is figure-based — each sign rendered as a character in 14 art styles. The Western Realms Collection ($14.99 per sign × 12 signs) is landscape-based but per-sign — each sign rendered as 4 named realms with 2 variants each. The Western Landscapes Bundle ($19.99 once) is a single-bundle oil-painted landscape set covering all 12 signs. Buyers often pair a figure print from Western Signs with the matching Realm or Landscape on the same wall — figure plus environment for whichever sign matters to them."),
+    ]
+
+
+def faq_schema_data():
+    out = []
+    for q, a in faq_data():
+        a_schema = (
+            a
+            .replace('20" × 30"', '20 by 30 inches')
+            .replace('40" × 60"', '40 by 60 inches')
+            .replace('8×10', '8x10')
+            .replace('16×20', '16x20')
+            .replace('×', 'x')
+            .replace('"Buy the Western Landscapes Bundle"', 'Buy the Western Landscapes Bundle')
+        )
+        out.append({'q': q, 'a': a_schema})
+    return out
+
+
+def build_page():
+    hero_thumb = 'images/zodiac/landscapes/aries.jpg'
+
+    landscape_blocks_html = '\n\n'.join(build_landscape_block(ls) for ls in LANDSCAPES)
+
+    faqs = faq_data()
+    faq_items_html = '\n'.join(
+        '      <div class="faq-item">\n'
+        f'        <h3>{q}</h3>\n'
+        f'        <p>{a}</p>\n'
+        '      </div>'
+        for q, a in faqs
+    )
+    faq_schema = faq_schema_data()
+    faq_schema_json = ',\n'.join(
+        '      {\n'
+        '        "@type": "Question",\n'
+        f'        "name": {json.dumps(f["q"])},\n'
+        '        "acceptedAnswer": {\n'
+        '          "@type": "Answer",\n'
+        f'          "text": {json.dumps(f["a"])}\n'
+        '        }\n'
+        '      }'
+        for f in faq_schema
+    )
+
+    return f'''<!DOCTYPE html>
+<html lang="en" data-glass="cosmic">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){{dataLayer.push(arguments);}}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Western Landscapes Bundle — 12 Mythic Realms in One Collection | BBJ Studio</title>
+  <meta name="description" content="The Western Landscapes Bundle from Built By Josh Studio — 72 print-ready oil-painted landscape files covering all 12 Western zodiac signs. The Forge of Aries, The Verdant Grove, The Abyss of Scorpio, The Dreaming Tides, and more. Personal use + print-on-demand licensed up to 100 prints per design. Instant download for $19.99." />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/collections/zodiac-landscapes.html" />
+
+  <meta property="og:title" content="Western Landscapes Bundle — 12 Mythic Realms in One Collection | BBJ Studio" />
+  <meta property="og:description" content="72 print-ready oil-painted landscape files covering all 12 Western zodiac signs. Personal use + POD up to 100 prints per design." />
+  <meta property="og:type" content="product" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/collections/zodiac-landscapes.html" />
+  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/{hero_thumb}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Western Landscapes Bundle — 12 Mythic Realms in One Collection | BBJ Studio" />
+  <meta name="twitter:description" content="72 print-ready oil-painted landscape files covering all 12 Western zodiac signs." />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/{hero_thumb}" />
+
+  <!-- Schema.org: BreadcrumbList -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://builtbyjoshstudio.com/" }},
+      {{ "@type": "ListItem", "position": 2, "name": "Collections", "item": "https://builtbyjoshstudio.com/collections/" }},
+      {{ "@type": "ListItem", "position": 3, "name": "Western Landscapes", "item": "https://builtbyjoshstudio.com/index.html#landscapes" }},
+      {{ "@type": "ListItem", "position": 4, "name": "Western Landscapes Bundle", "item": "https://builtbyjoshstudio.com/collections/zodiac-landscapes.html" }}
+    ]
+  }}
+  </script>
+
+  <!-- Schema.org: Product -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": "https://builtbyjoshstudio.com/collections/zodiac-landscapes.html#product",
+    "name": "Western Landscapes Bundle — 12 Mythic Realms in One Collection",
+    "description": "The Western Landscapes Bundle contains 72 print-ready digital files covering all 12 Western zodiac signs — Aries through Pisces — each rendered as an oil-painted mythic landscape. 12 unique landscape designs, each in three aspect ratios (1:1, 4:5, 2:3) at 300 DPI in both PNG and JPG. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    "image": [
+      "https://builtbyjoshstudio.com/{hero_thumb}"
+    ],
+    "url": "https://builtbyjoshstudio.com/collections/zodiac-landscapes.html",
+    "sku": "BBJ-WL-ALL",
+    "category": "Digital Art / Zodiac Art / Western Landscapes",
+    "brand": {{ "@type": "Brand", "name": "Built By Josh Studio" }},
+    "manufacturer": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},
+    "additionalProperty": [
+      {{"@type": "PropertyValue", "name": "File Count", "value": "72"}},
+      {{"@type": "PropertyValue", "name": "Designs", "value": "12"}},
+      {{"@type": "PropertyValue", "name": "Signs Covered", "value": "12"}},
+      {{"@type": "PropertyValue", "name": "Resolution", "value": "300 DPI"}},
+      {{"@type": "PropertyValue", "name": "Maximum Dimensions", "value": "6000 x 9000 pixels"}},
+      {{"@type": "PropertyValue", "name": "Aspect Ratios", "value": "1:1, 4:5, 2:3"}},
+      {{"@type": "PropertyValue", "name": "File Formats", "value": "PNG, JPG"}},
+      {{"@type": "PropertyValue", "name": "Color Profile", "value": "sRGB"}},
+      {{"@type": "PropertyValue", "name": "License", "value": "Personal use + POD up to 100 prints per design"}},
+      {{"@type": "PropertyValue", "name": "Style", "value": "Oil-painted mythic landscape"}},
+      {{"@type": "PropertyValue", "name": "Bundle Scope", "value": "All 12 Western zodiac signs in one bundle"}}
+    ],
+    "offers": {{
+      "@type": "Offer",
+      "price": "19.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://builtbyjoshstudio.com/collections/zodiac-landscapes.html",
+      "seller": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},
+      "itemCondition": "https://schema.org/NewCondition"
+    }}
+  }}
+  </script>
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+{faq_schema_json}
+    ]
+  }}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    :root {{
+      --bbj-bg: #0b0813; --bbj-surface: #120f1f; --bbj-surface-2: #171327;
+      --bbj-accent: #c9a84c; --bbj-accent2: #7b4fa6;
+      --bbj-text: #ede8f5; --bbj-muted: #8a7fa8; --bbj-border: #2a2040;
+      --body-read: #d6cee8;
+    }}
+    html {{ scroll-behavior: smooth; }}
+    body {{ font-family: 'DM Sans', sans-serif; background: var(--bbj-bg); color: var(--bbj-text); overflow-x: hidden; min-height: 100vh; }}
+    .stars {{ position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }}
+    .star {{ position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0; animation: twinkle var(--d) ease-in-out infinite var(--delay); }}
+    @keyframes twinkle {{ 0%,100% {{ opacity: 0; transform: scale(.5); }} 50% {{ opacity: var(--op); transform: scale(1); }} }}
+    .site-nav {{ position: fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 2.5rem; height:64px; background:rgba(11,8,19,.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--bbj-border); }}
+    .nav-logo {{ font-family:'Syne',sans-serif; font-weight:800; font-size:1.1rem; letter-spacing:-.02em; color:var(--bbj-text); text-decoration:none; }}
+    .nav-links {{ display:flex; gap:2rem; list-style:none; }}
+    .nav-links a {{ font-family:'DM Sans',sans-serif; font-size:.85rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; color:var(--bbj-muted); transition:color .2s; }}
+    .nav-links a:hover, .nav-links a.active {{ color: var(--bbj-accent); }}
+
+    .collection-hero {{ padding:9rem 2rem 3rem; max-width:1200px; margin:0 auto; text-align:center; position:relative; }}
+    .collection-hero::before {{ content:''; position:absolute; inset:0; pointer-events:none;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,.1) 0%, transparent 55%),
+                  radial-gradient(ellipse at 20% 80%, rgba(123,79,166,.08) 0%, transparent 50%); }}
+    .breadcrumb {{ font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:1.4rem; position:relative; }}
+    .breadcrumb a {{ color:var(--bbj-accent); text-decoration:none; }}
+    .breadcrumb a:hover {{ text-decoration:underline; }}
+    .breadcrumb .sep {{ margin:0 .6rem; opacity:.5; }}
+    .hero-eyebrow {{ font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:1.2rem; position:relative; }}
+    h1.collection-title {{ font-family:'Cinzel',serif; font-size:clamp(2.2rem,5.5vw,3.8rem); font-weight:700; letter-spacing:.02em; line-height:1.12; color:var(--bbj-text); margin-bottom:1.4rem; max-width:900px; margin-left:auto; margin-right:auto; position:relative; }}
+    .collection-tagline {{ font-family:'Crimson Pro',serif; font-size:clamp(1.05rem,1.5vw,1.18rem); color:var(--body-read); max-width:760px; margin:0 auto 2.5rem; line-height:1.65; position:relative; }}
+    .hero-image {{ max-width:520px; margin:0 auto; position:relative; border:1px solid var(--bbj-border); overflow:hidden; aspect-ratio:1/1; }}
+    .hero-image img {{ width:100%; height:100%; object-fit:cover; display:block; }}
+    .hero-image::after {{ content:''; position:absolute; inset:0; background: radial-gradient(circle at 50% 50%, rgba(201,168,76,.08) 0%, transparent 70%); pointer-events:none; }}
+
+    .short-version {{ max-width:1000px; margin:3rem auto 0; padding:2rem 2.4rem; background:var(--bbj-surface); border:1px solid var(--bbj-border); border-left:4px solid var(--bbj-accent); position:relative; }}
+    .short-version-label {{ font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:.9rem; }}
+    .short-version p {{ font-family:'Crimson Pro',serif; font-size:1.05rem; line-height:1.75; color:var(--body-read); margin:0; }}
+
+    .collection-main {{ max-width:1200px; margin:2rem auto 0; padding:2rem 2rem 4rem; display:grid; grid-template-columns:1fr 340px; gap:3rem; align-items:start; }}
+    .main-column {{ font-family:'Crimson Pro',serif; font-size:1.15rem; line-height:1.75; color:var(--body-read); min-width:0; }}
+    .main-column section {{ margin-bottom:3rem; padding-top:2.5rem; border-top:1px solid var(--bbj-border); }}
+    .main-column section:first-child {{ border-top:none; padding-top:0; }}
+    .main-column h2 {{ font-family:'Cinzel',serif; font-size:clamp(1.4rem,2.6vw,1.85rem); font-weight:700; letter-spacing:.02em; color:var(--bbj-text); margin-bottom:1.3rem; line-height:1.2; }}
+    .main-column p {{ margin-bottom:1.3rem; }}
+    .main-column p strong {{ color:var(--bbj-text); font-weight:600; }}
+    .main-column ul {{ list-style:none; margin:0 0 1.5rem 0; padding:0; }}
+    .main-column ul li {{ position:relative; padding-left:1.6rem; margin-bottom:.8rem; }}
+    .main-column ul li::before {{ content:'◆'; position:absolute; left:0; color:var(--bbj-accent); font-size:.7rem; top:.5rem; }}
+
+    /* Bundle CTA band that sits at the top of the 12-landscape grid */
+    .grid-intro-cta {{ background:var(--bbj-surface); border:1px solid var(--bbj-border); border-left:4px solid var(--bbj-accent); padding:1.8rem 2rem; margin:1.5rem 0 2.5rem; }}
+    .grid-intro-cta p {{ margin-bottom:1.1rem !important; font-size:1.02rem; }}
+    .grid-intro-cta p:last-of-type {{ margin-bottom:0 !important; font-style:italic; font-size:.92rem; color:var(--bbj-muted); }}
+    .grid-intro-cta .ls-checkout-btn--large {{ display:inline-block; width:auto; padding:1rem 2.2rem; margin-bottom:1rem; }}
+
+    .landscapes-grouped {{ display:flex; flex-direction:column; gap:2.5rem; margin-top:1.5rem; }}
+    .landscape-block {{ display:flex; flex-direction:column; gap:.5rem; scroll-margin-top:88px; }}
+    .landscape-block-title {{ font-family:'Cinzel',serif; font-size:1.15rem; font-weight:700; color:var(--bbj-text); letter-spacing:.04em; text-transform:uppercase; padding-bottom:.6rem; border-bottom:1px solid var(--bbj-border); margin:0; }}
+    .landscape-meta {{ font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--bbj-accent); margin-top:.4rem; }}
+    .landscape-block-desc {{ font-family:'Crimson Pro',serif; font-size:1rem; line-height:1.65; color:var(--body-read); margin:0 0 .8rem 0 !important; padding-left:0 !important; }}
+    .landscape-block-desc::before {{ content:'' !important; }}
+    .landscape-img {{ background:var(--bbj-surface); border:1px solid var(--bbj-border); overflow:hidden; }}
+    .landscape-img img {{ width:100%; height:auto; aspect-ratio:1/1; object-fit:cover; display:block; background: linear-gradient(135deg,#1a1230 0%,#0d0a1a 100%); }}
+
+    .landscape-tally {{ font-family:'Crimson Pro',serif; font-style:italic; font-size:1rem; color:var(--bbj-muted); margin-top:1.5rem; padding-top:1rem; border-top:1px solid rgba(42,32,64,.5); }}
+
+    .license-block {{ background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:2rem 2.2rem; margin-top:2rem; }}
+    .license-block h3 {{ font-family:'Cinzel',serif; font-size:1.02rem; font-weight:700; color:var(--bbj-text); letter-spacing:.05em; text-transform:uppercase; margin:1.6rem 0 .8rem 0; padding-bottom:.4rem; border-bottom:1px solid var(--bbj-border); }}
+    .license-block h3:first-child {{ margin-top:0; }}
+    .license-block ul {{ margin-bottom:1.4rem !important; }}
+    .license-block p.disclosure {{ background:rgba(123,79,166,.07); border-left:3px solid var(--bbj-accent2); padding:1rem 1.2rem; margin-bottom:1.4rem; font-size:1rem; line-height:1.65; }}
+    .license-block p.contact-line {{ margin-bottom:1.5rem; font-size:1rem; color:var(--body-read); }}
+    .license-block a.pdf-link {{ display:inline-block; font-family:'Cinzel',serif; font-size:.74rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--bbj-accent); text-decoration:none; padding:.6rem 1.1rem; border:1px solid var(--bbj-accent); margin:.4rem .4rem 0 0; transition:background .2s, color .2s; }}
+    .license-block a.pdf-link:hover {{ background:var(--bbj-accent); color:var(--bbj-bg); }}
+
+    .ls-checkout-btn {{ display:block; width:100%; background:var(--bbj-accent); color:var(--bbj-bg); border:none; font-family:'Cinzel',serif; font-size:.82rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:1.05rem 1rem; text-align:center; cursor:pointer; transition:background .2s, transform .2s; margin-bottom:.7rem; }}
+    .ls-checkout-btn:hover:not(:disabled) {{ background:#e0bd5a; transform:translateY(-1px); }}
+    .ls-checkout-btn:disabled {{ background:transparent; color:var(--bbj-muted); border:1px solid var(--bbj-border); cursor:default; font-weight:600; letter-spacing:.12em; font-size:.74rem; }}
+    .ls-checkout-btn--large {{ display:inline-block; width:auto; padding:1.15rem 2.5rem; font-size:.82rem; margin:0; }}
+    .ls-checkout-btn--large:disabled {{ font-size:.78rem; padding:1.1rem 2.2rem; }}
+    .ls-checkout-sub {{ display:block; font-size:.74rem; font-style:italic; color:var(--bbj-muted); text-align:center; margin-bottom:1.4rem; line-height:1.45; }}
+
+    .etsy-secondary {{ margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid rgba(42,32,64,.5); }}
+    .etsy-secondary .etsy-secondary-label {{ font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.5rem; }}
+    .etsy-secondary p {{ font-family:'DM Sans',sans-serif; font-size:.78rem; color:var(--bbj-muted); line-height:1.5; margin-bottom:.5rem; }}
+    .etsy-secondary a {{ color:var(--bbj-muted); text-decoration:underline; text-decoration-color:rgba(138,127,168,.4); }}
+    .etsy-secondary a:hover {{ color:var(--bbj-accent); text-decoration-color:var(--bbj-accent); }}
+    .etsy-secondary .etsy-pause-note {{ font-style:italic; font-size:.72rem; opacity:.75; margin-top:.4rem; margin-bottom:0; }}
+
+    .sticky-sidebar {{ position:sticky; top:88px; background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.8rem 1.7rem; font-family:'DM Sans',sans-serif; }}
+    .sticky-sidebar::before {{ content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(201,168,76,.05) 0%,transparent 60%); }}
+    .sticky-sidebar > * {{ position:relative; }}
+    .sidebar-label {{ font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.4rem; }}
+    .sidebar-price {{ font-family:'Cinzel',serif; font-size:2.4rem; font-weight:700; color:var(--bbj-accent); letter-spacing:-.02em; line-height:1; margin-bottom:.4rem; }}
+    .sidebar-price-note {{ font-size:.78rem; color:var(--bbj-muted); letter-spacing:.02em; margin-bottom:1.4rem; padding-bottom:1.4rem; border-bottom:1px solid var(--bbj-border); }}
+    .sidebar-included-label {{ font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.8rem; }}
+    .sidebar-included {{ list-style:none; padding:0; margin:0 0 1.5rem 0; }}
+    .sidebar-included li {{ font-size:.84rem; color:var(--body-read); padding:.42rem 0 .42rem 1.3rem; position:relative; line-height:1.35; border-bottom:1px solid rgba(42,32,64,.5); }}
+    .sidebar-included li:last-child {{ border-bottom:none; }}
+    .sidebar-included li::before {{ content:'✓'; position:absolute; left:0; color:var(--bbj-accent); font-weight:700; font-size:.85rem; }}
+    .sidebar-included li a {{ color:var(--bbj-accent); text-decoration:none; }}
+    .sidebar-included li a:hover {{ text-decoration:underline; }}
+    .sidebar-trust {{ list-style:none; padding:0; margin:0; }}
+    .sidebar-trust li {{ font-size:.74rem; color:var(--bbj-muted); padding:.35rem 0 .35rem 1.2rem; position:relative; line-height:1.35; }}
+    .sidebar-trust li::before {{ content:'✦'; position:absolute; left:0; color:var(--bbj-accent); font-size:.72rem; top:.38rem; }}
+
+    .faq-section {{ max-width:900px; margin:0 auto; padding:5rem 2rem 4rem; }}
+    .section-label {{ font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-accent); text-align:center; margin-bottom:.6rem; }}
+    .section-title-main {{ font-family:'Cinzel',serif; font-size:clamp(1.8rem,3.2vw,2.4rem); font-weight:700; letter-spacing:.02em; color:var(--bbj-text); text-align:center; margin-bottom:2.8rem; }}
+    .faq-list {{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--bbj-border); }}
+    .faq-item {{ border-bottom:1px solid var(--bbj-border); padding:1.6rem 0; }}
+    .faq-item h3 {{ font-family:'Cinzel',serif; font-size:1.05rem; font-weight:600; color:var(--bbj-text); margin-bottom:.7rem; letter-spacing:.01em; }}
+    .faq-item p {{ font-family:'Crimson Pro',serif; font-size:1.05rem; line-height:1.65; color:var(--body-read); margin:0; }}
+
+    .related-section {{ max-width:1200px; margin:0 auto; padding:3rem 2rem 5rem; }}
+    .related-grid {{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.4rem; }}
+    .related-card {{ background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.6rem 1.6rem 1.4rem; text-decoration:none; color:inherit; transition:transform .25s, border-color .25s, box-shadow .25s; display:flex; flex-direction:column; position:relative; overflow:hidden; }}
+    .related-card::after {{ content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg, rgba(201,168,76,.04) 0%, transparent 60%); }}
+    .related-card:hover {{ transform:translateY(-3px); border-color:rgba(201,168,76,.35); box-shadow:0 14px 40px rgba(201,168,76,.08); }}
+    .related-card > * {{ position:relative; z-index:1; }}
+    .related-meta {{ font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:.7rem; }}
+    .related-card h3 {{ font-family:'Cinzel',serif; font-size:1.1rem; font-weight:700; color:var(--bbj-text); margin-bottom:.6rem; letter-spacing:.01em; line-height:1.25; }}
+    .related-card p {{ font-family:'Crimson Pro',serif; font-size:.95rem; font-style:italic; color:var(--bbj-muted); line-height:1.5; margin-bottom:1rem; flex:1; }}
+    .related-link {{ font-family:'Cinzel',serif; font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--bbj-accent); }}
+
+    .cta-band {{ padding:5rem 2rem; text-align:center; background:linear-gradient(135deg,#1a1230 0%,#0d0a1a 100%); border-top:1px solid var(--bbj-border); border-bottom:1px solid var(--bbj-border); position:relative; }}
+    .cta-band .cta-eyebrow {{ font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:1rem; }}
+    .cta-band h2 {{ font-family:'Cinzel',serif; font-size:clamp(1.7rem,3.2vw,2.4rem); font-weight:700; color:var(--bbj-text); margin-bottom:.8rem; letter-spacing:.02em; max-width:720px; margin-left:auto; margin-right:auto; line-height:1.2; }}
+    .cta-band h2 .italic-accent {{ color:var(--bbj-accent); font-style:italic; font-family:'Crimson Pro',serif; font-weight:400; }}
+    .cta-band .cta-sub {{ font-family:'Crimson Pro',serif; color:var(--body-read); font-size:1.05rem; max-width:620px; margin:0 auto 2rem; line-height:1.6; }}
+    .cta-band .cta-sub-line {{ display:block; font-family:'Crimson Pro',serif; font-style:italic; font-size:.9rem; color:var(--bbj-muted); margin-top:1rem; }}
+
+    footer {{ background:#0a0a0f; padding:3rem 5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; }}
+    .footer-left {{ font-family:'Syne',sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.3); }}
+    .footer-left strong {{ color:rgba(255,255,255,.7); }}
+    .footer-links {{ display:flex; gap:1.5rem; list-style:none; }}
+    .footer-links a {{ font-size:.75rem; color:rgba(255,255,255,.3); text-decoration:none; transition:color .2s; letter-spacing:.06em; text-transform:uppercase; }}
+    .footer-links a:hover {{ color:rgba(255,255,255,.7); }}
+    .footer-legal {{ font-family:'DM Sans',sans-serif; font-size:.7rem; color:rgba(255,255,255,.3); width:100%; text-align:center; margin-top:1rem; line-height:1.6; }}
+
+    @media (max-width:1024px) {{
+      .collection-main {{ grid-template-columns:1fr; gap:2.5rem; }}
+      .sticky-sidebar {{ position:static; order:-1; max-width:500px; margin:0 auto; width:100%; }}
+      .related-grid {{ grid-template-columns:repeat(2,1fr); }}
+    }}
+    @media (max-width:720px) {{
+      .collection-hero {{ padding:7rem 1.5rem 2rem; }}
+      .short-version {{ padding:1.6rem 1.4rem; }}
+      .collection-main {{ padding:1.5rem 1.5rem 3rem; }}
+      .main-column {{ font-size:1.08rem; }}
+      .faq-section {{ padding:4rem 1.5rem 3rem; }}
+      .related-section {{ padding:2rem 1.5rem 4rem; }}
+      .related-grid {{ grid-template-columns:1fr; }}
+      .site-nav {{ padding:0 1.5rem; }}
+      .nav-links {{ gap:1.2rem; }}
+      .grid-intro-cta {{ padding:1.4rem 1.4rem; }}
+      footer {{ flex-direction:column; padding:2rem; text-align:center; }}
+    }}
+    .nav-logo {{ white-space:nowrap; }}
+    .nav-logo .logo-short {{ display:none; }}
+    @media (max-width:720px) {{
+      .site-nav {{ padding:0 1rem; }}
+      .nav-logo {{ font-size:.88rem; }}
+      .nav-logo .logo-full {{ display:none; }}
+      .nav-logo .logo-short {{ display:inline; }}
+      .nav-links {{ gap:.9rem; }}
+      .nav-links a {{ font-size:.72rem; letter-spacing:.04em; }}
+    }}
+    @media (max-width:420px) {{
+      .nav-logo {{ font-size:.78rem; }}
+      .nav-links {{ gap:.55rem; }}
+      .nav-links a {{ font-size:.62rem; letter-spacing:.03em; }}
+    }}
+  </style>
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/mobile-nav.css" />
+
+  <!-- Organization schema (site-wide) -->
+  <script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://builtbyjoshstudio.com/#organization",
+  "name": "Built by Josh Studio LLC",
+  "alternateName": ["BBJ Studio", "Built By Josh Studio"],
+  "legalName": "Built by Josh Studio LLC",
+  "url": "https://builtbyjoshstudio.com",
+  "logo": {{ "@type": "ImageObject", "url": "https://builtbyjoshstudio.com/images/logo/logo.webp", "width": 512, "height": 512 }},
+  "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under the Built By Josh Studio brand and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
+  "founder": {{ "@type": "Person", "name": "Josh" }},
+  "foundingDate": "2026-05-13",
+  "foundingLocation": {{ "@type": "Place", "address": {{ "@type": "PostalAddress", "addressRegion": "KS", "addressCountry": "US" }} }},
+  "address": {{ "@type": "PostalAddress", "addressRegion": "KS", "addressCountry": "US" }},
+  "areaServed": "Worldwide",
+  "knowsAbout": ["Zodiac digital art","Western zodiac","Chinese zodiac","Notion templates","Personal finance spreadsheets","Digital product design","Print-on-demand licensing"],
+  "brand": [
+    {{ "@type": "Brand", "name": "Built By Josh Studio", "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads." }},
+    {{ "@type": "Brand", "name": "Tynkr Tools & Co", "description": "Notion OS templates and Excel and Google Sheets workbooks for creators, solopreneurs, and personal-finance milestones." }}
+  ],
+  "contactPoint": {{ "@type": "ContactPoint", "email": "josh@builtbyjoshstudio.com", "contactType": "customer support", "areaServed": "Worldwide", "availableLanguage": "English" }},
+  "sameAs": ["https://linktr.ee/builtbyjoshstudio","https://tynkrtoolsco.substack.com/","https://www.youtube.com/@TalesofInkShadowsStudio","https://tynkrtoolsandco.etsy.com","https://www.etsy.com/shop/BuiltByJoshStudio"],
+  "identifier": [{{ "@type": "PropertyValue", "propertyID": "Kansas Business ID", "value": "10076138" }}]
+}}
+  </script>
+</head>
+<body>
+  <div class="stars" id="starsContainer"></div>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#tynkr">Templates</a></li>
+      <li><a href="../index.html#builtbyjosh" class="active">Zodiac Art</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../index.html#free-tools">Free Tools</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <header class="collection-hero">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Collections</a><span class="sep">/</span><a href="../index.html#landscapes">Western Landscapes</a><span class="sep">/</span><span>Western Landscapes Bundle</span>
+    </div>
+    <div class="hero-eyebrow">Western Landscapes · Oil-Painted Series · 12 Environments</div>
+    <h1 class="collection-title">Western Landscapes Bundle — 12 Mythic Realms in One Collection</h1>
+    <p class="collection-tagline">A landscape for every Western zodiac sign — Aries through Pisces. Twelve mythic environments rendered in oil-painted cinematic style, delivered as one bundle for $19.99. 72 print-ready files in total. Personal use and print-on-demand licensed up to 100 prints per design.</p>
+    <div class="hero-image">
+      <img src="../{hero_thumb}" alt="Western Landscapes preview — 12 oil-painted zodiac landscapes, hero image The Forge of Aries, from Built By Josh Studio" />
+    </div>
+  </header>
+
+  <aside class="short-version">
+    <div class="short-version-label">The Short Version</div>
+    <p>The Western Landscapes Bundle from Built By Josh Studio is a single-collection digital art bundle covering all 12 Western zodiac signs as oil-painted mythic landscapes. Includes 72 print-ready files — 12 unique landscape designs across three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) and two formats (PNG, JPG), at 300 DPI with maximum dimensions of 6000 × 9000 pixels. The bundle is priced at $19.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
+  </aside>
+
+  <div class="collection-main">
+    <main class="main-column">
+
+      <section>
+        <h2>The Western Landscapes Bundle</h2>
+        <p>The Western Landscapes Bundle from Built By Josh Studio renders each of the 12 Western zodiac signs as a place instead of a figure. No rams, no lions, no scorpions — just the mythic environment each sign would inhabit, painted with oil-textured brushwork and cinematic depth. The result is 12 standalone wall pieces that work as a cohesive atmospheric set or as one-off statement prints.</p>
+        <p>Every landscape is delivered in three aspect ratios at print-ready high resolution (up to 6000 × 9000 pixels). 72 files in total — 12 designs × 3 ratios × 2 formats. Sold as one $19.99 bundle, not 12 separate listings.</p>
+        <p>Built By Josh Studio is the zodiac art brand of Built by Josh Studio LLC, a Kansas-based independent creative studio. Every landscape is original work — concepted, generated, curated, and finalized by a single founder.</p>
+      </section>
+
+      <section>
+        <h2>Why Landscape Zodiac Art Instead of Portraits</h2>
+        <p>Traditional zodiac art gives you the figure: the ram, the bull, the twins. Landscape zodiac art gives you the <strong>world</strong>. The environment that figure would live in. The weather of their emotional geography. The place you would visit if you stepped inside their sign.</p>
+        <p>Landscapes work differently on a wall. A portrait draws the eye to a character; a landscape draws the eye into a space. For rooms that need depth, atmosphere, or cinematic scale, a landscape print earns its place where a portrait can feel too direct. The two series also pair well — a figure portrait of your sign alongside the landscape it inhabits.</p>
+      </section>
+
+      <section>
+        <h2>The 12 Zodiac Landscapes</h2>
+
+        <div class="grid-intro-cta">
+          <p>The Western Landscapes Collection is sold as a single bundle — all 12 mythic landscape designs in one $19.99 download. Click below to purchase the full Collection.</p>
+          <button class="ls-checkout-btn ls-checkout-btn--large" disabled data-checkout-url="" data-product-name="Western Landscapes Bundle" data-product-price="19.99">Buy the Western Landscapes Bundle — Coming Soon</button>
+          <p>Scroll down to preview each of the 12 landscapes.</p>
+        </div>
+
+        <div class="landscapes-grouped">
+{landscape_blocks_html}
+        </div>
+        <p class="landscape-tally">12 unique designs · 72 print-ready files (3 aspect ratios × 2 formats per design). One bundle, every Western zodiac landscape in oil-painted form.</p>
+      </section>
+
+      <section>
+        <h2>Who Buys the Western Landscapes Bundle</h2>
+        <p>This bundle is for buyers who want zodiac art with more atmosphere and less figure-drawing. They usually fall into one of these camps:</p>
+        <ul>
+          <li>Collectors who already own a figure-based zodiac print from the Western Signs Collection and want the complementary landscape for the same sign</li>
+          <li>Decorators who prefer atmospheric wall art over portraits — especially for living rooms, bedrooms, and larger spaces</li>
+          <li>Buyers who find zodiac symbolism meaningful but don't want a ram or lion on their wall</li>
+          <li>Fans of oil-painted landscape art who happen to also care about astrology</li>
+          <li>Gift shoppers looking for something more unusual than standard zodiac clip-art — the bundle gives you every sign at once for any recipient</li>
+          <li>Couples or households matching multiple signs — landscapes pair well as sets where portraits would compete</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What's Included With the Bundle</h2>
+        <p>The Western Landscapes Bundle is a complete digital download. After purchase, you get instant access to 72 image files organized by sign — no shipping, no waiting, no physical product mailed to you.</p>
+        <p>Each landscape design is delivered in three aspect ratios: 1:1 square (4800 × 4800 pixels), 4:5 portrait (4800 × 6000 pixels), and 2:3 portrait (6000 × 9000 pixels). Every size is provided in both PNG (lossless) and JPG (92% quality) formats. All files are saved at 300 DPI in standard sRGB color space — the industry standard for high-quality print reproduction across home printers, professional print shops, and print-on-demand services. The 2:3 portrait files crop cleanly to wider panoramic frames when you want the full horizontal scope.</p>
+        <p>The bundle also includes two PDF documents: a <strong>License Agreement &amp; Terms of Use</strong> covering personal use, print-on-demand rights, and the 100-print-per-design cap, and a <strong>Print Guide &amp; User Manual</strong> explaining file structure, recommended print sizes, paper selection, and troubleshooting tips. Both are tailored to the Western Landscapes Collection.</p>
+        <p>Pricing is <strong>$19.99</strong> for the full bundle. One-time payment, instant download, secure checkout via Lemon Squeezy.</p>
+      </section>
+
+      <section>
+        <h2>Licensing &amp; Print-on-Demand Rights</h2>
+        <div class="license-block">
+          <p>The Western Landscapes Bundle ships with a clear, plain-English license — not a vague "for personal use" disclaimer.</p>
+          <h3>You may</h3>
+          <ul>
+            <li>Print and display the files in your own home or personal space</li>
+            <li>Sell physical print-on-demand products (framed prints, posters, canvases, mugs, t-shirts, phone cases, etc.) made from the designs, up to a cumulative cap of 100 physical units per individual design across all formats, vendors, and time periods combined</li>
+            <li>Use the prints as personal or commercial gifts within the same 100-print-per-design cap</li>
+          </ul>
+          <h3>You may not</h3>
+          <ul>
+            <li>Redistribute, share, sell, or transmit the digital files themselves to anyone, in any format</li>
+            <li>Use the files as input, training data, or seed images for any AI model</li>
+            <li>Mint or tokenize the files as NFTs or other blockchain assets</li>
+            <li>Exceed the 100-print-per-design cap (it does not reset and is cumulative across all channels)</li>
+            <li>Claim authorship of the designs or register them as your own intellectual property</li>
+          </ul>
+          <p class="disclosure"><strong>AI disclosure:</strong> The designs in the bundle were created using a combination of human creative direction and AI image generation tools, including Leonardo.ai, with selection, curation, refinement, and final arrangement by Built by Josh Studio LLC. This is disclosed in full in the license agreement.</p>
+          <p class="contact-line"><strong>Need more than 100 prints per design?</strong> Extended commercial licensing is available — contact <a href="mailto:josh@builtbyjoshstudio.com" style="color:var(--bbj-accent);text-decoration:none">josh@builtbyjoshstudio.com</a> before exceeding the cap.</p>
+          <a href="/legal/license-western-landscapes.pdf" class="pdf-link">Read the Western Landscapes License (PDF) →</a>
+          <a href="/legal/print-guide-western-landscapes.pdf" class="pdf-link">Read the Western Landscapes Print Guide (PDF) →</a>
+        </div>
+      </section>
+
+    </main>
+
+    <aside class="sticky-sidebar">
+      <div class="sidebar-label">Bundle Price</div>
+      <div class="sidebar-price">$19.99</div>
+      <div class="sidebar-price-note">Instant download · Secure checkout via Lemon Squeezy.</div>
+
+      <div class="sidebar-included-label">What's Included</div>
+      <ul class="sidebar-included">
+        <li>72 print-ready digital files</li>
+        <li>12 unique oil-painted landscapes (one per sign)</li>
+        <li>Three aspect ratios: 1:1, 4:5, 2:3</li>
+        <li>PNG + JPG, both included</li>
+        <li>Up to 6000 × 9000 pixels at 300 DPI</li>
+        <li>Personal use + POD up to 100 prints per design</li>
+        <li><a href="/legal/license-western-landscapes.pdf">License Agreement (PDF)</a></li>
+        <li><a href="/legal/print-guide-western-landscapes.pdf">Print Guide (PDF)</a></li>
+      </ul>
+
+      <button class="ls-checkout-btn" disabled data-checkout-url="" data-product-name="Western Landscapes Bundle" data-product-price="19.99">Buy the Landscapes Bundle — Coming Soon</button>
+      <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
+
+      <ul class="sidebar-trust">
+        <li>Instant digital download</li>
+        <li>300 DPI print-ready files</li>
+        <li>Real Kansas LLC + clear POD license</li>
+        <li>Secure direct checkout via Lemon Squeezy</li>
+      </ul>
+
+      <div class="etsy-secondary">
+        <div class="etsy-secondary-label">Looking for something different?</div>
+        <p>The Built By Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
+        <p class="etsy-pause-note">Etsy storefront currently on a brief verification pause while the IRS finalizes EIN verification — Western Landscapes Bundle purchases above are unaffected.</p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="faq-section">
+    <div class="section-label">Frequently Asked</div>
+    <h2 class="section-title-main">Frequently Asked Questions</h2>
+    <div class="faq-list">
+{faq_items_html}
+    </div>
+  </section>
+
+  <section class="related-section">
+    <div class="section-label">Explore the rest of the BBJ Studio zodiac catalog</div>
+    <h2 class="section-title-main">Related Collections</h2>
+    <div class="related-grid">
+      <a href="index.html" class="related-card">
+        <div class="related-meta">Western Zodiac · 12 Signs</div>
+        <h3>Western Signs Collection</h3>
+        <p>All 12 Western zodiac signs in 14 art styles — 144 files per sign bundle, $24.99 each. The figure version of the Western zodiac that pairs with these landscapes.</p>
+        <span class="related-link">View Collection →</span>
+      </a>
+      <a href="index.html" class="related-card">
+        <div class="related-meta">Western Zodiac · 12 Realms</div>
+        <h3>Western Realms Collection</h3>
+        <p>Per-sign Realm bundles — 4 named realms per sign with 2 variants each, $14.99 each. The hybrid cosmos-landscape per-sign companion to this single-bundle landscape Collection.</p>
+        <span class="related-link">View Collection →</span>
+      </a>
+      <a href="chinese-zodiac-art.html" class="related-card">
+        <div class="related-meta">Eastern Zodiac · 12 Animals</div>
+        <h3>Chinese Signs Collection</h3>
+        <p>Per-animal figure bundles for all 12 Chinese zodiac animals — 8 designs per animal across 2 art styles, $14.99 each. The Eastern zodiac figure series.</p>
+        <span class="related-link">View Collection →</span>
+      </a>
+      <a href="chinese-zodiac-realms.html" class="related-card">
+        <div class="related-meta">Eastern Zodiac · Lunar Realms</div>
+        <h3>Chinese Zodiac Realms</h3>
+        <p>Landscape-style art for all 12 Chinese animals in one bundle — 144 files, 24 designs, $29.99. The Eastern single-bundle landscape companion to this Western collection.</p>
+        <span class="related-link">View Collection →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="cta-eyebrow">Browse the Collection</div>
+    <h2>12 Signs. 12 Worlds. <span class="italic-accent">One Bundle.</span></h2>
+    <p class="cta-sub">Every Western zodiac sign rendered as the landscape it would inhabit — painted in oil, print-ready on download. The full atmospheric set in one $19.99 download.</p>
+    <button class="ls-checkout-btn ls-checkout-btn--large" disabled data-checkout-url="" data-product-name="Western Landscapes Bundle" data-product-price="19.99">Buy the Western Landscapes Bundle — Coming Soon</button>
+    <span class="cta-sub-line">Instant download — 72 print-ready landscape files in your inbox the moment checkout completes.</span>
+  </section>
+
+  <footer>
+    <div class="footer-left"><strong>Built By Josh Studio</strong> · All digital products — instant download</div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html">Collections</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="/legal/">Legal</a></li>
+      <li><a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Etsy</a></li>
+      <li><a href="../refunds.html">Refunds</a></li>
+      <li><a href="../privacy.html">Privacy</a></li>
+      <li><a href="../terms.html">Terms</a></li>
+    </ul>
+    <div class="footer-legal">
+      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
+      Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.
+    </div>
+  </footer>
+
+  <script>
+    const container = document.getElementById('starsContainer');
+    for (let i = 0; i < 80; i++) {{
+      const s = document.createElement('div');
+      s.className = 'star';
+      s.style.cssText = `left:${{Math.random()*100}}%;top:${{Math.random()*100}}%;--d:${{2+Math.random()*4}}s;--delay:-${{Math.random()*4}}s;--op:${{0.3+Math.random()*0.7}};filter:blur(${{Math.random()>0.8?'1px':'0px'}});width:${{Math.random()>0.8?3:2}}px;height:${{Math.random()>0.8?3:2}}px;`;
+      container.appendChild(s);
+    }}
+  </script>
+  <script src="/js/mobile-nav.js" defer></script>
+  <script src="/js/ga4-events.js" defer></script>
+</body>
+</html>
+'''
+
+
+def main():
+    html = build_page()
+    OUT_PATH.write_text(html, encoding='utf-8')
+    lines = html.count('\n') + 1
+    size_kb = OUT_PATH.stat().st_size / 1024
+    print(f'Wrote {OUT_PATH.name} ({lines} lines, {size_kb:.1f} KB)')
+
+
+if __name__ == '__main__':
+    main()
