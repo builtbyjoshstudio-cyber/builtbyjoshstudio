@@ -772,13 +772,13 @@
     .btn-buy-tynkr:hover { background: var(--tynkr-accent); }
 
     /* ── BBJ SECTION ── */
-    #builtbyjosh, #chinese-zodiac, #landscapes {
+    #builtbyjosh, #western-realms, #chinese-zodiac, #landscapes {
       background: var(--bbj-bg);
       padding: 6rem 5rem;
       position: relative;
       overflow: hidden;
     }
-    #builtbyjosh::before {
+    #builtbyjosh::before, #western-realms::before {
       content: '';
       position: absolute;
       inset: 0;
@@ -1089,7 +1089,7 @@
     @media (max-width: 900px) {
       .hero-split { grid-template-columns: 1fr; }
       .hero-tynkr, .hero-bbj { padding: 4rem 2rem; }
-      #tynkr, #builtbyjosh, #chinese-zodiac, #landscapes { padding: 4rem 2rem; }
+      #tynkr, #builtbyjosh, #western-realms, #chinese-zodiac, #landscapes { padding: 4rem 2rem; }
       .section-header, .section-header-bbj { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
       .section-header p, .section-header-bbj p { text-align: left; }
       .parent-strip { flex-direction: column; padding: 3rem 2rem; gap: 2rem; }
@@ -1506,7 +1506,7 @@
     /* ── SEO BRIEF MOBILE FIXES ── */
     @media (max-width: 768px) {
       .hero-tynkr, .hero-bbj { padding: 3.5rem 1.5rem; }
-      #tynkr, #builtbyjosh, #chinese-zodiac, #landscapes { padding: 3.5rem 1.5rem; }
+      #tynkr, #builtbyjosh, #western-realms, #chinese-zodiac, #landscapes { padding: 3.5rem 1.5rem; }
       .studio-intro { padding: 2rem 1.5rem; }
       .tynkr-tags { row-gap: 0.75rem; }
       .site-nav { padding: 0 1rem; }

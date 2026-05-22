@@ -588,6 +588,7 @@
    washes to #chinese-zodiac and #landscapes. Same recipe as the
    collection hero washes so the page reads as one cosmic flow. */
 #builtbyjosh::before,
+#western-realms::before,
 #chinese-zodiac::before,
 #landscapes::before {
   content: '';
@@ -629,6 +630,7 @@
    on hover. Works for Western zodiac, Chinese zodiac, and
    Landscapes uniformly (they all use .card-bbj). */
 #builtbyjosh .card-bbj,
+#western-realms .card-bbj,
 #chinese-zodiac .card-bbj,
 #landscapes .card-bbj {
   background: rgba(11, 8, 19, 0.32);
@@ -638,6 +640,7 @@
   box-shadow: inset 0 1px 0 rgba(255, 215, 128, 0.25);
 }
 #builtbyjosh .card-bbj:hover,
+#western-realms .card-bbj:hover,
 #chinese-zodiac .card-bbj:hover,
 #landscapes .card-bbj:hover {
   transform: translateY(-4px);
@@ -651,6 +654,7 @@
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   #builtbyjosh .filter-btn-bbj { background: rgba(11, 8, 19, 0.85); }
   #builtbyjosh .card-bbj,
+  #western-realms .card-bbj,
   #chinese-zodiac .card-bbj,
   #landscapes .card-bbj {
     background: rgba(11, 8, 19, 0.90);
