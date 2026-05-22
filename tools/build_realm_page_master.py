@@ -1,0 +1,769 @@
+"""Build per-sign Western Realms pages per the Master Template (Brief Msg 4).
+
+Replaces the Phase 2 placeholder structure with the full master pattern:
+LS-direct CTAs, License & POD Trust block, Sister-Realms nav, Related
+Collections, Quick Facts, 4 per-Realm sub-sections with descriptions, 8
+FAQs, full Product/FAQPage/BreadcrumbList schemas.
+
+Run pattern:
+    python tools/build_realm_page_master.py Aries       # Message 4: Aries only
+    python tools/build_realm_page_master.py             # default = signs with copy
+
+Signs without per-Realm descriptions in REALM_COPY_BY_SIGN are skipped — the
+old Phase 2 page stays in place until Message 5 ships per-sign descriptions
+for them.
+
+This script reads:
+  images/zodiac/realms/manifest.json (Phase 2 generated)
+
+This script writes:
+  collections/<sign>-zodiac-realms.html
+"""
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+MANIFEST = ROOT / 'images' / 'zodiac' / 'realms' / 'manifest.json'
+OUT_DIR = ROOT / 'collections'
+
+ALL_SIGNS_ORDER = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces']
+
+SIGN_META = {
+    'Aries':       dict(slug='aries',       symbol='♈', element='Fire',  modality='Cardinal', planet='Mars',    symbol_label='The Ram',          dates='March 21 – April 19',     dates_short='Mar 21 – Apr 19', sister_signs='Leo, Sagittarius',     sku='BBJ-WR-ARIES'),
+    'Taurus':      dict(slug='taurus',      symbol='♉', element='Earth', modality='Fixed',    planet='Venus',   symbol_label='The Bull',         dates='April 20 – May 20',        dates_short='Apr 20 – May 20', sister_signs='Virgo, Capricorn',     sku='BBJ-WR-TAURUS'),
+    'Gemini':      dict(slug='gemini',      symbol='♊', element='Air',   modality='Mutable',  planet='Mercury', symbol_label='The Twins',        dates='May 21 – June 20',         dates_short='May 21 – Jun 20', sister_signs='Libra, Aquarius',      sku='BBJ-WR-GEMINI'),
+    'Cancer':      dict(slug='cancer',      symbol='♋', element='Water', modality='Cardinal', planet='Moon',    symbol_label='The Crab',         dates='June 21 – July 22',        dates_short='Jun 21 – Jul 22', sister_signs='Scorpio, Pisces',      sku='BBJ-WR-CANCER'),
+    'Leo':         dict(slug='leo',         symbol='♌', element='Fire',  modality='Fixed',    planet='Sun',     symbol_label='The Lion',         dates='July 23 – August 22',      dates_short='Jul 23 – Aug 22', sister_signs='Aries, Sagittarius',   sku='BBJ-WR-LEO'),
+    'Virgo':       dict(slug='virgo',       symbol='♍', element='Earth', modality='Mutable',  planet='Mercury', symbol_label='The Maiden',       dates='August 23 – September 22', dates_short='Aug 23 – Sep 22', sister_signs='Taurus, Capricorn',    sku='BBJ-WR-VIRGO'),
+    'Libra':       dict(slug='libra',       symbol='♎', element='Air',   modality='Cardinal', planet='Venus',   symbol_label='The Scales',       dates='September 23 – October 22',dates_short='Sep 23 – Oct 22', sister_signs='Gemini, Aquarius',     sku='BBJ-WR-LIBRA'),
+    'Scorpio':     dict(slug='scorpio',     symbol='♏', element='Water', modality='Fixed',    planet='Pluto',   symbol_label='The Scorpion',     dates='October 23 – November 21', dates_short='Oct 23 – Nov 21', sister_signs='Cancer, Pisces',       sku='BBJ-WR-SCORPIO'),
+    'Sagittarius': dict(slug='sagittarius', symbol='♐', element='Fire',  modality='Mutable',  planet='Jupiter', symbol_label='The Archer',       dates='November 22 – December 21',dates_short='Nov 22 – Dec 21', sister_signs='Aries, Leo',           sku='BBJ-WR-SAGITTARIUS'),
+    'Capricorn':   dict(slug='capricorn',   symbol='♑', element='Earth', modality='Cardinal', planet='Saturn',  symbol_label='The Sea-Goat',     dates='December 22 – January 19', dates_short='Dec 22 – Jan 19', sister_signs='Taurus, Virgo',        sku='BBJ-WR-CAPRICORN'),
+    'Aquarius':    dict(slug='aquarius',    symbol='♒', element='Air',   modality='Fixed',    planet='Uranus',  symbol_label='The Water Bearer', dates='January 20 – February 18', dates_short='Jan 20 – Feb 18', sister_signs='Gemini, Libra',        sku='BBJ-WR-AQUARIUS'),
+    'Pisces':      dict(slug='pisces',      symbol='♓', element='Water', modality='Mutable',  planet='Neptune', symbol_label='The Fish',         dates='February 19 – March 20',   dates_short='Feb 19 – Mar 20', sister_signs='Cancer, Scorpio',      sku='BBJ-WR-PISCES'),
+}
+
+# Per-Realm prose for each sign (only Aries shipped in Message 4; Message 5
+# fills in the other 11). Keys are the actual Realm titles from the manifest.
+REALM_COPY_BY_SIGN = {
+    'Aries': {
+        'Horizon of Fire and Dust':  'A vast horizon where crimson sky meets scorched earth, lit by a perpetual firestorm. The Aries Realm of momentum stretched flat across the open plain.',
+        'The Crimson Battleforge':   'A cathedral of fire and steel — anvils the size of altars, lava as river, every surface ringing. The Aries Realm of creation under pressure.',
+        'The Crimson Expansion':     'A volcanic frontier expanding outward from a single ignition point. Aries energy as a cosmic event, viewed from inside the blast.',
+        'The Ignition Horizon':      'A horizon on fire — molten skies over glowing crimson geometry. The Aries Realm where every dawn is a first strike.',
+    },
+}
+
+ZODIAC_CONTEXT_PROSE = {
+    'Aries': (
+        '<p>Aries is the first sign of the zodiac, spanning March 21 through April 19. It is a fire sign ruled by Mars — the planet of drive, aggression, and action. Aries is represented by the ram, a symbol of headfirst momentum and refusal to back down.</p>\n'
+        "        <p>People born under Aries are often described as bold, competitive, and direct. They tend to be initiators — the ones who start the project, make the first move, and set the pace. Aries energy is forward motion. It doesn't wait for permission and it doesn't look back.</p>\n"
+        '        <p>That energy translates directly into the Aries Realms. Whether rendered as the molten Crimson Battleforge or the open Ignition Horizon, every Aries Realm is designed to feel like it is mid-motion — landscapes still cooling from a strike that just happened.</p>'
+    ),
+}
+
+
+def build_realm_block(title, designs, sign, description):
+    """Render a single Realm sub-section: title + description + 2 variant cards."""
+    cards = []
+    for d in sorted(designs, key=lambda x: int(x['variant'])):
+        cards.append(
+            '            <div class="design-card">\n'
+            f'              <img src="../{d["webp_path"]}" alt="{title} variant {d["variant"]} — {sign} Western Realms art print" loading="lazy" width="720" height="900">\n'
+            '              <div class="design-card-body">\n'
+            f'                <h4>Variant {d["variant"]}</h4>\n'
+            '              </div>\n'
+            '            </div>'
+        )
+    return (
+        f'        <div class="realm-block">\n'
+        f'          <h3 class="realm-block-title">{title}</h3>\n'
+        f'          <p class="realm-block-desc">{description}</p>\n'
+        '          <div class="designs-grid">\n\n' + '\n\n'.join(cards) + '\n\n'
+        '          </div>\n'
+        '        </div>'
+    )
+
+
+def build_sister_nav(current_sign):
+    cards = []
+    for s in ALL_SIGNS_ORDER:
+        m = SIGN_META[s]
+        is_current = (s == current_sign)
+        if is_current:
+            inner = f'<div class="sister-card sister-card-current"><span class="sister-glyph">{m["symbol"]}</span><span class="sister-name">{s}</span><span class="sister-meta">{m["element"]} · {m["dates_short"]}</span><span class="sister-here">You are here</span></div>'
+        else:
+            href = f'{m["slug"]}-zodiac-realms.html'
+            inner = f'<a href="{href}" class="sister-card"><span class="sister-glyph">{m["symbol"]}</span><span class="sister-name">{s}</span><span class="sister-meta">{m["element"]} · {m["dates_short"]}</span></a>'
+        cards.append(f'        {inner}')
+    return '\n'.join(cards)
+
+
+def faq_data(sign):
+    realm_titles_csv = ', '.join(sorted(REALM_COPY_BY_SIGN.get(sign, {}).keys())) or 'four Realm designs'
+    return [
+        (f'What is included in the {sign} Western Realms Bundle?',
+         f'The {sign} Realms bundle includes 48 print-ready digital files covering 4 unique {sign} Realm designs ({realm_titles_csv}), each with 2 numbered variants. Every design ships in three aspect ratios (1:1, 4:5, 2:3) and both PNG and JPG formats, at 300 DPI. The bundle also includes a License Agreement and a Print Guide as PDFs.'),
+        (f'How much does the {sign} Western Realms Bundle cost?',
+         f'The {sign} Realms bundle is priced at $14.99 — one-time payment, instant digital download. That works out to roughly $1.87 per unique design or $0.31 per file variant.'),
+        (f'Can I use the {sign} Realms Bundle for print-on-demand or commercial sales?',
+         'Yes. The license includes print-on-demand rights for up to 100 physical units per individual design, cumulative across all formats, vendors, and time periods combined. You can sell framed prints, posters, canvases, and similar physical products made from the Realm designs within that cap. For more than 100 prints of any single design, contact Built by Josh Studio LLC about extended commercial licensing.'),
+        (f'What sizes can I print the {sign} Realms art at?',
+         'The largest file (6000 × 9000 pixels) prints crisply up to 20" × 30" at full 300 DPI. With a print provider running 150 DPI for large-format jobs, prints up to roughly 40" × 60" still look excellent. The bundle also includes 1:1 files (4800 × 4800) for square framing and 4:5 files (4800 × 6000) for standard portrait sizes like 8×10 and 16×20.'),
+        (f'How were the {sign} Realm designs created?',
+         f"The {sign} Realm designs were created by Built by Josh Studio LLC using a combination of human creative direction and AI image generation tools, including Leonardo.ai. Every design is selected, curated, refined, and finalized by the studio's founder. This is disclosed in full in the license agreement included with every bundle."),
+        (f"What's the difference between the {sign} Realms Bundle and the {sign} Zodiac Art Bundle?",
+         f'The {sign} Zodiac Art Bundle ($24.99) contains 144 files covering 24 figure-based designs across 14 art styles — the sign rendered as a character. The {sign} Realms Bundle ($14.99) contains 48 files covering 4 landscape-style Realms with 2 variants each — {sign} rendered as place rather than figure. The two pair naturally as a figure-and-environment wall arrangement.'),
+        (f'Where can I buy the {sign} Western Realms Bundle?',
+         f'The {sign} Realms Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {sign} Realms Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built By Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
+        ('Do you have Realms for the other 11 Western zodiac signs?',
+         'Yes. Built By Josh Studio publishes 12 sign-specific Realms bundles — one for every Western zodiac sign (Aries through Pisces). All 12 bundles share identical structure: 48 files, 4 Realm designs, 2 variants each, three aspect ratios, both PNG and JPG. The Chinese Realms Collection covers all 12 Chinese zodiac animals in a single bundle, also landscape-style.'),
+    ]
+
+
+def faq_schema_data(sign):
+    """ASCII-safe variants for JSON. Replace inch marks with 'by' / 'inches'."""
+    out = []
+    for q, a in faq_data(sign):
+        a_schema = (
+            a
+            .replace('20" × 30"', '20 by 30 inches')
+            .replace('40" × 60"', '40 by 60 inches')
+            .replace('8×10', '8x10')
+            .replace('16×20', '16x20')
+            .replace('×', 'x')
+            .replace(f'"Buy the {sign} Realms Bundle"', f'Buy the {sign} Realms Bundle')
+        )
+        out.append({'q': q, 'a': a_schema})
+    return out
+
+
+def build_page(sign, manifest):
+    m = SIGN_META[sign]
+    slug = m['slug']
+    sign_data = manifest[sign]
+    designs = sign_data['designs']
+    hub_thumb = sign_data['hub_thumb']  # images/zodiac/realms/<sign>.webp
+
+    realm_copy = REALM_COPY_BY_SIGN.get(sign, {})
+    if not realm_copy:
+        raise SystemExit(f'No per-Realm copy for {sign} yet — add to REALM_COPY_BY_SIGN before regenerating.')
+
+    # Group designs by Realm title, render 4 sub-sections
+    by_title = {}
+    for d in designs:
+        by_title.setdefault(d['title'], []).append(d)
+    titles_alpha = sorted(by_title.keys())
+    realm_blocks_html = '\n\n'.join(
+        build_realm_block(t, by_title[t], sign, realm_copy.get(t, ''))
+        for t in titles_alpha
+    )
+
+    sister_nav = build_sister_nav(sign)
+
+    # FAQ visible HTML
+    faqs = faq_data(sign)
+    faq_items_html = '\n'.join(
+        '      <div class="faq-item">\n'
+        f'        <h3>{q}</h3>\n'
+        f'        <p>{a}</p>\n'
+        '      </div>'
+        for q, a in faqs
+    )
+
+    # FAQPage schema
+    faq_schema = faq_schema_data(sign)
+    faq_schema_json = ',\n'.join(
+        '      {\n'
+        '        "@type": "Question",\n'
+        f'        "name": {json.dumps(f["q"])},\n'
+        '        "acceptedAnswer": {\n'
+        '          "@type": "Answer",\n'
+        f'          "text": {json.dumps(f["a"])}\n'
+        '        }\n'
+        '      }'
+        for f in faq_schema
+    )
+
+    zodiac_context = ZODIAC_CONTEXT_PROSE.get(sign, '')
+
+    return f'''<!DOCTYPE html>
+<html lang="en" data-glass="cosmic">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){{dataLayer.push(arguments);}}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{sign} Western Realms Bundle — 48 Print-Ready Landscape Files | BBJ Studio</title>
+  <meta name="description" content="The {sign} Western Realms bundle from Built By Josh Studio — 48 print-ready landscape-style files covering 4 unique Realm designs with 2 variants each. Personal use + print-on-demand licensed up to 100 prints per design. Instant download from $14.99." />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html" />
+
+  <meta property="og:title" content="{sign} Western Realms Bundle — 48 Print-Ready Landscape Files | BBJ Studio" />
+  <meta property="og:description" content="48 print-ready landscape-style files covering 4 {sign} Realm designs with 2 variants each. Personal use + POD up to 100 prints per design." />
+  <meta property="og:type" content="product" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html" />
+  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/{hub_thumb}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{sign} Western Realms Bundle — 48 Print-Ready Landscape Files | BBJ Studio" />
+  <meta name="twitter:description" content="48 print-ready landscape-style files covering 4 {sign} Realm designs with 2 variants each." />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/{hub_thumb}" />
+
+  <!-- Schema.org: BreadcrumbList (4-level) -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://builtbyjoshstudio.com/" }},
+      {{ "@type": "ListItem", "position": 2, "name": "Collections", "item": "https://builtbyjoshstudio.com/collections/" }},
+      {{ "@type": "ListItem", "position": 3, "name": "Western Realms", "item": "https://builtbyjoshstudio.com/index.html#western-realms" }},
+      {{ "@type": "ListItem", "position": 4, "name": "{sign} Western Realms Bundle", "item": "https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html" }}
+    ]
+  }}
+  </script>
+
+  <!-- Schema.org: Product -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": "https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html#product",
+    "name": "{sign} Western Realms Bundle — 48 Print-Ready Landscape Files",
+    "description": "The {sign} Western Realms Bundle contains 48 print-ready digital files covering 4 unique landscape-style {sign} Realm designs, each with 2 numbered variants. Every design ships in three aspect ratios (1:1, 4:5, 2:3) at 300 DPI in both PNG and JPG. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    "image": [
+      "https://builtbyjoshstudio.com/{hub_thumb}"
+    ],
+    "url": "https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html",
+    "sku": "{m['sku']}",
+    "category": "Digital Art / Zodiac Art / Western Realms",
+    "brand": {{ "@type": "Brand", "name": "Built By Josh Studio" }},
+    "manufacturer": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},
+    "additionalProperty": [
+      {{"@type": "PropertyValue", "name": "File Count", "value": "48"}},
+      {{"@type": "PropertyValue", "name": "Realm Designs", "value": "4"}},
+      {{"@type": "PropertyValue", "name": "Variants per Design", "value": "2"}},
+      {{"@type": "PropertyValue", "name": "Resolution", "value": "300 DPI"}},
+      {{"@type": "PropertyValue", "name": "Maximum Dimensions", "value": "6000 x 9000 pixels"}},
+      {{"@type": "PropertyValue", "name": "Aspect Ratios", "value": "1:1, 4:5, 2:3"}},
+      {{"@type": "PropertyValue", "name": "File Formats", "value": "PNG, JPG"}},
+      {{"@type": "PropertyValue", "name": "Color Profile", "value": "sRGB"}},
+      {{"@type": "PropertyValue", "name": "License", "value": "Personal use + POD up to 100 prints per design"}},
+      {{"@type": "PropertyValue", "name": "Zodiac Sign", "value": "{sign}"}},
+      {{"@type": "PropertyValue", "name": "Element", "value": "{m['element']}"}},
+      {{"@type": "PropertyValue", "name": "Style", "value": "Landscape-style hybrid cosmos"}},
+      {{"@type": "PropertyValue", "name": "Date Range", "value": "{m['dates']}"}}
+    ],
+    "offers": {{
+      "@type": "Offer",
+      "price": "14.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html",
+      "seller": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},
+      "itemCondition": "https://schema.org/NewCondition"
+    }}
+  }}
+  </script>
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+{faq_schema_json}
+    ]
+  }}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    :root {{
+      --bbj-bg: #0b0813; --bbj-surface: #120f1f; --bbj-surface-2: #171327;
+      --bbj-accent: #c9a84c; --bbj-accent2: #7b4fa6;
+      --bbj-text: #ede8f5; --bbj-muted: #8a7fa8; --bbj-border: #2a2040;
+      --body-read: #d6cee8;
+    }}
+    html {{ scroll-behavior: smooth; }}
+    body {{ font-family: 'DM Sans', sans-serif; background: var(--bbj-bg); color: var(--bbj-text); overflow-x: hidden; min-height: 100vh; }}
+    .stars {{ position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }}
+    .star {{ position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0; animation: twinkle var(--d) ease-in-out infinite var(--delay); }}
+    @keyframes twinkle {{ 0%,100% {{ opacity: 0; transform: scale(.5); }} 50% {{ opacity: var(--op); transform: scale(1); }} }}
+    .site-nav {{ position: fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 2.5rem; height:64px; background:rgba(11,8,19,.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--bbj-border); }}
+    .nav-logo {{ font-family:'Syne',sans-serif; font-weight:800; font-size:1.1rem; letter-spacing:-.02em; color:var(--bbj-text); text-decoration:none; }}
+    .nav-links {{ display:flex; gap:2rem; list-style:none; }}
+    .nav-links a {{ font-family:'DM Sans',sans-serif; font-size:.85rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; color:var(--bbj-muted); transition:color .2s; }}
+    .nav-links a:hover, .nav-links a.active {{ color: var(--bbj-accent); }}
+
+    .collection-hero {{ padding:9rem 2rem 3rem; max-width:1200px; margin:0 auto; text-align:center; position:relative; }}
+    .collection-hero::before {{ content:''; position:absolute; inset:0; pointer-events:none;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,.1) 0%, transparent 55%),
+                  radial-gradient(ellipse at 20% 80%, rgba(123,79,166,.08) 0%, transparent 50%); }}
+    .breadcrumb {{ font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:1.4rem; position:relative; }}
+    .breadcrumb a {{ color:var(--bbj-accent); text-decoration:none; }}
+    .breadcrumb a:hover {{ text-decoration:underline; }}
+    .breadcrumb .sep {{ margin:0 .6rem; opacity:.5; }}
+    .hero-eyebrow {{ font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:1.2rem; position:relative; }}
+    h1.collection-title {{ font-family:'Cinzel',serif; font-size:clamp(2.2rem,5.5vw,3.8rem); font-weight:700; letter-spacing:.02em; line-height:1.12; color:var(--bbj-text); margin-bottom:1.4rem; max-width:900px; margin-left:auto; margin-right:auto; position:relative; }}
+    .collection-tagline {{ font-family:'Crimson Pro',serif; font-size:clamp(1.05rem,1.5vw,1.18rem); color:var(--body-read); max-width:760px; margin:0 auto 2.5rem; line-height:1.65; position:relative; }}
+    .hero-image {{ max-width:420px; margin:0 auto; position:relative; border:1px solid var(--bbj-border); overflow:hidden; aspect-ratio:4/5; }}
+    .hero-image img {{ width:100%; height:100%; object-fit:cover; display:block; }}
+    .hero-image::after {{ content:''; position:absolute; inset:0; background: radial-gradient(circle at 50% 50%, rgba(201,168,76,.08) 0%, transparent 70%); pointer-events:none; }}
+
+    .short-version {{ max-width:1000px; margin:3rem auto 0; padding:2rem 2.4rem; background:var(--bbj-surface); border:1px solid var(--bbj-border); border-left:4px solid var(--bbj-accent); position:relative; }}
+    .short-version-label {{ font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:.9rem; }}
+    .short-version p {{ font-family:'Crimson Pro',serif; font-size:1.05rem; line-height:1.75; color:var(--body-read); margin:0; }}
+
+    .collection-main {{ max-width:1200px; margin:2rem auto 0; padding:2rem 2rem 4rem; display:grid; grid-template-columns:1fr 340px; gap:3rem; align-items:start; }}
+    .main-column {{ font-family:'Crimson Pro',serif; font-size:1.15rem; line-height:1.75; color:var(--body-read); min-width:0; }}
+    .main-column section {{ margin-bottom:3rem; padding-top:2.5rem; border-top:1px solid var(--bbj-border); }}
+    .main-column section:first-child {{ border-top:none; padding-top:0; }}
+    .main-column h2 {{ font-family:'Cinzel',serif; font-size:clamp(1.4rem,2.6vw,1.85rem); font-weight:700; letter-spacing:.02em; color:var(--bbj-text); margin-bottom:1.3rem; line-height:1.2; }}
+    .main-column p {{ margin-bottom:1.3rem; }}
+    .main-column p strong {{ color:var(--bbj-text); font-weight:600; }}
+    .main-column ul {{ list-style:none; margin:0 0 1.5rem 0; padding:0; }}
+    .main-column ul li {{ position:relative; padding-left:1.6rem; margin-bottom:.8rem; }}
+    .main-column ul li::before {{ content:'◆'; position:absolute; left:0; color:var(--bbj-accent); font-size:.7rem; top:.5rem; }}
+
+    .quick-facts {{ background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.3rem 1.7rem; margin:0 0 2rem 0 !important; }}
+    .quick-facts li {{ padding-left:0 !important; margin-bottom:.5rem !important; font-family:'DM Sans',sans-serif; font-size:.95rem; color:var(--body-read); }}
+    .quick-facts li::before {{ content:'' !important; }}
+    .quick-facts li strong {{ font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--bbj-accent); display:inline-block; min-width:170px; }}
+
+    .realms-grouped {{ display:flex; flex-direction:column; gap:2.5rem; margin-top:1.5rem; }}
+    .realm-block {{ display:flex; flex-direction:column; gap:.8rem; }}
+    .realm-block-title {{ font-family:'Cinzel',serif; font-size:1.15rem; font-weight:700; color:var(--bbj-text); letter-spacing:.04em; text-transform:uppercase; padding-bottom:.6rem; border-bottom:1px solid var(--bbj-border); margin:0; }}
+    .realm-block-desc {{ font-family:'Crimson Pro',serif; font-size:1rem; line-height:1.65; color:var(--body-read); margin:0 0 .5rem 0 !important; padding-left:0 !important; }}
+    .realm-block-desc::before {{ content:'' !important; }}
+    .designs-grid {{ display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }}
+    .design-card {{ background:var(--bbj-surface); border:1px solid var(--bbj-border); overflow:hidden; display:flex; flex-direction:column; transition:border-color .25s, background .25s; }}
+    .design-card:hover {{ border-color:rgba(201,168,76,.35); background:var(--bbj-surface-2); }}
+    .design-card img {{ width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; display:block; background: linear-gradient(135deg,#1a1230 0%,#0d0a1a 100%); border-bottom:1px solid var(--bbj-border); }}
+    .design-card-body {{ padding:.9rem 1.1rem 1rem; }}
+    .design-card-body h4 {{ font-family:'Cinzel',serif; font-size:.85rem; font-weight:600; color:var(--bbj-muted); letter-spacing:.08em; text-transform:uppercase; margin:0; }}
+
+    .realm-tally {{ font-family:'Crimson Pro',serif; font-style:italic; font-size:1rem; color:var(--bbj-muted); margin-top:1.5rem; padding-top:1rem; border-top:1px solid rgba(42,32,64,.5); }}
+
+    .license-block {{ background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:2rem 2.2rem; margin-top:2rem; }}
+    .license-block h3 {{ font-family:'Cinzel',serif; font-size:1.02rem; font-weight:700; color:var(--bbj-text); letter-spacing:.05em; text-transform:uppercase; margin:1.6rem 0 .8rem 0; padding-bottom:.4rem; border-bottom:1px solid var(--bbj-border); }}
+    .license-block h3:first-child {{ margin-top:0; }}
+    .license-block ul {{ margin-bottom:1.4rem !important; }}
+    .license-block p.disclosure {{ background:rgba(123,79,166,.07); border-left:3px solid var(--bbj-accent2); padding:1rem 1.2rem; margin-bottom:1.4rem; font-size:1rem; line-height:1.65; }}
+    .license-block p.contact-line {{ margin-bottom:1.5rem; font-size:1rem; color:var(--body-read); }}
+    .license-block a.pdf-link {{ display:inline-block; font-family:'Cinzel',serif; font-size:.74rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--bbj-accent); text-decoration:none; padding:.6rem 1.1rem; border:1px solid var(--bbj-accent); margin:.4rem .4rem 0 0; transition:background .2s, color .2s; }}
+    .license-block a.pdf-link:hover {{ background:var(--bbj-accent); color:var(--bbj-bg); }}
+
+    .ls-checkout-btn {{ display:block; width:100%; background:var(--bbj-accent); color:var(--bbj-bg); border:none; font-family:'Cinzel',serif; font-size:.82rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:1.05rem 1rem; text-align:center; cursor:pointer; transition:background .2s, transform .2s; margin-bottom:.7rem; }}
+    .ls-checkout-btn:hover:not(:disabled) {{ background:#e0bd5a; transform:translateY(-1px); }}
+    .ls-checkout-btn:disabled {{ background:transparent; color:var(--bbj-muted); border:1px solid var(--bbj-border); cursor:default; font-weight:600; letter-spacing:.12em; font-size:.74rem; }}
+    .ls-checkout-btn--large {{ display:inline-block; width:auto; padding:1.15rem 2.5rem; font-size:.82rem; margin:0; }}
+    .ls-checkout-btn--large:disabled {{ font-size:.78rem; padding:1.1rem 2.2rem; }}
+    .ls-checkout-sub {{ display:block; font-size:.74rem; font-style:italic; color:var(--bbj-muted); text-align:center; margin-bottom:1.4rem; line-height:1.45; }}
+
+    .etsy-secondary {{ margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid rgba(42,32,64,.5); }}
+    .etsy-secondary .etsy-secondary-label {{ font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.5rem; }}
+    .etsy-secondary p {{ font-family:'DM Sans',sans-serif; font-size:.78rem; color:var(--bbj-muted); line-height:1.5; margin-bottom:.5rem; }}
+    .etsy-secondary a {{ color:var(--bbj-muted); text-decoration:underline; text-decoration-color:rgba(138,127,168,.4); }}
+    .etsy-secondary a:hover {{ color:var(--bbj-accent); text-decoration-color:var(--bbj-accent); }}
+    .etsy-secondary .etsy-pause-note {{ font-style:italic; font-size:.72rem; opacity:.75; margin-top:.4rem; margin-bottom:0; }}
+
+    .sticky-sidebar {{ position:sticky; top:88px; background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.8rem 1.7rem; font-family:'DM Sans',sans-serif; }}
+    .sticky-sidebar::before {{ content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(201,168,76,.05) 0%,transparent 60%); }}
+    .sticky-sidebar > * {{ position:relative; }}
+    .sidebar-label {{ font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.4rem; }}
+    .sidebar-price {{ font-family:'Cinzel',serif; font-size:2.4rem; font-weight:700; color:var(--bbj-accent); letter-spacing:-.02em; line-height:1; margin-bottom:.4rem; }}
+    .sidebar-price-note {{ font-size:.78rem; color:var(--bbj-muted); letter-spacing:.02em; margin-bottom:1.4rem; padding-bottom:1.4rem; border-bottom:1px solid var(--bbj-border); }}
+    .sidebar-included-label {{ font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.8rem; }}
+    .sidebar-included {{ list-style:none; padding:0; margin:0 0 1.5rem 0; }}
+    .sidebar-included li {{ font-size:.84rem; color:var(--body-read); padding:.42rem 0 .42rem 1.3rem; position:relative; line-height:1.35; border-bottom:1px solid rgba(42,32,64,.5); }}
+    .sidebar-included li:last-child {{ border-bottom:none; }}
+    .sidebar-included li::before {{ content:'✓'; position:absolute; left:0; color:var(--bbj-accent); font-weight:700; font-size:.85rem; }}
+    .sidebar-trust {{ list-style:none; padding:0; margin:0; }}
+    .sidebar-trust li {{ font-size:.74rem; color:var(--bbj-muted); padding:.35rem 0 .35rem 1.2rem; position:relative; line-height:1.35; }}
+    .sidebar-trust li::before {{ content:'✦'; position:absolute; left:0; color:var(--bbj-accent); font-size:.72rem; top:.38rem; }}
+
+    .faq-section {{ max-width:900px; margin:0 auto; padding:5rem 2rem 4rem; }}
+    .section-label {{ font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-accent); text-align:center; margin-bottom:.6rem; }}
+    .section-title-main {{ font-family:'Cinzel',serif; font-size:clamp(1.8rem,3.2vw,2.4rem); font-weight:700; letter-spacing:.02em; color:var(--bbj-text); text-align:center; margin-bottom:2.8rem; }}
+    .faq-list {{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--bbj-border); }}
+    .faq-item {{ border-bottom:1px solid var(--bbj-border); padding:1.6rem 0; }}
+    .faq-item h3 {{ font-family:'Cinzel',serif; font-size:1.05rem; font-weight:600; color:var(--bbj-text); margin-bottom:.7rem; letter-spacing:.01em; }}
+    .faq-item p {{ font-family:'Crimson Pro',serif; font-size:1.05rem; line-height:1.65; color:var(--body-read); margin:0; }}
+
+    .sister-nav-section {{ max-width:1200px; margin:0 auto; padding:3rem 2rem 2rem; }}
+    .sister-intro {{ font-family:'Crimson Pro',serif; font-style:italic; font-size:1.05rem; color:var(--body-read); text-align:center; max-width:720px; margin:0 auto 2rem; }}
+    .sister-grid {{ display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; }}
+    .sister-card {{ background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1rem 1rem; text-decoration:none; color:inherit; transition:transform .2s, border-color .2s, background .2s; display:flex; flex-direction:column; align-items:center; gap:.35rem; position:relative; }}
+    .sister-card:hover {{ transform:translateY(-2px); border-color:rgba(201,168,76,.4); background:var(--bbj-surface-2); }}
+    .sister-card-current {{ border-color:var(--bbj-accent); background:rgba(201,168,76,.05); cursor:default; }}
+    .sister-card-current:hover {{ transform:none; }}
+    .sister-glyph {{ font-size:1.5rem; color:var(--bbj-accent); line-height:1; }}
+    .sister-name {{ font-family:'Cinzel',serif; font-size:.92rem; font-weight:700; letter-spacing:.03em; color:var(--bbj-text); }}
+    .sister-meta {{ font-family:'DM Sans',sans-serif; font-size:.7rem; color:var(--bbj-muted); letter-spacing:.04em; text-align:center; }}
+    .sister-here {{ font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-accent); margin-top:.3rem; }}
+
+    .related-section {{ max-width:1200px; margin:0 auto; padding:3rem 2rem 5rem; }}
+    .related-grid {{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.4rem; }}
+    .related-card {{ background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.6rem 1.6rem 1.4rem; text-decoration:none; color:inherit; transition:transform .25s, border-color .25s, box-shadow .25s; display:flex; flex-direction:column; position:relative; overflow:hidden; }}
+    .related-card::after {{ content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg, rgba(201,168,76,.04) 0%, transparent 60%); }}
+    .related-card:hover {{ transform:translateY(-3px); border-color:rgba(201,168,76,.35); box-shadow:0 14px 40px rgba(201,168,76,.08); }}
+    .related-card > * {{ position:relative; z-index:1; }}
+    .related-meta {{ font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:.7rem; }}
+    .related-card h3 {{ font-family:'Cinzel',serif; font-size:1.1rem; font-weight:700; color:var(--bbj-text); margin-bottom:.6rem; letter-spacing:.01em; line-height:1.25; }}
+    .related-card p {{ font-family:'Crimson Pro',serif; font-size:.95rem; font-style:italic; color:var(--bbj-muted); line-height:1.5; margin-bottom:1rem; flex:1; }}
+    .related-link {{ font-family:'Cinzel',serif; font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--bbj-accent); }}
+
+    .cta-band {{ padding:5rem 2rem; text-align:center; background:linear-gradient(135deg,#1a1230 0%,#0d0a1a 100%); border-top:1px solid var(--bbj-border); border-bottom:1px solid var(--bbj-border); position:relative; }}
+    .cta-band .cta-eyebrow {{ font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:1rem; }}
+    .cta-band h2 {{ font-family:'Cinzel',serif; font-size:clamp(1.7rem,3.2vw,2.4rem); font-weight:700; color:var(--bbj-text); margin-bottom:.8rem; letter-spacing:.02em; max-width:720px; margin-left:auto; margin-right:auto; line-height:1.2; }}
+    .cta-band h2 .italic-accent {{ color:var(--bbj-accent); font-style:italic; font-family:'Crimson Pro',serif; font-weight:400; }}
+    .cta-band .cta-sub {{ font-family:'Crimson Pro',serif; color:var(--body-read); font-size:1.05rem; max-width:620px; margin:0 auto 2rem; line-height:1.6; }}
+    .cta-band .cta-sub-line {{ display:block; font-family:'Crimson Pro',serif; font-style:italic; font-size:.9rem; color:var(--bbj-muted); margin-top:1rem; }}
+
+    footer {{ background:#0a0a0f; padding:3rem 5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; }}
+    .footer-left {{ font-family:'Syne',sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.3); }}
+    .footer-left strong {{ color:rgba(255,255,255,.7); }}
+    .footer-links {{ display:flex; gap:1.5rem; list-style:none; }}
+    .footer-links a {{ font-size:.75rem; color:rgba(255,255,255,.3); text-decoration:none; transition:color .2s; letter-spacing:.06em; text-transform:uppercase; }}
+    .footer-links a:hover {{ color:rgba(255,255,255,.7); }}
+    .footer-legal {{ font-family:'DM Sans',sans-serif; font-size:.7rem; color:rgba(255,255,255,.3); width:100%; text-align:center; margin-top:1rem; line-height:1.6; }}
+
+    @media (max-width:1024px) {{
+      .collection-main {{ grid-template-columns:1fr; gap:2.5rem; }}
+      .sticky-sidebar {{ position:static; order:-1; max-width:500px; margin:0 auto; width:100%; }}
+      .related-grid {{ grid-template-columns:repeat(2,1fr); }}
+      .sister-grid {{ grid-template-columns:repeat(3,1fr); }}
+    }}
+    @media (max-width:720px) {{
+      .collection-hero {{ padding:7rem 1.5rem 2rem; }}
+      .short-version {{ padding:1.6rem 1.4rem; }}
+      .collection-main {{ padding:1.5rem 1.5rem 3rem; }}
+      .main-column {{ font-size:1.08rem; }}
+      .faq-section {{ padding:4rem 1.5rem 3rem; }}
+      .related-section {{ padding:2rem 1.5rem 4rem; }}
+      .related-grid {{ grid-template-columns:1fr; }}
+      .site-nav {{ padding:0 1.5rem; }}
+      .nav-links {{ gap:1.2rem; }}
+      .sister-grid {{ grid-template-columns:repeat(2,1fr); }}
+      .designs-grid {{ grid-template-columns:1fr; }}
+      footer {{ flex-direction:column; padding:2rem; text-align:center; }}
+    }}
+    .nav-logo {{ white-space:nowrap; }}
+    .nav-logo .logo-short {{ display:none; }}
+    @media (max-width:720px) {{
+      .site-nav {{ padding:0 1rem; }}
+      .nav-logo {{ font-size:.88rem; }}
+      .nav-logo .logo-full {{ display:none; }}
+      .nav-logo .logo-short {{ display:inline; }}
+      .nav-links {{ gap:.9rem; }}
+      .nav-links a {{ font-size:.72rem; letter-spacing:.04em; }}
+    }}
+    @media (max-width:420px) {{
+      .nav-logo {{ font-size:.78rem; }}
+      .nav-links {{ gap:.55rem; }}
+      .nav-links a {{ font-size:.62rem; letter-spacing:.03em; }}
+    }}
+  </style>
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/mobile-nav.css" />
+
+  <!-- Organization schema (site-wide) -->
+  <script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://builtbyjoshstudio.com/#organization",
+  "name": "Built by Josh Studio LLC",
+  "alternateName": ["BBJ Studio", "Built By Josh Studio"],
+  "legalName": "Built by Josh Studio LLC",
+  "url": "https://builtbyjoshstudio.com",
+  "logo": {{ "@type": "ImageObject", "url": "https://builtbyjoshstudio.com/images/logo/logo.webp", "width": 512, "height": 512 }},
+  "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under the Built By Josh Studio brand and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
+  "founder": {{ "@type": "Person", "name": "Josh" }},
+  "foundingDate": "2026-05-13",
+  "foundingLocation": {{ "@type": "Place", "address": {{ "@type": "PostalAddress", "addressRegion": "KS", "addressCountry": "US" }} }},
+  "address": {{ "@type": "PostalAddress", "addressRegion": "KS", "addressCountry": "US" }},
+  "areaServed": "Worldwide",
+  "knowsAbout": ["Zodiac digital art","Western zodiac","Chinese zodiac","Notion templates","Personal finance spreadsheets","Digital product design","Print-on-demand licensing"],
+  "brand": [
+    {{ "@type": "Brand", "name": "Built By Josh Studio", "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads." }},
+    {{ "@type": "Brand", "name": "Tynkr Tools & Co", "description": "Notion OS templates and Excel and Google Sheets workbooks for creators, solopreneurs, and personal-finance milestones." }}
+  ],
+  "contactPoint": {{ "@type": "ContactPoint", "email": "josh@builtbyjoshstudio.com", "contactType": "customer support", "areaServed": "Worldwide", "availableLanguage": "English" }},
+  "sameAs": ["https://linktr.ee/builtbyjoshstudio","https://tynkrtoolsco.substack.com/","https://www.youtube.com/@TalesofInkShadowsStudio","https://tynkrtoolsandco.etsy.com","https://www.etsy.com/shop/BuiltByJoshStudio"],
+  "identifier": [{{ "@type": "PropertyValue", "propertyID": "Kansas Business ID", "value": "10076138" }}]
+}}
+  </script>
+</head>
+<body>
+  <div class="stars" id="starsContainer"></div>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#tynkr">Templates</a></li>
+      <li><a href="../index.html#builtbyjosh" class="active">Zodiac Art</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../index.html#free-tools">Free Tools</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <header class="collection-hero">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Collections</a><span class="sep">/</span><a href="../index.html#western-realms">Western Realms</a><span class="sep">/</span><span>{sign}</span>
+    </div>
+    <div class="hero-eyebrow">{m['symbol']} {sign} · {m['element']} Sign · Western Realms</div>
+    <h1 class="collection-title">{sign} Western Realms Bundle — 48 Print-Ready Landscape Files</h1>
+    <p class="collection-tagline">Four mythic {sign} Realms — landscape-style hybrid cosmos environments rendered with cinematic depth — each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.</p>
+    <div class="hero-image">
+      <img src="../{hub_thumb}" alt="{sign} Western Realms preview — four landscape-style {m['element'].lower()}-realms in hybrid cosmos style, from Built By Josh Studio" />
+    </div>
+  </header>
+
+  <aside class="short-version">
+    <div class="short-version-label">The Short Version</div>
+    <p>The {sign} Western Realms Bundle from Built By Josh Studio is a landscape-style digital art collection containing 48 print-ready image files. Each Realms bundle covers one Western zodiac sign and includes 4 unique Realm designs — atmospheric mythic environments rather than figures — with 2 numbered variants per design. Every design is delivered in three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) at 300 DPI, in both PNG and JPG formats, with maximum dimensions of 6000 × 9000 pixels. The bundle is priced at $14.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
+  </aside>
+
+  <div class="collection-main">
+    <main class="main-column">
+
+      <section>
+        <h2>The {sign} Western Realms Bundle</h2>
+        <p>The {sign} Western Realms Bundle is one of 12 sign-specific Realms bundles in the Western Realms Collection. Each Realms bundle pairs a Western zodiac sign with four distinct landscape-style interpretations — environments rather than figures, atmospheres rather than portraits. The {sign} bundle contains 48 print-ready digital files: 4 original Realm designs, each in 2 numbered variants, each variant rendered in three aspect ratios and both PNG and JPG formats.</p>
+        <p>Where the Western Signs Collection gives you the {m['symbol_label'].lower().replace('the ','')} in 14 art styles, the Western Realms Collection gives you the world the {m['symbol_label'].lower().replace('the ','')} inhabits. Same {sign} energy, translated into landscape — the two Collections pair naturally as a figure-and-environment wall arrangement.</p>
+        <p>Built By Josh Studio is the zodiac art brand of Built by Josh Studio LLC, a Kansas-based independent creative studio. Every Realm is original work — concepted, generated, curated, and finalized by a single founder.</p>
+      </section>
+
+      <section>
+        <h2>What Makes {sign}, {sign}</h2>
+        <ul class="quick-facts">
+          <li><strong>Element:</strong> {m['element']}</li>
+          <li><strong>Modality:</strong> {m['modality']}</li>
+          <li><strong>Ruling Planet:</strong> {m['planet']}</li>
+          <li><strong>Symbol:</strong> {m['symbol_label']}</li>
+          <li><strong>Dates:</strong> {m['dates']}</li>
+          <li><strong>Sister {m['element']} Signs:</strong> {m['sister_signs']}</li>
+        </ul>
+        {zodiac_context}
+      </section>
+
+      <section>
+        <h2>The Four {sign} Realms</h2>
+        <p>The {sign} Realms bundle contains 4 unique landscape designs, each delivered in 2 numbered variants — same Realm, alternate compositions. The 4 Realm titles are:</p>
+        <div class="realms-grouped">
+{realm_blocks_html}
+        </div>
+        <p class="realm-tally">Each Realm ships with 2 numbered variants — alternate compositions of the same Realm concept. Eight total designs in the bundle. With three sizes and two formats per design, that's 48 files in total.</p>
+      </section>
+
+      <section>
+        <h2>Who Buys the {sign} Realms</h2>
+        <ul>
+          <li>Buyers who already own the {sign} Western Signs Bundle and want the matching landscape interpretation — figure and environment as a paired wall arrangement</li>
+          <li>Atmospheric decor buyers who prefer landscape art over portraiture — especially for living rooms, dining rooms, and larger spaces that benefit from depth</li>
+          <li>{sign} ({m['dates']}) who want their sign represented as a place rather than a character</li>
+          <li>Etsy, Printful, and Redbubble print-on-demand sellers expanding into atmospheric and landscape categories with explicit POD licensing</li>
+          <li>Interior decorators building moody, atmospheric, or element-aligned rooms</li>
+          <li>Collectors stacking multiple zodiac landscapes from the broader BBJ Studio catalog</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What's Included With Every {sign} Realms Bundle</h2>
+        <p>Every {sign} Realms Bundle is a complete digital download. After purchase, you get instant access to 48 image files organized by Realm — no shipping, no waiting, no physical product mailed to you.</p>
+        <p>Each Realm design is delivered in three aspect ratios: 1:1 square (4800 × 4800 pixels), 4:5 portrait (4800 × 6000 pixels), and 2:3 portrait (6000 × 9000 pixels). Every size is provided in both PNG (lossless) and JPG (92% quality) formats. All files are saved at 300 DPI in standard sRGB color space — the industry standard for high-quality print reproduction across home printers, professional print shops, and print-on-demand services.</p>
+        <p>The bundle also includes two PDF documents: a <strong>License Agreement &amp; Terms of Use</strong> covering personal use, print-on-demand rights, and the 100-print-per-design cap, and a <strong>Print Guide &amp; User Manual</strong> explaining file structure, recommended print sizes, paper selection, and troubleshooting tips. Both are tailored to the Western Realms Collection.</p>
+        <p>Pricing is <strong>$14.99</strong> for the full bundle. One-time payment, instant download, secure checkout via Lemon Squeezy.</p>
+      </section>
+
+      <section>
+        <h2>Licensing &amp; Print-on-Demand Rights</h2>
+        <div class="license-block">
+          <p>The {sign} Western Realms Bundle ships with a clear, plain-English license — not a vague "for personal use" disclaimer.</p>
+          <h3>You may</h3>
+          <ul>
+            <li>Print and display the files in your own home or personal space</li>
+            <li>Sell physical print-on-demand products (framed prints, posters, canvases, mugs, t-shirts, phone cases, etc.) made from the designs, up to a cumulative cap of 100 physical units per individual design across all formats, vendors, and time periods combined</li>
+            <li>Use the prints as personal or commercial gifts within the same 100-print-per-design cap</li>
+          </ul>
+          <h3>You may not</h3>
+          <ul>
+            <li>Redistribute, share, sell, or transmit the digital files themselves to anyone, in any format</li>
+            <li>Use the files as input, training data, or seed images for any AI model</li>
+            <li>Mint or tokenize the files as NFTs or other blockchain assets</li>
+            <li>Exceed the 100-print-per-design cap (it does not reset and is cumulative across all channels)</li>
+            <li>Claim authorship of the designs or register them as your own intellectual property</li>
+          </ul>
+          <p class="disclosure"><strong>AI disclosure:</strong> The designs in the bundle were created using a combination of human creative direction and AI image generation tools, including Leonardo.ai, with selection, curation, refinement, and final arrangement by Built by Josh Studio LLC. This is disclosed in full in the license agreement.</p>
+          <p class="contact-line"><strong>Need more than 100 prints per design?</strong> Extended commercial licensing is available — contact <a href="mailto:josh@builtbyjoshstudio.com" style="color:var(--bbj-accent);text-decoration:none">josh@builtbyjoshstudio.com</a> before exceeding the cap.</p>
+          <a href="/legal/license-western-realms.pdf" class="pdf-link">Read the Western Realms License (PDF) →</a>
+          <a href="/legal/print-guide-western-realms.pdf" class="pdf-link">Read the Western Realms Print Guide (PDF) →</a>
+        </div>
+      </section>
+
+    </main>
+
+    <aside class="sticky-sidebar">
+      <div class="sidebar-label">Bundle Price</div>
+      <div class="sidebar-price">$14.99</div>
+      <div class="sidebar-price-note">One-time payment · Instant digital download · Secure LS checkout</div>
+
+      <div class="sidebar-included-label">What's Included</div>
+      <ul class="sidebar-included">
+        <li>48 print-ready digital files</li>
+        <li>4 unique Realm designs × 2 variants each</li>
+        <li>Three aspect ratios: 1:1, 4:5, 2:3</li>
+        <li>PNG + JPG, both included</li>
+        <li>Up to 6000 × 9000 pixels at 300 DPI</li>
+        <li>Personal use + POD up to 100 prints per design</li>
+        <li>License &amp; Print Guide PDFs included</li>
+        <li>Instant download — no shipping</li>
+      </ul>
+
+      <button class="ls-checkout-btn" disabled data-checkout-url="" data-product-name="{sign} Western Realms Bundle" data-product-price="14.99">Buy the {sign} Realms Bundle — Coming Soon</button>
+      <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
+
+      <ul class="sidebar-trust">
+        <li>Instant digital download</li>
+        <li>300 DPI print-ready files</li>
+        <li>Real Kansas LLC + clear POD license</li>
+        <li>Secure direct checkout via Lemon Squeezy</li>
+      </ul>
+
+      <div class="etsy-secondary">
+        <div class="etsy-secondary-label">Looking for something different?</div>
+        <p>The Built By Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
+        <p class="etsy-pause-note">Etsy storefront currently on a brief verification pause while the IRS finalizes EIN verification — {sign} Realms Bundle purchases above are unaffected.</p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="faq-section">
+    <div class="section-label">Frequently Asked</div>
+    <h2 class="section-title-main">Frequently Asked Questions</h2>
+    <div class="faq-list">
+{faq_items_html}
+    </div>
+  </section>
+
+  <section class="sister-nav-section">
+    <div class="section-label">Browse All Realms</div>
+    <h2 class="section-title-main">Browse All 12 Western Realms Bundles</h2>
+    <p class="sister-intro">Every Western zodiac sign has its own Realms bundle in the same structure — 48 files, 4 Realm designs, 2 variants each, $14.99 per sign. Click any sign below to see its Realms.</p>
+    <div class="sister-grid">
+{sister_nav}
+    </div>
+  </section>
+
+  <section class="related-section">
+    <div class="section-label">Explore the rest of the BBJ Studio zodiac catalog</div>
+    <h2 class="section-title-main">Related Collections</h2>
+    <div class="related-grid">
+      <a href="{slug}-zodiac-art.html" class="related-card">
+        <div class="related-meta">Western Signs · {sign}</div>
+        <h3>{sign} Zodiac Art Bundle</h3>
+        <p>The 14-style figure version of {sign} — 144 files, 24 designs, $24.99. Pairs with this Realms bundle as figure-and-environment.</p>
+        <span class="related-link">View Collection →</span>
+      </a>
+      <a href="zodiac-landscapes.html" class="related-card">
+        <div class="related-meta">Western Landscapes Collection</div>
+        <h3>Zodiac Landscapes</h3>
+        <p>One mythic landscape per Western zodiac sign, oil-painted. The companion full-collection bundle to the per-sign Realms.</p>
+        <span class="related-link">View Collection →</span>
+      </a>
+      <a href="chinese-zodiac-realms.html" class="related-card">
+        <div class="related-meta">Eastern Zodiac · Lunar Realms</div>
+        <h3>Chinese Zodiac Realms</h3>
+        <p>Landscape-style art for all 12 Chinese zodiac animals — 24 designs in a single bundle.</p>
+        <span class="related-link">View Collection →</span>
+      </a>
+      <a href="chinese-zodiac-art.html" class="related-card">
+        <div class="related-meta">Eastern Zodiac · 12 Animals</div>
+        <h3>Chinese Zodiac Signs</h3>
+        <p>All 12 Chinese animals in two art styles — hyper-realistic and watercolor. 8 designs per animal, 12 animal bundles.</p>
+        <span class="related-link">View Collection →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="cta-eyebrow">Browse the Collection</div>
+    <h2>4 Realms. 8 Variants. <span class="italic-accent">One {sign} Bundle.</span></h2>
+    <p class="cta-sub">Four mythic {sign} landscapes, each in two compositional variants, every variant in three sizes and two formats. The full landscape interpretation of {sign} — $14.99, instant download, license and print guide included.</p>
+    <button class="ls-checkout-btn ls-checkout-btn--large" disabled data-checkout-url="" data-product-name="{sign} Western Realms Bundle" data-product-price="14.99">Buy the {sign} Realms Bundle — Coming Soon</button>
+    <span class="cta-sub-line">Instant download — 48 print-ready {sign} Realm files in your inbox the moment checkout completes.</span>
+  </section>
+
+  <footer>
+    <div class="footer-left"><strong>Built By Josh Studio</strong> · All digital products — instant download</div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html">Collections</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="/legal/">Legal</a></li>
+      <li><a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Etsy</a></li>
+      <li><a href="../refunds.html">Refunds</a></li>
+      <li><a href="../privacy.html">Privacy</a></li>
+      <li><a href="../terms.html">Terms</a></li>
+    </ul>
+    <div class="footer-legal">
+      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
+      Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.
+    </div>
+  </footer>
+
+  <script>
+    const container = document.getElementById('starsContainer');
+    for (let i = 0; i < 80; i++) {{
+      const s = document.createElement('div');
+      s.className = 'star';
+      s.style.cssText = `left:${{Math.random()*100}}%;top:${{Math.random()*100}}%;--d:${{2+Math.random()*4}}s;--delay:-${{Math.random()*4}}s;--op:${{0.3+Math.random()*0.7}};filter:blur(${{Math.random()>0.8?'1px':'0px'}});width:${{Math.random()>0.8?3:2}}px;height:${{Math.random()>0.8?3:2}}px;`;
+      container.appendChild(s);
+    }}
+  </script>
+  <script src="/js/mobile-nav.js" defer></script>
+  <script src="/js/ga4-events.js" defer></script>
+</body>
+</html>
+'''
+
+
+def main():
+    manifest = json.loads(MANIFEST.read_text(encoding='utf-8'))
+    signs = sys.argv[1:] if len(sys.argv) > 1 else list(REALM_COPY_BY_SIGN.keys())
+    for sign in signs:
+        if sign not in SIGN_META:
+            print(f'SKIP: unknown sign {sign}')
+            continue
+        if sign not in REALM_COPY_BY_SIGN:
+            print(f'SKIP: {sign} (no per-Realm copy yet — add to REALM_COPY_BY_SIGN)')
+            continue
+        out = OUT_DIR / f'{SIGN_META[sign]["slug"]}-zodiac-realms.html'
+        html = build_page(sign, manifest)
+        out.write_text(html, encoding='utf-8')
+        lines = html.count('\n') + 1
+        size_kb = out.stat().st_size / 1024
+        print(f'Wrote {out.name} ({lines} lines, {size_kb:.1f} KB)')
+
+
+if __name__ == '__main__':
+    main()
