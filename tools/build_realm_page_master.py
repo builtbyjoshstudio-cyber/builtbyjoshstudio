@@ -39,13 +39,14 @@ SIGN_META = {
     'Libra':       dict(slug='libra',       symbol='♎', element='Air',   modality='Cardinal', planet='Venus',   symbol_label='The Scales',       dates='September 23 – October 22',dates_short='Sep 23 – Oct 22', sister_signs='Gemini, Aquarius',     sku='BBJ-WR-LIBRA'),
     'Scorpio':     dict(slug='scorpio',     symbol='♏', element='Water', modality='Fixed',    planet='Pluto',   symbol_label='The Scorpion',     dates='October 23 – November 21', dates_short='Oct 23 – Nov 21', sister_signs='Cancer, Pisces',       sku='BBJ-WR-SCORPIO'),
     'Sagittarius': dict(slug='sagittarius', symbol='♐', element='Fire',  modality='Mutable',  planet='Jupiter', symbol_label='The Archer',       dates='November 22 – December 21',dates_short='Nov 22 – Dec 21', sister_signs='Aries, Leo',           sku='BBJ-WR-SAGITTARIUS'),
-    'Capricorn':   dict(slug='capricorn',   symbol='♑', element='Earth', modality='Cardinal', planet='Saturn',  symbol_label='The Sea-Goat',     dates='December 22 – January 19', dates_short='Dec 22 – Jan 19', sister_signs='Taurus, Virgo',        sku='BBJ-WR-CAPRICORN'),
+    'Capricorn':   dict(slug='capricorn',   symbol='♑', element='Earth', modality='Cardinal', planet='Saturn',  symbol_label='The Goat',         dates='December 22 – January 19', dates_short='Dec 22 – Jan 19', sister_signs='Taurus, Virgo',        sku='BBJ-WR-CAPRICORN'),
     'Aquarius':    dict(slug='aquarius',    symbol='♒', element='Air',   modality='Fixed',    planet='Uranus',  symbol_label='The Water Bearer', dates='January 20 – February 18', dates_short='Jan 20 – Feb 18', sister_signs='Gemini, Libra',        sku='BBJ-WR-AQUARIUS'),
     'Pisces':      dict(slug='pisces',      symbol='♓', element='Water', modality='Mutable',  planet='Neptune', symbol_label='The Fish',         dates='February 19 – March 20',   dates_short='Feb 19 – Mar 20', sister_signs='Cancer, Scorpio',      sku='BBJ-WR-PISCES'),
 }
 
-# Per-Realm prose for each sign (only Aries shipped in Message 4; Message 5
-# fills in the other 11). Keys are the actual Realm titles from the manifest.
+# Per-Realm prose for each sign — keys MUST match the actual Realm titles in
+# images/zodiac/realms/manifest.json (Phase 2 captured them from source files).
+# Brief 5B.3 — 2-3 atmospheric sentences each.
 REALM_COPY_BY_SIGN = {
     'Aries': {
         'Horizon of Fire and Dust':  'A vast horizon where crimson sky meets scorched earth, lit by a perpetual firestorm. The Aries Realm of momentum stretched flat across the open plain.',
@@ -53,15 +54,163 @@ REALM_COPY_BY_SIGN = {
         'The Crimson Expansion':     'A volcanic frontier expanding outward from a single ignition point. Aries energy as a cosmic event, viewed from inside the blast.',
         'The Ignition Horizon':      'A horizon on fire — molten skies over glowing crimson geometry. The Aries Realm where every dawn is a first strike.',
     },
+    'Taurus': {
+        'The Celestial Pastures':    "Rolling green meadows beneath a star-strewn sky — the bull's domain extended into the cosmos. The Taurus Realm where pasture meets nebula, slow time held against deep time.",
+        'The Emerald Drift':         'A slow-moving expanse of mossy stone and slow river, painted in deep greens and gold light. The Taurus Realm of unhurried beauty — landscape that asks you to stop and notice.',
+        'The Emerald Vale':          "A wide forested valley enclosed by stone, every surface mossed and weighted with time. The Taurus Realm of held space — the kind of place that's been waiting for you.",
+        'The Verdant Ridge':         'A sheer green ridgeline at golden hour, layered hills receding toward soft horizon. The Taurus Realm of permanence — earth-toned scale, gentle endurance.',
+    },
+    'Gemini': {
+        'Reflections Between Worlds':'A landscape pierced by reflective surfaces — pools, mirror-glass, twin moons casting paired light. The Gemini Realm where every view contains its inversion.',
+        'The Mirrored Divide':       'A canyon split by a mirrored seam, two halves of the same landscape facing each other across the cut. The Gemini Realm of duality made structural.',
+        'The Mirrored Spiral':       'A double-helix of light spiraling against a cosmic backdrop, the same shape twinned and inverted. The Gemini Realm of conversation as architecture.',
+        'The Skybound Library':      'Floating shelves of arcane volumes suspended in a starlit sky, the air thick with curiosity. The Gemini Realm of held knowledge, waiting to be doubled.',
+    },
+    'Cancer': {
+        'The Lunar Coastline':       "An endless shoreline beneath a swollen moon, tide-pools glowing with reflected light. The Cancer Realm where the sea touches the sky's own gravity.",
+        'The Lunar Veil':            'A diffuse silver atmosphere draped over still water, the moon hidden behind translucent cloud. The Cancer Realm of held mystery — sensitivity rendered as weather.',
+        'The Moonlit Cove':          'A sheltered bay enclosed by stone, illuminated by a single low moon. The Cancer Realm of protected space — the inside of the shell, made geography.',
+        'The Tides of the Universe': 'Cosmic-scale waves of starlight rolling across a galactic shore, tidal rhythm written into the architecture of space itself. The Cancer Realm where emotion is a cosmic force.',
+    },
+    'Leo': {
+        'Solar Plains Beneath a Burning Sky': 'Wide golden grasslands stretched beneath a sky on fire, the horizon line blazing with reflected sun. The Leo Realm of unrivaled radiance — landscape as throne room.',
+        'The Golden Citadel':        'A fortress of light rising from molten ground, every tower catching the sun like a polished crown. The Leo Realm where presence has been built into architecture.',
+        'The Solar Eruption':        "A solar flare arcing across a celestial landscape, mountains glowing in the wake. The Leo Realm of radiant intensity — the sun's own confidence at planetary scale.",
+        'The Solar Expanse':         'A wide cosmic vista lit edge-to-edge by golden light, every detail caught in solar glow. The Leo Realm where there is no shadow, only degrees of brilliance.',
+    },
+    'Virgo': {
+        'Fields Beneath the Cosmic Veil': 'Cultivated rows of grain stretching to a horizon hung with a veil of cosmic light. The Virgo Realm where careful work meets cosmic order.',
+        'The Ordered Constellation': 'Stars arranged in a precise pattern across deep velvet sky, every point of light in its assigned place. The Virgo Realm of cosmic precision — chaos refused entry.',
+        'The Starlit Fields':        'Open fields under a thick canopy of stars, every blade of grass visible in soft starlight. The Virgo Realm of quiet attentiveness — the universe as something worth noticing.',
+        'The Verdant Workshop':      'An open-air sanctuary of botanical work and careful arrangement, surrounded by stone and light. The Virgo Realm of devoted craft — landscape as discipline.',
+    },
+    'Libra': {
+        'Balance of Light and Void': 'A composition split exactly between radiant light and starless dark, two halves held in tension. The Libra Realm where opposition becomes form.',
+        'The Equilibrium Canyon':    'A vast canyon perfectly balanced on either side of its central seam — mirrored cliffs, paired pillars, geometry as restraint. The Libra Realm of measured space.',
+        'The Ivory Court':           'A pale, columned arena beneath a soft sky, every surface honed to elegance. The Libra Realm where judgment is delivered with composure — beauty that carries weight.',
+        'The Symmetry of Light':     'Architectural beams of light arranged in perfect symmetry against a violet sky, the composition reading like a balanced equation. The Libra Realm of aesthetic order.',
+    },
+    'Scorpio': {
+        'The Obsidian Abyss':        'A bottomless chasm of black volcanic glass, lit only by deep crimson veins running through its walls. The Scorpio Realm of unmapped depth — where the sign keeps what it knows.',
+        'The Plasma Desert':         'A waterless expanse under violet skies, electrified air shimmering above black-glass sand. The Scorpio Realm of charged silence — beautiful, dangerous, alive.',
+        'The Plasma Dunes':          'Rolling dunes of dark plasma-glass, ridged in violet light, sky thick with electric charge. The Scorpio Realm of slow-burning transformation — landscape as undercurrent.',
+        'The Violet Storm':          'A landscape consumed by a violet electrical storm — lightning architecture, charged horizon, the sky in active reformation. The Scorpio Realm of intensity made weather.',
+    },
+    'Sagittarius': {
+        'The Celestial Horizon':     'An endless cosmic vista where the horizon line is the boundary between worlds — stars one side, terra the other. The Sagittarius Realm of looking outward by default.',
+        'The Celestial Trajectory':  "An arcing trajectory of light crossing the sky, marking a path already chosen. The Sagittarius Realm of forward motion — the arrow's flight made permanent landscape.",
+        'The Endless Voyage':        "A traveler's vista of open road and far horizon, the journey itself rendered as terrain. The Sagittarius Realm of perpetual departure — never quite arriving, never wanting to.",
+        'The Horizon Expanse':       'A wide-open horizon under expansive sky, scale calibrated to make the next destination feel close. The Sagittarius Realm where the next place is always visible.',
+    },
+    'Capricorn': {
+        'The Ascending Nebula':      'A nebular cloud climbing upward through cosmic space, structured like a mountain ascending in slow time. The Capricorn Realm where ambition is shaped at galactic scale.',
+        'The Cosmic Summit':         'A peak of stone and starlight rising into open sky, surrounded by the deep cold of cosmic altitude. The Capricorn Realm of arrived ambition — view from the top, after the climb.',
+        'The Star-Crowned Peak':     'A high mountain summit ringed by a halo of stars, its crown literal and astronomical. The Capricorn Realm where altitude becomes sovereignty.',
+        'The Stone Pinnacle':        'A sheer column of stone reaching impossibly high, every layer a record of time. The Capricorn Realm of patient endurance — landscape as long memory.',
+    },
+    'Aquarius': {
+        'The Celestial Spire':       'A towering spire of light piercing a cosmic sky, geometry meeting transmission. The Aquarius Realm of architectural intelligence — innovation made monument.',
+        'The Cosmic Waterfall':      "A cascade of starlight falling from a galactic ridge into deep space, the water-bearer's pour rendered cosmic. The Aquarius Realm where ideas flow downhill at the speed of light.",
+        'The Flow of Stars':         'A river of stars curving across an empty sky, current visible in the spacing of points. The Aquarius Realm of dispersed intelligence — pattern emerging from drift.',
+        'The River of Light':        'A luminous river running through a velvet-dark landscape, banks lit by reflected radiance. The Aquarius Realm of inherited futurism — landscape from somewhere ahead.',
+    },
+    'Pisces': {
+        'The Converging Currents':   'Two great ocean currents flowing toward each other across a vast water-scape, the meeting point shimmering with energy. The Pisces Realm of held opposites — direction without resolution.',
+        'The Dreamweave Ocean':      "An ocean composed of woven dream-light, depths visible through translucent layers. The Pisces Realm where what's submerged is the entire architecture.",
+        'The Infinite Sea':          'An ocean stretching beyond any horizon, the sky and water indistinguishable, scale unmeasurable. The Pisces Realm of dissolved boundaries.',
+        'The Sea of Galaxies':       'A cosmic ocean where galaxies float like islands of light, every depth holding another world. The Pisces Realm where ocean becomes universe and back again.',
+    },
 }
 
+# 3-paragraph astrological context per sign. Paras 1-2 lift the same astrology
+# used in tools/build_western_signs_page.py (Msg 5A — WHAT_MAKES_PARAS_BY_SIGN);
+# para 3 is rewritten here to tie the energy to the Realm titles instead of the
+# 14 Western Signs styles.
 ZODIAC_CONTEXT_PROSE = {
     'Aries': (
         '<p>Aries is the first sign of the zodiac, spanning March 21 through April 19. It is a fire sign ruled by Mars — the planet of drive, aggression, and action. Aries is represented by the ram, a symbol of headfirst momentum and refusal to back down.</p>\n'
         "        <p>People born under Aries are often described as bold, competitive, and direct. They tend to be initiators — the ones who start the project, make the first move, and set the pace. Aries energy is forward motion. It doesn't wait for permission and it doesn't look back.</p>\n"
         '        <p>That energy translates directly into the Aries Realms. Whether rendered as the molten Crimson Battleforge or the open Ignition Horizon, every Aries Realm is designed to feel like it is mid-motion — landscapes still cooling from a strike that just happened.</p>'
     ),
+    'Taurus': (
+        '<p>Taurus is the second sign of the zodiac, spanning April 20 through May 20. It is an earth sign ruled by Venus — the planet of beauty, pleasure, and material value. Taurus is represented by the bull, a symbol of endurance, determination, and grounded strength.</p>\n'
+        "        <p>People born under Taurus are often described as reliable, patient, and deeply sensory. They value quality over quantity, comfort over chaos, and tend to build things meant to last. Taurus energy is slow and deliberate — it doesn't rush, but it doesn't quit either.</p>\n"
+        '        <p>That steadiness translates directly into the Taurus Realms. Whether rendered as the held quiet of the Emerald Vale or the cosmic pasture of the Celestial Pastures, every Taurus Realm is designed to feel like it has been settling into place for a long time — landscapes built to outlast the moment you stand in front of them.</p>'
+    ),
+    'Gemini': (
+        '<p>Gemini is the third sign of the zodiac, spanning May 21 through June 20. It is an air sign ruled by Mercury — the planet of communication, intellect, and adaptability. Gemini is represented by the twins, a symbol of duality, curiosity, and the ability to hold two truths at once.</p>\n'
+        "        <p>People born under Gemini are often described as quick-witted, versatile, and endlessly curious. They move between ideas, conversations, and interests with a fluidity that other signs can't match. Gemini energy is mental speed — the sign that's already three thoughts ahead of the room.</p>\n"
+        '        <p>That duality translates directly into the Gemini Realms. Whether rendered as the suspended shelves of the Skybound Library or the mirrored seam of the Mirrored Divide, every Gemini Realm is designed around doubling — paired forms, twinned compositions, two of everything always implied.</p>'
+    ),
+    'Cancer': (
+        '<p>Cancer is the fourth sign of the zodiac, spanning June 21 through July 22. It is a water sign ruled by the Moon — the celestial body of emotion, memory, and intuition. Cancer is represented by the crab, a symbol of protection, sensitivity, and the instinct to guard what matters most.</p>\n'
+        "        <p>People born under Cancer are often described as nurturing, emotionally perceptive, and deeply loyal. They feel everything at full volume but don't always show it — the hard shell exists for a reason. Cancer energy is tidal. It pulls inward, holds tight, and moves according to rhythms most people can't feel.</p>\n"
+        "        <p>That tidal, lunar quality translates directly into the Cancer Realms. Whether rendered as the enclosed silver of the Moonlit Cove or the cosmic surge of the Tides of the Universe, every Cancer Realm is designed to feel like it holds more beneath the surface than what's visible at first glance — landscapes that breathe with the moon.</p>"
+    ),
+    'Leo': (
+        '<p>Leo is the fifth sign of the zodiac, spanning July 23 through August 22. It is a fire sign ruled by the Sun — the only sign in the zodiac governed by a star rather than a planet. Leo is represented by the lion, a symbol of sovereignty, courage, and the kind of presence that doesn\'t need to announce itself.</p>\n'
+        '        <p>People born under Leo are often described as confident, generous, and magnetically warm. They lead naturally — not by force but by gravity. People orient around them. Leo energy is solar: it radiates outward, it lights up a room, and it expects the room to notice.</p>\n'
+        '        <p>That solar authority translates directly into the Leo Realms. Whether rendered as the molten architecture of the Golden Citadel or the wide-open radiance of the Solar Expanse, every Leo Realm is designed to feel like the centerpiece of whatever space it hangs in — landscapes that hold court.</p>'
+    ),
+    'Virgo': (
+        '<p>Virgo is the sixth sign of the zodiac, spanning August 23 through September 22. It is an earth sign ruled by Mercury — the planet of intellect, communication, and analysis. Virgo is represented by the maiden, a symbol of purity not in the moral sense but in the sense of precision — the drive to refine, to improve, to get every detail right.</p>\n'
+        '        <p>People born under Virgo are often described as analytical, practical, and deeply attentive to quality. They notice what others miss. They build systems that work. They care about doing things well — not for applause but because doing it badly would bother them more than doing it right. Virgo energy is quiet competence, the kind that runs everything behind the scenes while louder signs take the credit.</p>\n'
+        '        <p>That exacting clarity translates directly into the Virgo Realms. Whether rendered as the precise arrangement of the Ordered Constellation or the botanical care of the Verdant Workshop, every Virgo Realm is composed with the same attention to detail that defines the sign — landscapes where nothing is accidental and nothing is wasted.</p>'
+    ),
+    'Libra': (
+        '<p>Libra is the seventh sign of the zodiac, spanning September 23 through October 22. It is an air sign ruled by Venus — the planet of beauty, love, and aesthetic value. Libra is represented by the scales, the only inanimate symbol in the zodiac — a sign defined not by instinct or force but by the pursuit of balance.</p>\n'
+        '        <p>People born under Libra are often described as diplomatic, aesthetically driven, and deeply attuned to fairness. They seek harmony in their relationships, their environments, and even the visual composition of their living spaces. Libra energy is measured, intentional, and always considering both sides — but beneath the composure is a sign that cares fiercely about justice.</p>\n'
+        '        <p>That tension between beauty and consequence translates directly into the Libra Realms. Whether rendered as the honed elegance of the Ivory Court or the mirrored geometry of the Equilibrium Canyon, every Libra Realm is composed to look perfectly balanced while carrying real weight beneath — landscapes that read as composition, not improvisation.</p>'
+    ),
+    'Scorpio': (
+        '<p>Scorpio is the eighth sign of the zodiac, spanning October 23 through November 21. It is a water sign ruled by Pluto — the planet of transformation, death, and rebirth (with Mars as traditional co-ruler). Scorpio is represented by the scorpion, a symbol of intensity, resilience, and the willingness to go where other signs won\'t.</p>\n'
+        "        <p>People born under Scorpio are often described as deeply passionate, fiercely loyal, and emotionally magnetic. They don't do anything halfway. They observe, they commit, and once they're in, they're all the way in. Scorpio energy is undercurrent — powerful, hidden, and capable of reshaping everything it touches.</p>\n"
+        '        <p>That intensity translates directly into the Scorpio Realms. Whether rendered as the unmapped chasm of the Obsidian Abyss or the charged sky of the Violet Storm, every Scorpio Realm is designed to feel like it has something running underneath — landscapes that watch back.</p>'
+    ),
+    'Sagittarius': (
+        '<p>Sagittarius is the ninth sign of the zodiac, spanning November 22 through December 21. It is a fire sign ruled by Jupiter — the planet of expansion, philosophy, and boundless optimism. Sagittarius is represented by the archer, a centaur drawing back a bow, aiming at something just beyond the horizon.</p>\n'
+        "        <p>People born under Sagittarius are often described as adventurous, honest to a fault, and perpetually reaching for something bigger. They chase truth, freedom, and meaning with the same intensity other signs chase stability. Sagittarius energy is forward momentum — the arrow already in flight, the next destination already chosen before the last one's finished.</p>\n"
+        "        <p>That restless, expansive energy translates directly into the Sagittarius Realms. Whether rendered as the open road of the Endless Voyage or the arcing path of the Celestial Trajectory, every Sagittarius Realm is designed to feel like it's going somewhere — landscapes where the next destination is always part of the composition.</p>"
+    ),
+    'Capricorn': (
+        '<p>Capricorn is the tenth sign of the zodiac, spanning December 22 through January 19. It is an earth sign ruled by Saturn — the planet of structure, discipline, and time. Capricorn is represented by the sea-goat, a mythic creature that climbs mountains and navigates depths — a symbol of ambition that operates in both the visible world and the one beneath the surface.</p>\n'
+        "        <p>People born under Capricorn are often described as driven, patient, and quietly relentless. They don't chase flashy wins — they build empires stone by stone. Capricorn energy is long-term: it plays the game that takes years, not minutes, and it rarely loses because it never stops working.</p>\n"
+        "        <p>That ancient, structural power translates directly into the Capricorn Realms. Whether rendered as the time-layered Stone Pinnacle or the high-altitude clarity of the Cosmic Summit, every Capricorn Realm is designed to feel like something built to outlast everything around it — landscapes that don't move because they've already arrived.</p>"
+    ),
+    'Aquarius': (
+        '<p>Aquarius is the eleventh sign of the zodiac, spanning January 20 through February 18. It is an air sign ruled by Uranus — the planet of rebellion, innovation, and sudden change (with Saturn as traditional co-ruler). The water bearer pours knowledge and truth, not water — making Aquarius the sign of ideas, not emotions.</p>\n'
+        '        <p>People born under Aquarius are often described as independent, unconventional, and quietly radical. They think in systems rather than sentiments. They care deeply about humanity in the abstract — about progress, fairness, and the future — even when they seem detached from the individual people around them. Aquarius energy is electric: it arrives suddenly, disrupts what was comfortable, and leaves something better in its wake.</p>\n'
+        '        <p>That inventive, future-facing energy translates directly into the Aquarius Realms. Whether rendered as the rising architecture of the Celestial Spire or the cosmic cascade of the Cosmic Waterfall, every Aquarius Realm is designed to feel like it came from somewhere ahead of the present moment — landscapes that read as transmission.</p>'
+    ),
+    'Pisces': (
+        "<p>Pisces is the twelfth and final sign of the zodiac, spanning February 19 through March 20. It is a water sign ruled by Neptune — the planet of dreams, illusion, and the subconscious (with Jupiter as traditional co-ruler). Pisces is represented by two fish swimming in opposite directions, a symbol of the sign's constant pull between the real world and the one they carry inside their head.</p>\n"
+        '        <p>People born under Pisces are often described as deeply empathetic, creatively gifted, and emotionally porous. They absorb the feelings around them like water absorbs light — everything goes in, and the surface barely shows it. Pisces energy is oceanic: vast, shapeless, and capable of holding far more than it appears to from the shore.</p>\n'
+        '        <p>That dreaming, dissolving quality translates directly into the Pisces Realms. Whether rendered as the woven depths of the Dreamweave Ocean or the cosmic ocean of the Sea of Galaxies, every Pisces Realm is designed to feel like it exists between two worlds — landscapes where the boundary between real and imagined never quite holds.</p>'
+    ),
 }
+
+
+# Per-sign hero tagline (under H1) — bespoke landscape descriptor per Brief 5B.4
+# examples (Aries fire-touched / Taurus verdant grounded / Pisces fluid oceanic /
+# Capricorn sheer summit-cold). All tail with the bundle facts.
+HERO_TAGLINE_BY_SIGN = {
+    'Aries':       "Four mythic Aries Realms — fire-touched landscapes rendered with cinematic depth. The Crimson Battleforge, the Ignition Horizon, and two more volcanic frontiers, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Taurus':      "Four mythic Taurus Realms — verdant, grounded landscapes rendered with cinematic depth. The Emerald Vale, the Celestial Pastures, and two more held-time interiors, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Gemini':      "Four mythic Gemini Realms — dualistic, conversational landscapes rendered with cinematic depth. The Skybound Library, the Mirrored Spiral, and two more paired environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Cancer':      "Four mythic Cancer Realms — tidal, lunar landscapes rendered with cinematic depth. The Moonlit Cove, the Tides of the Universe, and two more emotionally layered environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Leo':         "Four mythic Leo Realms — radiant, sun-touched landscapes rendered with cinematic depth. The Golden Citadel, the Solar Eruption, and two more sovereign environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Virgo':       "Four mythic Virgo Realms — precise, considered landscapes rendered with cinematic depth. The Verdant Workshop, the Ordered Constellation, and two more meticulously composed environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Libra':       "Four mythic Libra Realms — symmetrical, composed landscapes rendered with cinematic depth. The Ivory Court, the Equilibrium Canyon, and two more aesthetically balanced environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Scorpio':     "Four mythic Scorpio Realms — deep, charged landscapes rendered with cinematic depth. The Obsidian Abyss, the Violet Storm, and two more transformative environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Sagittarius': "Four mythic Sagittarius Realms — expansive, horizon-bound landscapes rendered with cinematic depth. The Endless Voyage, the Celestial Trajectory, and two more outward-aimed environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Capricorn':   "Four mythic Capricorn Realms — sheer, summit-cold landscapes rendered with cinematic depth. The Stone Pinnacle, the Cosmic Summit, and two more enduring environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Aquarius':    "Four mythic Aquarius Realms — luminous, ahead-of-now landscapes rendered with cinematic depth. The Celestial Spire, the Cosmic Waterfall, and two more electric environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+    'Pisces':      "Four mythic Pisces Realms — fluid, oceanic landscapes rendered with cinematic depth. The Dreamweave Ocean, the Sea of Galaxies, and two more dissolving environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.",
+}
+
+
+def hero_tagline_for(sign):
+    return HERO_TAGLINE_BY_SIGN.get(sign, HERO_TAGLINE_BY_SIGN['Aries'])
 
 
 def build_realm_block(title, designs, sign, description):
@@ -530,7 +679,7 @@ def build_page(sign, manifest):
     </div>
     <div class="hero-eyebrow">{m['symbol']} {sign} · {m['element']} Sign · Western Realms</div>
     <h1 class="collection-title">{sign} Western Realms Bundle — 48 Print-Ready Landscape Files</h1>
-    <p class="collection-tagline">Four mythic {sign} Realms — landscape-style hybrid cosmos environments rendered with cinematic depth — each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.</p>
+    <p class="collection-tagline">{hero_tagline_for(sign)}</p>
     <div class="hero-image">
       <img src="../{hub_thumb}" alt="{sign} Western Realms preview — four landscape-style {m['element'].lower()}-realms in hybrid cosmos style, from Built By Josh Studio" />
     </div>
@@ -623,7 +772,7 @@ def build_page(sign, manifest):
     <aside class="sticky-sidebar">
       <div class="sidebar-label">Bundle Price</div>
       <div class="sidebar-price">$14.99</div>
-      <div class="sidebar-price-note">One-time payment · Instant digital download · Secure LS checkout</div>
+      <div class="sidebar-price-note">One-time payment · Instant digital download · Secure Lemon Squeezy checkout</div>
 
       <div class="sidebar-included-label">What's Included</div>
       <ul class="sidebar-included">
