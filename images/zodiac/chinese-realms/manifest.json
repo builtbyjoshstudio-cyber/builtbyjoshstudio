@@ -1,0 +1,302 @@
+{
+  "Rat": {
+    "designs": [
+      {
+        "title": "The Flicker of Ingenuity",
+        "variant": "1",
+        "slug": "the-flicker-of-ingenuity-1",
+        "src_file": "Rat — The Flicker of Ingenuity 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/rat/the-flicker-of-ingenuity-1.webp",
+        "webp_kb": 57.7
+      },
+      {
+        "title": "The Flicker of Ingenuity",
+        "variant": "2",
+        "slug": "the-flicker-of-ingenuity-2",
+        "src_file": "Rat — The Flicker of Ingenuity 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/rat/the-flicker-of-ingenuity-2.webp",
+        "webp_kb": 52.0
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/rat.webp",
+    "hub_thumb_design": "the-flicker-of-ingenuity-1",
+    "realm_titles": [
+      "The Flicker of Ingenuity"
+    ]
+  },
+  "Ox": {
+    "designs": [
+      {
+        "title": "The Eternal Forge",
+        "variant": "1",
+        "slug": "the-eternal-forge-1",
+        "src_file": "Ox — The Eternal Forge 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/ox/the-eternal-forge-1.webp",
+        "webp_kb": 65.7
+      },
+      {
+        "title": "The Eternal Forge",
+        "variant": "2",
+        "slug": "the-eternal-forge-2",
+        "src_file": "Ox — The Eternal Forge 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/ox/the-eternal-forge-2.webp",
+        "webp_kb": 43.5
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/ox.webp",
+    "hub_thumb_design": "the-eternal-forge-1",
+    "realm_titles": [
+      "The Eternal Forge"
+    ]
+  },
+  "Tiger": {
+    "designs": [
+      {
+        "title": "The Celestial Roar",
+        "variant": "1",
+        "slug": "the-celestial-roar-1",
+        "src_file": "Tiger — The Celestial Roar 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/tiger/the-celestial-roar-1.webp",
+        "webp_kb": 58.9
+      },
+      {
+        "title": "The Celestial Roar",
+        "variant": "2",
+        "slug": "the-celestial-roar-2",
+        "src_file": "Tiger — The Celestial Roar 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/tiger/the-celestial-roar-2.webp",
+        "webp_kb": 60.0
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/tiger.webp",
+    "hub_thumb_design": "the-celestial-roar-1",
+    "realm_titles": [
+      "The Celestial Roar"
+    ]
+  },
+  "Rabbit": {
+    "designs": [
+      {
+        "title": "The Tranquil Halo",
+        "variant": "1",
+        "slug": "the-tranquil-halo-1",
+        "src_file": "Rabbit — The Tranquil Halo 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/rabbit/the-tranquil-halo-1.webp",
+        "webp_kb": 81.6
+      },
+      {
+        "title": "The Tranquil Halo",
+        "variant": "2",
+        "slug": "the-tranquil-halo-2",
+        "src_file": "Rabbit — The Tranquil Halo 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/rabbit/the-tranquil-halo-2.webp",
+        "webp_kb": 59.8
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/rabbit.webp",
+    "hub_thumb_design": "the-tranquil-halo-1",
+    "realm_titles": [
+      "The Tranquil Halo"
+    ]
+  },
+  "Dragon": {
+    "designs": [
+      {
+        "title": "The Radiant Dominion",
+        "variant": "1",
+        "slug": "the-radiant-dominion-1",
+        "src_file": "Dragon — The Radiant Dominion 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/dragon/the-radiant-dominion-1.webp",
+        "webp_kb": 76.5
+      },
+      {
+        "title": "The Radiant Dominion",
+        "variant": "2",
+        "slug": "the-radiant-dominion-2",
+        "src_file": "Dragon — The Radiant Dominion 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/dragon/the-radiant-dominion-2.webp",
+        "webp_kb": 69.1
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/dragon.webp",
+    "hub_thumb_design": "the-radiant-dominion-1",
+    "realm_titles": [
+      "The Radiant Dominion"
+    ]
+  },
+  "Snake": {
+    "designs": [
+      {
+        "title": "The Silent Flow",
+        "variant": "1",
+        "slug": "the-silent-flow-1",
+        "src_file": "Snake — The Silent Flow 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/snake/the-silent-flow-1.webp",
+        "webp_kb": 63.1
+      },
+      {
+        "title": "The Silent Flow",
+        "variant": "2",
+        "slug": "the-silent-flow-2",
+        "src_file": "Snake — The Silent Flow 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/snake/the-silent-flow-2.webp",
+        "webp_kb": 62.9
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/snake.webp",
+    "hub_thumb_design": "the-silent-flow-1",
+    "realm_titles": [
+      "The Silent Flow"
+    ]
+  },
+  "Horse": {
+    "designs": [
+      {
+        "title": "The Endless Trail",
+        "variant": "1",
+        "slug": "the-endless-trail-1",
+        "src_file": "Horse — The Endless Trail 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/horse/the-endless-trail-1.webp",
+        "webp_kb": 89.3
+      },
+      {
+        "title": "The Endless Trail",
+        "variant": "2",
+        "slug": "the-endless-trail-2",
+        "src_file": "Horse — The Endless Trail 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/horse/the-endless-trail-2.webp",
+        "webp_kb": 70.9
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/horse.webp",
+    "hub_thumb_design": "the-endless-trail-1",
+    "realm_titles": [
+      "The Endless Trail"
+    ]
+  },
+  "Goat": {
+    "designs": [
+      {
+        "title": "The Harmonious Veil",
+        "variant": "1",
+        "slug": "the-harmonious-veil-1",
+        "src_file": "Goat — The Harmonious Veil 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/goat/the-harmonious-veil-1.webp",
+        "webp_kb": 50.9
+      },
+      {
+        "title": "The Harmonious Veil",
+        "variant": "2",
+        "slug": "the-harmonious-veil-2",
+        "src_file": "Goat — The Harmonious Veil 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/goat/the-harmonious-veil-2.webp",
+        "webp_kb": 35.9
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/goat.webp",
+    "hub_thumb_design": "the-harmonious-veil-1",
+    "realm_titles": [
+      "The Harmonious Veil"
+    ]
+  },
+  "Monkey": {
+    "designs": [
+      {
+        "title": "The Quantum Spark",
+        "variant": "1",
+        "slug": "the-quantum-spark-1",
+        "src_file": "Monkey — The Quantum Spark 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/monkey/the-quantum-spark-1.webp",
+        "webp_kb": 73.8
+      },
+      {
+        "title": "The Quantum Spark",
+        "variant": "2",
+        "slug": "the-quantum-spark-2",
+        "src_file": "Monkey — The Quantum Spark 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/monkey/the-quantum-spark-2.webp",
+        "webp_kb": 77.0
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/monkey.webp",
+    "hub_thumb_design": "the-quantum-spark-1",
+    "realm_titles": [
+      "The Quantum Spark"
+    ]
+  },
+  "Rooster": {
+    "designs": [
+      {
+        "title": "The Galactic Dawn",
+        "variant": "1",
+        "slug": "the-galactic-dawn-1",
+        "src_file": "Rooster — The Galactic Dawn 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/rooster/the-galactic-dawn-1.webp",
+        "webp_kb": 45.8
+      },
+      {
+        "title": "The Galactic Dawn",
+        "variant": "2",
+        "slug": "the-galactic-dawn-2",
+        "src_file": "Rooster — The Galactic Dawn 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/rooster/the-galactic-dawn-2.webp",
+        "webp_kb": 39.6
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/rooster.webp",
+    "hub_thumb_design": "the-galactic-dawn-1",
+    "realm_titles": [
+      "The Galactic Dawn"
+    ]
+  },
+  "Dog": {
+    "designs": [
+      {
+        "title": "The Vigilant Light",
+        "variant": "1",
+        "slug": "the-vigilant-light-1",
+        "src_file": "Dog — The Vigilant Light 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/dog/the-vigilant-light-1.webp",
+        "webp_kb": 56.5
+      },
+      {
+        "title": "The Vigilant Light",
+        "variant": "2",
+        "slug": "the-vigilant-light-2",
+        "src_file": "Dog — The Vigilant Light 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/dog/the-vigilant-light-2.webp",
+        "webp_kb": 64.5
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/dog.webp",
+    "hub_thumb_design": "the-vigilant-light-1",
+    "realm_titles": [
+      "The Vigilant Light"
+    ]
+  },
+  "Pig": {
+    "designs": [
+      {
+        "title": "The Nebular Sanctuary",
+        "variant": "1",
+        "slug": "the-nebular-sanctuary-1",
+        "src_file": "Pig — The Nebular Sanctuary 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/pig/the-nebular-sanctuary-1.webp",
+        "webp_kb": 49.1
+      },
+      {
+        "title": "The Nebular Sanctuary",
+        "variant": "2",
+        "slug": "the-nebular-sanctuary-2",
+        "src_file": "Pig — The Nebular Sanctuary 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/chinese-realms/pig/the-nebular-sanctuary-2.webp",
+        "webp_kb": 42.4
+      }
+    ],
+    "hub_thumb": "images/zodiac/chinese-realms/pig.webp",
+    "hub_thumb_design": "the-nebular-sanctuary-1",
+    "realm_titles": [
+      "The Nebular Sanctuary"
+    ]
+  }
+}

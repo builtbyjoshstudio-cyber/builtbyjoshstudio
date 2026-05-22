@@ -590,6 +590,7 @@
 #builtbyjosh::before,
 #western-realms::before,
 #chinese-zodiac::before,
+#chinese-realms::before,
 #landscapes::before {
   content: '';
   position: absolute;
@@ -632,6 +633,7 @@
 #builtbyjosh .card-bbj,
 #western-realms .card-bbj,
 #chinese-zodiac .card-bbj,
+#chinese-realms .card-bbj,
 #landscapes .card-bbj {
   background: rgba(11, 8, 19, 0.32);
   backdrop-filter: blur(10px);
@@ -642,6 +644,7 @@
 #builtbyjosh .card-bbj:hover,
 #western-realms .card-bbj:hover,
 #chinese-zodiac .card-bbj:hover,
+#chinese-realms .card-bbj:hover,
 #landscapes .card-bbj:hover {
   transform: translateY(-4px);
   border-color: rgba(201, 168, 76, 0.50);
@@ -656,6 +659,7 @@
   #builtbyjosh .card-bbj,
   #western-realms .card-bbj,
   #chinese-zodiac .card-bbj,
+  #chinese-realms .card-bbj,
   #landscapes .card-bbj {
     background: rgba(11, 8, 19, 0.90);
   }
