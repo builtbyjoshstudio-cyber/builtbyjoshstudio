@@ -1,0 +1,842 @@
+{
+  "Aries": {
+    "designs": [
+      {
+        "title": "The Crimson Battleforge",
+        "variant": "1",
+        "slug": "the-crimson-battleforge-1",
+        "src_file": "Aries – The Crimson Battleforge 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aries/the-crimson-battleforge-1.webp",
+        "webp_kb": 91.7
+      },
+      {
+        "title": "The Crimson Battleforge",
+        "variant": "2",
+        "slug": "the-crimson-battleforge-2",
+        "src_file": "Aries – The Crimson Battleforge 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aries/the-crimson-battleforge-2.webp",
+        "webp_kb": 85.9
+      },
+      {
+        "title": "Horizon of Fire and Dust",
+        "variant": "1",
+        "slug": "horizon-of-fire-and-dust-1",
+        "src_file": "Aries — Horizon of Fire and Dust 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/aries/horizon-of-fire-and-dust-1.webp",
+        "webp_kb": 92.7
+      },
+      {
+        "title": "Horizon of Fire and Dust",
+        "variant": "2",
+        "slug": "horizon-of-fire-and-dust-2",
+        "src_file": "Aries — Horizon of Fire and Dust 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/aries/horizon-of-fire-and-dust-2.webp",
+        "webp_kb": 95.1
+      },
+      {
+        "title": "The Crimson Expansion",
+        "variant": "1",
+        "slug": "the-crimson-expansion-1",
+        "src_file": "Aries — The Crimson Expansion 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aries/the-crimson-expansion-1.webp",
+        "webp_kb": 48.5
+      },
+      {
+        "title": "The Crimson Expansion",
+        "variant": "2",
+        "slug": "the-crimson-expansion-2",
+        "src_file": "Aries — The Crimson Expansion 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aries/the-crimson-expansion-2.webp",
+        "webp_kb": 47.3
+      },
+      {
+        "title": "The Ignition Horizon",
+        "variant": "1",
+        "slug": "the-ignition-horizon-1",
+        "src_file": "Aries — The Ignition Horizon 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aries/the-ignition-horizon-1.webp",
+        "webp_kb": 85.6
+      },
+      {
+        "title": "The Ignition Horizon",
+        "variant": "2",
+        "slug": "the-ignition-horizon-2",
+        "src_file": "Aries — The Ignition Horizon 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aries/the-ignition-horizon-2.webp",
+        "webp_kb": 118.8
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/aries.webp",
+    "hub_thumb_design": "the-crimson-battleforge-1"
+  },
+  "Taurus": {
+    "designs": [
+      {
+        "title": "The Emerald Vale",
+        "variant": "1",
+        "slug": "the-emerald-vale-1",
+        "src_file": "Taurus – The Emerald Vale 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/taurus/the-emerald-vale-1.webp",
+        "webp_kb": 157.6
+      },
+      {
+        "title": "The Emerald Vale",
+        "variant": "2",
+        "slug": "the-emerald-vale-2",
+        "src_file": "Taurus – The Emerald Vale 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/taurus/the-emerald-vale-2.webp",
+        "webp_kb": 171.3
+      },
+      {
+        "title": "The Celestial Pastures",
+        "variant": "1",
+        "slug": "the-celestial-pastures-1",
+        "src_file": "Taurus — The Celestial Pastures 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/taurus/the-celestial-pastures-1.webp",
+        "webp_kb": 62.0
+      },
+      {
+        "title": "The Celestial Pastures",
+        "variant": "2",
+        "slug": "the-celestial-pastures-2",
+        "src_file": "Taurus — The Celestial Pastures 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/taurus/the-celestial-pastures-2.webp",
+        "webp_kb": 50.2
+      },
+      {
+        "title": "The Emerald Drift",
+        "variant": "1",
+        "slug": "the-emerald-drift-1",
+        "src_file": "Taurus — The Emerald Drift 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/taurus/the-emerald-drift-1.webp",
+        "webp_kb": 62.2
+      },
+      {
+        "title": "The Emerald Drift",
+        "variant": "2",
+        "slug": "the-emerald-drift-2",
+        "src_file": "Taurus — The Emerald Drift 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/taurus/the-emerald-drift-2.webp",
+        "webp_kb": 66.0
+      },
+      {
+        "title": "The Verdant Ridge",
+        "variant": "1",
+        "slug": "the-verdant-ridge-1",
+        "src_file": "Taurus — The Verdant Ridge 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/taurus/the-verdant-ridge-1.webp",
+        "webp_kb": 116.6
+      },
+      {
+        "title": "The Verdant Ridge",
+        "variant": "2",
+        "slug": "the-verdant-ridge-2",
+        "src_file": "Taurus — The Verdant Ridge 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/taurus/the-verdant-ridge-2.webp",
+        "webp_kb": 130.1
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/taurus.webp",
+    "hub_thumb_design": "the-emerald-vale-1"
+  },
+  "Gemini": {
+    "designs": [
+      {
+        "title": "The Skybound Library",
+        "variant": "1",
+        "slug": "the-skybound-library-1",
+        "src_file": "Gemini – The Skybound Library 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/gemini/the-skybound-library-1.webp",
+        "webp_kb": 114.8
+      },
+      {
+        "title": "The Skybound Library",
+        "variant": "2",
+        "slug": "the-skybound-library-2",
+        "src_file": "Gemini – The Skybound Library 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/gemini/the-skybound-library-2.webp",
+        "webp_kb": 84.9
+      },
+      {
+        "title": "Reflections Between Worlds",
+        "variant": "1",
+        "slug": "reflections-between-worlds-1",
+        "src_file": "Gemini — Reflections Between Worlds 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/gemini/reflections-between-worlds-1.webp",
+        "webp_kb": 99.0
+      },
+      {
+        "title": "Reflections Between Worlds",
+        "variant": "2",
+        "slug": "reflections-between-worlds-2",
+        "src_file": "Gemini — Reflections Between Worlds 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/gemini/reflections-between-worlds-2.webp",
+        "webp_kb": 108.1
+      },
+      {
+        "title": "The Mirrored Divide",
+        "variant": "1",
+        "slug": "the-mirrored-divide-1",
+        "src_file": "Gemini — The Mirrored Divide 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/gemini/the-mirrored-divide-1.webp",
+        "webp_kb": 95.8
+      },
+      {
+        "title": "The Mirrored Divide",
+        "variant": "2",
+        "slug": "the-mirrored-divide-2",
+        "src_file": "Gemini — The Mirrored Divide 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/gemini/the-mirrored-divide-2.webp",
+        "webp_kb": 92.3
+      },
+      {
+        "title": "The Mirrored Spiral",
+        "variant": "1",
+        "slug": "the-mirrored-spiral-1",
+        "src_file": "Gemini — The Mirrored Spiral 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/gemini/the-mirrored-spiral-1.webp",
+        "webp_kb": 75.6
+      },
+      {
+        "title": "The Mirrored Spiral",
+        "variant": "2",
+        "slug": "the-mirrored-spiral-2",
+        "src_file": "Gemini — The Mirrored Spiral 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/gemini/the-mirrored-spiral-2.webp",
+        "webp_kb": 64.3
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/gemini.webp",
+    "hub_thumb_design": "the-skybound-library-1"
+  },
+  "Cancer": {
+    "designs": [
+      {
+        "title": "The Moonlit Cove",
+        "variant": "1",
+        "slug": "the-moonlit-cove-1",
+        "src_file": "Cancer – The Moonlit Cove 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/cancer/the-moonlit-cove-1.webp",
+        "webp_kb": 138.9
+      },
+      {
+        "title": "The Moonlit Cove",
+        "variant": "2",
+        "slug": "the-moonlit-cove-2",
+        "src_file": "Cancer – The Moonlit Cove 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/cancer/the-moonlit-cove-2.webp",
+        "webp_kb": 122.3
+      },
+      {
+        "title": "The Lunar Coastline",
+        "variant": "1",
+        "slug": "the-lunar-coastline-1",
+        "src_file": "Cancer — The Lunar Coastline 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/cancer/the-lunar-coastline-1.webp",
+        "webp_kb": 103.5
+      },
+      {
+        "title": "The Lunar Coastline",
+        "variant": "2",
+        "slug": "the-lunar-coastline-2",
+        "src_file": "Cancer — The Lunar Coastline 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/cancer/the-lunar-coastline-2.webp",
+        "webp_kb": 90.6
+      },
+      {
+        "title": "The Lunar Veil",
+        "variant": "1",
+        "slug": "the-lunar-veil-1",
+        "src_file": "Cancer — The Lunar Veil 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/cancer/the-lunar-veil-1.webp",
+        "webp_kb": 43.8
+      },
+      {
+        "title": "The Lunar Veil",
+        "variant": "2",
+        "slug": "the-lunar-veil-2",
+        "src_file": "Cancer — The Lunar Veil 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/cancer/the-lunar-veil-2.webp",
+        "webp_kb": 58.3
+      },
+      {
+        "title": "The Tides of the Universe",
+        "variant": "1",
+        "slug": "the-tides-of-the-universe-1",
+        "src_file": "Cancer — The Tides of the Universe 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/cancer/the-tides-of-the-universe-1.webp",
+        "webp_kb": 130.4
+      },
+      {
+        "title": "The Tides of the Universe",
+        "variant": "2",
+        "slug": "the-tides-of-the-universe-2",
+        "src_file": "Cancer — The Tides of the Universe 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/cancer/the-tides-of-the-universe-2.webp",
+        "webp_kb": 129.0
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/cancer.webp",
+    "hub_thumb_design": "the-moonlit-cove-1"
+  },
+  "Leo": {
+    "designs": [
+      {
+        "title": "The Golden Citadel",
+        "variant": "1",
+        "slug": "the-golden-citadel-1",
+        "src_file": "Leo – The Golden Citadel 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/leo/the-golden-citadel-1.webp",
+        "webp_kb": 167.6
+      },
+      {
+        "title": "The Golden Citadel",
+        "variant": "2",
+        "slug": "the-golden-citadel-2",
+        "src_file": "Leo – The Golden Citadel 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/leo/the-golden-citadel-2.webp",
+        "webp_kb": 154.3
+      },
+      {
+        "title": "Solar Plains Beneath a Burning Sky",
+        "variant": "1",
+        "slug": "solar-plains-beneath-a-burning-sky-1",
+        "src_file": "Leo — Solar Plains Beneath a Burning Sky 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/leo/solar-plains-beneath-a-burning-sky-1.webp",
+        "webp_kb": 95.1
+      },
+      {
+        "title": "Solar Plains Beneath a Burning Sky",
+        "variant": "2",
+        "slug": "solar-plains-beneath-a-burning-sky-2",
+        "src_file": "Leo — Solar Plains Beneath a Burning Sky 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/leo/solar-plains-beneath-a-burning-sky-2.webp",
+        "webp_kb": 112.7
+      },
+      {
+        "title": "The Solar Eruption",
+        "variant": "1",
+        "slug": "the-solar-eruption-1",
+        "src_file": "Leo — The Solar Eruption 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/leo/the-solar-eruption-1.webp",
+        "webp_kb": 57.5
+      },
+      {
+        "title": "The Solar Eruption",
+        "variant": "2",
+        "slug": "the-solar-eruption-2",
+        "src_file": "Leo — The Solar Eruption 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/leo/the-solar-eruption-2.webp",
+        "webp_kb": 58.2
+      },
+      {
+        "title": "The Solar Expanse",
+        "variant": "1",
+        "slug": "the-solar-expanse-1",
+        "src_file": "Leo — The Solar Expanse 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/leo/the-solar-expanse-1.webp",
+        "webp_kb": 63.0
+      },
+      {
+        "title": "The Solar Expanse",
+        "variant": "2",
+        "slug": "the-solar-expanse-2",
+        "src_file": "Leo — The Solar Expanse 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/leo/the-solar-expanse-2.webp",
+        "webp_kb": 61.9
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/leo.webp",
+    "hub_thumb_design": "the-golden-citadel-1"
+  },
+  "Virgo": {
+    "designs": [
+      {
+        "title": "The Verdant Workshop",
+        "variant": "1",
+        "slug": "the-verdant-workshop-1",
+        "src_file": "Virgo – The Verdant Workshop 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/virgo/the-verdant-workshop-1.webp",
+        "webp_kb": 171.4
+      },
+      {
+        "title": "The Verdant Workshop",
+        "variant": "2",
+        "slug": "the-verdant-workshop-2",
+        "src_file": "Virgo – The Verdant Workshop 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/virgo/the-verdant-workshop-2.webp",
+        "webp_kb": 172.9
+      },
+      {
+        "title": "Fields Beneath the Cosmic Veil",
+        "variant": "1",
+        "slug": "fields-beneath-the-cosmic-veil-1",
+        "src_file": "Virgo — Fields Beneath the Cosmic Veil 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/virgo/fields-beneath-the-cosmic-veil-1.webp",
+        "webp_kb": 117.6
+      },
+      {
+        "title": "Fields Beneath the Cosmic Veil",
+        "variant": "2",
+        "slug": "fields-beneath-the-cosmic-veil-2",
+        "src_file": "Virgo — Fields Beneath the Cosmic Veil 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/virgo/fields-beneath-the-cosmic-veil-2.webp",
+        "webp_kb": 168.9
+      },
+      {
+        "title": "The Ordered Constellation",
+        "variant": "1",
+        "slug": "the-ordered-constellation-1",
+        "src_file": "Virgo — The Ordered Constellation 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/virgo/the-ordered-constellation-1.webp",
+        "webp_kb": 100.7
+      },
+      {
+        "title": "The Ordered Constellation",
+        "variant": "2",
+        "slug": "the-ordered-constellation-2",
+        "src_file": "Virgo — The Ordered Constellation 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/virgo/the-ordered-constellation-2.webp",
+        "webp_kb": 78.1
+      },
+      {
+        "title": "The Starlit Fields",
+        "variant": "1",
+        "slug": "the-starlit-fields-1",
+        "src_file": "Virgo — The Starlit Fields 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/virgo/the-starlit-fields-1.webp",
+        "webp_kb": 89.4
+      },
+      {
+        "title": "The Starlit Fields",
+        "variant": "2",
+        "slug": "the-starlit-fields-2",
+        "src_file": "Virgo — The Starlit Fields 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/virgo/the-starlit-fields-2.webp",
+        "webp_kb": 154.1
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/virgo.webp",
+    "hub_thumb_design": "the-verdant-workshop-1"
+  },
+  "Libra": {
+    "designs": [
+      {
+        "title": "The Ivory Court",
+        "variant": "1",
+        "slug": "the-ivory-court-1",
+        "src_file": "Libra – The Ivory Court 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/libra/the-ivory-court-1.webp",
+        "webp_kb": 120.3
+      },
+      {
+        "title": "The Ivory Court",
+        "variant": "2",
+        "slug": "the-ivory-court-2",
+        "src_file": "Libra – The Ivory Court 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/libra/the-ivory-court-2.webp",
+        "webp_kb": 98.0
+      },
+      {
+        "title": "Balance of Light and Void",
+        "variant": "1",
+        "slug": "balance-of-light-and-void-1",
+        "src_file": "Libra — Balance of Light and Void 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/libra/balance-of-light-and-void-1.webp",
+        "webp_kb": 109.2
+      },
+      {
+        "title": "Balance of Light and Void",
+        "variant": "2",
+        "slug": "balance-of-light-and-void-2",
+        "src_file": "Libra — Balance of Light and Void 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/libra/balance-of-light-and-void-2.webp",
+        "webp_kb": 82.8
+      },
+      {
+        "title": "The Equilibrium Canyon",
+        "variant": "1",
+        "slug": "the-equilibrium-canyon-1",
+        "src_file": "Libra — The Equilibrium Canyon 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/libra/the-equilibrium-canyon-1.webp",
+        "webp_kb": 161.0
+      },
+      {
+        "title": "The Equilibrium Canyon",
+        "variant": "2",
+        "slug": "the-equilibrium-canyon-2",
+        "src_file": "Libra — The Equilibrium Canyon 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/libra/the-equilibrium-canyon-2.webp",
+        "webp_kb": 126.7
+      },
+      {
+        "title": "The Symmetry of Light",
+        "variant": "1",
+        "slug": "the-symmetry-of-light-1",
+        "src_file": "Libra — The Symmetry of Light 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/libra/the-symmetry-of-light-1.webp",
+        "webp_kb": 40.5
+      },
+      {
+        "title": "The Symmetry of Light",
+        "variant": "2",
+        "slug": "the-symmetry-of-light-2",
+        "src_file": "Libra — The Symmetry of Light 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/libra/the-symmetry-of-light-2.webp",
+        "webp_kb": 43.5
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/libra.webp",
+    "hub_thumb_design": "the-ivory-court-1"
+  },
+  "Scorpio": {
+    "designs": [
+      {
+        "title": "The Obsidian Abyss",
+        "variant": "1",
+        "slug": "the-obsidian-abyss-1",
+        "src_file": "Scorpio – The Obsidian Abyss 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/scorpio/the-obsidian-abyss-1.webp",
+        "webp_kb": 90.3
+      },
+      {
+        "title": "The Obsidian Abyss",
+        "variant": "2",
+        "slug": "the-obsidian-abyss-2",
+        "src_file": "Scorpio – The Obsidian Abyss 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/scorpio/the-obsidian-abyss-2.webp",
+        "webp_kb": 93.7
+      },
+      {
+        "title": "The Plasma Desert",
+        "variant": "1",
+        "slug": "the-plasma-desert-1",
+        "src_file": "Scorpio — The Plasma Desert 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/scorpio/the-plasma-desert-1.webp",
+        "webp_kb": 42.6
+      },
+      {
+        "title": "The Plasma Desert",
+        "variant": "2",
+        "slug": "the-plasma-desert-2",
+        "src_file": "Scorpio — The Plasma Desert 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/scorpio/the-plasma-desert-2.webp",
+        "webp_kb": 52.2
+      },
+      {
+        "title": "The Plasma Dunes",
+        "variant": "1",
+        "slug": "the-plasma-dunes-1",
+        "src_file": "Scorpio — The Plasma Dunes 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/scorpio/the-plasma-dunes-1.webp",
+        "webp_kb": 57.1
+      },
+      {
+        "title": "The Plasma Dunes",
+        "variant": "2",
+        "slug": "the-plasma-dunes-2",
+        "src_file": "Scorpio — The Plasma Dunes 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/scorpio/the-plasma-dunes-2.webp",
+        "webp_kb": 33.1
+      },
+      {
+        "title": "The Violet Storm",
+        "variant": "1",
+        "slug": "the-violet-storm-1",
+        "src_file": "Scorpio — The Violet Storm 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/scorpio/the-violet-storm-1.webp",
+        "webp_kb": 44.3
+      },
+      {
+        "title": "The Violet Storm",
+        "variant": "2",
+        "slug": "the-violet-storm-2",
+        "src_file": "Scorpio — The Violet Storm 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/scorpio/the-violet-storm-2.webp",
+        "webp_kb": 42.2
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/scorpio.webp",
+    "hub_thumb_design": "the-obsidian-abyss-1"
+  },
+  "Sagittarius": {
+    "designs": [
+      {
+        "title": "The Horizon Expanse",
+        "variant": "1",
+        "slug": "the-horizon-expanse-1",
+        "src_file": "Sagittarius – The Horizon Expanse 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/sagittarius/the-horizon-expanse-1.webp",
+        "webp_kb": 53.9
+      },
+      {
+        "title": "The Horizon Expanse",
+        "variant": "2",
+        "slug": "the-horizon-expanse-2",
+        "src_file": "Sagittarius – The Horizon Expanse 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/sagittarius/the-horizon-expanse-2.webp",
+        "webp_kb": 83.3
+      },
+      {
+        "title": "The Celestial Horizon",
+        "variant": "1",
+        "slug": "the-celestial-horizon-1",
+        "src_file": "Sagittarius — The Celestial Horizon 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/sagittarius/the-celestial-horizon-1.webp",
+        "webp_kb": 129.0
+      },
+      {
+        "title": "The Celestial Horizon",
+        "variant": "2",
+        "slug": "the-celestial-horizon-2",
+        "src_file": "Sagittarius — The Celestial Horizon 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/sagittarius/the-celestial-horizon-2.webp",
+        "webp_kb": 146.5
+      },
+      {
+        "title": "The Celestial Trajectory",
+        "variant": "1",
+        "slug": "the-celestial-trajectory-1",
+        "src_file": "Sagittarius — The Celestial Trajectory 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/sagittarius/the-celestial-trajectory-1.webp",
+        "webp_kb": 51.5
+      },
+      {
+        "title": "The Celestial Trajectory",
+        "variant": "2",
+        "slug": "the-celestial-trajectory-2",
+        "src_file": "Sagittarius — The Celestial Trajectory 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/sagittarius/the-celestial-trajectory-2.webp",
+        "webp_kb": 64.2
+      },
+      {
+        "title": "The Endless Voyage",
+        "variant": "1",
+        "slug": "the-endless-voyage-1",
+        "src_file": "Sagittarius — The Endless Voyage 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/sagittarius/the-endless-voyage-1.webp",
+        "webp_kb": 75.0
+      },
+      {
+        "title": "The Endless Voyage",
+        "variant": "2",
+        "slug": "the-endless-voyage-2",
+        "src_file": "Sagittarius — The Endless Voyage 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/sagittarius/the-endless-voyage-2.webp",
+        "webp_kb": 55.8
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/sagittarius.webp",
+    "hub_thumb_design": "the-horizon-expanse-1"
+  },
+  "Capricorn": {
+    "designs": [
+      {
+        "title": "The Stone Pinnacle",
+        "variant": "1",
+        "slug": "the-stone-pinnacle-1",
+        "src_file": "Capricorn – The Stone Pinnacle 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/capricorn/the-stone-pinnacle-1.webp",
+        "webp_kb": 61.7
+      },
+      {
+        "title": "The Stone Pinnacle",
+        "variant": "2",
+        "slug": "the-stone-pinnacle-2",
+        "src_file": "Capricorn – The Stone Pinnacle 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/capricorn/the-stone-pinnacle-2.webp",
+        "webp_kb": 75.4
+      },
+      {
+        "title": "The Ascending Nebula",
+        "variant": "1",
+        "slug": "the-ascending-nebula-1",
+        "src_file": "Capricorn — The Ascending Nebula 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/capricorn/the-ascending-nebula-1.webp",
+        "webp_kb": 40.5
+      },
+      {
+        "title": "The Ascending Nebula",
+        "variant": "2",
+        "slug": "the-ascending-nebula-2",
+        "src_file": "Capricorn — The Ascending Nebula 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/capricorn/the-ascending-nebula-2.webp",
+        "webp_kb": 29.8
+      },
+      {
+        "title": "The Cosmic Summit",
+        "variant": "1",
+        "slug": "the-cosmic-summit-1",
+        "src_file": "Capricorn — The Cosmic Summit 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/capricorn/the-cosmic-summit-1.webp",
+        "webp_kb": 95.2
+      },
+      {
+        "title": "The Cosmic Summit",
+        "variant": "2",
+        "slug": "the-cosmic-summit-2",
+        "src_file": "Capricorn — The Cosmic Summit 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/capricorn/the-cosmic-summit-2.webp",
+        "webp_kb": 68.8
+      },
+      {
+        "title": "The Star-Crowned Peak",
+        "variant": "1",
+        "slug": "the-star-crowned-peak-1",
+        "src_file": "Capricorn — The Star-Crowned Peak 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/capricorn/the-star-crowned-peak-1.webp",
+        "webp_kb": 105.4
+      },
+      {
+        "title": "The Star-Crowned Peak",
+        "variant": "2",
+        "slug": "the-star-crowned-peak-2",
+        "src_file": "Capricorn — The Star-Crowned Peak 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/capricorn/the-star-crowned-peak-2.webp",
+        "webp_kb": 129.1
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/capricorn.webp",
+    "hub_thumb_design": "the-stone-pinnacle-1"
+  },
+  "Aquarius": {
+    "designs": [
+      {
+        "title": "The Celestial Spire",
+        "variant": "1",
+        "slug": "the-celestial-spire-1",
+        "src_file": "Aquarius – The Celestial Spire 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aquarius/the-celestial-spire-1.webp",
+        "webp_kb": 99.3
+      },
+      {
+        "title": "The Celestial Spire",
+        "variant": "2",
+        "slug": "the-celestial-spire-2",
+        "src_file": "Aquarius – The Celestial Spire 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aquarius/the-celestial-spire-2.webp",
+        "webp_kb": 83.9
+      },
+      {
+        "title": "The Cosmic Waterfall",
+        "variant": "1",
+        "slug": "the-cosmic-waterfall-1",
+        "src_file": "Aquarius — The Cosmic Waterfall 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/aquarius/the-cosmic-waterfall-1.webp",
+        "webp_kb": 108.2
+      },
+      {
+        "title": "The Cosmic Waterfall",
+        "variant": "2",
+        "slug": "the-cosmic-waterfall-2",
+        "src_file": "Aquarius — The Cosmic Waterfall 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/aquarius/the-cosmic-waterfall-2.webp",
+        "webp_kb": 123.1
+      },
+      {
+        "title": "The Flow of Stars",
+        "variant": "1",
+        "slug": "the-flow-of-stars-1",
+        "src_file": "Aquarius — The Flow of Stars 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aquarius/the-flow-of-stars-1.webp",
+        "webp_kb": 58.3
+      },
+      {
+        "title": "The Flow of Stars",
+        "variant": "2",
+        "slug": "the-flow-of-stars-2",
+        "src_file": "Aquarius — The Flow of Stars 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aquarius/the-flow-of-stars-2.webp",
+        "webp_kb": 58.1
+      },
+      {
+        "title": "The River of Light",
+        "variant": "1",
+        "slug": "the-river-of-light-1",
+        "src_file": "Aquarius — The River of Light 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aquarius/the-river-of-light-1.webp",
+        "webp_kb": 75.1
+      },
+      {
+        "title": "The River of Light",
+        "variant": "2",
+        "slug": "the-river-of-light-2",
+        "src_file": "Aquarius — The River of Light 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/aquarius/the-river-of-light-2.webp",
+        "webp_kb": 90.2
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/aquarius.webp",
+    "hub_thumb_design": "the-celestial-spire-1"
+  },
+  "Pisces": {
+    "designs": [
+      {
+        "title": "The Dreamweave Ocean",
+        "variant": "1",
+        "slug": "the-dreamweave-ocean-1",
+        "src_file": "Pisces – The Dreamweave Ocean 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/pisces/the-dreamweave-ocean-1.webp",
+        "webp_kb": 135.6
+      },
+      {
+        "title": "The Dreamweave Ocean",
+        "variant": "2",
+        "slug": "the-dreamweave-ocean-2",
+        "src_file": "Pisces – The Dreamweave Ocean 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/pisces/the-dreamweave-ocean-2.webp",
+        "webp_kb": 117.0
+      },
+      {
+        "title": "The Converging Currents",
+        "variant": "1",
+        "slug": "the-converging-currents-1",
+        "src_file": "Pisces — The Converging Currents 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/pisces/the-converging-currents-1.webp",
+        "webp_kb": 73.9
+      },
+      {
+        "title": "The Converging Currents",
+        "variant": "2",
+        "slug": "the-converging-currents-2",
+        "src_file": "Pisces — The Converging Currents 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/pisces/the-converging-currents-2.webp",
+        "webp_kb": 78.8
+      },
+      {
+        "title": "The Infinite Sea",
+        "variant": "1",
+        "slug": "the-infinite-sea-1",
+        "src_file": "Pisces — The Infinite Sea 1_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/pisces/the-infinite-sea-1.webp",
+        "webp_kb": 108.0
+      },
+      {
+        "title": "The Infinite Sea",
+        "variant": "2",
+        "slug": "the-infinite-sea-2",
+        "src_file": "Pisces — The Infinite Sea 2_4800x6000.jpg",
+        "webp_path": "images/zodiac/realms/pisces/the-infinite-sea-2.webp",
+        "webp_kb": 99.4
+      },
+      {
+        "title": "The Sea of Galaxies",
+        "variant": "1",
+        "slug": "the-sea-of-galaxies-1",
+        "src_file": "Pisces — The Sea of Galaxies 1_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/pisces/the-sea-of-galaxies-1.webp",
+        "webp_kb": 113.5
+      },
+      {
+        "title": "The Sea of Galaxies",
+        "variant": "2",
+        "slug": "the-sea-of-galaxies-2",
+        "src_file": "Pisces — The Sea of Galaxies 2_4800x6000px.jpg",
+        "webp_path": "images/zodiac/realms/pisces/the-sea-of-galaxies-2.webp",
+        "webp_kb": 100.5
+      }
+    ],
+    "hub_thumb": "images/zodiac/realms/pisces.webp",
+    "hub_thumb_design": "the-dreamweave-ocean-1"
+  }
+}
