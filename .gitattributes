@@ -1,0 +1,19 @@
+# Binary file types — never apply text/EOL normalization.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.eot binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.mp4 binary
+*.mov binary
+*.webm binary
