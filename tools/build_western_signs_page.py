@@ -423,6 +423,8 @@ def build_page(sign, manifest):
 
     sister_nav = build_sister_nav(sign)
 
+    ls_disabled_attr, ls_url, ls_btn_text = ls_button_state(sign)
+
     return f'''<!DOCTYPE html>
 <html lang="en" data-glass="cosmic">
 <head>
@@ -973,7 +975,7 @@ def build_page(sign, manifest):
         <li>Instant download — no shipping</li>
       </ul>
 
-      <button class="ls-checkout-btn" disabled data-checkout-url="" data-product-name="{sign} Zodiac Art Bundle" data-product-price="24.99">Buy the {sign} Bundle — Coming Soon</button>
+      <button class="ls-checkout-btn"{ls_disabled_attr} data-checkout-url="{ls_url}" data-product-name="{sign} Zodiac Art Bundle" data-product-price="24.99">{ls_btn_text}</button>
       <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
 
       <ul class="sidebar-trust">
@@ -1074,7 +1076,7 @@ def build_page(sign, manifest):
     <div class="cta-eyebrow">Browse the Collection</div>
     <h2>14 Styles. 24 Designs. <span class="italic-accent">One {sign} Bundle.</span></h2>
     <p class="cta-sub">Every art-style series in one $24.99 bundle. Print at home, print at a shop, sell on-demand up to 100 prints per design. Instant download, real license, no subscription.</p>
-    <button class="ls-checkout-btn ls-checkout-btn--large" disabled data-checkout-url="" data-product-name="{sign} Zodiac Art Bundle" data-product-price="24.99">Buy the {sign} Bundle — Coming Soon</button>
+    <button class="ls-checkout-btn ls-checkout-btn--large"{ls_disabled_attr} data-checkout-url="{ls_url}" data-product-name="{sign} Zodiac Art Bundle" data-product-price="24.99">{ls_btn_text}</button>
     <span class="cta-sub-line">Instant download — 144 print-ready files in your inbox the moment checkout completes.</span>
   </section>
 
@@ -1128,6 +1130,7 @@ def build_page(sign, manifest):
     }});
   </script>
 
+  <script src="/js/ls-checkout-btn.js" defer></script>
   <script src="/js/mobile-nav.js" defer></script>
   <script src="/js/ga4-events.js" defer></script>
 </body>
@@ -1259,6 +1262,36 @@ HERO_TAGLINE_BY_SIGN = {
 
 def hero_tagline_for(sign):
     return HERO_TAGLINE_BY_SIGN.get(sign, HERO_TAGLINE_BY_SIGN['Aries'])
+
+
+# Lemon Squeezy buy URLs per sign. Empty string => button stays disabled with
+# "Coming Soon" copy. Populated URL => button is live, "$24.99" appears in the
+# button text, and js/ls-checkout-btn.js opens the LS overlay on click.
+LS_URL_BY_SIGN = {
+    'Aries':       'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/9bf59872-70d1-49de-8ea3-37372b9b2654?embed=1',
+    'Taurus':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/7d8f4359-efdb-4e53-be48-85d8dc713b8e?embed=1',
+    'Gemini':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/819241f2-324e-4896-a374-6aeec745ced3?embed=1',
+    'Cancer':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/6edf2901-282b-40ba-8cf9-7c9b14a903a9?embed=1',
+    'Leo':         'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/979fb682-41c8-4cc0-85dc-1f0cceaca40a?embed=1',
+    'Virgo':       'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/27b54f15-e273-48ad-be62-79ec4c548014?embed=1',
+    'Libra':       'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/7c253f3c-ed16-40f1-a47e-c135acbfb4af?embed=1',
+    'Scorpio':     'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/3413255c-d3cc-4e32-ba40-c1519bdb857c?embed=1',
+    'Sagittarius': 'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/eb84458a-2b8c-4117-91a7-9c2b7a7f1d66?embed=1',
+    'Capricorn':   'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/28803ea4-8728-4da2-949a-7a08b4ca2bf3?embed=1',
+    'Aquarius':    'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/e97d3548-3c07-4f4a-b053-265f607fbe4a?embed=1',
+    'Pisces':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/d36c351f-7c2d-4303-891f-f6ef963adec4?embed=1',
+}
+
+
+def ls_button_state(sign, price='24.99'):
+    """Return (disabled_attr, ls_url, button_text) for the LS button on a sign's
+    page. Standing Instruction #6 — when URL is present, button is live with
+    "$<price>" in the copy; when URL is empty, button stays disabled with
+    "Coming Soon"."""
+    url = LS_URL_BY_SIGN.get(sign, '')
+    if url:
+        return ('', url, f'Buy the {sign} Bundle — ${price}')
+    return (' disabled', '', f'Buy the {sign} Bundle — Coming Soon')
 
 
 def main():
