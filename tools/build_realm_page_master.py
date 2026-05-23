@@ -213,6 +213,36 @@ def hero_tagline_for(sign):
     return HERO_TAGLINE_BY_SIGN.get(sign, HERO_TAGLINE_BY_SIGN['Aries'])
 
 
+# Lemon Squeezy buy URLs per sign. Empty string => button stays disabled with
+# "Coming Soon" copy. Populated URL => button is live, "$14.99" appears in the
+# button text, and js/ls-checkout-btn.js opens the LS overlay on click.
+LS_URL_BY_SIGN = {
+    'Aries':       'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/2d91db12-fb82-43f8-9a5e-dc00985b5c44?embed=1',
+    'Taurus':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/ede31a69-89bc-4a91-a032-eff90fec4822?embed=1',
+    'Gemini':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/e3ebd386-4732-4b92-a1f3-5ecf359dcd65?embed=1',
+    'Cancer':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/29aa0221-9029-4e43-beb8-b04fb8b4ed7d?embed=1',
+    'Leo':         'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/d2de9520-f954-4c89-8f01-ef7c0c381d4c?embed=1',
+    'Virgo':       'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/b51a078d-9e6d-41f7-b9cf-cf03dab9f5c0?embed=1',
+    'Libra':       'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/9fc68b81-a42f-4fe5-ab98-dfc335c5225a?embed=1',
+    'Scorpio':     'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/c26077cf-5e8d-49b3-b3e3-3fe141da8aba?embed=1',
+    'Sagittarius': 'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/d284ea3f-bb98-47b5-83e3-36d108df7f14?embed=1',
+    'Capricorn':   'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/9542be16-35b8-49a7-8366-67d6aecab104?embed=1',
+    'Aquarius':    'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/9482fef7-2db3-4300-b5d1-7c645f0d2c85?embed=1',
+    'Pisces':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/c64f38b8-2a61-4b7d-a5a7-70b197b9f6fd?embed=1',
+}
+
+
+def ls_button_state(sign, price='14.99'):
+    """Return (disabled_attr, ls_url, button_text) for the LS button on a sign's
+    page. Standing Instruction #6 — when URL is present, button is live with
+    "$<price>" in the copy; when URL is empty, button stays disabled with
+    "Coming Soon"."""
+    url = LS_URL_BY_SIGN.get(sign, '')
+    if url:
+        return ('', url, f'Buy the {sign} Realms Bundle — ${price}')
+    return (' disabled', '', f'Buy the {sign} Realms Bundle — Coming Soon')
+
+
 def build_realm_block(title, designs, sign, description):
     """Render a single Realm sub-section: title + description + 2 variant cards."""
     cards = []
@@ -336,6 +366,8 @@ def build_page(sign, manifest):
     )
 
     zodiac_context = ZODIAC_CONTEXT_PROSE.get(sign, '')
+
+    ls_disabled_attr, ls_url, ls_btn_text = ls_button_state(sign)
 
     return f'''<!DOCTYPE html>
 <html lang="en" data-glass="cosmic">
@@ -786,7 +818,7 @@ def build_page(sign, manifest):
         <li>Instant download — no shipping</li>
       </ul>
 
-      <button class="ls-checkout-btn" disabled data-checkout-url="" data-product-name="{sign} Western Realms Bundle" data-product-price="14.99">Buy the {sign} Realms Bundle — Coming Soon</button>
+      <button class="ls-checkout-btn"{ls_disabled_attr} data-checkout-url="{ls_url}" data-product-name="{sign} Western Realms Bundle" data-product-price="14.99">{ls_btn_text}</button>
       <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
 
       <ul class="sidebar-trust">
@@ -856,7 +888,7 @@ def build_page(sign, manifest):
     <div class="cta-eyebrow">Browse the Collection</div>
     <h2>4 Realms. 8 Variants. <span class="italic-accent">One {sign} Bundle.</span></h2>
     <p class="cta-sub">Four mythic {sign} landscapes, each in two compositional variants, every variant in three sizes and two formats. The full landscape interpretation of {sign} — $14.99, instant download, license and print guide included.</p>
-    <button class="ls-checkout-btn ls-checkout-btn--large" disabled data-checkout-url="" data-product-name="{sign} Western Realms Bundle" data-product-price="14.99">Buy the {sign} Realms Bundle — Coming Soon</button>
+    <button class="ls-checkout-btn ls-checkout-btn--large"{ls_disabled_attr} data-checkout-url="{ls_url}" data-product-name="{sign} Western Realms Bundle" data-product-price="14.99">{ls_btn_text}</button>
     <span class="cta-sub-line">Instant download — 48 print-ready {sign} Realm files in your inbox the moment checkout completes.</span>
   </section>
 
@@ -889,6 +921,7 @@ def build_page(sign, manifest):
       container.appendChild(s);
     }}
   </script>
+  <script src="/js/ls-checkout-btn.js" defer></script>
   <script src="/js/mobile-nav.js" defer></script>
   <script src="/js/ga4-events.js" defer></script>
 </body>

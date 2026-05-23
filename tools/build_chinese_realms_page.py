@@ -56,6 +56,20 @@ REALM_DESCRIPTIONS = {
 }
 
 
+# Lemon Squeezy buy URL for the single Chinese Realms bundle. Empty string =>
+# buttons stay disabled with "Coming Soon" copy. Populated URL => buttons go
+# live with "$29.99" in the copy and js/ls-checkout-btn.js opens the overlay.
+LS_URL = 'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/4a66eced-3a1b-464f-84d2-d5d97d020b6d?embed=1'
+
+
+def ls_button_state(price='29.99'):
+    """Return (disabled_attr, ls_url, button_text) for the LS button on this
+    single-bundle page. Mirrors Standing Instruction #6."""
+    if LS_URL:
+        return ('', LS_URL, f'Buy the Chinese Realms Bundle — ${price}')
+    return (' disabled', '', 'Buy the Chinese Realms Bundle — Coming Soon')
+
+
 def build_animal_block(animal, animal_data):
     slug = ANIMAL_SLUGS[animal]
     meta = ANIMAL_META[animal]
@@ -135,6 +149,8 @@ def build_page(manifest):
         '      </div>'
         for q, a in faqs
     )
+    ls_disabled_attr, ls_url, ls_btn_text = ls_button_state()
+
     faq_schema = faq_schema_data()
     faq_schema_json = ',\n'.join(
         '      {\n'
@@ -566,7 +582,7 @@ def build_page(manifest):
         <li>License &amp; Print Guide PDFs included</li>
       </ul>
 
-      <button class="ls-checkout-btn" disabled data-checkout-url="" data-product-name="Chinese Zodiac Realms Bundle" data-product-price="29.99">Buy the Chinese Realms Bundle — Coming Soon</button>
+      <button class="ls-checkout-btn"{ls_disabled_attr} data-checkout-url="{ls_url}" data-product-name="Chinese Zodiac Realms Bundle" data-product-price="29.99">{ls_btn_text}</button>
       <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
 
       <ul class="sidebar-trust">
@@ -627,7 +643,7 @@ def build_page(manifest):
     <div class="cta-eyebrow">Browse the Collection</div>
     <h2>12 Animals. 24 Designs. <span class="italic-accent">One Bundle.</span></h2>
     <p class="cta-sub">Every Chinese zodiac animal as a landscape-style Realm, two variants per animal, all delivered in three sizes and two formats. The full Chinese zodiac in environment form — $29.99, instant download, license and print guide included.</p>
-    <button class="ls-checkout-btn ls-checkout-btn--large" disabled data-checkout-url="" data-product-name="Chinese Zodiac Realms Bundle" data-product-price="29.99">Buy the Chinese Realms Bundle — Coming Soon</button>
+    <button class="ls-checkout-btn ls-checkout-btn--large"{ls_disabled_attr} data-checkout-url="{ls_url}" data-product-name="Chinese Zodiac Realms Bundle" data-product-price="29.99">{ls_btn_text}</button>
     <span class="cta-sub-line">Instant download — 144 print-ready Chinese Realm files in your inbox the moment checkout completes.</span>
   </section>
 
@@ -660,6 +676,7 @@ def build_page(manifest):
       container.appendChild(s);
     }}
   </script>
+  <script src="/js/ls-checkout-btn.js" defer></script>
   <script src="/js/mobile-nav.js" defer></script>
   <script src="/js/ga4-events.js" defer></script>
 </body>
