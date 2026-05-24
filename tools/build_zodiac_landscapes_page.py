@@ -61,6 +61,27 @@ LANDSCAPES = [
 ]
 
 
+# Lemon Squeezy buy URL for the single Western Landscapes bundle. Empty string
+# => all 3 buttons stay disabled with "Coming Soon" copy. Populated URL => all
+# 3 buttons go live with "$19.99" in the copy and js/ls-checkout-btn.js opens
+# the overlay.
+LS_URL = 'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/84fd1c8f-5e25-4115-8752-b4dc841b3023?embed=1'
+
+
+def ls_button_state(price='19.99'):
+    """Return (disabled_attr, ls_url, btn_text_full, btn_text_short). The page
+    has 3 buttons with 2 distinct labels — the grid-intro CTA and final CTA
+    use the full name; the sidebar button uses the shorter 'Landscapes Bundle'
+    label."""
+    if LS_URL:
+        return ('', LS_URL,
+                f'Buy the Western Landscapes Bundle — ${price}',
+                f'Buy the Landscapes Bundle — ${price}')
+    return (' disabled', '',
+            'Buy the Western Landscapes Bundle — Coming Soon',
+            'Buy the Landscapes Bundle — Coming Soon')
+
+
 def build_landscape_block(ls):
     """Single landscape sub-section: h3 title + sub-line + description + image card."""
     return (
@@ -125,6 +146,8 @@ def build_page():
         '      </div>'
         for q, a in faqs
     )
+    ls_disabled_attr, ls_url, ls_btn_text_full, ls_btn_text_short = ls_button_state()
+
     faq_schema = faq_schema_data()
     faq_schema_json = ',\n'.join(
         '      {\n'
@@ -496,7 +519,7 @@ def build_page():
 
         <div class="grid-intro-cta">
           <p>The Western Landscapes Collection is sold as a single bundle — all 12 mythic landscape designs in one $19.99 download. Click below to purchase the full Collection.</p>
-          <button class="ls-checkout-btn ls-checkout-btn--large" disabled data-checkout-url="" data-product-name="Western Landscapes Bundle" data-product-price="19.99">Buy the Western Landscapes Bundle — Coming Soon</button>
+          <button class="ls-checkout-btn ls-checkout-btn--large"{ls_disabled_attr} data-checkout-url="{ls_url}" data-product-name="Western Landscapes Bundle" data-product-price="19.99">{ls_btn_text_full}</button>
           <p>Scroll down to preview each of the 12 landscapes.</p>
         </div>
 
@@ -571,7 +594,7 @@ def build_page():
         <li><a href="/legal/print-guide-western-landscapes.pdf">Print Guide (PDF)</a></li>
       </ul>
 
-      <button class="ls-checkout-btn" disabled data-checkout-url="" data-product-name="Western Landscapes Bundle" data-product-price="19.99">Buy the Landscapes Bundle — Coming Soon</button>
+      <button class="ls-checkout-btn"{ls_disabled_attr} data-checkout-url="{ls_url}" data-product-name="Western Landscapes Bundle" data-product-price="19.99">{ls_btn_text_short}</button>
       <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
 
       <ul class="sidebar-trust">
@@ -632,7 +655,7 @@ def build_page():
     <div class="cta-eyebrow">Browse the Collection</div>
     <h2>12 Signs. 12 Worlds. <span class="italic-accent">One Bundle.</span></h2>
     <p class="cta-sub">Every Western zodiac sign rendered as the landscape it would inhabit — painted in oil, print-ready on download. The full atmospheric set in one $19.99 download.</p>
-    <button class="ls-checkout-btn ls-checkout-btn--large" disabled data-checkout-url="" data-product-name="Western Landscapes Bundle" data-product-price="19.99">Buy the Western Landscapes Bundle — Coming Soon</button>
+    <button class="ls-checkout-btn ls-checkout-btn--large"{ls_disabled_attr} data-checkout-url="{ls_url}" data-product-name="Western Landscapes Bundle" data-product-price="19.99">{ls_btn_text_full}</button>
     <span class="cta-sub-line">Instant download — 72 print-ready landscape files in your inbox the moment checkout completes.</span>
   </section>
 
@@ -665,6 +688,7 @@ def build_page():
       container.appendChild(s);
     }}
   </script>
+  <script src="/js/ls-checkout-btn.js" defer></script>
   <script src="/js/mobile-nav.js" defer></script>
   <script src="/js/ga4-events.js" defer></script>
 </body>
