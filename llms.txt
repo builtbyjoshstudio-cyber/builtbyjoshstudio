@@ -41,6 +41,16 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 - [Notion Product OS deep dive](https://builtbyjoshstudio.com/blog/notion-product-os-for-creators.html)
 - [Blog index](https://builtbyjoshstudio.com/blog.html): All posts.
 
+## Free web utilities
+
+- [Universal Recipe Scaler](https://builtbyjoshstudio-cyber.github.io/universal-recipe-scaler/): Scales recipe ingredient quantities up or down by serving count or weight multiplier.
+- [Reverse Roasting Calculator](https://builtbyjoshstudio-cyber.github.io/reverse-roasting-calculator/): Backward-plans cooking and resting schedules for reverse-seared meats based on target serving time.
+- [Baking Pan Swap Calculator](https://builtbyjoshstudio-cyber.github.io/pan-swap-calculator/): Converts recipes between square, round, rectangular, loaf, and muffin pan sizes by surface area.
+- [Perfect Roast Pull Temp Calculator](https://builtbyjoshstudio-cyber.github.io/perfect-roast-pull-temp-calculator/): Calculates pull temperatures for meats accounting for carryover cooking during rest.
+- [Brine Calculator](https://builtbyjoshstudio-cyber.github.io/brine-calculator/): Calculates salt, sugar, and water ratios plus brining time for wet and dry brines.
+- [Meat Thawing Planner](https://builtbyjoshstudio-cyber.github.io/meat-thawing-planner/): Backward-schedules food-safe refrigerator and cold-water thawing windows by protein type and weight.
+- [Dough Hydration Calculator](https://builtbyjoshstudio-cyber.github.io/dough-hydration-calculator/): Calculates baker's percentages, hydration ratios, and starter adjustments for bread and sourdough.
+
 ## Beyond the studio
 
 - [Overlayed Echoes — Josh's novel on Amazon](https://a.co/d/04YzP4o4): Fiction project from the same studio.
