@@ -296,6 +296,13 @@ Three blocks in `<head>` in addition to the global Organization schema
 - `offers.url`: the product page URL (LS overlay opens on-page)
 - `offers.price`: exact bundle price as a string ("14.99", "24.99", etc.)
 - `offers.availability`: `https://schema.org/InStock`
+- `hasMerchantReturnPolicy`: required peer to `offers`. Value:
+  `{"@type": "MerchantReturnPolicy", "applicableCountry": "US", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"}`.
+  Reflects the actual license terms (all sales final on digital downloads —
+  Section 9 of every license PDF) and clears the Google Rich Results
+  "non-critical issues detected" warning on Product snippets + Merchant
+  Listings detections. No `merchantReturnDays` / `returnFees` / `returnMethod`
+  required when the category is `MerchantReturnNotPermitted`.
 - **No** `aggregateRating` block until product-specific reviews exist on the
   page
 

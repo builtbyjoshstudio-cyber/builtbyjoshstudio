@@ -334,6 +334,11 @@ def build_page(animal, manifest):
       "url": "https://builtbyjoshstudio.com/collections/{slug}-chinese-zodiac-art.html",
       "seller": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},
       "itemCondition": "https://schema.org/NewCondition"
+    }},
+    "hasMerchantReturnPolicy": {{
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
     }}
   }}
   </script>

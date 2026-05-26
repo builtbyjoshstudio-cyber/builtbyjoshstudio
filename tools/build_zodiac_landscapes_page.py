@@ -240,6 +240,11 @@ def build_page():
       "url": "https://builtbyjoshstudio.com/collections/zodiac-landscapes.html",
       "seller": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},
       "itemCondition": "https://schema.org/NewCondition"
+    }},
+    "hasMerchantReturnPolicy": {{
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
     }}
   }}
   </script>

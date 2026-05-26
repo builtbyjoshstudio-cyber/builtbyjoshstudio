@@ -514,6 +514,11 @@ def build_page(sign, manifest):
         "@id": "https://builtbyjoshstudio.com/#organization"
       }},
       "itemCondition": "https://schema.org/NewCondition"
+    }},
+    "hasMerchantReturnPolicy": {{
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
     }}
   }}
   </script>
