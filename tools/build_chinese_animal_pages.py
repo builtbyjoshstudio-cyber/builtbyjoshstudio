@@ -98,6 +98,36 @@ def cultural_prose_for(animal):
     return WHAT_MAKES_ANIMAL_PROSE.get(animal, '')
 
 
+# Lemon Squeezy buy URLs per animal. Empty string => button stays disabled
+# with "Coming Soon" copy. Populated URL => button is live, "$14.99" appears
+# in the button text, and js/ls-checkout-btn.js opens the LS overlay on click.
+LS_URL_BY_ANIMAL = {
+    'Rat':     'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/020469d4-d057-40c6-bcc2-63e4acdf1931?embed=1',
+    'Ox':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/ad1241ae-d3a9-41e4-8609-b1da8a3b48f4?embed=1',
+    'Tiger':   'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/e31b21dc-5272-483e-ba4e-f3143a116811?embed=1',
+    'Rabbit':  'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/62e87b83-136c-4175-be85-70c74dcd368c?embed=1',
+    'Dragon':  'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/c0c0d586-f817-4430-b2d8-12b276ce4f19?embed=1',
+    'Snake':   'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/197182f1-a465-4327-b8f7-5c8ef190f6d6?embed=1',
+    'Horse':   'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/81119fed-d52e-43c0-876c-60d4e27f1a17?embed=1',
+    'Goat':    'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/7100e32d-32e3-417b-adbb-711a6d02ca16?embed=1',
+    'Monkey':  'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/e0f0b887-68f1-43ca-aaf7-43754e6b9f04?embed=1',
+    'Rooster': 'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/8177ada7-5f23-4555-a01a-92cb70bff51f?embed=1',
+    'Dog':     'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/b13065dc-7d5e-4eea-9c36-a593678ba6aa?embed=1',
+    'Pig':     'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/59dfe109-d522-48c5-baf1-90f0281117ae?embed=1',
+}
+
+
+def ls_button_state(animal, price='14.99'):
+    """Return (disabled_attr, ls_url, button_text) for the LS button on an
+    animal's page. Standing Instruction #6 — when URL is present, button is
+    live with "$<price>" in the copy; when URL is empty, button stays disabled
+    with "Coming Soon"."""
+    url = LS_URL_BY_ANIMAL.get(animal, '')
+    if url:
+        return ('', url, f'Buy the {animal} Bundle — ${price}')
+    return (' disabled', '', f'Buy the {animal} Bundle — Coming Soon')
+
+
 def build_style_block(style_slug, display_name, designs, animal, description):
     """Render a single style sub-section: title + description + 4 variant cards."""
     cards = []
@@ -193,6 +223,8 @@ def build_page(animal, manifest):
     )
 
     sister_nav = build_sister_nav(animal)
+
+    ls_disabled_attr, ls_url, ls_btn_text = ls_button_state(animal)
 
     # FAQ visible + schema
     faqs = faq_data(animal)
@@ -669,7 +701,7 @@ def build_page(animal, manifest):
         <li>License &amp; Print Guide PDFs included</li>
       </ul>
 
-      <button class="ls-checkout-btn" disabled data-checkout-url="" data-product-name="{animal} Chinese Zodiac Art Bundle" data-product-price="14.99">Buy the {animal} Bundle — Coming Soon</button>
+      <button class="ls-checkout-btn"{ls_disabled_attr} data-checkout-url="{ls_url}" data-product-name="{animal} Chinese Zodiac Art Bundle" data-product-price="14.99">{ls_btn_text}</button>
       <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
 
       <ul class="sidebar-trust">
@@ -739,7 +771,7 @@ def build_page(animal, manifest):
     <div class="cta-eyebrow">Browse the Collection</div>
     <h2>2 Styles. 8 Designs. <span class="italic-accent">One {animal} Bundle.</span></h2>
     <p class="cta-sub">Eight original {animal} designs across two complementary styles, every design in three sizes and two formats. The full Chinese zodiac interpretation of the {animal} — $14.99, instant download, license and print guide included.</p>
-    <button class="ls-checkout-btn ls-checkout-btn--large" disabled data-checkout-url="" data-product-name="{animal} Chinese Zodiac Art Bundle" data-product-price="14.99">Buy the {animal} Bundle — Coming Soon</button>
+    <button class="ls-checkout-btn ls-checkout-btn--large"{ls_disabled_attr} data-checkout-url="{ls_url}" data-product-name="{animal} Chinese Zodiac Art Bundle" data-product-price="14.99">{ls_btn_text}</button>
     <span class="cta-sub-line">Instant download — 48 print-ready {animal} files in your inbox the moment checkout completes.</span>
   </section>
 
@@ -772,6 +804,7 @@ def build_page(animal, manifest):
       container.appendChild(s);
     }}
   </script>
+  <script src="/js/ls-checkout-btn.js" defer></script>
   <script src="/js/mobile-nav.js" defer></script>
   <script src="/js/ga4-events.js" defer></script>
 </body>
