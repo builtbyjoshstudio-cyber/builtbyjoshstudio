@@ -477,6 +477,37 @@
       .nav-links { gap: 0.55rem; }
       .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
     }
+
+    /* Blog filter */
+    .blog-filter {
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      padding: 0 2rem;
+    }
+    .blog-filter-input {
+      width: 100%;
+      padding: 0.9rem 1.1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--bbj-text);
+      background: var(--bbj-surface);
+      border: 1px solid var(--bbj-border);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .blog-filter-input:focus {
+      border-color: var(--bbj-accent);
+    }
+    .blog-filter-empty {
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      text-align: center;
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--bbj-muted);
+    }
   </style>
   <link rel="stylesheet" href="/css/tokens.css" />
 
@@ -740,6 +771,12 @@
     <a href="#learning">Learning</a>
     <a href="#projects">Projects</a>
   </nav>
+
+  <!-- BLOG FILTER -->
+  <div class="blog-filter" role="search">
+    <input type="search" id="blog-filter-input" class="blog-filter-input" placeholder="Filter posts..." aria-label="Filter posts by title or excerpt" autocomplete="off" />
+    <p id="blog-filter-empty" class="blog-filter-empty" hidden>No posts match that filter.</p>
+  </div>
 
   <!-- TEMPLATES -->
   <section id="templates" aria-labelledby="templates-heading" class="blog-section">
@@ -1161,6 +1198,50 @@
         }
       });
     </script>
+
+  <!-- Blog filter -->
+  <script>
+    (function () {
+      var input = document.getElementById('blog-filter-input');
+      var empty = document.getElementById('blog-filter-empty');
+      if (!input || !empty) return;
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.article-card'));
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.blog-section'));
+
+      function textOf(el, selector) {
+        var n = el.querySelector(selector);
+        return n ? n.textContent.toLowerCase() : '';
+      }
+
+      function apply(query) {
+        var q = query.trim().toLowerCase();
+        var visible = 0;
+        cards.forEach(function (card) {
+          var match = !q ||
+            textOf(card, '.article-title').indexOf(q) !== -1 ||
+            textOf(card, '.article-excerpt').indexOf(q) !== -1;
+          card.hidden = !match;
+          if (match) visible++;
+        });
+        sections.forEach(function (section) {
+          var anyVisible = Array.prototype.some.call(
+            section.querySelectorAll('.article-card'),
+            function (c) { return !c.hidden; }
+          );
+          section.hidden = !anyVisible;
+        });
+        empty.hidden = visible > 0;
+      }
+
+      input.addEventListener('input', function (e) { apply(e.target.value); });
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          input.value = '';
+          apply('');
+        }
+      });
+    })();
+  </script>
 
   <script src="/js/mobile-nav.js" defer></script>
   <script src="/js/ga4-events.js" defer></script>
