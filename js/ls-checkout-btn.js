@@ -84,8 +84,27 @@
     if (!url) return;
     e.preventDefault();
     openCheckout(url);
-    // GA4 event (best-effort, non-blocking)
+    // GA4 events (best-effort, non-blocking). Standard add_to_cart event fires
+    // first so the funnel order in GA4 reads naturally; the custom
+    // ls_checkout_open then fires as complementary granular tracking. Both
+    // wrapped in independent try/catch so a failure in one never blocks the
+    // other.
     if (typeof gtag === 'function') {
+      try {
+        var price = parseFloat(btn.getAttribute('data-product-price') || '0');
+        var slug = window.location.pathname.split('/').pop().replace('.html', '');
+        gtag('event', 'add_to_cart', {
+          currency: 'USD',
+          value: price,
+          items: [{
+            item_id: slug,
+            item_name: btn.getAttribute('data-product-name') || 'unknown',
+            item_category: btn.getAttribute('data-item-category') || 'unknown',
+            price: price,
+            quantity: 1
+          }]
+        });
+      } catch (e) {}
       try {
         gtag('event', 'ls_checkout_open', {
           product_name: btn.getAttribute('data-product-name') || 'unknown',

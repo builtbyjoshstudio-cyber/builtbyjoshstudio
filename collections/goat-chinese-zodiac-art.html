@@ -588,7 +588,7 @@
         <li>License &amp; Print Guide PDFs included</li>
       </ul>
 
-      <button class="ls-checkout-btn" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/7100e32d-32e3-417b-adbb-711a6d02ca16?embed=1" data-product-name="Goat Chinese Zodiac Art Bundle" data-product-price="14.99">Buy the Goat Bundle — $14.99</button>
+      <button class="ls-checkout-btn" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/7100e32d-32e3-417b-adbb-711a6d02ca16?embed=1" data-product-name="Goat Chinese Zodiac Art Bundle" data-product-price="14.99" data-item-category="Chinese Zodiac Art Bundle">Buy the Goat Bundle — $14.99</button>
       <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
 
       <ul class="sidebar-trust">
@@ -700,7 +700,7 @@
     <div class="cta-eyebrow">Browse the Collection</div>
     <h2>2 Styles. 8 Designs. <span class="italic-accent">One Goat Bundle.</span></h2>
     <p class="cta-sub">Eight original Goat designs across two complementary styles, every design in three sizes and two formats. The full Chinese zodiac interpretation of the Goat — $14.99, instant download, license and print guide included.</p>
-    <button class="ls-checkout-btn ls-checkout-btn--large" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/7100e32d-32e3-417b-adbb-711a6d02ca16?embed=1" data-product-name="Goat Chinese Zodiac Art Bundle" data-product-price="14.99">Buy the Goat Bundle — $14.99</button>
+    <button class="ls-checkout-btn ls-checkout-btn--large" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/7100e32d-32e3-417b-adbb-711a6d02ca16?embed=1" data-product-name="Goat Chinese Zodiac Art Bundle" data-product-price="14.99" data-item-category="Chinese Zodiac Art Bundle">Buy the Goat Bundle — $14.99</button>
     <span class="cta-sub-line">Instant download — 48 print-ready Goat files in your inbox the moment checkout completes.</span>
   </section>
 
@@ -733,6 +733,30 @@
       container.appendChild(s);
     }
   </script>
+  <!-- GA4: view_item -->
+  <script>
+    (function () {
+      if (typeof gtag !== 'function') return;
+      var btn = document.querySelector('.ls-checkout-btn');
+      if (!btn) return;
+      var slug = window.location.pathname.split('/').pop().replace('.html', '');
+      var price = parseFloat(btn.getAttribute('data-product-price') || '0');
+      var name = btn.getAttribute('data-product-name') || 'Unknown';
+      var category = 'Chinese Zodiac Art Bundle';
+      gtag('event', 'view_item', {
+        currency: 'USD',
+        value: price,
+        items: [{
+          item_id: slug,
+          item_name: name,
+          item_category: category,
+          price: price,
+          quantity: 1
+        }]
+      });
+    })();
+  </script>
+
   <script src="/js/ls-checkout-btn.js" defer></script>
   <script src="/js/mobile-nav.js" defer></script>
   <script src="/js/ga4-events.js" defer></script>

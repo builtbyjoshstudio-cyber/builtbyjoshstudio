@@ -161,29 +161,61 @@
     s.src = "https://assets.lemonsqueezy.com/lemon.js";
     s.defer = true;
     s.onload = function () {
-      if (window.LemonSqueezy && typeof window.LemonSqueezy.Setup === "function") {
+      // LemonSqueezy.Setup({ eventHandler }) is wired up site-wide in
+      // /js/ga4-events.js, which polls for SDK readiness and registers the
+      // handler once. Calling Setup again here would double-wire it on the
+      // Tynkr product pages. We only need Refresh() here — that's what scans
+      // the DOM for [data-checkout] / .lemonsqueezy-button elements and
+      // attaches the overlay click interception (distinct from Setup).
+      if (window.LemonSqueezy) {
         try {
-          window.LemonSqueezy.Setup({
-            // Forward every Lemon Squeezy event to ga4-events.js (if loaded).
-            // Per LS docs the integration uses a Setup({ eventHandler }) callback;
-            // see /js/ga4-events.js for the GA4 dispatch logic. No-op if ga4-events
-            // isn't loaded, so checkout still works on pages without analytics.
-            eventHandler: function (event) {
-              if (typeof window.__ga4LemonSqueezyHandler === "function") {
-                window.__ga4LemonSqueezyHandler(event);
-              }
-            }
-          });
           if (typeof window.LemonSqueezy.Refresh === "function") {
             window.LemonSqueezy.Refresh();
           }
         } catch (err) {
-          console.warn("[checkout] LemonSqueezy.Setup() failed:", err);
+          console.warn("[checkout] LemonSqueezy.Refresh() failed:", err);
         }
       }
     };
     document.head.appendChild(s);
   }
+
+  // GA4 add_to_cart event delegation for [data-checkout] Tynkr buttons.
+  // Mirrors the equivalent listener in /js/ls-checkout-btn.js for Collection-
+  // page .ls-checkout-btn buttons. Fires when a user clicks a buy button on
+  // a Tynkr product page (paid or lite). Reads name/price/category from
+  // window.CHECKOUT_CONFIG keyed by data-checkout="<key>". Lemon Squeezy's
+  // overlay intercept fires on the same click, but the click event still
+  // bubbles, so this delegation fires alongside without interfering.
+  //
+  // NOTE: config.category isn't currently a field in checkout-config.js;
+  // until a separate edit adds it, this falls back to "Notion Template",
+  // which is correct for 6 of the 8 paid entries (and their lite siblings)
+  // but reports "Notion Template" incorrectly for the 2 Spreadsheet entries
+  // (ultimate-budget-bundle, home-buying-bundle). Track that as a follow-up.
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-checkout]");
+    if (!btn) return;
+    if (typeof gtag !== "function") return;
+    var key = btn.getAttribute("data-checkout");
+    var config = window.CHECKOUT_CONFIG && window.CHECKOUT_CONFIG[key];
+    if (!config) return;
+    var slug = window.location.pathname.split("/").pop().replace(".html", "");
+    var price = parseFloat(config.price || "0");
+    try {
+      gtag("event", "add_to_cart", {
+        currency: "USD",
+        value: price,
+        items: [{
+          item_id: slug,
+          item_name: config.name || "unknown",
+          item_category: config.category || "Notion Template",
+          price: price,
+          quantity: 1
+        }]
+      });
+    } catch (err) {}
+  });
 
   // Run on DOMContentLoaded, or immediately if DOM already parsed
   if (document.readyState === "loading") {

@@ -897,7 +897,7 @@
         <li>Instant download — no shipping</li>
       </ul>
 
-      <button class="ls-checkout-btn" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/27b54f15-e273-48ad-be62-79ec4c548014?embed=1" data-product-name="Virgo Zodiac Art Bundle" data-product-price="24.99">Buy the Virgo Bundle — $24.99</button>
+      <button class="ls-checkout-btn" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/27b54f15-e273-48ad-be62-79ec4c548014?embed=1" data-product-name="Virgo Zodiac Art Bundle" data-product-price="24.99" data-item-category="Zodiac Art Bundle">Buy the Virgo Bundle — $24.99</button>
       <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
 
       <ul class="sidebar-trust">
@@ -1040,7 +1040,7 @@
     <div class="cta-eyebrow">Browse the Collection</div>
     <h2>14 Styles. 24 Designs. <span class="italic-accent">One Virgo Bundle.</span></h2>
     <p class="cta-sub">Every art-style series in one $24.99 bundle. Print at home, print at a shop, sell on-demand up to 100 prints per design. Instant download, real license, no subscription.</p>
-    <button class="ls-checkout-btn ls-checkout-btn--large" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/27b54f15-e273-48ad-be62-79ec4c548014?embed=1" data-product-name="Virgo Zodiac Art Bundle" data-product-price="24.99">Buy the Virgo Bundle — $24.99</button>
+    <button class="ls-checkout-btn ls-checkout-btn--large" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/27b54f15-e273-48ad-be62-79ec4c548014?embed=1" data-product-name="Virgo Zodiac Art Bundle" data-product-price="24.99" data-item-category="Zodiac Art Bundle">Buy the Virgo Bundle — $24.99</button>
     <span class="cta-sub-line">Instant download — 144 print-ready files in your inbox the moment checkout completes.</span>
   </section>
 
@@ -1073,6 +1073,30 @@
       s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:-${Math.random()*4}s;--op:${0.3+Math.random()*0.7};filter:blur(${Math.random()>0.8?'1px':'0px'});width:${Math.random()>0.8?3:2}px;height:${Math.random()>0.8?3:2}px;`;
       container.appendChild(s);
     }
+  </script>
+
+  <!-- GA4: view_item -->
+  <script>
+    (function () {
+      if (typeof gtag !== 'function') return;
+      var btn = document.querySelector('.ls-checkout-btn');
+      if (!btn) return;
+      var slug = window.location.pathname.split('/').pop().replace('.html', '');
+      var price = parseFloat(btn.getAttribute('data-product-price') || '0');
+      var name = btn.getAttribute('data-product-name') || 'Unknown';
+      var category = 'Zodiac Art Bundle';
+      gtag('event', 'view_item', {
+        currency: 'USD',
+        value: price,
+        items: [{
+          item_id: slug,
+          item_name: name,
+          item_category: category,
+          price: price,
+          quantity: 1
+        }]
+      });
+    })();
   </script>
 
   <!-- Etsy click-out tracking -->

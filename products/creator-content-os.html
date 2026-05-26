@@ -1609,6 +1609,35 @@
       Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.
     </div>
   </footer>
+    <!-- GA4: view_item -->
+    <script>
+      (function () {
+        if (typeof gtag !== 'function') return;
+        var slug = window.location.pathname.split('/').pop().replace('.html', '');
+        var jsonLdScripts = document.querySelectorAll('script[type="application/ld+json"]');
+        var product = null;
+        for (var i = 0; i < jsonLdScripts.length; i++) {
+          try {
+            var data = JSON.parse(jsonLdScripts[i].textContent);
+            if (data['@type'] === 'Product') { product = data; break; }
+          } catch (e) {}
+        }
+        if (!product) return;
+        var price = product.offers && product.offers.price ? parseFloat(product.offers.price) : 0;
+        var category = 'Notion Template';
+        gtag('event', 'view_item', {
+          currency: 'USD',
+          value: price,
+          items: [{
+            item_id: slug,
+            item_name: product.name,
+            item_category: category,
+            price: price,
+            quantity: 1
+          }]
+        });
+      })();
+    </script>
     <!-- Etsy click-out tracking -->
     <script>
       document.addEventListener('click', function(e) {

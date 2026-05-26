@@ -426,7 +426,7 @@
 
         <div class="grid-intro-cta">
           <p>The Western Landscapes Collection is sold as a single bundle — all 12 mythic landscape designs in one $19.99 download. Click below to purchase the full Collection.</p>
-          <button class="ls-checkout-btn ls-checkout-btn--large" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/84fd1c8f-5e25-4115-8752-b4dc841b3023?embed=1" data-product-name="Western Landscapes Bundle" data-product-price="19.99">Buy the Western Landscapes Bundle — $19.99</button>
+          <button class="ls-checkout-btn ls-checkout-btn--large" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/84fd1c8f-5e25-4115-8752-b4dc841b3023?embed=1" data-product-name="Western Landscapes Bundle" data-product-price="19.99" data-item-category="Zodiac Landscape Bundle">Buy the Western Landscapes Bundle — $19.99</button>
           <p>Scroll down to preview each of the 12 landscapes.</p>
         </div>
 
@@ -607,7 +607,7 @@
         <li><a href="/legal/print-guide-western-landscapes.pdf">Print Guide (PDF)</a></li>
       </ul>
 
-      <button class="ls-checkout-btn" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/84fd1c8f-5e25-4115-8752-b4dc841b3023?embed=1" data-product-name="Western Landscapes Bundle" data-product-price="19.99">Buy the Landscapes Bundle — $19.99</button>
+      <button class="ls-checkout-btn" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/84fd1c8f-5e25-4115-8752-b4dc841b3023?embed=1" data-product-name="Western Landscapes Bundle" data-product-price="19.99" data-item-category="Zodiac Landscape Bundle">Buy the Landscapes Bundle — $19.99</button>
       <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
 
       <ul class="sidebar-trust">
@@ -699,7 +699,7 @@
     <div class="cta-eyebrow">Browse the Collection</div>
     <h2>12 Signs. 12 Worlds. <span class="italic-accent">One Bundle.</span></h2>
     <p class="cta-sub">Every Western zodiac sign rendered as the landscape it would inhabit — painted in oil, print-ready on download. The full atmospheric set in one $19.99 download.</p>
-    <button class="ls-checkout-btn ls-checkout-btn--large" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/84fd1c8f-5e25-4115-8752-b4dc841b3023?embed=1" data-product-name="Western Landscapes Bundle" data-product-price="19.99">Buy the Western Landscapes Bundle — $19.99</button>
+    <button class="ls-checkout-btn ls-checkout-btn--large" data-checkout-url="https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/84fd1c8f-5e25-4115-8752-b4dc841b3023?embed=1" data-product-name="Western Landscapes Bundle" data-product-price="19.99" data-item-category="Zodiac Landscape Bundle">Buy the Western Landscapes Bundle — $19.99</button>
     <span class="cta-sub-line">Instant download — 72 print-ready landscape files in your inbox the moment checkout completes.</span>
   </section>
 
@@ -732,6 +732,30 @@
       container.appendChild(s);
     }
   </script>
+  <!-- GA4: view_item -->
+  <script>
+    (function () {
+      if (typeof gtag !== 'function') return;
+      var btn = document.querySelector('.ls-checkout-btn');
+      if (!btn) return;
+      var slug = window.location.pathname.split('/').pop().replace('.html', '');
+      var price = parseFloat(btn.getAttribute('data-product-price') || '0');
+      var name = btn.getAttribute('data-product-name') || 'Unknown';
+      var category = 'Zodiac Landscape Bundle';
+      gtag('event', 'view_item', {
+        currency: 'USD',
+        value: price,
+        items: [{
+          item_id: slug,
+          item_name: name,
+          item_category: category,
+          price: price,
+          quantity: 1
+        }]
+      });
+    })();
+  </script>
+
   <script src="/js/ls-checkout-btn.js" defer></script>
   <script src="/js/mobile-nav.js" defer></script>
   <script src="/js/ga4-events.js" defer></script>
