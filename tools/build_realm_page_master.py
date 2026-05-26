@@ -442,6 +442,8 @@ def build_page(sign, manifest):
       {{"@type": "PropertyValue", "name": "Style", "value": "Landscape-style hybrid cosmos"}},
       {{"@type": "PropertyValue", "name": "Date Range", "value": "{m['dates']}"}}
     ],
+    "datePublished": "2026-05-26",
+    "dateModified": "2026-05-26",
     "offers": {{
       "@type": "Offer",
       "price": "14.99",

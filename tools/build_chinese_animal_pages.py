@@ -326,6 +326,8 @@ def build_page(animal, manifest):
       {{"@type": "PropertyValue", "name": "Order in Zodiac", "value": "{m['order']}"}},
       {{"@type": "PropertyValue", "name": "Recent Years", "value": "{m['years']}"}}
     ],
+    "datePublished": "2026-05-26",
+    "dateModified": "2026-05-26",
     "offers": {{
       "@type": "Offer",
       "price": "14.99",

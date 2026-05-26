@@ -232,6 +232,8 @@ def build_page():
       {{"@type": "PropertyValue", "name": "Style", "value": "Oil-painted mythic landscape"}},
       {{"@type": "PropertyValue", "name": "Bundle Scope", "value": "All 12 Western zodiac signs in one bundle"}}
     ],
+    "datePublished": "2026-05-26",
+    "dateModified": "2026-05-26",
     "offers": {{
       "@type": "Offer",
       "price": "19.99",

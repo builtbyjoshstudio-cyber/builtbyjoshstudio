@@ -237,6 +237,8 @@ def build_page(manifest):
       {{"@type": "PropertyValue", "name": "Style", "value": "Landscape-style hybrid cosmos"}},
       {{"@type": "PropertyValue", "name": "Bundle Scope", "value": "All 12 Chinese zodiac animals in one bundle"}}
     ],
+    "datePublished": "2026-05-26",
+    "dateModified": "2026-05-26",
     "offers": {{
       "@type": "Offer",
       "price": "29.99",
