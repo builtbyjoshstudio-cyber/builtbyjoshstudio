@@ -50,6 +50,19 @@
     s.onload = function () {
       initLSIfNeeded();
       sdkReady = true;
+      // Wire up the GA4 LS event handler now that lemon.js is loaded. On
+      // collection pages, ga4-events.js's own DOMContentLoaded polling has
+      // timed out long before the user clicked (lemon.js is lazy-loaded on
+      // first click here), so this onload is the actual trigger that
+      // attaches the Setup callback. Must run BEFORE then() opens the
+      // overlay so the first Checkout.ViewCart event is caught.
+      if (typeof window.__ga4SetupLemonSqueezy === 'function' && !window.__ga4LemonSqueezySetupDone) {
+        try {
+          window.__ga4SetupLemonSqueezy();
+        } catch (e) {
+          console.warn('[ls-checkout-btn] __ga4SetupLemonSqueezy() invocation failed:', e);
+        }
+      }
       then();
     };
     s.onerror = function () {
