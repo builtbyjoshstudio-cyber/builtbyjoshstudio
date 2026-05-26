@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <!-- HOMEPAGE -->
   <url>
@@ -188,48 +189,72 @@
     <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/products/creator-content-os.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/products/creator-business-os.html</loc>
     <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/products/creator-business-os.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/products/creator-finance-os.html</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/products/creator-finance-os.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/products/creator-launch-os.html</loc>
     <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/products/creator-launch-os.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/products/creator-product-os.html</loc>
     <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/products/creator-product-os.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/products/creator-os-full-stack.html</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/products/creator-os-full-stack.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/products/ultimate-budget-workbook.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/products/home-buying-mortgage-workbook.html</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/products/home-buying-mortgage-workbook.webp</image:loc>
+    </image:image>
   </url>
 
   <!-- ZODIAC COLLECTIONS -->
@@ -244,234 +269,351 @@
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/aries.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/taurus-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/taurus.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/gemini-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/gemini.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/cancer-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/cancer.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/libra-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/libra.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/leo-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/leo.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/virgo-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/virgo.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/scorpio-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/scorpio.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/sagittarius-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/sagittarius.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/aquarius-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/aquarius.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/pisces-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/pisces.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/capricorn-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/capricorn.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/tiger.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/rat-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/rat.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/ox-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/ox.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/tiger-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/tiger.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/rabbit-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/rabbit.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/dragon-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/dragon.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/snake-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/snake.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/horse-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/horse.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/goat-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/goat.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/monkey-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/monkey.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/rooster-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/rooster.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/dog-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/dog.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/pig-chinese-zodiac-art.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese/pig.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/chinese-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/chinese-realms/dragon.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/zodiac-landscapes.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/landscapes/aries.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/aries-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/aries.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/taurus-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/taurus.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/gemini-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/gemini.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/cancer-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/cancer.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/leo-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/leo.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/virgo-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/virgo.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/libra-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/libra.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/scorpio-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/scorpio.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/sagittarius-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/sagittarius.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/capricorn-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/capricorn.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/aquarius-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/aquarius.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/collections/pisces-zodiac-realms.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://builtbyjoshstudio.com/images/zodiac/realms/pisces.webp</image:loc>
+    </image:image>
   </url>
 
   <!-- LEGAL PAGES -->
