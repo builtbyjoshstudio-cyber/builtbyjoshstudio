@@ -11,18 +11,18 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Refund Policy — Tynkr Tools &amp; Co</title>
-  <meta name="description" content="Refund Policy for Tynkr Tools &amp; Co digital products. All sales are final due to the digital nature of our products. Technical issues are always resolved." />
-  <link rel="canonical" href="https://builtbyjoshstudio.com/refunds.html" />
+  <title>Books — J.S. Warden Fiction | Built By Josh Studio</title>
+  <meta name="description" content="Fiction by J.S. Warden — Overlayed Echoes (published) and Ebonspire Chronicles (forthcoming). Same person who builds budget templates and zodiac art on the rest of this site." />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/books.html" />
 
-  <meta property="og:title" content="Refund Policy — Tynkr Tools &amp; Co" />
-  <meta property="og:description" content="Our refund policy for digital products sold through builtbyjoshstudio.com, Lemon Squeezy, and Etsy." />
+  <meta property="og:title" content="Books — J.S. Warden Fiction | Built By Josh Studio" />
+  <meta property="og:description" content="Fiction by J.S. Warden — Overlayed Echoes (published) and Ebonspire Chronicles (forthcoming). Same person who builds budget templates and zodiac art on the rest of this site." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://builtbyjoshstudio.com/refunds.html" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/books.html" />
   <meta property="og:site_name" content="Built By Josh Studio" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Refund Policy — Tynkr Tools &amp; Co" />
-  <meta name="twitter:description" content="Our refund policy for digital products sold through builtbyjoshstudio.com, Lemon Squeezy, and Etsy." />
+  <meta name="twitter:title" content="Books — J.S. Warden Fiction | Built By Josh Studio" />
+  <meta name="twitter:description" content="Fiction by J.S. Warden — Overlayed Echoes (published) and Ebonspire Chronicles (forthcoming). Same person who builds budget templates and zodiac art on the rest of this site." />
 
   <!-- Schema.org BreadcrumbList -->
   <script type="application/ld+json">
@@ -31,7 +31,40 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://builtbyjoshstudio.com/"},
-      {"@type": "ListItem", "position": 2, "name": "Refund Policy", "item": "https://builtbyjoshstudio.com/refunds.html"}
+      {"@type": "ListItem", "position": 2, "name": "Books", "item": "https://builtbyjoshstudio.com/books.html"}
+    ]
+  }
+  </script>
+
+  <!-- Schema.org Person — J.S. Warden (pen name) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "J.S. Warden",
+    "description": "Pen name of Josh, the creator behind Built By Josh Studio",
+    "url": "https://builtbyjoshstudio.com/books.html",
+    "sameAs": ["https://builtbyjoshstudio.com/about.html"],
+    "workExample": [
+      {
+        "@type": "Book",
+        "name": "Overlayed Echoes",
+        "author": {"@type": "Person", "name": "J.S. Warden"},
+        "url": "https://a.co/d/04YzP4o4",
+        "bookFormat": "https://schema.org/EBook",
+        "inLanguage": "en-US",
+        "genre": ["LitRPG", "Science Fiction", "Metafiction"],
+        "isPartOf": {
+          "@type": "BookSeries",
+          "name": "Overlayed Echoes"
+        }
+      },
+      {
+        "@type": "BookSeries",
+        "name": "Ebonspire Chronicles",
+        "author": {"@type": "Person", "name": "J.S. Warden"},
+        "genre": ["Dark Fantasy", "Urban Fantasy", "Noir Detective Fiction"]
+      }
     ]
   }
   </script>
@@ -63,7 +96,7 @@
       padding-top: 80px;
     }
 
-    /* NAV */
+    /* NAV — matches site standard */
     .site-nav {
       position: fixed; top: 0; left: 0; right: 0;
       display: flex; justify-content: space-between; align-items: center;
@@ -82,11 +115,7 @@
       text-decoration: none;
     }
     .logo-short { display: none; }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
     .nav-links a {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.85rem;
@@ -105,65 +134,135 @@
       .nav-links a { font-size: 0.75rem; }
     }
 
-    /* PAGE LAYOUT */
-    .policy-page {
-      max-width: 760px;
-      margin: 3rem auto 4rem;
+    /* HERO */
+    .hero {
+      max-width: 720px;
+      margin: 3rem auto 1rem;
       padding: 0 1.5rem;
     }
-    .policy-eyebrow {
+    .hero .eyebrow {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.72rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--tynkr-accent);
       font-weight: 700;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.6rem;
     }
-    .policy-page h1 {
+    .hero h1 {
       font-family: 'Syne', sans-serif;
       font-size: 2.4rem;
       font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 0.6rem;
+      line-height: 1.12;
+      margin-bottom: 1rem;
       color: var(--tynkr-text);
     }
-    .policy-page .last-updated {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      color: var(--tynkr-muted);
-      margin-bottom: 2rem;
-      font-style: italic;
-    }
-    .policy-page .intro {
+    .hero p {
       font-size: 1.08rem;
       color: var(--body-read);
-      margin-bottom: 2.5rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--tynkr-border);
-    }
-    .policy-page section {
-      margin-bottom: 2.2rem;
-    }
-    .policy-page h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-      color: var(--tynkr-text);
-    }
-    .policy-page p {
-      color: var(--body-read);
+      line-height: 1.6;
       margin-bottom: 0.85rem;
     }
-    .policy-page p:last-child {
-      margin-bottom: 0;
+    .hero p:last-child { margin-bottom: 0; }
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 1.9rem; }
     }
-    .policy-page a {
+
+    /* BOOK SECTIONS — two visually parallel blocks */
+    .books-main {
+      max-width: 920px;
+      margin: 1.5rem auto 0;
+      padding: 0 1.5rem;
+    }
+    .book-section {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      padding: 2.6rem 0;
+      border-top: 1px solid var(--tynkr-border);
+    }
+    .book-cover-placeholder {
+      width: 300px;
+      height: 450px;
+      background: var(--tynkr-surface);
+      border: 1px solid var(--tynkr-border);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .book-cover-placeholder::after {
+      content: "Cover";
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tynkr-muted);
+      opacity: 0.6;
+    }
+    .book-content h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--tynkr-text);
+      margin-bottom: 0.4rem;
+    }
+    .book-subtitle {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--tynkr-accent);
+      margin-bottom: 1.1rem;
+    }
+    .book-content p {
+      color: var(--body-read);
+      margin-bottom: 0.9rem;
+    }
+    .book-content p:last-child { margin-bottom: 0; }
+    .book-link {
+      display: inline-block;
+      margin-top: 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
       color: var(--tynkr-accent);
       text-decoration: underline;
       text-decoration-thickness: 1px;
-      text-underline-offset: 2px;
+      text-underline-offset: 3px;
+    }
+    .book-link:hover { text-decoration-thickness: 2px; }
+    @media (max-width: 760px) {
+      .book-section {
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
+      }
+      .book-cover-placeholder {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      .book-content h2 { font-size: 1.5rem; }
+    }
+
+    /* PEN NAME NOTE */
+    .pen-name-note {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.6rem 1.5rem 4rem;
+      border-top: 1px solid var(--tynkr-border);
+    }
+    .pen-name-note h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--tynkr-text);
+      margin-bottom: 0.8rem;
+    }
+    .pen-name-note p {
+      color: var(--body-read);
+      margin: 0;
     }
 
     /* FOOTER */
@@ -179,20 +278,25 @@
       font-size: 0.88rem;
       color: var(--tynkr-muted);
     }
-    .footer-left strong { color: var(--tynkr-text); }
-    .footer-links {
-      list-style: none; display: flex; flex-wrap: wrap; gap: 1.4rem;
-    }
+    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.4rem; }
     .footer-links a {
-      font-family: 'DM Sans', sans-serif;
       font-size: 0.82rem;
-      color: var(--tynkr-muted);
+      color: var(--tynkr-text);
       text-decoration: none;
       transition: color 0.15s;
     }
     .footer-links a:hover { color: var(--tynkr-accent); }
+    .footer-legal {
+      width: 100%;
+      font-size: 0.78rem;
+      color: var(--tynkr-muted);
+      line-height: 1.5;
+      margin-top: 0.4rem;
+    }
   </style>
   <link rel="stylesheet" href="/css/mobile-nav.css" />
+
+  <!-- Schema.org Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -276,7 +380,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav class="site-nav">
     <a href="index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
     <ul class="nav-links">
@@ -286,7 +389,6 @@
       <li><a href="resources/">Resources</a></li>
       <li><a href="index.html#free-tools">Free Tools</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="/legal/">Legal</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
       <span></span>
@@ -295,51 +397,49 @@
     </button>
   </nav>
 
-  <main class="policy-page">
-    <div class="policy-eyebrow">Tynkr Tools &amp; Co</div>
-    <h1>Refund Policy</h1>
-    <p class="last-updated">Last updated: May 13, 2026</p>
+  <section class="hero">
+    <div class="eyebrow">The Fiction</div>
+    <h1>I also write fiction. As J.S. Warden.</h1>
+    <p>On the rest of this site, I build budget templates and zodiac art. Under the pen name J.S. Warden, I write fiction.</p>
+    <p>It started because I missed playing tabletop RPGs with my friends. It's grown into a couple of projects I'm proud of.</p>
+  </section>
 
-    <p class="intro">Built by Josh Studio LLC ("we", "our", "us"), operating the Tynkr Tools &amp; Co and Built By Josh Studio brands, sells digital products including Notion templates, Excel workbooks, Google Sheets workbooks, and zodiac art prints. Because these products are delivered instantly and cannot be returned once accessed, all sales are final.</p>
+  <main class="books-main">
 
-    <section>
-      <h2>Legal Entity</h2>
-      <p>This refund policy is issued by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138) with its principal office in Kansas. References to "we," "us," or "our" refer to Built by Josh Studio LLC, which operates the Tynkr Tools &amp; Co and Built By Josh Studio brands.</p>
+    <section class="book-section">
+      <div class="book-cover-placeholder">
+        <!-- Book cover image will be added later. Reserve a 300x450px placeholder slot. -->
+      </div>
+      <div class="book-content">
+        <h2>Overlayed Echoes</h2>
+        <p class="book-subtitle">A near-future LitRPG novella.</p>
+        <p>A group of friends has been playing tabletop RPGs together for a long time. When mandatory neural chips become the new normal, they see a chance to bring the experience of dice-and-paper roleplaying to life — not just imagined, but real. Something goes wrong.</p>
+        <p><em>Overlayed Echoes</em> is a story about friendship and what happens when the games you love stop being games.</p>
+        <p><strong>Honest framing:</strong> it's shorter than I originally wanted it to be — about 85 pages. It was the first piece of fiction I ever published, and I decided "finished and out in the world" was better than "perfect and never released." I'm currently expanding it into a longer Book 1 for a five-book series, but the published version stands on its own as a complete story.</p>
+        <p><a href="https://a.co/d/04YzP4o4" class="book-link" rel="noopener" target="_blank">Read it on Amazon →</a></p>
+      </div>
     </section>
 
-    <section>
-      <h2>All Sales Are Final</h2>
-      <p>Due to the digital nature of our products, we do not issue refunds once a product has been downloaded, accessed, or duplicated. This applies to all products sold through our Etsy shop, Lemon Squeezy store, and builtbyjoshstudio.com.</p>
-      <p>This policy is consistent with standard digital product practices and is disclosed at the point of purchase.</p>
+    <section class="book-section">
+      <div class="book-cover-placeholder">
+        <!-- Book cover image will be added later. Reserve a 300x450px placeholder slot. -->
+      </div>
+      <div class="book-content">
+        <h2>Ebonspire Chronicles</h2>
+        <p class="book-subtitle">A dark fantasy detective noir series.</p>
+        <p><em>Ebonspire Chronicles</em> is a different project entirely — different world, different tone, different everything. No connection to <em>Overlayed Echoes</em>.</p>
+        <p>Book 1 is about 95% finished. I'm currently formatting the manuscript and adding first-person notes from the protagonist — case observations and his state of mind at the end of each chapter — as a way of pulling the reader deeper into the way he thinks.</p>
+        <p>Release coming soon. I'll update this page when it's available.</p>
+      </div>
     </section>
 
-    <section>
-      <h2>Technical Issues</h2>
-      <p>If you experience a technical issue with your product — such as a broken download link, a file that won't open, or a Notion template that won't duplicate — contact us at <a href="mailto:josh@builtbyjoshstudio.com">josh@builtbyjoshstudio.com</a> and we will resolve it promptly. Technical issues are always addressed.</p>
-    </section>
-
-    <section>
-      <h2>Exceptions</h2>
-      <p>Refunds may be issued where required by applicable consumer protection law in your jurisdiction. If you believe you are entitled to a refund under the laws of your country or region, contact us at <a href="mailto:josh@builtbyjoshstudio.com">josh@builtbyjoshstudio.com</a> and we will review your request.</p>
-    </section>
-
-    <section>
-      <h2>Free Products</h2>
-      <p>Free lite versions and lead magnets distributed through Lemon Squeezy are provided at no cost. No charges are applied and no refunds are applicable.</p>
-    </section>
-
-    <section>
-      <h2>Purchasing Through Etsy</h2>
-      <p>For purchases made through our Etsy shop, Etsy's own buyer protection policies may also apply. Please review <a href="https://www.etsy.com/legal/policy/purchase-protection-program/1101329902879" target="_blank" rel="noopener">Etsy's purchase protection policy</a> for more information.</p>
-    </section>
-
-    <section>
-      <h2>Contact</h2>
-      <p>Questions about a purchase or a technical issue? Contact us at <a href="mailto:josh@builtbyjoshstudio.com">josh@builtbyjoshstudio.com</a>. We typically respond within 1–2 business days.</p>
-    </section>
   </main>
 
-  <!-- FOOTER -->
+  <section class="pen-name-note">
+    <h2>A short note on the pen name</h2>
+    <p>Why J.S. Warden? It sounded like a writer's name, and I didn't want my real name on the cover of the first thing I'd ever put out into the world. By now it's the name on the work, so it stays.</p>
+  </section>
+
   <footer>
     <div class="footer-left">
       <strong>Built By Josh Studio</strong> · All digital products — instant download
@@ -349,7 +449,7 @@
       <li><a href="blog.html">Blog</a></li>
       <li><a href="resources/">Resources</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="/books.html">Writing</a></li>
+      <li><a href="/legal/">Legal</a></li>
       <li><a href="https://tynkrtoolsandco.etsy.com" target="_blank" rel="noopener">Etsy</a></li>
       <li><a href="refunds.html">Refunds</a></li>
       <li><a href="privacy.html">Privacy</a></li>
