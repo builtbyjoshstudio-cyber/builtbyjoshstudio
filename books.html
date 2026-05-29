@@ -20,9 +20,15 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/books.html" />
   <meta property="og:site_name" content="Built By Josh Studio" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/books/og-books.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Overlayed Echoes by J.S. Warden — Book One of a Five-Book Series" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Books — J.S. Warden Fiction | Built By Josh Studio" />
   <meta name="twitter:description" content="Fiction by J.S. Warden — Overlayed Echoes (published) and Ebonspire Chronicles (forthcoming). Same person who builds budget templates and zodiac art on the rest of this site." />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/books/og-books.jpg" />
+  <meta name="twitter:image:alt" content="Overlayed Echoes by J.S. Warden — Book One of a Five-Book Series" />
 
   <!-- Schema.org BreadcrumbList -->
   <script type="application/ld+json">
@@ -50,8 +56,11 @@
         "@type": "Book",
         "name": "Overlayed Echoes",
         "author": {"@type": "Person", "name": "J.S. Warden"},
-        "url": "https://a.co/d/04YzP4o4",
-        "bookFormat": "https://schema.org/EBook",
+        "url": "https://a.co/d/06ZWovoY",
+        "bookFormat": ["https://schema.org/EBook", "https://schema.org/Paperback"],
+        "image": "https://builtbyjoshstudio.com/images/books/overlayed-echoes-cover.jpg",
+        "numberOfPages": 257,
+        "isAccessibleForFree": false,
         "inLanguage": "en-US",
         "genre": ["LitRPG", "Science Fiction", "Metafiction"],
         "isPartOf": {
@@ -202,6 +211,14 @@
       color: var(--tynkr-muted);
       opacity: 0.6;
     }
+    .book-cover img {
+      display: block;
+      width: 300px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
     .book-content h2 {
       font-family: 'Syne', sans-serif;
       font-size: 1.8rem;
@@ -243,6 +260,7 @@
         max-width: 300px;
         margin: 0 auto;
       }
+      .book-cover { display: flex; justify-content: center; }
       .book-content h2 { font-size: 1.5rem; }
     }
 
@@ -407,16 +425,18 @@
   <main class="books-main">
 
     <section class="book-section">
-      <div class="book-cover-placeholder">
-        <!-- Book cover image will be added later. Reserve a 300x450px placeholder slot. -->
+      <div class="book-cover">
+        <picture>
+          <source srcset="/images/books/overlayed-echoes-cover.webp" type="image/webp">
+          <img src="/images/books/overlayed-echoes-cover.jpg" alt="Overlayed Echoes book cover — Book One by J.S. Warden" width="300" height="450" loading="lazy">
+        </picture>
       </div>
       <div class="book-content">
         <h2>Overlayed Echoes</h2>
-        <p class="book-subtitle">A near-future LitRPG novella.</p>
+        <p class="book-subtitle">The first book of a five-book series.</p>
         <p>A group of friends has been playing tabletop RPGs together for a long time. When mandatory neural chips become the new normal, they see a chance to bring the experience of dice-and-paper roleplaying to life — not just imagined, but real. Something goes wrong.</p>
-        <p><em>Overlayed Echoes</em> is a story about friendship and what happens when the games you love stop being games.</p>
-        <p><strong>Honest framing:</strong> it's shorter than I originally wanted it to be — about 85 pages. It was the first piece of fiction I ever published, and I decided "finished and out in the world" was better than "perfect and never released." I'm currently expanding it into a longer Book 1 for a five-book series, but the published version stands on its own as a complete story.</p>
-        <p><a href="https://a.co/d/04YzP4o4" class="book-link" rel="noopener" target="_blank">Read it on Amazon →</a></p>
+        <p>It's a story about friendship and what happens when the games you love stop being games.</p>
+        <p><a href="https://a.co/d/06ZWovoY" class="book-link" rel="noopener" target="_blank">Read it on Amazon →</a></p>
       </div>
     </section>
 
