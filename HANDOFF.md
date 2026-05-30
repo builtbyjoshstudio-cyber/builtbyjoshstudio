@@ -1,24 +1,26 @@
 # builtbyjoshstudio.com — Session Handoff
 
-**Date:** 2026-05-29 (mid-session; Phase 2A audit complete, awaiting 3 decisions)
+**Date:** 2026-05-30 (Phase 2A shipped — book discoverability live)
 **Repo:** https://github.com/builtbyjoshstudio-cyber/builtbyjoshstudio
 **Local path:** `C:\Users\jotra\builtbyjoshstudio`
 **Host:** GitHub Pages — custom domain `builtbyjoshstudio.com` via CNAME → Fastly CDN
-**HEAD (pushed):** `e195a79` on `main`, in sync with `origin/main`. All committed work is live and verified. **Working tree clean** (Phase 2A is read-only audit — no uncommitted changes).
-**Latest backup tag:** `backup-after-phase-6` (`8055f13`). **7 feature commits sit above the last tag — worth tagging a new checkpoint before the next session lands changes.**
+**HEAD (pushed):** `8729226` on `main`, in sync with `origin/main`. All committed work is live and verified. **Working tree clean** (the handoff-update commit sits on top of `8729226`).
+**Latest backup tag:** `backup-after-book-discoverability` (`8729226`, current live state). Earlier this arc: `backup-pre-phase-2a` (`720e3e7`), `backup-after-phase-6` (`8055f13`).
 
 ---
 
 ## 🧭 Session summary (plain language)
 
-Since the last HANDOFF (`17c02db`, end of Phase 6), this session shipped four distinct feature groups across seven commits:
+Since the last HANDOFF (`17c02db`, end of Phase 6), this session shipped five distinct feature groups:
 
 1. **GA4 e-commerce instrumentation** — added the standard `view_item` / `add_to_cart` / `begin_checkout` / `purchase` events site-wide, consolidated the Lemon Squeezy Setup callback in `js/ga4-events.js` so it fires on every page (not just the 8 Tynkr product pages), added `category` field to every entry in `js/checkout-config.js`. Then caught a lazy-load race condition that prevented `begin_checkout`/`purchase` from firing on collection pages and fixed it with a 13-line patch to `js/ls-checkout-btn.js`. Live-verified all four standard events fire end-to-end on Aquarius.
 2. **Zero-based-budget-excel SERP optimization** — pivoted `<title>` and meta description from tutorial-only to dual template+tutorial intent (`Zero-Based Budget Excel Template + How to Build One (2026)`), then aligned the visible H1, Article JSON-LD `headline`, in-body H2, all 5 inbound related-post-card titles, and the product-page sidebar inline link to match. Fully consistent end-to-end now.
 3. **/books.html for J.S. Warden fiction** — created a new top-level books page with hero, two book sections (Overlayed Echoes + Ebonspire Chronicles), pen-name note. Added a "Writing" link to all 91 site footers (after the About link, root-absolute `/books.html` href). Updated About page mention paragraph. Standardized pen-name spelling on `J.S. Warden` (no spaces) across the site — the about.html schema's two `workExample` author fields got updated as part of this.
 4. **Overlayed Echoes full-length launch** — Josh published the 257-page paperback+ebook of Overlayed Echoes (the original 85-page novella was pulled, new Amazon URL is `https://a.co/d/06ZWovoY`). Real cover image and OG share card images added at `images/books/`. All 7 instances of the old `04YzP4o4` URL across books.html, about.html, and index.html swapped. JSON-LD `workExample` updated with new url + bookFormat array (ebook + paperback) + image + numberOfPages 257 + isAccessibleForFree false. Stale "novella" / "85 pages" / "being expanded" copy removed.
 
-**🔴 IN PROGRESS at handoff time:** Phase 2A — Book discoverability fixes. Read-only audit complete; **3 decisions pending from Josh before any edits**. See "What's in-progress" section below. Zero files modified — working tree clean.
+5. **Phase 2A — book discoverability** — added "Writing → /books.html" to every page's `<ul class="nav-links">` (all 92 nav-bearing pages, incl. books.html's own nav as an intentional self-link); restructured the about.html connect-list "Amazon" entry → /books.html (eyebrow "Books by J.S. Warden", internal); added one `.footer-links { flex-wrap: wrap; }` rule to tokens.css. Commit `8729226`, live-verified (12/12).
+
+**✅ SHIPPED:** All five groups are committed, pushed, and live. Working tree clean. Phase 2A specifics in the "COMPLETED: Phase 2A" section below.
 
 ---
 
@@ -78,8 +80,8 @@ Recovery: `gh run rerun <run_id> --failed` OR push an empty commit. Always verif
 - Slug → category mapping for items[] is centralized in `js/ga4-events.js` `slugToCategory()` and mirrored in per-page inline `view_item` scripts. CS hub (`chinese-zodiac-art`) maps to `Chinese Zodiac Art Bundle` (clusters with the 12 per-animal pages for reporting consistency).
 - `js/checkout-config.js`: all 16 entries (8 paid + 8 lite) have `category` field — 12 `Notion Template`, 4 `Spreadsheet`.
 
-### 16. /books.html exists; mobile-nav integration is the open Phase 2A question.
-Books page is a separate `/books.html` at root, linked from About (mention paragraph + connect-list) and from all 91 footers (Writing link after About, root-absolute `/books.html`). **books.html's own footer does NOT self-link** to /books.html (deliberate decision in commit `d9484c5`). **`<ul class="nav-links">` does NOT yet include a Writing link anywhere** — that's the Phase 2A Decision 1 question. mobile-nav.js is pure toggle, drawer items come from each page's `.nav-links` markup.
+### 16. /books.html is linked from nav (all 92 pages), 91 footers, and About.
+Books page is a separate `/books.html` at root. **Phase 2A (commit `8729226`) added "Writing → /books.html" to every page's `<ul class="nav-links">` — all 92 nav-bearing pages, including books.html's own nav as an intentional self-link.** Footers carry it on 91 pages; **books.html's footer deliberately does NOT self-link** (commit `d9484c5`). About links it from the mention paragraph + the connect-list (restructured in Phase 2A → eyebrow "Books by J.S. Warden", internal `/books.html`). mobile-nav.js is pure toggle; drawer items come from each page's `.nav-links` markup.
 
 ---
 
@@ -147,9 +149,9 @@ The 85-page Overlayed Echoes novella was pulled and replaced with a 257-page pap
 
 ---
 
-## ⚠ IN-PROGRESS: Phase 2A — Book discoverability + footer audit
+## ✅ COMPLETED: Phase 2A — Book discoverability + footer fixes
 
-**Status:** Read-only audit complete. **Zero files modified.** Working tree clean. **3 decisions pending from Josh before Step 2 edits.**
+**Status:** Shipped in commit `8729226` (2026-05-30) — 93 files, 99 ins / 4 del, live-verified (12/12). Backup `backup-pre-phase-2a` (`720e3e7`) taken before edits; `backup-after-book-discoverability` (`8729226`) marks the result. All three decisions made (1: Option A / 92 files · 2: option b · 3: approved) and applied — mobile-nav Writing link across all 92 nav pages, about.html connect-list restructured, tokens.css flex-wrap rule added. CS hub `collections/chinese-zodiac-art.html` insert split a minified line (renders identically, left surgical). Sweep: `tools/_phase2a_nav_rollout.py` (untracked). _Original audit detail retained below for reference._
 
 ### Audit findings (current as of HANDOFF write — verify with quick re-grep if context unclear)
 
@@ -235,7 +237,7 @@ Commit message Josh proposed: `Improve book discoverability: add Writing to mobi
 
 ## Open items / pending work
 
-### 🔴 IN PROGRESS — Phase 2A (3 decisions pending — see "In-progress" section above)
+### ✅ DONE this session — Phase 2A book discoverability (commit `8729226`, live)
 
 ### 🟡 Deferred from prior sessions — still carry forward
 
@@ -277,11 +279,11 @@ In `tools/` (all untracked, follow `_audit_*` / `_phase*_` convention):
 ## Branches and tags
 
 ```
-main                                          production — HEAD e195a79 (pushed, clean, == origin/main)
-backup-after-phase-6                          8055f13 (most recent tag, 8 commits below HEAD — worth tagging a new checkpoint)
+main                                          production — HEAD 8729226 (pushed, clean, == origin/main)
+backup-after-phase-6                          8055f13 (base tag; 9 commits below current HEAD 8729226)
 ```
 
-**7 commits sit above the most recent tag:**
+**9 commits sit above `backup-after-phase-6`:**
 - `9423a02` GA4 e-commerce events + LS Setup consolidation
 - `62b7b67` Collection-page LS Setup race-condition fix
 - `fda6e0b` zero-based-budget-excel SERP rewrite
@@ -289,8 +291,10 @@ backup-after-phase-6                          8055f13 (most recent tag, 8 commit
 - `d9484c5` /books.html + footer Writing-link rollout
 - `27666ac` books.html sitemap lastmod fix
 - `e195a79` Overlayed Echoes full-length launch
+- `720e3e7` HANDOFF refresh (4 groups shipped, Phase 2A audit pending)
+- `8729226` Phase 2A book discoverability (nav + connect-list + footer flex-wrap) ← `backup-after-book-discoverability`
 
-Suggested next tag: `backup-pre-phase-2a` (at `e195a79`) before Phase 2A lands edits.
+Backup checkpoints this arc: `backup-pre-phase-2a` (`720e3e7`, pre-edits) and `backup-after-book-discoverability` (`8729226`, current live state). Next checkpoint before the next session's first edits.
 
 ---
 
