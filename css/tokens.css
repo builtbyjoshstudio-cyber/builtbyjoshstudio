@@ -985,3 +985,99 @@
 
 /* Footer link rows wrap on narrow viewports (inline .footer-links on most pages omits flex-wrap). */
 .footer-links { flex-wrap: wrap; }
+
+/* ─────────────────────────────────────────────────────────────────
+   G10 — BOOKS PAGE GLASS (scoped to [data-glass="books"] on books.html)
+   books.html only ever received G1 (the global frosted nav); its
+   content stayed flat pre-glass cream. This brings it in line with the
+   Tynkr-light glass language used on the blog index, blog posts, and
+   homepage tail (G5/G8/G9): warm ambient washes behind the hero + page,
+   and rim-lit frosted surfaces (.glass-lite, PDF p.10) on the two book
+   sections + pen-name note, with hover-lift. Values mirror the homepage
+   #tynkr .card-tynkr / .home-faq-item glass (blur 14px, saturate 130%,
+   bg ~0.55, bright border, inset sheen, sharp corners).
+   Gated on the attribute so ONLY books.html is affected; remove the
+   attribute and zero pages change.
+   ───────────────────────────────────────────────────────────────── */
+
+/* Page-level ambient wash — soft orange + peach blooms behind the
+   whole reading column, same recipe as .email-capture / .home-faq. */
+[data-glass="books"] body {
+  position: relative;
+  isolation: isolate;
+}
+[data-glass="books"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 55% 45% at 12% 12%, rgba(232, 80, 10, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 88% 85%, rgba(255, 180, 120, 0.10) 0%, transparent 60%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+/* Hero: bolder warm bloom from top-right + peach from bottom-left,
+   mirroring the .hero-tynkr wash language on the homepage. */
+[data-glass="books"] .hero {
+  position: relative;
+  isolation: isolate;
+}
+[data-glass="books"] .hero::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -15%;
+  width: 70%;
+  height: 160%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(232, 80, 10, 0.14) 0%,
+    rgba(232, 80, 10, 0.06) 40%,
+    transparent 72%
+  );
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Book sections + pen-name note become frosted, rim-lit glass cards
+   with a hover-lift — same .glass-lite treatment as the blog/home
+   cards (blur 14px, saturate 130%, bright border, inset sheen). The
+   cover image inside .book-cover is untouched (it's the card's hero). */
+[data-glass="books"] .book-section,
+[data-glass="books"] .pen-name-note {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  /* Sharp corners (radius 0) to match the site's glass language —
+     #tynkr .card-tynkr and .home-faq-item are both radius 0. */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 8px 28px -10px rgba(12, 8, 19, 0.08);
+  padding: 2.2rem;
+  margin-bottom: 1.6rem;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+/* The `border` shorthand above (compound selector, beats the inline
+   single-class rule) already overrides the original full-width
+   divider border-top on these blocks — no separate reset needed. */
+[data-glass="books"] .book-section:hover,
+[data-glass="books"] .pen-name-note:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 16px 40px -10px rgba(232, 80, 10, 0.16);
+}
+
+/* Safari fallback — bump opacity so the cards stay legible if
+   backdrop-filter is unsupported. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-glass="books"] .book-section,
+  [data-glass="books"] .pen-name-note {
+    background: rgba(255, 255, 255, 0.92);
+  }
+}
