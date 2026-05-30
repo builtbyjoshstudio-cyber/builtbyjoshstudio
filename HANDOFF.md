@@ -1,17 +1,24 @@
 # builtbyjoshstudio.com — Session Handoff
 
-**Date:** 2026-05-26 (end of session; new Claude Code session starting fresh)
+**Date:** 2026-05-29 (mid-session; Phase 2A audit complete, awaiting 3 decisions)
 **Repo:** https://github.com/builtbyjoshstudio-cyber/builtbyjoshstudio
 **Local path:** `C:\Users\jotra\builtbyjoshstudio`
 **Host:** GitHub Pages — custom domain `builtbyjoshstudio.com` via CNAME → Fastly CDN
-**HEAD (pushed):** `8055f13` on `main`, in sync with `origin/main`. Pages deployment confirmed live as of `26460285180` build (Phase 6 filter verified live; full Phase 1 → Phase 6 pass shipped).
-**Latest backup tag:** `backup-after-phase-6` (`8055f13`). Pushed to origin. Working tree is clean (apart from the usual untracked: `.claude/`, `.netlify/`, dated `HANDOFF-*.md` archives, plus 7 per-phase utility scripts in `tools/`).
+**HEAD (pushed):** `e195a79` on `main`, in sync with `origin/main`. All committed work is live and verified. **Working tree clean** (Phase 2A is read-only audit — no uncommitted changes).
+**Latest backup tag:** `backup-after-phase-6` (`8055f13`). **7 feature commits sit above the last tag — worth tagging a new checkpoint before the next session lands changes.**
 
 ---
 
 ## 🧭 Session summary (plain language)
 
-This session ran the full six-phase SEO optimization pass end-to-end on top of the post-LS-rollout baseline. We tightened the about page with a credentials section and richer Person schema, added `datePublished` / `dateModified` to every Product schema, added `<image:image>` entries to the sitemap for products and collections, audited every FAQ schema for visible-content match and remediated the six blog posts that drifted (five got new visible Q&A sections, one was a "What's" → "What is" contraction fix), extended the related-reading card blocks on all 34 blog posts with sideways cross-links and promoted their `<div class="related-posts-label">` to `<h2>` for proper heading hierarchy, and added a pure-vanilla client-side filter search on the blog index. Along the way we caught a build-blocker (Jekyll's Liquid parser choking on literal `{{` in HANDOFF.md) and unblocked it by adding a minimal `_config.yml` exclude. Every phase shipped, deployed cleanly, and was verified on the live site. The repo grew by seven small per-phase Python utilities (untracked, in `tools/_audit_*` / `tools/_phase*_*` style).
+Since the last HANDOFF (`17c02db`, end of Phase 6), this session shipped four distinct feature groups across seven commits:
+
+1. **GA4 e-commerce instrumentation** — added the standard `view_item` / `add_to_cart` / `begin_checkout` / `purchase` events site-wide, consolidated the Lemon Squeezy Setup callback in `js/ga4-events.js` so it fires on every page (not just the 8 Tynkr product pages), added `category` field to every entry in `js/checkout-config.js`. Then caught a lazy-load race condition that prevented `begin_checkout`/`purchase` from firing on collection pages and fixed it with a 13-line patch to `js/ls-checkout-btn.js`. Live-verified all four standard events fire end-to-end on Aquarius.
+2. **Zero-based-budget-excel SERP optimization** — pivoted `<title>` and meta description from tutorial-only to dual template+tutorial intent (`Zero-Based Budget Excel Template + How to Build One (2026)`), then aligned the visible H1, Article JSON-LD `headline`, in-body H2, all 5 inbound related-post-card titles, and the product-page sidebar inline link to match. Fully consistent end-to-end now.
+3. **/books.html for J.S. Warden fiction** — created a new top-level books page with hero, two book sections (Overlayed Echoes + Ebonspire Chronicles), pen-name note. Added a "Writing" link to all 91 site footers (after the About link, root-absolute `/books.html` href). Updated About page mention paragraph. Standardized pen-name spelling on `J.S. Warden` (no spaces) across the site — the about.html schema's two `workExample` author fields got updated as part of this.
+4. **Overlayed Echoes full-length launch** — Josh published the 257-page paperback+ebook of Overlayed Echoes (the original 85-page novella was pulled, new Amazon URL is `https://a.co/d/06ZWovoY`). Real cover image and OG share card images added at `images/books/`. All 7 instances of the old `04YzP4o4` URL across books.html, about.html, and index.html swapped. JSON-LD `workExample` updated with new url + bookFormat array (ebook + paperback) + image + numberOfPages 257 + isAccessibleForFree false. Stale "novella" / "85 pages" / "being expanded" copy removed.
+
+**🔴 IN PROGRESS at handoff time:** Phase 2A — Book discoverability fixes. Read-only audit complete; **3 decisions pending from Josh before any edits**. See "What's in-progress" section below. Zero files modified — working tree clean.
 
 ---
 
@@ -23,70 +30,62 @@ These are the rules Josh has set through hard pushback over multiple sessions. A
 Josh's style. No padding. Surface tradeoffs in 1–2 sentences and pick a default; don't ask a dozen questions. When you find real ambiguity worth confirming, ask ONE crisp question with a recommended default. Skip "Great, I'll start by…" preambles.
 
 ### 2. The site has NO template engine.
-Every HTML page is standalone with its own inline `<style>` block, its own JSON-LD, its own nav, its own footer. The Python scripts in `tools/` are the closest thing to a template engine — they generate per-page HTML from manifests + hardcoded sign/animal data. When you need to change something site-wide (e.g., add a footer link, inject a schema block), either (a) edit the generators and regenerate, or (b) write a Python sweep that visits every `.html` file. There's no shared partial to update.
+Every HTML page is standalone with its own inline `<style>` block, its own JSON-LD, its own nav, its own footer. The Python scripts in `tools/` are the closest thing to a template engine — they generate per-page HTML from manifests + hardcoded sign/animal data. When you need to change something site-wide (e.g., add a footer link, inject a schema block), either (a) edit the generators and regenerate, or (b) write a Python sweep that visits every `.html` file. There's no shared partial to update. **Exception**: `/css/tokens.css` is loaded by all 92 HTML files — cross-cutting CSS fixes that don't conflict with per-page inline `<style>` properties can go there (the inline rules don't set every property, so tokens.css can fill gaps via cascade — see footer-flex-wrap precedent in Phase 2A audit).
 
 ### 3. Lemon Squeezy IS the primary checkout for the zodiac art Collections. Etsy is a secondary reference only.
-The full LS rollout is complete — all 77 buttons across 38 collection pages are live with real LS overlay URLs. Tynkr products use the existing key-based `data-checkout` + `CHECKOUT_CONFIG` infrastructure (see `js/checkout.js`, `js/checkout-config.js`). The Collection pages use the `.ls-checkout-btn` pattern with `data-checkout-url` populated and the click handler in `js/ls-checkout-btn.js`.
+Full LS rollout complete — all 77 buttons across 38 collection pages live with real LS overlay URLs. Tynkr products use the key-based `[data-checkout]` + `CHECKOUT_CONFIG` infrastructure (`js/checkout.js`, `js/checkout-config.js`). Collection pages use the `.ls-checkout-btn` pattern with `data-checkout-url` + click handler in `js/ls-checkout-btn.js`.
 
 ### 4. Sales-channel hierarchy on Collection pages
-- **Primary CTA:** the LS button (sidebar + final CTA band on every Collection page; Western Landscapes also has a top-of-grid bundle CTA)
-- **Secondary reference:** a muted "Looking for something different? Visit the Etsy shop →" block at the bottom of the sidebar. Smaller text, no button styling, courtesy link only. Does NOT compete with the primary CTA visually.
-- **Footer:** Etsy link stays in the global footer alongside Refunds/Privacy/Terms/Legal — that's a directory listing, not a sales CTA.
+Primary: LS button. Secondary: muted Etsy reference at sidebar bottom. Footer: Etsy as directory listing only.
 
 ### 5. Verify file content claims against actual source code/data, not against documentation or assumptions.
-The PDFs, the brief, your own memory — none of these are authoritative. The actual asset files (the webps in `images/zodiac/...`, the source files at `OneDrive\...\Zodiac Collections\`), the manifest JSONs, and the live pages are. When the brief says X but the actual file count is Y, flag the discrepancy and use the accurate number with a note.
+When a brief says X but the actual count is Y, flag the discrepancy and use accurate numbers. **This session's biggest catch under this rule**: Phase 2A's "all-links page" doesn't exist as a separate page — it's the about.html `connect-list` section. Josh's URL screenshot showed `builtbyjoshstudio.com/al…` which was the truncated `about.html` in the browser URL bar.
 
-### 6. LS URL activation procedure (still applies for future Collections / re-runs)
-For each `<button class="ls-checkout-btn"...>` element:
-1. Paste the LS overlay URL into `data-checkout-url=""`
-2. Remove the `disabled` attribute and swap the button text from `Buy the X Bundle — Coming Soon` to `Buy the X Bundle — $<price>`
-
-Generators implement this via per-Collection `LS_URL_BY_SIGN` / `LS_URL` dicts + an `ls_button_state()` helper. To add a new URL, just populate the dict entry and regenerate.
+### 6. LS URL activation procedure
+For each `<button class="ls-checkout-btn">`: paste LS overlay URL into `data-checkout-url=""`, remove `disabled`, swap text to live price. Generators handle this via per-Collection `LS_URL_BY_SIGN` dicts + `ls_button_state()` helper.
 
 ### 7. Identity hygiene rules (site-wide):
-- **Founder name:** "Josh" only on every public-facing surface. Never "Joshua Tran" or "Josh Tran" or just "Tran". Pen name "J. S. Warden" appears only on fiction-author schema (about.html `workExample` block).
-- **City-level data:** state-level "Kansas" only on public pages. **Never any city** — not in copy, not in schema. The ONLY exception is the registered agent address (Wichita, KS) which appears solely on `/legal/index.html` as a legitimate compliance surface. Reinforced this session when the Phase 1 brief asked for "Wichita, Kansas" in the about-page Person schema's `occupationLocation` — Josh confirmed state-only.
-- **`<meta name="keywords">`:** never. Already stripped from all 90+ HTML pages.
+- **Founder name:** "Josh" only on every public-facing surface. Never "Joshua Tran" / "Josh Tran" / "Tran" / "Joshua".
+- **Pen name (fiction only):** `J.S. Warden` — **no spaces between initials**. The book cover itself uses `J. S. Warden` (with spaces) as a stylistic choice for the cover art; the site canonical is no-spaces. Standardized in commit `d9484c5`. Currently 0 spaced-form instances on public pages (HANDOFF.md mentions both for documentation).
+- **City-level data:** state-level "Kansas" only on public pages. Never any city. Registered agent (Wichita, KS) appears only on `/legal/index.html`.
+- **`<meta name="keywords">`:** never. Stripped from all pages.
 
-### 8. The site-wide Organization JSON-LD block is on every collection page, injected before `</head>`.
-Stable `@id`: `https://builtbyjoshstudio.com/#organization`. Per-page Product/FAQ/etc. schemas `@id`-reference the Organization via `{"@id": "https://builtbyjoshstudio.com/#organization"}` for `manufacturer` and `seller`. Don't redefine the Organization inline elsewhere.
+### 8. The site-wide Organization JSON-LD block is on every HTML page, injected before `</head>`.
+Stable `@id`: `https://builtbyjoshstudio.com/#organization`. Per-page Product/FAQ/etc. schemas `@id`-reference the Organization for `manufacturer` and `seller`. **books.html includes it too** (commit `d9484c5` flagged this as a 3rd block beyond the original 2-block spec, for site-wide consistency).
 
 ### 9. Schema rule for Collection pages: Product + FAQPage + BreadcrumbList + Organization per page.
-- **Product schema** uses `@id: <page-url>#product` for stable referencing, SKU pattern `BBJ-<COL>-<SIGN>` (WS/WR/WL/CS/CR), `additionalProperty` block with the full file/design/format spec, single `Offer` at the bundle price `InStock`, `hasMerchantReturnPolicy: MerchantReturnNotPermitted`, plus `datePublished` + `dateModified` (added in Phase 2 of the optimization pass).
-- **FAQPage schema** must mirror the visible FAQ text exactly. Use the shared `faq_data()` / `faq_schema_data()` pair in the generators so visible HTML and schema build from a single source. Use ASCII-safe substitutions in the schema (`20" × 30"` → `20 by 30 inches`, etc.). Phase 4 / 4.5 audit confirms all 62 FAQPage-bearing files now serve all schema questions visibly (445/445).
-- **BreadcrumbList:** 4-level for per-sign pages (Home > Collections > <Collection> > <Bundle>), 3-level for single-bundle pages.
-- **No `aggregateRating`** until product-specific reviews exist.
+Product schema uses `@id: <page-url>#product`, SKU `BBJ-<COL>-<SIGN>`, `additionalProperty` block, single `Offer` at bundle price `InStock`, `hasMerchantReturnPolicy: MerchantReturnNotPermitted`, `datePublished` + `dateModified`. FAQPage must mirror visible FAQ exactly (ASCII-safe substitutions in schema). 51/51 collection + 8/8 product pages have all schema questions visibly rendered (445/445 audited in Phase 4).
 
 ### 10. Use the Python generators in `tools/`, not direct HTML editing, for Collection pages.
-The 5 generators encode the canonical structure (LS CTAs, License block, Quick Facts, sister nav, schemas). Direct editing risks divergence between the visible HTML and the schema, and between sister pages that should share structure. Update the generator, re-run, commit. The 5 generators and their outputs:
+5 generators (`build_western_signs_page.py`, `build_realm_page_master.py`, `build_chinese_animal_pages.py`, `build_chinese_realms_page.py`, `build_zodiac_landscapes_page.py`). Hand-written hub: `collections/chinese-zodiac-art.html` (13 Product blocks: 1 top-level + 12 nested ItemList items — only ever edit the top-level one).
 
-| Script | Outputs |
-|---|---|
-| `tools/build_western_signs_page.py` | 12 Western Signs (`<sign>-zodiac-art.html`) |
-| `tools/build_realm_page_master.py` | 12 Western Realms (`<sign>-zodiac-realms.html`) |
-| `tools/build_chinese_animal_pages.py` | 12 Chinese Signs (`<animal>-chinese-zodiac-art.html`) |
-| `tools/build_chinese_realms_page.py` | 1 Chinese Realms single bundle |
-| `tools/build_zodiac_landscapes_page.py` | 1 Western Landscapes single bundle |
-
-Hand-written hub: `collections/chinese-zodiac-art.html` (CS hub — has 13 Product blocks: 1 top-level + 12 nested ItemList items; only ever edit the top-level one).
-
-### 11. Schema for blog/tool posts (legacy rule — preserved, still active)
-**Article + BreadcrumbList only.** No `WebApplication` schema. No `featureList`. No `applicationCategory`. The four pre-existing tool posts (Recipe Scaler, Reverse Roasting, Pan Swap, Pull Temp) still have their old WebApplication blocks — leave them alone unless content actually disagrees with the live app.
+### 11. Schema for blog/tool posts (legacy rule)
+Article + BreadcrumbList only. No WebApplication / featureList / applicationCategory. Four pre-existing tool posts keep their old WebApplication blocks — leave alone.
 
 ### 12. Antigravity owns the cooking apps. You write blog posts about them. Never apps.
-App source for each tool lives at `C:\Users\jotra\.gemini\antigravity\scratch\<slug>\`. Cooking queue is currently empty.
 
-### 13. GitHub Pages builds can fail on transient infrastructure issues. Check before assuming a deploy completed.
-The `actions/jekyll-build-pages` action archive can fail to download from `codeload.github.com`. Commits push fine; Pages just silently fails to deploy. Recovery: `gh run rerun <run_id> --failed` OR push an empty commit (`git commit --allow-empty -m "Trigger Pages rebuild"`). Always check live content with `curl ?x=<timestamp>` against expected new strings after a push. `gh run list --workflow=pages-build-deployment --limit 5` shows recent build status.
+### 13. GitHub Pages builds can fail on transient infrastructure issues.
+Recovery: `gh run rerun <run_id> --failed` OR push an empty commit. Always verify live content with `curl ?x=<timestamp>` after push.
 
 ### 14. Jekyll's Liquid parser will choke on literal `{{` in markdown — `_config.yml` excludes HANDOFF.md.
-**Added this session:** `HANDOFF.md` documents Python f-string `{{` escapes, which Jekyll's Liquid templater tries to parse as variables and fails. The fix lives at `/_config.yml` (root) and excludes `HANDOFF.md` + `HANDOFF-*.md` from Jekyll processing. If you add any tracked top-level markdown that contains literal `{{` (e.g., another runbook or template-docs file), either (a) add it to the `exclude` list in `_config.yml`, or (b) wrap the offending region in `{% raw %}` ... `{% endraw %}`. The site itself has no Jekyll dependencies — all pages are hand-written HTML — so the exclude list is the cleaner option.
+`/_config.yml` excludes `HANDOFF.md` + `HANDOFF-*.md` from Jekyll processing. If you add any tracked top-level markdown with literal `{{`, either add it to the `exclude` list or wrap in `{% raw %}` ... `{% endraw %}`.
+
+### 15. GA4 instrumentation architecture (added this session)
+- `js/ga4-events.js` is loaded on all 91 HTML pages via `<script defer>`. Contains: `etsy_click` listener, `__ga4LemonSqueezyHandler` (fires standard GA4 `begin_checkout` on `Checkout.ViewCart` and `purchase` on `Checkout.Success`), and `__ga4SetupLemonSqueezy()` polling-loop that wires the LS Setup callback site-wide.
+- `js/checkout.js` (loaded on 8 Tynkr product pages) does NOT call `LemonSqueezy.Setup` — that wiring is centralized in ga4-events.js. checkout.js only calls `LemonSqueezy.Refresh()` to attach overlay click interception.
+- `js/ls-checkout-btn.js` (loaded on 38 collection pages) lazy-loads lemon.js on first click, then explicitly invokes `window.__ga4SetupLemonSqueezy()` from its `s.onload` handler **before** opening the overlay — this is critical, otherwise the first `Checkout.ViewCart` event is lost (commit `62b7b67` fixed this race condition).
+- `window.__ga4LemonSqueezySetupDone` is the guard flag preventing double-wiring.
+- Slug → category mapping for items[] is centralized in `js/ga4-events.js` `slugToCategory()` and mirrored in per-page inline `view_item` scripts. CS hub (`chinese-zodiac-art`) maps to `Chinese Zodiac Art Bundle` (clusters with the 12 per-animal pages for reporting consistency).
+- `js/checkout-config.js`: all 16 entries (8 paid + 8 lite) have `category` field — 12 `Notion Template`, 4 `Spreadsheet`.
+
+### 16. /books.html exists; mobile-nav integration is the open Phase 2A question.
+Books page is a separate `/books.html` at root, linked from About (mention paragraph + connect-list) and from all 91 footers (Writing link after About, root-absolute `/books.html`). **books.html's own footer does NOT self-link** to /books.html (deliberate decision in commit `d9484c5`). **`<ul class="nav-links">` does NOT yet include a Writing link anywhere** — that's the Phase 2A Decision 1 question. mobile-nav.js is pure toggle, drawer items come from each page's `.nav-links` markup.
 
 ---
 
-## 🟢 Status: live, clean — all six SEO optimization phases shipped
+## 🟢 Status: live, clean — Phase 2A read-only audit pending decisions
 
-Working tree clean (only the usual untracked: `.claude/`, `.netlify/`, dated `HANDOFF-*.md` archives, and per-session utility scripts under `tools/_audit_*` / `tools/_phase*_*`). Cooking-stagger publish queue is empty (`tools/cooking-queue.json` = `[]`) and not in active use.
+Working tree clean (only the usual untracked: `.claude/`, `.netlify/`, dated `HANDOFF-*.md` archives, per-session `_audit`/`_phase*` utility scripts in `tools/`).
 
 ---
 
@@ -94,335 +93,225 @@ Working tree clean (only the usual untracked: `.claude/`, `.netlify/`, dated `HA
 
 ```bash
 cd /c/Users/jotra/builtbyjoshstudio
-git status                                                  # clean (untracked: .claude/ .netlify/ HANDOFF*.md + a few _audit/_phase* scripts + _audit_output.md)
-git log --oneline -10                                       # HEAD 8055f13
-git tag -l 'backup-*' --sort=-creatordate | head -5         # backup-after-phase-6 newest
-grep -c '<loc>' sitemap.xml                                 # 91
-# Live deploy spot-checks (Phases 1, 2, 3, 4.5, 5, 6):
-curl -fsS "https://builtbyjoshstudio.com/about.html?x=$(date +%s)" | grep -c "What I bring to the work"                          # 1
-curl -fsS "https://builtbyjoshstudio.com/collections/aries-zodiac-art.html?x=$(date +%s)" | grep -c "datePublished"              # 1+
-curl -fsS "https://builtbyjoshstudio.com/sitemap.xml?x=$(date +%s)" | grep -c "image:image"                                      # 94 (47 entries × 2 tags)
-curl -fsS "https://builtbyjoshstudio.com/blog/why-solo-creators-stay-stuck-under-5k.html?x=$(date +%s)" | grep -c "Frequently Asked Questions"  # 1
-curl -fsS "https://builtbyjoshstudio.com/blog/ultimate-budget-workbook.html?x=$(date +%s)" | grep -c '<h2 class="related-posts-label">'        # 1
-curl -fsS "https://builtbyjoshstudio.com/blog.html?x=$(date +%s)" | grep -c 'id="blog-filter-input"'                             # 1
-# Pages build status (only matters if a recent push isn't showing live):
+git status                                                  # clean
+git log --oneline -10                                       # HEAD e195a79
+git tag -l 'backup-*' --sort=-creatordate | head -5         # backup-after-phase-6 newest (8 commits below HEAD)
+
+# Live verification of recent feature deploys:
+curl -fsS "https://builtbyjoshstudio.com/books.html?x=$(date +%s)" | grep -c "Zero surname" >/dev/null && echo "books.html serving" # 0 means no surname (good)
+curl -fsS -I "https://builtbyjoshstudio.com/images/books/overlayed-echoes-cover.webp?x=$(date +%s)" | head -1  # 200
+curl -fsS "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html?x=$(date +%s)" | grep -c "Zero-Based Budget Excel Template + How to Build One"  # 1+
+curl -fsS "https://builtbyjoshstudio.com/?x=$(date +%s)" | grep -c "06ZWovoY"  # 2 (homepage sameAs arrays)
+curl -fsS "https://builtbyjoshstudio.com/?x=$(date +%s)" | grep -c "04YzP4o4"  # 0 (no stragglers)
+
+# Pages build status:
 gh run list --workflow=pages-build-deployment --limit 5
 ```
 
-Expected: HEAD `8055f13`, 91 sitemap entries, working tree clean, last Pages build succeeded, every Phase 1–6 marker present on live.
+---
+
+## What this session accomplished (4 feature groups, 7 commits)
+
+### Group 1 — GA4 e-commerce instrumentation (commits `9423a02` + `62b7b67`)
+
+| Commit | What |
+|---|---|
+| `9423a02` | Added standard GA4 events (`view_item`, `add_to_cart`, `begin_checkout`, `purchase`) site-wide. Consolidated `LemonSqueezy.Setup({ eventHandler })` in `js/ga4-events.js` (was previously scoped to 8 product pages via checkout.js). Added inline `view_item` scripts to 8 product pages + 38 collection pages (CS hub deliberately skipped — no `.ls-checkout-btn` element). Added `data-item-category` to all 77 `.ls-checkout-btn` elements. Added `add_to_cart` firing in `js/ls-checkout-btn.js` and `js/checkout.js` click handlers. Added `category` field to all 16 `CHECKOUT_CONFIG` entries. 50 files / 1,475 insertions / 106 deletions. |
+| `62b7b67` | **Bug fix**: collection-page `begin_checkout` / `purchase` weren't firing because lemon.js is lazy-loaded (on first click), but ga4-events.js's polling for SDK readiness ran at DOMContentLoaded and timed out 5s later — long before the user clicked. Patched `js/ls-checkout-btn.js` `s.onload` to invoke `window.__ga4SetupLemonSqueezy()` **after** the SDK initialises and **before** `then()` opens the overlay. 1 file / +13 lines. Verified live on Aquarius — full funnel now fires in correct order: `view_item` → `add_to_cart` → `ls_checkout_open` → `begin_checkout` → `purchase`. |
+
+### Group 2 — Zero-based-budget-excel SERP rewrite (commits `fda6e0b` + `0921c2f`)
+
+| Commit | What |
+|---|---|
+| `fda6e0b` | Rewrote `<title>` + meta description on `blog/zero-based-budget-excel.html` to dual template+tutorial intent: `Zero-Based Budget Excel Template + How to Build One (2026)`. Title 57 chars, description 160 chars. Internally consistent across SEO, OG, Twitter tags. H1 + Article schema `headline` left unchanged (deliberate split: SERP vs landing). 1 file / 6 insertions / 6 deletions. |
+| `0921c2f` | Reversed the deliberate split — aligned visible H1, JSON-LD Article `headline`, in-body H2 ("How to Build One — The Walkthrough"), all 5 inbound related-post-card titles (blog.html + 4 blog posts), and the product-page sidebar inline link on `products/ultimate-budget-workbook.html` to the SERP title verbatim. Now fully aligned end-to-end. 7 files / 9/9. |
+
+### Group 3 — /books.html + footer rollout (commits `d9484c5` + `27666ac`)
+
+| Commit | What |
+|---|---|
+| `d9484c5` | Created `/books.html` (top-level books page for J.S. Warden fiction). Hero + 2 book sections + pen-name note. JSON-LD: BreadcrumbList + Person (J.S. Warden, workExample = both books) + Organization. Updated `about.html` "Beyond the Studio" paragraph mention (kept lines 488 + 559 untouched). Standardized pen-name spelling to `J.S. Warden` (no spaces) site-wide — small 2-string exception in about.html schema `workExample` author fields. Added "Writing" footer link across all 91 HTML pages (root-absolute `/books.html`, inserted after About `<li>`; handled the legal/index.html outlier with `/about.html` root-absolute About href separately). Added books.html sitemap entry. Added books.html to llms.txt under About section. 94 files / 571 insertions / 4 deletions. **books.html's own footer does NOT self-link** to Writing — deliberate per Josh's call. |
+| `27666ac` | One-line follow-up: corrected books.html sitemap `lastmod` from `2026-05-26` (wrong by 3 days) to `2026-05-29` (actual deploy date). 1 file / 1/1. |
+
+### Group 4 — Overlayed Echoes full-length launch (commit `e195a79`)
+
+The 85-page Overlayed Echoes novella was pulled and replaced with a 257-page paperback+ebook full-length novel. New Amazon URL `https://a.co/d/06ZWovoY`. This commit fixed every stale URL + cover + copy reference site-wide. **Highest-risk** because the old URL was broken on visitor click-through and the cover/OG images were brand-new asset paths.
+
+- Created `images/books/` directory with 4 new files (overlayed-echoes-cover.webp/jpg @ 600×900, og-books.webp/jpg @ 1200×630). All 4 HEAD-verified 200 on live.
+- `books.html`: added `<picture>` element for the real cover (replacing the placeholder div). Added 7 `og:image`/`twitter:image` head tags. Twitter card upgraded `summary → summary_large_image`. JSON-LD `workExample` updated: url → `06ZWovoY`, bookFormat → `["…/EBook", "…/Paperback"]` (array), +image, +numberOfPages 257, +isAccessibleForFree false. Section body rewritten: subtitle "The first book of a five-book series", "Honest framing / 85 pages / expanding" paragraph removed. Added `.book-cover img` + mobile centering CSS (necessary completeness for visual parallelism with the kept Ebonspire placeholder).
+- `about.html`: line 488 ("What I bring to the work") single-clause fix removing "being expanded into the full-length first volume." Line 511 ("Beyond the Studio") rewritten: "debut novella" → "debut novel", "currently on Amazon and being expanded into a five-book series" → "the first book of a five-book series, now on Amazon." JSON-LD `workExample` updated identically to books.html. 3 Amazon URL updates (sameAs line 76, workExample line 91, connect-list line 557).
+- `index.html`: 2 stale `04YzP4o4` references in JSON-LD `sameAs` arrays (Person + Organization or similar) updated to `06ZWovoY`. Out of original scope per "don't touch homepage" — but stale-URL structured data on the highest-traffic page was strictly worse than touching it. Decision approved by Josh during audit.
+- `sitemap.xml`: about.html `lastmod` 2026-04-28 → 2026-05-29 (books.html already today from the prior commit, so no change needed there). index.html lastmod deliberately untouched (only structured data changed, not content).
+
+8 files / 41 insertions / 18 deletions + 4 new image assets. All 7 old-URL instances swapped, 0 stragglers. All 4 image HEAD checks 200. Live-verified end-to-end.
 
 ---
 
-## What this session accomplished
+## ⚠ IN-PROGRESS: Phase 2A — Book discoverability + footer audit
 
-### Six-phase SEO optimization pass — shipped end-to-end
+**Status:** Read-only audit complete. **Zero files modified.** Working tree clean. **3 decisions pending from Josh before Step 2 edits.**
 
-| Commit | Phase | What |
-|---|---|---|
-| `1297625` | 1 | About page gained "What I bring to the work" credentials section (5 sentences, 3 paragraphs, Josh's voice — cooking heritage, two novel series, LLC ops, dogfooding, solo-creator scope). Person JSON-LD enriched with `hasOccupation` (state-level Kansas, no city per Standing #7), `publishingPrinciples`, `award`, and `workExample` (Overlayed Echoes Book + Ebonspire Chronicles BookSeries, both authored by "J. S. Warden"). |
-| `d0b66b3` | 2 | Added `datePublished` + `dateModified` = `2026-05-26` to all 47 Product-schema-bearing pages (8 product + 38 generator-output collection + 1 hand-written CS hub). Schema-only, no visible content changes. |
-| `01f0496` | 3 | Added `<image:image>` entries (with `xmlns:image` namespace) to 47 `<url>` blocks in `sitemap.xml` — 8 product pages + 38 generator-output collections + 1 hand-written CS hub. Indexes (`/products/`, `/collections/`) skipped — no Product schema to pull image from. Blog posts deliberately not included this pass. |
-| `3a8de69` | (unblock) | Added `_config.yml` with `exclude: [HANDOFF.md, HANDOFF-*.md]`. Necessary because HANDOFF.md contains literal `{{` and `}}` in markdown (documenting Python f-string escapes) which Jekyll's Liquid parser tries to interpret as template variables, failing the build. Pages had silently failed twice before this fix landed. See Standing Instruction #14. |
-| `698b745` | 4 + 4.5 | Read-only FAQPage visibility audit (62 files, 445 questions): flagged 6 blog posts where schema questions weren't visibly on the page. Remediation: 5 posts got brand-new `<h2>Frequently Asked Questions</h2>` sections rendering Q&As verbatim from existing schema; 1 post (`first-time-homebuyer-mistakes`) had a `What's` → `What is` contraction fix on a visible `<h3>` to match the schema verbatim. Post-audit: 445/445 visible, 0 flagged. |
-| `5519ed7` | 5 | Extended related-reading card blocks on all 34 blog posts with 5B additions (sideways topical neighbors, not currently linked, skewed away from same-product upsell) + 12 approved displacements (hub→domain-essay swaps, sibling-cluster breakups, free/lite closed-loop interventions). Simultaneously promoted `<div class="related-posts-label">` to `<h2 class="related-posts-label">` site-wide for proper heading hierarchy + a11y. CSS hook intact, visual rendering unchanged. Final card counts: 12 posts at 4 cards, 21 at 5, 1 at 6. Zero broken internal links. Hand-authored 7 card descriptions for slugs with no prior inbound card (stored in `tools/_phase5_related_reading.py` `LIBRARY_EXTENSIONS`). |
-| `8055f13` | 6 | Client-side filter search on `/blog.html`. Pure vanilla, no deps, ES5-safe. `<input type="search" placeholder="Filter posts...">` placed between the section anchor nav and the first `.blog-section`. Live filter on `input` event, case-insensitive substring match against `.article-title` + `.article-excerpt`. Escape clears. Section auto-hides when all its cards are hidden. "No posts match that filter." paragraph shows when zero matches. Inline CSS uses existing `--bbj-*` palette vars. Filter placeholder uses the global `input::placeholder` rule (no italic — convention-correct). |
+### Audit findings (current as of HANDOFF write — verify with quick re-grep if context unclear)
 
-### Backup tag
+**1.1 Mobile hamburger nav** — `js/mobile-nav.js` (62 lines) is pure toggle (no hard-coded item list). The drawer items come from each page's own `<ul class="nav-links">` markup; CSS transforms the desktop nav into a drawer on narrow viewports. **4 nav-link variants** across 91 pages:
 
-- `backup-after-phase-6` → `8055f13` (pushed to origin)
+| Count | Variant (first label · ... · last label) |
+|---|---|
+| 44 | Templates · Zodiac Art · Blog · Resources · Free Tools · About · Legal |
+| 39 | Templates · Zodiac Art · Blog · Resources · Free Tools · About |
+| 7 | Tynkr Tools · Zodiac Art · Blog · Resources · Free Tools · About · Legal |
+| 2 | Tynkr Tools · Zodiac Art · Blog · Resources · Free Tools · About *(about.html + books.html)* |
+
+All 91 navs have an About link → universal anchor for `<li><a href="/books.html">Writing</a></li>` insertion (same pattern as the earlier footer rollout, scoped to `.nav-links` not `.footer-links`).
+
+**⚠ Decision 1 needed:** roll Writing across all 91 navs OR exclude books.html / about.html / index.html per Josh's stated "don't touch... visible content" preservation rule (88 files only, leaves those 3 pages' mobile menus visibly missing Writing).
+
+**1.2 "All-links page"** — does NOT exist as a separate page. The unique phrase "Overlayed Echoes — the novel" appears in exactly one file: **about.html** (the `<ul class="connect-list">` at line 528). The 4 entries Josh described (YouTube → Tales of Ink, Etsy → Tynkr, Etsy → BBJ Studio, Amazon → Overlayed Echoes) match this connect-list verbatim. The URL `builtbyjoshstudio.com/al…` was a truncated `/about.html` in the browser address bar.
+
+**⚠ Decision 2 needed:** Josh's Step 2.2 wants the Amazon entry's href changed → `/books.html`, but the entry IS about.html visible content (forbidden by preservation rule). Three options:
+- (a) Minimal: just swap href, keep "Amazon" eyebrow (semantically confusing — eyebrow says Amazon but link goes to /books.html)
+- (b) **Restructure (recommended)**: eyebrow `Amazon` → `Books by J.S. Warden`, link text → `Overlayed Echoes — Book One of a Five-Book Series`, href → `/books.html`. Treats /books.html as canonical destination.
+- (c) Honor preservation, skip entirely.
+
+**1.3 Footer rendering** — root cause identified: about.html is the **only** page with `flex-wrap: wrap` on `.footer-links`. Other 90 pages have inline `.footer-links { display: flex; gap: 1.5rem; list-style: none; }` without flex-wrap. Their outer-footer mobile MQ stacks the outer flex column-wise, but the inner `<ul>` still tries to fit horizontally on narrow viewports → overflow.
+
+**Fix scope:** 1 line in `/css/tokens.css` (loaded by 92/92 HTML pages, zero existing footer rules — clean slate). Add:
+```css
+.footer-links { flex-wrap: wrap; }
+```
+The inline `<style>` rules don't set `flex-wrap` (cascades per-property), so the tokens.css rule applies on all pages without being overridden. about.html is unaffected (already has flex-wrap).
+
+**⚠ Decision 3 needed:** confirm the 1-line tokens.css fix.
+
+**1.4 `J. S. Warden`** — only remaining instance: this HANDOFF (documentation). 0 public-facing pages have the spaced form. Clean.
+
+### Phase 2A brief (for reference — supplied by Josh, embedded here verbatim)
+
+> Phase 2A — Book discoverability fixes + footer audit. Multi-issue investigation. Read-only audit first, then proposed diff, then commit only after my approval.
+>
+> **Problem 1** — Mobile hamburger menu missing Writing link.
+> **Problem 2** — "All-links page" (Josh's screenshot: builtbyjoshstudio.com/al…) shows YouTube/Etsy/Etsy/Amazon section; Amazon entry links direct to Amazon instead of /books.html.
+> **Problem 3** — Footer rendering inconsistency. About page renders correctly on mobile; other pages may overflow / wrap differently.
+>
+> Preservation: Josh's last name MUST NOT appear anywhere. Don't touch books.html / about.html / index.html `<head>` or visible content. Don't break the footer rollout work done earlier today.
+
+### When Josh provides Decision 1 / 2 / 3 answers, the next steps are:
+
+- **Decision 1 fix path:** write a sweep script (similar to `_books_footer_rollout.py` from the prior task) scoped to `<ul class="nav-links">` instead of `<ul class="footer-links">`. Same "insert after About `<li>`" rule. Root-absolute `/books.html` href.
+- **Decision 2 fix path (if restructure approved):** single-file Edit on about.html connect-list `<li>` for Amazon → change eyebrow span + link text + href.
+- **Decision 3 fix path:** single-file Edit on `css/tokens.css` adding 1 line.
+
+Commit message Josh proposed: `Improve book discoverability: add Writing to mobile nav, link all-links page to /books, fix footer rendering divergence` (adjust last clause based on actual footer fix).
 
 ---
 
-## Pre-session → final state
+## Pre-session → current state
 
-| Aspect | Before this session (pre-`6273822`) | After this session (`8055f13`) |
+| Aspect | Before this session (`17c02db`) | Current (`e195a79` + audit pending) |
 |---|---|---|
-| Working HEAD | `e6475a4` (empty-trigger commit) | `8055f13` (Phase 6) |
-| About page | "Hi, I'm Josh" + Two Brands + Beyond + Where + Connect | + new "What I bring to the work" credentials section (Phase 1) |
-| Person schema on about.html | Name + jobTitle + sameAs | + `hasOccupation` (state-level KS), `publishingPrinciples`, `award`, `workExample` × 2 (Phase 1) |
-| Product schemas | `hasMerchantReturnPolicy` already present | + `datePublished` + `dateModified` on all 47 (Phase 2) |
-| `sitemap.xml` | 91 `<loc>` entries, no image entries | 91 `<loc>` + 47 `<image:image>` entries, `xmlns:image` namespace (Phase 3) |
-| Jekyll build | Silently failing on HANDOFF.md `{{` Liquid parse | `_config.yml` excludes HANDOFF.md; build healthy (unblock) |
-| FAQ visibility | 419/445 visible across 62 schemas; 6 posts had drift | 445/445 visible; zero flagged (Phase 4 + 4.5) |
-| Blog related-reading | 3 cards per post; div-styled label | 4–6 cards per post (sideways neighbors added, weak hub-to-hub links displaced); `<h2>` label across all 34 (Phase 5) |
-| Blog index | Anchor nav only | Anchor nav + client-side filter input + auto-hide + empty-state (Phase 6) |
-| Backup tag (newest) | `backup-after-ls-chinese-signs-activation` (`9cab5c0`) | `backup-after-phase-6` (`8055f13`) |
+| HEAD | `17c02db` (HANDOFF refresh) | `e195a79` (Overlayed Echoes launch) — 7 commits later |
+| GA4 e-commerce events | only `etsy_click`, `click_out_to_etsy`, `ls_checkout_open`, `lemonsqueezy_*` (custom) | + standard `view_item`, `add_to_cart`, `begin_checkout`, `purchase` site-wide; LS Setup callback wired in ga4-events.js site-wide |
+| zero-based-budget-excel | tutorial-only title/H1/headline | dual template+tutorial title across SERP, H1, schema, 5 inbound cards |
+| /books.html | did not exist | live; J.S. Warden fiction page; linked from About + 91 footers (not in any `.nav-links` yet) |
+| Pen name spelling site-wide | mixed `J.S.` / `J. S.` | standardized `J.S. Warden` (no spaces); 0 public-facing instances of spaced form |
+| Overlayed Echoes status | 85-page novella, Amazon `04YzP4o4`, no cover image | 257-page paperback+ebook, Amazon `06ZWovoY`, real cover + OG card live |
+| `images/books/` | did not exist | 4 image files (cover webp/jpg, og webp/jpg) |
+| Footers (`.footer-links`) | 91 pages, no Writing link | 91 pages with Writing link after About |
+| Mobile nav (`.nav-links`) | 91 pages, no Writing link | unchanged — still no Writing (Phase 2A Decision 1 target) |
 
 ---
 
 ## What's live in production right now
 
-### Phase-by-phase live markers
-- `about.html` → "What I bring to the work" section + enriched Person schema
-- All 47 Product-schema pages → `datePublished` / `dateModified: 2026-05-26`
-- `sitemap.xml` → `xmlns:image` namespace + 47 `<image:image>` entries
-- 62 FAQPage-bearing files → 445/445 schema questions visible (incl. 6 remediated blog posts)
-- 34 blog posts → extended related-reading cards (4–6 per post) + `<h2 class="related-posts-label">`
-- `/blog.html` → client-side filter input + "No posts match that filter." empty state
-
-### Collection pages — 38 pages, all on master pattern, all checkout-ready
-
-| Page type | URL pattern | Count | LS buttons per page | Price |
-|---|---|---|---|---|
-| Per-sign Western Signs | `/collections/<sign>-zodiac-art.html` | 12 | 2 (sidebar + final CTA) | $24.99 |
-| Per-sign Western Realms | `/collections/<sign>-zodiac-realms.html` | 12 | 2 | $14.99 |
-| Per-animal Chinese Signs | `/collections/<animal>-chinese-zodiac-art.html` | 12 | 2 | $14.99 |
-| Chinese Realms single bundle | `/collections/chinese-zodiac-realms.html` | 1 | 2 | $29.99 |
-| Western Landscapes single bundle | `/collections/zodiac-landscapes.html` | 1 | 3 (top-of-grid + sidebar + final CTA) | $19.99 |
-| **Total** | | **38** | **77 buttons** | |
-
-All 77 carry live `data-checkout-url`, no `disabled` attribute, button text reads `Buy the <X> Bundle — $<price>`. `js/ls-checkout-btn.js` script tag present on every page.
-
-### Site-wide schema state
-
-Every collection-page Product schema includes:
-- `@id` reference to the canonical Organization
-- `additionalProperty` block with the full file/design/format spec
-- `hasMerchantReturnPolicy: MerchantReturnNotPermitted`
-- `datePublished: 2026-05-26` + `dateModified: 2026-05-26`
-- LS-overlay URL in `offers.url`
-
-### `/legal/` hub
-| URL | Status |
-|---|---|
-| `/legal/` (hub page) | Live, `noindex,follow`, 5 Collection blocks + universal terms + policies + about |
-| 5 license PDFs + 5 print-guide PDFs at `/legal/<filename>.pdf` | All 200, all crawlable |
-
-### Site-wide
-- Organization JSON-LD on every HTML page (injected before `</head>`)
-- `<meta name="keywords">` tag stripped everywhere
-- "Legal" link in footer of every page
-- "Joshua Tran" / "Josh Tran" / "Tran" / "Topeka" — 0 occurrences across HTML/MD/TXT
-- Sitemap: 91 `<loc>` entries, 47 with `<image:image>` (products + collections), `xmlns:image` namespace
-- `llms.txt` at root — includes free web utilities section
-- Homepage OG image at `images/og/og-home.webp` (1200×630), referenced by `og:image` + `twitter:image`
-- Jekyll Liquid build healthy via `_config.yml` excluding `HANDOFF.md`
-
-### Homepage `index.html` sections (order):
-1. `#tynkr` — Tynkr Tools
-2. `#builtbyjosh` — Western Signs Zodiac Art (12 cards)
-3. `#western-realms` — Western Realms (12 cards)
-4. `#chinese-zodiac` — Chinese Signs (12 cards)
-5. `#chinese-realms` — Chinese Realms (12 cards, anchor to single bundle)
-6. `#landscapes` — Western Landscapes (12 cards, anchor to single bundle)
-7. `#free-tools` — 7 cooking utilities
-
-### About page (`about.html`) sections (order):
-1. Hi, I'm Josh.
-2. **What I bring to the work** (Phase 1)
-3. The Two Brands
-4. Beyond the Studio
-5. Where the Studio Lives
-6. Connect With the Studio
-
-### Blog index (`blog.html`) — Phase 6 layout
-1. Hero + Substack form
-2. Section anchor nav (`Templates` / `Learning` / `Projects`)
-3. **Filter input** (`.blog-filter` — `<input type="search" placeholder="Filter posts...">` + hidden `.blog-filter-empty` "No posts match that filter.")
-4. `<section id="templates" class="blog-section">` — Templates section + 11 cards
-5. `<section id="learning" class="blog-section">` — Learning section + ~16 cards
-6. `<section id="projects" class="blog-section">` — Projects section + ~7 cards
-
-(Sections auto-hide via the filter when all their cards are hidden.)
+- **/books.html** with real Overlayed Echoes cover, OG share card, 257-page paperback+ebook structured data, link to new Amazon URL
+- **about.html** updated mention paragraph, updated connect-list Amazon URL (NOT yet pointing to /books.html — that's Phase 2A Decision 2)
+- **Homepage** index.html sameAs JSON-LD arrays updated to new Amazon URL (zero visible content change)
+- **All 91 page footers** carry "Writing" link → `/books.html`
+- **GA4 funnel** firing end-to-end: `view_item` on every product/collection page load, `add_to_cart` on every buy-button click, `begin_checkout` when LS overlay opens, `purchase` on checkout success (verified live on Aquarius)
+- **Sitemap.xml** has /books.html entry (priority 0.7, lastmod 2026-05-29) and about.html lastmod 2026-05-29
+- **llms.txt** has /books.html under About section
 
 ---
 
 ## Open items / pending work
 
-### 🟡 Deferred from this session — carry forward
+### 🔴 IN PROGRESS — Phase 2A (3 decisions pending — see "In-progress" section above)
 
-1. **OG images for the remaining ~22 blog posts.** Josh said he'd eventually do it but isn't actively sharing posts elsewhere, so the 7 tool-mapped + 6 cooking-personal posts that *would* have gotten OG images this round were also deferred. If/when this comes up again, the previously-written Phase 2 OG prompt is in conversation history.
+### 🟡 Deferred from prior sessions — still carry forward
 
-2. **GA4 purchase event verification.** Outstanding from earlier discussion. `view_item`, `add_to_cart`, `begin_checkout` should be firing via the recently-added event code. The purchase event happening inside the Lemon Squeezy iframe is the unknown — needs either a manual $1 test purchase + GA4 Realtime check, OR a Lemon Squeezy dashboard config audit, OR confirmation that a webhook / thank-you-page redirect is wired up. Diagnostic prompt is in conversation history.
+1. **OG images for the remaining ~22 blog posts.** Not actively shared elsewhere; deferred.
+2. **GA4 purchase event verification in Realtime dashboard.** Code is fully wired and live-verified at the dataLayer level on collection pages (commit `62b7b67`). Josh still needs to confirm the events appear in the GA4 Realtime dashboard with a real test purchase or by inspecting dataLayer.
+3. **CTA copy update on product + collection pages** to lead with "Buy Direct — Instant Download" and demote Etsy to secondary. Was held off pending GA4 purchase verification; that's now in better shape.
+4. **2 zodiac collections still Etsy-only** (Chinese Zodiac signs / Lunar Guardians + Zodiac Landscapes — wait, these ARE on LS per Standing #3; this open item may be stale, verify against current LS_URL_BY_* dicts).
+5. **Google Merchant Center setup.** Native checkout is live; meaningfully more valuable now.
+6. **Optional FAQ template paired-generator pattern for blog posts.** 6 blog posts that drifted in Phase 4 / 4.5 predated the paired-generator pattern.
+7. **Book cover for Ebonspire Chronicles** — when ready, replace the `.book-cover-placeholder` div in books.html with a `<picture>` matching the Overlayed Echoes pattern (commit `e195a79` for reference).
 
-3. **CTA copy update on product + collection pages** to lead with "Buy Direct — Instant Download" and demote Etsy to secondary. Held off pending GA4 purchase verification (no point promoting native checkout traffic if the funnel can't capture the conversion). Once Item 2 is resolved, the CTA prompt is in conversation history.
+### Untracked utility scripts this session
 
-4. **2 zodiac collections still Etsy-only** (Chinese Zodiac signs / Lunar Guardians + Zodiac Landscapes). Migration to Lemon Squeezy is in progress per Josh. When those flip live, the CTA update prompt needs to be re-run scoped to include them.
-
-5. **Google Merchant Center setup.** Previously deprioritized; meaningfully more valuable now that native checkout is live with direct-purchase URLs. Desktop session needed.
-
-6. **Optional FAQ template paired-generator pattern for blog posts.** The 6 blog posts that drifted out of FAQ visibility in Phase 4 were posts predating the `faq_data()` / `faq_schema_data()` pattern already used on product + collection pages. Retrofitting the blog template to use the same pattern would prevent future drift. Not urgent, but a real infrastructure-debt cleanup if the blog FAQ count keeps growing.
-
-7. **Cooking blog `building-the-universal-recipe-scaler` description swap** — verified at session end: card block now includes `cook-the-way-you-want-to-cook` + `what-i-actually-keep-in-my-kitchen` (correct Phase 5 swap from biographical `how-i-learned-to-cook` to system/philosophy essays). 5 cards total, H2 promoted. ✅ done — kept in the open-items list for future audit reference.
-
-### 🟢 Lower priority — pre-existing open items
-
-- `tools/build_realm_pages.py` (Phase 2 legacy simpler Realms generator) is still in the repo. Can be deleted now that `build_realm_page_master.py` is canonical.
-- 5+ dated handoff archives accumulated as `HANDOFF-*.md` — untracked, kept locally.
-- The cooking-stagger publish queue (`tools/cooking-queue.json` = `[]`) is empty and inactive.
-
-### Untracked utility scripts from this session
-
-These are non-production scripts and audit outputs. Delete or keep — they don't affect the live site. Listed in chronological order of creation:
-
-- `_audit_output.md` — 95 KB SEO audit report from earlier this session (initiated the 6-phase optimization brief)
-- `tools/_audit_seo.py` — read-only SEO audit script
-- `tools/_audit_addendum.py` — added the payhip/gumroad section + summary to the audit output
-- `tools/_phase2_dates.py` — Phase 2: injected `datePublished` + `dateModified` into hand-written Product-schema pages
-- `tools/_phase3_sitemap_images.py` — Phase 3: injected `<image:image>` entries into sitemap.xml
-- `tools/_phase4_faq_audit.py` — Phase 4: read-only FAQPage visibility audit (re-runnable; reports per-file X-of-Y visible)
-- `tools/_phase4_5_inject_faq.py` — Phase 4.5: injected new `<h2>Frequently Asked Questions</h2>` sections into 5 blog posts
-- `tools/_phase5_related_reading.py` — Phase 5: extended related-reading cards + H2 promotion; contains `RECIPES` (per-post add/drop) + `LIBRARY_EXTENSIONS` (7 hand-authored card descriptions). Idempotent and re-runnable.
-
-If you need to extend related-reading further, the easiest path is to edit `RECIPES` in `tools/_phase5_related_reading.py` and re-run — it's idempotent (de-dupes adds, no-ops on drops already gone).
+In `tools/` (all untracked, follow `_audit_*` / `_phase*_` convention):
+- Prior session: `_audit_seo.py`, `_audit_addendum.py`, `_phase2_dates.py`, `_phase3_sitemap_images.py`, `_phase4_faq_audit.py`, `_phase4_5_inject_faq.py`, `_phase5_related_reading.py`
+- **This session**: `_phase3_view_item_products.py`, `_phase4_view_item_collections.py`, `_phase6_add_category_to_checkout_config.py` (GA4 instrumentation), `_books_footer_rollout.py` (footer Writing-link rollout). No new utility scripts created in the Phase 2A audit (read-only — used inline grep/python).
 
 ---
 
-## Critical configuration (unchanged from prior session)
+## Critical configuration (unchanged from prior sessions)
 
 | Item | Value |
 |---|---|
-| Legal entity | **Built by Josh Studio LLC** (Kansas) |
+| Legal entity | Built by Josh Studio LLC (Kansas) |
 | Kansas Business ID | `10076138` |
-| Registered Agent | Northwest Registered Agent LLC, 4601 E. Douglas Ave. STE 150, Wichita, KS 67218 (legal service only — only appears on `/legal/index.html`) |
+| Registered Agent | Northwest Registered Agent LLC, 4601 E. Douglas Ave. STE 150, Wichita, KS 67218 (`/legal/index.html` only) |
 | Email | `josh@builtbyjoshstudio.com` |
 | Tynkr Tools & Co Etsy | `https://tynkrtoolsandco.etsy.com` |
 | Zodiac (BBJ) Etsy | `https://www.etsy.com/shop/BuiltByJoshStudio` |
 | LS store URL | `https://tynkrtoolsco.lemonsqueezy.com/` |
-| **LS bundle URLs (Collection products)** | **All 38 live.** Spec lives in each generator's `LS_URL_BY_SIGN` / `LS_URL_BY_ANIMAL` / `LS_URL` dict. |
-| GA4 Measurement ID | `G-QDSPBB7S9J` (inline in every page's `<head>`) |
-| Pen name (fiction only) | **J. S. Warden** — appears only on `about.html` Person `workExample` schema |
-| Books in author schema | `Overlayed Echoes` (Book, near-future LitRPG/SciFi/Metafiction, Amazon at `https://a.co/d/04YzP4o4`, expanding to 5-book series), `Ebonspire Chronicles` (BookSeries, Dark Fantasy / Urban Fantasy / Noir Detective Fiction) |
-| Pricing model | Western Signs $24.99 · Western Realms $14.99 · Chinese Signs $14.99 · Chinese Realms $29.99 · Western Landscapes $19.99 — all 38 pages reflect these, all live LS overlay URLs in place |
-
-### Asset inventory (unchanged this session)
-
-| Section | Per-page designs | Hub thumb | Webps in repo |
-|---|---|---|---|
-| Western Signs | 24 (14 styles × 1–4 variants) | `images/zodiac/<sign>.webp` × 12 | 288 design + 12 hub |
-| Western Realms | 8 (4 realms × 2 variants) | `images/zodiac/realms/<sign>.webp` × 12 | 96 design + 12 hub |
-| Chinese Signs | 8 (4 hyper-realistic + 4 watercolor) | `images/zodiac/chinese/<animal>.webp` × 12 | 96 design + 12 hub |
-| Chinese Realms | 2 per animal (single bundle, 24 total) | `images/zodiac/chinese-realms/<animal>.webp` × 12 | 24 design + 12 hub |
-| Western Landscapes | 1 per sign | `images/zodiac/landscapes/<sign>.jpg` × 12 | 12 jpgs |
-
----
-
-## Generators in `tools/` — current state
-
-| Script | Purpose | Status |
-|---|---|---|
-| `build_western_signs_page.py` | 12 Western Signs per-sign pages | Master pattern; all 12 LS URLs live; `datePublished`/`dateModified` present |
-| `build_realm_page_master.py` | 12 Western Realms per-sign pages | Master pattern; all 12 LS URLs live |
-| `build_chinese_animal_pages.py` | 12 Chinese Signs per-animal pages | Master pattern; all 12 LS URLs live |
-| `build_chinese_realms_page.py` | 1 Chinese Realms single-bundle page | Master pattern; LS URL live |
-| `build_zodiac_landscapes_page.py` | 1 Western Landscapes single-bundle page | Master pattern; LS URL live; 3-button page |
-| `build_realm_pages.py` | Phase 2 legacy simpler WR generator | **Obsolete** — safe to delete |
-| `update_western_sign_pages.py` | Phase 5 surgical updater | Idempotent. Probably done. |
-| `identity_cleanup.py` | Identity hygiene sweep | Idempotent. Has the canonical Organization schema embedded. |
-| `phase3_apply.py`, `phase4_apply.py` | Phase atomic apply scripts | Already executed (older site phases, not this session's) |
-| `publish_next_cooking.py`, `publish-next-cooking.ps1` | Cooking-stagger publish queue | Inherited. Queue empty. |
-| `_audit_seo.py`, `_audit_addendum.py`, `_phase2_dates.py`, `_phase3_sitemap_images.py`, `_phase4_faq_audit.py`, `_phase4_5_inject_faq.py`, `_phase5_related_reading.py` | This-session utility scripts | Untracked. Delete or keep. |
-
-### Master template
-- `templates/collection-page-master.md` — internal documentation of the canonical Collection-page structure. Blocked from crawlers via `robots.txt`.
-
----
-
-## Manifests
-
-All in `images/zodiac/` — produced during Phase 2–5 webp generation:
-- `western-signs-manifest.json` — 14 styles × 12 signs
-- `realms/manifest.json` — 4 realms × 12 signs (each realm has variants)
-- `chinese/manifest.json` — 2 styles × 12 animals
-- `chinese-realms/manifest.json` — 1 realm × 12 animals (with 2 variants)
+| GA4 Measurement ID | `G-QDSPBB7S9J` |
+| Pen name (canonical) | **`J.S. Warden`** (no spaces) |
+| **Overlayed Echoes Amazon URL** | **`https://a.co/d/06ZWovoY`** (paperback + ebook, 257 pages, full-length Book 1 of 5-book series) |
+| Books page | `https://builtbyjoshstudio.com/books.html` |
+| Pricing model | Western Signs $24.99 · Western Realms $14.99 · Chinese Signs $14.99 · Chinese Realms $29.99 · Western Landscapes $19.99 |
 
 ---
 
 ## Branches and tags
 
 ```
-main                                          production — HEAD 8055f13 (pushed, clean, == origin/main)
-cooking-stagger                               publish-script source branch (untouched this session)
-
-backup-after-phase-6                          8055f13 (most recent — full 6-phase pass complete)
-backup-pre-phase-3-handoff                    6273822 (pre-session checkpoint from prior session — handoff write)
-backup-after-ls-chinese-signs-activation      9cab5c0 (site-wide LS rollout complete)
-backup-after-ls-landscapes-activation         93e4bbf
-backup-after-ls-western-signs-activation      6f2bbd9
-backup-after-ls-realms-activation             a874693
-backup-after-landscapes-msg-5e                0c559d6
-backup-after-chinese-realms-msg-5d            4b9b524
-backup-after-chinese-signs-msg-5c             efc1f1c
-backup-after-western-realms-msg-5b            799bbfa
-backup-after-western-signs-msg-5a             cf615cc
-backup-after-western-signs-phase-5            0c98074 (pre-rollout 5A)
-backup-before-zodiac-restructure              f7de811 (pre-restructure baseline)
-...older tags below
+main                                          production — HEAD e195a79 (pushed, clean, == origin/main)
+backup-after-phase-6                          8055f13 (most recent tag, 8 commits below HEAD — worth tagging a new checkpoint)
 ```
 
-**This session's commits above `backup-pre-phase-3-handoff` (`6273822`):**
-- `01f0496` Phase 3 sitemap image entries
-- `3a8de69` `_config.yml` Jekyll unblock
-- `698b745` Phase 4 + 4.5 FAQ remediation
-- `5519ed7` Phase 5 related-reading + H2 promotion
-- `8055f13` Phase 6 blog filter
+**7 commits sit above the most recent tag:**
+- `9423a02` GA4 e-commerce events + LS Setup consolidation
+- `62b7b67` Collection-page LS Setup race-condition fix
+- `fda6e0b` zero-based-budget-excel SERP rewrite
+- `0921c2f` zero-based-budget-excel H1 alignment
+- `d9484c5` /books.html + footer Writing-link rollout
+- `27666ac` books.html sitemap lastmod fix
+- `e195a79` Overlayed Echoes full-length launch
 
-**Rollback options:**
-- `git reset --hard backup-after-phase-6` — current state (no-op)
-- `git reset --hard backup-pre-phase-3-handoff` — pre-session state (loses all 6 phases)
-- `git reset --hard backup-after-ls-chinese-signs-activation` — pre-Phase 1 state (loses 6 phases + earlier Phase 1+2 commits)
-
----
-
-## Important context (lessons reinforced this session)
-
-- **GitHub Pages builds can silently fail two ways.** Standing #13 covers transient infrastructure (`actions/jekyll-build-pages` action download flake). New this session: Jekyll Liquid parser errors on tracked markdown content with literal `{{` — see Standing #14. Always verify live content via `curl` after a push.
-- **Standing Instruction #7 (no city-level data) is hard-enforced.** When the Phase 1 brief asked to put "Wichita, Kansas" in the about-page Person schema, Josh confirmed the existing identity-hygiene rule still applies — state-level "Kansas" only, never any city on public pages. The brief is overridable by the standing instructions when there's a direct conflict.
-- **Audit before editing.** Phase 4 was the read-only audit; Phase 4.5 was the remediation. The audit caught a real contraction-mismatch (`What's` vs `What is` on `first-time-homebuyer-mistakes.html`) that the user-supplied brief assumed was a missing Q&A. Asking ONE crisp question with a recommended default (Standing #1) saved adding a duplicate Q&A.
-- **Preserve existing card HTML verbatim when slugs don't change.** The Phase 5 injector originally re-rendered EVERY card from a canonical library, which subtly changed unchanged-card descriptions. Fix: capture existing card chunks per-post and only render-from-library for new additions. The user caught this in the first sample diff.
-- **Detect per-post indentation rather than hardcoding.** Phase 5 cards were at `block_indent + 2` in some posts (`50-30-20-rule...`) and `block_indent + 4` in others (`ultimate-budget-workbook.html`). Hardcoding broke one. Per-post detection via regex on the existing block solved it.
-- **Match-the-site-conventions for small style choices.** Phase 6 originally added `font-style: italic` on `.blog-filter-input::placeholder`. The user flagged that the site's other inputs don't italicize their placeholders. Dropped the class-scoped rule entirely — the global `input::placeholder` rule already covered it. The kind of detail that keeps the site feeling cohesive.
-
-### Build + deploy (unchanged from prior sessions)
-- GitHub Pages → Fastly edge (10-min TTL). Pages build: 30s–2.5min when healthy.
-- Claude sessions start in `C:\Users\jotra\.claude`; `cd /c/Users/jotra/builtbyjoshstudio` for git. The Bash tool's cwd resets between calls — always `cd`.
-- `LF will be replaced by CRLF` warnings are benign for text files. Pre-commit hook in use (passing) — never `--no-verify`.
-- Local preview: `mcp__Claude_Preview__preview_start name="static-site"` (python http.server :8080). Server stops between turns — just restart it.
-- Untracked, keep untracked: `.claude/`, `.netlify/`, `HANDOFF*.md`.
-- Python on Windows: use `python -X utf8` when reading manifests or files with non-ASCII content (default cp1252 will UnicodeDecodeError).
+Suggested next tag: `backup-pre-phase-2a` (at `e195a79`) before Phase 2A lands edits.
 
 ---
 
-## Quick verification commands
+## Important context (hard-won lessons this session)
 
-```bash
-cd /c/Users/jotra/builtbyjoshstudio
-git status && git log --oneline -10
+- **CSS cascade is per-property, not per-rule.** Adding a single property to a shared CSS file (`tokens.css`) can fix divergent inline-`<style>` pages **as long as none of them set that specific property**. This is how the Phase 2A footer fix collapses from a 90-file sweep to a 1-line CSS change. Inspect inline rules per-property before assuming "they all override the shared file."
+- **Lazy-loaded SDKs need explicit post-load hooks.** ga4-events.js's polling assumed the SDK would arrive within 5s of DOMContentLoaded. On collection pages, the SDK only loads on first click (lazy) — long after polling timed out. The fix: explicitly invoke the Setup hook from the SDK's `s.onload` after init, before the overlay opens. This is documented as Standing Instruction #15 — don't reintroduce the race.
+- **"Don't touch X" rules + content that lives in X can conflict.** Phase 2A surfaced two conflicts: (a) the "all-links page" turned out to be about.html content (preservation said don't touch about.html); (b) the mobile nav fix needs to touch `.nav-links` (the source of mobile drawer items, which is per-page visible content, including on about.html / index.html / books.html). Always flag the conflict and ask, don't silently pick one side.
+- **URL screenshots can lie.** Browser address bar truncation made `/about.html` look like `/al…` in Josh's screenshot. Caught by grep ("Overlayed Echoes — the novel" → 1 file only = about.html). Trust grep, not URL fragments.
+- **Per-property CSS verification before global rule.** Verify the global rule won't be overridden by inline `display`/`gap`/`list-style` *also being set on the same selector* (those would be a wash unless the global rule changes one of them too). For Phase 2A footer fix, `flex-wrap` is the only new property — no override risk.
+- **Pen name canonical: `J.S. Warden` (no spaces).** Standardized this session in commit `d9484c5`. The book cover art uses spaced form as a stylistic choice — that's a print-only exception. All site copy + structured data must use no-spaces form.
+- **books.html footer does NOT self-link to /books.html.** Deliberate per Josh in commit `d9484c5`. The 91-footer rollout counted 91 (every existing footer-bearing HTML file) + books.html (the new file, which authored its footer WITHOUT a Writing self-link). Don't "fix" this by adding self-link — Josh has explicitly thought about it.
 
-# Production spot-checks
-curl -s -o /dev/null -w "%{http_code}\n" "https://builtbyjoshstudio.com/?x=$(date +%s)"                                       # 200
-curl -s -o /dev/null -w "%{http_code}\n" "https://builtbyjoshstudio.com/about.html?x=$(date +%s)"                            # 200
-curl -s -o /dev/null -w "%{http_code}\n" "https://builtbyjoshstudio.com/blog.html?x=$(date +%s)"                             # 200
-curl -s -o /dev/null -w "%{http_code}\n" "https://builtbyjoshstudio.com/collections/aries-zodiac-art.html?x=$(date +%s)"     # 200
-
-# Live Phase 1–6 markers
-curl -fsS "https://builtbyjoshstudio.com/about.html?x=$(date +%s)" | grep -c "What I bring to the work"                                         # 1   Phase 1
-curl -fsS "https://builtbyjoshstudio.com/collections/aries-zodiac-art.html?x=$(date +%s)" | grep -c "datePublished"                             # 1+  Phase 2
-curl -fsS "https://builtbyjoshstudio.com/sitemap.xml?x=$(date +%s)" | grep -c "image:image"                                                     # 94  Phase 3
-curl -fsS "https://builtbyjoshstudio.com/blog/why-solo-creators-stay-stuck-under-5k.html?x=$(date +%s)" | grep -c "Frequently Asked Questions"  # 1   Phase 4.5
-curl -fsS "https://builtbyjoshstudio.com/blog/ultimate-budget-workbook.html?x=$(date +%s)" | grep -c '<h2 class="related-posts-label">'        # 1   Phase 5
-curl -fsS "https://builtbyjoshstudio.com/blog.html?x=$(date +%s)" | grep -c 'id="blog-filter-input"'                                            # 1   Phase 6
-
-# Pages build status
-gh run list --workflow=pages-build-deployment --limit 5
-
-# Sitemap entry count
-curl -s "https://builtbyjoshstudio.com/sitemap.xml?x=$(date +%s)" | grep -c "<loc>"   # 91
-
-# Card-count sanity across all 34 blog posts (Phase 5)
-python -X utf8 -c "
-import re
-from pathlib import Path
-for f in sorted(Path('blog').glob('*.html')):
-    t = f.read_text(encoding='utf-8')
-    n = len(re.findall(r'class=\"related-post-card\"', t))
-    print(f'  {f.stem}: {n}')
-"
-
-# FAQ visibility audit (Phase 4 re-runnable)
-python -X utf8 tools/_phase4_faq_audit.py | tail -5   # SUMMARY: 445 questions, 445 visible, 0 missing
-```
+### Build + deploy (unchanged)
+- GitHub Pages → Fastly edge (10-min TTL). Pages build: 30s–2min typically.
+- Claude sessions start in `C:\Users\jotra\.claude`; `cd /c/Users/jotra/builtbyjoshstudio` for git. Bash cwd resets between calls.
+- `LF will be replaced by CRLF` warnings benign. Pre-commit hook in use (passing) — never `--no-verify`.
+- Local preview: `mcp__Claude_Preview__preview_start name="static-site"` (python http.server :8080). Server stops between turns.
+- Python on Windows: use `python -X utf8` when reading manifests / non-ASCII content.
+- For piping curl into Python via heredoc: **don't** (heredoc + curl pipe both compete for stdin). Use `curl -o tempfile.html` then read the tempfile from Python. Filename like `_v_*.html` so it's caught by the `_*` untracked-ignore pattern.
 
 ---
 
-**End of handoff.** State: live, clean — HEAD `8055f13` on `main`. Full Phase 1 → Phase 6 SEO optimization pass deployed and verified. Open items 1–6 carried forward; item 7 verified-and-noted. New session should start by reading this doc, running the "First steps" verification block, then awaiting Josh's instructions.
+**End of handoff.** State: live, clean — HEAD `e195a79` on `main`, 7 feature commits since the last tagged checkpoint, Phase 2A read-only audit complete with 3 decisions pending from Josh. New session should start by reading this doc, running the verification block, then either (a) handing Josh the 3 Phase 2A decisions to make, or (b) addressing whatever Josh raises next.
