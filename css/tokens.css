@@ -982,3 +982,6 @@
     background: rgba(255, 255, 255, 0.85);
   }
 }
+
+/* Footer link rows wrap on narrow viewports (inline .footer-links on most pages omits flex-wrap). */
+.footer-links { flex-wrap: wrap; }
