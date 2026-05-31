@@ -717,4 +717,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- OVERLAYED ECHOES — FREE PREVIEW -->
+  <url>
+    <loc>https://builtbyjoshstudio.com/overlayed-echoes-preview.html</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
