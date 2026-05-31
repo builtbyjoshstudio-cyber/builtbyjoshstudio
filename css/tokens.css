@@ -1005,6 +1005,7 @@
 [data-glass="books"] body {
   position: relative;
   isolation: isolate;
+  overflow-x: hidden; /* match site convention; contain the decorative hero wash on mobile */
 }
 [data-glass="books"] body::before {
   content: '';
@@ -1023,6 +1024,7 @@
 [data-glass="books"] .hero {
   position: relative;
   isolation: isolate;
+  overflow: hidden; /* clip the bolder hero bloom (right:-15%, width:70%) so it can't widen the page on mobile */
 }
 [data-glass="books"] .hero::before {
   content: '';
