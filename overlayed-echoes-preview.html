@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QDSPBB7S9J');
+  </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Overlayed Echoes — Read Chapters 1 &amp; 2 Free | J.S. Warden</title>
@@ -367,5 +375,42 @@
     </div>
     <div class="copy">&copy; 2026 Built by Josh Studio LLC. All rights reserved. <em>Overlayed Echoes</em> &copy; 2025, 2026 J.S. Warden.</div>
   </footer>
+
+  <!-- Funnel tracking: delegated click listener (same shape as the Etsy handler in ga4-events.js).
+       Inline + page-specific by design — do NOT move into the shared ga4-events.js. -->
+  <script>
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a');
+        if (!link || !link.href) return;
+        if (typeof gtag !== 'function') return;
+
+        // A. Outbound Amazon clicks (two on this page: hero + end-block; both a.co/d/06ZWovoY).
+        if (link.href.indexOf('a.co') !== -1) {
+          gtag('event', 'book_amazon_click', {
+            book_title: 'Overlayed Echoes',
+            link_url: link.href,
+            link_text: (link.innerText || '').trim().substring(0, 100),
+            source_page: 'preview',
+            cta_position: link.closest('.sample-end') ? 'end' : 'hero',
+            outbound: true,
+            transport_type: 'beacon'
+          });
+          return;
+        }
+
+        // B. Sample PDF download (download attribute -> no page unload, no beacon needed).
+        if (link.getAttribute('href') === 'overlayed-echoes-sample.pdf') {
+          gtag('event', 'file_download', {
+            file_name: 'overlayed-echoes-sample.pdf',
+            file_extension: 'pdf',
+            link_text: (link.innerText || '').trim().substring(0, 100),
+            book_title: 'Overlayed Echoes',
+            source_page: 'preview'
+          });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
