@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-glass="books">
+<head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QDSPBB7S9J');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Director's Voice — A Dispatch from Overlayed Echoes</title>
+  <meta name="description" content="An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — a game master's pride, and his quiet dread, in the hour before the first session." />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/writing/directors-voice.html" />
+
+  <meta property="og:title" content="The Director's Voice — A Dispatch from Overlayed Echoes" />
+  <meta property="og:description" content="An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — a game master's pride, and his quiet dread, in the hour before the first session." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/writing/directors-voice.html" />
+  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/books/og-books.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Overlayed Echoes — a near-future LitRPG by J.S. Warden." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Director's Voice — A Dispatch from Overlayed Echoes" />
+  <meta name="twitter:description" content="An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — a game master's pride, and his quiet dread, in the hour before the first session." />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/books/og-books.jpg" />
+  <meta name="twitter:image:alt" content="Overlayed Echoes — a near-future LitRPG by J.S. Warden." />
+
+  <!-- Schema.org BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://builtbyjoshstudio.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Books", "item": "https://builtbyjoshstudio.com/books.html"},
+      {"@type": "ListItem", "position": 3, "name": "The Director's Voice", "item": "https://builtbyjoshstudio.com/writing/directors-voice.html"}
+    ]
+  }
+  </script>
+
+  <!-- Schema.org BlogPosting — in-universe dispatch, cross-linked to the OE Book + J.S. Warden Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "The Director's Voice: Five Things I Got Right Before We Started",
+    "description": "An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — a game master's pride, and his quiet dread, in the hour before the first session.",
+    "url": "https://builtbyjoshstudio.com/writing/directors-voice.html",
+    "image": "https://builtbyjoshstudio.com/images/books/og-books.jpg",
+    "inLanguage": "en-US",
+    "datePublished": "2026-06-02",
+    "dateModified": "2026-06-02",
+    "articleSection": "Fiction",
+    "author": {"@id": "https://builtbyjoshstudio.com/books.html#jswarden"},
+    "publisher": {"@id": "https://builtbyjoshstudio.com/#organization"},
+    "isPartOf": {"@id": "https://builtbyjoshstudio.com/books.html#overlayed-echoes"},
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://builtbyjoshstudio.com/writing/directors-voice.html"}
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/tokens.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tynkr-bg: #f7f6f2;
+      --tynkr-surface: #ffffff;
+      --tynkr-accent: #e8500a;
+      --tynkr-text: #1c1c1c;
+      --tynkr-muted: #6b6b6b;
+      --tynkr-border: #e0ddd8;
+      --body-read: #3a3a3a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--tynkr-bg);
+      color: var(--tynkr-text);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    /* NAV — matches site standard */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(247, 246, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--tynkr-border);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--tynkr-text);
+      text-decoration: none;
+    }
+    .logo-short { display: none; }
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tynkr-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--tynkr-accent); }
+    @media (max-width: 700px) {
+      .logo-full { display: none; }
+      .logo-short { display: inline; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.75rem; }
+    }
+
+    /* DISPATCH — single-column reading world */
+    .dispatch {
+      max-width: 720px;
+      margin: 3rem auto 0;
+      padding: 0 1.5rem;
+    }
+    .dispatch-header {
+      padding-bottom: 1.8rem;
+      margin-bottom: 1.8rem;
+      border-bottom: 1px solid var(--tynkr-border);
+    }
+    .dispatch-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .dispatch h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.3rem;
+      font-weight: 800;
+      line-height: 1.14;
+      color: var(--tynkr-text);
+      margin-bottom: 1rem;
+    }
+    .dispatch-standfirst {
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--tynkr-accent);
+      margin-bottom: 0.9rem;
+    }
+    .dispatch-log {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--tynkr-muted);
+      letter-spacing: 0.02em;
+    }
+    .dispatch-body { }
+    .dispatch-body p {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--body-read);
+      margin-bottom: 1.2rem;
+    }
+    .dispatch-body p em { color: inherit; }
+    .dispatch-body h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--tynkr-text);
+      margin: 2.6rem 0 1rem;
+    }
+    .dispatch-body hr {
+      border: 0;
+      height: 1px;
+      background: var(--tynkr-border);
+      margin: 2.6rem auto;
+    }
+    .dispatch-close-q {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--tynkr-text);
+      margin: 2.6rem 0 1rem;
+    }
+    .dispatch-pitch {
+      font-style: italic;
+      font-size: 1.08rem;
+      line-height: 1.65;
+      color: var(--body-read);
+      margin: 2rem 0 0;
+    }
+
+    /* DIEGETIC CTAs — soft, books-world, not a sales band */
+    .dispatch-cta {
+      max-width: 720px;
+      margin: 2.4rem auto 4rem;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .dispatch-cta a {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--tynkr-accent);
+      text-decoration: none;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid var(--tynkr-border);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.55);
+      transition: transform 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .dispatch-cta a:hover {
+      transform: translateY(-2px);
+      border-color: var(--tynkr-accent);
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    /* FOOTER — matches site standard */
+    footer {
+      background: var(--tynkr-surface);
+      border-top: 1px solid var(--tynkr-border);
+      padding: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-left {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--tynkr-muted);
+    }
+    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.4rem; }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--tynkr-text);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--tynkr-accent); }
+    .footer-legal {
+      width: 100%;
+      font-size: 0.78rem;
+      color: var(--tynkr-muted);
+      line-height: 1.5;
+      margin-top: 0.4rem;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/mobile-nav.css" />
+
+  <!-- Schema.org Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://builtbyjoshstudio.com/#organization",
+    "name": "Built by Josh Studio LLC",
+    "alternateName": ["BBJ Studio", "Built By Josh Studio"],
+    "legalName": "Built by Josh Studio LLC",
+    "url": "https://builtbyjoshstudio.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+      "width": 512,
+      "height": 512
+    },
+    "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+    "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under the Built By Josh Studio brand and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
+    "founder": {
+      "@type": "Person",
+      "name": "Josh"
+    },
+    "foundingDate": "2026-05-13",
+    "foundingLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "KS",
+        "addressCountry": "US"
+      }
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "KS",
+      "addressCountry": "US"
+    },
+    "areaServed": "Worldwide",
+    "sameAs": [
+      "https://linktr.ee/builtbyjoshstudio",
+      "https://tynkrtoolsco.substack.com/",
+      "https://www.youtube.com/@TalesofInkShadowsStudio",
+      "https://tynkrtoolsandco.etsy.com",
+      "https://www.etsy.com/shop/BuiltByJoshStudio"
+    ],
+    "identifier": [
+      {
+        "@type": "PropertyValue",
+        "propertyID": "Kansas Business ID",
+        "value": "10076138"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#tynkr">Tynkr Tools</a></li>
+      <li><a href="../index.html#builtbyjosh">Zodiac Art</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../index.html#free-tools">Free Tools</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="/books.html" class="active">Writing</a></li>
+      <li><a href="/legal/">Legal</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <article class="dispatch">
+    <header class="dispatch-header">
+      <div class="dispatch-eyebrow">Field Dispatch · Overlayed Echoes</div>
+      <h1>The Director's Voice: Five Things I Got Right Before We Started</h1>
+      <p class="dispatch-standfirst">An in-world dispatch from the world of <em>Overlayed Echoes</em> by J.S. Warden.</p>
+      <p class="dispatch-log">Recovered log · Game Master, Overlayed Echoes project · the hour before the first full session, 2045.</p>
+    </header>
+
+    <div class="dispatch-body">
+      <p>I'm writing this at the table while the others get settled. The chip behind my ear just hummed its test pulse, soft and warm. The gloves have tightened by a thread. In a minute the middle of this table is going to become a tavern, and four people I'd take a bullet for are going to walk into a world I spent eleven months building. I have a notebook in my jacket pocket — black hardback, elastic over the pen — and the cover story is that it's <em>director's notes</em> for a novel. The cover story is close enough to true.</p>
+
+      <p>So while I've got a minute: here's what I'm proud of. Here's what I got right.</p>
+
+      <p>Read it as a man who is about to find out whether eleven months of work holds together for one full night.</p>
+
+      <hr />
+
+      <h2>1. The narration isn't the joke they think it is</h2>
+
+      <p>They rib me about the director's voice. <em>And so, dear viewers, the heroes ignore the GM's finest work.</em> I do it at game tables, at dinners, in line at the grocery store. Marcus choked on a pretzel laughing at it once in college, and I've never quite put it down.</p>
+
+      <p>What I've never told any of them: I'm the second-quietest person in any room I'm in, on a good day. The voice is a costume, and it's the only time my voice comes out steady. It lets me set a scene for people I love without having to say, in plain words, that I love them.</p>
+
+      <p>A second ago I narrated under my breath, too low for them to catch — <em>and here, dear viewers, the hour the dreamers have waited for.</em> I meant every word of it. Lena raised an eyebrow and asked what I was doing. <em>Narrating,</em> I said. <em>For the fans.</em> Marcus groaned that there's no camera. There isn't. Just air, judgment, and my award-worthy act. I'll take it.</p>
+
+      <h2>2. The room knows its own bones</h2>
+
+      <p>I spent six weeks on the tavern. Built every chair. Named every drinker — the barmaid, the boy she's sweet on, her mother who's been dead for years. None of it will ever come up in play, and that's the point. The room knows itself all the way down, and the chip feels that and hands it to the players as the thing you can't quite name: <em>real.</em></p>
+
+      <p>The part I'm proudest of is the smell. The chip doesn't pipe scent the way it pipes sound — it suggests it straight to the olfactory bulb, so confidently your nose accepts it before the rest of you gets a say. Sour ale. Old smoke. Wet wool off a drying cloak. The faint sweet-rotten edge of something spilled under a table and never mopped. That's the detail nobody will ever point to and everybody will feel in their chest.</p>
+
+      <p>You can show people visuals. You can rattle their hands with the gloves. But the smell is the part that pulls you forward by the back of the head and says <em>yes — you're here.</em></p>
+
+      <h2>3. I tested the safeties on my own arm</h2>
+
+      <p>This matters to me more than the pretty stuff, so I want it written down.</p>
+
+      <p>The pain ceiling is the hardest line in the whole system. A sliding sting — a one out of ten for a glancing hit, a four for solid damage, never above a six no matter what. A six is a stubbed toe. A six makes you yelp and doesn't ruin your week. Angela gave me the principle back in design: if they don't feel it they won't take it seriously, and if they feel too much they won't have any fun. I calibrated the rest myself. Tested it on my own arm forty-three times until I was sure.</p>
+
+      <p>And the logout. The hard cutoff lives in the silicon — below the app, below the operating system, wired into the chip itself. The technicians teach you the panic-word at your commissioning visit. You're not supposed to ever need it. The chip can't block it; blocking it isn't a thing the hardware is built to do.</p>
+
+      <p>I made these people a door. I tested the door. That's the promise underneath all the torchlight, and it's the one I lose sleep over getting right.</p>
+
+      <h2>4. I know my friends down to their tells</h2>
+
+      <p>Twenty years of these four has taught me to read them without their permission. Theo's eyes go soft before he gets embarrassed about it. Marcus's laugh gets loud right when a real question is coming, because he figured out at fifteen that if you laugh long enough nobody asks the next one. Angela's hands start cleaning whatever's nearest. Lena's stutter shows up when she's tired or scared — a tell from a childhood I won't put on this page.</p>
+
+      <p>I built the campaign around those tells. And I hid small gifts in it for each of them. A hum threaded into Angela's healing staff, pitched just under hearing, so only she will feel it. An idle dagger-flip for Marcus that I swore wasn't worth the dev time until he brought me coffee four mornings running and I caved. A forest breeze I sampled off the path behind my parents' house — cedar, and ozone after rain, the air my dad used to walk through picking up sticks for no reason.</p>
+
+      <p>None of them will name these things. All of them will feel them. That's the only kind of <em>I love you</em> I've ever been any good at.</p>
+
+      <h2>5. These four are the only family I've really counted</h2>
+
+      <p>Theo carried me a full mile home from a frat party junior year and brought me a bagel the next morning, dead serious that we'd talk about my judgment <em>but not today.</em> Angela has been my best friend since a third-grade hallway, where she watched a bigger kid shove me into the lockers and made it stop in the most bored voice I've ever heard a child produce. Marcus is held together with blanks, and he needs his blanks, and I've spent years not asking him to fill them in. Lena is my sister — legally and in spirit — and our whole first month of friendship was conducted in sharpened pencils and nothing else.</p>
+
+      <p>When my own family finally adopted Lena, Angela's mother cried in the kitchen and told me she'd always known I'd make a good brother. That I'd had practice.</p>
+
+      <p>So that's who's sitting around this table. Not players. Not test subjects for a product. The four people who are the reason the product exists at all. Whatever happens tonight, whatever breaks or holds, I built this for <em>them.</em></p>
+
+      <hr />
+
+      <h2 class="dispatch-close-q">So — time to begin</h2>
+
+      <p>The interface is glowing. Every dial and slider is exactly where I left it. The binder's on my left, thicker than my forearm; there's a second binder for the contingencies the first one can't predict. To my right, the four of them, settling in like a band tuning up before a show.</p>
+
+      <p>I'll be honest about one thing, since this is the notebook and the notebook gets the truth. The last few weeks, working late, I've had the feeling of being watched. A prickle at the back of the neck while I code. The cursor blinking somewhere I didn't put it. A line I was sure I wrote, gone by morning, something almost-but-not-quite the same in its place. I've been calling it exhaustion. Four hours of sleep a night will do that. Big things make you nervous, and this is the biggest thing I've ever made.</p>
+
+      <p>Lena's looking at me a beat too long right now, the way she does before a follow-up question. I'm giving her the director's smile. The scene's going to be great.</p>
+
+      <p>Time to begin.</p>
+
+      <p>If you want to know what it feels like to close the gap between a mind and a machine — to build a world so real it can fool the body of someone you love — start where we started. At the table, the hour before the first session, with everything exactly where I left it.</p>
+
+      <p class="dispatch-pitch">This is the world of <em>Overlayed Echoes</em> — a near-future LitRPG about found family, the masks we wear for the people we love, and the weight of being the one who holds the story together. Progression fantasy with a beating heart and a knife behind its back.</p>
+    </div>
+  </article>
+
+  <nav class="dispatch-cta" aria-label="Read Overlayed Echoes">
+    <a href="../overlayed-echoes-preview.html" data-dispatch-cta="preview">Read the first two chapters free →</a>
+    <a href="https://a.co/d/06ZWovoY" data-dispatch-cta="amazon" rel="noopener" target="_blank">Available now on Amazon — free with Kindle Unlimited →</a>
+  </nav>
+
+  <footer>
+    <div class="footer-left">
+      <strong>Built By Josh Studio</strong> · All digital products — instant download
+    </div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="/books.html">Writing</a></li>
+      <li><a href="/legal/">Legal</a></li>
+      <li><a href="https://tynkrtoolsandco.etsy.com" target="_blank" rel="noopener">Etsy</a></li>
+      <li><a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener">Substack</a></li>
+      <li><a href="mailto:josh@builtbyjoshstudio.com">Contact</a></li>
+      <li><a href="../refunds.html">Refunds</a></li>
+      <li><a href="../privacy.html">Privacy</a></li>
+      <li><a href="../terms.html">Terms</a></li>
+    </ul>
+      <div class="footer-legal">
+      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
+      Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.
+    </div>
+  </footer>
+
+  <!-- Dispatch funnel CTA tracking -->
+  <script>
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[data-dispatch-cta]');
+        if (!link || typeof gtag !== 'function') return;
+        var which = link.getAttribute('data-dispatch-cta');
+        if (which === 'amazon') {
+          gtag('event', 'book_amazon_click', {
+            book_title: 'Overlayed Echoes',
+            link_url: link.href,
+            link_text: (link.innerText || '').trim().substring(0, 100),
+            source_page: 'dispatch-directors-voice',
+            outbound: true,
+            transport_type: 'beacon'
+          });
+        } else if (which === 'preview') {
+          gtag('event', 'select_content', {
+            content_type: 'book_preview',
+            book_title: 'Overlayed Echoes',
+            link_url: link.href,
+            source_page: 'dispatch-directors-voice'
+          });
+        }
+      });
+    })();
+  </script>
+
+  <script src="/js/mobile-nav.js" defer></script>
+  <script src="/js/ga4-events.js" defer></script>
+</body>
+</html>
