@@ -301,6 +301,28 @@
     ]
   }
   </script>
+  <style>
+    /* /writing/ index — dispatch-list grouping (page-scoped, smallest addition) */
+    .dispatch-group {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tynkr-muted);
+      font-weight: 700;
+      margin: 0;
+    }
+    .dispatch-group.after { margin-top: 1.6rem; }
+    .dispatch-cta a .hook {
+      display: block;
+      margin-top: 0.3rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.92rem;
+      line-height: 1.4;
+      color: var(--tynkr-muted);
+    }
+  </style>
 </head>
 <body>
 
@@ -336,13 +358,15 @@
     </div>
   </article>
 
-  <nav class="dispatch-cta" aria-label="All field dispatches">
-    <a href="directors-voice.html">The Director's Voice — the game master, the hour before →</a>
-    <a href="the-things-i-let-go.html">The Things I Let Go — his sister, the hour before →</a>
-    <a href="no-footnotes-required.html">No Footnotes Required — the joker, the hour before →</a>
-    <a href="counting-the-exits.html">Counting the Exits — the guardian, the hour before →</a>
-    <a href="end-of-worry.html">The End of Worry — the medic, the hour before →</a>
-    <a href="corruption-of-immersion.html">The Glitch in the Soul — the game master, after →</a>
+  <nav class="dispatch-cta" aria-label="Field dispatches">
+    <p class="dispatch-group">The calm before</p>
+    <a href="directors-voice.html">The Director's Voice — the game master<span class="hook">The voice is a costume — and the only time my voice comes out steady.</span></a>
+    <a href="counting-the-exits.html">Counting the Exits — the guardian<span class="hook">I checked the exits. I checked them twice.</span></a>
+    <a href="end-of-worry.html">The End of Worry — the medic<span class="hook">A checklist isn't worry. It's the end of worry.</span></a>
+    <a href="no-footnotes-required.html">No Footnotes Required — the joker<span class="hook">I'm going to be a problem. A delightful problem.</span></a>
+    <a href="the-things-i-let-go.html">The Things I Let Go — his sister<span class="hook">I always let it go. That's the thing about being his sister.</span></a>
+    <p class="dispatch-group after">And after</p>
+    <a href="corruption-of-immersion.html">The Glitch in the Soul — the game master<span class="hook">The system started writing back.</span></a>
   </nav>
 
   <footer>
