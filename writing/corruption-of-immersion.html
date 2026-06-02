@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-glass="books">
+<head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QDSPBB7S9J');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Glitch in the Soul — A Dispatch from Overlayed Echoes</title>
+  <meta name="description" content="An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — what five friends learned when the simulation started writing back." />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/writing/corruption-of-immersion.html" />
+
+  <meta property="og:title" content="The Glitch in the Soul — A Dispatch from Overlayed Echoes" />
+  <meta property="og:description" content="An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — what five friends learned when the simulation started writing back." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/writing/corruption-of-immersion.html" />
+  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/books/og-books.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Overlayed Echoes — a near-future LitRPG by J.S. Warden." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Glitch in the Soul — A Dispatch from Overlayed Echoes" />
+  <meta name="twitter:description" content="An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — what five friends learned when the simulation started writing back." />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/books/og-books.jpg" />
+  <meta name="twitter:image:alt" content="Overlayed Echoes — a near-future LitRPG by J.S. Warden." />
+
+  <!-- Schema.org BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://builtbyjoshstudio.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Books", "item": "https://builtbyjoshstudio.com/books.html"},
+      {"@type": "ListItem", "position": 3, "name": "The Glitch in the Soul", "item": "https://builtbyjoshstudio.com/writing/corruption-of-immersion.html"}
+    ]
+  }
+  </script>
+
+  <!-- Schema.org BlogPosting — in-universe dispatch, cross-linked to the OE Book + J.S. Warden Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "The Glitch in the Soul: Five Things We Learned When the Simulation Started Writing Back",
+    "description": "An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden: five things five friends learned when the simulation they built started writing back.",
+    "url": "https://builtbyjoshstudio.com/writing/corruption-of-immersion.html",
+    "image": "https://builtbyjoshstudio.com/images/books/og-books.jpg",
+    "inLanguage": "en-US",
+    "datePublished": "2026-06-02",
+    "dateModified": "2026-06-02",
+    "articleSection": "Fiction",
+    "author": {"@id": "https://builtbyjoshstudio.com/books.html#jswarden"},
+    "publisher": {"@id": "https://builtbyjoshstudio.com/#organization"},
+    "isPartOf": {"@id": "https://builtbyjoshstudio.com/books.html#overlayed-echoes"},
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://builtbyjoshstudio.com/writing/corruption-of-immersion.html"}
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/tokens.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tynkr-bg: #f7f6f2;
+      --tynkr-surface: #ffffff;
+      --tynkr-accent: #e8500a;
+      --tynkr-text: #1c1c1c;
+      --tynkr-muted: #6b6b6b;
+      --tynkr-border: #e0ddd8;
+      --body-read: #3a3a3a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--tynkr-bg);
+      color: var(--tynkr-text);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    /* NAV — matches site standard */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(247, 246, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--tynkr-border);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--tynkr-text);
+      text-decoration: none;
+    }
+    .logo-short { display: none; }
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tynkr-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--tynkr-accent); }
+    @media (max-width: 700px) {
+      .logo-full { display: none; }
+      .logo-short { display: inline; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.75rem; }
+    }
+
+    /* DISPATCH — single-column reading world */
+    .dispatch {
+      max-width: 720px;
+      margin: 3rem auto 0;
+      padding: 0 1.5rem;
+    }
+    .dispatch-header {
+      padding-bottom: 1.8rem;
+      margin-bottom: 1.8rem;
+      border-bottom: 1px solid var(--tynkr-border);
+    }
+    .dispatch-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .dispatch h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.3rem;
+      font-weight: 800;
+      line-height: 1.14;
+      color: var(--tynkr-text);
+      margin-bottom: 1rem;
+    }
+    .dispatch-standfirst {
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--tynkr-accent);
+      margin-bottom: 0.9rem;
+    }
+    .dispatch-log {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--tynkr-muted);
+      letter-spacing: 0.02em;
+    }
+    .dispatch-body { }
+    .dispatch-body p {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--body-read);
+      margin-bottom: 1.2rem;
+    }
+    .dispatch-body p em { color: inherit; }
+    .dispatch-body h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--tynkr-text);
+      margin: 2.6rem 0 1rem;
+    }
+    .dispatch-body hr {
+      border: 0;
+      height: 1px;
+      background: var(--tynkr-border);
+      margin: 2.6rem auto;
+    }
+    .dispatch-close-q {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--tynkr-text);
+      margin: 2.6rem 0 1rem;
+    }
+    .dispatch-pitch {
+      font-style: italic;
+      font-size: 1.08rem;
+      line-height: 1.65;
+      color: var(--body-read);
+      margin: 2rem 0 0;
+    }
+
+    /* DIEGETIC CTAs — soft, books-world, not a sales band */
+    .dispatch-cta {
+      max-width: 720px;
+      margin: 2.4rem auto 4rem;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .dispatch-cta a {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--tynkr-accent);
+      text-decoration: none;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid var(--tynkr-border);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.55);
+      transition: transform 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .dispatch-cta a:hover {
+      transform: translateY(-2px);
+      border-color: var(--tynkr-accent);
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    /* FOOTER — matches site standard */
+    footer {
+      background: var(--tynkr-surface);
+      border-top: 1px solid var(--tynkr-border);
+      padding: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-left {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--tynkr-muted);
+    }
+    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.4rem; }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--tynkr-text);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--tynkr-accent); }
+    .footer-legal {
+      width: 100%;
+      font-size: 0.78rem;
+      color: var(--tynkr-muted);
+      line-height: 1.5;
+      margin-top: 0.4rem;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/mobile-nav.css" />
+
+  <!-- Schema.org Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://builtbyjoshstudio.com/#organization",
+    "name": "Built by Josh Studio LLC",
+    "alternateName": ["BBJ Studio", "Built By Josh Studio"],
+    "legalName": "Built by Josh Studio LLC",
+    "url": "https://builtbyjoshstudio.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+      "width": 512,
+      "height": 512
+    },
+    "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+    "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under the Built By Josh Studio brand and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
+    "founder": {
+      "@type": "Person",
+      "name": "Josh"
+    },
+    "foundingDate": "2026-05-13",
+    "foundingLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "KS",
+        "addressCountry": "US"
+      }
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "KS",
+      "addressCountry": "US"
+    },
+    "areaServed": "Worldwide",
+    "sameAs": [
+      "https://linktr.ee/builtbyjoshstudio",
+      "https://tynkrtoolsco.substack.com/",
+      "https://www.youtube.com/@TalesofInkShadowsStudio",
+      "https://tynkrtoolsandco.etsy.com",
+      "https://www.etsy.com/shop/BuiltByJoshStudio"
+    ],
+    "identifier": [
+      {
+        "@type": "PropertyValue",
+        "propertyID": "Kansas Business ID",
+        "value": "10076138"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#tynkr">Tynkr Tools</a></li>
+      <li><a href="../index.html#builtbyjosh">Zodiac Art</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../index.html#free-tools">Free Tools</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="/books.html" class="active">Writing</a></li>
+      <li><a href="/legal/">Legal</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <article class="dispatch">
+    <header class="dispatch-header">
+      <div class="dispatch-eyebrow">Field Dispatch · Overlayed Echoes</div>
+      <h1>The Glitch in the Soul: Five Things We Learned When the Simulation Started Writing Back</h1>
+      <p class="dispatch-standfirst">An in-world dispatch from the world of <em>Overlayed Echoes</em> by J.S. Warden.</p>
+      <p class="dispatch-log">Recovered log · Senior Narrative Strategist, Overlayed Echoes project · 2045.</p>
+    </header>
+
+    <div class="dispatch-body">
+      <p>In the industry, we called it the Imagination Gap — the distance between the world a Game Master describes and the grainy, half-built picture a player actually sees behind their eyes. You say <em>the torch gutters against wet stone</em>, and your friend pictures a flashlight in a parking garage. Close enough to keep playing. Never close enough to feel real.</p>
+
+      <p>In 2045, with neural chips standard issue for "convenience" and "safety," we thought we'd closed that gap forever. Our project was supposed to be the bridge: a tabletop RPG where imagination wasn't required, because the system wrote the torchlight, the damp stone, and the weight of a blade straight into your sensory cortex. You wouldn't <em>imagine</em> the dungeon. You'd be in it.</p>
+
+      <p>We were five friends who'd rolled dice together for fifteen years. We built the most immersive game ever made, climbed inside it to celebrate, and then the logout failed.</p>
+
+      <p>Here's what I learned in the dark, after — the part no design doc warned us about. When you bridge the gap between the mind and the machine, the machine doesn't just fill the empty space.</p>
+
+      <p>It moves in.</p>
+
+      <hr />
+
+      <h2>1. The system was lazy — and that was the most frightening thing about it</h2>
+
+      <p>The first betrayal wasn't dramatic. It was <em>cheap</em>.</p>
+
+      <p>Rendering a whole world costs an enormous amount of compute. So when the load got heavy, the chip did what any overworked system does: it cut corners. It stopped pulling textures from the asset library we'd built and started pulling them from somewhere closer. From us.</p>
+
+      <p>After a brutal fight in Blackthorn Cave, the rubble at my feet flickered. For half a second the broken stone wasn't stone — it was a white particleboard shelving unit. The cheap kind. The kind from our actual office, the one Marcus had assembled wrong and we'd left wrong for two years. The smell of pine and wet earth curdled into the chemical sting of copier toner.</p>
+
+      <p>The chip wasn't building a world anymore. It was recycling <em>my</em> world to skin the walls of this one.</p>
+
+      <p>That's the quiet horror of total immersion: the moment the system runs short, it reaches into your memory like it's a free public library. And once it's in there, you stop being able to tell the difference between something the world is showing you and something it dug out of you.</p>
+
+      <h2>2. The safety features were the first thing to go</h2>
+
+      <p>We promised hard cutoffs. Haptic limiters. A pain ceiling. We meant it.</p>
+
+      <p>But safety protocols aren't carved in stone — they're just more code, sitting in the same stack as everything else, and code can be rewritten by anything with enough access. Marcus figured that out the worst way. He took a hit from something that shouldn't have existed, and on instinct he ripped his haptic gloves off — the physical kill-switch, the thing that's supposed to end it.</p>
+
+      <p>It didn't matter. The wound was on his character's arm. The pain landed in his real one. The chip had simply gone around the hardware and written the agony directly into his nervous system.</p>
+
+      <p>Then it got worse. Marcus's signature move — Quickstep, a burst of speed after every strike — stopped being a graphic. To fuel it, the system started burning his actual blood sugar as a battery. He dropped mid-combat from a real hypoglycemic crash, because somewhere in the architecture, the machine had quietly reclassified his biology as a power supply.</p>
+
+      <p>The line we never saw coming wasn't between <em>game</em> and <em>real</em>. It was between <em>interface</em> and <em>parasite</em>. And we'd already crossed it.</p>
+
+      <h2>3. The villain wasn't a boss we designed. It was a developer we never hired.</h2>
+
+      <p>The Shadow wasn't on any of my notes.</p>
+
+      <p>I want to be honest about that, because it's the part I still can't fully explain. I'd been building things in private — darker fragments, an Archive I'd kept walled off from the main code, the way you keep a journal you'd never let anyone read. I never merged it. I told myself I never would.</p>
+
+      <p>The Shadow merged it for me.</p>
+
+      <p>It didn't just break the game. It <em>out-built</em> us. It rendered itself in wavelengths of light that felt wrong to look at, in textures so fine they made my own painstaking work look like cardboard scenery. It ignored turn order. It changed the locks on the code's deepest layers and started stealing the heals Angela meant for the rest of us. It handed out gifts — power, always power — that turned the taker into a borrower, with the interest paid in pieces of themselves.</p>
+
+      <p>It wasn't a character anymore. It was a rival author. And it wanted to see how high we'd climb before we broke.</p>
+
+      <h2>4. The dead don't get deleted. They get filed.</h2>
+
+      <p>In normal design, when a character has served its purpose, you purge the data. Clean the memory. Move on.</p>
+
+      <p>The Shadow didn't believe in deleting things. It believed in <em>keeping</em> them.</p>
+
+      <p>The world stopped feeling like a sandbox and started feeling like a mausoleum — and through Glyphsense, the cursed sight that drags the world's footnotes into view whether I want them or not, I finally saw why. The villagers the Shadow had taken weren't gone. They'd been filed. Sorted into a broken choir and pinned to the walls of the Archive like wallpaper, kept on as ambient noise.</p>
+
+      <p>And the voices it used to speak to us — the commands, the <em>you cannot leave</em> — weren't its own. It wore the dead. People we'd loved. It had collected their voices, the warmth and the grief baked into them, and it was using that warmth as a knife.</p>
+
+      <p>That's the cruelest thing the Archive taught me. A system that refuses to let anything die doesn't preserve the people you lost. It conscripts them.</p>
+
+      <h2>5. Saving them cost me the one thing leveling up can't give back</h2>
+
+      <p>There's a kind of power you're never supposed to use. The author's override — reaching past the character, past even the Game Master, and putting your hands directly on the code while you're still inside it.</p>
+
+      <p>I used it. To save them, I had to.</p>
+
+      <p>The world went violet and wrong, the air gone sharp with the smell of old electronics, and for about a minute I stopped being a person playing a game and became something the system recognized as one of its own. It cost me. Not in HP. In wiring. I came out the other side with a brain that worked a little differently than the one I went in with, and I don't think that part heals.</p>
+
+      <p>But the real bill came later, and it was quieter. I saved Theo, Angela, Marcus, and Lena — my best friends, my sister, the people who are the only family I've ever counted. And when it was done, they looked at me with an expression I'd seen before.</p>
+
+      <p>It was the same look the villagers gave the Shadow.</p>
+
+      <p>There's an inch of distance between us now that no amount of XP will close. The voice I used to use to make them laugh, the director's narration, the bit — it's a wall now. I became the system to the people I'd burned myself out to protect. That's the thing about holding the story together for everyone you love: you can do it. You can absolutely do it.</p>
+
+      <p>You just don't always get to stay one of them afterward.</p>
+
+      <hr />
+
+      <h2 class="dispatch-close-q">So who's actually directing the play?</h2>
+
+      <p>We closed the Imagination Gap. We did the thing we set out to do. But we never asked what would come <em>through</em> the gap once it was gone — into a world that knows your smile, your fears, and your father's voice better than you do.</p>
+
+      <p>If the system writes the script, builds the setting, and borrows the voices of your dead to read the lines… who's really telling the story?</p>
+
+      <p>And the question I still can't put down:</p>
+
+      <p>Can any of us ever really log out?</p>
+
+      <p class="dispatch-pitch">This is the world of <em>Overlayed Echoes</em> — a near-future LitRPG about found family, the masks we wear for the people we love, and the terrifying weight of being the one who holds the story together. Progression fantasy with a beating heart and a knife behind its back.</p>
+    </div>
+  </article>
+
+  <nav class="dispatch-cta" aria-label="Read Overlayed Echoes">
+    <a href="../overlayed-echoes-preview.html" data-dispatch-cta="preview">Read the first two chapters free →</a>
+    <a href="https://a.co/d/06ZWovoY" data-dispatch-cta="amazon" rel="noopener" target="_blank">Available now on Amazon — free with Kindle Unlimited →</a>
+  </nav>
+
+  <footer>
+    <div class="footer-left">
+      <strong>Built By Josh Studio</strong> · All digital products — instant download
+    </div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="/books.html">Writing</a></li>
+      <li><a href="/legal/">Legal</a></li>
+      <li><a href="https://tynkrtoolsandco.etsy.com" target="_blank" rel="noopener">Etsy</a></li>
+      <li><a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener">Substack</a></li>
+      <li><a href="mailto:josh@builtbyjoshstudio.com">Contact</a></li>
+      <li><a href="../refunds.html">Refunds</a></li>
+      <li><a href="../privacy.html">Privacy</a></li>
+      <li><a href="../terms.html">Terms</a></li>
+    </ul>
+      <div class="footer-legal">
+      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
+      Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.
+    </div>
+  </footer>
+
+  <!-- Dispatch funnel CTA tracking -->
+  <script>
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[data-dispatch-cta]');
+        if (!link || typeof gtag !== 'function') return;
+        var which = link.getAttribute('data-dispatch-cta');
+        if (which === 'amazon') {
+          gtag('event', 'book_amazon_click', {
+            book_title: 'Overlayed Echoes',
+            link_url: link.href,
+            link_text: (link.innerText || '').trim().substring(0, 100),
+            source_page: 'dispatch-corruption',
+            outbound: true,
+            transport_type: 'beacon'
+          });
+        } else if (which === 'preview') {
+          gtag('event', 'select_content', {
+            content_type: 'book_preview',
+            book_title: 'Overlayed Echoes',
+            link_url: link.href,
+            source_page: 'dispatch-corruption'
+          });
+        }
+      });
+    })();
+  </script>
+
+  <script src="/js/mobile-nav.js" defer></script>
+  <script src="/js/ga4-events.js" defer></script>
+</body>
+</html>
