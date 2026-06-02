@@ -11,6 +11,16 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 - [About the studio and Josh](https://builtbyjoshstudio.com/about.html): Canonical About page covering the founder's background, the two-brand split, the book, the YouTube channel, and how to reach the studio.
 - [Books — J.S. Warden fiction](https://builtbyjoshstudio.com/books.html): Josh's fiction under the pen name J.S. Warden — Overlayed Echoes (a published near-future LitRPG novel, Book 1 of a planned five-book series; on Amazon in Kindle and paperback, and free on Kindle Unlimited) and Ebonspire Chronicles (a dark fantasy detective noir, releasing June 2026; a completely separate world with no connection to Overlayed Echoes).
 
+## Field Dispatches — Overlayed Echoes companion fiction
+
+- [Field Dispatches index](https://builtbyjoshstudio.com/writing/): In-world companion fiction for the novel *Overlayed Echoes* by J.S. Warden — short "recovered log" pieces, each narrated by one of the five friends in the hour before the story begins (plus one from after). They deepen the world and lead readers to the book.
+- [The Director's Voice (the game master)](https://builtbyjoshstudio.com/writing/directors-voice.html): The architect of the game — proud and quietly afraid — in the last hour before he runs the first session.
+- [Counting the Exits (the guardian)](https://builtbyjoshstudio.com/writing/counting-the-exits.html): The protector checks every safety twice before he'll let the people he loves step inside.
+- [The End of Worry (the medic)](https://builtbyjoshstudio.com/writing/end-of-worry.html): The group's caretaker runs her final checklist so she can stop worrying and enjoy the night.
+- [No Footnotes Required (the joker)](https://builtbyjoshstudio.com/writing/no-footnotes-required.html): The comedian on found family and the blanks his friends never made him fill in.
+- [The Things I Let Go (his sister)](https://builtbyjoshstudio.com/writing/the-things-i-let-go.html): His sister reads the fear under her brother's smile — and, as always, lets it go.
+- [The Glitch in the Soul (the game master, after)](https://builtbyjoshstudio.com/writing/corruption-of-immersion.html): A recovered log from after it all went wrong, when the system they built started writing back.
+
 ## Tynkr Tools & Co — productivity products
 
 - [Ultimate Budget Workbook](https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html): 23-tab Excel + Google Sheets budget system with sinking funds, debt payoff, net worth tracker, 50/30/20 analyzer.
