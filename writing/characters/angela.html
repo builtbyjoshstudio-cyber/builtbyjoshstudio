@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-glass="books">
+<head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QDSPBB7S9J');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angela — Overlayed Echoes Characters | J.S. Warden</title>
+  <meta name="description" content="Meet Angela, the healer of Overlayed Echoes — kind but sharp, a nurse who settles a room. A character profile from J.S. Warden's near-future LitRPG." />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/writing/characters/angela.html" />
+
+  <meta property="og:title" content="Angela — Overlayed Echoes Characters | J.S. Warden" />
+  <meta property="og:description" content="Meet Angela, the healer of Overlayed Echoes — kind but sharp, a nurse who settles a room. A character profile from J.S. Warden's near-future LitRPG." />
+  <meta property="og:type" content="profile" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/writing/characters/angela.html" />
+  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/books/og-books.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Overlayed Echoes — a near-future LitRPG by J.S. Warden." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Angela — Overlayed Echoes Characters | J.S. Warden" />
+  <meta name="twitter:description" content="Meet Angela, the healer of Overlayed Echoes — kind but sharp, a nurse who settles a room. A character profile from J.S. Warden's near-future LitRPG." />
+  <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/books/og-books.jpg" />
+  <meta name="twitter:image:alt" content="Overlayed Echoes — a near-future LitRPG by J.S. Warden." />
+
+  <!-- Schema.org BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://builtbyjoshstudio.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Books", "item": "https://builtbyjoshstudio.com/books.html"},
+      {"@type": "ListItem", "position": 3, "name": "Characters", "item": "https://builtbyjoshstudio.com/writing/characters/"},
+      {"@type": "ListItem", "position": 4, "name": "Angela", "item": "https://builtbyjoshstudio.com/writing/characters/angela.html"}
+    ]
+  }
+  </script>
+
+  <!-- Schema.org Person — fictional character, cross-linked to the OE Book + the party -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://builtbyjoshstudio.com/writing/characters/angela.html#angela",
+    "name": "Angela",
+    "description": "The Healer of Overlayed Echoes — a nurse who settles a room; kind but sharp.",
+    "image": "https://builtbyjoshstudio.com/images/characters/angela.webp",
+    "sibling": {"@id": "https://builtbyjoshstudio.com/writing/characters/theo.html#theo"},
+    "knows": [
+      {"@id": "https://builtbyjoshstudio.com/writing/characters/kael.html#kael"},
+      {"@id": "https://builtbyjoshstudio.com/writing/characters/marcus.html#marcus"},
+      {"@id": "https://builtbyjoshstudio.com/writing/characters/lena.html#lena"}
+    ],
+    "subjectOf": {"@id": "https://builtbyjoshstudio.com/books.html#overlayed-echoes"}
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/tokens.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tynkr-bg: #f7f6f2;
+      --tynkr-surface: #ffffff;
+      --tynkr-accent: #e8500a;
+      --tynkr-text: #1c1c1c;
+      --tynkr-muted: #6b6b6b;
+      --tynkr-border: #e0ddd8;
+      --body-read: #3a3a3a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--tynkr-bg);
+      color: var(--tynkr-text);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    /* NAV — matches site standard */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(247, 246, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--tynkr-border);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--tynkr-text);
+      text-decoration: none;
+    }
+    .logo-short { display: none; }
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tynkr-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--tynkr-accent); }
+    @media (max-width: 700px) {
+      .logo-full { display: none; }
+      .logo-short { display: inline; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.75rem; }
+    }
+
+    /* CHARACTER — profile reading world */
+    .character {
+      max-width: 720px;
+      margin: 3rem auto 0;
+      padding: 0 1.5rem;
+    }
+    .character-header { text-align: center; }
+    .character-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+    }
+    .character h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--tynkr-text);
+      margin-bottom: 0.55rem;
+    }
+    .character-role {
+      font-style: italic;
+      font-size: 1.12rem;
+      line-height: 1.5;
+      color: var(--tynkr-accent);
+    }
+    .character-portrait {
+      margin: 2rem auto;
+      max-width: 360px;
+    }
+    .character-portrait img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid var(--tynkr-border);
+      box-shadow: 0 10px 30px rgba(28, 28, 28, 0.10);
+    }
+    .character-body {
+      border-top: 1px solid var(--tynkr-border);
+      padding-top: 1.8rem;
+    }
+    .character-body p {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--body-read);
+      margin-bottom: 1.2rem;
+    }
+    .character-body p:last-child { margin-bottom: 0; }
+
+    .character-relationships {
+      margin-top: 2.4rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid var(--tynkr-border);
+    }
+    .character-relationships-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .character-relationships ul { list-style: none; margin: 0 0 1.1rem; padding: 0; }
+    .character-relationships li {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--body-read);
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .character-relationships li::before {
+      content: '\25C6';
+      position: absolute;
+      left: 0;
+      top: 0.42rem;
+      font-size: 0.62rem;
+      color: var(--tynkr-accent);
+    }
+    .character-relationships li strong { color: var(--tynkr-text); font-weight: 600; }
+    .character-relationships .arrangement {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--body-read);
+      font-style: italic;
+      margin: 0;
+    }
+
+    .character-stage {
+      margin-top: 2.4rem;
+      padding: 1.1rem 1.3rem;
+      background: rgba(232, 80, 10, 0.05);
+      border-left: 3px solid var(--tynkr-accent);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--body-read);
+    }
+    .character-stage strong { color: var(--tynkr-text); }
+
+    /* DIEGETIC CTAs — soft, books-world, not a sales band */
+    .character-cta {
+      max-width: 720px;
+      margin: 2.6rem auto 4rem;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .character-cta a {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--tynkr-accent);
+      text-decoration: none;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid var(--tynkr-border);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.55);
+      transition: transform 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .character-cta a:hover {
+      transform: translateY(-2px);
+      border-color: var(--tynkr-accent);
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    /* FOOTER — matches site standard */
+    footer {
+      background: var(--tynkr-surface);
+      border-top: 1px solid var(--tynkr-border);
+      padding: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-left {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--tynkr-muted);
+    }
+    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.4rem; }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--tynkr-text);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--tynkr-accent); }
+    .footer-legal {
+      width: 100%;
+      font-size: 0.78rem;
+      color: var(--tynkr-muted);
+      line-height: 1.5;
+      margin-top: 0.4rem;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/mobile-nav.css" />
+
+  <!-- Schema.org Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://builtbyjoshstudio.com/#organization",
+    "name": "Built by Josh Studio LLC",
+    "alternateName": ["BBJ Studio", "Built By Josh Studio"],
+    "legalName": "Built by Josh Studio LLC",
+    "url": "https://builtbyjoshstudio.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+      "width": 512,
+      "height": 512
+    },
+    "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+    "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under the Built By Josh Studio brand and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
+    "founder": {
+      "@type": "Person",
+      "name": "Josh"
+    },
+    "foundingDate": "2026-05-13",
+    "foundingLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "KS",
+        "addressCountry": "US"
+      }
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "KS",
+      "addressCountry": "US"
+    },
+    "areaServed": "Worldwide",
+    "sameAs": [
+      "https://linktr.ee/builtbyjoshstudio",
+      "https://tynkrtoolsco.substack.com/",
+      "https://www.youtube.com/@TalesofInkShadowsStudio",
+      "https://tynkrtoolsandco.etsy.com",
+      "https://www.etsy.com/shop/BuiltByJoshStudio"
+    ],
+    "identifier": [
+      {
+        "@type": "PropertyValue",
+        "propertyID": "Kansas Business ID",
+        "value": "10076138"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <ul class="nav-links">
+      <li><a href="../../index.html#tynkr">Tynkr Tools</a></li>
+      <li><a href="../../index.html#builtbyjosh">Zodiac Art</a></li>
+      <li><a href="../../blog.html">Blog</a></li>
+      <li><a href="../../resources/">Resources</a></li>
+      <li><a href="/free/">Free</a></li>
+      <li><a href="../../about.html">About</a></li>
+      <li><a href="/books.html" class="active">Writing</a></li>
+      <li><a href="/legal/">Legal</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <article class="character">
+    <header class="character-header">
+      <div class="character-eyebrow">Overlayed Echoes · Characters</div>
+      <h1>Angela</h1>
+      <p class="character-role">The Healer · "Kind but sharp"</p>
+    </header>
+
+    <figure class="character-portrait">
+      <img src="/images/characters/angela.webp" width="800" height="1192" loading="eager" decoding="async"
+           alt="Angela, the healer of Overlayed Echoes — a tall woman with long brownish-blonde hair and a steady, sharp gaze in a near-future game studio, painted character portrait." />
+    </figure>
+
+    <div class="character-body">
+      <p>Angela is the healer of the five friends in <em>Overlayed Echoes</em>, and Theo's sister. She's "kind but sharp — like a friend who'd bring you soup then roast you for catching a cold." A nurse by trade, she's the kind who can hold a hand and run an IV at the same time, and the kind who'll tell a doctor he's wrong in front of the patient when he's wrong in front of the patient.</p>
+      <p>She talks almost without stopping — about everything except the hard nights she carries home from work. She has settled rooms just by walking into them since she was a kid. When the session begins, Angela is already squared away, steady at the center of the group.</p>
+    </div>
+
+    <div class="character-relationships">
+      <div class="character-relationships-label">Relationships</div>
+      <ul>
+        <li><strong>Theo</strong> — her brother, the guardian.</li>
+        <li><strong>Kael</strong> — her best friend since childhood; her family treated him as another son.</li>
+        <li><strong>Marcus &amp; Lena</strong> — the rest of the five.</li>
+      </ul>
+    </div>
+
+    <p class="character-stage"><strong>Stage One · The Calm Before</strong> — Angela in the hour before the first session, 2045. <em>Her story continues as the world of Overlayed Echoes unfolds.</em></p>
+  </article>
+
+  <nav class="character-cta" aria-label="Read Overlayed Echoes">
+    <a href="/writing/end-of-worry.html" data-char-cta="dispatch">Read Angela's field dispatch →</a>
+    <a href="/overlayed-echoes-preview.html" data-char-cta="preview">Read the first two chapters free →</a>
+    <a href="https://a.co/d/06ZWovoY" data-char-cta="amazon" rel="noopener" target="_blank">Available now on Amazon — free with Kindle Unlimited →</a>
+  </nav>
+
+  <footer>
+    <div class="footer-left">
+      <strong>Built By Josh Studio</strong> · All digital products — instant download
+    </div>
+    <ul class="footer-links">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../blog.html">Blog</a></li>
+      <li><a href="../../resources/">Resources</a></li>
+      <li><a href="../../about.html">About</a></li>
+      <li><a href="/books.html">Writing</a></li>
+      <li><a href="/legal/">Legal</a></li>
+      <li><a href="https://tynkrtoolsandco.etsy.com" target="_blank" rel="noopener">Etsy</a></li>
+      <li><a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener">Substack</a></li>
+      <li><a href="mailto:josh@builtbyjoshstudio.com">Contact</a></li>
+      <li><a href="../../refunds.html">Refunds</a></li>
+      <li><a href="../../privacy.html">Privacy</a></li>
+      <li><a href="../../terms.html">Terms</a></li>
+    </ul>
+      <div class="footer-legal">
+      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
+      Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.
+    </div>
+  </footer>
+
+  <!-- Character funnel CTA tracking -->
+  <script>
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[data-char-cta]');
+        if (!link || typeof gtag !== 'function') return;
+        var which = link.getAttribute('data-char-cta');
+        if (which === 'amazon') {
+          gtag('event', 'book_amazon_click', {
+            book_title: 'Overlayed Echoes',
+            link_url: link.href,
+            link_text: (link.innerText || '').trim().substring(0, 100),
+            source_page: 'character-angela',
+            outbound: true,
+            transport_type: 'beacon'
+          });
+        } else if (which === 'preview') {
+          gtag('event', 'select_content', {
+            content_type: 'book_preview',
+            book_title: 'Overlayed Echoes',
+            link_url: link.href,
+            source_page: 'character-angela'
+          });
+        } else if (which === 'dispatch') {
+          gtag('event', 'select_content', {
+            content_type: 'book_dispatch',
+            book_title: 'Overlayed Echoes',
+            link_url: link.href,
+            source_page: 'character-angela'
+          });
+        }
+      });
+    })();
+  </script>
+
+  <script src="/js/mobile-nav.js" defer></script>
+  <script src="/js/ga4-events.js" defer></script>
+</body>
+</html>
