@@ -50,6 +50,7 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 - [Notion Finance OS deep dive](https://builtbyjoshstudio.com/blog/notion-finance-os-for-creators.html)
 - [Notion Launch OS deep dive](https://builtbyjoshstudio.com/blog/notion-launch-os-for-creators.html)
 - [Notion Product OS deep dive](https://builtbyjoshstudio.com/blog/notion-product-os-for-creators.html)
+- [How to Track Etsy and Gumroad Income in Notion](https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html): Track gross, fees, and real net income per platform for digital sellers.
 - [Blog index](https://builtbyjoshstudio.com/blog.html): All posts.
 
 ## Free — templates and web tools
