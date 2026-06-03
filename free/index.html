@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-glass="prototype">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Notion Templates & Budget Spreadsheets · Built By Josh Studio</title>
+  <meta name="description" content="Free Lite versions of every Creator OS Notion template and budget spreadsheet from Tynkr Tools & Co. No fluff, no locked features behind a popup — download the real thing, upgrade only if you want more." />
+  <link rel="canonical" href="https://builtbyjoshstudio.com/free/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Free Notion Templates & Budget Spreadsheets · Built By Josh Studio" />
+  <meta property="og:description" content="Free Lite versions of every Creator OS Notion template and budget spreadsheet. Download the real thing, upgrade only if you want more." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://builtbyjoshstudio.com/free/" />
+  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:image" content="https://builtbyjoshstudio.com/images/logo/logo.webp" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Notion Templates & Budget Spreadsheets · Built By Josh Studio" />
+  <meta name="twitter:description" content="Free Lite versions of every Creator OS Notion template and budget spreadsheet from Tynkr Tools & Co." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Schema.org: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://builtbyjoshstudio.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Free", "item": "https://builtbyjoshstudio.com/free/" }
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: CollectionPage + ItemList — Free Lite versions -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Free Notion Templates & Budget Spreadsheets",
+    "description": "Free Lite versions of every Creator OS Notion template and budget spreadsheet from Tynkr Tools & Co.",
+    "url": "https://builtbyjoshstudio.com/free/",
+    "isPartOf": { "@type": "WebSite", "name": "Built By Josh Studio", "url": "https://builtbyjoshstudio.com" },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Free Lite Versions",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Creator Finance OS — Free Lite Version", "url": "https://builtbyjoshstudio.com/products/creator-finance-os.html" },
+        { "@type": "ListItem", "position": 2, "name": "Creator Content OS — Free Lite Version", "url": "https://builtbyjoshstudio.com/products/creator-content-os.html" },
+        { "@type": "ListItem", "position": 3, "name": "Creator Business OS — Free Lite Version", "url": "https://builtbyjoshstudio.com/products/creator-business-os.html" },
+        { "@type": "ListItem", "position": 4, "name": "Creator Launch OS — Free Lite Version", "url": "https://builtbyjoshstudio.com/products/creator-launch-os.html" },
+        { "@type": "ListItem", "position": 5, "name": "Creator Product OS — Free Lite Version", "url": "https://builtbyjoshstudio.com/products/creator-product-os.html" },
+        { "@type": "ListItem", "position": 6, "name": "Ultimate Budget Workbook — Free Lite Version", "url": "https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html" },
+        { "@type": "ListItem", "position": 7, "name": "Home Buying & Mortgage Workbook — Free Lite Version", "url": "https://builtbyjoshstudio.com/products/home-buying-mortgage-workbook.html" }
+      ]
+    }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bbj-bg: #f4f1ea;
+      --bbj-surface: #ffffff;
+      --bbj-accent: #e8500a;
+      --bbj-accent2: #c43d00;
+      --bbj-text: #1c1c1c;
+      --bbj-muted: #6b6b6b;
+      --bbj-border: #e0ddd8;
+      --bbj-charcoal: #2a2a2a;
+      --body-read: #3a3a3a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bbj-bg);
+      color: var(--bbj-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== NAV (G1 glass recipe from tokens.css) ===== */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2rem;
+      background: var(--nav-bg, rgba(247, 246, 242, 0.72));
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid var(--nav-border, rgba(0, 0, 0, 0.06));
+      box-shadow: 0 6px 24px -10px rgba(0, 0, 0, 0.45);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-nav::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--rim-light, rgba(255, 255, 255, 0.95)) 15%,
+        var(--rim-light, rgba(255, 255, 255, 0.95)) 85%,
+        transparent 100%
+      );
+      pointer-events: none;
+      z-index: 2;
+      box-shadow: 0 0 14px var(--rim-light, rgba(255, 255, 255, 0.95));
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--bbj-text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .logo-short { display: none; }
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--bbj-text);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--bbj-accent); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--bbj-text);
+      transition: 0.2s;
+    }
+
+    /* ===== HERO ===== */
+    .free-hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.4rem;
+      text-transform: uppercase;
+    }
+    .hero-title span {
+      font-style: normal;
+      color: var(--bbj-accent);
+    }
+    .hero-sub {
+      font-size: 1.08rem;
+      color: var(--body-read);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ===== SECTIONS ===== */
+    .free-section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bbj-accent);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+      line-height: 1.1;
+    }
+    .section-intro {
+      color: var(--body-read);
+      max-width: 640px;
+      margin-bottom: 2.2rem;
+    }
+
+    /* ===== SECTION WASHES (so frosted cards have color to frost against) ===== */
+    .free-section, .home-tools {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    .free-section::before, .home-tools::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 60% 45% at 15% 25%, rgba(232, 80, 10, 0.09) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 45% at 85% 80%, rgba(255, 180, 120, 0.12) 0%, transparent 60%);
+      filter: blur(28px);
+      pointer-events: none;
+    }
+
+    /* ===== CARD GRID (glass-lite recipe, matches #tynkr .card-tynkr) ===== */
+    .free-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.4rem;
+    }
+    .free-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.48);
+      backdrop-filter: blur(14px) saturate(130%);
+      -webkit-backdrop-filter: blur(14px) saturate(130%);
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      border-radius: 14px;
+      padding: 1.7rem 1.6rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        0 8px 28px -10px rgba(0, 0, 0, 0.10);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .free-card:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        0 18px 44px -10px rgba(232, 80, 10, 0.18);
+    }
+    .free-card .card-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bbj-muted);
+      margin-bottom: 0.7rem;
+    }
+    .free-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.22rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+    .free-card p {
+      color: var(--body-read);
+      font-size: 0.94rem;
+      line-height: 1.55;
+      margin-bottom: 1.3rem;
+      flex-grow: 1;
+    }
+    .card-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    /* Lite download button — revealed by checkout.js when the lite SKU is live.
+       Wrapper carries inline display:none as the FOUC guard (CSS does not hide it). */
+    .free-lite-cta {
+      display: inline-block;
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      background: var(--bbj-accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-align: center;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .free-lite-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .card-secondary {
+      font-size: 0.86rem;
+      color: var(--bbj-muted);
+      text-align: center;
+      text-decoration: none;
+    }
+    .card-secondary:hover { color: var(--bbj-accent); }
+    .card-secondary span { color: var(--bbj-text); font-weight: 600; }
+
+    /* ===== CTA BAND ===== */
+    .cta-band {
+      max-width: 860px;
+      margin: 3rem auto 4rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      background: var(--bbj-charcoal);
+      border-radius: 18px;
+      color: #fff;
+    }
+    .cta-band h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      margin-bottom: 0.8rem;
+      line-height: 1.1;
+    }
+    .cta-band h2 span { color: var(--bbj-accent); }
+    .cta-band p {
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin: 0 auto 1.6rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 0.95rem 2rem;
+      background: var(--bbj-accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 9px;
+      font-weight: 600;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--bbj-border);
+      padding: 2.5rem 2rem;
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .footer-left { font-size: 0.92rem; color: var(--bbj-text); }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+      list-style: none;
+    }
+    .footer-links a {
+      color: var(--bbj-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--bbj-accent); }
+    .footer-legal {
+      font-size: 0.8rem;
+      color: var(--bbj-muted);
+      line-height: 1.5;
+    }
+
+    /* ===== REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== ANCHOR NAV ===== */
+    .anchor-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
+    .anchor-nav a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bbj-text);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--bbj-border);
+      border-radius: 999px;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .anchor-nav a:hover {
+      color: var(--bbj-accent);
+      border-color: var(--bbj-accent);
+      background: rgba(232, 80, 10, 0.05);
+    }
+
+    /* ===== FREE WEB TOOLS (frosted glass, matching template cards) ===== */
+    .home-tools {
+      background: transparent;
+      padding: 2.5rem 2rem 3rem;
+      margin-top: 0;
+    }
+    .home-tools-inner { max-width: 1080px; margin: 0 auto; }
+    .home-tools-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tynkr-accent, var(--bbj-accent));
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+    .home-tools h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      font-weight: 800;
+      color: var(--tynkr-text, var(--bbj-text));
+      text-align: center;
+      margin-bottom: 0.9rem;
+      letter-spacing: -0.01em;
+    }
+    .home-tools h2 span { color: var(--tynkr-accent, var(--bbj-accent)); font-style: italic; font-weight: 400; }
+    .home-tools-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--tynkr-muted, var(--bbj-muted));
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 3rem;
+    }
+    .home-tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .home-tool-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.48);
+      backdrop-filter: blur(14px) saturate(130%);
+      -webkit-backdrop-filter: blur(14px) saturate(130%);
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      border-radius: 14px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        0 8px 28px -10px rgba(0, 0, 0, 0.10);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .home-tool-card:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        0 18px 44px -10px rgba(232, 80, 10, 0.18);
+    }
+    .home-tool-thumb {
+      width: 100%;
+      aspect-ratio: 2 / 1;
+      object-fit: cover;
+      display: block;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 8px;
+      margin-bottom: 1.3rem;
+    }
+    .home-tool-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--tynkr-text, var(--bbj-text));
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.01em;
+    }
+    .home-tool-card p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--body-read);
+      margin-bottom: 1.6rem;
+      flex: 1;
+    }
+    .home-tool-btn {
+      align-self: flex-start;
+      display: inline-block;
+      background: var(--tynkr-accent, var(--bbj-accent));
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.6rem;
+      text-decoration: none;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        0 4px 18px -4px rgba(232, 80, 10, 0.40);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .home-tool-btn:hover { background: #c43d00; transform: translateY(-2px); }
+    @media (max-width: 980px) {
+      .home-tools { padding: 2rem 1.5rem 3rem; }
+      .home-tools-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== SAFARI FALLBACK (matches tokens.css @supports pattern) ===== */
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .site-nav { background: var(--bbj-bg); }
+      .free-card { background: rgba(255, 255, 255, 0.94); }
+      .home-tool-card { background: rgba(255, 255, 255, 0.94); }
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 760px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--bbj-bg);
+        padding: 1rem 2rem 1.5rem;
+        gap: 1rem;
+        border-bottom: 1px solid var(--bbj-border);
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+      .logo-full { display: none; }
+      .logo-short { display: inline; }
+    }
+  </style>
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/checkout.css" />
+  <link rel="stylesheet" href="/css/mobile-nav.css" />
+
+  <!-- Schema.org: Organization (site-wide node) -->
+  <script type="application/ld+json">
+  { "@context":"https://schema.org","@type":"Organization","@id":"https://builtbyjoshstudio.com/#organization",
+    "name":"Built by Josh Studio LLC","alternateName":["BBJ Studio","Built By Josh Studio"],"legalName":"Built by Josh Studio LLC",
+    "url":"https://builtbyjoshstudio.com","logo":{"@type":"ImageObject","url":"https://builtbyjoshstudio.com/images/logo/logo.webp","width":512,"height":512},
+    "image":"https://builtbyjoshstudio.com/images/logo/logo.webp",
+    "founder":{"@type":"Person","name":"Josh"},"foundingDate":"2026-05-13",
+    "foundingLocation":{"@type":"Place","address":{"@type":"PostalAddress","addressRegion":"KS","addressCountry":"US"}},
+    "address":{"@type":"PostalAddress","addressRegion":"KS","addressCountry":"US"},"areaServed":"Worldwide",
+    "contactPoint":{"@type":"ContactPoint","email":"josh@builtbyjoshstudio.com","contactType":"customer support","areaServed":"Worldwide","availableLanguage":"English"},
+    "sameAs":["https://linktr.ee/builtbyjoshstudio","https://tynkrtoolsco.substack.com/","https://www.youtube.com/@TalesofInkShadowsStudio","https://tynkrtoolsandco.etsy.com","https://www.etsy.com/shop/BuiltByJoshStudio"] }
+  </script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#tynkr">Tynkr Tools</a></li>
+      <li><a href="../index.html#builtbyjosh">Zodiac Art</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="/free/" class="active">Free</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="/books.html">Writing</a></li>
+      <li><a href="/legal/">Legal</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <header class="free-hero">
+    <div class="hero-eyebrow">Built By Josh Studio · Free</div>
+    <h1 class="hero-title">Free Notion Templates <br><span>& Budget Spreadsheets</span></h1>
+    <p class="hero-sub">Every flagship system has a free Lite version — the real thing, not a screenshot tour or a locked demo. Download it, use it for as long as you like, and upgrade only if you want the full system. No catch.</p>
+    <nav class="anchor-nav" aria-label="Jump to section">
+      <a href="#templates">Notion Templates</a>
+      <a href="#spreadsheets">Spreadsheets</a>
+      <a href="#web-tools">Web Tools</a>
+    </nav>
+  </header>
+
+  <!-- CREATOR OS LITE -->
+  <section class="free-section" id="templates">
+    <div class="section-label">Free Notion Templates</div>
+    <h2 class="section-title">Creator OS — Lite Versions</h2>
+    <p class="section-intro">Five Notion systems for running the business side of a creator career — finances, content, clients, launches, and products. Each Lite version is a working slice of the full OS. Start free; upgrade to the $27 full version when you outgrow it.</p>
+
+    <div class="free-grid">
+
+      <!-- Finance -->
+      <article class="free-card reveal">
+        <div class="card-meta">𝗡 Notion · Finance</div>
+        <h3>Creator Finance OS — Lite</h3>
+        <p>Track creator income, expenses, and monthly profit in one Notion workspace. The Lite version covers revenue and expense logging so you can see where your money actually goes.</p>
+        <div class="card-actions">
+          <div data-lite-section style="display: none;">
+            <a data-checkout="creator-finance-os-lite"
+               data-cta-label-live="Download Finance Lite — Free"
+               class="free-lite-cta"
+               style="display: none;">
+              <span data-cta-label>Download Finance Lite — Free</span>
+            </a>
+          </div>
+          <a href="../products/creator-finance-os.html" class="card-secondary">or see the full <span>Creator Finance OS →</span></a>
+        </div>
+      </article>
+
+      <!-- Content -->
+      <article class="free-card reveal">
+        <div class="card-meta">𝗡 Notion · Content</div>
+        <h3>Creator Content OS — Lite</h3>
+        <p>Plan and track content without the chaos. The Lite version gives you a content library and pipeline so ideas stop living in seven different apps.</p>
+        <div class="card-actions">
+          <div data-lite-section style="display: none;">
+            <a data-checkout="creator-content-os-lite"
+               data-cta-label-live="Download Content Lite — Free"
+               class="free-lite-cta"
+               style="display: none;">
+              <span data-cta-label>Download Content Lite — Free</span>
+            </a>
+          </div>
+          <a href="../products/creator-content-os.html" class="card-secondary">or see the full <span>Creator Content OS →</span></a>
+        </div>
+      </article>
+
+      <!-- Business -->
+      <article class="free-card reveal">
+        <div class="card-meta">𝗡 Notion · CRM</div>
+        <h3>Creator Business OS — Lite</h3>
+        <p>A CRM built for creators — brand deals, leads, and clients in one place. The Lite version covers contacts and deals so nothing slips through the cracks.</p>
+        <div class="card-actions">
+          <div data-lite-section style="display: none;">
+            <a data-checkout="creator-business-os-lite"
+               data-cta-label-live="Download Business Lite — Free"
+               class="free-lite-cta"
+               style="display: none;">
+              <span data-cta-label>Download Business Lite — Free</span>
+            </a>
+          </div>
+          <a href="../products/creator-business-os.html" class="card-secondary">or see the full <span>Creator Business OS →</span></a>
+        </div>
+      </article>
+
+      <!-- Launch -->
+      <article class="free-card reveal">
+        <div class="card-meta">𝗡 Notion · Launch</div>
+        <h3>Creator Launch OS — Lite</h3>
+        <p>Plan a product launch without forgetting half of it. The Lite version gives you the core launch checklist and timeline to ship without the scramble.</p>
+        <div class="card-actions">
+          <div data-lite-section style="display: none;">
+            <a data-checkout="creator-launch-os-lite"
+               data-cta-label-live="Download Launch Lite — Free"
+               class="free-lite-cta"
+               style="display: none;">
+              <span data-cta-label>Download Launch Lite — Free</span>
+            </a>
+          </div>
+          <a href="../products/creator-launch-os.html" class="card-secondary">or see the full <span>Creator Launch OS →</span></a>
+        </div>
+      </article>
+
+      <!-- Product -->
+      <article class="free-card reveal">
+        <div class="card-meta">𝗡 Notion · Catalog</div>
+        <h3>Creator Product OS — Lite</h3>
+        <p>Keep track of every file, listing, and version of your digital products. The Lite version covers your product catalog so you always know what shipped where.</p>
+        <div class="card-actions">
+          <div data-lite-section style="display: none;">
+            <a data-checkout="creator-product-os-lite"
+               data-cta-label-live="Download Product Lite — Free"
+               class="free-lite-cta"
+               style="display: none;">
+              <span data-cta-label>Download Product Lite — Free</span>
+            </a>
+          </div>
+          <a href="../products/creator-product-os.html" class="card-secondary">or see the full <span>Creator Product OS →</span></a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- SPREADSHEET LITE -->
+  <section class="free-section" id="spreadsheets">
+    <div class="section-label">Free Budget Spreadsheets</div>
+    <h2 class="section-title">Spreadsheet — Lite Versions</h2>
+    <p class="section-intro">Prefer Excel or Google Sheets? These Lite workbooks are free, fully functional starting points. Upgrade to the full multi-tab system when you want the dashboards, automation, and extra tabs.</p>
+
+    <div class="free-grid">
+
+      <!-- Ultimate Budget -->
+      <article class="free-card reveal">
+        <div class="card-meta">▦ Excel + Sheets · Budget</div>
+        <h3>Ultimate Budget Workbook — Lite</h3>
+        <p>A free slice of the 23-tab budget system. Track monthly income and expenses in Excel or Google Sheets, then upgrade for the full dashboard, debt payoff, and net worth tracking.</p>
+        <div class="card-actions">
+          <div data-lite-section style="display: none;">
+            <a data-checkout="ultimate-budget-lite"
+               data-cta-label-live="Download Budget Lite — Free"
+               class="free-lite-cta"
+               style="display: none;">
+              <span data-cta-label>Download Budget Lite — Free</span>
+            </a>
+          </div>
+          <a href="../products/ultimate-budget-workbook.html" class="card-secondary">or see the full <span>Ultimate Budget Workbook →</span></a>
+        </div>
+      </article>
+
+      <!-- Home Buying -->
+      <article class="free-card reveal">
+        <div class="card-meta">▦ Excel + Sheets · Home Buying</div>
+        <h3>Home Buying & Mortgage — Lite</h3>
+        <p>A free starting point for the 15-tab home buying system. Run the core affordability numbers before you talk to a lender, then upgrade for full mortgage comparison and amortization.</p>
+        <div class="card-actions">
+          <div data-lite-section style="display: none;">
+            <a data-checkout="home-buying-lite"
+               data-cta-label-live="Download Home Buying Lite — Free"
+               class="free-lite-cta"
+               style="display: none;">
+              <span data-cta-label>Download Home Buying Lite — Free</span>
+            </a>
+          </div>
+          <a href="../products/home-buying-mortgage-workbook.html" class="card-secondary">or see the full <span>Home Buying & Mortgage Workbook →</span></a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- FREE WEB TOOLS -->
+  <section class="home-tools" id="web-tools">
+    <div class="home-tools-inner">
+      <div class="home-tools-label">Free Web Tools</div>
+      <h2>Built to use, <span>not to sell.</span></h2>
+      <p class="home-tools-sub">Seven free browser utilities — no signup, no email, no ads. They run entirely on your device and stay free, forever.</p>
+      <div class="home-tools-grid">
+        <div class="home-tool-card">
+          <img src="/images/products/universal-recipe-scaler.webp" alt="Universal Recipe Scaler — app screenshot" class="home-tool-thumb" loading="lazy" />
+          <h3>Universal Recipe Scaler</h3>
+          <p>Scale any recipe up or down and convert US imperial to metric instantly. Paste the ingredients, set your serving count, done.</p>
+          <a href="https://builtbyjoshstudio-cyber.github.io/universal-recipe-scaler/" target="_blank" rel="noopener" class="home-tool-btn">Open the Recipe Scaler →</a>
+        </div>
+        <div class="home-tool-card">
+          <img src="/images/products/reverse-roasting-calculator.webp" alt="Reverse Roasting Timeline Calculator — app screenshot" class="home-tool-thumb" loading="lazy" />
+          <h3>Reverse Roasting Timeline Calculator</h3>
+          <p>Enter the protein, weight, and target dinner time — get the full backward schedule: when to preheat, cook, rest, and serve.</p>
+          <a href="https://builtbyjoshstudio-cyber.github.io/reverse-roasting-calculator/" target="_blank" rel="noopener" class="home-tool-btn">Open the Calculator →</a>
+        </div>
+        <div class="home-tool-card">
+          <img src="/images/products/pan-swap-calculator.webp" alt="Baking Pan Swap Calculator — app screenshot" class="home-tool-thumb" loading="lazy" />
+          <h3>Baking Pan Swap Calculator</h3>
+          <p>Pick the pan a recipe calls for and the pan you actually own — square, round, rectangle, muffin tin, or Bundt — and get the exact ingredient multiplier plus a bake-time warning.</p>
+          <a href="https://builtbyjoshstudio-cyber.github.io/pan-swap-calculator/" target="_blank" rel="noopener" class="home-tool-btn">Open the Pan Swap Calculator →</a>
+        </div>
+        <div class="home-tool-card">
+          <img src="/images/products/perfect-roast-pull-temp-calculator.webp" alt="Perfect Roast Pull Temp Calculator — app screenshot" class="home-tool-thumb" loading="lazy" />
+          <h3>Perfect Roast Pull Temp Calculator</h3>
+          <p>Pick the meat, the cut size, and your target doneness — get the exact temperature to pull from the heat, with carryover and resting handled for brisket, duck, venison, and delicate fish.</p>
+          <a href="https://builtbyjoshstudio-cyber.github.io/perfect-roast-pull-temp-calculator/" target="_blank" rel="noopener" class="home-tool-btn">Open the Pull Temp Calculator →</a>
+        </div>
+        <div class="home-tool-card">
+          <img src="/images/products/brine-calculator.webp" alt="Brine Calculator — app screenshot" class="home-tool-thumb" loading="lazy" />
+          <h3>Brine Calculator</h3>
+          <p>Calculate precise salt, water, and sugar ratios for wet and dry meat brining, factoring in protein weight and salt density.</p>
+          <a href="https://builtbyjoshstudio-cyber.github.io/brine-calculator/" target="_blank" rel="noopener" class="home-tool-btn">Open the Brine Calculator →</a>
+        </div>
+        <div class="home-tool-card">
+          <img src="/images/products/meat-thawing-planner.webp" alt="Meat Thawing Planner — app screenshot" class="home-tool-thumb" loading="lazy" />
+          <h3>Meat Thawing Planner</h3>
+          <p>Safe thawing timelines for any frozen protein — fridge and cold water methods, real thermal math, USDA-compliant, with built-in food safety guardrails.</p>
+          <a href="https://builtbyjoshstudio-cyber.github.io/meat-thawing-planner/" target="_blank" rel="noopener" class="home-tool-btn">Open the Thawing Planner →</a>
+        </div>
+        <div class="home-tool-card">
+          <img src="/images/products/dough-hydration-calculator.webp" alt="Dough Hydration Calculator — app screenshot" class="home-tool-thumb" loading="lazy" />
+          <h3>Dough Hydration Calculator</h3>
+          <p>Baker's percentages for bread, pizza, pasta, and noodles — 11 flour types, 6 traditional style presets, flour-specific absorbency warnings, kansui math for ramen, and egg conversion for fresh pasta.</p>
+          <a href="https://builtbyjoshstudio-cyber.github.io/dough-hydration-calculator/" target="_blank" rel="noopener" class="home-tool-btn">Open the Dough Calculator →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <h2>Like the Lite version? <span>Get the whole system.</span></h2>
+    <p>Every Lite template upgrades to its full version — and the five Creator OS templates bundle together as the Full Stack at a discount.</p>
+    <a href="../products/" class="btn-primary">Browse All Templates →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <strong>Built By Josh Studio</strong> · All digital products — instant download
+    </div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../products/">Templates</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="/books.html">Writing</a></li>
+      <li><a href="/legal/">Legal</a></li>
+      <li><a href="https://tynkrtoolsandco.etsy.com" target="_blank" rel="noopener">Etsy</a></li>
+      <li><a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener">Substack</a></li>
+      <li><a href="mailto:josh@builtbyjoshstudio.com">Contact</a></li>
+      <li><a href="../refunds.html">Refunds</a></li>
+      <li><a href="../privacy.html">Privacy</a></li>
+      <li><a href="../terms.html">Terms</a></li>
+    </ul>
+      <div class="footer-legal">
+      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
+      Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+  </script>
+
+  <script src="/js/checkout-config.js" defer></script>
+  <script src="/js/checkout.js" defer></script>
+  <script src="/js/mobile-nav.js" defer></script>
+  <script src="/js/ga4-events.js" defer></script>
+</body>
+</html>

@@ -52,6 +52,10 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 - [Notion Product OS deep dive](https://builtbyjoshstudio.com/blog/notion-product-os-for-creators.html)
 - [Blog index](https://builtbyjoshstudio.com/blog.html): All posts.
 
+## Free — templates and web tools
+
+- [Free templates & web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both budget spreadsheets, plus seven free browser utilities (recipe and cooking calculators). Working tools, no signup.
+
 ## Free web utilities
 
 - [Universal Recipe Scaler](https://builtbyjoshstudio-cyber.github.io/universal-recipe-scaler/): Scales recipe ingredient quantities up or down by serving count or weight multiplier.
