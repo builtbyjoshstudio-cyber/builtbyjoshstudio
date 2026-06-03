@@ -135,6 +135,7 @@ Then take direction from Josh. Nothing is mid-flight.
 ## Open / deferred items (nothing blocking)
 
 - **`/free/` follow-ups (minor, optional):** the 8th lite SKU (`creator-os-full-stack-lite` sampler) is **not** featured on `/free/` (by design — page shows 5 individual Creator OS + 2 spreadsheets); add a card if wanted. "Free" nav active-state is set only on `/free/` itself — a sweep could add per-section active-state across pages. No per-page OG card for `/free/` (uses `logo.webp`).
+- **Metadata-honesty pass (deferred):** body "no email" copy was stripped from the four free-template/spreadsheet posts this session, but two metadata spots still claim it: (a) `blog/free-notion-templates-creators-no-email.html` — "No Email Required"/"No email signup" in `<title>`, `<h1>`, meta description, OG+Twitter title/description, and schema `headline`/`description`/BreadcrumbList name; (b) `blog/what-lite-actually-means.html` — final CTA sub-line "…real systems, no email required." Strip these in a later pass; **leave URLs/slugs alone** (the `-no-email` slug stays). Reason: `/free/` lite downloads use the $0 LS hosted checkout, which captures an email, so "no email" is no longer accurate.
 - **Stage 2 dispatches** — `tools/_build_dispatches.py` + the `/writing/` index pattern are ready; need markdown + a thematic slug.
 - **Per-dispatch OG cards** — all 6 dispatches + the preview share `images/books/og-books.jpg`.
 - **Inline-breaker rollout** — the `.inline-breaker` fiction tie-in shipped on one launch post; ready for other high-impression cooking/finance posts.
