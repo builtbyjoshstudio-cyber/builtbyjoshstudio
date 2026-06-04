@@ -405,7 +405,7 @@
     <a href="https://a.co/d/06ZWovoY" data-char-cta="amazon" rel="noopener" target="_blank">Available now on Amazon — free with Kindle Unlimited →</a>
   </nav>
 
-  <p class="character-download"><a href="/images/characters/lena-card.jpg" download>Download character card ↓</a></p>
+  <p class="character-download"><a href="/images/characters/lena-card.jpg" download data-char-cta="card">Download character card ↓</a></p>
 
   <footer>
     <div class="footer-left">
@@ -459,6 +459,14 @@
             content_type: 'book_dispatch',
             book_title: 'Overlayed Echoes',
             link_url: link.href,
+            source_page: 'character-lena'
+          });
+        } else if (which === 'card') {
+          gtag('event', 'file_download', {
+            file_name: 'lena-card.jpg',
+            file_extension: 'jpg',
+            link_text: (link.innerText || '').trim().substring(0, 100),
+            book_title: 'Overlayed Echoes',
             source_page: 'character-lena'
           });
         }
