@@ -87,7 +87,9 @@
     .hub h1 { font-family: 'Syne', sans-serif; font-size: 2.6rem; font-weight: 800; line-height: 1.1; color: var(--tynkr-text); margin-bottom: 1rem; }
     .hub-intro { font-size: 1.12rem; line-height: 1.7; color: var(--body-read); }
     .hub-intro em { font-style: italic; }
-    .character-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.4rem; margin: 2.6rem 0 0; }
+    .hub-row-label { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--tynkr-text); text-align: center; margin: 2.8rem 0 0; }
+    .hub-row-label::after { content: ''; display: block; width: 30px; height: 2px; background: var(--tynkr-accent); margin: 0.55rem auto 0; border-radius: 2px; }
+    .character-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.4rem; margin: 1.2rem 0 0; }
     @media (max-width: 1120px) { .character-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 520px) { .character-grid { grid-template-columns: 1fr; } }
     .character-card { display: flex; flex-direction: column; background: var(--tynkr-surface); border: 1px solid var(--tynkr-border); border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; }
@@ -192,6 +194,7 @@
       <p class="hub-intro">Five friends spent fifteen years rolling dice around the same tables. Then they built a game that made the table real — and stepped inside. Meet them as they were in the hour before the first session: the game master, the guardian, the healer, the trickster, and the mage.</p>
     </header>
 
+    <div class="hub-row-label">The friends</div>
     <div class="character-grid">
         <a href="kael.html" class="character-card">
           <img src="/images/characters/kael.webp" width="800" height="1192" loading="lazy" decoding="async" alt="Kael, the game master of Overlayed Echoes — a man with dark hair and a flecked beard, a worn black notebook in his shirt pocket, in a near-future game studio, painted character portrait." class="character-card-portrait" />
@@ -231,6 +234,44 @@
             <div class="character-card-name">Lena</div>
             <div class="character-card-role">The Mage</div>
             <p class="character-card-hook">Quiet and watchful, all explosive magic — Kael's sister.</p>
+          </div>
+        </a>
+    </div>
+
+    <div class="hub-row-label">In the game</div>
+    <div class="character-grid">
+        <a href="kael.html" class="character-card">
+          <img src="/images/characters/kael-stage2.webp" width="800" height="1192" loading="lazy" decoding="async" alt="The Wanderer — Kael's in-game NPC, a hooded figure with a rune-etched glowing staff in a firelit tavern. Painted character portrait." class="character-card-portrait" />
+          <div class="character-card-body">
+            <div class="character-card-name">The Wanderer</div>
+          </div>
+        </a>
+        <a href="theo.html" class="character-card">
+          <img src="/images/characters/theo-stage2.webp" width="800" height="1192" loading="lazy" decoding="async" alt="Sir Theron — Theo's in-game holy warrior, in silver armor with a light-blessed greatsword, in a firelit tavern. Painted character portrait." class="character-card-portrait" />
+          <div class="character-card-body">
+            <div class="character-card-name">Theron</div>
+            <div class="character-card-role">Holy Warrior</div>
+          </div>
+        </a>
+        <a href="angela.html" class="character-card">
+          <img src="/images/characters/angela-stage2.webp" width="800" height="1192" loading="lazy" decoding="async" alt="Sister Althea — Angela's in-game healer, in white-and-gold robes with a glowing crystal staff, in a firelit tavern. Painted character portrait." class="character-card-portrait" />
+          <div class="character-card-body">
+            <div class="character-card-name">Althea</div>
+            <div class="character-card-role">Healer</div>
+          </div>
+        </a>
+        <a href="marcus.html" class="character-card">
+          <img src="/images/characters/marcus-stage2.webp" width="800" height="1192" loading="lazy" decoding="async" alt="Varkis — Marcus's in-game trickster, hooded in black leather with knives, flipping a dagger in a firelit tavern. Painted character portrait." class="character-card-portrait" />
+          <div class="character-card-body">
+            <div class="character-card-name">Varkis</div>
+            <div class="character-card-role">Trickster</div>
+          </div>
+        </a>
+        <a href="lena.html" class="character-card">
+          <img src="/images/characters/lena-stage2.webp" width="800" height="1192" loading="lazy" decoding="async" alt="Elyra — Lena's in-game mage with storm-gray eyes and a sparking cloak, an ember in hand, in a firelit tavern. Painted character portrait." class="character-card-portrait" />
+          <div class="character-card-body">
+            <div class="character-card-name">Elyra</div>
+            <div class="character-card-role">Mage</div>
           </div>
         </a>
     </div>

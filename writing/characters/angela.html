@@ -51,6 +51,7 @@
     "@type": "Person",
     "@id": "https://builtbyjoshstudio.com/writing/characters/angela.html#angela",
     "name": "Angela",
+    "alternateName": "Sister Althea",
     "description": "The Healer of Overlayed Echoes — a nurse who settles a room; kind but sharp.",
     "image": "https://builtbyjoshstudio.com/images/characters/angela.webp",
     "sibling": {"@id": "https://builtbyjoshstudio.com/writing/characters/theo.html#theo"},
@@ -265,6 +266,27 @@
     .character-download a { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; color: var(--tynkr-accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
     .character-download a:hover { border-color: var(--tynkr-accent); }
 
+    /* STAGE 2 — In the Game */
+    .character-stage2 { max-width: 720px; margin: 3.2rem auto 0; padding: 2.4rem 1.5rem 0; border-top: 1px solid var(--tynkr-border); }
+    .stage2-divider { text-align: center; margin-bottom: 1.6rem; }
+    .stage2-divider span { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tynkr-accent); font-weight: 700; }
+    .stage2-portrait { margin: 0 auto 1.6rem; max-width: 360px; }
+    .stage2-portrait img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--tynkr-border); box-shadow: 0 10px 30px rgba(28, 28, 28, 0.10); }
+    .stage2-desc { font-size: 1.1rem; line-height: 1.75; color: var(--body-read); margin-bottom: 1.6rem; }
+    .stage2-desc strong { color: var(--tynkr-text); font-weight: 600; }
+    .stat-block { background: rgba(255, 255, 255, 0.55); border: 1px solid var(--tynkr-border); border-radius: 14px; overflow: hidden; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 28px -12px rgba(28, 28, 28, 0.10); }
+    .stat-block-head { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--tynkr-text); padding: 0.85rem 1.2rem; border-bottom: 1px solid var(--tynkr-border); background: rgba(232, 80, 10, 0.05); }
+    .stat-block-head .stat-block-class { color: var(--tynkr-accent); font-weight: 700; }
+    .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .stat { text-align: center; padding: 1.05rem 0.5rem; border-right: 1px solid var(--tynkr-border); border-bottom: 1px solid var(--tynkr-border); }
+    .stat:nth-child(3n) { border-right: none; }
+    .stat:nth-child(n+4) { border-bottom: none; }
+    .stat-name { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tynkr-muted); font-weight: 600; margin-bottom: 0.4rem; }
+    .stat-val { display: block; font-family: 'Syne', sans-serif; font-size: 1.85rem; font-weight: 800; color: var(--tynkr-text); line-height: 1; }
+    .stage2-download { margin-top: 1.4rem; text-align: center; }
+    .stage2-download a { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; color: var(--tynkr-accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .stage2-download a:hover { border-color: var(--tynkr-accent); }
+
     /* FOOTER — matches site standard */
     footer {
       background: var(--tynkr-surface);
@@ -400,6 +422,26 @@
     <p class="character-stage"><strong>Stage One · The Calm Before</strong> — Angela in the hour before the first session, 2045. <em>Her story continues as the world of Overlayed Echoes unfolds.</em></p>
   </article>
 
+  <section class="character-stage2" aria-label="Stage Two — In the Game">
+    <div class="stage2-divider"><span>Stage Two · In the Game</span></div>
+    <figure class="stage2-portrait">
+      <img src="/images/characters/angela-stage2.webp" width="800" height="1192" loading="lazy" decoding="async" alt="Sister Althea — Angela's in-game healer, in white-and-gold robes with a glowing crystal staff, in a firelit tavern. Painted character portrait." />
+    </figure>
+    <p class="stage2-desc">In the game, Angela plays <strong>Sister Althea</strong> — a healer in white robes with gold trim, her crystal-topped staff humming with the power to mend. Saves lives, doesn't babysit fools.</p>
+    <div class="stat-block">
+      <div class="stat-block-head">Sister Althea <span class="stat-block-class">· Healer</span></div>
+      <div class="stat-grid">
+        <div class="stat"><span class="stat-name">Might</span><span class="stat-val">10</span></div>
+        <div class="stat"><span class="stat-name">Agility</span><span class="stat-val">12</span></div>
+        <div class="stat"><span class="stat-name">Intellect</span><span class="stat-val">14</span></div>
+        <div class="stat"><span class="stat-name">Will</span><span class="stat-val">16</span></div>
+        <div class="stat"><span class="stat-name">Charm</span><span class="stat-val">10</span></div>
+        <div class="stat"><span class="stat-name">Perception</span><span class="stat-val">12</span></div>
+      </div>
+    </div>
+    <p class="stage2-download"><a href="/images/characters/angela-stage2-card.jpg" download data-char-cta="card-stage2">Download fantasy card ↓</a></p>
+  </section>
+
   <nav class="character-cta" aria-label="Read Overlayed Echoes">
     <a href="/writing/end-of-worry.html" data-char-cta="dispatch">Read Angela's field dispatch →</a>
     <a href="/overlayed-echoes-preview.html" data-char-cta="preview">Read the first two chapters free →</a>
@@ -465,6 +507,14 @@
         } else if (which === 'card') {
           gtag('event', 'file_download', {
             file_name: 'angela-card.jpg',
+            file_extension: 'jpg',
+            link_text: (link.innerText || '').trim().substring(0, 100),
+            book_title: 'Overlayed Echoes',
+            source_page: 'character-angela'
+          });
+        } else if (which === 'card-stage2') {
+          gtag('event', 'file_download', {
+            file_name: 'angela-stage2-card.jpg',
             file_extension: 'jpg',
             link_text: (link.innerText || '').trim().substring(0, 100),
             book_title: 'Overlayed Echoes',
