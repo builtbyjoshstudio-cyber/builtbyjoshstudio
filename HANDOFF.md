@@ -1,31 +1,25 @@
 # builtbyjoshstudio.com — Session Handoff
 
-**Date:** 2026-06-04 (one big multi-package arc: the **Overlayed Echoes character cluster** built end-to-end — **Package 1** pages+hub+schema, **Package 2** share cards, **Stage 2** fantasy selves — plus an **Etsy/Gumroad income blog post** and a **no-email post rename → honest slug + redirect stub**. Ended on a **read-only review of the tools-subdomain relink brief** — reviewed, NOT executed.)
+**Date:** 2026-06-04 (session: **executed Arc 6 — the tools-subdomain relink** (`c80810f`): 84 link/JSON-LD swaps across 16 live files → `tools.builtbyjoshstudio.com`, pushed + live; **decommissioned the 7 old tool repos** (Pages disabled → 404, repos archived/read-only); then an **SEO title/meta rewrite on 8 under-clicking pages** (`7af3ce1`, pushed + live). Prior session's OE character cluster + income post + no-email rename remain live.)
 **Repo:** https://github.com/builtbyjoshstudio-cyber/builtbyjoshstudio
 **Local path:** `C:\Users\jotra\builtbyjoshstudio`
 **Host:** GitHub Pages — custom domain `builtbyjoshstudio.com` via CNAME → Fastly CDN (~10-min edge TTL). **No CI workflow file in the repo**; GitHub's *default* `pages-build-deployment` fires on every push to `main` (~45–70s). **There is NO branch/PR workflow — `main` IS production; pushing `main` deploys live.** Commit on `main`, push only when Josh says.
-**HEAD:** everything this session is **pushed to `origin/main`, live, post-deploy-verified** — last live commit **`17de766`** (Stage 2). This HANDOFF refresh is the commit on top — **unpushed** (HANDOFF is Jekyll-excluded, no live effect); first-steps will show `[ahead 1]`. **Ask Josh whether to push it.** Working tree otherwise clean (usual untracked only).
-**Latest backup tags (LOCAL only — `git push` doesn't carry them):** `backup-pre-stage2` (`ef2ef68`) · `backup-pre-character-cards` (`65b0d40`) · `backup-pre-hub-row` (`35b9896`) · `backup-pre-character-cluster` (`47faaa1`) · earlier arc tags remain.
+**HEAD:** everything this session is **pushed to `origin/main`, live, post-deploy-verified** — last live commit **`7af3ce1`** (title/meta SEO rewrite), with **`c80810f`** (tools-subdomain relink) under it. This HANDOFF refresh is the commit on top — **unpushed** (HANDOFF is Jekyll-excluded, no live effect); first-steps will show `[ahead 1]`. **Ask Josh whether to push it.** Working tree otherwise clean (usual untracked only).
+**Latest backup tags (LOCAL only — `git push` doesn't carry them):** `backup-pre-title-meta` (`c80810f`) · `backup-pre-tools-relink` (`a4a72d9`) · `backup-pre-stage2` (`ef2ef68`) · `backup-pre-character-cluster` (`47faaa1`) · earlier arc tags remain.
 
 ---
 
 ## 🧭 Session summary (plain language)
 
-Five shipped arcs (all live + post-deploy-verified) + one review-only. Careful read-only paste-back, backup tag per arc, dry-run-before-write sweeps, diff-before-commit, and **Josh approved a Theo-first prototype before each cluster build replicated to the other four.**
+This session ran **three shipped arcs** (all pushed, live, post-deploy-verified), each a gated canary→batch with backup tag, dry-run, diff-before-commit, and Josh's explicit go before every push and every destructive/outward-facing step.
 
-**Arc 1 — Etsy/Gumroad income post (`380bfa9`).** New `blog/track-etsy-gumroad-income-notion.html` (Josh authored offline, placed byte-exact). Parity-fixed to the finance-os template (restored box-drawing CSS comments + the inline Etsy click-out `<script>`). Wired into `sitemap.xml`, `llms.txt`, `blog.html` (visible Templates card **+ its ItemList position-13 twin** — #9 mirror), and a reciprocal related-reading card on `notion-finance-os-for-creators.html`.
+**Arc 6 — tools-subdomain relink (`c80810f`).** Executed the previously-reviewed brief: blanket host swap `builtbyjoshstudio-cyber.github.io/<slug>/` → `tools.builtbyjoshstudio.com/<slug>/` across **16 live files** (index, free/, llms.txt, 13 cooking posts) — **84 occurrences / 81 lines** (hrefs + 4 JSON-LD `"url"` + the one blessed display-URL at `building-the-universal-recipe-scaler.html:469`). EOL-preserving binary `bytes.replace`; slugs/trailing-slashes preserved; anchor text untouched except 469. Verified: old host → **0** across all 16; live HTML serves the new host.
 
-**Arc 2 — no-email post rename (`72a3434` + `47faaa1`).** `blog/free-notion-templates-creators-no-email.html` → `…-for-creators.html` (honest slug). Old slug kept as a minimal **meta-refresh redirect stub** (no 404 / SEO loss). Stripped every "(No Email Required)"/"No email signup" claim from the new file's title/h1/meta/og/twitter/Article schema **and** the visible cards (blog.html card+ItemList, 5 related-card hosts) and the what-lite CTA. Repointed all internal refs. `dateModified`→`2026-06-03`. (llms.txt never referenced it. Kept-as-true: the "Notion Marketplace — No signup required" body line.)
+**Decommission of the 7 old tool repos (GitHub settings — no commits).** After Josh independently verified the live main site: **Pages disabled** on all 7 via `gh api -X DELETE …/pages` → old `github.io/<slug>/` URLs now **404**; then **archived** all 7 via `PATCH archived=true` → read-only (reversible, history preserved). Canary-first each time (`brine-calculator`), then batch; `tools` (new subdomain) + `builtbyjoshstudio` (main site) untouched — new URLs still 200.
 
-**Arc 3 — OE character cluster · Package 1 (`35b9896` + `65b0d40`).** New `/writing/characters/` section: **5 character pages** (theo/angela/marcus/lena/kael) + a **hub** (`index.html`). Dispatch chrome (`data-glass="books"`), **Person** schema with reciprocal `sibling`/`knows` graph + `subjectOf`→OE book, 5 portraits. Wired `sitemap` (+6), `llms.txt` (`## Characters`), `books.html` ("Meet the five friends →"). Hub cards laid out **one row on desktop, reflow 5→2→1**.
+**Title/meta SEO rewrite (`7af3ce1`).** Search Console: 8 pages earning impressions but few/zero clicks. Audited current vs proposed, **flagged 2 overpromises** (a "free template" with no free template on the page; an "actually used" case-study framing the post explicitly disavows), then applied **title and/or meta only** on 8 pages (7 budget/creator blog posts + `creator-content-os` product page) — **13 lines**. No body/headings/schema/structured-data. **CTR watch tracked in Open items** (baseline + read-date there, to avoid drift).
 
-**Arc 4 — OE character cluster · Package 2 share cards (`66b6ea5` + `ef2ef68`).** Per character: a **tall share card** (`<slug>-card.jpg`, 800×1192 — portrait + scrim + Syne name + "OVERLAYED ECHOES") + a **landscape og-fallback** (`<slug>-og.jpg`, 1200×630). **Hub 5-up** (`characters-og.jpg`). Per-page `og:image`/`twitter:image` swapped to the `-og.jpg`; a "Download character card ↓" link (the tall card) with **GA4 `file_download`**. Built with the **real Syne/DM Sans TTFs** (fetched to `tools/_fonts/`) via **Pillow**.
-
-**Arc 5 — OE character cluster · Stage 2 fantasy selves (`17de766`).** Each page got a **"Stage Two · In the Game"** section: fantasy portrait (`<slug>-stage2.webp`) + canon desc + a 6-stat **character-sheet block** (Kael = `?`×6 enigma) + a "Download fantasy card ↓" link (`<slug>-stage2-card.jpg`) with GA4. Hub got a **second row** ("The friends" / "In the game" transformation grid). **`alternateName`** added to all 5 Person nodes. Fantasy→slug: **Theron**=theo (Holy Warrior), **Althea**=angela (Healer), **Varkis**=marcus (Trickster), **Elyra**=lena (Mage), **The Wanderer**=kael (NPC enigma).
-
-**Arc 6 (REVIEW ONLY — not executed) — main-site tools-subdomain relink.** Reviewed `C:\Users\jotra\Downloads\main-site-relink-brief.md`. The 7 cooking tools are moving `builtbyjoshstudio-cyber.github.io/<slug>/` → `tools.builtbyjoshstudio.com/<slug>/` (same slugs). **The new subdomain is LIVE (all 7 → 200).** My audit + corrections are in **Open items** — this is the most-likely next task.
-
-**✅ Arcs 1–5 shipped, pushed, live, post-deploy-verified. Arc 6 reviewed, awaiting Josh's go to execute. Working tree clean. Nothing mid-flight.**
+**✅ All three pushed, live, post-deploy-verified. 7 old tool repos archived + Pages-off (404). Working tree clean, nothing mid-flight.** (Prior session's OE character cluster + income post + no-email rename remain live at/under `17de766`.)
 
 ---
 
@@ -69,13 +63,13 @@ Product/collection: Product + Offer + FAQPage + BreadcrumbList + Organization. B
 ~5 generators (`build_western_signs_page.py`, etc.). `collections/chinese-zodiac-art.html` = hand-written **minified** hub — block-level edits only.
 
 ### 11. Antigravity owns the cooking apps. You write blog posts about them, never the apps.
-The 7 free cooking utilities are external apps. **THEY ARE MOVING (Arc 6 / Open items): `builtbyjoshstudio-cyber.github.io/<slug>/` → `tools.builtbyjoshstudio.com/<slug>/`** — the new subdomain is **LIVE**, but main-site links still point at the OLD host pending the relink (reviewed, not yet executed). The homepage "Free Tools" section, `/free/`, `llms.txt`, and **~13 cooking/build-story blog posts** link out to them. (These genuinely need **no email** — see #5.)
+The 7 free cooking utilities are external apps, **now served from `tools.builtbyjoshstudio.com/<slug>/`** (the consolidated `tools` repo). **Arc 6 relink DONE (`c80810f`, live):** every main-site link — homepage "Free Tools", `/free/`, `llms.txt`, 13 cooking/build-story posts (16 files, 84 hits) — was repointed off the old `builtbyjoshstudio-cyber.github.io/<slug>/` host. The **7 old per-slug repos are now archived + Pages-disabled** (old URLs 404). (These tools genuinely need **no email** — see #5.)
 
 ### 12. Pages build can fail on transient infra.
 Recovery: `gh run rerun <id> --failed` OR push an empty commit. **Always verify live with a cache-busted request** (`?x=<ts>`) and confirm `pages-build-deployment` `completed/success` first. `gh run watch <id> --exit-status` blocks. (The Node-20-deprecation annotation on every run is benign — GitHub default infra, no workflow file.)
 
 ### 13. Jekyll excludes HANDOFF in `_config.yml`.
-`HANDOFF.md` + `HANDOFF-*.md` excluded. Any new tracked top-level markdown with `{{` needs the same. **HANDOFF.md still contains 1 old-host github.io reference (in this narrative) — exclude it from the Arc-6 relink rewrite AND from the Phase-4 "zero hits" grep.**
+`HANDOFF.md` + `HANDOFF-*.md` excluded. Any new tracked top-level markdown with `{{` needs the same. **The dated `HANDOFF-*.md` archives + this file still mention the old `…github.io/<slug>/` host in narrative — intentional (historical); the LIVE tree has 0 old-host refs after `c80810f`.**
 
 ### 14. GA4 (ID `G-QDSPBB7S9J`) — only analytics installed.
 Inline `gtag` in **every** `<head>` + `/js/ga4-events.js`: `etsy_click` (guarded to `etsy.com` hrefs only — cooking-tool/`/free/`/blog→product links fire nothing). `checkout.js` fires `add_to_cart` on any `[data-checkout]`. **Amazon click-outs:** `book_amazon_click` (`outbound:true, transport_type:'beacon'`). **Character pages** carry an inline `data-char-cta` handler: amazon→`book_amazon_click`(beacon), preview/dispatch→`select_content`, card/`card-stage2`→`file_download` (per-character `file_name`, `source_page=character-<slug>`) — mirrors the `overlayed-echoes-preview.html` preview-PDF `file_download` pattern.
@@ -130,7 +124,7 @@ Inline `gtag` in **every** `<head>` + `/js/ga4-events.js`: `etsy_click` (guarded
 
 ## 🟢 Status: live, clean, nothing mid-flight
 
-Working tree clean except the usual untracked: `.claude/`, `.netlify/`, dated `HANDOFF-*.md` archives, `SITE-OVERVIEW.md`, `_audit_output.md`, **`tools/_fonts/`** (the fetched TTFs), and per-session **`tools/_*.py`** scripts — now also `_build_characters.py`, `_build_character_cards.py`, `_wire_character_cards.py`, `_wire_card_ga4.py`, `_wire_stage2.py`, `_wire_stage2_alt.py`, `_wire_stage2_hub.py`, `_wire_gumroad_post.py`, `_rename_no_email_post.py`. None tracked; leave or clean up at will. Also untracked: `Downloads/main-site-relink-brief.md` + the `Downloads/_pkg*/` + `Downloads/files/` source assets (briefs, portraits) — outside the repo. **The only uncommitted/unpushed thing is this HANDOFF refresh.**
+Working tree clean except the usual untracked: `.claude/`, `.netlify/`, dated `HANDOFF-*.md` archives, `SITE-OVERVIEW.md`, `_audit_output.md`, **`tools/_fonts/`** (the fetched TTFs), and per-session **`tools/_*.py`** scripts — now also `_build_characters.py`, `_build_character_cards.py`, `_wire_character_cards.py`, `_wire_card_ga4.py`, `_wire_stage2.py`, `_wire_stage2_alt.py`, `_wire_stage2_hub.py`, `_wire_gumroad_post.py`, `_rename_no_email_post.py`, plus this session's `_tools_subdomain_relink.py`, `_audit_titles.py`, `_inspect_chars.py`, `_apply_title_meta.py`. None tracked; leave or clean up at will. Also untracked: `Downloads/main-site-relink-brief.md` + the `Downloads/_pkg*/` + `Downloads/files/` source assets (briefs, portraits) — outside the repo. **The only uncommitted/unpushed thing is this HANDOFF refresh.**
 
 ---
 
@@ -139,18 +133,17 @@ Working tree clean except the usual untracked: `.claude/`, `.netlify/`, dated `H
 ```bash
 cd /c/Users/jotra/builtbyjoshstudio
 git status                                          # this HANDOFF refresh is [ahead 1], unpushed — ask Josh
-git log --oneline -12                               # tip should be 17de766 (Stage 2) under the HANDOFF refresh
+git log --oneline -12                               # tip 7af3ce1 (title/meta), c80810f (relink) below the HANDOFF refresh
 git tag -l 'backup-*' --sort=-creatordate | head -6
 
 # Live spot-checks (cache-busted):
 ts=$(date +%s)
-curl -fsS -o /dev/null -w "%{http_code}\n" "https://builtbyjoshstudio.com/writing/characters/?x=$ts"                       # 200 (hub)
-curl -fsS "https://builtbyjoshstudio.com/writing/characters/?x=$ts" | grep -c 'hub-row-label'                              # 4 (2 CSS rules + The friends / In the game)
-curl -fsS "https://builtbyjoshstudio.com/writing/characters/theo.html?x=$ts" | grep -c 'character-stage2'                  # 1 (Stage 2 section)
-curl -fsS "https://builtbyjoshstudio.com/writing/characters/theo.html?x=$ts" | grep -c 'Sir Theron'                        # >=1 (alternateName + sheet header + desc)
-curl -fsS -o /dev/null -w "%{http_code}\n" "https://builtbyjoshstudio.com/images/characters/theo-stage2-card.jpg?x=$ts"    # 200
-curl -fsS "https://builtbyjoshstudio.com/blog/free-notion-templates-for-creators.html?x=$ts" | grep -c 'No Email Required' # 0 (renamed honest)
-curl -fsS -o /dev/null -w "%{http_code}\n" "https://tools.builtbyjoshstudio.com/brine-calculator/?x=$ts"                   # 200 (new tools subdomain — Arc 6 prereq, LIVE)
+curl -fsS "https://builtbyjoshstudio.com/?x=$ts" | grep -c 'builtbyjoshstudio-cyber.github.io'                              # 0 (relink live — old host gone)
+curl -fsS "https://builtbyjoshstudio.com/?x=$ts" | grep -c 'tools.builtbyjoshstudio.com/'                                   # 7 (homepage Free-Tools repointed)
+curl -sS -o /dev/null -w "%{http_code}\n" "https://tools.builtbyjoshstudio.com/brine-calculator/?x=$ts"                    # 200 (new subdomain serves all 7)
+curl -sS -o /dev/null -w "%{http_code}\n" "https://builtbyjoshstudio-cyber.github.io/brine-calculator/?x=$ts"              # 404 (old repo Pages decommissioned)
+curl -fsS "https://builtbyjoshstudio.com/blog/why-solo-creators-stay-stuck-under-5k.html?x=$ts" | grep -c '5K/mo'           # >=1 (title/meta rewrite live)
+curl -sS -o /dev/null -w "%{http_code}\n" "https://builtbyjoshstudio.com/writing/characters/?x=$ts"                        # 200 (prior-session character hub still live)
 gh run list --workflow=pages-build-deployment --limit 3    # latest completed/success
 ```
 
@@ -160,12 +153,9 @@ Then take direction from Josh. Nothing is mid-flight.
 
 ## Open / deferred items
 
-- **🔝 Tools-subdomain relink (Arc 6 — the most-likely next ask; REVIEWED, not executed).** Brief: `C:\Users\jotra\Downloads\main-site-relink-brief.md`. Goal: repoint every main-site link `builtbyjoshstudio-cyber.github.io/<slug>/` → `tools.builtbyjoshstudio.com/<slug>/`. **Prereq MET** (new subdomain LIVE, all 7 → 200). My review's corrections to apply:
-  - **Scope = 16 LIVE files via grep, not the 7 build-story posts the brief names.** The old host appears in `index.html` (homepage Free-Tools ×7), `free/index.html` (×7), `llms.txt` (×7), the 7 build-story posts, **AND 6 other cooking posts** (`how-i-learned-to-cook`, `how-i-cook-rice-finger-method`, `why-home-cooks-should-batch-broths`, `what-i-actually-keep-in-my-kitchen`, `how-i-make-pho-two-day-method`, `cook-the-way-you-want-to-cook` — all link the Recipe Scaler). ~84 live hits.
-  - **Method:** one blanket string replace `builtbyjoshstudio-cyber.github.io/` → `tools.builtbyjoshstudio.com/` cleanly handles hrefs + the **4 JSON-LD `"url"` fields** (baking-pan-swap, building-recipe-scaler, perfect-roast, reverse-roasting), preserving slugs + trailing slashes. All 7 slugs match the brief exactly.
-  - **The one decision for the gate:** `blog/building-the-universal-recipe-scaler.html:469` shows the old host as **visible anchor text** (not just href). The blanket replace will (correctly) update the displayed URL too — bless this explicitly (it's the lone exception to "don't alter anchor text").
-  - **Brief premises that are FALSE (don't chase):** no `/tools/` index exists; `/resources/` does NOT link the tools; `sitemap.xml` has zero tool URLs; no JS refs.
-  - **Exclude `HANDOFF.md`** from the rewrite + the Phase-4 "zero hits" grep (it references the old host in narrative — intentional).
+- **🆕 Title/meta CTR watch (pending).** `7af3ce1` rewrote titles/metas on 8 under-clicking pages (live, baseline **2026-06-04**). Google needs ~1–3 weeks to re-crawl → **no CTR conclusions before ~2026-06-18**; expect day-to-day Search Console noise until then.
+- **🆕 Future pass "B" — sync social/headline twins (low priority).** On the **6 title-changed pages** (`zero-based-budget-excel`, `how-to-launch-digital-product-without-audience`, `sinking-funds-explained`, `why-solo-creators-stay-stuck-under-5k`, `ultimate-budget-workbook`, `complete-notion-os-for-creator-business`): update `og:title` + `twitter:title` + JSON-LD `headline` to the new `<title>` wording. **Leave the `og:`/`twitter:` descriptions** (intentional independent variants — already diverged from `<title>` on 5/8 pages pre-rewrite, so NOT the #9 byte-mirrors). Own backup tag; diff-before-commit; no push w/o go. (`50-30-20` + `creator-content-os` were meta-only — skip.)
+- **✅ DONE — Arc 6 relink + 7-repo decommission.** `c80810f` repointed 16 live files (84 hits) `builtbyjoshstudio-cyber.github.io/<slug>/` → `tools.builtbyjoshstudio.com/<slug>/`; the 7 old per-slug repos are Pages-disabled (404) + archived (read-only, reversible). Brief at `C:\Users\jotra\Downloads\main-site-relink-brief.md` (historical).
 - **Field-dispatch Stage 2 (more `/writing/` dispatches)** — `tools/_build_dispatches.py` + the index pattern ready; need markdown + a thematic slug. (Distinct from the OE-characters Stage 2, which is DONE.)
 - **Organization schema non-critical warnings** — Rich Results flags non-critical Org-node issues (pre-existing, non-blocking); fix = site-wide sweep.
 - **Ebonspire launch (June 2026)** — flip "releases June 2026" → "available now", add Book + Offer with verified ASIN, mirror the 3-edition pattern.
@@ -176,27 +166,25 @@ Then take direction from Josh. Nothing is mid-flight.
 ## Branches and tags
 
 ```
-main    production — HEAD == origin/main (17de766) + this unpushed HANDOFF refresh on top
+main    production — HEAD == origin/main (7af3ce1) + this unpushed HANDOFF refresh on top
 ```
 
-**Backup tags (newest first, LOCAL only):** `backup-pre-stage2` · `backup-pre-character-cards` · `backup-pre-hub-row` · `backup-pre-character-cluster` · `backup-pre-free-nav-sweep` · `backup-2026-06-03` · earlier remain.
+**Backup tags (newest first, LOCAL only):** `backup-pre-title-meta` (`c80810f`) · `backup-pre-tools-relink` (`a4a72d9`) · `backup-pre-stage2` · `backup-pre-character-cards` · `backup-pre-hub-row` · `backup-pre-character-cluster` · earlier remain.
 
 **This session's commits (newest first, ALL pushed & live except this HANDOFF refresh):**
-`17de766` Stage 2 fantasy selves · `ef2ef68` file_download GA4 on card downloads · `66b6ea5` Package-2 character share cards + og/twitter + downloads · `65b0d40` hub one-row layout · `35b9896` character cluster (5 pages + hub + Person schema + portraits + wiring) · `47faaa1` dateModified bump · `72a3434` no-email rename + redirect stub · `380bfa9` Etsy/Gumroad income post. Session-start tip was `945e528`; `227ced6` (prior HANDOFF) was pushed early this session.
+`7af3ce1` title/meta SEO rewrite (8 pages, 13 lines) · `c80810f` tools-subdomain relink (16 files, 84 hits). **GitHub-settings-only (no commits):** 7 old tool repos Pages-disabled + archived. Session-start tip was `a4a72d9` (prior HANDOFF refresh, pushed early this session); under it `17de766` (prior-session Stage 2) + the OE character-cluster / income / no-email commits remain live.
 
 ---
 
 ## Hard-won lessons this session
 
-- **`core.autocrlf=true` is a trap (#20).** Working tree is CRLF, repo is LF; MSYS grep hides CR; a `\n` regex won't match. Every sweep reads→normalizes→edits→writes-back-original-eol. `git diff --check` clean is the proof.
-- **Prototype-first, then replicate.** Josh signs off a **Theo-first** page/card/section before each build fans out to the other four. Build the one, render it (preview screenshot + Read the JPG), get approval, THEN generalize into a match-checked generator/sweep.
-- **`theo-min.png` was a mock, not a source (#2, #21).** It had baked DejaVu placeholder text; my first card doubled the text. Inspect provided assets before compositing — use the clean `.webp`.
-- **Reproduce-byte-for-byte to validate a generator.** `_build_characters.py` transforms the *approved* `theo.html` into the others via match-checked span-swaps (each Theo span asserted to appear exactly N times) — so the approved prototype carries through untouched and a mismatch aborts loudly.
-- **#9 mirror is broader than FAQ:** `blog.html`'s ItemList mirrors its visible cards 1:1; the character pages' Person `alternateName` mirrors the visible fantasy name. Edit the visible thing → edit its schema twin.
-- **Review a brief by checking its premises against the repo (#2).** The relink brief named only 7 posts (there are 16 files), claimed a `/tools/` index + `/resources/` tool links (neither exists), and its "don't alter anchor text" rule collided with one display-URL — all surfaced by grepping, not by reading the brief alone.
-- **Render share assets before trusting them.** Read the generated JPG + serve the page in the preview (`preview_start` → screenshot). Caught the mock-text doubling, confirmed scrim legibility (Kael), the long-name auto-fit (The Wanderer), and the hub two-row alignment.
-- **Commit messages via here-doc `-F -`; `main` is production (no PR flow); commit ≠ push (wait for Josh).** Backup-tag before each arc.
+- **Canary-then-batch for destructive/outward-facing infra.** Pages-disable and repo-archive each ran ONE repo first (`brine-calculator`), verified the effect (404 / `archived=true` + the live tool still 200), THEN batched the other six. Stop-and-report on any surprise; Josh's explicit go between phases.
+- **Enumerate before you flip — never assume repo layout (#2).** `gh repo list` + per-repo `…/pages` proved 7 separate slug-named project repos (URL slug == repo name) plus the *separate* `tools` (new subdomain, cname `tools.builtbyjoshstudio.com`) + `builtbyjoshstudio` (main, cname) — so disabling/archiving the 7 couldn't touch the live surfaces. `CNAME` = `builtbyjoshstudio.com`; the only `github.com/…` refs are repo links in docs (different host, not matched by the relink).
+- **Verify proposed copy against the page, not just the brief (#2).** The title/meta audit caught 2 overpromises — a "free template" (page only offers a paid workbook + a build-it-yourself walkthrough) and an "actually used" case study (the post explicitly says it isn't one). Dropped both before applying.
+- **og/twitter/headline are NOT the #9 byte-mirrors.** They're independently authored and already diverged from `<title>` on 5/8 pages — so changing `<title>`/`<meta>` alone is fine; #9's strict twins are FAQ `acceptedAnswer`, Offer/Product `url`, and blog.html `ItemList` (none touched). Don't assume a "schema twin" without grepping.
+- **EOL-preserving sweep = binary `bytes.replace` (#20).** Relink host string is pure ASCII (no newline bytes) → `git diff --check` clean; mixed CRLF (15 files) + LF (`free/index.html`) preserved automatically. Title/meta apply used text mode with `newline=''` for the same effect.
+- **`main` is production (no PR flow); commit ≠ push (wait for Josh); backup-tag before each arc; commit msgs via `-F -` heredoc; verify live cache-busted after every push.**
 
 ---
 
-**End of handoff.** State: live, clean; the full **Overlayed Echoes character cluster** (Package 1 pages+hub, Package 2 share cards, Stage 2 fantasy selves) + the income post + the no-email rename are all pushed & post-deploy-verified at `17de766`; the **tools-subdomain relink is reviewed but NOT executed** (Arc 6 / Open items — the likely next task, prereq met). HEAD == origin/main with this HANDOFF refresh unpushed on top. New session: read this doc, run the First-Steps block, ask Josh whether to push the HANDOFF refresh, then take direction.
+**End of handoff.** State: live, clean. This session shipped the **tools-subdomain relink** (`c80810f`, 16 files / 84 hits) + **decommissioned the 7 old tool repos** (Pages-off → 404, archived/read-only) + an **SEO title/meta rewrite** (`7af3ce1`, 8 pages). Prior session's OE character cluster + income post + no-email rename remain live. `origin/main` == `7af3ce1`; this HANDOFF refresh is unpushed on top. New session: read this doc, run First-Steps, ask Josh whether to push the HANDOFF refresh, then take direction. **Most likely next: future-pass B (og/twitter/headline sync) and/or the title/meta CTR check (baseline + read-date in Open items).**
