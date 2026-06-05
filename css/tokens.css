@@ -212,6 +212,22 @@
   --body-read:   var(--ink);
 }
 
+/* ── DARK ZODIAC MODE — opt in via html[data-theme="dark"] (zodiac collection pages).
+   Flips the Kinetic tokens to the warm-dark palette that matches the homepage dark
+   zodiac zone, so the --bbj-* aliases, the nav, and every data-glass="cosmic"
+   component re-theme to dark at once. ── */
+[data-theme="dark"] {
+  --canvas:    #14130e;
+  --surface:   #1d1b15;
+  --surface-2: #211f18;
+  --ink:       #f1eee6;
+  --muted:     #b0ab9d;
+  --line:      #2f2c24;
+  --line-2:    #3a362c;
+  --shadow:    #000000;
+  --body-read: #c9c6bd;
+}
+
 /* ── MONOSPACE NUMERIC DISPLAY (kept; repointed to --font-mono) ── */
 .sidebar-price,
 .sidebar-price-strike,
