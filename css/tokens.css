@@ -202,6 +202,7 @@
   --tynkr-muted:   var(--muted);
   --tynkr-border:  var(--line);
   --tynkr-accent:  var(--accent);
+  --tynkr-orange:  var(--accent-2);
   --bbj-bg:      var(--canvas);
   --bbj-surface: var(--surface);
   --bbj-text:    var(--ink);
@@ -261,6 +262,20 @@
 [data-glass="cosmic"] .sidebar-cta {
   border: 2px solid var(--line-2);
   box-shadow: 4px 4px 0 var(--shadow);
+}
+/* Buy-CTA hover: Kinetic press-down + keep the archetype accent — overrides the
+   old per-page inline `:hover{background:#ff6a2a/#e0bd5a}` color-flip everywhere. */
+[data-glass="prototype"] .sidebar-cta:hover,
+[data-glass="prototype"] .ls-checkout-btn:hover:not(:disabled) {
+  background: var(--accent);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+[data-glass="cosmic"] .sidebar-cta:hover,
+[data-glass="cosmic"] .ls-checkout-btn:hover:not(:disabled) {
+  background: var(--accent-2);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--shadow);
 }
 
 /* Guarantee block */
