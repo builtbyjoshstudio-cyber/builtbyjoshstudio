@@ -232,21 +232,21 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --tynkr-bg: #f7f6f2;
+      --tynkr-bg: #f1eee6;
       --tynkr-surface: #ffffff;
-      --tynkr-surface-2: #f0ede8;
-      --tynkr-accent: #e8500a;
-      --tynkr-accent2: #1a1a2e;
-      --tynkr-text: #1c1c1c;
-      --tynkr-muted: #6b6b6b;
-      --tynkr-border: #e0ddd8;
+      --tynkr-surface-2: #f8f5ee;
+      --tynkr-accent: #ff5a30;
+      --tynkr-accent2: #14130e;
+      --tynkr-text: #14130e;
+      --tynkr-muted: #6d695d;
+      --tynkr-border: #e2ddd0;
       --body-read: #3a3a3a;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       background: var(--tynkr-bg);
       color: var(--tynkr-text);
       overflow-x: hidden;
@@ -263,12 +263,12 @@
       justify-content: space-between;
       padding: 0 2.5rem;
       height: 64px;
-      background: rgba(247,246,242,0.97);
+      background: rgba(241,238,230,0.97);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--tynkr-border);
     }
     .nav-logo {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-weight: 800;
       font-size: 1.1rem;
       letter-spacing: -0.02em;
@@ -281,7 +281,7 @@
       list-style: none;
     }
     .nav-links a {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.85rem;
       font-weight: 500;
       letter-spacing: 0.06em;
@@ -305,11 +305,11 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(232,80,10,0.05) 0%, transparent 60%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,90,48,0.05) 0%, transparent 60%);
       pointer-events: none;
     }
     .breadcrumb {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -324,7 +324,7 @@
     .breadcrumb a:hover { text-decoration: underline; }
     .breadcrumb .sep { margin: 0 0.6rem; opacity: 0.5; }
     .hero-eyebrow {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.72rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -333,7 +333,7 @@
       position: relative;
     }
     h1.product-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(2.2rem, 5.5vw, 3.8rem);
       font-weight: 800;
       letter-spacing: -0.02em;
@@ -347,12 +347,12 @@
     }
     h1.product-title .italic-accent {
       color: var(--tynkr-accent);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-style: italic;
       font-weight: 400;
     }
     .product-tagline {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: clamp(1.1rem, 1.7vw, 1.35rem);
       font-style: italic;
       color: var(--body-read);
@@ -369,14 +369,14 @@
       position: relative;
     }
     .chip {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.66rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--tynkr-muted);
       border: 1px solid var(--tynkr-border);
       padding: 0.5rem 1rem;
-      background: rgba(232,80,10,0.02);
+      background: rgba(255,90,48,0.02);
     }
     .chip strong { color: var(--tynkr-accent); font-weight: 600; }
 
@@ -393,7 +393,7 @@
 
     /* Main content column */
     .main-column {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 1.15rem;
       line-height: 1.75;
       color: var(--body-read);
@@ -409,7 +409,7 @@
       padding-top: 0;
     }
     .main-column h2 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(1.5rem, 2.6vw, 1.95rem);
       font-weight: 800;
       letter-spacing: -0.01em;
@@ -459,11 +459,11 @@
       overflow: hidden;
     }
     .module-card:hover {
-      border-color: rgba(232,80,10,0.25);
+      border-color: rgba(255,90,48,0.25);
       background: var(--tynkr-surface-2);
     }
     .module-card h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1.15rem;
       font-weight: 800;
       color: var(--tynkr-text);
@@ -472,14 +472,14 @@
     }
     .module-card .module-tag {
       display: block;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       color: var(--tynkr-accent);
       font-size: 0.82rem;
       font-weight: 500;
       margin-bottom: 0.6rem;
     }
     .module-card p {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 1rem;
       line-height: 1.6;
       color: var(--body-read);
@@ -501,7 +501,7 @@
       padding: 1.4rem 1.6rem;
     }
     .step-num {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--tynkr-accent);
@@ -510,14 +510,14 @@
       padding-top: 0.15rem;
     }
     .step-body h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1.1rem;
       font-weight: 800;
       color: var(--tynkr-text);
       margin-bottom: 0.35rem;
     }
     .step-body p {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 1rem;
       line-height: 1.55;
       color: var(--body-read);
@@ -531,18 +531,18 @@
       background: var(--tynkr-surface);
       border: 1px solid var(--tynkr-border);
       padding: 1.8rem 1.7rem;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
     }
     .sticky-sidebar::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(232,80,10,0.04) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(255,90,48,0.04) 0%, transparent 60%);
       pointer-events: none;
     }
     .sticky-sidebar > * { position: relative; }
     .sidebar-label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.62rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -550,7 +550,7 @@
       margin-bottom: 0.4rem;
     }
     .sidebar-price {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 2.4rem;
       font-weight: 800;
       color: var(--tynkr-accent);
@@ -567,7 +567,7 @@
       border-bottom: 1px solid var(--tynkr-border);
     }
     .sidebar-included-label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.62rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -600,7 +600,7 @@
       display: block;
       background: var(--tynkr-accent);
       color: var(--tynkr-bg);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.14em;
@@ -612,7 +612,7 @@
       margin-bottom: 1.1rem;
     }
     .sidebar-cta:hover {
-      background: #ff6a2a;
+      background: #ff5a30;
       transform: translateY(-1px);
     }
     .sidebar-trust {
@@ -643,7 +643,7 @@
       padding: 5rem 2rem 4rem;
     }
     .section-label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -652,7 +652,7 @@
       margin-bottom: 0.6rem;
     }
     .section-title-main {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(1.8rem, 3.2vw, 2.4rem);
       font-weight: 800;
       letter-spacing: -0.01em;
@@ -671,7 +671,7 @@
       padding: 1.6rem 0;
     }
     .faq-item h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--tynkr-text);
@@ -679,7 +679,7 @@
       letter-spacing: -0.005em;
     }
     .faq-item p {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 1.05rem;
       line-height: 1.65;
       color: var(--body-read);
@@ -713,17 +713,17 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(232,80,10,0.03) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(255,90,48,0.03) 0%, transparent 60%);
       pointer-events: none;
     }
     .related-card:hover {
       transform: translateY(-3px);
-      border-color: rgba(232,80,10,0.25);
-      box-shadow: 0 14px 40px rgba(232,80,10,0.05);
+      border-color: rgba(255,90,48,0.25);
+      box-shadow: 0 14px 40px rgba(255,90,48,0.05);
     }
     .related-card > * { position: relative; z-index: 1; }
     .related-meta {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.62rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -731,7 +731,7 @@
       margin-bottom: 0.7rem;
     }
     .related-card h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1.15rem;
       font-weight: 800;
       color: var(--tynkr-text);
@@ -740,7 +740,7 @@
       line-height: 1.25;
     }
     .related-card p {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.95rem;
       font-style: italic;
       color: var(--tynkr-muted);
@@ -749,7 +749,7 @@
       flex: 1;
     }
     .related-link {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.66rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -760,12 +760,12 @@
     .cta-band {
       padding: 5rem 2rem;
       text-align: center;
-      background: linear-gradient(135deg, #f0ede8 0%, #f7f6f2 100%);
+      background: linear-gradient(135deg, #f8f5ee 0%, #f1eee6 100%);
       border-top: 1px solid var(--tynkr-border);
       border-bottom: 1px solid var(--tynkr-border);
     }
     .cta-band .cta-eyebrow {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -773,7 +773,7 @@
       margin-bottom: 1rem;
     }
     .cta-band h2 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(1.7rem, 3.2vw, 2.4rem);
       font-weight: 800;
       color: var(--tynkr-text);
@@ -787,11 +787,11 @@
     .cta-band h2 .italic-accent {
       color: var(--tynkr-accent);
       font-style: italic;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-weight: 400;
     }
     .cta-band .cta-sub {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-style: italic;
       color: var(--body-read);
       font-size: 1.1rem;
@@ -803,7 +803,7 @@
       display: inline-block;
       background: var(--tynkr-accent);
       color: var(--tynkr-bg);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.14em;
@@ -813,13 +813,13 @@
       transition: background 0.2s, transform 0.2s;
     }
     .btn-etsy:hover {
-      background: #ff6a2a;
+      background: #ff5a30;
       transform: translateY(-2px);
     }
 
     /* ── FOOTER ── */
     footer {
-      background: #f7f6f2;
+      background: #f1eee6;
       padding: 3rem 5rem;
       display: flex;
       align-items: center;
@@ -828,7 +828,7 @@
       gap: 1.5rem;
     }
     .footer-left {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -900,12 +900,12 @@
     .studio-guarantee {
       margin-top: 1.2rem;
       padding: 1.1rem 1.2rem;
-      background: rgba(232,80,10,0.04);
-      border: 1px solid rgba(232,80,10,0.25);
+      background: rgba(255,90,48,0.04);
+      border: 1px solid rgba(255,90,48,0.25);
       border-left: 3px solid var(--tynkr-accent);
     }
     .studio-guarantee h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.82rem;
       font-weight: 700;
       color: var(--tynkr-accent);
@@ -914,7 +914,7 @@
       margin-bottom: 0.5rem;
     }
     .studio-guarantee p {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.85rem;
       line-height: 1.55;
       color: var(--tynkr-text);
@@ -939,11 +939,11 @@
     }
     .persona-spotlights .persona::before { display: none !important; }
     .persona-spotlights .persona:hover {
-      border-color: rgba(232,80,10,0.35);
+      border-color: rgba(255,90,48,0.35);
       transform: translateY(-2px);
     }
     .persona-spotlights .persona h4 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1rem;
       font-weight: 800;
       color: var(--tynkr-accent);
@@ -951,7 +951,7 @@
       letter-spacing: -0.005em;
     }
     .persona-spotlights .persona p {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.92rem;
       line-height: 1.55;
       color: var(--tynkr-text);
@@ -968,7 +968,7 @@
       padding: 3rem 2rem 1rem;
     }
     .comparison-section .comp-label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -977,7 +977,7 @@
       margin-bottom: 0.5rem;
     }
     .comparison-section h2 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(1.5rem, 2.6vw, 1.95rem);
       font-weight: 800;
       color: var(--tynkr-text);
@@ -986,7 +986,7 @@
       letter-spacing: -0.01em;
     }
     .comparison-section .comp-intro {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 1rem;
       color: var(--tynkr-muted);
       text-align: center;
@@ -1004,14 +1004,14 @@
       padding: 0.95rem 1.1rem;
       text-align: left;
       border-bottom: 1px solid var(--tynkr-border);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.92rem;
       line-height: 1.5;
       vertical-align: top;
     }
     .comparison-table thead th {
       background: var(--tynkr-surface-2);
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.04em;
@@ -1028,8 +1028,8 @@
     .comparison-table td.highlight {
       color: var(--tynkr-text);
       font-weight: 500;
-      background: rgba(232,80,10,0.03);
-      border-left: 1px solid rgba(232,80,10,0.15);
+      background: rgba(255,90,48,0.03);
+      border-left: 1px solid rgba(255,90,48,0.15);
       position: relative;
       padding-left: 2rem;
       width: 36%;
@@ -1059,7 +1059,7 @@
       .comparison-table td { border-bottom: none; padding: 0.5rem 1rem; }
       .comparison-table td:first-child {
         background: var(--tynkr-surface-2);
-        font-family: 'Syne', sans-serif;
+        font-family: 'Bricolage Grotesque', sans-serif;
         font-size: 0.9rem;
       }
       .comparison-table td.neutral::before { content: 'Alternative: '; font-weight: 700; color: var(--tynkr-muted); }
@@ -1461,9 +1461,9 @@
         <h3>The Studio Guarantee</h3>
         <p>Real-world tested. No bloat, no filler. If it doesn't hold up in my own workflow, it doesn't leave the studio. This is the exact system I use to run Built By Josh Studio — not a generic template repackaged for sale.</p>
       
-      <div style="margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid var(--tynkr-border);font-family:'DM Sans',sans-serif;">
-        <div style="font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tynkr-muted);margin-bottom:.5rem;">Deep Dive</div>
-        <a href="../blog/notion-product-os-for-creators.html" style="font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--tynkr-orange);text-decoration:none;font-weight:600;">Read the full breakdown on the blog →</a>
+      <div style="margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid var(--tynkr-border);font-family:'Hanken Grotesk',sans-serif;">
+        <div style="font-family:'Bricolage Grotesque',serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tynkr-muted);margin-bottom:.5rem;">Deep Dive</div>
+        <a href="../blog/notion-product-os-for-creators.html" style="font-family:'Hanken Grotesk',sans-serif;font-size:.88rem;color:var(--tynkr-orange);text-decoration:none;font-weight:600;">Read the full breakdown on the blog →</a>
       </div>
     </aside>
     </aside>
