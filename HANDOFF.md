@@ -1,3 +1,46 @@
+# 🚧 ACTIVE WORK — Kinetic site-wide re-theme (IN PROGRESS, branch `kinetic-retheme`)
+
+**This block is the live state of an in-progress effort. The dated handoff below it is the prior (shipped/live) state — its standing instructions still apply.**
+
+**TASK:** Replace the site's navy/gold **glassmorphism** with the **Kinetic v5** design system, **SITE-WIDE** (~110 pages incl. all 40 zodiac collections). **Single Light theme, no toggle.** Locked with Josh: whole site; rollout = prototype → local branch → **one live flip**; **accent = blue `#2438e8` for Tynkr/tools, orange `#ff5a30` for zodiac** (per the corrected mockup). Kinetic = warm cream `#f1eee6`, ink `#14130e`, **hard 2px borders + solid offset shadows** (`box-shadow:5px 5px 0`), **Bricolage Grotesque** (display) + **Hanken Grotesk** (UI) + JetBrains Mono, **NO backdrop-filter**.
+
+**READ FIRST:**
+- **The plan:** `C:\Users\jotra\.claude\plans\linked-tickling-falcon.md` (full phased plan, mappings, gates, verification).
+- **Canonical Kinetic CSS spec:** `C:\Users\jotra\Downloads\_unpack_corrected_kinetic.html` (the corrected mockup, decoded) + `C:\Users\jotra\Downloads\mockup-kinetic.html`.
+
+**BRANCH / TAGS (nothing pushed; `main`/live is still glassmorphism):**
+- Branch **`kinetic-retheme`** (local only). Backup tag **`pre-kinetic-backup`** = `39dc1e9` (main tip).
+- Branch commit **`664c5c7`** = "Kinetic foundation (tokens.css) + homepage". **NEVER push without Josh's explicit go; one live flip at the very end (Phase 4).**
+
+**✅ DONE (committed `664c5c7`):**
+- **`css/tokens.css` REWRITTEN 1086→154 lines = the Kinetic engine.** Single `:root` Kinetic tokens + **legacy-var aliases** (`--tynkr-*`/`--bbj-*`/`--bg`/`--text`/`--nav-bg`…→Kinetic). De-glassed `.site-nav` + every `[data-glass="prototype|cosmic|books"]` component (sidebars/chips/CTAs/`.style-card`/`.animal-card`/`.landscape-card`/`.book-section`) + kept the blog `.article-main` 2-col layout (sidebar restyled Kinetic) + the tabular-nums numeric block. `@import` Google Fonts (Bricolage/Hanken/JetBrains) at the top.
+- **`index.html` hand-converted** (the bespoke dual-hero): cream Tynkr panel / **dark-ink `#14130e` BBJ panel with hardcoded cream text** (the `--bbj-*` vars now resolve LIGHT for the zodiac sections, so the hero panel's dark text is hardcoded, not var-driven); Kinetic buttons (2px border + `5px 5px 0` shadow + press-down hover); **ink `.studio-intro` ribbon** (blue "tools" / orange "art"); deleted `.stars`/`.star`/`@keyframes twinkle`/SVG star-grid/navy `::before` washes/`.site-nav.dark`; ran `_kinetic_fonts.py` + `_kinetic_hex.py`. (The star-gen + nav-scroll-dark JS is left in the body — harmless: `.stars{display:none}` and `.dark` hits only dead rules.)
+
+**🔑 KEY ARCHITECTURE INSIGHT (makes Phase 2 fast):** every page links `/css/tokens.css` **AFTER** its inline `<style>`, so tokens.css `:root` **wins** duplicate vars → the legacy-var aliases there **centrally override each page's inline `--tynkr-*`/`--bbj-*` palette.** So most of the 110 pages re-theme from tokens.css ALONE; per-page work = **font sweep + literal-hex sweep only** (inline nav `backdrop-filter` is overridden centrally by `.site-nav{backdrop-filter:none}`). The 4–6 week plan estimate is high.
+
+**REUSABLE SWEEP SCRIPTS** (untracked `tools/`, EOL-safe **byte**-replace, **dry-run default**, `--write` to apply, prints per-file hit counts):
+- `python tools/_kinetic_fonts.py <files…> [--write]` — Syne/Cinzel→Bricolage, DM Sans/Crimson→Hanken.
+- `python tools/_kinetic_hex.py <files…> [--write]` — old-palette literal hex → Kinetic. **CAVEAT:** its map sends `#0b0813→#14130e` (ink) — right for index's dark PANELS, but a **collection page whose body-bg is a literal dark hex needs `#0b0813→#f1eee6` (light)** — build a collection-specific *inverting* variant.
+- `python tools/_kinetic_census.py` → writes `tools/_kinetic_census.md`. The **RETIRE rows must reach 0** before the live flip. Baseline recorded.
+
+**▶ NEXT — finish Phase 1 (3 proof pages), then the gate:**
+1. **Product** `products/creator-finance-os.html` — `_kinetic_fonts` + `_kinetic_hex` `--write`; preview. (Should mostly Just Work via tokens.css.)
+2. **Blog** e.g. `blog/zero-based-budget-excel.html` — same; preview.
+3. **One zodiac collection** e.g. `collections/aries-zodiac-art.html` — needs the **dark→light INVERTING hex map**; Kinetic LIGHT (recommended). **This screenshot decides the Light-vs-Dark zodiac question (OPEN).** NOTE collections are GENERATOR-built (`tools/build_western_signs_page.py` + siblings) — for real Phase 2 edit the generator template + rerun; for the proof a one-page hand-sweep is fine (regenerate later).
+4. Preview all 4, screenshot, present the **Phase-1 sign-off gate**. Confirm the OPEN decisions: **fonts self-host vs @import**; **zodiac Light vs Dark**.
+
+**THEN (per the plan):** Phase 2 roll-out (products → blog → fiction/books/characters → about/legal/resources/free → index hubs → collections via the 5 generators + the 2 hand hubs + `legal/index.html` + shared CSS `checkout/gallery/mobile-nav`) → Phase 3 (regenerate `images/og/og-home.webp`; logo recolor is a Josh/external task; tree-wide grep gates →0; JSON-LD-untouched proof) → Phase 4 (merge `kinetic-retheme`→`main`, **one push = live**, gated on Josh; `pre-kinetic-backup` = rollback).
+
+**PREVIEW METHOD:** `python -m http.server 8920 --bind 127.0.0.1 --directory C:\Users\jotra\builtbyjoshstudio` (background) → Claude-in-Chrome navigate `http://127.0.0.1:8920/<page>?v=N` → screenshot. **GOTCHA:** the CDP screenshot path WEDGES after ~1 capture per tab — close + recreate the tab (fresh `tabs_context_mcp`) for each screenshot.
+
+**KINETIC GOTCHAS (on top of the standing instructions below):**
+- EOL: working tree is CRLF; the **Write tool emits LF** → after `Write`ing a tracked file, normalize to CRLF (`d=open(p,'rb').read(); open(p,'wb').write(d.replace(b'\r\n',b'\n').replace(b'\n',b'\r\n'))`) then `git diff --check`. The sweep scripts already byte-replace (safe). `git diff --check` clean = proof.
+- **JSON-LD / `<meta>` / prices / Lemon-Squeezy+Etsy URLs UNTOUCHED** — theme/visual only.
+- Identity rules unchanged (see #6 below): "Josh"/"J.S. Warden", "Kansas", zodiac is "AI-crafted", Etsy secondary.
+- Commit per archetype on the branch (bisectable). Backup tag exists. Don't merge/push until Phase 4 on Josh's go.
+
+---
+
 # builtbyjoshstudio.com — Session Handoff
 
 **Date:** 2026-06-04 (session: **executed Arc 6 — the tools-subdomain relink** (`c80810f`): 84 link/JSON-LD swaps across 16 live files → `tools.builtbyjoshstudio.com`, pushed + live; **decommissioned the 7 old tool repos** (Pages disabled → 404, repos archived/read-only); then an **SEO title/meta rewrite on 8 under-clicking pages** (`7af3ce1`, pushed + live). Prior session's OE character cluster + income post + no-email rename remain live.)
