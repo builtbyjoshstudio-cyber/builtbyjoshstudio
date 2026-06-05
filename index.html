@@ -522,7 +522,9 @@
       transform: translate(2px, 2px);
       box-shadow: 2px 2px 0 #f1eee6;
     }
-    .stars { display: none; }
+    .stars { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .star { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; opacity: 0; animation: twinkle var(--d) ease-in-out infinite var(--delay); }
+    @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: var(--op); transform: scale(1); } }
 
     /* ── DIVIDER ── */
     .section-divider {
@@ -1942,6 +1944,7 @@
 
   <!-- BUILT BY JOSH STUDIO SHOP -->
   <section id="builtbyjosh">
+    <div class="stars"></div>
     <div class="section-header-bbj reveal">
       <h2>Zodiac <span>Art Prints</span></h2>
       <p>Digital downloads — instant access, print at home or at a local shop</p>
@@ -2067,6 +2070,7 @@
 
   <!-- WESTERN ZODIAC REALMS -->
   <section id="western-realms">
+    <div class="stars"></div>
     <div class="section-header-bbj reveal">
       <h2>Zodiac <span>Realms</span></h2>
       <p>Hybrid cosmos-landscape bundles — 8 designs per sign across 4 mythic realms</p>
@@ -2184,6 +2188,7 @@
 
   <!-- CHINESE ZODIAC ART -->
   <section id="chinese-zodiac">
+    <div class="stars"></div>
     <div class="section-header-bbj" style="padding-bottom:1.5rem;border-bottom:1px solid var(--bbj-border);margin-bottom:2.5rem;">
       <div>
         <div class="bbj-eyebrow" style="font-family:'Bricolage Grotesque',serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:0.5rem;">Built By Josh Studio</div>
@@ -2295,6 +2300,7 @@
 
   <!-- CHINESE ZODIAC REALMS ART -->
   <section id="chinese-realms">
+    <div class="stars"></div>
     <div class="section-header-bbj" style="padding-bottom:1.5rem;border-bottom:1px solid var(--bbj-border);margin-bottom:2.5rem;">
       <div>
         <div class="bbj-eyebrow" style="font-family:'Bricolage Grotesque',serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:0.5rem;">Built By Josh Studio</div>
@@ -2406,6 +2412,7 @@
 
   <!-- ZODIAC LANDSCAPES ART -->
   <section id="landscapes">
+    <div class="stars"></div>
     <div class="section-header-bbj" style="padding-bottom:1.5rem;border-bottom:1px solid var(--bbj-border);margin-bottom:2.5rem;">
       <div>
         <div class="bbj-eyebrow" style="font-family:'Bricolage Grotesque',serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:0.5rem;">Built By Josh Studio</div>
@@ -2662,22 +2669,21 @@
 
   <script>
     // ── Star field ──
-    const container = document.getElementById('starsContainer');
-    for (let i = 0; i < 80; i++) {
-      const s = document.createElement('div');
-      s.className = 'star';
-      s.style.cssText = `
-        left:${Math.random()*100}%;
-        top:${Math.random()*100}%;
-        --d:${2+Math.random()*4}s;
-        --delay:-${Math.random()*4}s;
-        --op:${0.3+Math.random()*0.7};
-        filter:blur(${Math.random() > 0.8 ? '1px' : '0px'});
-        width:${Math.random()>0.8?3:2}px;
-        height:${Math.random()>0.8?3:2}px;
-      `;
-      container.appendChild(s);
-    }
+    // fill the dark zodiac hero + every dark zodiac section; density scaled to area
+    document.querySelectorAll('.stars').forEach(function (container) {
+      const rect = container.getBoundingClientRect();
+      const count = Math.min(300, Math.max(60, Math.round((rect.width * rect.height) / 5500)));
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        const big = Math.random() > 0.82;
+        const sz = big ? (Math.random() > 0.6 ? 4 : 3) : 2;
+        s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:-${Math.random()*4}s;--op:${0.45+Math.random()*0.55};filter:blur(${big && Math.random() > 0.5 ? '1px' : '0px'});width:${sz}px;height:${sz}px;`;
+        frag.appendChild(s);
+      }
+      container.appendChild(frag);
+    });
 
     // ── Nav dark mode on scroll — tracks dark-bg sections ──
     const nav = document.getElementById('mainNav');
