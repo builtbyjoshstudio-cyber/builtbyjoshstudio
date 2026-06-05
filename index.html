@@ -280,35 +280,41 @@
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* Tynkr palette */
-      --tynkr-bg: #f7f6f2;
+      /* Kinetic — Tynkr / tools (blue primary) */
+      --tynkr-bg: #f1eee6;
       --tynkr-surface: #ffffff;
-      --tynkr-accent: #e8500a;
-      --tynkr-accent2: #1a1a2e;
-      --tynkr-text: #1c1c1c;
-      --tynkr-muted: #6b6b6b;
-      --tynkr-border: #e0ddd8;
+      --tynkr-accent: #2438e8;
+      --tynkr-accent2: #14130e;
+      --tynkr-text: #14130e;
+      --tynkr-muted: #6d695d;
+      --tynkr-border: #14130e;
 
-      /* Built By Josh palette */
-      --bbj-bg: #0b0813;
-      --bbj-surface: #120f1f;
-      --bbj-accent: #c9a84c;
-      --bbj-accent2: #7b4fa6;
-      --bbj-text: #ede8f5;
-      --bbj-muted: #8a7fa8;
-      --bbj-border: #2a2040;
-      --bbj-glow: rgba(201,168,76,0.15);
+      /* Kinetic — Built By Josh / zodiac sections (light; orange accent) */
+      --bbj-bg: #f1eee6;
+      --bbj-surface: #ffffff;
+      --bbj-accent: #ff5a30;
+      --bbj-accent2: #2438e8;
+      --bbj-text: #14130e;
+      --bbj-muted: #6d695d;
+      --bbj-border: #14130e;
+      --bbj-glow: rgba(255,90,48,0.25);
+
+      /* Kinetic core (mirror tokens.css for inline references) */
+      --ink: #14130e;
+      --canvas: #f1eee6;
+      --shadow: #14130e;
+      --ease: cubic-bezier(.22,.61,.36,1);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       background: var(--tynkr-bg);
       color: var(--tynkr-text);
       overflow-x: hidden;
@@ -324,17 +330,11 @@
       justify-content: space-between;
       padding: 0 2.5rem;
       height: 64px;
-      background: rgba(247,246,242,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--tynkr-border);
-      transition: background 0.3s;
-    }
-    .site-nav.dark {
-      background: rgba(11,8,19,0.92);
-      border-bottom-color: var(--bbj-border);
+      background: #f1eee6;
+      border-bottom: 2px solid #14130e;
     }
     .nav-logo {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-weight: 800;
       font-size: 1.1rem;
       letter-spacing: -0.02em;
@@ -349,7 +349,7 @@
       list-style: none;
     }
     .nav-links a {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.85rem;
       font-weight: 500;
       letter-spacing: 0.06em;
@@ -380,17 +380,9 @@
       position: relative;
       overflow: hidden;
     }
-    .hero-tynkr::before {
-      content: '';
-      position: absolute;
-      top: -80px; right: -80px;
-      width: 360px; height: 360px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,80,10,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    .hero-tynkr::before { display: none; }
     .tynkr-eyebrow {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.14em;
@@ -408,7 +400,7 @@
       background: var(--tynkr-accent);
     }
     .hero-tynkr h1 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(2.4rem, 4vw, 3.6rem);
       font-weight: 800;
       line-height: 1.05;
@@ -432,18 +424,19 @@
       gap: 0.6rem;
       background: var(--tynkr-accent);
       color: #fff;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-weight: 700;
       font-size: 0.85rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       text-decoration: none;
       padding: 0.9rem 2rem;
-      border: none;
+      border: 2px solid #14130e;
+      box-shadow: 5px 5px 0 #14130e;
       cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
+      transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
     }
-    .btn-primary-tynkr:hover { background: #c43d00; transform: translateY(-2px); }
+    .btn-primary-tynkr:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #14130e; }
     .tynkr-tags {
       display: flex;
       flex-wrap: wrap;
@@ -453,17 +446,18 @@
     }
     .tynkr-tag {
       font-size: 0.72rem;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      border: 1px solid var(--tynkr-border);
-      color: var(--tynkr-muted);
+      border: 2px solid #14130e;
+      color: #14130e;
       padding: 0.3rem 0.8rem;
     }
 
     /* BBJ side */
     .hero-bbj {
-      background: var(--bbj-bg);
+      background: #14130e;
+      color: #f1eee6;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -471,24 +465,9 @@
       position: relative;
       overflow: hidden;
     }
-    .hero-bbj::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background:
-        radial-gradient(ellipse at 20% 50%, rgba(123,79,166,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.1) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    .hero-bbj::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      pointer-events: none;
-    }
+    .hero-bbj::before, .hero-bbj::after { display: none; }
     .bbj-eyebrow {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
       font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -498,25 +477,24 @@
       z-index: 1;
     }
     .hero-bbj h2 {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
       font-size: clamp(2.2rem, 3.8vw, 3.4rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: 0.02em;
-      color: var(--bbj-text);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #f1eee6;
       margin-bottom: 1.4rem;
       position: relative;
       z-index: 1;
     }
     .hero-bbj h2 span {
-      color: var(--bbj-accent);
-      font-style: italic;
+      color: #ff5a30;
     }
     .hero-bbj p {
-      font-family: 'Crimson Pro', serif;
-      font-size: 1.1rem;
-      line-height: 1.75;
-      color: var(--bbj-muted);
+      font-family: 'Hanken Grotesk', serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #c9c6bd;
       max-width: 380px;
       margin-bottom: 2.4rem;
       position: relative;
@@ -526,58 +504,32 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: transparent;
-      color: var(--bbj-accent);
-      font-family: 'Cinzel', serif;
-      font-weight: 600;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
+      background: #ff5a30;
+      color: #14130e;
+      font-family: 'Bricolage Grotesque', serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       text-decoration: none;
       padding: 0.9rem 2rem;
-      border: 1px solid var(--bbj-accent);
+      border: 2px solid #f1eee6;
+      box-shadow: 5px 5px 0 #f1eee6;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s, transform 0.2s;
+      transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
       position: relative;
       z-index: 1;
     }
     .btn-primary-bbj:hover {
-      background: var(--bbj-accent);
-      color: var(--bbj-bg);
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px var(--bbj-glow);
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 #f1eee6;
     }
-    .stars {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .star {
-      position: absolute;
-      width: 2px; height: 2px;
-      background: #fff;
-      border-radius: 50%;
-      opacity: 0;
-      animation: twinkle var(--d) ease-in-out infinite var(--delay);
-    }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0; transform: scale(0.5); }
-      50% { opacity: var(--op); transform: scale(1); }
-    }
+    .stars { display: none; }
 
     /* ── DIVIDER ── */
     .section-divider {
-      height: 3px;
-      background: linear-gradient(
-        90deg,
-        var(--tynkr-accent)  0%,
-        var(--tynkr-accent)  40%,
-        #a0386e              50%,
-        var(--bbj-accent2)   60%,
-        var(--bbj-accent)    100%
-      );
+      height: 0;
+      border-top: 2px solid #14130e;
     }
 
     /* ── FICTION BAND (subordinate strip below the hero) ── */
@@ -592,7 +544,7 @@
       align-items: center;
       gap: 1.8rem;
       text-decoration: none;
-      color: #ede8f5;
+      color: #f1eee6;
       transition: transform 0.2s;
     }
     .fiction-band-inner:hover { transform: translateY(-2px); }
@@ -609,7 +561,7 @@
       box-shadow: 0 4px 14px rgba(0,0,0,0.35);
     }
     .fiction-eyebrow {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.18em;
@@ -618,19 +570,19 @@
       margin-bottom: 0.4rem;
     }
     .fiction-pitch {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.95rem;
       line-height: 1.55;
       color: #cfc7dd;
       margin: 0 0 0.5rem;
     }
     .fiction-link {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.85rem;
       font-weight: 700;
       color: var(--bbj-accent);
     }
-    .fiction-band-inner:hover .fiction-link { color: #ede8f5; }
+    .fiction-band-inner:hover .fiction-link { color: #f1eee6; }
     @media (max-width: 640px) {
       .fiction-band { padding: 2rem 1.5rem; }
       .fiction-band-inner {
@@ -655,7 +607,7 @@
       border-bottom: 1px solid var(--tynkr-border);
     }
     .section-header h2 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(1.8rem, 3vw, 2.6rem);
       font-weight: 800;
       letter-spacing: -0.03em;
@@ -675,7 +627,7 @@
       flex-wrap: wrap;
     }
     .filter-btn {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.75rem;
       font-weight: 500;
       letter-spacing: 0.06em;
@@ -715,7 +667,7 @@
     .card-badge {
       position: absolute;
       top: 12px; left: 12px;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -732,7 +684,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -747,7 +699,7 @@
     }
     .card-img-tynkr.has-mockup {
       aspect-ratio: 1/1;
-      background: #0b0813;
+      background: #14130e;
       padding: 0;
     }
     .card-img-tynkr.has-mockup img {
@@ -783,7 +735,7 @@
     .card-tynkr:hover [data-platform="excel"]  { color: #1D6F42; }
     .card-tynkr:hover [data-platform="sheets"] { color: #0F9D58; }
     .card-title-tynkr {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1rem;
       font-weight: 700;
       color: var(--tynkr-text);
@@ -804,7 +756,7 @@
       border-top: 1px solid var(--tynkr-border);
     }
     .card-price-tynkr {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1.15rem;
       font-weight: 800;
       color: var(--tynkr-text);
@@ -817,7 +769,7 @@
       margin-right: 0.3rem;
     }
     .btn-buy-tynkr {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.06em;
@@ -862,7 +814,7 @@
       z-index: 1;
     }
     .section-header-bbj h2 {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
       font-size: clamp(1.8rem, 3vw, 2.6rem);
       font-weight: 700;
       letter-spacing: 0.04em;
@@ -870,7 +822,7 @@
     }
     .section-header-bbj h2 span { color: var(--bbj-accent); font-style: italic; }
     .section-header-bbj p {
-      font-family: 'Crimson Pro', serif;
+      font-family: 'Hanken Grotesk', serif;
       font-size: 0.95rem;
       color: var(--bbj-muted);
       text-align: right;
@@ -885,7 +837,7 @@
       z-index: 1;
     }
     .filter-btn-bbj {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
       font-size: 0.68rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -902,7 +854,7 @@
       background: rgba(201,168,76,0.08);
     }
     .filter-count-bbj {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
       font-size: 0.7rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -991,7 +943,7 @@
       padding: 1.25rem 1.4rem 1.4rem;
     }
     .card-sign {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -999,7 +951,7 @@
       margin-bottom: 0.4rem;
     }
     .card-title-bbj {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
       font-size: 1rem;
       font-weight: 600;
       color: var(--bbj-text);
@@ -1007,7 +959,7 @@
       line-height: 1.3;
     }
     .card-desc-bbj {
-      font-family: 'Crimson Pro', serif;
+      font-family: 'Hanken Grotesk', serif;
       font-size: 0.95rem;
       line-height: 1.65;
       color: #b8aed0;
@@ -1022,13 +974,13 @@
       border-top: 1px solid var(--bbj-border);
     }
     .card-price-bbj {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--bbj-accent);
     }
     .btn-buy-bbj {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
       font-size: 0.68rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1059,7 +1011,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.7rem;
       font-weight: 800;
       color: #fff;
@@ -1069,7 +1021,7 @@
     .logo-placeholder.bbj {
       background: var(--bbj-accent2);
       color: var(--bbj-accent);
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
     }
 
     /* ── ABOUT / PARENT BRAND STRIP ── */
@@ -1081,7 +1033,7 @@
       align-items: center;
     }
     .parent-strip-content h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1.4rem;
       font-weight: 800;
       color: #fff;
@@ -1100,7 +1052,7 @@
       min-width: 200px;
     }
     .strip-link {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.06em;
@@ -1117,7 +1069,7 @@
 
     /* ── FOOTER ── */
     footer {
-      background: #0a0a0f;
+      background: #14130e;
       padding: 3rem 5rem;
       display: flex;
       align-items: center;
@@ -1126,7 +1078,7 @@
       gap: 1.5rem;
     }
     .footer-left {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -1182,16 +1134,17 @@
 
     /* ── STUDIO INTRO ── */
     .studio-intro {
-      background: linear-gradient(135deg, #1a1a2e 0%, #0b0813 100%);
+      background: #14130e;
       padding: 2.8rem 5rem;
       text-align: center;
       margin-top: 64px;
+      border-bottom: 2px solid #14130e;
     }
     .studio-intro p {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(1rem, 1.8vw, 1.25rem);
-      letter-spacing: 0.14em;
-      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.04em;
+      color: rgba(241,238,230,0.8);
       margin: 0;
       line-height: 1.6;
     }
@@ -1213,7 +1166,7 @@
       align-items: center;
       gap: 0.7rem;
       color: rgba(255,255,255,0.7);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.85rem;
     }
     .proof-icon {
@@ -1227,7 +1180,7 @@
 
     /* ── ABOUT SECTION (elevated) ── */
     .about-section {
-      background: linear-gradient(135deg, #1a1a2e 0%, #0f0c1a 100%);
+      background: linear-gradient(135deg, #14130e 0%, #14130e 100%);
       padding: 5rem;
       display: flex;
       gap: 4rem;
@@ -1250,7 +1203,7 @@
       z-index: 1;
     }
     .about-label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.7rem;
       font-weight: 500;
       letter-spacing: 0.14em;
@@ -1268,7 +1221,7 @@
       background: var(--tynkr-accent);
     }
     .about-content h2 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(1.6rem, 2.5vw, 2.2rem);
       font-weight: 800;
       color: #fff;
@@ -1277,7 +1230,7 @@
     }
     .about-content h2 span { color: var(--bbj-accent); }
     .about-content p {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.95rem;
       line-height: 1.8;
       color: rgba(255,255,255,0.55);
@@ -1299,7 +1252,7 @@
       min-width: 180px;
     }
     .about-brand-card h4 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.85rem;
       font-weight: 700;
       color: #fff;
@@ -1328,7 +1281,7 @@
       border-bottom: 1px solid var(--tynkr-border);
     }
     .email-capture-text h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1.3rem;
       font-weight: 800;
       color: var(--tynkr-text);
@@ -1347,7 +1300,7 @@
       flex-shrink: 0;
     }
     .email-capture-form input {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.85rem;
       padding: 0.8rem 1.2rem;
       border: 1px solid var(--tynkr-border);
@@ -1361,7 +1314,7 @@
       border-color: var(--tynkr-accent);
     }
     .email-capture-form button {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.06em;
@@ -1426,7 +1379,7 @@
     }
     .home-tools-inner { max-width: 1180px; margin: 0 auto; }
     .home-tools-label {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -1435,7 +1388,7 @@
       margin-bottom: 0.6rem;
     }
     .home-tools h2 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(1.8rem, 3.2vw, 2.6rem);
       font-weight: 800;
       color: var(--tynkr-text);
@@ -1445,7 +1398,7 @@
     }
     .home-tools h2 span { color: var(--tynkr-accent); font-style: italic; font-weight: 400; }
     .home-tools-sub {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 1rem;
       line-height: 1.7;
       color: var(--tynkr-muted);
@@ -1480,7 +1433,7 @@
       margin-bottom: 1.3rem;
     }
     .home-tool-card h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1.15rem;
       font-weight: 800;
       color: var(--tynkr-text);
@@ -1488,7 +1441,7 @@
       letter-spacing: -0.01em;
     }
     .home-tool-card p {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.92rem;
       line-height: 1.65;
       color: var(--tynkr-muted);
@@ -1500,7 +1453,7 @@
       display: inline-block;
       background: var(--tynkr-accent);
       color: #fff;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 0.74rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -1526,7 +1479,7 @@
       margin: 0 auto;
     }
     .home-faq-label {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bricolage Grotesque', serif;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -1535,7 +1488,7 @@
       margin-bottom: 0.6rem;
     }
     .home-faq h2 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(1.8rem, 3.2vw, 2.6rem);
       font-weight: 800;
       color: var(--tynkr-text);
@@ -1549,7 +1502,7 @@
       padding: 1.6rem 0;
     }
     .home-faq-item h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--tynkr-text);
@@ -1557,7 +1510,7 @@
       letter-spacing: -0.005em;
     }
     .home-faq-item p {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 1rem;
       line-height: 1.65;
       color: var(--tynkr-muted);
@@ -1699,7 +1652,7 @@
       <div class="tynkr-eyebrow fade-up">Tynkr Tools & Co</div>
       <h1 class="fade-up delay-1">Notion templates &amp; budget spreadsheets <span>that actually hold up.</span></h1>
       <p class="fade-up delay-2">Tynkr Tools &amp; Co builds premium Notion OS templates and Excel and Google Sheets workbooks for budgeting, planning, and running a creator business. Buy direct and download instantly — free updates on the Notion and Google Sheets versions.</p>
-      <p class="cta-micro fade-up delay-3" style="font-family:'DM Sans',sans-serif;font-size:0.78rem;color:rgba(0,0,0,0.4);margin-bottom:0.6rem;letter-spacing:0.04em;">Find your system</p>
+      <p class="cta-micro fade-up delay-3" style="font-family:'Hanken Grotesk',sans-serif;font-size:0.78rem;color:rgba(0,0,0,0.4);margin-bottom:0.6rem;letter-spacing:0.04em;">Find your system</p>
       <a href="#tynkr" class="btn-primary-tynkr fade-up delay-3">
         Browse Templates
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1719,7 +1672,7 @@
       <div class="bbj-eyebrow fade-up">Built By Josh Studio</div>
       <h2 class="fade-up delay-1">AI-crafted zodiac art for the <span>cosmic soul.</span></h2>
       <p class="fade-up delay-2">Original zodiac art collections — Western signs, Western realms, Chinese signs, and more — designed with AI and refined by Josh. Buy a collection direct and download instantly to print and display.</p>
-      <p class="cta-micro fade-up delay-3" style="font-family:'Crimson Pro',serif;font-size:0.82rem;font-style:italic;color:rgba(255,255,255,0.4);margin-bottom:0.6rem;">Find your sign</p>
+      <p class="cta-micro fade-up delay-3" style="font-family:'Hanken Grotesk',serif;font-size:0.82rem;font-style:italic;color:rgba(255,255,255,0.4);margin-bottom:0.6rem;">Find your sign</p>
       <a href="#builtbyjosh" class="btn-primary-bbj fade-up delay-3">
         Explore the Collection
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1760,20 +1713,20 @@
 
   <!-- TESTIMONIALS -->
   <div style="background:#fff; padding:3rem 5rem; display:flex; gap:2rem; flex-wrap:wrap; justify-content:center; border-bottom:1px solid var(--tynkr-border);">
-    <div style="flex:1; min-width:220px; max-width:320px; padding:1.5rem; border:1px solid #e0ddd8;">
-      <div style="color:#e8500a; font-size:0.85rem; letter-spacing:0.1em; margin-bottom:0.6rem;">★★★★★</div>
-      <p style="font-family:'Crimson Pro',serif; font-size:0.95rem; font-style:italic; color:#1c1c1c; line-height:1.6; margin-bottom:0.8rem;">"Fantastic artwork, I really love it!"</p>
-      <div style="font-family:'DM Sans',sans-serif; font-size:0.75rem; color:#6b6b6b; letter-spacing:0.04em;">— Louise, verified buyer</div>
+    <div style="flex:1; min-width:220px; max-width:320px; padding:1.5rem; border:1px solid #e2ddd0;">
+      <div style="color:#ff5a30; font-size:0.85rem; letter-spacing:0.1em; margin-bottom:0.6rem;">★★★★★</div>
+      <p style="font-family:'Hanken Grotesk',serif; font-size:0.95rem; font-style:italic; color:#14130e; line-height:1.6; margin-bottom:0.8rem;">"Fantastic artwork, I really love it!"</p>
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:0.75rem; color:#6d695d; letter-spacing:0.04em;">— Louise, verified buyer</div>
     </div>
-    <div style="flex:1; min-width:220px; max-width:320px; padding:1.5rem; border:1px solid #e0ddd8;">
-      <div style="color:#e8500a; font-size:0.85rem; letter-spacing:0.1em; margin-bottom:0.6rem;">★★★★★</div>
-      <p style="font-family:'Crimson Pro',serif; font-size:0.95rem; font-style:italic; color:#1c1c1c; line-height:1.6; margin-bottom:0.8rem;">"Files came through right away and look great."</p>
-      <div style="font-family:'DM Sans',sans-serif; font-size:0.75rem; color:#6b6b6b; letter-spacing:0.04em;">— Verified Etsy buyer</div>
+    <div style="flex:1; min-width:220px; max-width:320px; padding:1.5rem; border:1px solid #e2ddd0;">
+      <div style="color:#ff5a30; font-size:0.85rem; letter-spacing:0.1em; margin-bottom:0.6rem;">★★★★★</div>
+      <p style="font-family:'Hanken Grotesk',serif; font-size:0.95rem; font-style:italic; color:#14130e; line-height:1.6; margin-bottom:0.8rem;">"Files came through right away and look great."</p>
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:0.75rem; color:#6d695d; letter-spacing:0.04em;">— Verified Etsy buyer</div>
     </div>
-    <div style="flex:1; min-width:220px; max-width:320px; padding:1.5rem; border:1px solid #e0ddd8;">
-      <div style="color:#e8500a; font-size:0.85rem; letter-spacing:0.1em; margin-bottom:0.6rem;">★★★★</div>
-      <p style="font-family:'Crimson Pro',serif; font-size:0.95rem; font-style:italic; color:#1c1c1c; line-height:1.6; margin-bottom:0.8rem;">"Downloaded easily and what I wanted."</p>
-      <div style="font-family:'DM Sans',sans-serif; font-size:0.75rem; color:#6b6b6b; letter-spacing:0.04em;">— Mary, verified buyer</div>
+    <div style="flex:1; min-width:220px; max-width:320px; padding:1.5rem; border:1px solid #e2ddd0;">
+      <div style="color:#ff5a30; font-size:0.85rem; letter-spacing:0.1em; margin-bottom:0.6rem;">★★★★</div>
+      <p style="font-family:'Hanken Grotesk',serif; font-size:0.95rem; font-style:italic; color:#14130e; line-height:1.6; margin-bottom:0.8rem;">"Downloaded easily and what I wanted."</p>
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:0.75rem; color:#6d695d; letter-spacing:0.04em;">— Mary, verified buyer</div>
     </div>
   </div>
 
@@ -2229,9 +2182,9 @@
   <section id="chinese-zodiac">
     <div class="section-header-bbj" style="padding-bottom:1.5rem;border-bottom:1px solid var(--bbj-border);margin-bottom:2.5rem;">
       <div>
-        <div class="bbj-eyebrow" style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:0.5rem;">Built By Josh Studio</div>
-        <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:0.04em;color:var(--bbj-text);line-height:1.15;">Chinese Zodiac Art Prints</h2>
-        <p style="font-family:'Crimson Pro',serif;font-style:italic;font-size:1rem;color:var(--bbj-muted);margin-top:0.4rem;">Lunar Guardians Series</p>
+        <div class="bbj-eyebrow" style="font-family:'Bricolage Grotesque',serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:0.5rem;">Built By Josh Studio</div>
+        <h2 style="font-family:'Bricolage Grotesque',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:0.04em;color:var(--bbj-text);line-height:1.15;">Chinese Zodiac Art Prints</h2>
+        <p style="font-family:'Hanken Grotesk',serif;font-style:italic;font-size:1rem;color:var(--bbj-muted);margin-top:0.4rem;">Lunar Guardians Series</p>
       </div>
     </div>
 
@@ -2340,9 +2293,9 @@
   <section id="chinese-realms">
     <div class="section-header-bbj" style="padding-bottom:1.5rem;border-bottom:1px solid var(--bbj-border);margin-bottom:2.5rem;">
       <div>
-        <div class="bbj-eyebrow" style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:0.5rem;">Built By Josh Studio</div>
-        <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:0.04em;color:var(--bbj-text);line-height:1.15;">Chinese Zodiac Realms Art Prints</h2>
-        <p style="font-family:'Crimson Pro',serif;font-style:italic;font-size:1rem;color:var(--bbj-muted);margin-top:0.4rem;">Lunar Realms Series · One Realm Per Animal · 2 Variants Each</p>
+        <div class="bbj-eyebrow" style="font-family:'Bricolage Grotesque',serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:0.5rem;">Built By Josh Studio</div>
+        <h2 style="font-family:'Bricolage Grotesque',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:0.04em;color:var(--bbj-text);line-height:1.15;">Chinese Zodiac Realms Art Prints</h2>
+        <p style="font-family:'Hanken Grotesk',serif;font-style:italic;font-size:1rem;color:var(--bbj-muted);margin-top:0.4rem;">Lunar Realms Series · One Realm Per Animal · 2 Variants Each</p>
       </div>
     </div>
 
@@ -2451,9 +2404,9 @@
   <section id="landscapes">
     <div class="section-header-bbj" style="padding-bottom:1.5rem;border-bottom:1px solid var(--bbj-border);margin-bottom:2.5rem;">
       <div>
-        <div class="bbj-eyebrow" style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:0.5rem;">Built By Josh Studio</div>
-        <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:0.04em;color:var(--bbj-text);line-height:1.15;">Zodiac Landscape Art Prints</h2>
-        <p style="font-family:'Crimson Pro',serif;font-style:italic;font-size:1rem;color:var(--bbj-muted);margin-top:0.4rem;">Oil-Painting Style · One Place Per Sign</p>
+        <div class="bbj-eyebrow" style="font-family:'Bricolage Grotesque',serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:0.5rem;">Built By Josh Studio</div>
+        <h2 style="font-family:'Bricolage Grotesque',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:0.04em;color:var(--bbj-text);line-height:1.15;">Zodiac Landscape Art Prints</h2>
+        <p style="font-family:'Hanken Grotesk',serif;font-style:italic;font-size:1rem;color:var(--bbj-muted);margin-top:0.4rem;">Oil-Painting Style · One Place Per Sign</p>
       </div>
     </div>
 
