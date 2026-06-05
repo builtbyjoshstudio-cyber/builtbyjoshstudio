@@ -252,22 +252,18 @@
     }
     .free-card {
       position: relative;
-      background: rgba(255, 255, 255, 0.48);
-      border: 1px solid rgba(255, 255, 255, 0.82);
+      background: var(--surface);
+      border: 2px solid var(--line-2);
       border-radius: 14px;
       padding: 1.7rem 1.6rem 1.5rem;
       display: flex;
       flex-direction: column;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.95),
-        0 8px 28px -10px rgba(0, 0, 0, 0.10);
+      box-shadow: 6px 6px 0 var(--shadow);
       transition: transform 0.25s, box-shadow 0.25s;
     }
     .free-card:hover {
-      transform: translateY(-6px);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 1),
-        0 18px 44px -10px rgba(255, 90, 48, 0.18);
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 var(--shadow);
     }
     .free-card .card-meta {
       font-family: 'JetBrains Mono', monospace;
@@ -462,22 +458,18 @@
     }
     .home-tool-card {
       position: relative;
-      background: rgba(255, 255, 255, 0.48);
-      border: 1px solid rgba(255, 255, 255, 0.82);
+      background: var(--surface);
+      border: 2px solid var(--line-2);
       border-radius: 14px;
       padding: 2rem;
       display: flex;
       flex-direction: column;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.95),
-        0 8px 28px -10px rgba(0, 0, 0, 0.10);
+      box-shadow: 6px 6px 0 var(--shadow);
       transition: transform 0.25s, box-shadow 0.25s;
     }
     .home-tool-card:hover {
-      transform: translateY(-6px);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 1),
-        0 18px 44px -10px rgba(255, 90, 48, 0.18);
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 var(--shadow);
     }
     .home-tool-thumb {
       width: 100%;
@@ -530,8 +522,8 @@
     /* ===== SAFARI FALLBACK (matches tokens.css @supports pattern) ===== */
     @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
       .site-nav { background: var(--bbj-bg); }
-      .free-card { background: rgba(255, 255, 255, 0.94); }
-      .home-tool-card { background: rgba(255, 255, 255, 0.94); }
+      .free-card { background: var(--surface); }
+      .home-tool-card { background: var(--surface); }
     }
 
     /* ===== MOBILE ===== */
