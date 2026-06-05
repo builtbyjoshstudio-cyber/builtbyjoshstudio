@@ -81,14 +81,14 @@ body.nav-open .nav-toggle span:nth-child(3) {
     margin: 0;
     padding: 2rem 1.5rem !important;
     gap: 0.5rem !important;
-    background: rgba(247, 244, 242, 0.98);
+    background: rgba(241, 238, 230, 0.98);
     z-index: 99;
     overflow-y: auto;
   }
 
   /* Dark-themed nav (homepage hero, etc.) gets a dark drawer */
   body.nav-open .site-nav.dark .nav-links {
-    background: rgba(11, 8, 19, 0.98);
+    background: rgba(20, 19, 14, 0.98);
   }
 
   /* Drawer link styling — bigger tap targets, more breathing room */
@@ -114,7 +114,7 @@ body.nav-open .nav-toggle span:nth-child(3) {
    Sits below the existing footer-left / footer-links row.
 
    The site mixes light-cream footers (most pages) and a near-black
-   footer (homepage #0a0a0f). Using `inherit` or `currentColor`
+   footer (homepage #14130e). Using `inherit` or `currentColor`
    produces invisible text on the homepage because the body color
    cascade is dark. An explicit mid-gray with its own alpha works
    on both backgrounds without needing theme detection.
@@ -125,7 +125,7 @@ body.nav-open .nav-toggle span:nth-child(3) {
   padding-top: 1.4rem;
   margin-top: 0.4rem;
   border-top: 1px solid rgba(127, 127, 127, 0.22);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: 0.7rem;
   letter-spacing: 0.04em;
   line-height: 1.5;

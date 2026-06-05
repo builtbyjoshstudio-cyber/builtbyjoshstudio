@@ -12,47 +12,47 @@
 /* ===== TRY THE LITE VERSION FREE — main banner above the buy CTA ===== */
 .lite-banner {
   background: #fff;
-  border: 1px solid var(--tynkr-border, #e0ddd8);
-  border-left: 4px solid var(--tynkr-accent, #e8500a);
+  border: 1px solid var(--tynkr-border, #e2ddd0);
+  border-left: 4px solid var(--tynkr-accent, #2438e8);
   border-radius: 12px;
   padding: 1.6rem 1.8rem;
   margin: 2rem 0;
 }
 
 .lite-banner .lite-eyebrow {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: 0.68rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--tynkr-accent, #e8500a);
+  color: var(--tynkr-accent, #2438e8);
   font-weight: 700;
   margin-bottom: 0.55rem;
 }
 
 .lite-banner h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 1.45rem;
   font-weight: 700;
   margin-bottom: 0.55rem;
-  color: var(--tynkr-text, #1c1c1c);
+  color: var(--tynkr-text, #14130e);
   line-height: 1.25;
 }
 
 .lite-banner .lite-desc {
-  color: var(--body-read, #3a3a3a);
+  color: var(--body-read, #14130e);
   line-height: 1.55;
   margin-bottom: 1.1rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
 }
 
 .lite-cta {
   display: inline-block;
   padding: 0.85rem 1.6rem;
-  background: var(--tynkr-accent, #e8500a);
+  background: var(--tynkr-accent, #2438e8);
   color: #fff;
   text-decoration: none;
   border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
   transition: opacity 0.2s, transform 0.2s;
@@ -67,15 +67,15 @@
 .sidebar-lite {
   margin-top: 1.2rem;
   padding-top: 1.2rem;
-  border-top: 1px dashed var(--tynkr-border, #e0ddd8);
+  border-top: 1px dashed var(--tynkr-border, #e2ddd0);
 }
 
 .sidebar-lite-label {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--tynkr-muted, #6b6b6b);
+  color: var(--tynkr-muted, #6d695d);
   margin-bottom: 0.55rem;
   font-weight: 600;
 }
@@ -85,10 +85,10 @@
   width: 100%;
   padding: 0.8rem 1rem;
   background: transparent;
-  color: var(--tynkr-accent, #e8500a);
-  border: 1.5px solid var(--tynkr-accent, #e8500a);
+  color: var(--tynkr-accent, #2438e8);
+  border: 1.5px solid var(--tynkr-accent, #2438e8);
   border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   text-align: center;
@@ -97,7 +97,7 @@
 }
 
 .sidebar-lite-cta:hover {
-  background: var(--tynkr-accent, #e8500a);
+  background: var(--tynkr-accent, #2438e8);
   color: #fff;
 }
 
@@ -112,25 +112,25 @@
   list-style: none;
   margin: 1rem 0 0;
   padding: 0;
-  border-left: 2px solid var(--tynkr-border, #e0ddd8);
+  border-left: 2px solid var(--tynkr-border, #e2ddd0);
 }
 .related-reading li {
   padding: 0.5rem 0 0.5rem 1.1rem;
-  border-bottom: 1px dashed var(--tynkr-border, #e0ddd8);
+  border-bottom: 1px dashed var(--tynkr-border, #e2ddd0);
 }
 .related-reading li:last-child {
   border-bottom: none;
 }
 .related-reading a {
-  color: var(--tynkr-accent, #e8500a);
+  color: var(--tynkr-accent, #2438e8);
   text-decoration: none;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 500;
   transition: color 0.15s, transform 0.15s;
   display: inline-block;
 }
 .related-reading a:hover {
-  color: var(--tynkr-text, #1c1c1c);
+  color: var(--tynkr-text, #14130e);
   transform: translateX(2px);
 }
 .related-reading a::after {

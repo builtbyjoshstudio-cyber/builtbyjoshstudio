@@ -7,10 +7,10 @@
 
 .product-gallery {
   background:
-    radial-gradient(ellipse at 30% 0%, rgba(232, 80, 10, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 30% 0%, rgba(255, 90, 48, 0.06) 0%, transparent 55%),
     linear-gradient(180deg, #ffffff 0%, #fafaf7 100%);
-  border-top: 1px solid var(--bbj-border, #e4ddd2);
-  border-bottom: 1px solid var(--bbj-border, #e4ddd2);
+  border-top: 1px solid var(--bbj-border, #e2ddd0);
+  border-bottom: 1px solid var(--bbj-border, #e2ddd0);
   padding: 4rem 2rem;
 }
 
@@ -21,35 +21,35 @@
 }
 
 .gallery-eyebrow {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--bbj-accent, #e8500a);
+  color: var(--bbj-accent, #ff5a30);
   margin-bottom: 0.5rem;
 }
 
 .gallery-heading {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 800;
   letter-spacing: -0.01em;
-  color: var(--bbj-text, #0c0813);
+  color: var(--bbj-text, #14130e);
   margin-bottom: 0.6rem;
 }
 
 .gallery-heading span {
-  color: var(--bbj-accent, #e8500a);
+  color: var(--bbj-accent, #ff5a30);
   font-style: italic;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
 }
 
 .gallery-intro {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-style: italic;
   font-size: 1rem;
-  color: var(--bbj-muted, #6b6170);
+  color: var(--bbj-muted, #6d695d);
   max-width: 580px;
   margin: 0 auto 2.4rem;
   line-height: 1.6;
@@ -63,7 +63,7 @@
 
 .gallery-thumb {
   background: #ffffff;
-  border: 1px solid var(--bbj-border, #e4ddd2);
+  border: 1px solid var(--bbj-border, #e2ddd0);
   padding: 0;
   cursor: pointer;
   display: flex;
@@ -76,12 +76,12 @@
 
 .gallery-thumb:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(232, 80, 10, 0.12);
-  border-color: rgba(232, 80, 10, 0.35);
+  box-shadow: 0 12px 32px rgba(255, 90, 48, 0.12);
+  border-color: rgba(255, 90, 48, 0.35);
 }
 
 .gallery-thumb:focus-visible {
-  outline: 2px solid var(--bbj-accent, #e8500a);
+  outline: 2px solid var(--bbj-accent, #ff5a30);
   outline-offset: 2px;
 }
 
@@ -90,17 +90,17 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
-  background: #f0ede8;
+  background: #f8f5ee;
 }
 
 .gallery-thumb .thumb-caption {
   padding: 0.7rem 0.9rem 0.85rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: 0.72rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--bbj-muted, #6b6170);
-  border-top: 1px solid var(--bbj-border, #e4ddd2);
+  color: var(--bbj-muted, #6d695d);
+  border-top: 1px solid var(--bbj-border, #e2ddd0);
   background: #fbfaf8;
 }
 
@@ -151,7 +151,7 @@
 
 .gallery-lightbox-caption {
   margin-top: 1rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -161,7 +161,7 @@
 
 .gallery-lightbox-counter {
   margin-top: 0.4rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   color: rgba(255, 255, 255, 0.5);
@@ -171,7 +171,7 @@
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -185,7 +185,7 @@
 }
 
 .gallery-lightbox button:focus-visible {
-  outline: 2px solid var(--bbj-accent, #e8500a);
+  outline: 2px solid var(--bbj-accent, #ff5a30);
   outline-offset: 2px;
 }
 
