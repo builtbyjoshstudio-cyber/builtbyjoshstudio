@@ -403,59 +403,42 @@
 
     /* ── HERO ── */
     .res-hero {
-      padding: 10rem 2rem 5rem;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 6rem 2rem 3rem;
       text-align: center;
-      background:
-        radial-gradient(ellipse at 50% 20%, rgba(255, 90, 48, 0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 90%, rgba(255, 210, 180, 0.15) 0%, transparent 55%),
-        linear-gradient(180deg, #f1eee6 0%, #f8f5ee 100%);
-      border-bottom: 1px solid var(--bbj-border);
-      position: relative;
-      overflow: hidden;
     }
-    .res-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(255, 90, 48, 0.4) 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: 0.08;
-      pointer-events: none;
-    }
+    .res-hero::before { display: none; }
     .hero-eyebrow {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.72rem;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--bbj-accent);
+      font-weight: 600;
       margin-bottom: 1.2rem;
-      position: relative;
     }
     .hero-title {
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-size: clamp(2.4rem, 6vw, 4rem);
       font-weight: 800;
       letter-spacing: -0.02em;
-      line-height: 1.05;
+      line-height: 1.02;
       color: var(--bbj-text);
       margin-bottom: 1.4rem;
-      position: relative;
+      text-transform: uppercase;
     }
     .hero-title span {
+      font-style: normal;
       color: var(--bbj-accent);
-      font-style: italic;
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-weight: 400;
     }
     .hero-sub {
       font-family: 'Hanken Grotesk', sans-serif;
-      font-size: clamp(1rem, 1.6vw, 1.2rem);
-      font-style: italic;
-      color: var(--bbj-muted);
-      max-width: 640px;
+      font-size: 1.08rem;
+      color: var(--body-read);
+      max-width: 620px;
       margin: 0 auto;
       line-height: 1.6;
-      position: relative;
     }
 
     /* ── VIDEO GRID ── */
@@ -490,18 +473,19 @@
 
     /* Video card */
     .video-card {
-      background: var(--bbj-surface);
-      border: 1px solid var(--bbj-border);
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      background: var(--surface);
+      border: 2px solid var(--line-2);
+      border-radius: 14px;
+      box-shadow: 6px 6px 0 var(--shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
     .video-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(255, 90, 48, 0.1);
-      border-color: rgba(255, 90, 48, 0.3);
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 var(--shadow);
     }
     .video-frame-wrap {
       position: relative;
