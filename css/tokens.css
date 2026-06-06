@@ -318,19 +318,31 @@
 /* Collection art cards */
 [data-glass="cosmic"] .style-card,
 [data-glass="cosmic"] .animal-card,
-[data-glass="cosmic"] .landscape-card {
+[data-glass="cosmic"] .landscape-card,
+[data-glass="cosmic"] .design-card,
+[data-glass="cosmic"] .landscape-img {
   background: var(--surface);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border: 2px solid var(--line-2);
+  border-radius: 14px;
   box-shadow: 6px 6px 0 var(--shadow);
   transition: transform .15s var(--ease), box-shadow .15s var(--ease);
 }
 [data-glass="cosmic"] .style-card:hover,
 [data-glass="cosmic"] .animal-card:hover,
-[data-glass="cosmic"] .landscape-card:hover {
+[data-glass="cosmic"] .landscape-card:hover,
+[data-glass="cosmic"] .design-card:hover,
+[data-glass="cosmic"] .landscape-img:hover {
   transform: translate(3px, 3px);
   box-shadow: 2px 2px 0 var(--shadow);
+}
+
+/* Hero featured image — match Kinetic card chrome */
+[data-glass="cosmic"] .hero-image {
+  border: 2px solid var(--line-2);
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 var(--shadow);
 }
 
 /* Books cards */
