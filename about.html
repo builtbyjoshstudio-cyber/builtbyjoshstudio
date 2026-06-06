@@ -270,14 +270,36 @@
       margin: 1.4rem 0;
     }
     .brand-card {
-      background: #fff;
-      border: 1px solid var(--tynkr-border);
-      border-radius: 12px;
+      background: var(--surface);
+      border: 2px solid var(--line-2);
+      border-radius: 14px;
+      box-shadow: 6px 6px 0 var(--shadow);
       padding: 1.4rem;
       display: flex;
       flex-direction: column;
       gap: 0.6rem;
     }
+    .brand-stack .brand-card:nth-child(1) { border-top: 5px solid var(--accent); }
+    .brand-stack .brand-card:nth-child(2) {
+      background-color: #14130e;
+      background-image:
+        radial-gradient(1.5px 1.5px at 12% 22%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 68% 14%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 34% 54%, rgba(255,255,255,0.85), transparent),
+        radial-gradient(1.5px 1.5px at 86% 44%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 22% 82%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 60% 76%, rgba(255,255,255,0.85), transparent),
+        radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 48% 32%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 8% 58%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1.5px 1.5px at 78% 64%, rgba(255,255,255,0.85), transparent);
+      border-color: #2f2c24;
+      border-top: 5px solid var(--accent-2);
+      box-shadow: 6px 6px 0 #ffffff;
+    }
+    .brand-stack .brand-card:nth-child(2) p { color: #c9c6bd; }
+    .brand-stack .brand-card:nth-child(1) h3 { color: var(--accent); }
+    .brand-stack .brand-card:nth-child(2) h3 { color: var(--accent-2); }
     .brand-card img {
       width: 64px;
       height: 64px;
@@ -310,13 +332,15 @@
     }
     .connect-list li {
       padding: 0.7rem 1rem;
-      background: #fff;
-      border: 1px solid var(--tynkr-border);
-      border-radius: 8px;
-      transition: border-color 0.15s;
+      background: var(--surface);
+      border: 2px solid var(--line-2);
+      border-radius: 10px;
+      box-shadow: 5px 5px 0 var(--shadow);
+      transition: transform 0.15s, box-shadow 0.15s;
     }
     .connect-list li:hover {
-      border-color: var(--tynkr-accent);
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 var(--shadow);
     }
     .connect-list li a {
       text-decoration: none;
