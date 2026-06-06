@@ -1190,7 +1190,8 @@
     .about-section {
       background: linear-gradient(135deg, #14130e 0%, #14130e 100%);
       padding: 5rem;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
       gap: 4rem;
       align-items: center;
       position: relative;
@@ -1247,8 +1248,8 @@
     }
     .about-brands {
       display: flex;
-      gap: 2rem;
-      margin-top: 2rem;
+      flex-direction: column;
+      gap: 1.2rem;
       position: relative;
       z-index: 1;
     }
@@ -1340,7 +1341,7 @@
     @media (max-width: 900px) {
       .studio-intro { padding: 2rem 2rem; }
       .social-proof { padding: 2rem; gap: 2rem; }
-      .about-section { flex-direction: column; padding: 3rem 2rem; gap: 2rem; }
+      .about-section { grid-template-columns: 1fr; padding: 3rem 2rem; gap: 2rem; }
       .about-brands { flex-direction: column; }
       .email-capture { flex-direction: column; padding: 3rem 2rem; text-align: center; }
       .email-capture-form { flex-direction: column; width: 100%; }
