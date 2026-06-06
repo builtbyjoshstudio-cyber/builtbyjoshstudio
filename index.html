@@ -651,8 +651,10 @@
     }
 
     .card-tynkr {
-      background: var(--tynkr-surface);
-      border: 1px solid var(--tynkr-border);
+      background: var(--surface);
+      border: 2px solid var(--line-2);
+      border-radius: 14px;
+      box-shadow: 6px 6px 0 var(--shadow);
       transition: transform 0.25s, box-shadow 0.25s;
       position: relative;
       overflow: hidden;
@@ -661,8 +663,8 @@
       display: none !important;
     }
     .card-tynkr:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 var(--shadow);
     }
     .card-badge {
       position: absolute;
