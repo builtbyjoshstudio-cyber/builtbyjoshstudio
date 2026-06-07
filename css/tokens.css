@@ -361,6 +361,25 @@
 /* Starfield behind all content — was z-index:0, so it painted over the static art tiles */
 [data-glass="cosmic"] .stars { z-index: -1; }
 
+/* Tynkr product-page tiles → Kinetic card chrome (mirror the blog cards) */
+[data-glass="prototype"] .persona,
+[data-glass="prototype"] .module-card,
+[data-glass="prototype"] .step-card,
+[data-glass="prototype"] .related-card {
+  border: 2px solid var(--line-2);
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 var(--shadow);
+  transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+[data-glass="prototype"] .persona:hover,
+[data-glass="prototype"] .module-card:hover,
+[data-glass="prototype"] .step-card:hover,
+[data-glass="prototype"] .related-card:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--shadow);
+  border-color: var(--line-2);
+}
+
 /* Books cards */
 [data-glass="books"] .book-section,
 [data-glass="books"] .pen-name-note {

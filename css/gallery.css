@@ -63,7 +63,9 @@
 
 .gallery-thumb {
   background: #ffffff;
-  border: 1px solid var(--bbj-border, #e2ddd0);
+  border: 2px solid var(--line-2, #14130e);
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 var(--shadow, #14130e);
   padding: 0;
   cursor: pointer;
   display: flex;
@@ -75,9 +77,8 @@
 }
 
 .gallery-thumb:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(255, 90, 48, 0.12);
-  border-color: rgba(255, 90, 48, 0.35);
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--shadow, #14130e);
 }
 
 .gallery-thumb:focus-visible {
