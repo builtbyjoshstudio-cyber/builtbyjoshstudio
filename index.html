@@ -1443,7 +1443,7 @@
       aspect-ratio: 2 / 1;
       object-fit: cover;
       display: block;
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      border: 1px solid var(--line);
       border-radius: 8px;
       margin-bottom: 1.3rem;
     }
@@ -1475,12 +1475,11 @@
       text-transform: uppercase;
       padding: 0.85rem 1.6rem;
       text-decoration: none;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.45),
-        0 4px 18px -4px rgba(255, 90, 48, 0.40);
-      transition: background 0.2s, transform 0.2s;
+      border: 2px solid var(--line-2);
+      box-shadow: 4px 4px 0 var(--shadow);
+      transition: transform 0.15s, box-shadow 0.15s;
     }
-    .home-tool-btn:hover { background: #ff5a30; transform: translateY(-2px); }
+    .home-tool-btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--shadow); }
     @media (max-width: 980px) {
       .home-tools { padding: 4rem 1.5rem; }
       .home-tools-grid { grid-template-columns: 1fr; }
