@@ -380,6 +380,9 @@
   border-color: var(--line-2);
 }
 
+/* Blog hero — drop the leftover orange ambient glow (glassmorphism remnant, not Kinetic) */
+.article-header::before { background: none; }
+
 /* Books cards */
 [data-glass="books"] .book-section,
 [data-glass="books"] .pen-name-note {
