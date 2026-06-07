@@ -75,6 +75,7 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 - [Brine Calculator](https://tools.builtbyjoshstudio.com/brine-calculator/): Calculates salt, sugar, and water ratios plus brining time for wet and dry brines.
 - [Meat Thawing Planner](https://tools.builtbyjoshstudio.com/meat-thawing-planner/): Backward-schedules food-safe refrigerator and cold-water thawing windows by protein type and weight.
 - [Dough Hydration Calculator](https://tools.builtbyjoshstudio.com/dough-hydration-calculator/): Calculates baker's percentages, hydration ratios, and starter adjustments for bread and sourdough.
+- [Cost Per Serving Calculator](https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/): Calculates total recipe cost, cost per serving, and leftover pack amounts from ingredient quantities, pack sizes, and prices, with mass and volume unit conversions.
 
 ## Beyond the studio
 
