@@ -891,15 +891,16 @@
     /* BBJ product card */
     .card-bbj {
       background: var(--bbj-surface);
-      border: 1px solid var(--bbj-border);
+      border: 2px solid var(--bbj-border);
+      border-radius: 14px;
+      box-shadow: 6px 6px 0 #000;
       transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
       position: relative;
       overflow: hidden;
     }
     .card-bbj:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(255,90,48,0.1);
-      border-color: rgba(255,90,48,0.3);
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 #000;
     }
     .card-bbj::after {
       content: '';
