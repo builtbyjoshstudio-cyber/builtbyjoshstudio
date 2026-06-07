@@ -442,6 +442,20 @@
 [data-glass="books"] body::before,
 [data-glass="books"] .hero::before { display: none; }
 
+/* Fiction layer cards → Kinetic: character cards + character sheets.
+   (Genuine cards only; dispatches, bios, and CTA links keep the warm literary style.) */
+[data-glass="books"] .character-card,
+[data-glass="books"] .stat-block {
+  border: 2px solid var(--line-2);
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 var(--shadow);
+  transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+[data-glass="books"] .character-card:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
 /* ── BLOG POST 2-COLUMN LAYOUT (kept structural; sidebar restyled Kinetic) ── */
 .article-main {
   max-width: 1080px;
