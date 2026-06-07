@@ -1,6 +1,60 @@
+# 🟢 builtbyjoshstudio.com — Session Handoff (2026-06-07) — Kinetic card system unified SITE-WIDE + 8th free tool added
+
+**This block is the current live state.** The 2026-06-05 block below = prior shipped state (its KINETIC quick-ref + the 2026-06-04 **STANDING INSTRUCTIONS #1–#21 still apply verbatim** — only its STATE/first-steps are superseded).
+
+**STATE:** `main` HEAD = `fea55e3` = `origin/main` (in sync; all 11 commits this session pushed + deploy-verified). Tracked tree clean (untracked only: `.claude/`, `.netlify/`, `tools/_*.py`, `tools/_fonts/`, `HANDOFF-*.md`, `SITE-OVERVIEW.md`). **`main` IS production** — push deploys live via GitHub Pages `pages-build-deployment` (~45–60s). **Commit on `main`; push ONLY on Josh's explicit go; backup-tag before each arc; verify live cache-busted (`?x=<ts>`) after every push.** Nothing mid-flight.
+
+## ✅ SHIPPED THIS SESSION — 11 commits, all live + each with a local backup tag
+The Kinetic card chrome (`2px solid var(--line-2)` border · `14px` radius · `6px 6px 0 var(--shadow)` · press-down hover) is now on EVERY card/tile site-wide, plus an 8th free tool. Commits (oldest→newest):
+1. `24a686d` **collection art tiles + heroes rounded** — folded `.design-card`+`.landscape-img` into the `[data-glass="cosmic"]` chrome rule + `border-radius:14px`, gave `.hero-image` the chrome (all 40 collection pages).
+2. `605a165` **homepage zodiac cards** (`.card-bbj` ×60) → Kinetic (index.html inline; dark zone literal `#000` shadow).
+3. `7017975` **homepage About brand cards** (`.about-brand-card`) → Kinetic; kept blue/orange top accents (hardcoded `#1d1b15`/`#2f2c24` — `#about` is NOT in the dark-zone token scope).
+4. `55c1f49` **free-tool OG/thumbnail images** — regenerated the 7 `images/products/<tool>.webp` (1200×600) from current tool screenshots. These files ARE each cooking tool's og/twitter/JSON-LD image (via its blog post) + the `/free/`+homepage tiles.
+5. `7a8a719` **collection-hero glow** (`.collection-hero::before`) → full-bleed `100vw` + softer falloff (was trapped in the centered 1200px hero); tokens.css cosmic override.
+6. `be5de44` **collection starfield** (`.stars`) → `z-index:-1` (was twinkling through the static, non-positioned `.style-card` art tiles); tokens.css cosmic override.
+7. `910dbf9` **Tynkr product-page tiles** → Kinetic: `gallery.css .gallery-thumb` (lightbox tiles) + `[data-glass="prototype"] .persona/.module-card/.step-card/.related-card` (8 product detail pages).
+8. `861f866` **blog hero leftover orange glow removed** — `.article-header::before { background: none; }` (tokens.css; blog-only class, 35 posts).
+9. `d443ba6` **remaining directory + secondary cards** → Kinetic: cosmic `.related-card/.review-card/.collection-card/.sister-card:not(.sister-card-current)` (active `.sister-card-current` keeps its orange accent + no-press) + **bare `.product-card`** (products HUB has NO `data-glass`).
+10. `d093101` **fiction layer** (`data-glass="books"`): `.character-card` + `.stat-block` → Kinetic (selective — dispatches/bios/CTA links stay warm/literary; `.book-section` was already Kinetic).
+11. `fea55e3` **NEW: Cost Per Serving Calculator added to the main site** — 8th `.home-tool-card` on homepage Free Tools + `/free/`, `llms.txt` entry, new `images/products/cost-per-serving-calculator.webp` (1200×600), "Seven"→"Eight". (No JSON-LD lists the cooking tools → no schema change; `/free/` ItemList = paid-product lite versions, untouched.)
+
+## 🎨 KINETIC token-resolution BY ZONE (the #1 subtlety — get this right before adding any component)
+- **Light pages:** `--line-2`=#14130e, `--shadow`=#14130e (crisp ink on white).
+- **Dark zodiac collections** (`html[data-theme="dark"]`): `--line-2`=#3a362c, `--shadow`=#000.
+- **Homepage dark zodiac zone** = a *scoped `--bbj-*` override* on `#builtbyjosh,#western-realms,#chinese-zodiac,#chinese-realms,#landscapes` (NOT a `data-theme` flip): `--bbj-surface`#1d1b15, `--bbj-border`#2f2c24; generic `--line-2/--shadow` stay light there → `.card-bbj`/`.about-brand-card` **hardcode** `#1d1b15`/`#000`.
+- **`data-glass` map:** product DETAIL pages = `prototype`; collections incl. hub + `legal/index.html` = `cosmic`; **products HUB `/products/index.html` has NO data-glass** (use bare class rules — verify the class is page-unique first, e.g. `.product-card`/`.article-header` are); homepage = none (scoped override); fiction/`books.html`/`/writing/` = `books`. tokens.css loads AFTER each page's inline `<style>`, so equal/higher-specificity overrides win — most card restyles this session were tokens.css overrides, not per-page sweeps.
+
+## 🧰 Tools subdomain (SEPARATE repo — NOT this one; new knowledge)
+`tools.builtbyjoshstudio.com` = a consolidated GitHub-Pages repo living at **`C:\Users\jotra\.gemini\antigravity\scratch\tools\`** (Antigravity/Gemini's workspace — own git + CNAME + `kinetic.css`/`kinetic.js` at root + landing `index.html` hub + 8 tool subdirs). Spec: `scratch/tools/../tynkr-tools-spec.md`. Each tool = `index.html` + `styles.css`(`@import url("../kinetic.css")`) + `script.js` + `sitemap.xml` + `og-preview.jpg`; uses kinetic.css classes (`.glass`/`.glass-panel` cards, `.input-group`, `.btn`/`.btn.primary`, `.tynkr-unit-btn`, `.anatomy` breakdown rows, `.hero`, `.net-band`); 3 themes Light/Mist/Dark via `data-set-theme` + kinetic.js (`startViewTransition` circular-wipe). The **8th tool, Cost Per Serving Calculator, was built + deployed by Antigravity** (live, verified functioning — all calc cases + theme-switching correct). **Antigravity owns the tools repo + deploys; I only added the main-site links.** **Antigravity TODO (told to Josh):** regenerate the cost-per-serving `og-preview.jpg` — it's a dark AI mockup (emoji/glowing gauge/fake "Save Recipe") that misrepresents the real light tool + doesn't match the other tools' clean-screenshot OGs.
+
+## 🛠 NEW gotchas this session
+- **Preview-MCP screenshots HANG** on animated layers: the homepage/collection starfield, and the tools' `kx-marquee` + the `startViewTransition` theme-wipe. Freeze via eval (`canvas/.stars` → display:none, inject `*{animation:none}`, cancelAnimationFrame loop) or restart the renderer. **`preview_eval` computed-styles are the reliable check** (more than screenshots). Bust shared CSS then read computed in a SEPARATE eval (the clone-link load is async).
+- **Tools-dir thumbnail capture = headless Chrome:** `"/c/Program Files/Google/Chrome/Application/chrome.exe" --headless --disable-gpu --hide-scrollbars --screenshot="<ABS>" --window-size=W,H "file:///..."` — use classic `--headless` (NOT `--headless=new`, which silently drops `--screenshot`). For light theme, temporarily flip the tool's `<html data-theme="dark">`→`"light"`, capture, revert.
+- **Preview-MCP launch.json is cached/merged** (editing the repo's `.claude/launch.json` mid-session isn't picked up; its server list was `static-site, spreadsheet-mockup, zodiac-mockup`). To preview a non-repo dir: run `python -m http.server <port>` in bash (`run_in_background`) then `preview_eval(window.location.assign('http://127.0.0.1:<port>/...'))` on an existing preview tab — cross-port nav works.
+
+## OPEN / DEFERRED (none blocking)
+- **Antigravity:** cost-per-serving `og-preview.jpg` regen (above).
+- Carry-forwards still valid: title/meta CTR watch; future-pass B (og/twitter/headline on 6 title-changed pages); OG images for ~22 older blog posts; Ebonspire June-2026 launch (flip "releases June 2026" → "available now"); **logo recolor** (`images/logo/*` bake navy/gold — Josh/external). Stale `kinetic-retheme` branch deletable; `overlayed-echoes-preview.html` intentionally bespoke.
+- Backup tags this session (newest first, LOCAL only — `git push` doesn't carry tags): `backup-pre-costtool · -fiction · -dircards · -blogglow · -producttiles · -starsfix · -heroglow · -tool-og-images · -aboutcards · -home-cards · -zodiac-rounding` + prior `pre-kinetic-backup`(`39dc1e9`).
+
+## First steps for the new session
+```bash
+cd /c/Users/jotra/builtbyjoshstudio
+git status                                   # tracked tree clean; untracked .claude/, tools/_*.py, HANDOFF-*.md
+git log --oneline -12                        # HEAD fea55e3 == origin/main; this session = 21a50d7..fea55e3
+ts=$(date +%s)
+curl -fsS "https://builtbyjoshstudio.com/?x=$ts" | grep -c 'Eight free browser'       # 1 (8th free tool listed)
+curl -fsS "https://builtbyjoshstudio.com/?x=$ts" | grep -c 'Bricolage Grotesque'      # >0 (Kinetic live)
+curl -sS -o /dev/null -w "%{http_code}\n" "https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/?x=$ts"   # 200 (new tool live)
+gh run list --workflow=pages-build-deployment --limit 3                               # latest completed/success
+```
+Then take direction from Josh. The card system is fully Kinetic-unified across the site (homepage, collections + hubs, products + hub, blog, fiction) and the 8th free tool is integrated. Nothing mid-flight.
+
+---
+
 # 🟢 builtbyjoshstudio.com — Session Handoff (2026-06-05) — Kinetic re-theme is LIVE + design unified
 
-**This block is the current live state. The dated handoff below it (2026-06-04) is the prior shipped state — its STANDING INSTRUCTIONS (sections #1–#21) still apply verbatim. Ignore that block's stale "Status / First steps / Open items" — they predate the Kinetic flip.**
+**This block is a PRIOR shipped state (superseded by the 2026-06-07 block above for STATE/first-steps; kept for its KINETIC quick-ref + history). The dated handoff below it (2026-06-04) is the prior shipped state — its STANDING INSTRUCTIONS (sections #1–#21) still apply verbatim. Ignore that block's stale "Status / First steps / Open items" — they predate the Kinetic flip.**
 
 **STATE:** `main` HEAD = `e330c46` = `origin/main` (in sync; everything pushed + live + deploy-verified). Tracked tree clean (untracked only: `.claude/`, `.netlify/`, `tools/_*.py` sweep scripts, `tools/_fonts/`, `HANDOFF-*.md`, `SITE-OVERVIEW.md`). **`main` IS production** — each push deploys live via GitHub Pages' default `pages-build-deployment` (~50–70s; no workflow file). **Commit on `main`; push ONLY on Josh's explicit go; verify live cache-busted (`?x=<ts>`) after every push.** Nothing mid-flight.
 
