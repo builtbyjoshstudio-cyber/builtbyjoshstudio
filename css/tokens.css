@@ -345,6 +345,19 @@
   box-shadow: 6px 6px 0 var(--shadow);
 }
 
+/* Collection hero glow — full-bleed + softer blend (inline rule trapped it in the centered 1200px hero) */
+[data-glass="cosmic"] .collection-hero::before {
+  inset: auto;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 0%, rgba(255,90,48,0.11) 0%, transparent 72%),
+    radial-gradient(ellipse at 18% 88%, rgba(255,90,48,0.05) 0%, transparent 60%);
+}
+
 /* Books cards */
 [data-glass="books"] .book-section,
 [data-glass="books"] .pen-name-note {
