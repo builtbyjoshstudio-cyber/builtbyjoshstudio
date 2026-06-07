@@ -383,6 +383,45 @@
 /* Blog hero — drop the leftover orange ambient glow (glassmorphism remnant, not Kinetic) */
 .article-header::before { background: none; }
 
+/* Collection secondary + hub cards → Kinetic (match the art tiles) — cosmic/dark */
+[data-glass="cosmic"] .related-card,
+[data-glass="cosmic"] .review-card,
+[data-glass="cosmic"] .collection-card,
+[data-glass="cosmic"] .sister-card:not(.sister-card-current) {
+  border: 2px solid var(--line-2);
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 var(--shadow);
+  transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+[data-glass="cosmic"] .collection-card { overflow: hidden; }
+[data-glass="cosmic"] .related-card:hover,
+[data-glass="cosmic"] .review-card:hover,
+[data-glass="cosmic"] .collection-card:hover,
+[data-glass="cosmic"] .sister-card:not(.sister-card-current):hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--shadow);
+  border-color: var(--line-2);
+}
+/* active sign tile: keep the orange accent + no-press, just round it to match */
+[data-glass="cosmic"] .sister-card-current {
+  border: 2px solid var(--bbj-accent);
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 var(--shadow);
+}
+
+/* Products hub directory cards → Kinetic (hub-only class, light theme) */
+.product-card {
+  border: 2px solid var(--line-2);
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 var(--shadow);
+  transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+.product-card:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--shadow);
+  border-color: var(--line-2);
+}
+
 /* Books cards */
 [data-glass="books"] .book-section,
 [data-glass="books"] .pen-name-note {
