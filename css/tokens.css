@@ -358,6 +358,9 @@
     radial-gradient(ellipse at 18% 88%, rgba(255,90,48,0.05) 0%, transparent 60%);
 }
 
+/* Starfield behind all content — was z-index:0, so it painted over the static art tiles */
+[data-glass="cosmic"] .stars { z-index: -1; }
+
 /* Books cards */
 [data-glass="books"] .book-section,
 [data-glass="books"] .pen-name-note {
