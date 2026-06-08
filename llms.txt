@@ -76,6 +76,7 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 - [Meat Thawing Planner](https://tools.builtbyjoshstudio.com/meat-thawing-planner/): Backward-schedules food-safe refrigerator and cold-water thawing windows by protein type and weight.
 - [Dough Hydration Calculator](https://tools.builtbyjoshstudio.com/dough-hydration-calculator/): Calculates baker's percentages, hydration ratios, and starter adjustments for bread and sourdough.
 - [Cost Per Serving Calculator](https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/): Calculates total recipe cost, cost per serving, and leftover pack amounts from ingredient quantities, pack sizes, and prices, with mass and volume unit conversions.
+- [Yeast Converter](https://tools.builtbyjoshstudio.com/yeast-converter/): Converts yeast quantities between active dry, instant, and fresh yeast by weight — grams, ounces, teaspoons, and packets — with automatic weight guards.
 
 ## Beyond the studio
 
