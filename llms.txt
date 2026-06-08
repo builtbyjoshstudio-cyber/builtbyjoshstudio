@@ -69,7 +69,7 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 ## Free web utilities
 
 - [Universal Recipe Scaler](https://tools.builtbyjoshstudio.com/universal-recipe-scaler/): Scales recipe ingredient quantities up or down by serving count or weight multiplier.
-- [Reverse Roasting Calculator](https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/): Backward-plans cooking and resting schedules for reverse-seared meats based on target serving time.
+- [Cooking Timeline Calculator](https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/): Works backward from your target dinner time to a start-to-serve oven schedule for roasts, turkeys, and barbecue.
 - [Baking Pan Swap Calculator](https://tools.builtbyjoshstudio.com/pan-swap-calculator/): Converts recipes between square, round, rectangular, loaf, and muffin pan sizes by surface area.
 - [Perfect Roast Pull Temp Calculator](https://tools.builtbyjoshstudio.com/perfect-roast-pull-temp-calculator/): Calculates pull temperatures for meats accounting for carryover cooking during rest.
 - [Brine Calculator](https://tools.builtbyjoshstudio.com/brine-calculator/): Calculates salt, sugar, and water ratios plus brining time for wet and dry brines.
