@@ -1,10 +1,10 @@
-# 🟢 builtbyjoshstudio.com — Session Handoff (2026-06-08) — paid `/products/` SEO arc SHIPPED (FAQ-schema byte-fix + hub OG/social card + Creator-OS title standardization + content-os relevance/interlinks)
+# 🟢 builtbyjoshstudio.com — Session Handoff (2026-06-08) — paid `/products/` SEO arc SHIPPED (FAQ-schema byte-fix + hub OG/social card + Creator-OS title standardization + content-os relevance/interlinks + full sibling interlink mesh) — ON-PAGE ARC CLOSED
 
 **This block is the current live state.** The 2026-06-07 (evening) block below — and the earlier 2026-06-07 / 2026-06-05 / 2026-06-04 blocks — remain valid for the **KINETIC token-resolution-by-zone reference, the EOL byte-sweep workflow, and STANDING INSTRUCTIONS #1–#21**; only their STATE / first-steps / "🔄 LATEST = likely-next" notes are superseded here. (That prior 🔄 LATEST — the read-only SEO intel report on the paid `/products/` pages — has now been **EXECUTED**; this is the implementation.)
 
-**STATE:** **Live = `origin/main` = `ce60556`** — all three commits this session are pushed + edge-verified (cache-busted `?x=<ts>`). Tracked tree clean (untracked only: `.claude/`, `.netlify/`, `tools/_*.py`, `tools/_fonts/`, `HANDOFF-*.md`, `SITE-OVERVIEW.md`, `_audit_output.md`, plus this session's `tools/_seo_*.py` / `_cos_*.py` / `_extract_cco.py` / `_build_products_hub_og.py` + `_cco_*`/`_cos_*` scratch). **`main` IS production** — push deploys live via GitHub Pages `pages-build-deployment` (~45–60s). **Commit on `main`; push ONLY on Josh's explicit go; backup-tag before each arc; verify live cache-busted after every push.** Nothing mid-flight.
+**STATE:** **Live = `origin/main` = `282dd56`** — all four commits this session are pushed + edge-verified (cache-busted `?x=<ts>`). Tracked tree clean (untracked only: `.claude/`, `.netlify/`, `tools/_*.py`, `tools/_fonts/`, `HANDOFF-*.md`, `SITE-OVERVIEW.md`, `_audit_output.md`, plus this session's `tools/_seo_*.py` / `_cos_*.py` / `_extract_cco.py` / `_build_products_hub_og.py` + `_cco_*`/`_cos_*` scratch). **`main` IS production** — push deploys live via GitHub Pages `pages-build-deployment` (~45–60s). **Commit on `main`; push ONLY on Josh's explicit go; backup-tag before each arc; verify live cache-busted after every push.** Nothing mid-flight.
 
-## ✅ SHIPPED THIS SESSION — the paid `/products/` SEO arc, 3 commits (all live + edge-verified)
+## ✅ SHIPPED THIS SESSION — the paid `/products/` SEO arc, 4 commits (all live + edge-verified)
 Scope was STRICT: the 8 paid `/products/*.html` template pages + the `/products/` hub ONLY — **NOT** the free cooking tools on `tools.builtbyjoshstudio.com`, **NOT** the zodiac art in `/collections/`. Each commit ran the proven loop: backup-tag → EOL-preserving Python byte-sweep (tree is CRLF; `git diff --check` clean = proof) → verification gate (JSON-LD `json.loads`, byte-mirrors, og:image existence on disk) → diff shown → Josh's explicit go → push → `gh run watch` → cache-busted live-verify.
 
 1. **`58cdcf2`** `seo(products): FAQ schema byte-match, hub social tags + OG image, title/meta rewrites` — **9 files (8 HTML + 1 new image)**:
@@ -17,6 +17,7 @@ Scope was STRICT: the 8 paid `/products/*.html` template pages + the `/products/
    - **Related Creator OS Templates** row: added **Creator Finance OS + Creator Product OS** sibling cards (markup/classes/`View Product ↗` cloned exactly; card copy sourced verbatim from sibling Creator-OS pages) → row now **Full Stack · Business · Finance · Launch · Product** (3→5 cards). The 3 existing `/blog/` links untouched.
    - Pre-push: rendered H1 visually in the preview server — the italic-blue "The Notion Content OS for Creators" reads cleanly on the headline.
 3. **`ce60556`** `seo(creator-os): title relevance alignment — 3 pages` — **title-layer ONLY** (each page: `<title>` = `og:title` = `twitter:title`, byte-for-byte) on creator-os-full-stack, creator-launch-os, creator-finance-os. No H1/eyebrow/body/meta-description/interlink changes.
+4. **`282dd56`** `seo(creator-os): complete sibling interlink mesh — 10 cards across 5 pages` — workstream #2 sibling-card layer. Each of the 5 pages (full-stack, business, finance, launch, product) had its "Related Creator OS Templates" `related-grid` brought from **3 → 5 sibling cards** (now all 5 siblings). Cards **cloned VERBATIM** from existing live cards (Product/Launch/Business/Finance from `creator-content-os`; Content from `creator-launch-os`) — **no new copy**. **Purely additive (+70/−0 total; +14/−0 per file)** — only `<a class="related-card">` blocks appended inside `related-grid`; blog/Deep-Dive/JSON-LD/head/prices untouched. **Both gates passed** (deterministic Python + a 5-agent adversarial workflow: byte-identical-clone · collateral-clean · JSON-LD per page). Live + edge-verified.
 
 ## 🏷 Creator-OS title set — now STANDARDIZED across all six product pages
 Format = **`[Product] · Notion [descriptor] for Creators`** (middle-dot `·` separator; `og:title` + `twitter:title` mirror each `<title>` byte-for-byte). Final LIVE titles:
@@ -32,25 +33,29 @@ Format = **`[Product] · Notion [descriptor] for Creators`** (middle-dot `·` se
 ## ⛔ Review / AggregateRating schema — STRUCK (not deferred)
 There are **zero product-specific reviews** on any Tynkr product, so **no compliant `AggregateRating` / `review` schema is possible** (reinforces STANDING #9's "no aggregateRating/review"). **Do NOT implement review stars on any product page** until genuine, product-specific reviews **exist and are displayed visibly on the page first** (Google requires the visible review to back the markup). **Open question (flagged):** whether direct **Lemon Squeezy** sales can collect public reviews at all — if LS has no public-review mechanism for these SKUs, this lever stays permanently closed for LS-only products.
 
-## 🔗 Next lever — interlinking cluster (workstream #2), PARTIALLY done
-**`creator-content-os` is now fully wired** = 5 sibling product cards (Full Stack · Business · Finance · Launch · Product) + 3 Notion `/blog/` links (`notion-content-os-for-creators`, `notion-business-os-for-creators`, `complete-notion-os-for-creator-business`). **The other Creator-OS product pages have NOT yet been audited** for the same interlink density (sibling-card completeness + relevant Notion blog links). **Productivity-to-productivity ONLY** — the free cooking tools and the fiction/books layer stay OUT of this cluster.
+## 🔗 Interlinking cluster (workstream #2) — COMPLETE (sibling-card layer CLOSED)
+**Full sibling mesh shipped (`282dd56`):** all **6** Creator-OS product pages now link **all 5 siblings** in their `related-grid` (`creator-content-os` was wired in `98842da`; the other 5 completed in `282dd56`). Symmetric, no self-links, verbatim cards. **Productivity-to-productivity ONLY** — free cooking tools + fiction/books stay OUT of this cluster.
+**Blog-link layer — DELIBERATELY COMPLETE, not pending.** The Notion `/blog/` graph is intentionally **topical/asymmetric** with **hand-written contextual anchors** (~3 posts/page, matching the Content-OS model: `complete-os` + the page's own module post + 1 topical sibling). Densifying to a full 6-post mesh was **considered and explicitly DECLINED** — forcing anchors onto non-topical combinations adds noise, not signal. **Do NOT "fill this gap" in a future session — it is by design.** (6-post blog universe: `complete-notion-os-for-creator-business` + `notion-{content,product,business,finance,launch}-os-for-creators`.)
+
+## 🏁 On-page `/products/` SEO arc — CLOSED
+Every on-page lever the **2026-06-08 GSC data** flagged as winnable is shipped (FAQ-schema fix · hub OG/social · title/meta standardization · Content-OS relevance pass · full sibling interlink mesh). **Remaining upside is OFF-site** — reach/demand generation (Substack, social, distribution), not website work. **Measure:** re-pull GSC **~2–3 weeks out** to see whether the Content-OS relevance pass (`98842da`) moved its position from **14.3**.
 
 ## Backup tags this session (LOCAL only — `git push` doesn't carry tags)
-`backup-pre-cos-titles` (`98842da`) · `backup-pre-content-os-relevance` (`58cdcf2`) · `backup-pre-products-seo` (`d2fc1d9`) + all prior tags.
+`backup-pre-ws2-interlinks` (`b554a35`) · `backup-pre-cos-titles` (`98842da`) · `backup-pre-content-os-relevance` (`58cdcf2`) · `backup-pre-products-seo` (`d2fc1d9`) + all prior tags.
 
 ## OPEN / DEFERRED (none blocking)
-- **🆕 Social re-scrape (Josh, manual):** the hub gained a brand-new OG image and `og:title` changed on the 6 Creator-OS pages + `creator-product-os`/`creator-business-os` `twitter:title` — run the changed `/products/` URLs through the FB Sharing Debugger ("Scrape Again") + LinkedIn Post Inspector to refresh cached cards.
-- **Interlinking workstream #2** (above) — audit the remaining 5 Creator-OS product pages + the 2 workbooks for sibling-card + Notion-blog interlink density.
+- **🆕 Social re-scrape (Josh, manual):** the hub gained a brand-new OG image and `og:title` changed on the 6 Creator-OS pages + `creator-product-os`/`creator-business-os` `twitter:title` — run the changed `/products/` URLs through the FB Sharing Debugger ("Scrape Again") + LinkedIn Post Inspector to refresh cached cards — **do this before next sharing those links.**
+- ~~Interlinking workstream #2~~ — **DONE/CLOSED**: sibling mesh complete (all 6 pages × 5 siblings); blog layer deliberately complete (see above). No further interlink work on the Creator-OS pages.
 - Carry-forwards still valid from prior blocks: title/meta CTR watch; OG images for ~22 older blog posts; Ebonspire June-2026 launch flip ("releases June 2026" → "available now"); logo recolor (`images/logo/*`); the pre-existing `blog.html` `zero-based-budget-excel` card↔ItemList mismatch (`task_e92f425c`); GSC merchant re-crawl validation.
 
 ## First steps for the new session
 ```bash
 cd /c/Users/jotra/builtbyjoshstudio
 git status                                    # tracked tree clean; untracked .claude/, tools/_*.py, HANDOFF-*.md
-git log --oneline -6                          # HEAD ce60556 == origin/main; this arc = 58cdcf2..ce60556
+git log --oneline -8                          # HEAD 282dd56 == origin/main; this arc = 58cdcf2..282dd56
 ts=$(date +%s)
 curl -fsS "https://builtbyjoshstudio.com/products/?x=$ts" | grep -c 'products-hub.webp'                              # 2 (hub og:image + twitter:image live)
-curl -fsS "https://builtbyjoshstudio.com/products/creator-content-os.html?x=$ts" | grep -c 'class="related-card"'    # 5 (interlink cards live)
+curl -fsS "https://builtbyjoshstudio.com/products/creator-os-full-stack.html?x=$ts" | grep -c 'class="related-card"'  # 5 (full sibling mesh live)
 curl -fsS "https://builtbyjoshstudio.com/products/creator-finance-os.html?x=$ts" | grep -oE '<title>[^<]*</title>'   # Creator Finance OS · Notion Finance for Creators
 gh run list --workflow=pages-build-deployment --limit 3                                                              # latest completed/success
 ```
