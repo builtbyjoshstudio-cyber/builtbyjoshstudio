@@ -64,7 +64,7 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 
 ## Free — templates and web tools
 
-- [Free templates & web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both budget spreadsheets, plus seven free browser utilities (recipe and cooking calculators). Working tools, no signup.
+- [Free templates & web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both budget spreadsheets, plus eleven free browser utilities (recipe and cooking calculators). Working tools, no signup.
 
 ## Free web utilities
 
@@ -77,6 +77,8 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 - [Dough Hydration Calculator](https://tools.builtbyjoshstudio.com/dough-hydration-calculator/): Calculates baker's percentages, hydration ratios, and starter adjustments for bread and sourdough.
 - [Cost Per Serving Calculator](https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/): Calculates total recipe cost, cost per serving, and leftover pack amounts from ingredient quantities, pack sizes, and prices, with mass and volume unit conversions.
 - [Yeast Converter](https://tools.builtbyjoshstudio.com/yeast-converter/): Converts yeast quantities between active dry, instant, and fresh yeast by weight — grams, ounces, teaspoons, and packets — with automatic weight guards.
+- [Cookware & Pan Guide](https://tools.builtbyjoshstudio.com/cookware-pan-guide/): Recommends the best cookware material and pan shape for any cooking task by thermal profile, acid reactivity, and induction compatibility.
+- [Recipe Nutrition Calculator](https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/): Estimates per-serving calories, macro splits, and an Estimated Nutrition Facts label from pasted recipe text.
 
 ## Beyond the studio
 
