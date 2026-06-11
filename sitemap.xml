@@ -755,7 +755,7 @@
   <!-- FIELD DISPATCHES (writing) -->
   <url>
     <loc>https://builtbyjoshstudio.com/writing/</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -792,6 +792,36 @@
   <url>
     <loc>https://builtbyjoshstudio.com/writing/corruption-of-immersion.html</loc>
     <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/writing/seven-feet-of-silver.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/writing/exactly-as-designed.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/writing/the-dagger-flip.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/writing/edge-of-my-chair.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/writing/load-bearing-grin.html</loc>
+    <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
