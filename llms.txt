@@ -69,7 +69,7 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 
 ## Free — templates and web tools
 
-- [Free templates & web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both budget spreadsheets, plus eleven free browser utilities (recipe and cooking calculators). Working tools, no signup.
+- [Free templates & web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both budget spreadsheets, plus fifteen free browser utilities — eleven kitchen calculators and four money & business tools. Working tools, no signup.
 
 ## Free web utilities
 
@@ -84,6 +84,10 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 - [Yeast Converter](https://tools.builtbyjoshstudio.com/yeast-converter/): Converts yeast quantities between active dry, instant, and fresh yeast by weight — grams, ounces, teaspoons, and packets — with automatic weight guards.
 - [Cookware & Pan Guide](https://tools.builtbyjoshstudio.com/cookware-pan-guide/): Recommends the best cookware material and pan shape for any cooking task by thermal profile, acid reactivity, and induction compatibility.
 - [Recipe Nutrition Calculator](https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/): Estimates per-serving calories, macro splits, and an Estimated Nutrition Facts label from pasted recipe text.
+- [Freelance Rate Calculator](https://tools.builtbyjoshstudio.com/freelance-rate-calculator/): Calculates the hourly rate needed to hit an income goal after self-employment tax, business expenses, and non-billable hours.
+- [Debt Payoff Calculator](https://tools.builtbyjoshstudio.com/debt-payoff-calculator/): Compares snowball, avalanche, and hybrid debt payoff strategies — debt-free date and total interest saved.
+- [Budget Calculator](https://tools.builtbyjoshstudio.com/budget-calculator/): Compares 50/30/20 ideal vs. actual spending with adjustable category targets.
+- [Invoice Generator](https://tools.builtbyjoshstudio.com/invoice-generator/): Generates professional invoices with letterhead, line items, and tax, ready to print or save as PDF.
 
 ## Beyond the studio
 
