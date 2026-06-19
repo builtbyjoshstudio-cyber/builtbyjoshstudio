@@ -91,6 +91,20 @@
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Overlayed Echoes — Official Book Trailer",
+  "description": "Official book trailer for Overlayed Echoes, a near-future LitRPG (GameLit) by J.S. Warden — Book One of a planned five-book series. The game is real. It won't let them leave.",
+  "thumbnailUrl": "https://builtbyjoshstudio.com/images/books/overlayed-echoes-trailer-poster.jpg",
+  "uploadDate": "2026-06-18T18:00:11-07:00",
+  "embedUrl": "https://www.youtube-nocookie.com/embed/eYsgdcggow0",
+  "contentUrl": "https://www.youtube.com/watch?v=eYsgdcggow0",
+  "publisher": {"@id": "https://builtbyjoshstudio.com/#organization"}
+}
+</script>
+
 <style>
   :root {
     --ink: #1a1814;
@@ -504,7 +518,7 @@
 
         // A. Outbound Amazon clicks (three on this page: hero + mid + end-block).
         //    cta_position: explicit data-cta-position ("mid") wins; else .sample-end -> "end", else "hero".
-        if (link.href.indexOf('a.co') !== -1) {
+        if (link.href.indexOf('amazon.') !== -1) {
           gtag('event', 'book_amazon_click', {
             book_title: 'Overlayed Echoes',
             link_url: link.href,
