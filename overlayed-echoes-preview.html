@@ -219,6 +219,20 @@
     .reader p { font-size: 1.06rem; }
     .hero { padding-top: 2.5rem; }
   }
+
+  /* Book-trailer facade (click-to-load via /js/lite-yt.js) */
+  .trailer { max-width: 520px; margin: 1.5rem auto 0; padding: 0 1.25rem; }
+  .trailer-eyebrow { text-align: center; margin-bottom: 0.9rem; }
+  .trailer-eyebrow span { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent, #6b4f8a); font-weight: 700; }
+  .yt-facade { position: relative; max-width: 520px; margin: 0 auto; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 8px 24px rgba(74,53,99,0.18); }
+  .yt-facade-btn { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; }
+  .yt-facade-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .yt-facade-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 66px; height: 66px; border-radius: 50%; background: var(--accent, #6b4f8a); box-shadow: 0 6px 20px rgba(0,0,0,0.35); transition: transform .15s, background .15s; }
+  .yt-facade-play::after { content: ''; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%); border-style: solid; border-width: 12px 0 12px 20px; border-color: transparent transparent transparent #fff; }
+  .yt-facade-btn:hover .yt-facade-play, .yt-facade-btn:focus-visible .yt-facade-play { transform: translate(-50%, -50%) scale(1.08); background: var(--accent-deep, #4a3563); }
+  .yt-facade-btn:focus-visible { outline: 3px solid var(--accent, #6b4f8a); outline-offset: 3px; }
+  .yt-facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  @media (prefers-reduced-motion: reduce) { .yt-facade-play { transition: none; } }
 </style>
 </head>
 <body>
@@ -244,6 +258,16 @@
     <p class="preview-uplink"><a href="/books.html">Full book details, series info &amp; FAQ &rarr;</a></p>
     <p class="preview-uplink"><a href="/writing/corruption-of-immersion.html">Go deeper into the world — a field dispatch &rarr;</a></p>
   </header>
+
+  <section class="trailer" aria-label="Overlayed Echoes book trailer">
+    <div class="trailer-eyebrow"><span>Watch the trailer, then read the opening</span></div>
+    <div class="yt-facade" data-ytid="eYsgdcggow0" data-title="Overlayed Echoes — Official Book Trailer" data-source="overlayed-echoes-preview">
+      <button type="button" class="yt-facade-btn" aria-label="Play the Overlayed Echoes book trailer — loads the YouTube player on click">
+        <img class="yt-facade-poster" src="/images/books/overlayed-echoes-trailer-poster.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="" />
+        <span class="yt-facade-play" aria-hidden="true"></span>
+      </button>
+    </div>
+  </section>
 
   <hr class="reader-divider">
 
@@ -506,5 +530,6 @@
       });
     })();
   </script>
+  <script src="/js/lite-yt.js" defer></script>
 </body>
 </html>
