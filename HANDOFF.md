@@ -1,6 +1,50 @@
+# 🟢 builtbyjoshstudio.com — Session Handoff (2026-06-24) — SEO+GEO fix batch round 1: **Batch 1** paid-page correctness bugs (UBW `$24.99`→bundle-only · content-os "eight"→"seven") + **Batch 2a** `/free/` lite-tier exposure (un-hide CTAs · on-domain `#anchors` · `$0` Product/Offer schema · static LS hrefs · meta trim) — both pushed + edge-verified · graphify now wired across all 3 clones
+
+**This block is the current live state.** The 2026-06-23 block below (and 06-16 / 06-15 / 06-08 / earlier) remain valid for the **KINETIC token reference, the EOL byte-sweep workflow, and STANDING INSTRUCTIONS #1–#21** — only their STATE / first-steps are superseded here.
+
+**STATE:** **Live content = `origin/main` = `e133d24`** (in sync). The HANDOFF-refresh commit sits on top [ahead 1 until pushed] — **Jekyll-excluded, zero live effect**. Tracked tree clean (untracked only `.claude/`, `.netlify/`, `graphify-out/`, this session's `tools/_*.py` scratch, `HANDOFF-*.md`). **`main` IS production** — push deploys live via GitHub Pages `pages-build-deployment` (~45–60s). Commit on `main`; push ONLY on Josh's explicit go; `git tag backup-pre-<x>` before each arc; after each push `gh run watch` then verify live cache-busted (`?x=<ts>`). Separate TOOLS repo (`builtbyjoshstudio-cyber/tools`, clone `C:\Users\jotra\tools`) in sync at `f9aa01f`.
+
+## ✅ SHIPPED THIS SESSION — 2 commits (both live + edge-verified)
+1. **`acad5e7`** `fix(products): correct two stale factual claims` — **Batch 1 correctness.** (1A) `ultimate-budget-workbook` — dropped the false "buy either individually for $24.99" claim from the Google-Sheets FAQ in BOTH the visible `<p>` (L1748) and the FAQPage `acceptedAnswer.text` (L140), kept byte-identical; the only SKU is the $34.99 bundle. (1C) `creator-content-os` — body "eight"→"seven" pre-built modules (FAQ/schema/comparison-table + 7 rendered cards already said seven). `backup-pre-batch1-bugfix` (`d44fe1d`).
+   - **1B DROPPED — NOT a bug (carry forward):** the audit's "Offer.url=LS vs visible CTA=Etsy" on creator-launch-os + home-buying is the **uniform, deliberate commerce contract on ALL 8 paid pages** — static Etsy href = no-JS fallback, `data-cta-label-live` + `checkout.js` rewire to the LS overlay at runtime, and `Offer.url` already = LS (the locked primary). Nothing 2-page-specific. Changing the visible buy channel catalog-wide is a separate STRATEGY decision, not a correctness fix.
+   - **creator-business-os "ten vs 11" REFUTED:** working tree renders exactly **10** `module-card`s; "eleven" appears 0×. Audit premise was wrong — no edit.
+2. **`e133d24`** `seo(free): expose lite tier …` — **Batch 2a (= audit fix #3 + the free-tier exposure).** All in `free/index.html`: (1) `id="<slug>-lite"` on all 7 free-card `<article>`s; (2) the 7 "Free Lite" ItemList urls repointed from the PAID product pages → on-domain `/free/#<slug>-lite` (name↔url now agree, each resolves to a real anchor); (3) un-hid all 7 lite CTAs (removed inline `display:none` from wrapper + anchor — `checkout.js` reveal/`manageLiteSections` verified idempotent); (4) added a static `href` = the `?embed=1`-stripped `$0` LS hosted-checkout per SKU (no-JS/crawler fallback; JS still overwrites at runtime to the same URL); (5) converted each ItemList entry bare `ListItem` → `ListItem`→`item` **Product + `$0` Offer** (price "0" / USD / InStock + LS `Offer.url`, `brand` "Tynkr Tools & Co", paid-page `category` parity); (6) meta description trimmed to **152 chars**. Also: resolved the HANDOFF 8th-lite open question (`creator-os-full-stack-lite` "Sampler" **intentionally excluded** — Full Stack is the paid bundle, surfaced as a Sampler on its own page) + struck the disproven "Eleven vs 15" flag. `backup-pre-batch2a` (`acad5e7`). Edge-verified live: 7 cards render w/ visible CTAs + static hrefs, ItemList resolves to anchors, 7 `$0` Offers in live JSON-LD.
+
+## 🔎 KEY FINDINGS (carry forward)
+- **The `/free/` lite tier is now crawlable + schema-visible.** The 8 lite SKUs in `js/checkout-config.js` were already live (`price:0`, non-PENDING); the tier was SEO-invisible only because the static HTML shipped `display:none` + no `href` + JS-injected destinations. 2a made it static-HTML-true on the `/free/` hub.
+- **"Eleven free browser utilities" is CORRECT — do NOT change to "Fifteen".** It labels the 11-card `#web-tools` section; the 4 money tools have their own "Four…" `#money-tools` subhead (total `home-tool-card` = 15 = 11 + 4). Same structure on the homepage (`index.html` L2703).
+- **Paid-page lite CTAs are still hidden AND unstyled.** All 8 paid pages still ship `display:none` lite blocks whose `lite-*` classes have **zero CSS** — so fix #2 (un-hiding them) needs CSS authored, not just a style removal (unlike `/free/`, which was already fully styled).
+- **graphify wired across all 3 working clones** — builtbyjoshstudio (1048 nodes), `C:\Users\jotra\tools` (162), and the Antigravity scratch clone `…\.gemini\antigravity\scratch\tools` (162, seeded from primary). `graphify-out/`/`.claude/`/root `CLAUDE.md` are gitignored (local-only, **per-clone** — state doesn't travel via git). **Run `graphify query "<q>"` before grepping.**
+
+## 🔭 REMAINING from the 🔬 audit fix batch (next-session menu)
+- **Fix #1 — machine-readable `$0` on the 8 PAID Product pages** *(not done)*: add a 2nd `$0` Offer / `AggregateOffer` + one visible "a free Lite version is available" sentence; start `creator-product-os`. (2a did the `/free/` hub side only.)
+- **Fix #2 — un-hide the paid-page lite CTAs** *(not done)*: 8 paid pages still `display:none`; ⚠️ needs CSS for the unstyled `lite-*` classes, not just an un-hide.
+- **Fix #4 — `/free/` FAQPage + visible Q&A** *(not done)*: "really free?", "lite vs paid?", "need my email?".
+- **Low-sev polish** *(not done)*: title↔H1 keyword alignment (4 Creator-OS + 2 workbooks); visible breadcrumb href → `/products/` to byte-match schema (6 pages); two `Organization` JSON-LD `@id`; persona H2→H4 skip → H3 (full-stack, launch-os); gallery `alt` enrich (all 8); `--tynkr-orange`→`--tynkr-accent` (finance, home-buying).
+- **DONE this session:** audit fix #3 (`/free/` exposure) + fix #5's two real items (`$24.99`, content-os count); #5's Offer.url + business-os items resolved as non-bugs.
+
+## Backup tags this session (LOCAL only — `git push` doesn't carry tags)
+`backup-pre-batch2a` (`acad5e7`) · `backup-pre-batch1-bugfix` (`d44fe1d`) + all prior.
+
+## First steps for the next session
+```bash
+cd /c/Users/jotra/builtbyjoshstudio
+git log --oneline -6        # HEAD = this HANDOFF refresh (Jekyll-excluded); live content = e133d24 == origin/main (session work = acad5e7 + e133d24)
+git status                  # tracked tree clean; untracked .claude/, .netlify/, graphify-out/, tools/_*.py
+# graphify is ON — run `graphify query "<q>"` / `graphify explain` / `graphify path` BEFORE grepping to locate markup/schema
+ts=$(date +%s)
+curl -fsS "https://builtbyjoshstudio.com/free/?x=$ts" | grep -c '<div data-lite-section>'                    # 7 (lite CTAs un-hidden)
+curl -fsS "https://builtbyjoshstudio.com/free/?x=$ts" | grep -oE '/free/#[a-z-]+-lite' | sort -u | wc -l      # 7 on-domain anchors
+curl -fsS "https://builtbyjoshstudio.com/products/creator-product-os.html?x=$ts" | grep -c 'display: none'    # still 8 — paid-page lite CTA still hidden (fix #1/#2 target)
+gh run list --workflow=pages-build-deployment --limit 3
+```
+Then take direction (likely the remaining audit fixes #1 / #2 / #4 + low-sev polish).
+
+---
+
 # 🟢 builtbyjoshstudio.com — Session Handoff (2026-06-23) — favicons (J + Tynkr-bear) · Little Acre Learning brand link (footer 118pp + Org schema + About card) · dark-footer contrast fix · **READ-ONLY SEO+GEO AUDIT of the 8 paid product pages + /free/ lite hub DONE — findings below; NEXT = the fix batch (un-hide + schema-encode the free tier)**
 
-**This block is the current live state.** The 2026-06-16 block below (and the 06-15 / 06-08 / 06-07 / 06-05 / 06-04 blocks) remain valid for the **KINETIC token reference, the EOL byte-sweep workflow, and STANDING INSTRUCTIONS #1–#21** — only their STATE / first-steps are superseded here.
+**This block is a PRIOR shipped state — superseded for STATE / first-steps by the 2026-06-24 block above.** The 2026-06-16 block below (and the 06-15 / 06-08 / 06-07 / 06-05 / 06-04 blocks) remain valid for the **KINETIC token reference, the EOL byte-sweep workflow, and STANDING INSTRUCTIONS #1–#21** — only their STATE / first-steps are superseded here.
 
 **STATE:** **Live = `origin/main` = `2c69918`** (in sync). Tracked tree clean (untracked only `.claude/`, `.netlify/`, this session's `tools/_*.py` scratch, `HANDOFF-*.md`). **`main` IS production** — push deploys live via GitHub Pages `pages-build-deployment` (~45–60s). Commit on `main`; push ONLY on Josh's explicit go; `git tag backup-pre-<x>` before each arc; after each push `gh run watch` then verify live cache-busted (`?x=<ts>`). **Separate TOOLS repo** (`builtbyjoshstudio-cyber/tools`, clone `C:\Users\jotra\tools`, serves tools.builtbyjoshstudio.com) is in sync at `f9aa01f`; Antigravity keeps a 2nd clone at `.gemini/antigravity/scratch/tools` (it must `git pull` before it pushes).
 
