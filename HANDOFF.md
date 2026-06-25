@@ -1,6 +1,59 @@
+# 🟢 builtbyjoshstudio.com + tools.builtbyjoshstudio.com — Session Handoff (2026-06-25) — **TOOLS-repo SEO/GEO arc SHIPPED** (Org-entity consolidation · FAQPage coverage · title/meta trims · GA4 baseline · cooking→money cross-link — all 5 pushed + edge-verified) + **tools graph rebuilt full-semantic** · **IN-FLIGHT: "two minors" — kinetic.css resolved (no edit); sitemap priority pending Josh's tier confirm**
+
+**This block is the current live state.** The 2026-06-24 block below (and 06-23 / 06-16 / earlier) remain valid for the **KINETIC token reference, the EOL byte-sweep workflow, and STANDING INSTRUCTIONS #1–#21** — only their STATE / first-steps are superseded here. **NOTE: almost all of this session's work was on the SEPARATE TOOLS repo, not the main site.**
+
+**STATE — two repos:**
+- **MAIN site** (`builtbyjoshstudio`, this repo): `origin/main` = `b749b2c` — in sync, live. No new main-site work this session beyond the earlier Batch 1 (`acad5e7`) + Batch 2a (`e133d24`) + the HANDOFF. Tracked tree clean (untracked only `.claude/`, `.netlify/`, `graphify-out/`, this session's `tools/_*.py` scratch — incl. `_org_apply.py`/`_faq_apply.py`/`_titlemeta_apply.py`/`_ga4_apply.py`/`_cookmoney_apply.py`/`_gfy_*.py`, `HANDOFF-*.md`). This HANDOFF-refresh commit sits on top [ahead 1 until pushed] — Jekyll-excluded, zero live effect.
+- **TOOLS site** (`builtbyjoshstudio-cyber/tools`, clone `C:\Users\jotra\tools` → tools.builtbyjoshstudio.com): `origin/main` = **`e4db2a5`** — in sync, live, **this session's main workspace** (5 commits below). CRLF tree. `graphify-out/`, `.claude/`, and the (untracked) `.gitignore` are local-only.
+
+**Both repos: `main` IS production** — push deploys via GitHub Pages `pages-build-deployment` (~30–60s). Commit on `main`; **push ONLY on Josh's explicit go**; `git tag backup-pre-<x>` before each edit arc; after each push `gh run watch` then verify live cache-busted (`?x=<ts>`).
+
+## ✅ SHIPPED THIS SESSION — TOOLS repo, 5 commits (all pushed + edge-verified)
+From a read-only SEO/GEO audit of all 17 tools pages (15 tools + 2 hubs), shipped the substantive fixes via inspect→canary→gate→batch→commit→push (EOL-preserving Python byte-sweeps, CRLF):
+1. **`c38393c`** — **Organization entity consolidation (17 pages).** Replaced the name-only `publisher` stub with an identity-set `Organization` — shared `@id` = `https://builtbyjoshstudio.com/#organization` + `name`/`legalName`/`alternateName`/`url`/`logo`/`image`/`sameAs`(5)/`identifier`, values copied byte-exact from the main-site canonical Org node. Consolidates the subdomain with the main-site entity (GEO). `backup-pre-tools-org-entity` (`f9aa01f`).
+2. **`345b250`** — **FAQPage schema (2 tools) + debt-payoff parity.** Wrapped the existing visible Q&A on `recipe-nutrition-calculator` + `cookware-pan-guide` in FAQPage JSON-LD (verbatim, separate `<script>` after WebApplication) → all 15 tools now carry FAQPage. Realigned `debt-payoff-calculator`'s FAQPage schema→visible (all 4 Q+A byte-identical). `backup-pre-tools-faqpage` (`c38393c`).
+3. **`7baa802`** — **Title + 4 money-tool metas trimmed under SERP limits.** `pan-swap` title 82→54; freelance/debt-payoff/budget/invoice metas → 145/136/148/148 (≤155). Length-only, keyword preserved. `backup-pre-tools-title-meta` (`345b250`).
+4. **`f09c7a4`** — **GA4 page_view baseline on all 17 pages.** Inline `gtag.js` snippet (`G-QDSPBB7S9J` — the site's existing ID) inserted after `<meta charset>`, identical on all 17. page_view ONLY — NO `ga4-events.js`, no handlers (those are commerce-specific to the main site). Affiliate-click events deferred to a later brief. `backup-pre-tools-ga4` (`7baa802`).
+5. **`e4db2a5`** — **Cooking→money cross-linking (cooking hub only).** Added a "03 Money & Business" content section (money hub's 4-card section transplanted verbatim, root-relative hrefs) + a footer "Money & Business" `lp-foot-col` ("All money tools" → `money/index.html`), widening desktop footer grid 4→5 cols. Headless-render-verified at 3 widths. `backup-pre-cooking-money-link` (`f09c7a4`).
+
+## 🧠 graphify — tools graph rebuilt FULL-SEMANTIC (this session)
+The tools graph was **JS-AST-only (162 nodes)** and reflected no HTML/schema/content. Ran a full `/graphify` semantic rebuild (3 general-purpose subagents; no Gemini key) → **235 nodes (163 code + 20 document + 41 concept + 11 rationale), 331 edges, 19 communities** — now indexes JSON-LD schema, FAQ topics, hub/tool/cross-links. God Nodes now include the hubs + tool pages; hyperedges capture FAQPage coverage, Org-publisher sharing, money-hub aggregation. **`graphify-out/` is gitignored (local-only).** Always-on confirmed on all clones. Post-commit hook keeps the CODE/AST layer current; the **semantic/HTML layer needs a manual `/graphify --update` (or rebuild) after future content edits.**
+
+## 🔬 IN-FLIGHT — "two minors" brief (one resolved, one pending)
+- **kinetic.css — RESOLVED as (b) correct-as-is. NO EDIT, DO NOT TOUCH.** The audit flag "kinetic.css on only 2/15 tools" was an inspection artifact (it counted HTML `<link>` only). Reality: the other **13 tools load kinetic.css via `@import url("../kinetic.css")` in their tiny `styles.css`**. All 15 tools load it (13 @import, 2 `<link>`); both hubs via `<link>`. Headless render of brine (no `<link>`) is fully styled. **Adding `<link>` to the 13 would DOUBLE-load it — don't.**
+- **Sitemap priority — PENDING Josh's tier confirm.** `C:\Users\jotra\tools\sitemap.xml` has **all 17 `<loc>` at `<priority>1.0</priority>`**. Proposed: **2 hubs (`/`, `/money/`) → 1.0; 15 tools → 0.8** (optional 3-tier: `/`=1.0 · `/money/`=0.9 · tools=0.8). Awaiting Josh's choice. THEN: `git tag backup-pre-tools-minors` (tools repo) → edit `sitemap.xml` (15 lines `1.0`→`0.8`, CRLF-preserved) → diff → gate → commit `Differentiate sitemap priority (hubs 1.0, tools 0.8)`, **hold push**. Single file, low stakes.
+
+## Tools-repo gotchas (carry forward)
+- **Scratch scripts go in `C:\Users\jotra\builtbyjoshstudio\tools\` (the MAIN-site scratch dir), NOT the tools-repo root** — the tools repo's root has no broad `_*.py` ignore (its `.gitignore` is itself untracked/narrow), so scratch there risks being committed to the PUBLIC tools repo.
+- Tools pages: CRLF, standalone HTML; each tool = `<dir>/index.html` + `script.js` + a `styles.css` that `@import`s shared `../kinetic.css` (theme/components/tokens) + inline `<style>`; all load `../kinetic.js`. Hubs: `index.html` (cooking, root) + `money/index.html`.
+- 2nd clone exists (Antigravity scratch `…\.gemini\antigravity\scratch\tools`, behind — `git pull`s before pushing); graphify is per-clone (gitignored).
+
+## Backup tags this session — TOOLS repo (LOCAL only)
+`backup-pre-cooking-money-link` (`f09c7a4`) · `backup-pre-tools-ga4` (`7baa802`) · `backup-pre-tools-title-meta` (`345b250`) · `backup-pre-tools-faqpage` (`c38393c`) · `backup-pre-tools-org-entity` (`f9aa01f`).
+
+## OUTSTANDING after the sitemap (tools-audit leftovers)
+- **`reverse-roasting` slug↔brand mismatch** — dir is `reverse-roasting-calculator` but the tool is branded "Cooking Timeline Calculator" (title/H1/cards). Decide canonical naming (low-sev, deferred).
+- Affiliate-click GA4 events (own brief, when affiliates launch).
+
+## First steps for the next session
+```bash
+# This session's work is on the TOOLS repo:
+cd /c/Users/jotra/tools
+git log --oneline -6        # HEAD e4db2a5 == origin/main (session = c38393c→e4db2a5); tree clean (the ?? .gitignore is the local graphify ignore, untracked by design)
+git status -sb
+# graphify is ON here (now full-semantic) — run `graphify query "<q>"` before grepping
+grep -c '<priority>1.0</priority>' sitemap.xml          # 17 (all 1.0 — the pending fix)
+ts=$(date +%s)
+curl -fsS "https://tools.builtbyjoshstudio.com/?x=$ts" | grep -c 'Money &amp; Business'   # cooking→money section + footer col live
+gh run list --workflow=pages-build-deployment --limit 3
+```
+Then: confirm the sitemap tier scheme with Josh → backup-tag → `sitemap.xml` edit → diff → gate → commit (hold push). kinetic.css stays untouched (resolved). Main-site `builtbyjoshstudio` repo is in sync at `b749b2c` (no pending main-site work).
+
+---
+
 # 🟢 builtbyjoshstudio.com — Session Handoff (2026-06-24) — SEO+GEO fix batch round 1: **Batch 1** paid-page correctness bugs (UBW `$24.99`→bundle-only · content-os "eight"→"seven") + **Batch 2a** `/free/` lite-tier exposure (un-hide CTAs · on-domain `#anchors` · `$0` Product/Offer schema · static LS hrefs · meta trim) — both pushed + edge-verified · graphify now wired across all 3 clones
 
-**This block is the current live state.** The 2026-06-23 block below (and 06-16 / 06-15 / 06-08 / earlier) remain valid for the **KINETIC token reference, the EOL byte-sweep workflow, and STANDING INSTRUCTIONS #1–#21** — only their STATE / first-steps are superseded here.
+**This block is a PRIOR shipped state — superseded for STATE / first-steps by the 2026-06-25 block above.** The 2026-06-23 block below (and 06-16 / 06-15 / 06-08 / earlier) remain valid for the **KINETIC token reference, the EOL byte-sweep workflow, and STANDING INSTRUCTIONS #1–#21** — only their STATE / first-steps are superseded here.
 
 **STATE:** **Live content = `origin/main` = `e133d24`** (in sync). The HANDOFF-refresh commit sits on top [ahead 1 until pushed] — **Jekyll-excluded, zero live effect**. Tracked tree clean (untracked only `.claude/`, `.netlify/`, `graphify-out/`, this session's `tools/_*.py` scratch, `HANDOFF-*.md`). **`main` IS production** — push deploys live via GitHub Pages `pages-build-deployment` (~45–60s). Commit on `main`; push ONLY on Josh's explicit go; `git tag backup-pre-<x>` before each arc; after each push `gh run watch` then verify live cache-busted (`?x=<ts>`). Separate TOOLS repo (`builtbyjoshstudio-cyber/tools`, clone `C:\Users\jotra\tools`) in sync at `f9aa01f`.
 
