@@ -27,6 +27,32 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- GUIDED PLANNERS -->
+  <url>
+    <loc>https://builtbyjoshstudio.com/planners/</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/planners/guided-wedding-planner.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/planners/guided-budget-planner.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/planners/guided-home-buying-workbook.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- BLOG INDEX -->
   <url>
     <loc>https://builtbyjoshstudio.com/blog.html</loc>
