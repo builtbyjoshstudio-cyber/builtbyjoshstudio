@@ -169,6 +169,11 @@
     .highlights h3 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; margin: 0 0 16px; font-size: 1.15rem; }
     .highlights ul { columns: 2; column-gap: 36px; margin: 0; padding-left: 18px; }
     .highlights li { margin-bottom: 9px; font-size: .95rem; }
+    .peek-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .peek-grid a { display: block; border: 2px solid var(--line-2); border-radius: 10px; overflow: hidden; box-shadow: 5px 5px 0 var(--shadow); background: var(--surface); transition: transform .08s ease, box-shadow .08s ease; }
+    .peek-grid a:hover { transform: translate(2px,2px); box-shadow: 3px 3px 0 var(--shadow); }
+    .peek-grid img { width: 100%; height: auto; display: block; }
+    @media (max-width: 820px) { .peek-grid { grid-template-columns: repeat(2, 1fr); } }
 
     /* SERIES / COMPANION */
     .series { background: var(--accent); color: #fff; border: 2px solid var(--line-2); border-radius: 16px; box-shadow: 8px 8px 0 var(--shadow); padding: 36px 40px; margin: 0 0 60px; }
@@ -245,6 +250,23 @@
           <li><span>Publisher</span><span>Tynkr Tools &amp; Co</span></li>
         </ul>
       </aside>
+    </section>
+  </div>
+
+  <!-- LOOK INSIDE -->
+  <div class="wrap">
+    <section class="section peek">
+      <div class="section-eyebrow">Look Inside</div>
+      <h2>A peek at the pages</h2>
+      <p class="lede">A few of the worksheets inside — the affordability math, loan comparisons, home-tour scorecards, and the closing-day checklist.</p>
+      <div class="peek-grid">
+        <a href="/images/planners/guided-home-buying-workbook-1.webp" target="_blank" rel="noopener"><img src="/images/planners/guided-home-buying-workbook-1.webp" alt="The Guided Home Buying Workbook — the home-buying journey" width="820" height="1061" loading="lazy" /></a>
+        <a href="/images/planners/guided-home-buying-workbook-2.webp" target="_blank" rel="noopener"><img src="/images/planners/guided-home-buying-workbook-2.webp" alt="The Guided Home Buying Workbook — loan types compared" width="820" height="1061" loading="lazy" /></a>
+        <a href="/images/planners/guided-home-buying-workbook-3.webp" target="_blank" rel="noopener"><img src="/images/planners/guided-home-buying-workbook-3.webp" alt="The Guided Home Buying Workbook — home tour scorecard" width="820" height="1061" loading="lazy" /></a>
+        <a href="/images/planners/guided-home-buying-workbook-4.webp" target="_blank" rel="noopener"><img src="/images/planners/guided-home-buying-workbook-4.webp" alt="The Guided Home Buying Workbook — cash-to-close summary" width="820" height="1061" loading="lazy" /></a>
+        <a href="/images/planners/guided-home-buying-workbook-5.webp" target="_blank" rel="noopener"><img src="/images/planners/guided-home-buying-workbook-5.webp" alt="The Guided Home Buying Workbook — closing-day checklist" width="820" height="1061" loading="lazy" /></a>
+        <a href="/images/planners/guided-home-buying-workbook-6.webp" target="_blank" rel="noopener"><img src="/images/planners/guided-home-buying-workbook-6.webp" alt="The Guided Home Buying Workbook — the home-buying timeline" width="820" height="1061" loading="lazy" /></a>
+      </div>
     </section>
   </div>
 
