@@ -1,5 +1,18 @@
 # 🟢 builtbyjoshstudio.com + tools.builtbyjoshstudio.com — Session Handoff (2026-06-25) — **TOOLS-repo SEO/GEO arc SHIPPED** (Org-entity consolidation · FAQPage coverage · title/meta trims · GA4 baseline · cooking→money cross-link — all 5 pushed + edge-verified) + **tools graph rebuilt full-semantic** · **IN-FLIGHT: "two minors" — kinetic.css resolved (no edit); sitemap priority pending Josh's tier confirm**
 
+## 🗂 TWO-REPO ARCHITECTURE (documentation & backup — added 2026-07-01)
+
+This project spans **two GitHub repos. End of session = BOTH current.**
+
+1. **Public site repo** — `builtbyjoshstudio-cyber/builtbyjoshstudio` (this repo, `C:\Users\jotra\builtbyjoshstudio`). Serves **builtbyjoshstudio.com** via GitHub Pages. **Stays PUBLIC.** `graphify-out/`, `.claude/`, and the root `CLAUDE.md` are **gitignored** (local-only, never published). Site code/content commits here; push deploys live.
+2. **Private docs repo** — `builtbyjoshstudio-cyber/builtbyjoshstudio-docs` (**PRIVATE**), clone `https://github.com/builtbyjoshstudio-cyber/builtbyjoshstudio-docs.git`, local path `C:\Users\jotra\builtbyjoshstudio-docs`. Backs up the **graph / vault / wiki** under `docs/{graph,vault,wiki}`, plus `backup.ps1` (auto-sync+push) and `SETUP.md` (full rebuild steps).
+
+**Standing rule (site repo's local CLAUDE.md):** after any task, before committing → `graphify export wiki` + `graphify export obsidian` + `/graphify . --update` (scope: code + content pages; skip `images/` + PDFs), then run `powershell -ExecutionPolicy Bypass -File C:\Users\jotra\builtbyjoshstudio-docs\backup.ps1` to auto-sync + push the docs repo. **Never** commit graph/vault/wiki into the public repo (it would publish them at builtbyjoshstudio.com).
+
+**Reconstruct on a fresh desktop:** `git clone` both repos to the paths above; the private repo's **`SETUP.md`** is self-sufficient (prerequisites, the rule, `backup.ps1` usage, the `[PROJECT]-docs` naming convention). `gh` authed as `builtbyjoshstudio-cyber`.
+
+---
+
 **This block is the current live state.** The 2026-06-24 block below (and 06-23 / 06-16 / earlier) remain valid for the **KINETIC token reference, the EOL byte-sweep workflow, and STANDING INSTRUCTIONS #1–#21** — only their STATE / first-steps are superseded here. **NOTE: almost all of this session's work was on the SEPARATE TOOLS repo, not the main site.**
 
 **STATE — two repos:**
