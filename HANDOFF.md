@@ -1,15 +1,17 @@
 # 🟢 builtbyjoshstudio.com + tools.builtbyjoshstudio.com — Session Handoff (2026-06-25) — **TOOLS-repo SEO/GEO arc SHIPPED** (Org-entity consolidation · FAQPage coverage · title/meta trims · GA4 baseline · cooking→money cross-link — all 5 pushed + edge-verified) + **tools graph rebuilt full-semantic** · **IN-FLIGHT: "two minors" — kinetic.css resolved (no edit); sitemap priority pending Josh's tier confirm**
 
-## 🗂 TWO-REPO ARCHITECTURE (documentation & backup — added 2026-07-01)
+## 🗂 TWO-REPO ARCHITECTURE — the WORKSPACE pattern (migrated 2026-07-01, supersedes the `-docs` layout)
 
-This project spans **two GitHub repos. End of session = BOTH current.**
+This project spans **two GitHub repos. End of session = BOTH current.** Layout = the standard **workspace pattern** (template: `builtbyjoshstudio-cyber/project-workspace-template`; reference impl: Little Acre Learning).
 
-1. **Public site repo** — `builtbyjoshstudio-cyber/builtbyjoshstudio` (this repo, `C:\Users\jotra\builtbyjoshstudio`). Serves **builtbyjoshstudio.com** via GitHub Pages. **Stays PUBLIC.** `graphify-out/`, `.claude/`, and the root `CLAUDE.md` are **gitignored** (local-only, never published). Site code/content commits here; push deploys live.
-2. **Private docs repo** — `builtbyjoshstudio-cyber/builtbyjoshstudio-docs` (**PRIVATE**), clone `https://github.com/builtbyjoshstudio-cyber/builtbyjoshstudio-docs.git`, local path `C:\Users\jotra\builtbyjoshstudio-docs`. Backs up the **graph / vault / wiki** under `docs/{graph,vault,wiki}`, plus `backup.ps1` (auto-sync+push) and `SETUP.md` (full rebuild steps).
+1. **Private workspace repo** — `builtbyjoshstudio-cyber/builtbyjoshstudio-workspace` (**PRIVATE**), clone `https://github.com/builtbyjoshstudio-cyber/builtbyjoshstudio-workspace.git`, local path **`C:\Users\jotra\builtbyjoshstudio-workspace`** = the **project home** (launch sessions here). Holds `backup.ps1` (the auto-push loop), `scripts/regen_graph_docs.py`, `CLAUDE.md` (standing rule), `SETUP.md` (self-sufficient rebuild steps + the BOM/py-stub gotchas), `docs/{graph,vault,wiki}` (Graphify memory layer), `SITE-OVERVIEW.md`, `handoffs/` (HANDOFF archives — previously untracked in the site repo, now backed up).
+2. **Public site repo** — `builtbyjoshstudio-cyber/builtbyjoshstudio` (this repo), **nested + gitignored** inside the workspace at **`C:\Users\jotra\builtbyjoshstudio-workspace\builtbyjoshstudio`** (own `.git` + remote; NOTE the path changed — was `C:\Users\jotra\builtbyjoshstudio`). Serves **builtbyjoshstudio.com** via GitHub Pages. **Stays PUBLIC.** `graphify-out/`, `.claude/`, and the root `CLAUDE.md` are **gitignored** (local-only, never published). Site code/content commits here; push deploys live.
 
-**Standing rule (site repo's local CLAUDE.md):** after any task, before committing → `graphify export wiki` + `graphify export obsidian` + `/graphify . --update` (scope: code + content pages; skip `images/` + PDFs), then run `powershell -ExecutionPolicy Bypass -File C:\Users\jotra\builtbyjoshstudio-docs\backup.ps1` to auto-sync + push the docs repo. **Never** commit graph/vault/wiki into the public repo (it would publish them at builtbyjoshstudio.com).
+**Standing rule (workspace `CLAUDE.md`):** after any task, before committing → run **`..\backup.ps1`** (it lives at the workspace root). One script does the loop: `graphify update .` in the site repo (code layer only — it correctly **REFUSES** to overwrite the 1318-node full-semantic graph with a code-only re-extraction; never `--force` that) → regenerate `docs/{graph,wiki,vault}` (`scripts/regen_graph_docs.py`, deterministic from `graph.json`) → commit+push the workspace, only if changed. After substantive content/HTML edits, also run `/graphify . --update` first (scope: code + content pages; skip `images/` + PDFs). **Never** commit graph/vault/wiki into the public repo (it would publish them at builtbyjoshstudio.com).
 
-**Reconstruct on a fresh desktop:** `git clone` both repos to the paths above; the private repo's **`SETUP.md`** is self-sufficient (prerequisites, the rule, `backup.ps1` usage, the `[PROJECT]-docs` naming convention). `gh` authed as `builtbyjoshstudio-cyber`.
+**Retired:** `builtbyjoshstudio-docs` (the one-day `[PROJECT]-docs` layout) is **archived read-only** on GitHub — `docs/` migrated byte-identical into the workspace's initial commit (`9f57f7b`); its README points forward. The leftover local clone at `C:\Users\jotra\builtbyjoshstudio-docs` is safe to delete (Josh's call).
+
+**Reconstruct on a fresh desktop:** clone the workspace, then clone the site repo INSIDE it at `builtbyjoshstudio\`; the workspace **`SETUP.md`** is self-sufficient. `gh` authed as `builtbyjoshstudio-cyber`.
 
 ---
 
@@ -37,7 +39,7 @@ The tools graph was **JS-AST-only (162 nodes)** and reflected no HTML/schema/con
 - **Sitemap priority — PENDING Josh's tier confirm.** `C:\Users\jotra\tools\sitemap.xml` has **all 17 `<loc>` at `<priority>1.0</priority>`**. Proposed: **2 hubs (`/`, `/money/`) → 1.0; 15 tools → 0.8** (optional 3-tier: `/`=1.0 · `/money/`=0.9 · tools=0.8). Awaiting Josh's choice. THEN: `git tag backup-pre-tools-minors` (tools repo) → edit `sitemap.xml` (15 lines `1.0`→`0.8`, CRLF-preserved) → diff → gate → commit `Differentiate sitemap priority (hubs 1.0, tools 0.8)`, **hold push**. Single file, low stakes.
 
 ## Tools-repo gotchas (carry forward)
-- **Scratch scripts go in `C:\Users\jotra\builtbyjoshstudio\tools\` (the MAIN-site scratch dir), NOT the tools-repo root** — the tools repo's root has no broad `_*.py` ignore (its `.gitignore` is itself untracked/narrow), so scratch there risks being committed to the PUBLIC tools repo.
+- **Scratch scripts go in `C:\Users\jotra\builtbyjoshstudio-workspace\builtbyjoshstudio\tools\` (the MAIN-site scratch dir; path updated 2026-07-01 for the workspace migration), NOT the tools-repo root** — the tools repo's root has no broad `_*.py` ignore (its `.gitignore` is itself untracked/narrow), so scratch there risks being committed to the PUBLIC tools repo.
 - Tools pages: CRLF, standalone HTML; each tool = `<dir>/index.html` + `script.js` + a `styles.css` that `@import`s shared `../kinetic.css` (theme/components/tokens) + inline `<style>`; all load `../kinetic.js`. Hubs: `index.html` (cooking, root) + `money/index.html`.
 - 2nd clone exists (Antigravity scratch `…\.gemini\antigravity\scratch\tools`, behind — `git pull`s before pushing); graphify is per-clone (gitignored).
 
