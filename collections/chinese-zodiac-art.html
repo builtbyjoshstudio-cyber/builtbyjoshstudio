@@ -619,47 +619,6 @@
     </div></footer>
 
   <script>const container=document.getElementById('starsContainer');const starCount=Math.min(340,Math.max(150,Math.round((window.innerWidth*window.innerHeight)/5500)));for(let i=0;i<starCount;i++){const s=document.createElement('div');s.className='star';const big=Math.random()>0.82;const sz=big?(Math.random()>0.6?4:3):2;s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:-${Math.random()*4}s;--op:${0.45+Math.random()*0.55};filter:blur(${big&&Math.random()>0.5?'1px':'0px'});width:${sz}px;height:${sz}px;`;container.appendChild(s);}</script>
-    <!-- Etsy click-out tracking -->
-    <script>
-      document.addEventListener('click', function(e) {
-        var link = e.target.closest('a[href*="etsy.com"]');
-        if (!link) return;
-        var card = link.closest('[data-animal],[data-landscape],[data-realm],[data-sign],[data-product]');
-        var section = 'other';
-        if (card) {
-          if (card.dataset.animal) section = 'chinese-zodiac';
-          else if (card.dataset.landscape) section = 'oil-landscapes';
-          else if (card.dataset.realm) section = 'realms';
-          else if (card.dataset.sign) section = 'western-zodiac';
-          else if (card.dataset.product) section = 'tynkr-product';
-        } else if (link.closest('aside,.sidebar,.product-sidebar')) {
-          section = 'product-sidebar';
-        } else if (window.location.pathname.indexOf('/blog/') !== -1) {
-          section = 'blog-cta';
-        } else if (window.location.pathname.indexOf('/products/') !== -1) {
-          section = 'product-page';
-        } else if (window.location.pathname.indexOf('/collections/') !== -1) {
-          section = 'collection-page';
-        } else {
-          section = 'homepage';
-        }
-        var productName = 'unknown';
-        if (card) {
-          var heading = card.querySelector('h2,h3');
-          if (heading) productName = heading.textContent.trim();
-        } else if (link.textContent.trim().length > 0 && link.textContent.trim().length < 120) {
-          productName = link.textContent.trim();
-        }
-        if (typeof gtag === 'function') {
-          gtag('event', 'click_out_to_etsy', {
-            etsy_url: link.href,
-            product_name: productName,
-            source_page: window.location.pathname,
-            source_section: section
-          });
-        }
-      });
-    </script>
 
   <script src="/js/mobile-nav.js" defer></script>
   <script src="/js/ga4-events.js" defer></script>

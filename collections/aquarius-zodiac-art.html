@@ -1123,24 +1123,6 @@
     })();
   </script>
 
-  <!-- Etsy click-out tracking -->
-  <script>
-    document.addEventListener('click', function(e) {
-      var link = e.target.closest('a[href*="etsy.com"]');
-      if (!link) return;
-      var card = link.closest('[data-animal],[data-landscape],[data-realm],[data-sign],[data-product]');
-      var section = 'collection-page';
-      var productName = link.textContent.trim().length < 120 ? link.textContent.trim() : 'unknown';
-      if (typeof gtag === 'function') {
-        gtag('event', 'click_out_to_etsy', {
-          etsy_url: link.href,
-          product_name: productName,
-          source_page: window.location.pathname,
-          source_section: 'western-sign-bundle'
-        });
-      }
-    });
-  </script>
 
   <script src="/js/ls-checkout-btn.js" defer></script>
   <script src="/js/mobile-nav.js" defer></script>
