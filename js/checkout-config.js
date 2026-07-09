@@ -38,7 +38,7 @@ window.CHECKOUT_CONFIG = {
 
   "ultimate-budget-bundle": {
     name: "Ultimate Budget Workbook — Excel + Google Sheets Bundle",
-    price: 34.99,
+    price: 22.99,
     category: "Spreadsheet",
     ls: "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/bce39a70-63d8-48d6-a239-bc681b6792d4?embed=1",
     etsy: "https://www.etsy.com/listing/4482518408/budget-template-workbook-bundle-excel"
@@ -46,7 +46,7 @@ window.CHECKOUT_CONFIG = {
 
   "home-buying-bundle": {
     name: "Home Buying & Mortgage Workbook — Excel + Google Sheets Bundle",
-    price: 34.99,
+    price: 22.99,
     category: "Spreadsheet",
     ls: "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/99ab4dc9-9195-41cb-826e-4981359b5959?embed=1",
     etsy: "https://www.etsy.com/listing/4485295506/home-buying-mortgage-workbook-bundle"
