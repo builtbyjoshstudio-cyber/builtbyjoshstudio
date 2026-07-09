@@ -101,7 +101,7 @@
       "name": "Creator Product OS — Notion Template",
       "url": "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/9f7ab2b9-c8d4-4c25-842c-4cf517fba94b",
       "availability": "https://schema.org/InStock",
-      "price": "27",
+      "price": "19.99",
       "priceCurrency": "USD",
       "priceValidUntil": "2026-12-31",
       "sku": "creator-product-os",
@@ -549,6 +549,8 @@
       color: var(--tynkr-muted);
       margin-bottom: 0.4rem;
     }
+    .price-drop-pill { display:inline-block; font-family:'Hanken Grotesk',sans-serif; font-size:0.6rem; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:#fff; background:var(--tynkr-accent); padding:4px 10px; border-radius:999px; margin-bottom:0.6rem; }
+    .price-was { font-size:1.4rem; font-weight:700; color:var(--tynkr-muted); text-decoration:line-through; margin-right:0.4rem; }
     .sidebar-price {
       font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 2.4rem;
@@ -1197,7 +1199,7 @@
     <h1 class="product-title">Creator Product OS <span class="italic-accent">| Notion Inventory System for Digital Product Creators</span></h1>
     <p class="product-tagline">You've got products scattered across platforms, files in three different folders, and no clear picture of what's current, what's outdated, or what's broken. Creator Product OS puts your entire catalog, every file, every listing, and every version update in one connected workspace.</p>
     <div class="hero-meta-chips">
-      <span class="chip"><strong>$27</strong> · One-time</span>
+      <span class="chip"><strong>$19.99</strong> · <span style="text-decoration:line-through; opacity:.55">$27</span></span>
       <span class="chip">Notion Template</span>
       <span class="chip">Instant Download</span>
     </div>
@@ -1418,8 +1420,9 @@
     <!-- STICKY SIDEBAR -->
     <aside class="sticky-sidebar">
       <div class="sidebar-label">Price</div>
-      <div class="sidebar-price">$27</div>
-      <div class="sidebar-price-note">one-time payment · instant download · Visit Etsy for current sales and promotions.</div>
+      <div class="price-drop-pill">Price drop</div>
+      <div class="sidebar-price"><span class="price-was">$27</span> $19.99</div>
+      <div class="sidebar-price-note">Was $27 — now $19.99 · one-time payment · instant download</div>
 
       <div class="sidebar-included-label">What's Included</div>
       <ul class="sidebar-included">
@@ -1435,7 +1438,7 @@
       </ul>
 
       <a data-checkout="creator-product-os"
-         data-cta-label-live="Buy Creator Product OS — $27"
+         data-cta-label-live="Buy Creator Product OS — $19.99"
          href="https://www.etsy.com/listing/4480423266/creator-product-os-notion-template-o"
          target="_blank"
          rel="noopener"
