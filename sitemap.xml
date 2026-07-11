@@ -807,6 +807,14 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- EBONSPIRE CHRONICLES — FREE PREVIEW -->
+  <url>
+    <loc>https://builtbyjoshstudio.com/ebonspire-chronicles-preview.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- FIELD DISPATCHES (writing) -->
   <url>
     <loc>https://builtbyjoshstudio.com/writing/</loc>
