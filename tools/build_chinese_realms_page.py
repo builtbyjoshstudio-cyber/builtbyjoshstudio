@@ -59,7 +59,7 @@ REALM_DESCRIPTIONS = {
 # Lemon Squeezy buy URL for the single Chinese Realms bundle. Empty string =>
 # buttons stay disabled with "Coming Soon" copy. Populated URL => buttons go
 # live with "$29.99" in the copy and js/ls-checkout-btn.js opens the overlay.
-LS_URL = 'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/4a66eced-3a1b-464f-84d2-d5d97d020b6d?embed=1'
+LS_URL = 'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/4a66eced-3a1b-464f-84d2-d5d97d020b6d?embed=1'
 
 
 def ls_button_state(price='29.99'):

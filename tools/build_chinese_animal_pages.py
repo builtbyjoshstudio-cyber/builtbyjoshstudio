@@ -102,18 +102,18 @@ def cultural_prose_for(animal):
 # with "Coming Soon" copy. Populated URL => button is live, "$14.99" appears
 # in the button text, and js/ls-checkout-btn.js opens the LS overlay on click.
 LS_URL_BY_ANIMAL = {
-    'Rat':     'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/020469d4-d057-40c6-bcc2-63e4acdf1931?embed=1',
-    'Ox':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/ad1241ae-d3a9-41e4-8609-b1da8a3b48f4?embed=1',
-    'Tiger':   'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/e31b21dc-5272-483e-ba4e-f3143a116811?embed=1',
-    'Rabbit':  'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/62e87b83-136c-4175-be85-70c74dcd368c?embed=1',
-    'Dragon':  'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/c0c0d586-f817-4430-b2d8-12b276ce4f19?embed=1',
-    'Snake':   'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/197182f1-a465-4327-b8f7-5c8ef190f6d6?embed=1',
-    'Horse':   'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/81119fed-d52e-43c0-876c-60d4e27f1a17?embed=1',
-    'Goat':    'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/7100e32d-32e3-417b-adbb-711a6d02ca16?embed=1',
-    'Monkey':  'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/e0f0b887-68f1-43ca-aaf7-43754e6b9f04?embed=1',
-    'Rooster': 'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/8177ada7-5f23-4555-a01a-92cb70bff51f?embed=1',
-    'Dog':     'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/b13065dc-7d5e-4eea-9c36-a593678ba6aa?embed=1',
-    'Pig':     'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/59dfe109-d522-48c5-baf1-90f0281117ae?embed=1',
+    'Rat':     'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/020469d4-d057-40c6-bcc2-63e4acdf1931?embed=1',
+    'Ox':      'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/ad1241ae-d3a9-41e4-8609-b1da8a3b48f4?embed=1',
+    'Tiger':   'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/e31b21dc-5272-483e-ba4e-f3143a116811?embed=1',
+    'Rabbit':  'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/62e87b83-136c-4175-be85-70c74dcd368c?embed=1',
+    'Dragon':  'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/c0c0d586-f817-4430-b2d8-12b276ce4f19?embed=1',
+    'Snake':   'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/197182f1-a465-4327-b8f7-5c8ef190f6d6?embed=1',
+    'Horse':   'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/81119fed-d52e-43c0-876c-60d4e27f1a17?embed=1',
+    'Goat':    'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/7100e32d-32e3-417b-adbb-711a6d02ca16?embed=1',
+    'Monkey':  'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/e0f0b887-68f1-43ca-aaf7-43754e6b9f04?embed=1',
+    'Rooster': 'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/8177ada7-5f23-4555-a01a-92cb70bff51f?embed=1',
+    'Dog':     'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b13065dc-7d5e-4eea-9c36-a593678ba6aa?embed=1',
+    'Pig':     'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/59dfe109-d522-48c5-baf1-90f0281117ae?embed=1',
 }
 
 

@@ -217,18 +217,18 @@ def hero_tagline_for(sign):
 # "Coming Soon" copy. Populated URL => button is live, "$14.99" appears in the
 # button text, and js/ls-checkout-btn.js opens the LS overlay on click.
 LS_URL_BY_SIGN = {
-    'Aries':       'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/2d91db12-fb82-43f8-9a5e-dc00985b5c44?embed=1',
-    'Taurus':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/ede31a69-89bc-4a91-a032-eff90fec4822?embed=1',
-    'Gemini':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/e3ebd386-4732-4b92-a1f3-5ecf359dcd65?embed=1',
-    'Cancer':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/29aa0221-9029-4e43-beb8-b04fb8b4ed7d?embed=1',
-    'Leo':         'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/d2de9520-f954-4c89-8f01-ef7c0c381d4c?embed=1',
-    'Virgo':       'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/b51a078d-9e6d-41f7-b9cf-cf03dab9f5c0?embed=1',
-    'Libra':       'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/9fc68b81-a42f-4fe5-ab98-dfc335c5225a?embed=1',
-    'Scorpio':     'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/c26077cf-5e8d-49b3-b3e3-3fe141da8aba?embed=1',
-    'Sagittarius': 'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/d284ea3f-bb98-47b5-83e3-36d108df7f14?embed=1',
-    'Capricorn':   'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/9542be16-35b8-49a7-8366-67d6aecab104?embed=1',
-    'Aquarius':    'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/9482fef7-2db3-4300-b5d1-7c645f0d2c85?embed=1',
-    'Pisces':      'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/c64f38b8-2a61-4b7d-a5a7-70b197b9f6fd?embed=1',
+    'Aries':       'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/2d91db12-fb82-43f8-9a5e-dc00985b5c44?embed=1',
+    'Taurus':      'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/ede31a69-89bc-4a91-a032-eff90fec4822?embed=1',
+    'Gemini':      'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/e3ebd386-4732-4b92-a1f3-5ecf359dcd65?embed=1',
+    'Cancer':      'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/29aa0221-9029-4e43-beb8-b04fb8b4ed7d?embed=1',
+    'Leo':         'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/d2de9520-f954-4c89-8f01-ef7c0c381d4c?embed=1',
+    'Virgo':       'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b51a078d-9e6d-41f7-b9cf-cf03dab9f5c0?embed=1',
+    'Libra':       'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/9fc68b81-a42f-4fe5-ab98-dfc335c5225a?embed=1',
+    'Scorpio':     'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/c26077cf-5e8d-49b3-b3e3-3fe141da8aba?embed=1',
+    'Sagittarius': 'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/d284ea3f-bb98-47b5-83e3-36d108df7f14?embed=1',
+    'Capricorn':   'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/9542be16-35b8-49a7-8366-67d6aecab104?embed=1',
+    'Aquarius':    'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/9482fef7-2db3-4300-b5d1-7c645f0d2c85?embed=1',
+    'Pisces':      'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/c64f38b8-2a61-4b7d-a5a7-70b197b9f6fd?embed=1',
 }
 
 

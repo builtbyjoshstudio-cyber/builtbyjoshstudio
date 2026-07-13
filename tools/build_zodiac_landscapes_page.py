@@ -65,7 +65,7 @@ LANDSCAPES = [
 # => all 3 buttons stay disabled with "Coming Soon" copy. Populated URL => all
 # 3 buttons go live with "$19.99" in the copy and js/ls-checkout-btn.js opens
 # the overlay.
-LS_URL = 'https://tynkrtoolsco.lemonsqueezy.com/checkout/buy/84fd1c8f-5e25-4115-8752-b4dc841b3023?embed=1'
+LS_URL = 'https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/84fd1c8f-5e25-4115-8752-b4dc841b3023?embed=1'
 
 
 def ls_button_state(price='19.99'):
