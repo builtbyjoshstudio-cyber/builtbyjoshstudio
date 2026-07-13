@@ -8,6 +8,14 @@
 - **⚠️ LANDMINE DEFUSED (`792b7a1`, unpushed):** the 5 zodiac collection generators (`tools/build_{western_signs,realm_page_master,chinese_animal,chinese_realms,zodiac_landscapes}*.py`) no longer emit the dead `tynkrtoolsco.lemonsqueezy.com` — 38 URLs swapped to `builtbyjoshstudio.lemonsqueezy.com`, UUIDs untouched, zero old-subdomain refs left in tracked files. Regenerating collection pages is now safe.
 - **Verified closed:** tools sitemap tiering shipped (1.0 hub / 0.9 money / 0.8 ×24, all 26 pages incl. take-home-pay + air-fryer calcs) · Savings Planner Etsy PDF listing LIVE (`4535350819`, matches the site CTA; all 5 planner PDFs on Etsy at $7.99).
 
+## ✅ SAME DAY, SECOND ARC (2026-07-13 pm) — 4 improvement commits, push pending
+- **`90b6794` free-tools refresh** — 3 newest tools (air-fryer, home-affordability, take-home-pay) added as cards to homepage + `/free/` (thumbs generated from the tools repo's og-previews → `images/products/*.webp` 1200×600); subheads now "Twelve free browser utilities" + "Twelve free money &amp; business tools"; **llms.txt brought from 15 → all 24 tools** (summary line was badly stale: said "fifteen/eleven/four").
+- **`b4fbad9` desktop apps surfaced** — homepage dark CTA band `#desktop-apps` (after Guided Series; icons at `images/apps/tynkr-*-96.webp`), products-hub "Coming Soon" shop-section (4 product-cards → tynkr pages), llms.txt "Desktop apps" section. All link tynkr.builtbyjoshstudio.com.
+- **`56bdb4f` lite tier exposed on 8 paid pages** (June audit fixes #1+#2 CLOSED) — the `lite-banner` + `sidebar-lite` wrappers un-hidden statically (JS `manageLiteSections` stays authoritative at runtime), CTAs got static embed-stripped $0 LS hrefs, and each page gained a standalone $0 Lite **Product JSON-LD** (mirrors the `/free/` hub pattern — deliberately NOT an AggregateOffer on the paid Product, to avoid "$0+" SERP price display). NOTE: the June "lite-* classes have zero CSS" finding was STALE — `css/checkout.css` has full styling; renders verified.
+- **tynkr-site `be8a9cc`** — GA4 page_view baseline (`G-QDSPBB7S9J`) on all 5 pages (was flying blind).
+- Backup tags: `backup-pre-free-tools-refresh` · `backup-pre-desktop-apps-surface` · `backup-pre-lite-expose` · `backup-pre-tynkr-ga4` (tynkr repo).
+- **Headless-render gotcha (carry forward):** the homepage hero uses `min-height:calc(100vh …)` — a giant `--window-size` viewport (e.g. 26000) explodes the hero and garbles full-page screenshots. Verify homepage sections by extracting the section to a temp standalone file, or render sub-pages directly (they're fine).
+
 ## Prior session (2026-07-11, was never handed off)
 Ebonspire paperback + hardcover LIVE (schema workExamples + copy `88c168b`, hardcover Offer $25.99 `8e68277`) · Chapter One preview: books-page excerpt `1b7a35b` → own URL `ea05a64` (OE pattern) + Ebonspire card free-link `4e064b1` · **"More from the studio" cross-link footer row on 131 pages** (`0add4dd`). All pushed + live.
 
