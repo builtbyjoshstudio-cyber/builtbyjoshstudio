@@ -78,7 +78,7 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 
 ## Free — templates and web tools
 
-- [Free templates & web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both budget spreadsheets, plus fifteen free browser utilities — eleven kitchen calculators and four money & business tools. Working tools, no signup.
+- [Free templates & web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both budget spreadsheets, plus twenty-four free browser utilities — twelve kitchen calculators and twelve money & business tools. Working tools, no signup.
 
 ## Free web utilities
 
@@ -93,10 +93,19 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 - [Yeast Converter](https://tools.builtbyjoshstudio.com/yeast-converter/): Converts yeast quantities between active dry, instant, and fresh yeast by weight — grams, ounces, teaspoons, and packets — with automatic weight guards.
 - [Cookware & Pan Guide](https://tools.builtbyjoshstudio.com/cookware-pan-guide/): Recommends the best cookware material and pan shape for any cooking task by thermal profile, acid reactivity, and induction compatibility.
 - [Recipe Nutrition Calculator](https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/): Estimates per-serving calories, macro splits, and an Estimated Nutrition Facts label from pasted recipe text.
+- [Air Fryer Conversion Calculator](https://tools.builtbyjoshstudio.com/air-fryer-conversion-calculator/): Converts oven recipes to air fryer settings — temperature, time, and when to check, tuned by food type. Fahrenheit or Celsius.
 - [Freelance Rate Calculator](https://tools.builtbyjoshstudio.com/freelance-rate-calculator/): Calculates the hourly rate needed to hit an income goal after self-employment tax, business expenses, and non-billable hours.
 - [Debt Payoff Calculator](https://tools.builtbyjoshstudio.com/debt-payoff-calculator/): Compares snowball, avalanche, and hybrid debt payoff strategies — debt-free date and total interest saved.
 - [Budget Calculator](https://tools.builtbyjoshstudio.com/budget-calculator/): Compares 50/30/20 ideal vs. actual spending with adjustable category targets.
 - [Invoice Generator](https://tools.builtbyjoshstudio.com/invoice-generator/): Generates professional invoices with letterhead, line items, and tax, ready to print or save as PDF.
+- [Loan Payment Calculator](https://tools.builtbyjoshstudio.com/loan-payment-calculator/): Calculates the monthly payment, total interest, and payoff date for any auto or personal loan — and how much an extra payment saves.
+- [Compound Interest Calculator](https://tools.builtbyjoshstudio.com/compound-interest-calculator/): Shows how a starting amount plus monthly contributions grows with compound interest — total contributed vs. growth, year by year.
+- [Savings Goal Calculator](https://tools.builtbyjoshstudio.com/savings-goal-calculator/): Calculates when a savings goal is reached at a given monthly pace — with interest counted — plus the monthly amount needed to hit it in 1, 2, or 3 years.
+- [Emergency Fund Calculator](https://tools.builtbyjoshstudio.com/emergency-fund-calculator/): Finds an emergency fund target from real monthly expenses, shows current coverage, and the date it will be fully funded.
+- [Profit Margin Calculator](https://tools.builtbyjoshstudio.com/profit-margin-calculator/): Calculates real profit per sale after platform fees — margin, markup, break-even price, and the exact price for a target margin.
+- [Quarterly Tax Estimator](https://tools.builtbyjoshstudio.com/quarterly-tax-estimator/): Estimates quarterly self-employment tax payments — SE tax plus federal income tax from expected profit, with all four due dates.
+- [Home Affordability Calculator](https://tools.builtbyjoshstudio.com/home-affordability-calculator/): Shows how much house is affordable from income, debts, and down payment — the 28/36 rule with conservative, standard, and stretch price ranges.
+- [Take-Home Pay Calculator](https://tools.builtbyjoshstudio.com/take-home-pay-calculator/): Shows what a salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month.
 
 ## Beyond the studio
 
