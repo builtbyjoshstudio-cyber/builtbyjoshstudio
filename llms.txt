@@ -107,6 +107,15 @@ All products are digital with instant download. Native checkout via Lemon Squeez
 - [Home Affordability Calculator](https://tools.builtbyjoshstudio.com/home-affordability-calculator/): Shows how much house is affordable from income, debts, and down payment — the 28/36 rule with conservative, standard, and stretch price ranges.
 - [Take-Home Pay Calculator](https://tools.builtbyjoshstudio.com/take-home-pay-calculator/): Shows what a salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month.
 
+## Desktop apps — Tynkr Tools & Co (coming soon)
+
+Four privacy-first, local-first Windows desktop apps. User data lives in flat files on the user's machine — no cloud, no accounts, no subscriptions. Site: https://tynkr.builtbyjoshstudio.com/
+
+- [Tynkr Ledger — Personal Finance OS](https://tynkr.builtbyjoshstudio.com/ledger/): Transactions, budgets, bills, debt payoff, and net worth on your own disk.
+- [Tynkr Vault — Second Brain OS](https://tynkr.builtbyjoshstudio.com/vault/): Notes, tasks, and weekly reviews as plain Markdown files you own, with fast fuzzy search.
+- [Tynkr Hearth — Homebuyer OS](https://tynkr.builtbyjoshstudio.com/hearth/): The whole home purchase, mapped — mortgage math, down payment planning, cash-to-close, roadmap, document tracker.
+- [Tynkr Forge — Small Business OS](https://tynkr.builtbyjoshstudio.com/forge/): Invoicing, CRM, purchase orders, contracts, expenses with receipts, and proposals in one app.
+
 ## Beyond the studio
 
 - [Overlayed Echoes — Josh's novel on Amazon](https://www.amazon.com/dp/B0H3826V21): Near-future LitRPG novel by J.S. Warden (Book 1 of a planned five-book series), from the same studio.
