@@ -481,9 +481,13 @@
 
     /* ===== REVEAL ===== */
     .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.hidden {
       opacity: 0;
       transform: translateY(18px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -1058,12 +1062,12 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          setTimeout(() => { e.target.classList.remove('hidden'); e.target.classList.add('visible'); }, i * 80);
           observer.unobserve(e.target);
         }
       });
     }, { threshold: 0.1 });
-    reveals.forEach(r => observer.observe(r));
+    reveals.forEach(r => { r.classList.add('hidden'); observer.observe(r); });
   </script>
 
   <script src="/js/checkout-config.js" defer></script>
