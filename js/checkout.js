@@ -188,11 +188,8 @@
   // overlay intercept fires on the same click, but the click event still
   // bubbles, so this delegation fires alongside without interfering.
   //
-  // NOTE: config.category isn't currently a field in checkout-config.js;
-  // until a separate edit adds it, this falls back to "Notion Template",
-  // which is correct for 6 of the 8 paid entries (and their lite siblings)
-  // but reports "Notion Template" incorrectly for the 2 Spreadsheet entries
-  // (ultimate-budget-bundle, home-buying-bundle). Track that as a follow-up.
+  // NOTE: config.category is set per-SKU in checkout-config.js; the
+  // "Notion Template" literal below is only a fallback for entries without one.
   document.addEventListener("click", function (e) {
     var btn = e.target.closest("[data-checkout]");
     if (!btn) return;

@@ -54,7 +54,7 @@ window.CHECKOUT_CONFIG = {
 
   "creator-business-os": {
     name: "Creator Business OS",
-    price: 27,
+    price: 19.99,
     category: "Notion Template",
     ls: "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/c7e0a41d-e208-4d25-aa1f-e233ed2c97fc?embed=1",
     etsy: "https://www.etsy.com/listing/4480399869/creator-business-os-notion-crm-template"
@@ -62,7 +62,7 @@ window.CHECKOUT_CONFIG = {
 
   "creator-content-os": {
     name: "Creator Content OS",
-    price: 27,
+    price: 19.99,
     category: "Notion Template",
     ls: "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/92422468-0ad9-4717-9170-c469dc55c467?embed=1",
     etsy: "https://www.etsy.com/listing/4480397323/creator-content-os-notion-management"
@@ -70,7 +70,7 @@ window.CHECKOUT_CONFIG = {
 
   "creator-finance-os": {
     name: "Creator Finance OS",
-    price: 27,
+    price: 19.99,
     category: "Notion Template",
     ls: "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/eed4bb22-0bfd-46a6-8903-9bde3a3a865b?embed=1",
     etsy: "https://www.etsy.com/listing/4480393057/notion-finance-template-creator-budget"
@@ -78,7 +78,7 @@ window.CHECKOUT_CONFIG = {
 
   "creator-launch-os": {
     name: "Creator Launch OS",
-    price: 27,
+    price: 19.99,
     category: "Notion Template",
     ls: "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/aa63332c-03e4-4cef-9ecd-c70d85cd2508?embed=1",
     etsy: "https://www.etsy.com/listing/4480408446/creator-launch-os-notion-template-o"
@@ -86,7 +86,7 @@ window.CHECKOUT_CONFIG = {
 
   "creator-product-os": {
     name: "Creator Product OS",
-    price: 27,
+    price: 19.99,
     category: "Notion Template",
     ls: "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/9f7ab2b9-c8d4-4c25-842c-4cf517fba94b?embed=1",
     etsy: "https://www.etsy.com/listing/4480423266/creator-product-os-notion-template-o"
@@ -94,7 +94,7 @@ window.CHECKOUT_CONFIG = {
 
   "creator-os-full-stack": {
     name: "Creator OS Full Stack Bundle",
-    price: 77,
+    price: 68.99,
     category: "Notion Template",
     ls: "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/86efef37-2592-4285-93ef-7f766ce036c8?embed=1",
     etsy: "https://www.etsy.com/listing/4480755182/creator-os-notion-template-bundle"
