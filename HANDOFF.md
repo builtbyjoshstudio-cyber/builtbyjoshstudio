@@ -6,7 +6,9 @@
 
 4 properties, ~208 pages. Clean bill on the big stuff: 0 broken internal links (6,762 refs), 0 dead checkouts (10/10 live LS URLs 200, 54 UUIDs all on the new subdomain), 525/525 JSON-LD blocks parse, canonicals+sitemap flawless, all 40 collection pages price-consistent. Grades: main A− · tools A (31/31 clean; tabletop hub now has FOUR tools incl. session-notes + wargame-score-tracker) · tynkr A− · Little Acre B.
 
-**VERIFIED PUNCH LIST (none fixed yet):**
+**FIX BATCH APPLIED 2026-07-20 (committed, unpushed):** main `b7e7204`+`2a70065`+`c04b2d0`+`e795f1a` (GA4 prices 19.99/68.99 + comment · anchor/FAQ-sync/271KB jpg/_cco deleted · 15 Lite images · no-JS reveal port to free/resources/blog with static proof) · tynkr `eefad96` (llms tabletop + subpage @id) · tools `090f630` (new llms.txt, 28 tools from page metadata, hardcoded category sets — hub pages cross-link across hubs so link-scraping mis-buckets). Tags `backup-pre-audit-fixes` all 3 repos. **STILL OPEN from the list:** LAL analytics+404-favicon (own arc, Next.js rebuild) · zodiac hardcoded URLs (#7, M) · long titles/metas (#12, copy judgment) · custom 404s + RSS (missed-by-all; Josh hasn't opted in).
+
+**ORIGINAL VERIFIED PUNCH LIST:**
 1. **[HIGH] `js/checkout-config.js` lines ~57–97: 6 Creator SKUs still `price: 27`/`price: 77`** (stale pre-drop). checkout.js:204–215 sends it to GA4 `add_to_cart` → funnel value inflated ~35%. Charges are correct (LS-side). Six-number fix. Also fix the stale comment at checkout.js:191–195 claiming `category` isn't a field (it now is).
 2. [MED] littleacrelearning.com: **zero analytics** on all 37 pages — add GA4 to the Next.js root layout + rebuild.
 3. [MED] 15 Free-Lite Product JSON-LD nodes lack `image` (8 products/*.html + 7 free/index.html) — reuse the paid product image.
