@@ -2,6 +2,24 @@
 
 **STATE:** live = `origin/main` = `0add4dd`; local `main` sits ahead with `792b7a1` (LS generator fix, scripts-only) + this HANDOFF refresh — **push pending Josh's go** (zero live-page effect either way). Launch from `C:\Users\jotra\builtbyjoshstudio-workspace`; run `..\backup.ps1` before ending a session.
 
+## 🔎 2026-07-20 — FULL STUDIO AUDIT (6-agent consortium; findings VERIFIED, fixes pending Josh's pick)
+
+4 properties, ~208 pages. Clean bill on the big stuff: 0 broken internal links (6,762 refs), 0 dead checkouts (10/10 live LS URLs 200, 54 UUIDs all on the new subdomain), 525/525 JSON-LD blocks parse, canonicals+sitemap flawless, all 40 collection pages price-consistent. Grades: main A− · tools A (31/31 clean; tabletop hub now has FOUR tools incl. session-notes + wargame-score-tracker) · tynkr A− · Little Acre B.
+
+**VERIFIED PUNCH LIST (none fixed yet):**
+1. **[HIGH] `js/checkout-config.js` lines ~57–97: 6 Creator SKUs still `price: 27`/`price: 77`** (stale pre-drop). checkout.js:204–215 sends it to GA4 `add_to_cart` → funnel value inflated ~35%. Charges are correct (LS-side). Six-number fix. Also fix the stale comment at checkout.js:191–195 claiming `category` isn't a field (it now is).
+2. [MED] littleacrelearning.com: **zero analytics** on all 37 pages — add GA4 to the Next.js root layout + rebuild.
+3. [MED] 15 Free-Lite Product JSON-LD nodes lack `image` (8 products/*.html + 7 free/index.html) — reuse the paid product image.
+4. [MED-LOW] `/free/`, `/resources/`, `blog.html` blank below hero without JS (base `.reveal{opacity:0}`); homepage uses the SAFE pattern (opacity:1, JS adds .hidden) — port it.
+5. [LOW] legal/index.html:221 → `/collections/#western-signs` is a dead anchor (add the id at collections/index.html ~line 263).
+6. [LOW] tynkr llms.txt missing tabletop hub; tools repo has NO llms.txt.
+7. [LOW] 77 hardcoded zodiac `data-checkout-url`s across 38 collections pages (violates checkout-config single-source rule; works today).
+8. [LOW] Delete stale `_cco_edge/_cco_live/_cco_report/_cco_verify` dev artifacts (main repo tools/, unserved, hold old LS subdomain).
+9. [LOW] tynkr subpage publisher nodes lack the shared `@id`; LAL 404 lacks favicon; 579KB ebonspire jpg (312KB webp exists); 2 FAQ schema/visible drifts (track-etsy-gumroad post); long non-zodiac titles/metas (tabletop post title 101 chars).
+**Missed-by-all extras:** no custom 404.html on any of the 3 Pages repos · no RSS feed for the 40-post blog · (LAL is the only property WITH a 404).
+**Killed as false positives:** "orphan" no-email blog page (it's a meta-refresh redirect stub) · homepage no-JS blanking (safe) · a 411KB webp that doesn't exist · zodiac meta lengths (deliberate copy).
+**⚠️ NEW RENDER GOTCHA (memory updated):** headless Chrome here clamps viewport width to 512px — sub-512 `--window-size` fabricates fake mobile defects; use a 390px-iframe wrapper page instead. vh-hero pages explode under tall windows (neutralize min-height in a temp copy).
+
 ## ✅ 2026-07-20 (last) — IndexNow now AUTOMATIC on push (all 3 repos)
 
 **No more remembering to run the submit script.** Each public repo gained `.github/workflows/indexnow.yml` + `.github/indexnow_ci.py` (script byte-identical across repos; host/key differ via workflow `env`). Main `8053685` · tools `7ff053d` · tynkr `cbd6f83`.
