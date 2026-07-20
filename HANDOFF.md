@@ -2,6 +2,22 @@
 
 **STATE:** live = `origin/main` = `0add4dd`; local `main` sits ahead with `792b7a1` (LS generator fix, scripts-only) + this HANDOFF refresh — **push pending Josh's go** (zero live-page effect either way). Launch from `C:\Users\jotra\builtbyjoshstudio-workspace`; run `..\backup.ps1` before ending a session.
 
+## ✅ 2026-07-20 (last) — IndexNow now AUTOMATIC on push (all 3 repos)
+
+**No more remembering to run the submit script.** Each public repo gained `.github/workflows/indexnow.yml` + `.github/indexnow_ci.py` (script byte-identical across repos; host/key differ via workflow `env`). Main `8053685` · tools `7ff053d` · tynkr `cbd6f83`.
+
+**How it works:** push to `main` → wait 60s for Pages to publish → `git diff --diff-filter=AM <before>..<after>` → keep `*.html` → map to URL (`index.html`→`/`, `foo/index.html`→`/foo/`, else `/foo.html`) → **intersect with `sitemap.xml`** → POST to IndexNow. No secrets (key is public by design).
+
+**Key safety rail — the sitemap intersect.** Only URLs present in `sitemap.xml` are submitted, so noindex/utility pages can never be pinged. Verified: replaying the tabletop-publish commit yields 131 URLs and correctly **drops `/legal/`** (intentionally noindex). Deletions are skipped (`--diff-filter=AM`); network errors are non-fatal (won't fail a build); unusable `before` SHA (first/force push) falls back to the head commit alone.
+
+**Test status — be honest about what's proven:**
+- ✅ URL derivation + sitemap filter: verified locally against real commit `6917d7f` (131 URLs, `/legal/` dropped).
+- ✅ No-op path: verified live in CI on all 3 repos — the workflow-adding push touched only `.github/`, all 3 runs green with "no indexable HTML changed - nothing to submit".
+- ✅ IndexNow API accepts our payloads: 3× HTTP 202 today (main 10 URLs, tools 31, tynkr 5).
+- ⚠️ **NOT yet exercised: a real submission fired from CI.** The submit branch will run on the next push that actually changes an indexable HTML page. If it ever misbehaves, check the run log under Actions → IndexNow. Deliberately did NOT fabricate a live-site change just to test it.
+
+**Value caveat, unchanged:** IndexNow is Bing/Yandex/Seznam/Naver only — **Google ignores it**. Bing ≈ 2% of Google volume here, so this is convenience, not a growth lever.
+
 ## ✅ 2026-07-20 (later) — IndexNow on ALL 3 hosts + cross-linking CLOSED
 
 - **INDEXNOW now covers all three hosts.** Each host serves its OWN key (IndexNow requires the key hosted on the submitted host): main `5a022f04e3b3cf4668a3f5c8d70cbecb` · **tools `8f0b6b574090115771be348b5d74bffa`** (repo `tools`, `80b662f`) · **tynkr `bbbd007439d2e4feec181190678fd2fd`** (repo `tynkr-site`, `25eb4f9`). All three key files verified 200 serving the exact key. **`tools/indexnow_submit.py` generalized to all 3 hosts** (`375e4b3`) — `--host main|tools|tynkr` (inferred from the first URL if omitted), `--sitemap [path]`, `--dry`; cross-host guard aborts if a URL doesn't match the chosen host. One script, three hosts — subdomain repos hold only their key file, no duplicated script. First seeds: tools sitemap (31 URLs) + tynkr sitemap (5 URLs), both **HTTP 202**.
