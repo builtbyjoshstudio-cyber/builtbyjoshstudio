@@ -1,3 +1,9 @@
+# 🍜 2026-07-24 — Nước Mắm cookbook LIVE (`f07f63d`)
+
+**NEW PRODUCT LINE: a cookbook under Josh's OWN name (Josh Tran — deliberate, his call; fiction stays J.S. Warden).** *Nước Mắm — A Vietnamese Family Cookbook*: 56pp / 7 chapters (sauces → summer rolls → bún bowls → over rice → chả giò → bánh mì → 12-hr phở, sourced from the actual PDF in `Downloads\nuoc-mam-cookbook.zip`), **$3.99 ebook (EPUB+PDF zip) on LS** (UUID `b6341e82-a171-4fdd-9b03-43956c74cea3`, verified 200), **Kindle edition pending on Amazon at same $3.99** — when the ASIN lands, flip the page to dual-CTA like the planners (`tools/_savings_planner_live.py` pattern).
+- Shipped: `nuoc-mam-cookbook.html` (planner-listing pattern, warm brown palette, `data-checkout="nuoc-mam-cookbook"` LS overlay CTA + hosted fallback) · `images/books/nuoc-mam-{cover.jpg,cover.webp,og.jpg,inside.webp,square.webp}` · checkout-config SKU ($3.99, category "Ebook") · books.html third section + Book JSON-LD · sitemap (2026-07-24) · llms.txt bullet. Edge-verified all; IndexNow auto-pinged 2 URLs HTTP 200. Tag `backup-pre-nuoc-mam`.
+- ⚠️ **Gotcha burned this session: NEVER write Vietnamese/multibyte text via bash `python -c` with `unicode_escape`** — it mojibakes UTF-8 and bash eats `$3` from "$3.99". Use the Edit/Write tools for non-ASCII content; caught by headless render, reverted, redone clean.
+
 # 🟢 builtbyjoshstudio.com — Session Handoff (2026-07-13) — **cross-site linking audit COMPLETE + fixes shipped** · tynkr.builtbyjoshstudio.com is a 4th live property · LS-generator landmine DEFUSED
 
 **STATE:** live = `origin/main` = `0add4dd`; local `main` sits ahead with `792b7a1` (LS generator fix, scripts-only) + this HANDOFF refresh — **push pending Josh's go** (zero live-page effect either way). Launch from `C:\Users\jotra\builtbyjoshstudio-workspace`; run `..\backup.ps1` before ending a session.
