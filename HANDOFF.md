@@ -1,3 +1,7 @@
+# 💲 2026-07-24 (later) — KDP planner REPRICING synced (`4b717d0`, unpushed)
+
+Josh dropped the Amazon paperback prices on all 5 Guided planners: **Wedding 16.99→12.99 · Home Buying 16.99→12.99 · Debt Payoff 14.99→12.99 · Savings 14.99→12.99 · Budget 16.99→14.99.** Site synced in 18 spots: each planner page ×3 (chip + buy-card + Book Offer schema), planners hub ×5, homepage ph-cards ×5, products hub ×5, llms.txt ×5 lines. Etsy PDFs stay $7.99. **⚠️ Ebonspire paperback is ALSO $14.99 — Josh explicitly ordered Ebonspire prices untouched ($14.99/$25.99/$7.99); the sweep was slug-scoped with an assertion guarding it, verified in the diff. NEVER blanket-replace 14.99 on this site.** Amazon-priced Offers get plain number swaps (no validFrom — that's for LS sale semantics only). Tag `backup-pre-planner-kdp-reprice`.
+
 # 🍜 2026-07-24 — Nước Mắm cookbook LIVE (`f07f63d`)
 
 **NEW PRODUCT LINE: a cookbook under Josh's OWN name (Josh Tran — deliberate, his call; fiction stays J.S. Warden).** *Nước Mắm — A Vietnamese Family Cookbook*: 56pp / 7 chapters (sauces → summer rolls → bún bowls → over rice → chả giò → bánh mì → 12-hr phở, sourced from the actual PDF in `Downloads\nuoc-mam-cookbook.zip`), **$3.99 ebook (EPUB+PDF zip) on LS** (UUID `b6341e82-a171-4fdd-9b03-43956c74cea3`, verified 200), **Kindle edition pending on Amazon at same $3.99** — when the ASIN lands, flip the page to dual-CTA like the planners (`tools/_savings_planner_live.py` pattern).
