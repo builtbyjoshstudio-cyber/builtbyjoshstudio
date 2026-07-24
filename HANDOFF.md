@@ -1,4 +1,8 @@
-# 💲 2026-07-24 (later) — KDP planner REPRICING synced (`4b717d0`, unpushed)
+# 📚 2026-07-24 (last) — Cookbook KINDLE LIVE + cross-linked site-wide (main `a1df96d` · tools `ca4b7df`, both LIVE)
+
+**Kindle edition live: ASIN `B0HBCXTLWD`, $3.99 (same as LS).** Cookbook page flipped to dual-CTA (LS primary "Buy the ebook" + `.btn-kindle` secondary "Or read on Kindle"), specs row updated, schema now a 2-Offer array (LS EPUB+PDF + Amazon Kindle) on both the page and books.html; llms.txt carries the Amazon URL. **Cross-links shipped:** "From My Kitchen" sidebar card on **15 cooking blog posts** (incl. the phở / learned-to-cook / rice-method essays — anchor `</aside>`, exactly 1 per post); tools repo: cookbook = **first gear-item card in the net-band on all 12 kitchen tool pages** (`/nuoc-mam-link.jpg` 600px root-level), cooking-hub Network footer link, tools llms.txt line. All edge-verified live; IndexNow auto-pinged 17 main + 13 tools URLs (HTTP 200). Tags `backup-pre-cookbook-crosslink` both repos. All UTF-8 content went through Write/Edit tools (mojibake lesson holds).
+
+# 💲 2026-07-24 (later) — KDP planner REPRICING synced (`4b717d0`, LIVE)
 
 Josh dropped the Amazon paperback prices on all 5 Guided planners: **Wedding 16.99→12.99 · Home Buying 16.99→12.99 · Debt Payoff 14.99→12.99 · Savings 14.99→12.99 · Budget 16.99→14.99.** Site synced in 18 spots: each planner page ×3 (chip + buy-card + Book Offer schema), planners hub ×5, homepage ph-cards ×5, products hub ×5, llms.txt ×5 lines. Etsy PDFs stay $7.99. **⚠️ Ebonspire paperback is ALSO $14.99 — Josh explicitly ordered Ebonspire prices untouched ($14.99/$25.99/$7.99); the sweep was slug-scoped with an assertion guarding it, verified in the diff. NEVER blanket-replace 14.99 on this site.** Amazon-priced Offers get plain number swaps (no validFrom — that's for LS sale semantics only). Tag `backup-pre-planner-kdp-reprice`.
 
