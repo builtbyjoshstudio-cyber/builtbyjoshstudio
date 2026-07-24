@@ -57,16 +57,27 @@
     "publisher": { "@type": "Organization", "@id": "https://builtbyjoshstudio.com/#organization", "name": "Built by Josh Studio LLC", "url": "https://builtbyjoshstudio.com" },
     "url": "https://builtbyjoshstudio.com/nuoc-mam-cookbook.html",
     "image": "https://builtbyjoshstudio.com/images/books/nuoc-mam-cover.webp",
-    "offers": {
-      "@type": "Offer",
-      "name": "Nước Mắm — Ebook (EPUB + PDF)",
-      "url": "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3",
-      "price": "3.99",
-      "priceCurrency": "USD",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "seller": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
-    }
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Nước Mắm — Ebook (EPUB + PDF)",
+        "url": "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3",
+        "price": "3.99",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2026-12-31",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
+      },
+      {
+        "@type": "Offer",
+        "name": "Nước Mắm — Kindle Edition",
+        "url": "https://www.amazon.com/dp/B0HBCXTLWD",
+        "price": "3.99",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@type": "Organization", "name": "Amazon" }
+      }
+    ]
   }
   </script>
 
@@ -132,6 +143,8 @@
     .price small { font-size: 1rem; font-weight: 600; color: var(--muted); margin-left: 8px; font-family: "Hanken Grotesk", sans-serif; }
     .btn-buy { display: block; text-align: center; margin: 6px 0 14px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 700; font-size: 1.05rem; padding: 16px 20px; border: 2px solid var(--line-2); border-radius: 12px; box-shadow: 4px 4px 0 var(--shadow); transition: transform .08s ease, box-shadow .08s ease; }
     .btn-buy:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--shadow); color: #fff; }
+    .btn-kindle { display: block; text-align: center; margin: 0 0 14px; background: var(--surface); color: var(--accent); text-decoration: none; font-weight: 700; font-size: 1.05rem; padding: 16px 20px; border: 2px solid var(--line-2); border-radius: 12px; box-shadow: 4px 4px 0 var(--shadow); transition: transform .08s ease, box-shadow .08s ease; }
+    .btn-kindle:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--shadow); }
     .buy-note { font-size: .85rem; color: var(--muted); text-align: center; margin: 0 0 20px; }
     .spec-list { list-style: none; margin: 0; padding: 18px 0 0; border-top: 1px solid var(--line); }
     .spec-list li { display: flex; justify-content: space-between; font-size: .95rem; padding: 7px 0; }
@@ -228,13 +241,14 @@
         <div class="price">$3.99 <small>ebook</small></div>
         <a class="btn-buy" data-checkout="nuoc-mam-cookbook" data-cta-label-live="Buy the ebook — $3.99 →" href="https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3" target="_blank" rel="noopener"><span data-cta-label>Buy the ebook — $3.99 →</span></a>
         <p class="buy-note">Instant download · EPUB + PDF in one zip · read on any device</p>
-        <p class="buy-note">Kindle edition coming to Amazon — same price.</p>
+        <a class="btn-kindle" href="https://www.amazon.com/dp/B0HBCXTLWD" target="_blank" rel="noopener">Or read on Kindle — $3.99 →</a>
+        <p class="buy-note">Same book, same price, on Amazon.</p>
         <ul class="spec-list">
           <li><span>Format</span><span>EPUB + PDF (zip)</span></li>
           <li><span>Pages</span><span>56</span></li>
           <li><span>Chapters</span><span>7</span></li>
           <li><span>Author</span><span>Josh Tran</span></li>
-          <li><span>Amazon edition</span><span>Coming soon</span></li>
+          <li><span>Kindle edition</span><span>$3.99 on Amazon</span></li>
           <li><span>Publisher</span><span>Built by Josh Studio</span></li>
         </ul>
         <p class="buy-note" style="margin-top:14px;">Scaling a recipe for guests? Try the free <a href="https://tools.builtbyjoshstudio.com/universal-recipe-scaler/">Universal Recipe Scaler</a> →</p>
