@@ -1,0 +1,307 @@
+#!/usr/bin/env python3
+"""
+test_pipeline.py — end-to-end and per-stage tests.
+
+    python -m unittest discover -s tests -t .
+"""
+import sys
+import tempfile
+import unittest
+import zipfile
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from inkpress_lib import inline, pipeline, structure, typography, validate  # noqa: E402
+from inkpress_lib import manuscript as ms  # noqa: E402
+
+HERE = Path(__file__).resolve().parent
+SAMPLE = HERE.parent / "manuscripts" / "sample-manuscript.md"
+
+MINIMAL = """---
+title: Test Book
+author: A. Writer
+date: 2026-01-02
+language: en
+description: A minimal manuscript.
+---
+
+## One
+
+First paragraph.
+
+* * *
+
+Second paragraph.
+
+## Two
+
+Third paragraph.
+"""
+
+
+def write_temp(text, directory):
+    path = Path(directory) / "temp-manuscript.md"
+    path.write_text(text, encoding="utf-8")
+    return path
+
+
+class TestTypography(unittest.TestCase):
+    def test_dashes_and_ellipsis(self):
+        self.assertEqual(typography.apply("a---b"), "a—b")
+        self.assertEqual(typography.apply("1--2"), "1–2")
+        self.assertEqual(typography.apply("wait..."), "wait…")
+
+    def test_longest_dash_wins(self):
+        self.assertNotIn("-", typography.apply("east---west"))
+
+    def test_double_quotes_are_directional(self):
+        self.assertEqual(typography.apply('"hi"'), "“hi”")
+
+    def test_apostrophe_not_treated_as_quote(self):
+        self.assertEqual(typography.apply("don't"), "don’t")
+
+    def test_elided_decade(self):
+        self.assertEqual(typography.apply("the '90s"), "the ’90s")
+
+    def test_single_quotes_are_directional(self):
+        self.assertEqual(typography.apply("he said 'go' then"), "he said ‘go’ then")
+
+    def test_code_spans_are_untouched(self):
+        self.assertEqual(typography.apply('`a--b`'), '`a--b`')
+
+    def test_link_targets_are_untouched(self):
+        source = "[x](https://e.com/a--b)"
+        self.assertIn("a--b", typography.apply(source))
+
+
+class TestInline(unittest.TestCase):
+    def test_escapes_html(self):
+        self.assertEqual(inline.render("a < b & c"), "a &lt; b &amp; c")
+
+    def test_strong_and_em(self):
+        self.assertEqual(inline.render("**a** and *b*"), "<strong>a</strong> and <em>b</em>")
+
+    def test_underscore_em_ignores_snake_case(self):
+        self.assertEqual(inline.render("some_var_name"), "some_var_name")
+
+    def test_link(self):
+        self.assertEqual(
+            inline.render("[t](https://e.com)"), '<a href="https://e.com">t</a>'
+        )
+
+    def test_code_content_is_not_markup(self):
+        self.assertEqual(inline.render("`*a*`"), "<code>*a*</code>")
+
+    def test_plain_strips_markup(self):
+        self.assertEqual(inline.plain("**a** *b* `c`"), "a b c")
+
+
+class TestManuscript(unittest.TestCase):
+    def test_front_matter_and_blocks(self):
+        with tempfile.TemporaryDirectory() as directory:
+            parsed = ms.load(write_temp(MINIMAL, directory))
+        self.assertEqual(parsed.meta["title"], "Test Book")
+        kinds = [block.kind for block in parsed.blocks]
+        self.assertEqual(kinds.count(ms.CHAPTER), 2)
+        self.assertEqual(kinds.count(ms.SCENE_BREAK), 1)
+        self.assertEqual(kinds.count(ms.PARAGRAPH), 3)
+
+    def test_front_matter_list(self):
+        source = MINIMAL.replace(
+            "language: en", "language: en\nsubjects:\n  - Alpha\n  - Beta"
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            parsed = ms.load(write_temp(source, directory))
+        self.assertEqual(parsed.meta["subjects"], ["Alpha", "Beta"])
+
+    def test_unclosed_front_matter_raises(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = write_temp("---\ntitle: X\n\nbody\n", directory)
+            with self.assertRaises(ms.ManuscriptError):
+                ms.load(path)
+
+    def test_missing_file_raises(self):
+        with self.assertRaises(ms.ManuscriptError):
+            ms.load(Path("does-not-exist.md"))
+
+
+class TestStructure(unittest.TestCase):
+    def test_chapters_and_word_count(self):
+        with tempfile.TemporaryDirectory() as directory:
+            document = structure.build(ms.load(write_temp(MINIMAL, directory)))
+        self.assertEqual(len(document.chapters), 2)
+        self.assertTrue(document.has_real_chapters)
+        self.assertEqual(document.word_count, 6)
+
+    def test_implicit_chapter_when_no_headings(self):
+        source = MINIMAL.replace("## One\n\n", "").replace("## Two\n\n", "")
+        with tempfile.TemporaryDirectory() as directory:
+            document = structure.build(ms.load(write_temp(source, directory)))
+        self.assertEqual(len(document.chapters), 1)
+        self.assertFalse(document.has_real_chapters)
+
+    def test_slugify(self):
+        self.assertEqual(structure.slugify("The Things I Let Go"), "the-things-i-let-go")
+        self.assertEqual(structure.slugify("Café — Two"), "cafe-two")
+
+
+class TestValidate(unittest.TestCase):
+    def _document(self, source, directory):
+        return structure.build(ms.load(write_temp(source, directory)))
+
+    def test_missing_required_key_raises(self):
+        source = MINIMAL.replace("author: A. Writer\n", "")
+        with tempfile.TemporaryDirectory() as directory:
+            document = self._document(source, directory)
+            with self.assertRaises(validate.ValidationError):
+                validate.check(document, ("epub",))
+
+    def test_bad_date_raises(self):
+        source = MINIMAL.replace("date: 2026-01-02", "date: Jan 2 2026")
+        with tempfile.TemporaryDirectory() as directory:
+            document = self._document(source, directory)
+            with self.assertRaises(validate.ValidationError):
+                validate.check(document, ("site",))
+
+    def test_long_description_warns_not_raises(self):
+        source = MINIMAL.replace(
+            "description: A minimal manuscript.", "description: " + ("x" * 200)
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            document = self._document(source, directory)
+            warnings = validate.check(document, ("site",))
+        self.assertTrue(any("truncate" in warning for warning in warnings))
+
+    def test_site_target_requires_description(self):
+        source = MINIMAL.replace("description: A minimal manuscript.\n", "")
+        with tempfile.TemporaryDirectory() as directory:
+            document = self._document(source, directory)
+            validate.check(document, ("print",))  # print does not need it
+            with self.assertRaises(validate.ValidationError):
+                validate.check(document, ("site",))
+
+
+class TestPipeline(unittest.TestCase):
+    def test_builds_all_three_targets(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            out = Path(directory) / "build"
+            result = pipeline.build(source, out)
+
+            self.assertEqual(set(result.outputs), {"site", "epub", "print"})
+            for path in result.outputs.values():
+                self.assertTrue(path.is_file(), f"{path} was not written")
+
+    def test_dry_run_writes_nothing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            out = Path(directory) / "build"
+            result = pipeline.build(source, out, dry_run=True)
+            self.assertFalse(out.exists())
+        self.assertEqual(len(result.outputs), 3)
+
+    def test_unknown_target_raises(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            with self.assertRaises(ValueError):
+                pipeline.build(source, Path(directory) / "build", targets=("pdf",))
+
+    def test_epub_is_a_valid_archive(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            out = Path(directory) / "build"
+            result = pipeline.build(source, out, targets=("epub",))
+            epub_path = result.outputs["epub"]
+
+            with zipfile.ZipFile(epub_path) as archive:
+                names = archive.namelist()
+                self.assertEqual(names[0], "mimetype")
+                self.assertEqual(
+                    archive.getinfo("mimetype").compress_type, zipfile.ZIP_STORED
+                )
+                self.assertEqual(archive.read("mimetype").decode(), "application/epub+zip")
+                for required in ("META-INF/container.xml", "OEBPS/content.opf",
+                                 "OEBPS/nav.xhtml", "OEBPS/chap-001.xhtml"):
+                    self.assertIn(required, names)
+                self.assertIsNone(archive.testzip())
+
+    def test_epub_build_is_reproducible(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            first = pipeline.build(source, Path(directory) / "a", targets=("epub",))
+            second = pipeline.build(source, Path(directory) / "b", targets=("epub",))
+            self.assertEqual(
+                first.outputs["epub"].read_bytes(), second.outputs["epub"].read_bytes()
+            )
+
+    def test_site_page_has_metadata_and_typeset_prose(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(source, Path(directory) / "build", targets=("site",))
+            html = result.outputs["site"].read_text(encoding="utf-8")
+
+        self.assertIn("<!DOCTYPE html>", html)
+        self.assertIn('rel="canonical"', html)
+        self.assertIn('"@type": "BlogPosting"', html)
+        self.assertIn('property="og:title"', html)
+        self.assertIn("scene-break", html)
+
+    def test_print_interior_has_paged_media(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(source, Path(directory) / "build", targets=("print",))
+            html = result.outputs["print"].read_text(encoding="utf-8")
+
+        self.assertIn("@page", html)
+        self.assertIn("size: 6.0in 9.0in", html)
+        self.assertIn("page-break-before: right", html)
+
+    def test_chrome_is_lifted_from_donor(self):
+        donor = """<!DOCTYPE html><html><head>
+        <link rel="stylesheet" href="/css/site.css" />
+        </head><body>
+        <nav class="site-nav"><ul><li><a href="/">Home</a></li></ul></nav>
+        <footer><div class="footer-legal">c 2026</div></footer>
+        </body></html>"""
+
+        with tempfile.TemporaryDirectory() as directory:
+            donor_path = Path(directory) / "donor.html"
+            donor_path.write_text(donor, encoding="utf-8")
+            chrome = pipeline.load_chrome(donor_path)
+
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(
+                source, Path(directory) / "build", targets=("site",), chrome=chrome
+            )
+            html = result.outputs["site"].read_text(encoding="utf-8")
+
+        self.assertIn('class="site-nav"', html)
+        self.assertIn("footer-legal", html)
+        self.assertIn("/css/site.css", html)
+
+    def test_missing_donor_raises(self):
+        with self.assertRaises(FileNotFoundError):
+            pipeline.load_chrome("no-such-page.html")
+
+
+class TestSampleManuscript(unittest.TestCase):
+    def test_sample_builds_cleanly(self):
+        self.assertTrue(SAMPLE.is_file(), f"sample manuscript missing at {SAMPLE}")
+        with tempfile.TemporaryDirectory() as directory:
+            result = pipeline.build(SAMPLE, Path(directory) / "build")
+        self.assertEqual(len(result.outputs), 3)
+        self.assertEqual(len(result.document.chapters), 2)
+
+    def test_sample_prose_is_typeset(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = pipeline.build(SAMPLE, Path(directory) / "build", targets=("site",))
+            html = result.outputs["site"].read_text(encoding="utf-8")
+        self.assertIn("—", html)  # em dash
+        self.assertIn("“", html)  # opening double quote
+        self.assertIn("’", html)  # apostrophe
+        self.assertNotIn("---", html)
+
+
+if __name__ == "__main__":
+    unittest.main()
