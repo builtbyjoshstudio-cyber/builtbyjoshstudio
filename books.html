@@ -645,22 +645,78 @@
   <!-- Schema.org: Book — Nước Mắm cookbook -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Book",
-    "name": "Nước Mắm",
-    "alternateName": "Nước Mắm — A Vietnamese Family Cookbook",
-    "bookFormat": "https://schema.org/EBook",
-    "numberOfPages": 56,
-    "inLanguage": "en",
-    "author": { "@type": "Person", "name": "Josh Tran" },
-    "publisher": { "@type": "Organization", "@id": "https://builtbyjoshstudio.com/#organization", "name": "Built by Josh Studio LLC" },
-    "url": "https://builtbyjoshstudio.com/nuoc-mam-cookbook.html",
-    "image": "https://builtbyjoshstudio.com/images/books/nuoc-mam-cover.webp",
-    "offers": [
-      { "@type": "Offer", "url": "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3", "price": "3.99", "priceCurrency": "USD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock" },
-      { "@type": "Offer", "url": "https://www.amazon.com/dp/B0HBCXTLWD", "price": "3.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "seller": { "@type": "Organization", "name": "Amazon" } }
-    ]
-  }
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "Nước Mắm",
+  "alternateName": "Nước Mắm — A Vietnamese Family Cookbook",
+  "bookFormat": "https://schema.org/EBook",
+  "numberOfPages": 56,
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Josh Tran"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://builtbyjoshstudio.com/#organization",
+    "name": "Built by Josh Studio LLC"
+  },
+  "url": "https://builtbyjoshstudio.com/nuoc-mam-cookbook.html",
+  "image": "https://builtbyjoshstudio.com/images/books/nuoc-mam-cover.webp",
+  "offers": [
+    {
+      "@type": "Offer",
+      "url": "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3",
+      "price": "3.99",
+      "priceCurrency": "USD",
+      "priceValidUntil": "2026-12-31",
+      "availability": "https://schema.org/InStock",
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "US",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+      },
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": "USD"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "US"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 0,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 0,
+            "unitCode": "DAY"
+          }
+        }
+      }
+    },
+    {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/dp/B0HBCXTLWD",
+      "price": "3.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>

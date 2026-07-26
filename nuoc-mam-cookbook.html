@@ -45,40 +45,86 @@
   <!-- Schema.org: Book -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Book",
-    "name": "Nước Mắm",
-    "alternateName": "Nước Mắm — A Vietnamese Family Cookbook",
-    "description": "A Vietnamese family cookbook: 56 pages of simple, home-style cooking taught the way a family actually cooks — fish sauce and the sauces that run the whole book, summer rolls, bún bowls, over-rice dishes, fried spring rolls, bánh mì, and a twelve-hour phở. Ratios are starting points, balanced by tasting, not measuring.",
-    "bookFormat": "https://schema.org/EBook",
-    "numberOfPages": 56,
-    "inLanguage": "en",
-    "author": { "@type": "Person", "name": "Josh Tran" },
-    "publisher": { "@type": "Organization", "@id": "https://builtbyjoshstudio.com/#organization", "name": "Built by Josh Studio LLC", "url": "https://builtbyjoshstudio.com" },
-    "url": "https://builtbyjoshstudio.com/nuoc-mam-cookbook.html",
-    "image": "https://builtbyjoshstudio.com/images/books/nuoc-mam-cover.webp",
-    "offers": [
-      {
-        "@type": "Offer",
-        "name": "Nước Mắm — Ebook (EPUB + PDF)",
-        "url": "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3",
-        "price": "3.99",
-        "priceCurrency": "USD",
-        "priceValidUntil": "2026-12-31",
-        "availability": "https://schema.org/InStock",
-        "seller": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "Nước Mắm",
+  "alternateName": "Nước Mắm — A Vietnamese Family Cookbook",
+  "description": "A Vietnamese family cookbook: 56 pages of simple, home-style cooking taught the way a family actually cooks — fish sauce and the sauces that run the whole book, summer rolls, bún bowls, over-rice dishes, fried spring rolls, bánh mì, and a twelve-hour phở. Ratios are starting points, balanced by tasting, not measuring.",
+  "bookFormat": "https://schema.org/EBook",
+  "numberOfPages": 56,
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Josh Tran"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://builtbyjoshstudio.com/#organization",
+    "name": "Built by Josh Studio LLC",
+    "url": "https://builtbyjoshstudio.com"
+  },
+  "url": "https://builtbyjoshstudio.com/nuoc-mam-cookbook.html",
+  "image": "https://builtbyjoshstudio.com/images/books/nuoc-mam-cover.webp",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Nước Mắm — Ebook (EPUB + PDF)",
+      "url": "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3",
+      "price": "3.99",
+      "priceCurrency": "USD",
+      "priceValidUntil": "2026-12-31",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Built by Josh Studio LLC"
       },
-      {
-        "@type": "Offer",
-        "name": "Nước Mắm — Kindle Edition",
-        "url": "https://www.amazon.com/dp/B0HBCXTLWD",
-        "price": "3.99",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock",
-        "seller": { "@type": "Organization", "name": "Amazon" }
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "US",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+      },
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": "USD"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "US"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 0,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 0,
+            "unitCode": "DAY"
+          }
+        }
       }
-    ]
-  }
+    },
+    {
+      "@type": "Offer",
+      "name": "Nước Mắm — Kindle Edition",
+      "url": "https://www.amazon.com/dp/B0HBCXTLWD",
+      "price": "3.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon"
+      }
+    }
+  ]
+}
   </script>
 
   <link rel="stylesheet" href="/css/tokens.css" />
