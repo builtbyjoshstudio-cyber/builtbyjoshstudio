@@ -56,7 +56,8 @@ window.CHECKOUT_CONFIG = {
     name: "Nước Mắm — A Vietnamese Family Cookbook (EPUB + PDF)",
     price: 3.99,
     category: "Ebook",
-    ls: "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3?embed=1"
+    ls: "https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3?embed=1",
+    etsy: "https://www.etsy.com/listing/4551851115/nc-mm-vietnamese-family-cookbook-o"
   },
 
   "creator-business-os": {
