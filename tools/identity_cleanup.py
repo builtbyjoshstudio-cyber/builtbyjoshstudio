@@ -82,6 +82,7 @@ ORG_SCHEMA = '''<script type="application/ld+json">
     "https://linktr.ee/builtbyjoshstudio",
     "https://tynkrtoolsco.substack.com/",
     "https://www.youtube.com/@TalesofInkShadowsStudio",
+    "https://www.youtube.com/@joshandjordanskitchen",
     "https://tynkrtoolsandco.etsy.com",
     "https://www.etsy.com/shop/BuiltByJoshStudio"
   ],
