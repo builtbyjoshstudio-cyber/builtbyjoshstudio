@@ -14,7 +14,8 @@
 #   TRAINING       (no /js/ /css/): GPTBot, ClaudeBot, anthropic-ai,
 #                                   Google-Extended, Applebot-Extended,
 #                                   meta-externalagent, CCBot
-#   LIVE RETRIEVAL (full access):  ChatGPT-User, OAI-SearchBot, Claude-Web,
+#   LIVE RETRIEVAL (full access):  ChatGPT-User, OAI-SearchBot, Claude-User,
+#                                   Claude-SearchBot, Claude-Web (legacy),
 #                                   PerplexityBot, Perplexity-User
 #   SEARCH ENGINES (full access):  Googlebot, Bingbot, BingPreview, Applebot,
 #                                   DuckDuckBot, YouBot, FacebookExternalHit
@@ -113,8 +114,22 @@ Disallow: /templates/
 Disallow: /*.json$
 Allow: /
 
-# Anthropic live retrieval (Claude.ai web fetch)
+# Anthropic live retrieval (legacy token, kept)
 User-agent: Claude-Web
+Disallow: /cdn-cgi/
+Disallow: /templates/
+Disallow: /*.json$
+Allow: /
+
+# Anthropic live retrieval -- user-initiated fetches (current token)
+User-agent: Claude-User
+Disallow: /cdn-cgi/
+Disallow: /templates/
+Disallow: /*.json$
+Allow: /
+
+# Anthropic search index (current token)
+User-agent: Claude-SearchBot
 Disallow: /cdn-cgi/
 Disallow: /templates/
 Disallow: /*.json$
