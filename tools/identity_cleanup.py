@@ -20,7 +20,7 @@ ORG_SCHEMA = '''<script type="application/ld+json">
   "@type": "Organization",
   "@id": "https://builtbyjoshstudio.com/#organization",
   "name": "Built by Josh Studio LLC",
-  "alternateName": ["BBJ Studio", "Built By Josh Studio"],
+  "alternateName": ["BBJ Studio", "Built by Josh Studio"],
   "legalName": "Built by Josh Studio LLC",
   "url": "https://builtbyjoshstudio.com",
   "logo": {
@@ -30,7 +30,7 @@ ORG_SCHEMA = '''<script type="application/ld+json">
     "height": 512
   },
   "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
-  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under the Built By Josh Studio brand and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
+  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under its own name and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
   "founder": {
     "@type": "Person",
     "name": "Josh"
@@ -62,7 +62,7 @@ ORG_SCHEMA = '''<script type="application/ld+json">
   "brand": [
     {
       "@type": "Brand",
-      "name": "Built By Josh Studio",
+      "name": "Built by Josh Studio",
       "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads."
     },
     {
@@ -119,11 +119,11 @@ def edit_in_place(path: Path, transforms: list) -> dict:
 about = ROOT / 'about.html'
 s = edit_in_place(about, [
     ('1.1 founder_line',
-     'Built by Josh Studio LLC is a Kansas limited liability company that operates the Tynkr Tools &amp; Co and Built By Josh Studio brands. Founded in 2026 by Joshua Tran in Topeka, Kansas.',
-     'Built by Josh Studio LLC is a Kansas limited liability company that operates the Tynkr Tools &amp; Co and Built By Josh Studio brands. The LLC was formed in 2026 and is based in Kansas.'),
+     'Built by Josh Studio LLC is a Kansas limited liability company that operates the Tynkr Tools &amp; Co brand and publishes the studio's zodiac art, books, and cookbook directly. Founded in 2026 by Joshua Tran in Topeka, Kansas.',
+     'Built by Josh Studio LLC is a Kansas limited liability company that operates the Tynkr Tools &amp; Co brand and publishes the studio's zodiac art, books, and cookbook directly. The LLC was formed in 2026 and is based in Kansas.'),
     ('1.3 founded_2025',
-     'Built By Josh Studio is the parent studio I founded in 2025',
-     'Built By Josh Studio is the parent studio I founded in 2026'),
+     'Built by Josh Studio is the parent studio I founded in 2025',
+     'Built by Josh Studio is the parent studio I founded in 2026'),
 ])
 print(f'about.html  Part-1 specifics: {s}')
 

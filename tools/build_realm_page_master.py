@@ -295,9 +295,9 @@ def faq_data(sign):
         (f"What's the difference between the {sign} Realms Bundle and the {sign} Zodiac Art Bundle?",
          f'The {sign} Zodiac Art Bundle ($24.99) contains 144 files covering 24 figure-based designs across 14 art styles — the sign rendered as a character. The {sign} Realms Bundle ($14.99) contains 48 files covering 4 landscape-style Realms with 2 variants each — {sign} rendered as place rather than figure. The two pair naturally as a figure-and-environment wall arrangement.'),
         (f'Where can I buy the {sign} Western Realms Bundle?',
-         f'The {sign} Realms Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {sign} Realms Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built By Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
+         f'The {sign} Realms Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {sign} Realms Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built by Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
         ('Do you have Realms for the other 11 Western zodiac signs?',
-         'Yes. Built By Josh Studio publishes 12 sign-specific Realms bundles — one for every Western zodiac sign (Aries through Pisces). All 12 bundles share identical structure: 48 files, 4 Realm designs, 2 variants each, three aspect ratios, both PNG and JPG. The Chinese Realms Collection covers all 12 Chinese zodiac animals in a single bundle, also landscape-style.'),
+         'Yes. Built by Josh Studio publishes 12 sign-specific Realms bundles — one for every Western zodiac sign (Aries through Pisces). All 12 bundles share identical structure: 48 files, 4 Realm designs, 2 variants each, three aspect ratios, both PNG and JPG. The Chinese Realms Collection covers all 12 Chinese zodiac animals in a single bundle, also landscape-style.'),
     ]
 
 
@@ -383,14 +383,14 @@ def build_page(sign, manifest):
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{sign} Western Realms Bundle — 48 Print-Ready Landscape Files | BBJ Studio</title>
-  <meta name="description" content="The {sign} Western Realms bundle from Built By Josh Studio — 48 print-ready landscape-style files covering 4 unique Realm designs with 2 variants each. Personal use + print-on-demand licensed up to 100 prints per design. Instant download from $14.99." />
+  <meta name="description" content="The {sign} Western Realms bundle from Built by Josh Studio — 48 print-ready landscape-style files covering 4 unique Realm designs with 2 variants each. Personal use + print-on-demand licensed up to 100 prints per design. Instant download from $14.99." />
   <link rel="canonical" href="https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html" />
 
   <meta property="og:title" content="{sign} Western Realms Bundle — 48 Print-Ready Landscape Files | BBJ Studio" />
   <meta property="og:description" content="48 print-ready landscape-style files covering 4 {sign} Realm designs with 2 variants each. Personal use + POD up to 100 prints per design." />
   <meta property="og:type" content="product" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html" />
-  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:site_name" content="Built by Josh Studio" />
   <meta property="og:image" content="https://builtbyjoshstudio.com/{hub_thumb}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{sign} Western Realms Bundle — 48 Print-Ready Landscape Files | BBJ Studio" />
@@ -425,7 +425,7 @@ def build_page(sign, manifest):
     "url": "https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html",
     "sku": "{m['sku']}",
     "category": "Digital Art / Zodiac Art / Western Realms",
-    "brand": {{ "@type": "Brand", "name": "Built By Josh Studio" }},
+    "brand": {{ "@type": "Brand", "name": "Built by Josh Studio" }},
     "manufacturer": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},
     "additionalProperty": [
       {{"@type": "PropertyValue", "name": "File Count", "value": "48"}},
@@ -672,12 +672,12 @@ def build_page(sign, manifest):
   "@type": "Organization",
   "@id": "https://builtbyjoshstudio.com/#organization",
   "name": "Built by Josh Studio LLC",
-  "alternateName": ["BBJ Studio", "Built By Josh Studio"],
+  "alternateName": ["BBJ Studio", "Built by Josh Studio"],
   "legalName": "Built by Josh Studio LLC",
   "url": "https://builtbyjoshstudio.com",
   "logo": {{ "@type": "ImageObject", "url": "https://builtbyjoshstudio.com/images/logo/logo.webp", "width": 512, "height": 512 }},
   "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
-  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under the Built By Josh Studio brand and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
+  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under its own name and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
   "founder": {{ "@type": "Person", "name": "Josh" }},
   "foundingDate": "2026-05-13",
   "foundingLocation": {{ "@type": "Place", "address": {{ "@type": "PostalAddress", "addressRegion": "KS", "addressCountry": "US" }} }},
@@ -685,7 +685,7 @@ def build_page(sign, manifest):
   "areaServed": "Worldwide",
   "knowsAbout": ["Zodiac digital art","Western zodiac","Chinese zodiac","Notion templates","Personal finance spreadsheets","Digital product design","Print-on-demand licensing"],
   "brand": [
-    {{ "@type": "Brand", "name": "Built By Josh Studio", "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads." }},
+    {{ "@type": "Brand", "name": "Built by Josh Studio", "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads." }},
     {{ "@type": "Brand", "name": "Tynkr Tools & Co", "description": "Notion OS templates and Excel and Google Sheets workbooks for creators, solopreneurs, and personal-finance milestones." }}
   ],
   "contactPoint": {{ "@type": "ContactPoint", "email": "josh@builtbyjoshstudio.com", "contactType": "customer support", "areaServed": "Worldwide", "availableLanguage": "English" }},
@@ -698,7 +698,7 @@ def build_page(sign, manifest):
   <div class="stars" id="starsContainer"></div>
 
   <nav class="site-nav">
-    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built by Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
     <ul class="nav-links">
       <li><a href="../index.html#tynkr">Templates</a></li>
       <li><a href="../index.html#builtbyjosh" class="active">Zodiac Art</a></li>
@@ -720,13 +720,13 @@ def build_page(sign, manifest):
     <h1 class="collection-title">{sign} Western Realms Bundle — 48 Print-Ready Landscape Files</h1>
     <p class="collection-tagline">{hero_tagline_for(sign)}</p>
     <div class="hero-image">
-      <img src="../{hub_thumb}" alt="{sign} Western Realms preview — four landscape-style {m['element'].lower()}-realms in hybrid cosmos style, from Built By Josh Studio" />
+      <img src="../{hub_thumb}" alt="{sign} Western Realms preview — four landscape-style {m['element'].lower()}-realms in hybrid cosmos style, from Built by Josh Studio" />
     </div>
   </header>
 
   <aside class="short-version">
     <div class="short-version-label">The Short Version</div>
-    <p>The {sign} Western Realms Bundle from Built By Josh Studio is a landscape-style digital art collection containing 48 print-ready image files. Each Realms bundle covers one Western zodiac sign and includes 4 unique Realm designs — atmospheric mythic environments rather than figures — with 2 numbered variants per design. Every design is delivered in three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) at 300 DPI, in both PNG and JPG formats, with maximum dimensions of 6000 × 9000 pixels. The bundle is priced at $14.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
+    <p>The {sign} Western Realms Bundle from Built by Josh Studio is a landscape-style digital art collection containing 48 print-ready image files. Each Realms bundle covers one Western zodiac sign and includes 4 unique Realm designs — atmospheric mythic environments rather than figures — with 2 numbered variants per design. Every design is delivered in three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) at 300 DPI, in both PNG and JPG formats, with maximum dimensions of 6000 × 9000 pixels. The bundle is priced at $14.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
   </aside>
 
   <div class="collection-main">
@@ -736,7 +736,7 @@ def build_page(sign, manifest):
         <h2>The {sign} Western Realms Bundle</h2>
         <p>The {sign} Western Realms Bundle is one of 12 sign-specific Realms bundles in the Western Realms Collection. Each Realms bundle pairs a Western zodiac sign with four distinct landscape-style interpretations — environments rather than figures, atmospheres rather than portraits. The {sign} bundle contains 48 print-ready digital files: 4 original Realm designs, each in 2 numbered variants, each variant rendered in three aspect ratios and both PNG and JPG formats.</p>
         <p>Where the Western Signs Collection gives you the {m['symbol_label'].lower().replace('the ','')} in 14 art styles, the Western Realms Collection gives you the world the {m['symbol_label'].lower().replace('the ','')} inhabits. Same {sign} energy, translated into landscape — the two Collections pair naturally as a figure-and-environment wall arrangement.</p>
-        <p>Built By Josh Studio is the zodiac art brand of Built by Josh Studio LLC, a Kansas-based independent creative studio. Every Realm is original work — concepted, generated, curated, and finalized by a single founder.</p>
+        <p>Built by Josh Studio LLC, a Kansas-based independent creative studio, publishes this zodiac art under its own name. Every Realm is original work — concepted, generated, curated, and finalized by a single founder.</p>
       </section>
 
       <section>
@@ -837,7 +837,7 @@ def build_page(sign, manifest):
 
       <div class="etsy-secondary">
         <div class="etsy-secondary-label">Looking for something different?</div>
-        <p>The Built By Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
+        <p>The Built by Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
         <p class="etsy-pause-note">Etsy storefront currently on a brief verification pause while the IRS finalizes EIN verification — {sign} Realms Bundle purchases above are unaffected.</p>
       </div>
     </aside>
@@ -900,7 +900,7 @@ def build_page(sign, manifest):
   </section>
 
   <footer>
-    <div class="footer-left"><strong>Built By Josh Studio</strong> · All digital products — instant download</div>
+    <div class="footer-left"><strong>Built by Josh Studio</strong> · All digital products — instant download</div>
     <ul class="footer-links">
       <li><a href="../index.html">Home</a></li>
       <li><a href="index.html">Collections</a></li>

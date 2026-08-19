@@ -100,20 +100,20 @@ def build_page(sign, manifest):
     </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{sign} Zodiac Realm Art Prints -- 8 Hybrid Cosmos Landscape Designs | Built By Josh Studio</title>
-  <meta name="description" content="8 original {sign} zodiac realm art prints across 4 hybrid cosmos-landscape titles. Each realm rendered in two variants -- 8 designs total for the {sign} sign. Instant digital download bundle from Built By Josh Studio." />
+  <title>{sign} Zodiac Realm Art Prints -- 8 Hybrid Cosmos Landscape Designs | Built by Josh Studio</title>
+  <meta name="description" content="8 original {sign} zodiac realm art prints across 4 hybrid cosmos-landscape titles. Each realm rendered in two variants -- 8 designs total for the {sign} sign. Instant digital download bundle from Built by Josh Studio." />
   <meta name="keywords" content="{sign} zodiac realm art, {sign} cosmic landscape art print, {sign} realm wall art, hybrid cosmos zodiac art, {sign} digital download" />
   <link rel="canonical" href="https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html" />
 
-  <meta property="og:title" content="{sign} Zodiac Realm Art Prints -- 8 Hybrid Cosmos Landscape Designs | Built By Josh Studio" />
-  <meta property="og:description" content="8 original {sign} zodiac realm art prints across 4 hybrid cosmos-landscape titles. Instant digital download bundle from Built By Josh Studio." />
+  <meta property="og:title" content="{sign} Zodiac Realm Art Prints -- 8 Hybrid Cosmos Landscape Designs | Built by Josh Studio" />
+  <meta property="og:description" content="8 original {sign} zodiac realm art prints across 4 hybrid cosmos-landscape titles. Instant digital download bundle from Built by Josh Studio." />
   <meta property="og:type" content="product" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html" />
-  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:site_name" content="Built by Josh Studio" />
   <meta property="og:image" content="https://builtbyjoshstudio.com/{hub_thumb}" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{sign} Zodiac Realm Art Prints -- 8 Hybrid Cosmos Landscape Designs | Built By Josh Studio" />
-  <meta name="twitter:description" content="8 original {sign} zodiac realm art prints across 4 hybrid cosmos-landscape titles. Instant digital download bundle from Built By Josh Studio." />
+  <meta name="twitter:title" content="{sign} Zodiac Realm Art Prints -- 8 Hybrid Cosmos Landscape Designs | Built by Josh Studio" />
+  <meta name="twitter:description" content="8 original {sign} zodiac realm art prints across 4 hybrid cosmos-landscape titles. Instant digital download bundle from Built by Josh Studio." />
   <meta name="twitter:image" content="https://builtbyjoshstudio.com/{hub_thumb}" />
 
   <script type="application/ld+json">
@@ -131,7 +131,7 @@ def build_page(sign, manifest):
     "name": "{sign} Zodiac Realm Art Prints",
     "description": "8 original {sign} zodiac realm art prints across 4 hybrid cosmos-landscape realm titles.",
     "url": "https://builtbyjoshstudio.com/collections/{slug}-zodiac-realms.html",
-    "isPartOf": {{ "@type": "WebSite", "name": "Built By Josh Studio", "url": "https://builtbyjoshstudio.com" }},
+    "isPartOf": {{ "@type": "WebSite", "name": "Built by Josh Studio", "url": "https://builtbyjoshstudio.com" }},
     "about": {{ "@type": "Thing", "name": "{sign} Zodiac Realm Art", "description": "Hybrid cosmos-landscape art for the {sign} zodiac sign." }},
     "mainEntity": {{
       "@type": "ItemList",
@@ -231,7 +231,7 @@ def build_page(sign, manifest):
 <body>
   <div class="stars" id="starsContainer"></div>
   <nav class="site-nav">
-    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built by Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
     <ul class="nav-links">
       <li><a href="../index.html#tynkr">Templates</a></li>
       <li><a href="../index.html#builtbyjosh" class="active">Zodiac Art</a></li>
@@ -297,12 +297,12 @@ def build_page(sign, manifest):
       <div class="faq-item"><h3>What's included in the {sign} bundle?</h3><p>All 8 {sign} realm designs across 4 realm titles ({titles_csv}), each with 2 variants. Files come in 3 sizes (4800×4800, 4800×6000, 6000×9000) and 2 formats (JPG + PNG). 48 files in total.</p></div>
       <div class="faq-item"><h3>When will this bundle be available to purchase?</h3><p>The {sign} realms bundle launches on Lemon Squeezy. We'll update this page when the bundle is live.</p></div>
       <div class="faq-item"><h3>Can I use these prints commercially or resell them?</h3><p>No. All prints are licensed for personal use only — printing for your own home, office, or as a personal gift. Commercial use including reselling, redistribution, print-on-demand, or merchandising is not permitted under the license.</p></div>
-      <div class="faq-item"><h3>Do you have realm bundles for other signs?</h3><p>Yes. Built By Josh Studio has Zodiac Realm bundles for all 12 Western zodiac signs — Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, and Pisces. See the full Western Realms section on the homepage.</p></div>
+      <div class="faq-item"><h3>Do you have realm bundles for other signs?</h3><p>Yes. Built by Josh Studio has Zodiac Realm bundles for all 12 Western zodiac signs — Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, and Pisces. See the full Western Realms section on the homepage.</p></div>
     </div>
   </section>
 
   <footer>
-    <div class="footer-left"><strong>Built By Josh Studio</strong> · All digital products — instant download</div>
+    <div class="footer-left"><strong>Built by Josh Studio</strong> · All digital products — instant download</div>
     <ul class="footer-links">
       <li><a href="../index.html">Home</a></li>
       <li><a href="index.html">Collections</a></li>

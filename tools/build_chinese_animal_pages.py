@@ -182,9 +182,9 @@ def faq_data(animal):
         ('What formats and color profiles do the files use?',
          'All files are delivered in both PNG (lossless) and JPG (92% quality compression) formats. Color profile is sRGB — the standard for virtually every print-on-demand service and consumer printer, requiring no color conversion before printing.'),
         (f'Where can I buy the {animal} Chinese Zodiac Art Bundle?',
-         f'The {animal} bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {animal} Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built By Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
+         f'The {animal} bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {animal} Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built by Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
         ('Do you have art for the other Chinese zodiac animals and the Western zodiac?',
-         'Yes. Built By Josh Studio publishes 12 sign-specific bundles for all Chinese zodiac animals (Rat through Pig, identical structure to this bundle), a single Chinese Realms Collection covering all 12 animals in landscape style, 12 sign-specific Western Signs bundles in 14 art styles each, 12 sign-specific Western Realms landscape bundles, and a full 12-landscape Western Landscapes Collection.'),
+         'Yes. Built by Josh Studio publishes 12 sign-specific bundles for all Chinese zodiac animals (Rat through Pig, identical structure to this bundle), a single Chinese Realms Collection covering all 12 animals in landscape style, 12 sign-specific Western Signs bundles in 14 art styles each, 12 sign-specific Western Realms landscape bundles, and a full 12-landscape Western Landscapes Collection.'),
     ]
 
 
@@ -265,14 +265,14 @@ def build_page(animal, manifest):
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{animal} Chinese Zodiac Art Bundle — 48 Print-Ready Files | BBJ Studio</title>
-  <meta name="description" content="The {animal} Chinese zodiac art bundle from Built By Josh Studio — 48 print-ready digital files across 2 art styles (Chinese Animals + Hyper Realistic Chinese) and 8 original designs. Personal use + print-on-demand licensed up to 100 prints per design. Instant download from $14.99." />
+  <meta name="description" content="The {animal} Chinese zodiac art bundle from Built by Josh Studio — 48 print-ready digital files across 2 art styles (Chinese Animals + Hyper Realistic Chinese) and 8 original designs. Personal use + print-on-demand licensed up to 100 prints per design. Instant download from $14.99." />
   <link rel="canonical" href="https://builtbyjoshstudio.com/collections/{slug}-chinese-zodiac-art.html" />
 
   <meta property="og:title" content="{animal} Chinese Zodiac Art Bundle — 48 Print-Ready Files | BBJ Studio" />
   <meta property="og:description" content="48 print-ready digital files covering 8 original {animal} designs across 2 art styles. Personal use + POD up to 100 prints per design." />
   <meta property="og:type" content="product" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/collections/{slug}-chinese-zodiac-art.html" />
-  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:site_name" content="Built by Josh Studio" />
   <meta property="og:image" content="https://builtbyjoshstudio.com/{hub_thumb}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{animal} Chinese Zodiac Art Bundle — 48 Print-Ready Files | BBJ Studio" />
@@ -307,7 +307,7 @@ def build_page(animal, manifest):
     "url": "https://builtbyjoshstudio.com/collections/{slug}-chinese-zodiac-art.html",
     "sku": "{m['sku']}",
     "category": "Digital Art / Zodiac Art / Chinese Signs",
-    "brand": {{ "@type": "Brand", "name": "Built By Josh Studio" }},
+    "brand": {{ "@type": "Brand", "name": "Built by Josh Studio" }},
     "manufacturer": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},
     "additionalProperty": [
       {{"@type": "PropertyValue", "name": "File Count", "value": "48"}},
@@ -556,12 +556,12 @@ def build_page(animal, manifest):
   "@type": "Organization",
   "@id": "https://builtbyjoshstudio.com/#organization",
   "name": "Built by Josh Studio LLC",
-  "alternateName": ["BBJ Studio", "Built By Josh Studio"],
+  "alternateName": ["BBJ Studio", "Built by Josh Studio"],
   "legalName": "Built by Josh Studio LLC",
   "url": "https://builtbyjoshstudio.com",
   "logo": {{ "@type": "ImageObject", "url": "https://builtbyjoshstudio.com/images/logo/logo.webp", "width": 512, "height": 512 }},
   "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
-  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under the Built By Josh Studio brand and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
+  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under its own name and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
   "founder": {{ "@type": "Person", "name": "Josh" }},
   "foundingDate": "2026-05-13",
   "foundingLocation": {{ "@type": "Place", "address": {{ "@type": "PostalAddress", "addressRegion": "KS", "addressCountry": "US" }} }},
@@ -569,7 +569,7 @@ def build_page(animal, manifest):
   "areaServed": "Worldwide",
   "knowsAbout": ["Zodiac digital art","Western zodiac","Chinese zodiac","Notion templates","Personal finance spreadsheets","Digital product design","Print-on-demand licensing"],
   "brand": [
-    {{ "@type": "Brand", "name": "Built By Josh Studio", "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads." }},
+    {{ "@type": "Brand", "name": "Built by Josh Studio", "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads." }},
     {{ "@type": "Brand", "name": "Tynkr Tools & Co", "description": "Notion OS templates and Excel and Google Sheets workbooks for creators, solopreneurs, and personal-finance milestones." }}
   ],
   "contactPoint": {{ "@type": "ContactPoint", "email": "josh@builtbyjoshstudio.com", "contactType": "customer support", "areaServed": "Worldwide", "availableLanguage": "English" }},
@@ -582,7 +582,7 @@ def build_page(animal, manifest):
   <div class="stars" id="starsContainer"></div>
 
   <nav class="site-nav">
-    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built by Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
     <ul class="nav-links">
       <li><a href="../index.html#tynkr">Templates</a></li>
       <li><a href="../index.html#builtbyjosh" class="active">Zodiac Art</a></li>
@@ -604,13 +604,13 @@ def build_page(animal, manifest):
     <h1 class="collection-title">{animal} Chinese Zodiac Art Bundle — 48 Print-Ready Files</h1>
     <p class="collection-tagline">{tagline}</p>
     <div class="hero-image">
-      <img src="../{hub_thumb}" alt="{animal} Chinese zodiac art bundle preview — 2 art styles (Chinese Animals + Hyper Realistic Chinese) and 8 original designs, from Built By Josh Studio" />
+      <img src="../{hub_thumb}" alt="{animal} Chinese zodiac art bundle preview — 2 art styles (Chinese Animals + Hyper Realistic Chinese) and 8 original designs, from Built by Josh Studio" />
     </div>
   </header>
 
   <aside class="short-version">
     <div class="short-version-label">The Short Version</div>
-    <p>The {animal} Chinese Zodiac Art Bundle from Built By Josh Studio is a digital art collection containing 48 print-ready image files. Each bundle covers one Chinese zodiac animal and includes 8 original designs across 2 art-style series — Chinese Animals (traditional cultural style) and Hyper Realistic Chinese (cinematic photoreal style) — with 4 numbered variants per series. Every design is delivered in three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) at 300 DPI, in both PNG and JPG formats, with maximum dimensions of 6000 × 9000 pixels. The bundle is priced at $14.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
+    <p>The {animal} Chinese Zodiac Art Bundle from Built by Josh Studio is a digital art collection containing 48 print-ready image files. Each bundle covers one Chinese zodiac animal and includes 8 original designs across 2 art-style series — Chinese Animals (traditional cultural style) and Hyper Realistic Chinese (cinematic photoreal style) — with 4 numbered variants per series. Every design is delivered in three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) at 300 DPI, in both PNG and JPG formats, with maximum dimensions of 6000 × 9000 pixels. The bundle is priced at $14.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
   </aside>
 
   <div class="collection-main">
@@ -620,7 +620,7 @@ def build_page(animal, manifest):
         <h2>The {animal} Chinese Zodiac Art Bundle</h2>
         <p>The {animal} Chinese Zodiac Art Bundle is one of 12 animal-specific bundles in the Chinese Signs Collection. Each bundle pairs a Chinese zodiac animal with two complementary art-style interpretations — a traditional cultural reading and a cinematic photoreal one. The {animal} bundle contains 48 print-ready digital files: 8 original designs (4 per style), each rendered in three aspect ratios and both PNG and JPG formats.</p>
         <p>The two styles are designed to pair on a wall or to stand alone. The Chinese Animals series leans on classical visual language; the Hyper Realistic Chinese series leans on cinematic portraiture. Buyers don't pick one — the bundle includes both.</p>
-        <p>Built By Josh Studio is the zodiac art brand of Built by Josh Studio LLC, a Kansas-based independent creative studio. Every design is original work — concepted, generated, curated, and finalized by a single founder.</p>
+        <p>Built by Josh Studio LLC, a Kansas-based independent creative studio, publishes this zodiac art under its own name. Every design is original work — concepted, generated, curated, and finalized by a single founder.</p>
       </section>
 
       <section>
@@ -720,7 +720,7 @@ def build_page(animal, manifest):
 
       <div class="etsy-secondary">
         <div class="etsy-secondary-label">Looking for something different?</div>
-        <p>The Built By Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
+        <p>The Built by Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
         <p class="etsy-pause-note">Etsy storefront currently on a brief verification pause while the IRS finalizes EIN verification — {animal} bundle purchases above are unaffected.</p>
       </div>
     </aside>
@@ -783,7 +783,7 @@ def build_page(animal, manifest):
   </section>
 
   <footer>
-    <div class="footer-left"><strong>Built By Josh Studio</strong> · All digital products — instant download</div>
+    <div class="footer-left"><strong>Built by Josh Studio</strong> · All digital products — instant download</div>
     <ul class="footer-links">
       <li><a href="../index.html">Home</a></li>
       <li><a href="index.html">Collections</a></li>

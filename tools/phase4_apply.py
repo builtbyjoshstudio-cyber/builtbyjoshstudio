@@ -43,7 +43,7 @@ def build_homepage_section(realm_titles):
         '  <section id="chinese-realms">\n'
         '    <div class="section-header-bbj" style="padding-bottom:1.5rem;border-bottom:1px solid var(--bbj-border);margin-bottom:2.5rem;">\n'
         '      <div>\n'
-        '        <div class="bbj-eyebrow" style="font-family:\'Cinzel\',serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:0.5rem;">Built By Josh Studio</div>\n'
+        '        <div class="bbj-eyebrow" style="font-family:\'Cinzel\',serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bbj-accent);margin-bottom:0.5rem;">Built by Josh Studio</div>\n'
         '        <h2 style="font-family:\'Cinzel\',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:0.04em;color:var(--bbj-text);line-height:1.15;">Chinese Zodiac Realms Art Prints</h2>\n'
         '        <p style="font-family:\'Crimson Pro\',serif;font-style:italic;font-size:1rem;color:var(--bbj-muted);margin-top:0.4rem;">Lunar Realms Series · One Realm Per Animal · 2 Variants Each</p>\n'
         '      </div>\n'

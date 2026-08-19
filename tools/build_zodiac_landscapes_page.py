@@ -90,7 +90,7 @@ def build_landscape_block(ls):
         f'          <div class="landscape-meta">{ls["sign"]} · {ls["element"]}</div>\n'
         f'          <p class="landscape-block-desc">{ls["desc"]}</p>\n'
         '          <div class="landscape-img">\n'
-        f'            <img src="../images/zodiac/landscapes/{ls["slug"]}.jpg" alt="{ls["title"]} — Western zodiac landscape oil painting representing {ls["sign"]}, from Built By Josh Studio" loading="lazy" width="900" height="900">\n'
+        f'            <img src="../images/zodiac/landscapes/{ls["slug"]}.jpg" alt="{ls["title"]} — Western zodiac landscape oil painting representing {ls["sign"]}, from Built by Josh Studio" loading="lazy" width="900" height="900">\n'
         '          </div>\n'
         '        </div>'
     )
@@ -111,7 +111,7 @@ def faq_data():
         ('What formats and color profiles do the files use?',
          'All files are delivered in both PNG (lossless) and JPG (92% quality compression) formats. Color profile is sRGB — the standard for virtually every print-on-demand service and consumer printer, requiring no color conversion before printing.'),
         ('Where can I buy the Western Landscapes Bundle?',
-         'The Western Landscapes Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Western Landscapes Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built By Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
+         'The Western Landscapes Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Western Landscapes Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built by Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
         ('How do the landscapes pair with the Western Signs and Western Realms bundles?',
          "The Western Signs Collection ($24.99 per sign × 12 signs) is figure-based — each sign rendered as a character in 14 art styles. The Western Realms Collection ($14.99 per sign × 12 signs) is landscape-based but per-sign — each sign rendered as 4 named realms with 2 variants each. The Western Landscapes Bundle ($19.99 once) is a single-bundle oil-painted landscape set covering all 12 signs. Buyers often pair a figure print from Western Signs with the matching Realm or Landscape on the same wall — figure plus environment for whichever sign matters to them."),
     ]
@@ -175,14 +175,14 @@ def build_page():
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Western Landscapes Bundle — 12 Mythic Realms in One Collection | BBJ Studio</title>
-  <meta name="description" content="The Western Landscapes Bundle from Built By Josh Studio — 72 print-ready oil-painted landscape files covering all 12 Western zodiac signs. The Forge of Aries, The Verdant Grove, The Abyss of Scorpio, The Dreaming Tides, and more. Personal use + print-on-demand licensed up to 100 prints per design. Instant download for $19.99." />
+  <meta name="description" content="The Western Landscapes Bundle from Built by Josh Studio — 72 print-ready oil-painted landscape files covering all 12 Western zodiac signs. The Forge of Aries, The Verdant Grove, The Abyss of Scorpio, The Dreaming Tides, and more. Personal use + print-on-demand licensed up to 100 prints per design. Instant download for $19.99." />
   <link rel="canonical" href="https://builtbyjoshstudio.com/collections/zodiac-landscapes.html" />
 
   <meta property="og:title" content="Western Landscapes Bundle — 12 Mythic Realms in One Collection | BBJ Studio" />
   <meta property="og:description" content="72 print-ready oil-painted landscape files covering all 12 Western zodiac signs. Personal use + POD up to 100 prints per design." />
   <meta property="og:type" content="product" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/collections/zodiac-landscapes.html" />
-  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:site_name" content="Built by Josh Studio" />
   <meta property="og:image" content="https://builtbyjoshstudio.com/{hero_thumb}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Western Landscapes Bundle — 12 Mythic Realms in One Collection | BBJ Studio" />
@@ -217,7 +217,7 @@ def build_page():
     "url": "https://builtbyjoshstudio.com/collections/zodiac-landscapes.html",
     "sku": "BBJ-WL-ALL",
     "category": "Digital Art / Zodiac Art / Western Landscapes",
-    "brand": {{ "@type": "Brand", "name": "Built By Josh Studio" }},
+    "brand": {{ "@type": "Brand", "name": "Built by Josh Studio" }},
     "manufacturer": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},
     "additionalProperty": [
       {{"@type": "PropertyValue", "name": "File Count", "value": "72"}},
@@ -448,12 +448,12 @@ def build_page():
   "@type": "Organization",
   "@id": "https://builtbyjoshstudio.com/#organization",
   "name": "Built by Josh Studio LLC",
-  "alternateName": ["BBJ Studio", "Built By Josh Studio"],
+  "alternateName": ["BBJ Studio", "Built by Josh Studio"],
   "legalName": "Built by Josh Studio LLC",
   "url": "https://builtbyjoshstudio.com",
   "logo": {{ "@type": "ImageObject", "url": "https://builtbyjoshstudio.com/images/logo/logo.webp", "width": 512, "height": 512 }},
   "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
-  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under the Built By Josh Studio brand and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
+  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under its own name and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
   "founder": {{ "@type": "Person", "name": "Josh" }},
   "foundingDate": "2026-05-13",
   "foundingLocation": {{ "@type": "Place", "address": {{ "@type": "PostalAddress", "addressRegion": "KS", "addressCountry": "US" }} }},
@@ -461,7 +461,7 @@ def build_page():
   "areaServed": "Worldwide",
   "knowsAbout": ["Zodiac digital art","Western zodiac","Chinese zodiac","Notion templates","Personal finance spreadsheets","Digital product design","Print-on-demand licensing"],
   "brand": [
-    {{ "@type": "Brand", "name": "Built By Josh Studio", "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads." }},
+    {{ "@type": "Brand", "name": "Built by Josh Studio", "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads." }},
     {{ "@type": "Brand", "name": "Tynkr Tools & Co", "description": "Notion OS templates and Excel and Google Sheets workbooks for creators, solopreneurs, and personal-finance milestones." }}
   ],
   "contactPoint": {{ "@type": "ContactPoint", "email": "josh@builtbyjoshstudio.com", "contactType": "customer support", "areaServed": "Worldwide", "availableLanguage": "English" }},
@@ -474,7 +474,7 @@ def build_page():
   <div class="stars" id="starsContainer"></div>
 
   <nav class="site-nav">
-    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built by Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
     <ul class="nav-links">
       <li><a href="../index.html#tynkr">Templates</a></li>
       <li><a href="../index.html#builtbyjosh" class="active">Zodiac Art</a></li>
@@ -496,13 +496,13 @@ def build_page():
     <h1 class="collection-title">Western Landscapes Bundle — 12 Mythic Realms in One Collection</h1>
     <p class="collection-tagline">A landscape for every Western zodiac sign — Aries through Pisces. Twelve mythic environments rendered in oil-painted cinematic style, delivered as one bundle for $19.99. 72 print-ready files in total. Personal use and print-on-demand licensed up to 100 prints per design.</p>
     <div class="hero-image">
-      <img src="../{hero_thumb}" alt="Western Landscapes preview — 12 oil-painted zodiac landscapes, hero image The Forge of Aries, from Built By Josh Studio" />
+      <img src="../{hero_thumb}" alt="Western Landscapes preview — 12 oil-painted zodiac landscapes, hero image The Forge of Aries, from Built by Josh Studio" />
     </div>
   </header>
 
   <aside class="short-version">
     <div class="short-version-label">The Short Version</div>
-    <p>The Western Landscapes Bundle from Built By Josh Studio is a single-collection digital art bundle covering all 12 Western zodiac signs as oil-painted mythic landscapes. Includes 72 print-ready files — 12 unique landscape designs across three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) and two formats (PNG, JPG), at 300 DPI with maximum dimensions of 6000 × 9000 pixels. The bundle is priced at $19.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
+    <p>The Western Landscapes Bundle from Built by Josh Studio is a single-collection digital art bundle covering all 12 Western zodiac signs as oil-painted mythic landscapes. Includes 72 print-ready files — 12 unique landscape designs across three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) and two formats (PNG, JPG), at 300 DPI with maximum dimensions of 6000 × 9000 pixels. The bundle is priced at $19.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
   </aside>
 
   <div class="collection-main">
@@ -510,9 +510,9 @@ def build_page():
 
       <section>
         <h2>The Western Landscapes Bundle</h2>
-        <p>The Western Landscapes Bundle from Built By Josh Studio renders each of the 12 Western zodiac signs as a place instead of a figure. No rams, no lions, no scorpions — just the mythic environment each sign would inhabit, painted with oil-textured brushwork and cinematic depth. The result is 12 standalone wall pieces that work as a cohesive atmospheric set or as one-off statement prints.</p>
+        <p>The Western Landscapes Bundle from Built by Josh Studio renders each of the 12 Western zodiac signs as a place instead of a figure. No rams, no lions, no scorpions — just the mythic environment each sign would inhabit, painted with oil-textured brushwork and cinematic depth. The result is 12 standalone wall pieces that work as a cohesive atmospheric set or as one-off statement prints.</p>
         <p>Every landscape is delivered in three aspect ratios at print-ready high resolution (up to 6000 × 9000 pixels). 72 files in total — 12 designs × 3 ratios × 2 formats. Sold as one $19.99 bundle, not 12 separate listings.</p>
-        <p>Built By Josh Studio is the zodiac art brand of Built by Josh Studio LLC, a Kansas-based independent creative studio. Every landscape is original work — concepted, generated, curated, and finalized by a single founder.</p>
+        <p>Built by Josh Studio LLC, a Kansas-based independent creative studio, publishes this zodiac art under its own name. Every landscape is original work — concepted, generated, curated, and finalized by a single founder.</p>
       </section>
 
       <section>
@@ -613,7 +613,7 @@ def build_page():
 
       <div class="etsy-secondary">
         <div class="etsy-secondary-label">Looking for something different?</div>
-        <p>The Built By Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
+        <p>The Built by Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
         <p class="etsy-pause-note">Etsy storefront currently on a brief verification pause while the IRS finalizes EIN verification — Western Landscapes Bundle purchases above are unaffected.</p>
       </div>
     </aside>
@@ -667,7 +667,7 @@ def build_page():
   </section>
 
   <footer>
-    <div class="footer-left"><strong>Built By Josh Studio</strong> · All digital products — instant download</div>
+    <div class="footer-left"><strong>Built by Josh Studio</strong> · All digital products — instant download</div>
     <ul class="footer-links">
       <li><a href="../index.html">Home</a></li>
       <li><a href="index.html">Collections</a></li>

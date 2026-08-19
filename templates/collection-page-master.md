@@ -81,7 +81,7 @@ no marketing flourish.
    - Western Landscapes: oil-painted environments per sign
    - Chinese Signs: 2 styles per animal (hyper-realistic + watercolor)
    - Chinese Realms: single-bundle, 1 named realm per animal
-3. Studio context. Always: *"Built By Josh Studio is the zodiac art brand of
+3. Studio context. Always: *"Built by Josh Studio is the zodiac art brand of
    Built by Josh Studio LLC, a Kansas-based independent creative studio."*
 
 ## H2: What Makes <Sign>, <Sign> (or equivalent zodiac context block)
@@ -204,7 +204,7 @@ Trust signals:
 
 Secondary Etsy reference (styled smaller/quieter, NOT a competing CTA):
   Label: Looking for something different?
-  Body: The Built By Josh Studio Etsy storefront has additional individual
+  Body: The Built by Josh Studio Etsy storefront has additional individual
         prints and other studio work. Visit the Etsy shop →
   Pause note (italic, opacity 75%): Etsy storefront currently on a brief
         verification pause while the IRS finalizes EIN verification —

@@ -112,7 +112,7 @@ def faq_data():
         ('What formats and color profiles do the files use?',
          'All files are delivered in both PNG (lossless) and JPG (92% quality compression) formats. Color profile is sRGB — the standard for virtually every print-on-demand service and consumer printer, requiring no color conversion before printing.'),
         ('Where can I buy the Chinese Zodiac Realms Bundle?',
-         'The Chinese Zodiac Realms Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Chinese Realms Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built By Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
+         'The Chinese Zodiac Realms Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Chinese Realms Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built by Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
         ('How does this bundle compare to the per-animal Chinese Signs bundles?',
          'The 12 Chinese Signs per-animal bundles ($14.99 each) are figure-based — each one covers one zodiac animal in 2 art styles (Chinese Animals + Hyper Realistic Chinese), 8 designs total per animal. The Chinese Zodiac Realms Bundle ($29.99) is the landscape-based companion — it covers all 12 animals at once, but as environments rather than figures. Buyers often pair the two: an animal figure print plus its matching Realm landscape on the same wall.'),
     ]
@@ -178,14 +178,14 @@ def build_page(manifest):
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chinese Zodiac Realms Bundle — All 12 Animals in One Collection | BBJ Studio</title>
-  <meta name="description" content="The Chinese Zodiac Realms Bundle from Built By Josh Studio — 144 print-ready landscape-style files covering all 12 Chinese zodiac animals across 12 named Realms with 2 variants each (24 designs). Personal use + print-on-demand licensed up to 100 prints per design. Instant download for $29.99." />
+  <meta name="description" content="The Chinese Zodiac Realms Bundle from Built by Josh Studio — 144 print-ready landscape-style files covering all 12 Chinese zodiac animals across 12 named Realms with 2 variants each (24 designs). Personal use + print-on-demand licensed up to 100 prints per design. Instant download for $29.99." />
   <link rel="canonical" href="https://builtbyjoshstudio.com/collections/chinese-zodiac-realms.html" />
 
   <meta property="og:title" content="Chinese Zodiac Realms Bundle — All 12 Animals in One Collection | BBJ Studio" />
   <meta property="og:description" content="144 print-ready landscape-style files covering all 12 Chinese zodiac animals. 24 designs total across 12 named Realms. Personal use + POD licensed." />
   <meta property="og:type" content="product" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/collections/chinese-zodiac-realms.html" />
-  <meta property="og:site_name" content="Built By Josh Studio" />
+  <meta property="og:site_name" content="Built by Josh Studio" />
   <meta property="og:image" content="https://builtbyjoshstudio.com/{hero_thumb}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chinese Zodiac Realms Bundle — All 12 Animals in One Collection | BBJ Studio" />
@@ -220,7 +220,7 @@ def build_page(manifest):
     "url": "https://builtbyjoshstudio.com/collections/chinese-zodiac-realms.html",
     "sku": "BBJ-CR-ALL",
     "category": "Digital Art / Zodiac Art / Chinese Realms",
-    "brand": {{ "@type": "Brand", "name": "Built By Josh Studio" }},
+    "brand": {{ "@type": "Brand", "name": "Built by Josh Studio" }},
     "manufacturer": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},
     "additionalProperty": [
       {{"@type": "PropertyValue", "name": "File Count", "value": "144"}},
@@ -449,12 +449,12 @@ def build_page(manifest):
   "@type": "Organization",
   "@id": "https://builtbyjoshstudio.com/#organization",
   "name": "Built by Josh Studio LLC",
-  "alternateName": ["BBJ Studio", "Built By Josh Studio"],
+  "alternateName": ["BBJ Studio", "Built by Josh Studio"],
   "legalName": "Built by Josh Studio LLC",
   "url": "https://builtbyjoshstudio.com",
   "logo": {{ "@type": "ImageObject", "url": "https://builtbyjoshstudio.com/images/logo/logo.webp", "width": 512, "height": 512 }},
   "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
-  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under the Built By Josh Studio brand and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
+  "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under its own name and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. All products are digital, instant-download, and built by a single founder.",
   "founder": {{ "@type": "Person", "name": "Josh" }},
   "foundingDate": "2026-05-13",
   "foundingLocation": {{ "@type": "Place", "address": {{ "@type": "PostalAddress", "addressRegion": "KS", "addressCountry": "US" }} }},
@@ -462,7 +462,7 @@ def build_page(manifest):
   "areaServed": "Worldwide",
   "knowsAbout": ["Zodiac digital art","Western zodiac","Chinese zodiac","Notion templates","Personal finance spreadsheets","Digital product design","Print-on-demand licensing"],
   "brand": [
-    {{ "@type": "Brand", "name": "Built By Josh Studio", "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads." }},
+    {{ "@type": "Brand", "name": "Built by Josh Studio", "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads." }},
     {{ "@type": "Brand", "name": "Tynkr Tools & Co", "description": "Notion OS templates and Excel and Google Sheets workbooks for creators, solopreneurs, and personal-finance milestones." }}
   ],
   "contactPoint": {{ "@type": "ContactPoint", "email": "josh@builtbyjoshstudio.com", "contactType": "customer support", "areaServed": "Worldwide", "availableLanguage": "English" }},
@@ -475,7 +475,7 @@ def build_page(manifest):
   <div class="stars" id="starsContainer"></div>
 
   <nav class="site-nav">
-    <a href="../index.html" class="nav-logo"><span class="logo-full">Built By Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
+    <a href="../index.html" class="nav-logo"><span class="logo-full">Built by Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
     <ul class="nav-links">
       <li><a href="../index.html#tynkr">Templates</a></li>
       <li><a href="../index.html#builtbyjosh" class="active">Zodiac Art</a></li>
@@ -497,13 +497,13 @@ def build_page(manifest):
     <h1 class="collection-title">Chinese Zodiac Realms Bundle — All 12 Animals in One Collection</h1>
     <p class="collection-tagline">A landscape-style Realm for every Chinese zodiac animal — Rat through Pig. Twelve mythic environments, each in two numbered variants, rendered with cinematic depth and delivered as one bundle for $29.99. 144 print-ready files in total. Personal use and print-on-demand licensed up to 100 prints per design.</p>
     <div class="hero-image">
-      <img src="../{hero_thumb}" alt="Chinese Zodiac Realms preview — 12 landscape-style Realms, hero design The Radiant Dominion (Dragon), from Built By Josh Studio" />
+      <img src="../{hero_thumb}" alt="Chinese Zodiac Realms preview — 12 landscape-style Realms, hero design The Radiant Dominion (Dragon), from Built by Josh Studio" />
     </div>
   </header>
 
   <aside class="short-version">
     <div class="short-version-label">The Short Version</div>
-    <p>The Chinese Zodiac Realms Bundle from Built By Josh Studio is a single-collection bundle covering all 12 Chinese zodiac animals as landscape-style Realm art. Each of the 12 animals has its own original named Realm — environment rather than figure — with 2 numbered variants per animal, totaling 24 unique designs. Every design is delivered in three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) at 300 DPI, in both PNG and JPG formats, with maximum dimensions of 6000 × 9000 pixels. That's 144 print-ready files in total. The bundle is priced at $29.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
+    <p>The Chinese Zodiac Realms Bundle from Built by Josh Studio is a single-collection bundle covering all 12 Chinese zodiac animals as landscape-style Realm art. Each of the 12 animals has its own original named Realm — environment rather than figure — with 2 numbered variants per animal, totaling 24 unique designs. Every design is delivered in three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) at 300 DPI, in both PNG and JPG formats, with maximum dimensions of 6000 × 9000 pixels. That's 144 print-ready files in total. The bundle is priced at $29.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
   </aside>
 
   <div class="collection-main">
@@ -513,7 +513,7 @@ def build_page(manifest):
         <h2>The Chinese Zodiac Realms Bundle</h2>
         <p>The Chinese Zodiac Realms Bundle is a single-collection bundle covering all 12 Chinese zodiac animals — Rat through Pig — as landscape-style Realm art. Each animal has its own original named Realm: the Dragon's Radiant Dominion, the Dog's Vigilant Light, the Ox's Eternal Forge, and nine more. Every Realm ships in two numbered variants.</p>
         <p>Where the Chinese Signs Collection gives you each animal as a figure, the Chinese Zodiac Realms Bundle gives you each animal as a place — the environment, not the inhabitant. The two collections pair naturally as figure-and-environment for any animal you stack on a wall.</p>
-        <p>Built By Josh Studio is the zodiac art brand of Built by Josh Studio LLC, a Kansas-based independent creative studio. Every Realm is original work — concepted, generated, curated, and finalized by a single founder.</p>
+        <p>Built by Josh Studio LLC, a Kansas-based independent creative studio, publishes this zodiac art under its own name. Every Realm is original work — concepted, generated, curated, and finalized by a single founder.</p>
       </section>
 
       <section>
@@ -601,7 +601,7 @@ def build_page(manifest):
 
       <div class="etsy-secondary">
         <div class="etsy-secondary-label">Looking for something different?</div>
-        <p>The Built By Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
+        <p>The Built by Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
         <p class="etsy-pause-note">Etsy storefront currently on a brief verification pause while the IRS finalizes EIN verification — Chinese Realms Bundle purchases above are unaffected.</p>
       </div>
     </aside>
@@ -655,7 +655,7 @@ def build_page(manifest):
   </section>
 
   <footer>
-    <div class="footer-left"><strong>Built By Josh Studio</strong> · All digital products — instant download</div>
+    <div class="footer-left"><strong>Built by Josh Studio</strong> · All digital products — instant download</div>
     <ul class="footer-links">
       <li><a href="../index.html">Home</a></li>
       <li><a href="index.html">Collections</a></li>
