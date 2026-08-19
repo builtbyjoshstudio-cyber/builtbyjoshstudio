@@ -19,8 +19,9 @@
  *                  overlay flow to stay on-domain. Without it, free items show
  *                  a "Confirm Checkout" modal that top-level-redirects to LS,
  *                  defeating the on-domain experience. Always include it.
- * Upgrade code:    UPGRADE35  (set up matching codes on LS AND Etsy so lite users
- *                  can redeem on either platform per the in-file upgrade prompt)
+ * Upgrade code:    never published on the site or in this file (Josh's rule, 2026-08-19).
+ *                  The code ships inside the Lite downloads; matching codes exist on LS
+ *                  AND Etsy so lite users can redeem on either platform.
  * Lite pricing:    $0 lead magnet — LS captures email, delivers file, builds list
  *
  * Deploying these URLs to main flips every buy button on the site to native overlay

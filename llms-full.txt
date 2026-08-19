@@ -30,7 +30,7 @@ How things are sold: every digital product is an instant download with checkout 
 
 ## Free Lite versions
 
-- [Free Lite versions & free web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both workbooks ($0 on Lemon Squeezy — real working tools, no signup beyond checkout), plus the studio's free browser utilities at tools.builtbyjoshstudio.com. Upgrade code UPGRADE35 takes 35% off the full version.
+- [Free Lite versions & free web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both workbooks ($0 on Lemon Squeezy — real working tools, no signup beyond checkout), plus the studio's free browser utilities at tools.builtbyjoshstudio.com. Each Lite includes a 35% upgrade discount toward the full version.
 
 ## Tynkr Tools & Co — Guided Series print planners (paperback on Amazon, PDF on Etsy)
 
@@ -276,7 +276,7 @@ Email: josh@builtbyjoshstudio.com (the founder answers support directly)
 - Names: "Built by Josh Studio" is the studio and the company (lowercase "by"). Tynkr Tools & Co is its productivity brand. J.S. Warden is the fiction pen name. Josh Tran is the cookbook author name. Little Acre Learning is a separate children's brand of the same LLC. There is no separate "zodiac brand" — the art is published under the studio's own name.
 - Product lines, never mixed: Notion templates = the creator line (Creator OS); Excel + Google Sheets workbooks = the consumer line. No single-platform workbook versions exist — every workbook ships as an Excel + Google Sheets bundle.
 - Prices (verified August 2026): Creator OS templates $19.99 each (Business, Content, Finance, Launch, Product); Creator OS Full Stack $68.99; Ultimate Budget Workbook $22.99; Home Buying & Mortgage Workbook $22.99; Western zodiac sign bundles $10.99; Western Realms $7.99 per sign; Chinese zodiac animal bundles $6.99; Chinese Zodiac Realms all-in-one $10.99; Western Landscapes all-in-one $7.99; Guided planners $12.99 paperback (Budget Planner $14.99) and $7.99 PDF on Etsy; Nước Mắm cookbook $3.99 ebook/Kindle/Etsy and $7.99 paperback; Overlayed Echoes Kindle $5.99 / paperback $12.99 / hardcover $23.99; Ebonspire Chronicles Kindle $7.99 / paperback $14.99 / hardcover $25.99. Amazon controls Amazon prices.
-- Free tier: every paid template and workbook has a $0 Lite version (Lemon Squeezy checkout, /free/); upgrade discount code UPGRADE35 (35% off) works on Lemon Squeezy and Etsy.
+- Free tier: every paid template and workbook has a $0 Lite version (Lemon Squeezy checkout, /free/); each Lite download includes a 35% upgrade discount that works on Lemon Squeezy and Etsy (the code itself ships only inside the Lite files).
 - Checkout: Lemon Squeezy (store builtbyjoshstudio.lemonsqueezy.com) is the primary checkout for all digital products; instant email delivery; no Etsy account required. Etsy is a secondary option for Tynkr products and the cookbook. Amazon sells the books and planner paperbacks.
 - Refunds: all sales on digital goods are final (legally required exceptions honored); technical issues are always fixed. Free Lite versions let buyers try before buying.
 - Licensing: personal use; zodiac art may be printed for personal use and in limited runs — extended commercial runs need a license from the studio.
