@@ -1,10 +1,11 @@
 """sitemap_lastmod_sync.py -- keep <lastmod> truthful, derived from git history.
 
 For every <url> in sitemap.xml, lastmod becomes the date of the most recent *content*
-change of the page, where "content" = <title> + meta description + <body> minus
-<nav>/<footer>/<script>/<style>/comments (so site-wide chrome sweeps -- footer links,
-JSON-LD, analytics, redirect snippets -- do NOT bump lastmod, while copy, prices, links
-in the body, titles and sidebars DO).
+change of the page, where "content" = <title> + meta description + the visible text of
+<body> (minus nav/footer/script/style/comments) + the href/src values in it. Chrome sweeps
+(footer links, JSON-LD, analytics, redirect snippets) and attribute-only hygiene (image
+width/height, loading, fetchpriority, classes) do NOT bump lastmod; copy, prices, links,
+image sources, titles and sidebars DO.
 
 Rules:
   * uncommitted working-tree content change  -> today
@@ -27,6 +28,9 @@ RX_URL = re.compile(rb"<url>\s*<loc>(.*?)</loc>\s*<lastmod>(.*?)</lastmod>", re.
 
 
 def fingerprint(b: bytes) -> str:
+    """Semantic content fingerprint: title + meta description + visible text of <body> (minus
+    nav/footer/script/style/comments) + the href/src values in that body. Attribute-only
+    hygiene (width/height, loading, fetchpriority, classes, ids) does NOT change it."""
     s = b.decode("utf-8", errors="replace")
     s = re.sub(r"<!--.*?-->", "", s, flags=re.S)
     s = re.sub(r"<script\b[^>]*>.*?</script>", "", s, flags=re.S | re.I)
@@ -37,7 +41,9 @@ def fingerprint(b: bytes) -> str:
     body = body.group(1) if body else s
     body = re.sub(r"<nav\b[^>]*>.*?</nav>", "", body, flags=re.S | re.I)
     body = re.sub(r"<footer\b[^>]*>.*?</footer>", "", body, flags=re.S | re.I)
-    text = (title.group(1) if title else "") + "|" + (desc.group(1) if desc else "") + "|" + body
+    links = re.findall(r'\b(?:href|src)="([^"]*)"', body)
+    text = re.sub(r"<[^>]+>", " ", body)
+    text = (title.group(1) if title else "") + "|" + (desc.group(1) if desc else "") + "|" + text + "|" + "|".join(links)
     text = re.sub(r"\s+", " ", text).strip()
     return hashlib.sha1(text.encode("utf-8")).hexdigest()
 
