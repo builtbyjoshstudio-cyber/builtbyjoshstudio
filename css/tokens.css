@@ -516,6 +516,7 @@
 /* Footer link rows wrap on narrow viewports */
 .footer-links { flex-wrap: wrap; }
 
+.footer-legal { color: #6d6b66; } /* light-theme AA (P3); the dark override below still wins */
 /* Dark-footer readability: legal + collections (data-theme="dark"). Attribution line + brand link. */
 [data-theme="dark"] .footer-legal { color: rgba(255,255,255,0.66); }
 [data-theme="dark"] .footer-legal a { color: #cfe0f5; text-decoration: underline; text-underline-offset: 2px; }

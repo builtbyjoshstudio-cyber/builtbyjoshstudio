@@ -130,7 +130,7 @@ body.nav-open .nav-toggle span:nth-child(3) {
   letter-spacing: 0.04em;
   line-height: 1.5;
   text-align: center;
-  color: rgba(140, 140, 140, 0.95);
+  color: #6d6b66; /* AA on the cream footers (P3); dark footers override below/inline */
 }
 .footer-legal br + * { margin-top: 0.2rem; }
 @media (max-width: 720px) {

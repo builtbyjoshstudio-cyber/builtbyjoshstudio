@@ -70,7 +70,7 @@
     .legal-main section:first-child { border-top: none; padding-top: 0; }
     .legal-main h2 { font-family: 'Bricolage Grotesque', serif; font-size: clamp(1.4rem, 2.6vw, 1.85rem); font-weight: 700; letter-spacing: 0.02em; color: var(--bbj-text); margin-bottom: 1.3rem; line-height: 1.2; }
     .legal-main h3 { font-family: 'Bricolage Grotesque', serif; font-size: 1.15rem; font-weight: 700; color: var(--bbj-text); letter-spacing: 0.03em; margin-top: 2rem; margin-bottom: 0.7rem; }
-    .legal-main h4 { font-family: 'Bricolage Grotesque', serif; font-size: 0.92rem; font-weight: 700; color: var(--bbj-text); letter-spacing: 0.05em; text-transform: uppercase; margin-top: 1.5rem; margin-bottom: 0.7rem; }
+    .legal-main h3, .legal-main h4 { font-family: 'Bricolage Grotesque', serif; font-size: 0.92rem; font-weight: 700; color: var(--bbj-text); letter-spacing: 0.05em; text-transform: uppercase; margin-top: 1.5rem; margin-bottom: 0.7rem; }
     .legal-main p { font-family: 'Hanken Grotesk', serif; font-size: 1.08rem; line-height: 1.7; color: var(--body-read); margin-bottom: 1.1rem; }
     .legal-main p strong { color: var(--bbj-text); font-weight: 600; }
     .legal-main ul { list-style: none; margin: 0 0 1.5rem 0; padding: 0; }
@@ -96,12 +96,12 @@
     .about-block .about-line strong { font-family: 'Bricolage Grotesque', serif; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bbj-accent); display: inline-block; min-width: 175px; }
 
     footer { background: #14130e; padding: 3rem 5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-    .footer-left { font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .footer-left { font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
     .footer-left strong { color: rgba(255,255,255,0.7); }
     .footer-links { display: flex; gap: 1.5rem; list-style: none; }
-    .footer-links a { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; letter-spacing: 0.06em; text-transform: uppercase; }
+    .footer-links a { font-size: 0.75rem; color: rgba(255,255,255,0.62); text-decoration: none; transition: color 0.2s; letter-spacing: 0.06em; text-transform: uppercase; }
     .footer-links a:hover { color: rgba(255,255,255,0.7); }
-    .footer-legal { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.3); width: 100%; text-align: center; margin-top: 1rem; line-height: 1.6; }
+    .footer-legal { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.62); width: 100%; text-align: center; margin-top: 1rem; line-height: 1.6; }
 
     @media (max-width: 720px) {
       .legal-hero { padding: 7rem 1.5rem 1rem; }
@@ -271,14 +271,14 @@
       <div class="universal-block">
         <p>Whichever Collection you buy from, every BBJ Studio license includes the same core terms. The differences between the five license PDFs are limited to bundle-specific language — which Collection the license covers and what files are included. The legal substance below applies universally.</p>
 
-        <h4>What you can do with the digital files</h4>
+        <h3>What you can do with the digital files</h3>
         <ul>
           <li>View, display, and print them for your own personal use</li>
           <li>Produce physical print-on-demand products (framed prints, posters, canvases, mugs, t-shirts, phone cases, and similar tangible goods) up to a cumulative cap of 100 physical units per individual design, across all formats, vendors, channels, and time periods combined</li>
           <li>Use the prints as personal or commercial gifts within the same 100-print-per-design cap</li>
         </ul>
 
-        <h4>What you cannot do</h4>
+        <h3>What you cannot do</h3>
         <ul>
           <li>Redistribute, share, sell, or transmit the digital files themselves to anyone, in any format, by any means</li>
           <li>Use the files as input, training data, reference data, or seed images for any AI model, machine learning system, or generative model</li>
@@ -288,13 +288,13 @@
           <li>Modify the designs in a way that misrepresents them as your own original work</li>
         </ul>
 
-        <h4>AI disclosure</h4>
+        <h3>AI disclosure</h3>
         <p>Every BBJ Studio design is created using a combination of human creative direction and AI image generation tools, including Leonardo.ai. Selection, curation, refinement, post-processing, and final arrangement are all done by the studio's founder. This is disclosed in full in every License Agreement.</p>
 
-        <h4>Governing law</h4>
+        <h3>Governing law</h3>
         <p>All licenses are governed by Kansas law, with disputes resolved exclusively in Kansas state or federal courts. Built by Josh Studio LLC is a Kansas limited liability company (Kansas Business ID 10076138).</p>
 
-        <h4>Need more than 100 prints per design?</h4>
+        <h3>Need more than 100 prints per design?</h3>
         <p>Extended commercial licensing is available for larger print volumes. Contact <a href="mailto:josh@builtbyjoshstudio.com">josh@builtbyjoshstudio.com</a> before exceeding the cap.</p>
       </div>
     </section>
@@ -339,7 +339,7 @@
       <li><a href="/terms.html">Terms</a></li>
     </ul>
     <nav aria-label="More from Built by Josh Studio" style="flex:0 0 100%;max-width:1160px;margin:0 auto 14px;padding:14px 0 0;border-top:1px solid rgba(128,128,128,.18);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11.5px;letter-spacing:.05em;">
-      <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.55;">More from the studio:</span>
+      <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
       <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
       <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tynkr apps</a>
       <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Kitchen tools</a>
