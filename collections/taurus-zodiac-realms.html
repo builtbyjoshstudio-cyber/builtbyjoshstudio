@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark" data-glass="cosmic">
 <head>
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>(function(){var l=function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J";document.head.appendChild(s);};var i=window.requestIdleCallback||function(cb){return setTimeout(cb,300);};var g=function(){i(l,{timeout:1500});};if(document.readyState==="complete"){g();}else{window.addEventListener("load",g);}})();</script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -775,18 +775,29 @@
   </footer>
 
   <script>
-    const container = document.getElementById('starsContainer');
-    const starCount = Math.min(340, Math.max(150, Math.round((window.innerWidth * window.innerHeight) / 5500)));
-    const starFrag = document.createDocumentFragment();
-    for (let i = 0; i < starCount; i++) {
-      const s = document.createElement('div');
-      s.className = 'star';
-      const big = Math.random() > 0.82;
-      const sz = big ? (Math.random() > 0.6 ? 4 : 3) : 2;
-      s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:-${Math.random()*4}s;--op:${0.45+Math.random()*0.55};filter:blur(${big&&Math.random()>0.5?'1px':'0px'});width:${sz}px;height:${sz}px;`;
-      starFrag.appendChild(s);
-    }
-    container.appendChild(starFrag);
+    // Star field -- deferred (after load + idle) and lighter, so it never competes with first paint / LCP
+    (function () {
+      var run = function () {
+        var container = document.getElementById('starsContainer');
+        if (!container) return;
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var w = window.innerWidth, h = window.innerHeight, mobile = w < 768;
+        var starCount = Math.min(mobile ? 70 : 150, Math.max(mobile ? 35 : 60, Math.round((w * h) / (mobile ? 16000 : 11000))));
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < starCount; i++) {
+          var s = document.createElement('div');
+          s.className = 'star';
+          var big = Math.random() > 0.82;
+          var sz = big ? (Math.random() > 0.6 ? 4 : 3) : 2;
+          s.style.cssText = 'left:' + (Math.random() * 100) + '%;top:' + (Math.random() * 100) + '%;--d:' + (2 + Math.random() * 4) + 's;--delay:-' + (Math.random() * 4) + 's;--op:' + (0.45 + Math.random() * 0.55) + ';width:' + sz + 'px;height:' + sz + 'px;';
+          frag.appendChild(s);
+        }
+        container.appendChild(frag);
+      };
+      var idle = window.requestIdleCallback || function (cb) { return setTimeout(cb, 250); };
+      var go = function () { idle(run, { timeout: 2000 }); };
+      if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
+    })();
   </script>
   <!-- GA4: view_item -->
   <script>

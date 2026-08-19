@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>(function(){var l=function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J";document.head.appendChild(s);};var i=window.requestIdleCallback||function(cb){return setTimeout(cb,300);};var g=function(){i(l,{timeout:1500});};if(document.readyState==="complete"){g();}else{window.addEventListener("load",g);}})();</script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -1576,6 +1576,13 @@
       }
     }
 
+  
+    /* perf: skip layout/paint for below-fold sections until they approach the viewport */
+    #western-realms, #chinese-zodiac, #chinese-realms, #landscapes, #free-tools, #money-tools,
+    #planners, #desktop-apps, #faq, #about, .social-proof {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 900px;
+    }
   </style>
   <link rel="stylesheet" href="/css/tokens.css" />
 
@@ -2977,20 +2984,42 @@
   <script>
     // ── Star field ──
     // fill the dark zodiac hero + every dark zodiac section; density scaled to area
-    document.querySelectorAll('.stars').forEach(function (container) {
-      const rect = container.getBoundingClientRect();
-      const count = Math.min(300, Math.max(60, Math.round((rect.width * rect.height) / 5500)));
-      const frag = document.createDocumentFragment();
-      for (let i = 0; i < count; i++) {
-        const s = document.createElement('div');
-        s.className = 'star';
-        const big = Math.random() > 0.82;
-        const sz = big ? (Math.random() > 0.6 ? 4 : 3) : 2;
-        s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:-${Math.random()*4}s;--op:${0.45+Math.random()*0.55};filter:blur(${big && Math.random() > 0.5 ? '1px' : '0px'});width:${sz}px;height:${sz}px;`;
-        frag.appendChild(s);
-      }
-      container.appendChild(frag);
-    });
+    // deferred (after load + idle), per-container IntersectionObserver, lighter density, no blur
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var mobile = window.innerWidth < 768;
+      var make = function (container) {
+        if (container.getAttribute('data-stars') === '1') return;
+        container.setAttribute('data-stars', '1');
+        var rect = container.getBoundingClientRect();
+        var count = Math.min(mobile ? 70 : 120, Math.max(mobile ? 30 : 40, Math.round((rect.width * rect.height) / (mobile ? 16000 : 11000))));
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < count; i++) {
+          var s = document.createElement('div');
+          s.className = 'star';
+          var big = Math.random() > 0.82;
+          var sz = big ? (Math.random() > 0.6 ? 4 : 3) : 2;
+          s.style.cssText = 'left:' + (Math.random() * 100) + '%;top:' + (Math.random() * 100) + '%;--d:' + (2 + Math.random() * 4) + 's;--delay:-' + (Math.random() * 4) + 's;--op:' + (0.45 + Math.random() * 0.55) + ';width:' + sz + 'px;height:' + sz + 'px;';
+          frag.appendChild(s);
+        }
+        container.appendChild(frag);
+      };
+      var run = function () {
+        if (reduce) return;
+        var containers = document.querySelectorAll('.stars');
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) { make(e.target); io.unobserve(e.target); } });
+          }, { rootMargin: '400px 0px' });
+          containers.forEach(function (c) { io.observe(c); });
+        } else {
+          containers.forEach(make);
+        }
+      };
+      var idle = window.requestIdleCallback || function (cb) { return setTimeout(cb, 250); };
+      var go = function () { idle(run, { timeout: 2000 }); };
+      if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
+    })();
 
     // ── Nav dark mode on scroll — tracks dark-bg sections ──
     const nav = document.getElementById('mainNav');
