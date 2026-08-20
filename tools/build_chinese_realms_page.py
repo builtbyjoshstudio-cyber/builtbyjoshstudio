@@ -218,7 +218,7 @@ def build_page(manifest):
       "https://builtbyjoshstudio.com/{hero_thumb}"
     ],
     "url": "https://builtbyjoshstudio.com/collections/chinese-zodiac-realms.html",
-    "sku": "BBJ-CR-ALL",
+    "sku": "bbj-chinese-zodiac-realms",
     "category": "Digital Art / Zodiac Art / Chinese Realms",
     "brand": {{ "@type": "Brand", "name": "Built by Josh Studio" }},
     "manufacturer": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},

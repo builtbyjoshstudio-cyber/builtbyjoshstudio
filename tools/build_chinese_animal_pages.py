@@ -30,18 +30,18 @@ ALL_ANIMALS_ORDER = ['Rat','Ox','Tiger','Rabbit','Dragon','Snake','Horse','Goat'
 # Per-animal metadata. Years = 4 most recent (12-year cycle). Trine = the
 # three-animal compatibility group this animal belongs to (includes self).
 ANIMAL_META = {
-    'Rat':     dict(slug='rat',     element='Water', yin_yang='Yang', order='1st',  sku='BBJ-CS-RAT',     years='2020, 2008, 1996, 1984', trine='Rat, Dragon, Monkey',   glyph='🐀'),
-    'Ox':      dict(slug='ox',      element='Earth', yin_yang='Yin',  order='2nd',  sku='BBJ-CS-OX',      years='2021, 2009, 1997, 1985', trine='Ox, Snake, Rooster',    glyph='🐂'),
-    'Tiger':   dict(slug='tiger',   element='Wood',  yin_yang='Yang', order='3rd',  sku='BBJ-CS-TIGER',   years='2022, 2010, 1998, 1986', trine='Tiger, Horse, Dog',     glyph='🐅'),
-    'Rabbit':  dict(slug='rabbit',  element='Wood',  yin_yang='Yin',  order='4th',  sku='BBJ-CS-RABBIT',  years='2023, 2011, 1999, 1987', trine='Rabbit, Goat, Pig',     glyph='🐇'),
-    'Dragon':  dict(slug='dragon',  element='Earth', yin_yang='Yang', order='5th',  sku='BBJ-CS-DRAGON',  years='2024, 2012, 2000, 1988', trine='Rat, Dragon, Monkey',   glyph='🐉'),
-    'Snake':   dict(slug='snake',   element='Fire',  yin_yang='Yin',  order='6th',  sku='BBJ-CS-SNAKE',   years='2025, 2013, 2001, 1989', trine='Ox, Snake, Rooster',    glyph='🐍'),
-    'Horse':   dict(slug='horse',   element='Fire',  yin_yang='Yang', order='7th',  sku='BBJ-CS-HORSE',   years='2026, 2014, 2002, 1990', trine='Tiger, Horse, Dog',     glyph='🐎'),
-    'Goat':    dict(slug='goat',    element='Earth', yin_yang='Yin',  order='8th',  sku='BBJ-CS-GOAT',    years='2027, 2015, 2003, 1991', trine='Rabbit, Goat, Pig',     glyph='🐐'),
-    'Monkey':  dict(slug='monkey',  element='Metal', yin_yang='Yang', order='9th',  sku='BBJ-CS-MONKEY',  years='2028, 2016, 2004, 1992', trine='Rat, Dragon, Monkey',   glyph='🐒'),
-    'Rooster': dict(slug='rooster', element='Metal', yin_yang='Yin',  order='10th', sku='BBJ-CS-ROOSTER', years='2029, 2017, 2005, 1993', trine='Ox, Snake, Rooster',    glyph='🐓'),
-    'Dog':     dict(slug='dog',     element='Earth', yin_yang='Yang', order='11th', sku='BBJ-CS-DOG',     years='2030, 2018, 2006, 1994', trine='Tiger, Horse, Dog',     glyph='🐕'),
-    'Pig':     dict(slug='pig',     element='Water', yin_yang='Yin',  order='12th', sku='BBJ-CS-PIG',     years='2031, 2019, 2007, 1995', trine='Rabbit, Goat, Pig',     glyph='🐖'),
+    'Rat':     dict(slug='rat',     element='Water', yin_yang='Yang', order='1st',  sku='bbj-rat-chinese-zodiac-art',     years='2020, 2008, 1996, 1984', trine='Rat, Dragon, Monkey',   glyph='🐀'),
+    'Ox':      dict(slug='ox',      element='Earth', yin_yang='Yin',  order='2nd',  sku='bbj-ox-chinese-zodiac-art',      years='2021, 2009, 1997, 1985', trine='Ox, Snake, Rooster',    glyph='🐂'),
+    'Tiger':   dict(slug='tiger',   element='Wood',  yin_yang='Yang', order='3rd',  sku='bbj-tiger-chinese-zodiac-art',   years='2022, 2010, 1998, 1986', trine='Tiger, Horse, Dog',     glyph='🐅'),
+    'Rabbit':  dict(slug='rabbit',  element='Wood',  yin_yang='Yin',  order='4th',  sku='bbj-rabbit-chinese-zodiac-art',  years='2023, 2011, 1999, 1987', trine='Rabbit, Goat, Pig',     glyph='🐇'),
+    'Dragon':  dict(slug='dragon',  element='Earth', yin_yang='Yang', order='5th',  sku='bbj-dragon-chinese-zodiac-art',  years='2024, 2012, 2000, 1988', trine='Rat, Dragon, Monkey',   glyph='🐉'),
+    'Snake':   dict(slug='snake',   element='Fire',  yin_yang='Yin',  order='6th',  sku='bbj-snake-chinese-zodiac-art',   years='2025, 2013, 2001, 1989', trine='Ox, Snake, Rooster',    glyph='🐍'),
+    'Horse':   dict(slug='horse',   element='Fire',  yin_yang='Yang', order='7th',  sku='bbj-horse-chinese-zodiac-art',   years='2026, 2014, 2002, 1990', trine='Tiger, Horse, Dog',     glyph='🐎'),
+    'Goat':    dict(slug='goat',    element='Earth', yin_yang='Yin',  order='8th',  sku='bbj-goat-chinese-zodiac-art',    years='2027, 2015, 2003, 1991', trine='Rabbit, Goat, Pig',     glyph='🐐'),
+    'Monkey':  dict(slug='monkey',  element='Metal', yin_yang='Yang', order='9th',  sku='bbj-monkey-chinese-zodiac-art',  years='2028, 2016, 2004, 1992', trine='Rat, Dragon, Monkey',   glyph='🐒'),
+    'Rooster': dict(slug='rooster', element='Metal', yin_yang='Yin',  order='10th', sku='bbj-rooster-chinese-zodiac-art', years='2029, 2017, 2005, 1993', trine='Ox, Snake, Rooster',    glyph='🐓'),
+    'Dog':     dict(slug='dog',     element='Earth', yin_yang='Yang', order='11th', sku='bbj-dog-chinese-zodiac-art',     years='2030, 2018, 2006, 1994', trine='Tiger, Horse, Dog',     glyph='🐕'),
+    'Pig':     dict(slug='pig',     element='Water', yin_yang='Yin',  order='12th', sku='bbj-pig-chinese-zodiac-art',     years='2031, 2019, 2007, 1995', trine='Rabbit, Goat, Pig',     glyph='🐖'),
 }
 
 # Two styles. Brief 5C.3 order: Chinese Animals (traditional) first, then

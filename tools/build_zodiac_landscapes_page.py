@@ -215,7 +215,7 @@ def build_page():
       "https://builtbyjoshstudio.com/{hero_thumb}"
     ],
     "url": "https://builtbyjoshstudio.com/collections/zodiac-landscapes.html",
-    "sku": "BBJ-WL-ALL",
+    "sku": "bbj-zodiac-landscapes",
     "category": "Digital Art / Zodiac Art / Western Landscapes",
     "brand": {{ "@type": "Brand", "name": "Built by Josh Studio" }},
     "manufacturer": {{ "@id": "https://builtbyjoshstudio.com/#organization" }},
