@@ -150,7 +150,9 @@ h2 + p, h3 + p, blockquote + p, .scene-break + p {{ text-indent: 0; }}
 h2 + p::first-line {{ font-variant: small-caps; letter-spacing: 0.04em; }}
 
 .scene-break {{ text-align: center; text-indent: 0; margin: 1.5em 0; letter-spacing: 0.5em; }}
-blockquote {{ margin: 1.2em 2.2em; font-size: 10.5pt; font-style: italic; }}
+/* Block quotations are set left-aligned, not justified: a short quote across a
+   narrow measure would otherwise stretch its word spacing into visible rivers. */
+blockquote {{ margin: 1.2em 2.2em; font-size: 10.5pt; font-style: italic; text-align: left; }}
 blockquote p {{ text-indent: 0; }}
 code {{ font-family: "Courier New", monospace; font-size: 9.5pt; }}
 """

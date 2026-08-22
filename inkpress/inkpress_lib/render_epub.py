@@ -37,7 +37,9 @@ h3 { font-size: 1.1em; margin: 1.4em 0 0.6em; text-align: left; }
 p { margin: 0; text-indent: 1.4em; }
 h1 + p, h2 + p, h3 + p, blockquote + p, .scene-break + p { text-indent: 0; }
 .scene-break { text-align: center; text-indent: 0; margin: 1.4em 0; }
-blockquote { margin: 1.2em 2em; font-style: italic; }
+/* Left-aligned, not justified: short quotes on a narrow screen would
+   otherwise stretch their word spacing into visible rivers. */
+blockquote { margin: 1.2em 2em; font-style: italic; text-align: left; }
 .titlepage { text-align: center; page-break-after: always; }
 .titlepage h1 { text-align: center; page-break-before: avoid; }
 .titlepage .author { margin-top: 2em; font-size: 1.1em; }
