@@ -19,27 +19,71 @@ DEFAULT_MARGIN = "0.75in"
 DEFAULT_GUTTER = "0.25in"
 
 
-def _trim_to_size(trim):
-    """'6x9' -> '6in 9in'. Passes through anything already CSS-shaped."""
+def _trim_dimensions(trim):
+    """'6x9' -> ('6in', '9in'). Falls back to the KDP default."""
     text = str(trim).strip().lower()
     if "x" in text and "in" not in text and " " not in text:
         width, _, height = text.partition("x")
         try:
-            return f"{float(width)}in {float(height)}in"
+            return f"{float(width):g}in", f"{float(height):g}in"
         except ValueError:
             pass
-    return text or "6in 9in"
+    if " " in text:
+        width, _, height = text.partition(" ")
+        return width.strip(), height.strip()
+    return "6in", "9in"
+
+
+def _trim_to_size(trim):
+    """'6x9' -> '6in 9in'. Passes through anything already CSS-shaped."""
+    width, height = _trim_dimensions(trim)
+    return f"{width} {height}"
 
 
 def build_css(document):
     meta = document.meta
-    size = _trim_to_size(meta.get("trim", DEFAULT_TRIM))
+    trim_width, trim_height = _trim_dimensions(meta.get("trim", DEFAULT_TRIM))
+    size = f"{trim_width} {trim_height}"
     margin = meta.get("margin", DEFAULT_MARGIN)
     gutter = meta.get("gutter", DEFAULT_GUTTER)
     title = inline.plain(document.title).replace('"', '\\"')
     author = str(meta.get("author", "")).replace('"', '\\"')
 
-    return f"""@page {{
+    # Screen preview: draw each section as a physical sheet at the real trim
+    # size. Without this the file is laid out at browser-window width, which
+    # makes absolute-unit spacing and ::first-line rules look wrong even when
+    # they are correct for print.
+    screen = f"""@media screen {{
+  body {{
+    background: #d9d9dc;
+    padding: 24px 0;
+  }}
+  .titlepage, .chapter {{
+    width: {trim_width};
+    min-height: {trim_height};
+    margin: 0 auto 24px;
+    padding: {margin};
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.28);
+  }}
+  .sheet-note {{
+    max-width: {trim_width};
+    margin: 0 auto 16px;
+    font-family: -apple-system, Segoe UI, sans-serif;
+    font-size: 12px;
+    color: #45454b;
+    text-align: center;
+  }}
+}}
+
+@media print {{
+  .sheet-note {{ display: none; }}
+}}
+"""
+
+    return screen + f"""
+@page {{
   size: {size};
   margin: {margin};
 
@@ -82,7 +126,7 @@ html {{ font-family: Georgia, "Times New Roman", serif; font-size: 11pt; }}
 body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
 
 .titlepage {{ page: blank; text-align: center; page-break-after: always; }}
-.titlepage h1 {{ font-size: 24pt; margin-top: 30%; font-weight: normal; letter-spacing: 0.02em; }}
+.titlepage h1 {{ font-size: 24pt; margin-top: 2.4in; font-weight: normal; letter-spacing: 0.02em; }}
 .titlepage .subtitle {{ font-size: 13pt; font-style: italic; margin-top: 0.6em; color: #333; }}
 .titlepage .author {{ margin-top: 3em; font-size: 12pt; letter-spacing: 0.08em; text-transform: uppercase; }}
 
@@ -93,12 +137,16 @@ body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-align: center;
-  margin: 18% 0 2.4em;
+  /* Absolute, not a percentage: a percentage resolves against container
+     width, so it collapses or explodes whenever the layout width changes. */
+  margin: 1.5in 0 2.2em;
 }}
 .chapter h3 {{ font-size: 11.5pt; font-style: italic; text-align: left; margin: 1.8em 0 0.7em; }}
 
 p {{ margin: 0; text-indent: 1.4em; orphans: 2; widows: 2; }}
 h2 + p, h3 + p, blockquote + p, .scene-break + p {{ text-indent: 0; }}
+/* Small caps on the opening line only. Scoped to the sheet width so it can
+   never run away across a full browser window. */
 h2 + p::first-line {{ font-variant: small-caps; letter-spacing: 0.04em; }}
 
 .scene-break {{ text-align: center; text-indent: 0; margin: 1.5em 0; letter-spacing: 0.5em; }}
@@ -129,6 +177,12 @@ def render(document, css_override=None):
         inner = "\n".join(part for part in ([heading] + prose) if part)
         chapters.append(f'<section class="chapter">\n{inner}\n</section>')
 
+    trim_width, trim_height = _trim_dimensions(meta.get("trim", DEFAULT_TRIM))
+    note = (
+        f'<p class="sheet-note">Print preview at {trim_width} &times; {trim_height}. '
+        "Each sheet below is one page. Print to PDF with margins set to None.</p>"
+    )
+
     return f"""<!DOCTYPE html>
 <html lang="{inline.escape_attr(meta.get('language', 'en'))}">
 <head>
@@ -139,6 +193,7 @@ def render(document, css_override=None):
   </style>
 </head>
 <body>
+{note}
 <section class="titlepage">
 {chr(10).join(title_bits)}
 </section>

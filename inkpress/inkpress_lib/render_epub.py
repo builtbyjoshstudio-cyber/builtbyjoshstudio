@@ -62,16 +62,34 @@ def _xhtml(title, inner, language):
 
 def _title_page(document):
     meta = document.meta
-    parts = [f'  <h1>{inline.render(document.title)}</h1>']
+    centered = 'style="text-align: center; text-indent: 0;"'
+    parts = [f'  <h1 {centered}>{inline.render(document.title)}</h1>']
     if meta.get("subtitle"):
-        parts.append(f'  <p class="subtitle">{inline.render(meta["subtitle"])}</p>')
-    parts.append(f'  <p class="author">{inline.escape(meta.get("author", ""))}</p>')
-    return f'<section class="titlepage" epub:type="titlepage">\n' + "\n".join(parts) + "\n</section>"
+        parts.append(
+            f'  <p class="subtitle" {centered}>{inline.render(meta["subtitle"])}</p>'
+        )
+    parts.append(
+        f'  <p class="author" {centered}>{inline.escape(meta.get("author", ""))}</p>'
+    )
+    return (
+        f'<section class="titlepage" epub:type="titlepage" {centered}>\n'
+        + "\n".join(parts)
+        + "\n</section>"
+    )
+
+
+# Reading systems vary in how much of a stylesheet they honour, and several
+# override rules on bare <p>. Centring that must survive is set inline too.
+SCENE_BREAK_XHTML = (
+    '<p class="scene-break" style="text-align: center; text-indent: 0;">* * *</p>'
+)
 
 
 def _chapter_xhtml(chapter, document):
     heading = f'  <h2 id="{chapter.slug}">{inline.render(chapter.title)}</h2>'
-    prose = body.blocks_to_html(chapter.blocks, heading_level=3, indent="  ")
+    prose = body.blocks_to_html(
+        chapter.blocks, heading_level=3, indent="  ", scene_break=SCENE_BREAK_XHTML
+    )
     inner = f'<section epub:type="chapter">\n{heading}\n' + "\n".join(prose) + "\n</section>"
     return _xhtml(inline.plain(chapter.title), inner, document.meta.get("language", "en"))
 

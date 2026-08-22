@@ -254,8 +254,81 @@ class TestPipeline(unittest.TestCase):
             html = result.outputs["print"].read_text(encoding="utf-8")
 
         self.assertIn("@page", html)
-        self.assertIn("size: 6.0in 9.0in", html)
+        self.assertIn("size: 6in 9in", html)
         self.assertIn("page-break-before: right", html)
+
+    def test_print_uses_absolute_spacing_not_percentages(self):
+        """Percentages resolve against container width and collapse on screen."""
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(source, Path(directory) / "build", targets=("print",))
+            css = result.outputs["print"].read_text(encoding="utf-8")
+
+        for rule in ("margin: 18%", "margin-top: 30%"):
+            self.assertNotIn(rule, css)
+
+    def test_print_has_screen_preview_at_trim_size(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(source, Path(directory) / "build", targets=("print",))
+            html = result.outputs["print"].read_text(encoding="utf-8")
+
+        self.assertIn("@media screen", html)
+        self.assertIn("width: 6in", html)
+        self.assertIn("min-height: 9in", html)
+        self.assertIn("sheet-note", html)
+
+    def test_trim_dimensions_parse(self):
+        from inkpress_lib.render_print import _trim_dimensions
+
+        self.assertEqual(_trim_dimensions("6x9"), ("6in", "9in"))
+        self.assertEqual(_trim_dimensions("5.5x8.5"), ("5.5in", "8.5in"))
+        self.assertEqual(_trim_dimensions("210mm 297mm"), ("210mm", "297mm"))
+        self.assertEqual(_trim_dimensions("nonsense"), ("6in", "9in"))
+
+    def test_site_page_is_styled_without_a_donor(self):
+        """A page with no donor must not come out as raw unstyled HTML."""
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(source, Path(directory) / "build", targets=("site",))
+            html = result.outputs["site"].read_text(encoding="utf-8")
+
+        self.assertIn('data-inkpress="base"', html)
+        self.assertIn("max-width: 40rem", html)
+        self.assertIn(".scene-break", html)
+
+    def test_site_page_with_donor_adds_only_the_gaps(self):
+        donor = """<!DOCTYPE html><html><head>
+        <link rel="stylesheet" href="/css/site.css" />
+        </head><body><nav class="site-nav">x</nav></body></html>"""
+
+        with tempfile.TemporaryDirectory() as directory:
+            donor_path = Path(directory) / "donor.html"
+            donor_path.write_text(donor, encoding="utf-8")
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(
+                source,
+                Path(directory) / "build",
+                targets=("site",),
+                chrome=pipeline.load_chrome(donor_path),
+            )
+            html = result.outputs["site"].read_text(encoding="utf-8")
+
+        # The donor's stylesheet owns layout; inkpress only supplies its own classes.
+        self.assertNotIn("max-width: 40rem", html)
+        self.assertIn(".scene-break", html)
+
+    def test_epub_centres_inline_for_strict_readers(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(source, Path(directory) / "build", targets=("epub",))
+
+            with zipfile.ZipFile(result.outputs["epub"]) as archive:
+                chapter = archive.read("OEBPS/chap-001.xhtml").decode()
+                title_page = archive.read("OEBPS/titlepage.xhtml").decode()
+
+        self.assertIn('class="scene-break" style="text-align: center;', chapter)
+        self.assertIn("text-align: center", title_page)
 
     def test_chrome_is_lifted_from_donor(self):
         donor = """<!DOCTYPE html><html><head>

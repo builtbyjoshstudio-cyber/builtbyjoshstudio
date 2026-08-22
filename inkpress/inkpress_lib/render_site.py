@@ -19,6 +19,71 @@ from . import body, inline
 DEFAULT_SITE_NAME = "Built By Josh Studio"
 DEFAULT_BASE_URL = "https://builtbyjoshstudio.com"
 
+# Styling for the classes inkpress introduces. A site stylesheet has no reason
+# to know about .scene-break, so these ship with the page or the prose renders
+# unstyled. Kept to single-class selectors so real site CSS outranks nothing it
+# actually defines.
+BASE_CSS_MINIMAL = """.dispatch-body .scene-break {
+    text-align: center;
+    text-indent: 0;
+    letter-spacing: 0.55em;
+    margin: 2.1em 0;
+    opacity: 0.55;
+  }
+  .dispatch-body blockquote {
+    margin: 1.7em 0;
+    padding-left: 1.1em;
+    border-left: 2px solid currentColor;
+    font-style: italic;
+    opacity: 0.85;
+  }
+  .dispatch-body blockquote p { text-indent: 0; }"""
+
+# Everything above plus a readable standalone layout, used when no donor page
+# supplies the site's own stylesheet.
+BASE_CSS_FULL = (
+    """:root { color-scheme: light dark; }
+  body {
+    margin: 0;
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    line-height: 1.65;
+    color: #1c1c1e;
+    background: #fdfdfc;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e8e8ea; background: #16161a; }
+  }
+  .dispatch { max-width: 40rem; margin: 0 auto; padding: 3rem 1.4rem 5rem; }
+  .dispatch-header { margin-bottom: 2.4rem; }
+  .dispatch-eyebrow {
+    font-family: ui-monospace, "JetBrains Mono", SFMono-Regular, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    opacity: 0.62;
+    margin-bottom: 0.9rem;
+  }
+  .dispatch-header h1 {
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    line-height: 1.15;
+    margin: 0 0 0.9rem;
+    font-weight: 600;
+  }
+  .dispatch-standfirst { font-size: 1.08rem; opacity: 0.82; margin: 0 0 0.5rem; }
+  .dispatch-log {
+    font-family: ui-monospace, "JetBrains Mono", SFMono-Regular, monospace;
+    font-size: 0.8rem;
+    opacity: 0.58;
+    margin: 0;
+  }
+  .dispatch-body > p { margin: 0 0 1.25em; }
+  .dispatch-body h2 { font-size: 1.45rem; margin: 2.6rem 0 1rem; line-height: 1.25; }
+  .dispatch-body h3 { font-size: 1.12rem; margin: 2rem 0 0.7rem; opacity: 0.9; }
+  .dispatch-body a { color: inherit; text-underline-offset: 0.16em; }
+  """
+    + BASE_CSS_MINIMAL
+)
+
 _HEAD_RE = re.compile(r"<head\b[^>]*>(.*?)</head>", re.DOTALL | re.IGNORECASE)
 _ASSET_RE = re.compile(
     r"<link\b[^>]*\brel=[\"'](?:stylesheet|preconnect|preload)[\"'][^>]*>"
@@ -121,10 +186,23 @@ def _schema_blocks(document, page_url, meta, base_url):
     )
 
 
-def render(document, chrome=None, base_url=DEFAULT_BASE_URL, path_prefix="writing"):
-    """Render the Document as a complete site page. Returns HTML text."""
+def render(document, chrome=None, base_url=DEFAULT_BASE_URL, path_prefix="writing",
+           base_css=True):
+    """Render the Document as a complete site page. Returns HTML text.
+
+    base_css ships styling for the classes inkpress introduces. With a chrome
+    donor only the gaps are filled (the donor's stylesheet does the rest); with
+    no donor the page gets a full readable layout so it is never raw HTML.
+    Pass False to emit no <style> block at all.
+    """
     meta = document.meta
     chrome = chrome or {"head_assets": "", "nav": "", "footer": ""}
+    has_donor_css = bool(chrome.get("head_assets"))
+
+    style_block = ""
+    if base_css:
+        rules = BASE_CSS_MINIMAL if has_donor_css else BASE_CSS_FULL
+        style_block = f'  <style data-inkpress="base">\n  {rules}\n  </style>\n'
 
     title = inline.plain(document.title)
     description = meta.get("description", "")
@@ -201,7 +279,7 @@ def render(document, chrome=None, base_url=DEFAULT_BASE_URL, path_prefix="writin
   {twitter_tags}
 
 {_schema_blocks(document, page_url, meta, base_url)}
-{head_assets}</head>
+{head_assets}{style_block}</head>
 <body>
 {nav_block}
   <article class="dispatch">
