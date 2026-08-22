@@ -44,14 +44,25 @@ def load_chrome(donor_path):
 
 
 def build(source, out_dir, targets=ALL_TARGETS, chrome=None, base_url=None,
-          path_prefix="writing", print_css=None, dry_run=False):
-    """Run the full pipeline for one manuscript."""
+          path_prefix="writing", print_css=None, dry_run=False, meta_overrides=None):
+    """Run the full pipeline for one manuscript.
+
+    meta_overrides supplies front matter the file itself is missing — the
+    desktop app passes what the user typed into its form. Applied before
+    structure.build so overridden values are typeset like any other.
+    """
     targets = tuple(targets)
     unknown = [target for target in targets if target not in ALL_TARGETS]
     if unknown:
         raise ValueError(f"unknown target(s): {', '.join(unknown)}")
 
     parsed = ms.load(source)
+
+    if meta_overrides:
+        for key, value in meta_overrides.items():
+            if value not in (None, "", []):
+                parsed.meta[key] = value
+
     document = structure.build(parsed)
 
     result = BuildResult(document)

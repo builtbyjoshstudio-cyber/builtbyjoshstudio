@@ -26,7 +26,25 @@ fix a typo once and all three outputs change together.
 Verifies Python, creates working folders, runs the test suite, and builds the
 sample manuscript so you can see real output before pointing it at a draft.
 
-## Build
+## The app
+
+Double-click **`inkpress-app.cmd`**.
+
+Pick a manuscript, fill in anything its header is missing, tick the formats you
+want, click Format. The details form prefills from the manuscript when it has a
+header, and anything you type wins over what's in the file — so a plain `.md`
+with no header at all still works.
+
+You can also drag a manuscript onto `inkpress-app.cmd` to open it directly.
+
+Tkinter ships with Python, so there is nothing extra to install. Builds run on a
+worker thread, so the window stays responsive, and missing details are reported
+as plain instructions ("Fill in the Author field above") rather than tracebacks.
+
+The command line below does the same work and takes the same options — the app
+is a window over the identical pipeline, not a reimplementation.
+
+## Build from the command line
 
 ```powershell
 .\inkpress.ps1 manuscripts\your-draft.md
@@ -193,6 +211,8 @@ background graphics.
 ```
 inkpress/
   bootstrap-inkpress.ps1     setup + smoke test
+  inkpress-app.cmd           double-click to open the app
+  inkpress_app.py            the desktop app (Tkinter)
   inkpress.ps1               PowerShell wrapper
   inkpress.py                CLI
   inkpress_lib/

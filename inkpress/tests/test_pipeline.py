@@ -284,6 +284,56 @@ class TestPipeline(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             pipeline.load_chrome("no-such-page.html")
 
+    def test_meta_overrides_supply_missing_front_matter(self):
+        """The desktop app's form fields fill in what a bare manuscript lacks."""
+        bare = "Just prose, no header at all.\n"
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(bare, directory)
+
+            with self.assertRaises(validate.ValidationError):
+                pipeline.build(source, Path(directory) / "a", targets=("site",))
+
+            result = pipeline.build(
+                source,
+                Path(directory) / "b",
+                targets=("site",),
+                meta_overrides={
+                    "title": "Supplied Title",
+                    "author": "A. Writer",
+                    "date": "2026-08-22",
+                    "description": "Supplied description.",
+                },
+            )
+            html = result.outputs["site"].read_text(encoding="utf-8")
+
+        self.assertEqual(result.document.slug, "supplied-title")
+        self.assertIn("Supplied Title", html)
+        self.assertIn("Supplied description.", html)
+
+    def test_blank_overrides_do_not_clobber_front_matter(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(
+                source,
+                Path(directory) / "build",
+                targets=("site",),
+                meta_overrides={"title": "", "author": None},
+            )
+        self.assertEqual(result.document.title, "Test Book")
+        self.assertEqual(result.document.meta["author"], "A. Writer")
+
+    def test_overridden_meta_is_typeset(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(
+                source,
+                Path(directory) / "build",
+                targets=("site",),
+                meta_overrides={"title": "The Lamplighter's Round---A Test"},
+            )
+        self.assertIn("’", result.document.title)
+        self.assertIn("—", result.document.title)
+
 
 class TestSampleManuscript(unittest.TestCase):
     def test_sample_builds_cleanly(self):

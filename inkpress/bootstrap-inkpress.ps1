@@ -94,8 +94,21 @@ if ($found.Count -gt 0) {
     Write-Warn "or install one:  pip install weasyprint"
 }
 
+Write-Step "Checking the desktop app"
+$tkCheck = & $python -c "import tkinter" 2>&1
+if ($LASTEXITCODE -eq 0) {
+    Write-Ok "Tkinter present - double-click inkpress-app.cmd to open the app"
+} else {
+    Write-Warn "this Python has no Tkinter, so the app window cannot open."
+    Write-Warn "Reinstall Python from python.org (the standard installer includes it),"
+    Write-Warn "or use the command line below instead."
+}
+
 Write-Host ""
 Write-Host "inkpress is ready." -ForegroundColor Green
+Write-Host "  Open the app:    double-click inkpress-app.cmd"
+Write-Host ""
+Write-Host "  Or from here:"
 Write-Host "  Build a draft:   .\inkpress.ps1 manuscripts\your-draft.md"
 Write-Host "  Site page only:  .\inkpress.ps1 manuscripts\your-draft.md --targets site"
 Write-Host "  Validate only:   .\inkpress.ps1 manuscripts\your-draft.md --check"
