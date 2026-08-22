@@ -1,4 +1,4 @@
-# inkpress/bootstrap-inkpress.ps1
+﻿# inkpress/bootstrap-inkpress.ps1
 # One-time setup and smoke test for inkpress on Windows.
 #
 #   .\bootstrap-inkpress.ps1
@@ -90,7 +90,7 @@ foreach ($tool in @("weasyprint", "prince", "pagedjs-cli")) {
 if ($found.Count -gt 0) {
     Write-Ok ("found: " + ($found -join ", "))
 } else {
-    Write-Warn "no PDF renderer on PATH — open the print interior in a browser and use Print to PDF,"
+    Write-Warn "no PDF renderer on PATH - open the print interior in a browser and use Print to PDF,"
     Write-Warn "or install one:  pip install weasyprint"
 }
 

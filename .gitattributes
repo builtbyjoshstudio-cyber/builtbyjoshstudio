@@ -17,3 +17,6 @@
 *.mp4 binary
 *.mov binary
 *.webm binary
+
+# Windows scripts: keep CRLF so PowerShell 5.1 is never surprised.
+*.ps1 text eol=crlf

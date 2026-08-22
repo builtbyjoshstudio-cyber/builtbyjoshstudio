@@ -1,4 +1,4 @@
-# inkpress/inkpress.ps1
+﻿# inkpress/inkpress.ps1
 # PowerShell wrapper for inkpress.py, matching the tools/publish-next-cooking.ps1 pattern.
 # Runs from anywhere on disk:
 #   .\inkpress.ps1 manuscripts\sample-manuscript.md
