@@ -38,9 +38,15 @@ except ImportError:  # pragma: no cover - only on a Python built without Tk
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from inkpress_lib import __version__  # noqa: E402
+from inkpress_lib import __version__, editions  # noqa: E402
 from inkpress_lib import manuscript as ms  # noqa: E402
 from inkpress_lib import pipeline, validate  # noqa: E402
+
+TIER_CHOICES = [editions.TIER_LABELS[key] for key in editions.TIERS]
+TIER_BY_LABEL = {editions.TIER_LABELS[key]: key for key in editions.TIERS}
+
+EDITION_CHOICES = [editions.EDITION_LABELS[key] for key in editions.EDITIONS]
+EDITION_BY_LABEL = {editions.EDITION_LABELS[key]: key for key in editions.EDITIONS}
 
 TARGET_LABELS = (
     ("site", "Web page", "A styled page for your site"),
@@ -94,10 +100,13 @@ class InkpressApp(ttk.Frame):
         self.status_var = tk.StringVar(value="Choose a manuscript to begin.")
         self.meta_vars = {key: tk.StringVar() for key, _ in META_FIELDS}
         self.target_vars = {key: tk.BooleanVar(value=True) for key, _, _ in TARGET_LABELS}
+        self.tier_var = tk.StringVar(value=TIER_CHOICES[0])
+        self.edition_var = tk.StringVar(value=EDITION_CHOICES[0])
 
         row = 0
         row = self._build_manuscript_row(row)
         row = self._build_details(row)
+        row = self._build_tier(row)
         row = self._build_targets(row)
         row = self._build_options(row)
         row = self._build_actions(row)
@@ -145,6 +154,47 @@ class InkpressApp(ttk.Frame):
             wraplength=520,
         ).grid(row=len(META_FIELDS), column=0, columnspan=2, sticky="w", pady=(6, 0))
         return row + 1
+
+    def _build_tier(self, row):
+        box = ttk.LabelFrame(self, text="What the buyer ordered", padding=PAD)
+        box.grid(row=row, column=0, sticky="ew", pady=(0, PAD))
+        box.columnconfigure(1, weight=1)
+
+        ttk.Label(box, text="Tier").grid(row=0, column=0, sticky="w")
+        tier_box = ttk.Combobox(
+            box, textvariable=self.tier_var, values=TIER_CHOICES,
+            state="readonly",
+        )
+        tier_box.grid(row=0, column=1, sticky="ew", padx=(PAD, 0))
+        tier_box.bind("<<ComboboxSelected>>", lambda _event: self._sync_edition_state())
+
+        ttk.Label(box, text="Edition").grid(row=1, column=0, sticky="w", pady=(6, 0))
+        self.edition_box = ttk.Combobox(
+            box, textvariable=self.edition_var, values=EDITION_CHOICES,
+            state="disabled",
+        )
+        self.edition_box.grid(row=1, column=1, sticky="ew", padx=(PAD, 0), pady=(6, 0))
+
+        self.tier_hint = ttk.Label(box, text="", foreground="#666", wraplength=520)
+        self.tier_hint.grid(row=2, column=0, columnspan=2, sticky="w", pady=(6, 0))
+
+        self._sync_edition_state()
+        return row + 1
+
+    def _sync_edition_state(self):
+        """Edition only applies to tier 3, so only enable it there."""
+        tier = TIER_BY_LABEL.get(self.tier_var.get(), editions.CLEAN)
+        if tier == editions.ILLUSTRATED:
+            self.edition_box.configure(state="readonly")
+            self.tier_hint.configure(
+                text="Edition sets both the typography package and the chapter-opener art."
+            )
+        else:
+            self.edition_box.configure(state="disabled")
+            self.tier_hint.configure(
+                text="Clean: house typography, plain headings. "
+                     "Styled: drop caps and chapter treatments."
+            )
 
     def _build_targets(self, row):
         box = ttk.LabelFrame(self, text="Formats to build", padding=PAD)
@@ -314,6 +364,13 @@ class InkpressApp(ttk.Frame):
         out_dir = self.out_var.get().strip() or str(HERE / "build")
         chrome_path = self.chrome_var.get().strip() or None
 
+        tier = TIER_BY_LABEL.get(self.tier_var.get(), editions.CLEAN)
+        edition = (
+            EDITION_BY_LABEL.get(self.edition_var.get())
+            if tier == editions.ILLUSTRATED
+            else None
+        )
+
         self.busy = True
         self.format_button.configure(state="disabled")
         self.progress.start(12)
@@ -322,11 +379,11 @@ class InkpressApp(ttk.Frame):
 
         threading.Thread(
             target=self._run_build,
-            args=(source, out_dir, targets, overrides, chrome_path),
+            args=(source, out_dir, targets, overrides, chrome_path, tier, edition),
             daemon=True,
         ).start()
 
-    def _run_build(self, source, out_dir, targets, overrides, chrome_path):
+    def _run_build(self, source, out_dir, targets, overrides, chrome_path, tier, edition):
         """Worker thread. Never touches widgets — results go through the queue."""
         try:
             chrome = pipeline.load_chrome(chrome_path) if chrome_path else None
@@ -336,8 +393,12 @@ class InkpressApp(ttk.Frame):
                 targets=targets,
                 chrome=chrome,
                 meta_overrides=overrides,
+                tier=tier,
+                edition=edition,
             )
             self.results.put(("done", result, out_dir))
+        except editions.EditionError as error:
+            self.results.put(("missing", str(error), None))
         except ms.ManuscriptError as error:
             self.results.put(("manuscript", str(error), None))
         except validate.ValidationError as error:
@@ -363,6 +424,8 @@ class InkpressApp(ttk.Frame):
         self.format_button.configure(state="normal")
 
         if kind == "done":
+            if payload.edition:
+                self.write(f"  {payload.edition.label}", "muted")
             for warning in payload.warnings:
                 self.write(f"  Heads up: {warning}", "warn")
             for target, path in payload:

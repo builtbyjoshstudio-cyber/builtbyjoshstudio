@@ -7,14 +7,19 @@ contents, and a package document listing both. The archive is assembled by
 hand because the ordering rules are strict: 'mimetype' must be the first entry
 and must be stored uncompressed, or readers reject the file.
 
+The Edition supplies fonts, colours and ornaments. For tier 3 the generated
+chapter art is written into the archive as SVG and referenced from each
+chapter, so the ebook carries the same art direction as the printed interior.
+
 Builds are reproducible — the publication UUID is derived from title + author
-via uuid5 and every timestamp comes from front matter, so rebuilding an
-unchanged manuscript produces a byte-identical archive.
+via uuid5, the art generator is seeded from chapter text, and every timestamp
+comes from front matter, so rebuilding an unchanged manuscript produces a
+byte-identical archive.
 """
 import uuid
 import zipfile
 
-from . import body, inline
+from . import art, body, editions, inline
 
 # Stable namespace so the same book always gets the same UUID.
 _NAMESPACE = uuid.UUID("6f9b1c2e-3a4d-5e6f-8a9b-0c1d2e3f4a5b")
@@ -27,23 +32,85 @@ CONTAINER_XML = """<?xml version="1.0" encoding="UTF-8"?>
 </container>
 """
 
-STYLE_CSS = """@charset "utf-8";
+# Reading systems vary in how much of a stylesheet they honour, and several
+# override rules on bare <p>. Centring that must survive is set inline too.
+_CENTERED = 'style="text-align: center; text-indent: 0;"'
 
-body { margin: 0 5%; line-height: 1.5; text-align: justify; }
-h1, h2 { text-align: left; line-height: 1.2; page-break-before: always; }
-h1 { font-size: 1.6em; margin: 2em 0 1em; }
-h2 { font-size: 1.3em; margin: 1.6em 0 0.8em; }
-h3 { font-size: 1.1em; margin: 1.4em 0 0.6em; text-align: left; }
-p { margin: 0; text-indent: 1.4em; }
-h1 + p, h2 + p, h3 + p, blockquote + p, .scene-break + p { text-indent: 0; }
-.scene-break { text-align: center; text-indent: 0; margin: 1.4em 0; }
+
+def build_style(edition):
+    drop_cap = ""
+    if edition.drop_cap:
+        drop_cap = f""".dropcap {{
+  float: left;
+  font-family: {edition.display_font};
+  font-size: 3em;
+  line-height: 0.82;
+  padding-right: 0.07em;
+  color: {edition.accent};
+}}
+.opening {{ text-indent: 0; }}
+"""
+
+    chapter_number = ""
+    if edition.chapter_number:
+        chapter_number = f""".chapter-number {{
+  display: block;
+  font-family: {edition.display_font};
+  font-size: 0.75em;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-align: center;
+  color: {edition.accent};
+  margin-bottom: 1em;
+}}
+"""
+
+    chapter_art = ""
+    if edition.art:
+        chapter_art = """.chapter-art { text-align: center; margin: 0 0 1.4em; }
+.chapter-art img { width: 100%; max-width: 100%; height: auto; }
+"""
+
+    return f"""@charset "utf-8";
+
+body {{
+  margin: 0 5%;
+  font-family: {edition.body_font};
+  color: {edition.ink};
+  line-height: 1.5;
+  text-align: justify;
+}}
+h1, h2 {{
+  font-family: {edition.display_font};
+  font-weight: {edition.display_weight};
+  letter-spacing: {edition.display_tracking};
+  text-transform: {edition.display_transform};
+  text-align: left;
+  line-height: 1.2;
+  page-break-before: always;
+}}
+h1 {{ font-size: 1.6em; margin: 2em 0 1em; }}
+h2 {{ font-size: 1.3em; margin: 1.6em 0 0.8em; }}
+h3 {{ font-size: 1.1em; margin: 1.4em 0 0.6em; text-align: left; font-style: italic; }}
+p {{ margin: 0; text-indent: 1.4em; }}
+h1 + p, h2 + p, h3 + p, blockquote + p, .scene-break + p, .chapter-number + p {{
+  text-indent: 0;
+}}
+.scene-break {{
+  text-align: center;
+  text-indent: 0;
+  margin: 1.4em 0;
+  letter-spacing: 0.4em;
+  color: {edition.accent};
+}}
 /* Left-aligned, not justified: short quotes on a narrow screen would
    otherwise stretch their word spacing into visible rivers. */
-blockquote { margin: 1.2em 2em; font-style: italic; text-align: left; }
-.titlepage { text-align: center; page-break-after: always; }
-.titlepage h1 { text-align: center; page-break-before: avoid; }
-.titlepage .author { margin-top: 2em; font-size: 1.1em; }
-"""
+blockquote {{ margin: 1.2em 2em; font-style: italic; text-align: left; }}
+blockquote p {{ text-indent: 0; }}
+.titlepage {{ text-align: center; page-break-after: always; }}
+.titlepage h1 {{ text-align: center; page-break-before: avoid; }}
+.titlepage .author {{ margin-top: 2em; font-size: 1.1em; }}
+{drop_cap}{chapter_number}{chapter_art}"""
 
 
 def _xhtml(title, inner, language):
@@ -64,35 +131,44 @@ def _xhtml(title, inner, language):
 
 def _title_page(document):
     meta = document.meta
-    centered = 'style="text-align: center; text-indent: 0;"'
-    parts = [f'  <h1 {centered}>{inline.render(document.title)}</h1>']
+    parts = [f'  <h1 {_CENTERED}>{inline.render(document.title)}</h1>']
     if meta.get("subtitle"):
         parts.append(
-            f'  <p class="subtitle" {centered}>{inline.render(meta["subtitle"])}</p>'
+            f'  <p class="subtitle" {_CENTERED}>{inline.render(meta["subtitle"])}</p>'
         )
     parts.append(
-        f'  <p class="author" {centered}>{inline.escape(meta.get("author", ""))}</p>'
+        f'  <p class="author" {_CENTERED}>{inline.escape(meta.get("author", ""))}</p>'
     )
     return (
-        f'<section class="titlepage" epub:type="titlepage" {centered}>\n'
+        f'<section class="titlepage" epub:type="titlepage" {_CENTERED}>\n'
         + "\n".join(parts)
         + "\n</section>"
     )
 
 
-# Reading systems vary in how much of a stylesheet they honour, and several
-# override rules on bare <p>. Centring that must survive is set inline too.
-SCENE_BREAK_XHTML = (
-    '<p class="scene-break" style="text-align: center; text-indent: 0;">* * *</p>'
-)
-
-
-def _chapter_xhtml(chapter, document):
-    heading = f'  <h2 id="{chapter.slug}">{inline.render(chapter.title)}</h2>'
-    prose = body.blocks_to_html(
-        chapter.blocks, heading_level=3, indent="  ", scene_break=SCENE_BREAK_XHTML
+def _chapter_xhtml(chapter, document, edition, has_art):
+    scene_break = (
+        f'<p class="scene-break" style="text-align: center; text-indent: 0;">'
+        f"{inline.escape(edition.scene_break)}</p>"
     )
-    inner = f'<section epub:type="chapter">\n{heading}\n' + "\n".join(prose) + "\n</section>"
+
+    opener = []
+    if has_art:
+        opener.append(
+            f'  <div class="chapter-art" {_CENTERED}>'
+            f'<img src="art/chap-{chapter.number:03d}.svg" alt="" /></div>'
+        )
+    if edition.chapter_number:
+        opener.append(
+            f'  <span class="chapter-number" {_CENTERED}>Chapter {chapter.number}</span>'
+        )
+    opener.append(f'  <h2 id="{chapter.slug}">{inline.render(chapter.title)}</h2>')
+
+    prose = body.blocks_to_html(
+        chapter.blocks, heading_level=3, indent="  ",
+        scene_break=scene_break, drop_cap=edition.drop_cap,
+    )
+    inner = '<section epub:type="chapter">\n' + "\n".join(opener + prose) + "\n</section>"
     return _xhtml(inline.plain(chapter.title), inner, document.meta.get("language", "en"))
 
 
@@ -111,7 +187,7 @@ def _nav_xhtml(document):
     return _xhtml("Contents", inner, document.meta.get("language", "en"))
 
 
-def _package_opf(document, book_uuid, modified):
+def _package_opf(document, book_uuid, modified, edition, art_numbers):
     meta = document.meta
     language = meta.get("language", "en")
 
@@ -129,6 +205,12 @@ def _package_opf(document, book_uuid, modified):
             'media-type="application/xhtml+xml"/>'
         )
         spine.append(f'    <itemref idref="{item_id}"/>')
+
+    for number in art_numbers:
+        manifest.append(
+            f'    <item id="art{number:03d}" href="art/chap-{number:03d}.svg" '
+            'media-type="image/svg+xml"/>'
+        )
 
     optional = []
     if meta.get("publisher"):
@@ -162,8 +244,9 @@ def _package_opf(document, book_uuid, modified):
 """
 
 
-def render(document, out_path):
+def render(document, out_path, edition=None):
     """Write the Document to out_path as an EPUB 3 file. Returns out_path."""
+    edition = edition or editions.from_meta(document.meta)
     meta = document.meta
     date = str(meta.get("date", "1970-01-01"))
     modified = f"{date}T00:00:00Z"
@@ -182,12 +265,31 @@ def render(document, out_path):
         info.external_attr = 0o644 << 16
         archive.writestr(info, data)
 
+    artwork = {}
+    if edition.art:
+        for chapter in document.chapters:
+            svg = art.render(
+                edition.art,
+                seed=f"{edition.key}|{chapter.number}|{inline.plain(chapter.title)}",
+                ink=edition.ink,
+                accent=edition.accent,
+                title=inline.plain(chapter.title),
+            )
+            if svg:
+                artwork[chapter.number] = (
+                    '<?xml version="1.0" encoding="utf-8"?>\n' + svg
+                )
+
     with zipfile.ZipFile(out_path, "w") as archive:
         # Must be first and stored, per the EPUB OCF spec.
         write(archive, "mimetype", "application/epub+zip", zipfile.ZIP_STORED)
         write(archive, "META-INF/container.xml", CONTAINER_XML)
-        write(archive, "OEBPS/style.css", STYLE_CSS)
-        write(archive, "OEBPS/content.opf", _package_opf(document, book_uuid, modified))
+        write(archive, "OEBPS/style.css", build_style(edition))
+        write(
+            archive,
+            "OEBPS/content.opf",
+            _package_opf(document, book_uuid, modified, edition, sorted(artwork)),
+        )
         write(archive, "OEBPS/nav.xhtml", _nav_xhtml(document))
         write(
             archive,
@@ -199,7 +301,9 @@ def render(document, out_path):
             write(
                 archive,
                 f"OEBPS/chap-{chapter.number:03d}.xhtml",
-                _chapter_xhtml(chapter, document),
+                _chapter_xhtml(chapter, document, edition, chapter.number in artwork),
             )
+        for number, svg in sorted(artwork.items()):
+            write(archive, f"OEBPS/art/chap-{number:03d}.svg", svg)
 
     return out_path

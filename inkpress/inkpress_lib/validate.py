@@ -39,10 +39,18 @@ def _looks_like_iso_date(value):
     return len(parts[0]) == 4 and 1 <= month <= 12 and 1 <= day <= 31
 
 
-def check(document, targets):
+def check(document, targets, edition=None):
     """Validate a Document for the given targets. Returns a list of warnings."""
     errors = []
     warnings = []
+
+    # A tier 3 edition set on a tier 1 or 2 job is almost always a mistake in
+    # the order, so say so rather than silently ignoring it.
+    if edition is not None and not edition.is_illustrated and document.meta.get("edition"):
+        warnings.append(
+            f"'edition: {document.meta['edition']}' is ignored on {edition.tier} - "
+            "edition styles apply to the illustrated tier only"
+        )
 
     required = set(REQUIRED_ALWAYS)
     for target in targets:

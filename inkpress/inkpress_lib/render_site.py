@@ -14,7 +14,7 @@ the page still renders, just with no nav or footer.
 import json
 import re
 
-from . import body, inline
+from . import art, body, editions, inline
 
 DEFAULT_SITE_NAME = "Built By Josh Studio"
 DEFAULT_BASE_URL = "https://builtbyjoshstudio.com"
@@ -186,8 +186,86 @@ def _schema_blocks(document, page_url, meta, base_url):
     )
 
 
+def _edition_css(edition):
+    """Tier styling for the web page: fonts, ornament colour, drop cap."""
+    rules = [
+        f"  .dispatch-body .scene-break {{ color: {edition.accent}; }}",
+        f"  .dispatch-header h1 {{ font-family: {edition.display_font};"
+        f" font-weight: {edition.display_weight};"
+        f" letter-spacing: {edition.display_tracking}; }}",
+        f"  .dispatch-body h2 {{ font-family: {edition.display_font};"
+        f" text-transform: {edition.display_transform};"
+        f" letter-spacing: {edition.display_tracking};"
+        f" font-weight: {edition.display_weight}; }}",
+    ]
+
+    if edition.drop_cap:
+        rules.append(
+            f"  .dispatch-body .dropcap {{ float: left; font-family: "
+            f"{edition.display_font}; font-size: 3.1em; line-height: 0.82;"
+            f" padding: 0.04em 0.09em 0 0; color: {edition.accent}; }}"
+        )
+        rules.append("  .dispatch-body .opening { text-indent: 0; }")
+
+    if edition.chapter_number:
+        rules.append(
+            f"  .dispatch-body .chapter-number {{ display: block; font-family: "
+            f"{edition.display_font}; font-size: 0.72rem; letter-spacing: 0.3em;"
+            f" text-transform: uppercase; color: {edition.accent};"
+            f" margin: 2.4rem 0 0.5rem; }}"
+        )
+
+    if edition.art:
+        rules.append("  .dispatch-body .chapter-art { margin: 2.4rem 0 1.2rem; }")
+        rules.append(
+            "  .dispatch-body .chapter-art svg { display: block; width: 100%; height: auto; }"
+        )
+
+    return "\n".join(rules)
+
+
+def _chapters_html(document, edition):
+    """Chapter bodies with the tier's opener treatment."""
+    sections = []
+
+    for chapter in document.chapters:
+        parts = []
+
+        if edition.art:
+            svg = art.render(
+                edition.art,
+                seed=f"{edition.key}|{chapter.number}|{inline.plain(chapter.title)}",
+                ink=edition.ink,
+                accent=edition.accent,
+                title=inline.plain(chapter.title),
+            )
+            if svg:
+                parts.append(f'      <div class="chapter-art">{svg}</div>')
+
+        if edition.chapter_number and not chapter.implicit:
+            parts.append(
+                f'      <span class="chapter-number">Chapter {chapter.number}</span>'
+            )
+
+        parts.append(
+            body.chapter_to_html(
+                chapter,
+                heading_level=2,
+                indent="      ",
+                scene_break=(
+                    f'<p class="scene-break" role="separator">'
+                    f"{inline.escape(edition.scene_break)}</p>"
+                ),
+                drop_cap=edition.drop_cap,
+            )
+        )
+        sections.append("\n".join(part for part in parts if part))
+
+    return "\n\n".join(sections)
+
+
 def render(document, chrome=None, base_url=DEFAULT_BASE_URL, path_prefix="writing",
-           base_css=True):
+           base_css=True, edition=None):
     """Render the Document as a complete site page. Returns HTML text.
 
     base_css ships styling for the classes inkpress introduces. With a chrome
@@ -196,13 +274,16 @@ def render(document, chrome=None, base_url=DEFAULT_BASE_URL, path_prefix="writin
     Pass False to emit no <style> block at all.
     """
     meta = document.meta
+    edition = edition or editions.from_meta(meta)
     chrome = chrome or {"head_assets": "", "nav": "", "footer": ""}
     has_donor_css = bool(chrome.get("head_assets"))
 
     style_block = ""
     if base_css:
         rules = BASE_CSS_MINIMAL if has_donor_css else BASE_CSS_FULL
-        style_block = f'  <style data-inkpress="base">\n  {rules}\n  </style>\n'
+        style_block = (
+            f'  <style data-inkpress="base">\n  {rules}\n{_edition_css(edition)}\n  </style>\n'
+        )
 
     title = inline.plain(document.title)
     description = meta.get("description", "")
@@ -258,7 +339,7 @@ def render(document, chrome=None, base_url=DEFAULT_BASE_URL, path_prefix="writin
             f'      <p class="dispatch-log">{inline.render(meta["logline"])}</p>'
         )
 
-    article_body = body.document_to_html(document, heading_level=2, indent="      ")
+    article_body = _chapters_html(document, edition)
 
     nav_block = f"\n  {chrome['nav']}\n" if chrome.get("nav") else ""
     footer_block = f"\n  {chrome['footer']}\n" if chrome.get("footer") else ""

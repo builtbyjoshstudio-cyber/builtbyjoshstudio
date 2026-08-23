@@ -12,7 +12,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from inkpress_lib import inline, pipeline, structure, typography, validate  # noqa: E402
+from inkpress_lib import art, body, editions, inline, pipeline, structure  # noqa: E402
+from inkpress_lib import typography, validate  # noqa: E402
 from inkpress_lib import manuscript as ms  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
@@ -406,6 +407,202 @@ class TestPipeline(unittest.TestCase):
             )
         self.assertIn("’", result.document.title)
         self.assertIn("—", result.document.title)
+
+
+class TestEditions(unittest.TestCase):
+    def test_tier_one_is_the_default(self):
+        edition = editions.resolve()
+        self.assertEqual(edition.tier, editions.CLEAN)
+        self.assertFalse(edition.drop_cap)
+        self.assertIsNone(edition.art)
+
+    def test_styled_has_drop_caps_but_no_art(self):
+        edition = editions.resolve("styled")
+        self.assertTrue(edition.drop_cap)
+        self.assertIsNone(edition.art)
+        self.assertFalse(edition.is_illustrated)
+
+    def test_illustrated_requires_an_edition(self):
+        with self.assertRaises(editions.EditionError):
+            editions.resolve("illustrated")
+
+    def test_each_edition_sets_typography_and_art(self):
+        for key in editions.EDITIONS:
+            edition = editions.resolve("illustrated", key)
+            self.assertTrue(edition.is_illustrated)
+            self.assertEqual(edition.art, key)
+            self.assertTrue(edition.drop_cap)
+            self.assertTrue(art.is_available(edition.art))
+
+    def test_editions_are_visually_distinct(self):
+        resolved = [editions.resolve("illustrated", key) for key in editions.EDITIONS]
+        fonts = {edition.display_font for edition in resolved}
+        accents = {edition.accent for edition in resolved}
+        self.assertEqual(len(fonts), 3, "each edition needs its own display face")
+        self.assertEqual(len(accents), 3, "each edition needs its own accent")
+
+    def test_unknown_names_are_rejected(self):
+        with self.assertRaises(editions.EditionError):
+            editions.resolve("deluxe")
+        with self.assertRaises(editions.EditionError):
+            editions.resolve("illustrated", "obsidian")
+
+    def test_overrides_beat_front_matter(self):
+        meta = {"tier": "clean", "edition": "ashveil"}
+        self.assertEqual(editions.from_meta(meta).tier, editions.CLEAN)
+        resolved = editions.from_meta(meta, tier_override="illustrated")
+        self.assertEqual(resolved.key, "ashveil")
+
+
+class TestArt(unittest.TestCase):
+    def test_art_is_deterministic(self):
+        first = art.render("ashveil", seed="chapter-one", ink="#000", accent="#f00")
+        second = art.render("ashveil", seed="chapter-one", ink="#000", accent="#f00")
+        self.assertEqual(first, second)
+
+    def test_different_chapters_differ(self):
+        first = art.render("ashveil", seed="chapter-one", ink="#000", accent="#f00")
+        second = art.render("ashveil", seed="chapter-two", ink="#000", accent="#f00")
+        self.assertNotEqual(first, second)
+
+    def test_art_is_well_formed_svg(self):
+        import xml.dom.minidom
+
+        for key in editions.EDITIONS:
+            svg = art.render(key, seed="x", ink="#111111", accent="#abcdef")
+            xml.dom.minidom.parseString(svg)
+            self.assertIn("viewBox", svg)
+
+    def test_title_is_escaped(self):
+        svg = art.render("ashveil", seed="x", title="Fish & <Chips>")
+        self.assertIn("Fish &amp; &lt;Chips&gt;", svg)
+        self.assertNotIn("<Chips>", svg)
+
+    def test_unknown_edition_renders_nothing(self):
+        self.assertEqual(art.render("nope", seed="x"), "")
+
+
+class TestDropCap(unittest.TestCase):
+    def test_wraps_first_letter(self):
+        self.assertEqual(
+            body.apply_drop_cap("The lamps went on."),
+            '<span class="dropcap">T</span>he lamps went on.',
+        )
+
+    def test_punctuation_rides_along(self):
+        """A paragraph opening on dialogue must not drop a lone quote mark."""
+        result = body.apply_drop_cap("“You’re early,” he said.")
+        self.assertEqual(result, '<span class="dropcap">“Y</span>ou’re early,” he said.')
+
+    def test_skips_leading_tags(self):
+        result = body.apply_drop_cap("<em>Later</em>, she left.")
+        self.assertEqual(result, '<em><span class="dropcap">L</span>ater</em>, she left.')
+
+    def test_only_the_first_paragraph_gets_one(self):
+        with tempfile.TemporaryDirectory() as directory:
+            document = structure.build(ms.load(write_temp(MINIMAL, directory)))
+        html = "\n".join(
+            body.blocks_to_html(document.chapters[0].blocks, drop_cap=True)
+        )
+        self.assertEqual(html.count("dropcap"), 1)
+
+
+class TestTierBuilds(unittest.TestCase):
+    def _build(self, directory, tier, edition=None, targets=pipeline.ALL_TARGETS):
+        source = write_temp(MINIMAL, directory)
+        return pipeline.build(
+            source, Path(directory) / f"build-{tier}-{edition}",
+            targets=targets, tier=tier, edition=edition,
+        )
+
+    def test_all_three_tiers_build(self):
+        with tempfile.TemporaryDirectory() as directory:
+            for tier, edition in (
+                ("clean", None),
+                ("styled", None),
+                ("illustrated", "ashveil"),
+                ("illustrated", "systemfall"),
+                ("illustrated", "vantablack"),
+            ):
+                result = self._build(directory, tier, edition)
+                self.assertEqual(len(result.outputs), 3, f"{tier}/{edition}")
+                for path in result.outputs.values():
+                    self.assertTrue(path.is_file())
+
+    def test_clean_has_no_drop_cap_and_styled_does(self):
+        with tempfile.TemporaryDirectory() as directory:
+            clean = self._build(directory, "clean", targets=("print",))
+            styled = self._build(directory, "styled", targets=("print",))
+
+            clean_html = clean.outputs["print"].read_text(encoding="utf-8")
+            styled_html = styled.outputs["print"].read_text(encoding="utf-8")
+
+        self.assertNotIn("dropcap", clean_html)
+        self.assertIn("dropcap", styled_html)
+
+    def test_only_illustrated_carries_art(self):
+        with tempfile.TemporaryDirectory() as directory:
+            styled = self._build(directory, "styled", targets=("print",))
+            illustrated = self._build(directory, "illustrated", "vantablack",
+                                      targets=("print",))
+
+            styled_html = styled.outputs["print"].read_text(encoding="utf-8")
+            art_html = illustrated.outputs["print"].read_text(encoding="utf-8")
+
+        self.assertNotIn("chapter-art", styled_html)
+        self.assertIn("chapter-art", art_html)
+        self.assertIn("<svg", art_html)
+
+    def test_epub_packages_and_manifests_its_art(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = self._build(directory, "illustrated", "ashveil", targets=("epub",))
+
+            with zipfile.ZipFile(result.outputs["epub"]) as archive:
+                names = archive.namelist()
+                opf = archive.read("OEBPS/content.opf").decode()
+
+        art_files = [name for name in names if name.startswith("OEBPS/art/")]
+        self.assertEqual(len(art_files), 2, "one per chapter")
+        for name in art_files:
+            self.assertIn(name.replace("OEBPS/", ""), opf)
+            self.assertIn('media-type="image/svg+xml"', opf)
+
+    def test_illustrated_epub_is_still_reproducible(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            kwargs = dict(targets=("epub",), tier="illustrated", edition="systemfall")
+            first = pipeline.build(source, Path(directory) / "a", **kwargs)
+            second = pipeline.build(source, Path(directory) / "b", **kwargs)
+            self.assertEqual(
+                first.outputs["epub"].read_bytes(), second.outputs["epub"].read_bytes()
+            )
+
+    def test_stray_edition_on_a_lower_tier_warns(self):
+        source_text = MINIMAL.replace(
+            "language: en", "language: en\ntier: styled\nedition: ashveil"
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(source_text, directory)
+            result = pipeline.build(source, Path(directory) / "build", targets=("print",))
+
+        self.assertTrue(any("ignored" in warning for warning in result.warnings))
+
+    def test_tier_read_from_front_matter(self):
+        source_text = MINIMAL.replace(
+            "language: en", "language: en\ntier: illustrated\nedition: vantablack"
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(source_text, directory)
+            result = pipeline.build(source, Path(directory) / "build", targets=("print",))
+
+        self.assertEqual(result.edition.key, "vantablack")
+
+    def test_bad_tier_in_front_matter_raises(self):
+        source_text = MINIMAL.replace("language: en", "language: en\ntier: platinum")
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(source_text, directory)
+            with self.assertRaises(editions.EditionError):
+                pipeline.build(source, Path(directory) / "build", targets=("print",))
 
 
 class TestSampleManuscript(unittest.TestCase):

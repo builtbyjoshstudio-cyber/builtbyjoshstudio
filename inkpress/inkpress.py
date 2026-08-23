@@ -19,7 +19,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from inkpress_lib import __version__
+from inkpress_lib import __version__, editions
 from inkpress_lib import manuscript as ms
 from inkpress_lib import pipeline, validate
 
@@ -58,6 +58,18 @@ def parse_args(argv):
         help="which outputs to build (default: all three)",
     )
     parser.add_argument("--out", default=str(DEFAULT_OUT), help="output directory")
+    parser.add_argument(
+        "--tier",
+        choices=editions.TIERS,
+        help="clean (house typography), styled (drop caps and chapter treatments), "
+             "or illustrated (needs --edition). Overrides front matter.",
+    )
+    parser.add_argument(
+        "--edition",
+        choices=editions.EDITIONS,
+        help="illustrated tier only: the buyer's edition style, which sets both "
+             "the typography package and the chapter-opener art direction",
+    )
     parser.add_argument(
         "--chrome-from",
         metavar="PAGE.html",
@@ -108,9 +120,13 @@ def main(argv=None):
             path_prefix=args.path_prefix,
             print_css=print_css,
             dry_run=args.dry_run or args.check,
+            tier=args.tier,
+            edition=args.edition,
         )
     except ms.ManuscriptError as error:
         die(f"{source.name}: {error}")
+    except editions.EditionError as error:
+        die(str(error))
     except validate.ValidationError as error:
         die(f"{source.name} failed validation:\n{error}")
 
@@ -120,6 +136,7 @@ def main(argv=None):
     document = result.document
     chapter_word = "chapter" if len(document.chapters) == 1 else "chapters"
     print(f"inkpress {__version__} — {document.plain_title()}")
+    print(f"  {result.edition.label}")
     print(
         f"  {len(document.chapters)} {chapter_word}, {document.word_count:,} words"
         f"{' (implicit single chapter)' if not document.has_real_chapters else ''}"

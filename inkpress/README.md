@@ -26,6 +26,40 @@ fix a typo once and all three outputs change together.
 Verifies Python, creates working folders, runs the test suite, and builds the
 sample manuscript so you can see real output before pointing it at a draft.
 
+## Tiers
+
+What the buyer orders. Set it in the app's dropdowns, in front matter
+(`tier:` / `edition:`), or with `--tier` / `--edition`. Explicit flags beat
+front matter.
+
+| Tier | What it is | Treatment |
+| --- | --- | --- |
+| **1 — Clean** | House typography, plain headings. No choices. | Transitional serif, plain small-caps chapter titles |
+| **2 — Styled** | House design, done well. One fixed look. | Classic serif, drop caps, chapter numbers, rule under each title, fleuron scene breaks |
+| **3 — Illustrated** | Buyer picks an edition, which sets both the typography package and the art direction | Everything in tier 2, plus generated chapter-opener art |
+
+### The three editions
+
+Tier 3 only. Each sets its own display face, accent colour, ornament and art.
+
+| Edition | Art direction | Typography |
+| --- | --- | --- |
+| **Ashveil** | Charcoal epic — layered ash ridge with ember flecks | Classic serif, wide tracking, ember accent |
+| **Systemfall** | Geometric, system-flavoured — node grid over hairline traces | Monospace display over serif body, cool blue accent |
+| **Vantablack** | High-contrast noir — solid bar cut by negative space | Heavy grotesk display, pure black, minimal tracking |
+
+```powershell
+.\inkpress.ps1 manuscripts\draft.md --tier illustrated --edition ashveil
+```
+
+Chapter art is generated as SVG at build time, not shipped as image files:
+nothing to license, nothing to lose track of, and it recolours itself with the
+edition palette. The generator is seeded from each chapter's title and number,
+so a chapter draws the same art on every rebuild — which is what keeps EPUB
+builds byte-identical — while different chapters differ from each other.
+
+Fonts are stacks, never embedded files, so no licences travel with the output.
+
 ## The app
 
 Double-click **`inkpress-app.cmd`**.
@@ -63,6 +97,8 @@ Useful flags:
 | Flag | Effect |
 | --- | --- |
 | `--targets site` | build one target instead of all three (`site`, `epub`, `print`) |
+| `--tier` | `clean`, `styled`, or `illustrated` |
+| `--edition` | illustrated tier only: `ashveil`, `systemfall`, or `vantablack` |
 | `--check` | parse and validate only, write nothing |
 | `--dry-run` | report the paths it would write |
 | `--chrome-from PAGE.html` | inherit nav, footer and stylesheets from a live site page |
@@ -220,14 +256,16 @@ inkpress/
     typography.py            punctuation
     inline.py                inline markdown -> HTML, escaping
     structure.py             blocks -> chapters -> Document
+    editions.py              the three tiers and three editions
+    art.py                   generated chapter-opener SVG
     validate.py              per-target checks
-    body.py                  shared prose rendering
+    body.py                  shared prose rendering, drop caps
     render_site.py           site page + chrome extraction
     render_epub.py           EPUB 3 writer
     render_print.py          paged-media HTML
     pipeline.py              stage wiring and fan-out
   manuscripts/               source drafts
-  tests/                     36 tests
+  tests/                     69 tests
   build/                     output (gitignored)
 ```
 
@@ -237,7 +275,8 @@ inkpress/
 python -m unittest discover -s tests -t .
 ```
 
-Covers each stage plus end-to-end builds: EPUB archive structure and
+Covers each stage plus end-to-end builds: all five tier and edition
+combinations, drop-cap placement, art determinism, EPUB archive structure and
 reproducibility, site metadata and chrome extraction, print paged-media rules,
 and the validation failure modes.
 
