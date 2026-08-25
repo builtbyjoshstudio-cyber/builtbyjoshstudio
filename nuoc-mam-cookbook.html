@@ -166,6 +166,28 @@
 }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Korean Beef Bulgogi Bowls — ground beef, grapefruit marinade, 15 minutes",
+    "description": "The 15-minute cut of a full real-time cook from Josh & Jordan's Kitchen: ground beef bulgogi bowls with a serrano-garlic-soy marinade brightened with fresh grapefruit, over rice measured by the knuckle trick — no measuring cups, cooked by taste.",
+    "thumbnailUrl": "https://builtbyjoshstudio.com/images/books/jjk-bulgogi-15min-poster.jpg",
+    "uploadDate": "2026-08-25T00:00:00Z",
+    "duration": "PT15M0S",
+    "contentUrl": "https://www.youtube.com/watch?v=Mw-CTeEvBp4",
+    "embedUrl": "https://www.youtube.com/embed/Mw-CTeEvBp4",
+    "publisher": {
+      "@type": "Organization", "@id": "https://builtbyjoshstudio.com/#organization",
+      "name": "Built by Josh Studio LLC",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://builtbyjoshstudio.com/images/logo/logo.webp"
+      }
+    }
+  }
+  </script>
+
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/mobile-nav.css" />
 
@@ -271,6 +293,18 @@
       .highlights ul { columns: 1; }
       .peek-grid { grid-template-columns: 1fr; }
     }
+    /* YouTube facade — click-to-load via /js/lite-yt.js (site pattern from books.html) */
+    .yt-facade { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid #e0ddd8; box-shadow: 0 8px 24px rgba(28,28,28,0.12); }
+    .yt-facade-btn { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; }
+    .yt-facade-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .yt-facade-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 62px; height: 62px; border-radius: 50%; background: var(--tynkr-accent, #ff5a30); box-shadow: 0 6px 20px rgba(0,0,0,0.35); transition: transform .15s, background .15s; }
+    .yt-facade-play::after { content: ''; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%); border-style: solid; border-width: 11px 0 11px 18px; border-color: transparent transparent transparent #fff; }
+    .yt-facade-btn:hover .yt-facade-play, .yt-facade-btn:focus-visible .yt-facade-play { transform: translate(-50%, -50%) scale(1.08); background: #ff6a2a; }
+    .yt-facade-btn:focus-visible { outline: 3px solid var(--tynkr-accent, #ff5a30); outline-offset: 3px; }
+    .yt-facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    @media (prefers-reduced-motion: reduce) { .yt-facade-play { transition: none; } }
+    .kitchen-cut { max-width: 620px; margin: 1.6rem 0 0.9rem; border-color: rgba(255,255,255,0.35); }
+    .series .cut-caption { font-size: 0.95rem; margin-bottom: 1.5rem; }
   </style>
 </head>
 <body>
@@ -395,6 +429,13 @@
       <h2>From the same kitchen</h2>
       <p>The cook behind this book also builds free browser tools for the kitchen — a recipe scaler, a brine calculator, a pull-temp calculator, and more. No signup, no ads, no data collection.</p>
       <p>He's also on camera. <a href="https://www.youtube.com/@joshandjordanskitchen" target="_blank" rel="noopener">Josh &amp; Jordan's Kitchen</a> is the YouTube channel — real home cooking &amp; baking, with the savory side (and the Vietnamese classics) on Josh's stove and the breads, sweets, and pastries in Jordan's oven.</p>
+      <div class="yt-facade kitchen-cut" data-ytid="Mw-CTeEvBp4" data-title="Korean Beef Bulgogi Bowls — ground beef, grapefruit marinade, 15 minutes" data-source="cookbook">
+        <button type="button" class="yt-facade-btn" aria-label="Play Korean Beef Bulgogi Bowls, the 15-minute cut — loads the YouTube player on click">
+          <img class="yt-facade-poster" src="/images/books/jjk-bulgogi-15min-poster.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="" />
+          <span class="yt-facade-play" aria-hidden="true"></span>
+        </button>
+      </div>
+      <p class="cut-caption">Korean Beef Bulgogi Bowls — the 15-minute weeknight cut, no measuring cups, cooked by taste. Rather see how long it really takes? <a href="https://youtu.be/uxaviluHHm4" target="_blank" rel="noopener">Watch the full 44-minute uncut cook →</a></p>
       <a class="series-btn" href="https://tools.builtbyjoshstudio.com/">Free kitchen tools →</a>
       <a class="series-btn" href="https://www.youtube.com/@joshandjordanskitchen" target="_blank" rel="noopener">Watch on YouTube →</a>
       <a class="series-btn" href="/books.html">More books from the studio →</a>
@@ -438,5 +479,6 @@
   <script src="/js/checkout.js" defer></script>
   <script src="/js/mobile-nav.js" defer></script>
   <script src="/js/ga4-events.js" defer></script>
+  <script src="/js/lite-yt.js" defer></script>
 </body>
 </html>
