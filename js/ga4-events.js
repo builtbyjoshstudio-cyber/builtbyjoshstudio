@@ -105,6 +105,23 @@
     }
   });
 
+  // -- 1b. Redbubble outbound clicks (same pattern; RB's own GA hookup is dead
+  //        Universal Analytics, so our side of the funnel is the measurable side)
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a');
+    if (!link || !link.href) return;
+    if (link.href.indexOf('redbubble.com') === -1) return;
+    if (typeof gtag === 'function') {
+      gtag('event', 'redbubble_click', {
+        link_url: link.href,
+        link_domain: 'redbubble.com',
+        link_text: (link.innerText || '').trim().substring(0, 100),
+        outbound: true,
+        transport_type: 'beacon'
+      });
+    }
+  });
+
   // -- 2 + 3. Lemon Squeezy: begin_checkout + purchase -----------------------
   // LS uses the documented LemonSqueezy.Setup({ eventHandler }) callback API
   // (NOT a DOM event). __ga4SetupLemonSqueezy() below polls until the lemon.js
