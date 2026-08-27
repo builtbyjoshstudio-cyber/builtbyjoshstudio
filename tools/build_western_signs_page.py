@@ -20,8 +20,8 @@ OUT_DIR = ROOT / 'collections'
 
 # ── per-sign metadata ──────────────────────────────────────────────────
 # Redbubble design-page work ids (2026-08-27 arc) — one Celestial design per sign.
-# NOTE: the Aries work (174063709) is mistitled "Taurus" ON Redbubble (art verified = ram);
-# the id is stable regardless of title. Josh renames the listing in RB.
+# NOTE: the Aries work (174063709) was briefly mistitled "Taurus" at upload;
+# Josh renamed it 2026-08-27. Work ids are stable across renames.
 RB_IDS = {
     'Aries': '174063709', 'Taurus': '174063869', 'Gemini': '174063978',
     'Cancer': '174064021', 'Leo': '174064065', 'Virgo': '174064120',
