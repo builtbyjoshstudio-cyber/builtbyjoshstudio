@@ -84,7 +84,8 @@ ORG_SCHEMA = '''<script type="application/ld+json">
     "https://www.youtube.com/@TalesofInkShadowsStudio",
     "https://www.youtube.com/@joshandjordanskitchen",
     "https://tynkrtoolsandco.etsy.com",
-    "https://www.etsy.com/shop/BuiltByJoshStudio"
+    "https://www.etsy.com/shop/BuiltByJoshStudio",
+    "https://www.redbubble.com/people/BBJStudio/shop"
   ],
   "identifier": [
     {
@@ -119,8 +120,8 @@ def edit_in_place(path: Path, transforms: list) -> dict:
 about = ROOT / 'about.html'
 s = edit_in_place(about, [
     ('1.1 founder_line',
-     'Built by Josh Studio LLC is a Kansas limited liability company that operates the Tynkr Tools &amp; Co brand and publishes the studio's zodiac art, books, and cookbook directly. Founded in 2026 by Joshua Tran in Topeka, Kansas.',
-     'Built by Josh Studio LLC is a Kansas limited liability company that operates the Tynkr Tools &amp; Co brand and publishes the studio's zodiac art, books, and cookbook directly. The LLC was formed in 2026 and is based in Kansas.'),
+     'Built by Josh Studio LLC is a Kansas limited liability company that operates the Tynkr Tools &amp; Co brand and publishes the studio\'s zodiac art, books, and cookbook directly. Founded in 2026 by Joshua Tran in Topeka, Kansas.',
+     'Built by Josh Studio LLC is a Kansas limited liability company that operates the Tynkr Tools &amp; Co brand and publishes the studio\'s zodiac art, books, and cookbook directly. The LLC was formed in 2026 and is based in Kansas.'),
     ('1.3 founded_2025',
      'Built by Josh Studio is the parent studio I founded in 2025',
      'Built by Josh Studio is the parent studio I founded in 2026'),

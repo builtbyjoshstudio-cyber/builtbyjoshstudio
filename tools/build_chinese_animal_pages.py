@@ -573,7 +573,7 @@ def build_page(animal, manifest):
     {{ "@type": "Brand", "name": "Tynkr Tools & Co", "description": "Notion OS templates and Excel and Google Sheets workbooks for creators, solopreneurs, and personal-finance milestones." }}
   ],
   "contactPoint": {{ "@type": "ContactPoint", "email": "josh@builtbyjoshstudio.com", "contactType": "customer support", "areaServed": "Worldwide", "availableLanguage": "English" }},
-  "sameAs": ["https://linktr.ee/builtbyjoshstudio","https://tynkrtoolsco.substack.com/","https://www.youtube.com/@TalesofInkShadowsStudio","https://www.youtube.com/@joshandjordanskitchen","https://tynkrtoolsandco.etsy.com","https://www.etsy.com/shop/BuiltByJoshStudio"],
+  "sameAs": ["https://linktr.ee/builtbyjoshstudio","https://tynkrtoolsco.substack.com/","https://www.youtube.com/@TalesofInkShadowsStudio","https://www.youtube.com/@joshandjordanskitchen","https://tynkrtoolsandco.etsy.com","https://www.etsy.com/shop/BuiltByJoshStudio","https://www.redbubble.com/people/BBJStudio/shop"],
   "identifier": [{{ "@type": "PropertyValue", "propertyID": "Kansas Business ID", "value": "10076138" }}]
 }}
   </script>
@@ -721,7 +721,6 @@ def build_page(animal, manifest):
       <div class="etsy-secondary">
         <div class="etsy-secondary-label">Looking for something different?</div>
         <p>The Built by Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
-        <p class="etsy-pause-note">Etsy storefront currently on a brief verification pause while the IRS finalizes EIN verification — {animal} bundle purchases above are unaffected.</p>
       </div>
     </aside>
   </div>

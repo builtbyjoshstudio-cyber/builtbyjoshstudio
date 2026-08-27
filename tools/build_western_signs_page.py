@@ -19,6 +19,16 @@ MANIFEST = ROOT / 'images' / 'zodiac' / 'western-signs-manifest.json'
 OUT_DIR = ROOT / 'collections'
 
 # ── per-sign metadata ──────────────────────────────────────────────────
+# Redbubble design-page work ids (2026-08-27 arc) — one Celestial design per sign.
+# NOTE: the Aries work (174063709) is mistitled "Taurus" ON Redbubble (art verified = ram);
+# the id is stable regardless of title. Josh renames the listing in RB.
+RB_IDS = {
+    'Aries': '174063709', 'Taurus': '174063869', 'Gemini': '174063978',
+    'Cancer': '174064021', 'Leo': '174064065', 'Virgo': '174064120',
+    'Libra': '174064190', 'Scorpio': '174064256', 'Sagittarius': '174064287',
+    'Capricorn': '174064338', 'Aquarius': '174064383', 'Pisces': '174064422',
+}
+
 SIGN_META = {
     'Aries': dict(
         slug='aries', symbol='♈', element='Fire', modality='Cardinal',
@@ -832,7 +842,8 @@ def build_page(sign, manifest):
     "https://www.youtube.com/@TalesofInkShadowsStudio",
     "https://www.youtube.com/@joshandjordanskitchen",
     "https://tynkrtoolsandco.etsy.com",
-    "https://www.etsy.com/shop/BuiltByJoshStudio"
+    "https://www.etsy.com/shop/BuiltByJoshStudio",
+    "https://www.redbubble.com/people/BBJStudio/shop"
   ],
   "identifier": [
     {{
@@ -996,7 +1007,7 @@ def build_page(sign, manifest):
       <div class="etsy-secondary">
         <div class="etsy-secondary-label">Looking for something different?</div>
         <p>The Built by Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
-        <p class="etsy-pause-note">Etsy storefront currently on a brief verification pause while the IRS finalizes EIN verification — {sign} bundle purchases above are unaffected.</p>
+        <p>Prefer it already printed? The {sign} celestial artwork is available on posters, canvas prints, apparel, and more at the studio’s Redbubble shop. <a href="https://www.redbubble.com/shop/ap/{RB_IDS[sign]}" target="_blank" rel="noopener">See {sign} on Redbubble →</a></p>
       </div>
     </aside>
 
