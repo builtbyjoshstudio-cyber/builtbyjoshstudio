@@ -13,14 +13,14 @@
   <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
   <link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kitchen Videos — Every Cook, 15 Minutes or Uncut</title>
-  <meta name="description" content="Every cook from Josh &amp; Jordan's Kitchen in two versions — a 15-minute cut, and the full uncut real-time cook. No measurements, cooked by taste." />
+  <title>Kitchen Videos — Every Cook, Short Version and Real Time</title>
+  <meta name="description" content="Every cook from Josh &amp; Jordan's Kitchen in two versions — a short cut, and the full real-time cook with nothing sped up. No measurements, cooked by taste." />
   <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://builtbyjoshstudio.com/kitchen-videos.html" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Kitchen Videos — Every Cook, 15 Minutes or Uncut" />
-  <meta property="og:description" content="Every cook from Josh &amp; Jordan's Kitchen in two versions — a 15-minute cut, and the full uncut real-time cook. Cooked by taste, not by measuring cup." />
+  <meta property="og:title" content="Kitchen Videos — Every Cook, Short Version and Real Time" />
+  <meta property="og:description" content="Every cook from Josh &amp; Jordan's Kitchen in two versions — a short cut, and the full real-time cook with nothing sped up. Cooked by taste, not by measuring cup." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/kitchen-videos.html" />
   <meta property="og:site_name" content="Built by Josh Studio" />
@@ -32,8 +32,8 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Kitchen Videos — Every Cook, 15 Minutes or Uncut" />
-  <meta name="twitter:description" content="Every cook from Josh &amp; Jordan's Kitchen in two versions — a 15-minute cut, and the full uncut real-time cook." />
+  <meta name="twitter:title" content="Kitchen Videos — Every Cook, Short Version and Real Time" />
+  <meta name="twitter:description" content="Every cook from Josh &amp; Jordan's Kitchen in two versions — a short cut, and the full real-time cook with nothing sped up." />
 
   <!-- Schema.org: BreadcrumbList -->
   <script type="application/ld+json">
@@ -89,11 +89,33 @@
     "@type": "ItemList",
     "name": "Kitchen Videos — Josh & Jordan's Kitchen",
     "itemListOrder": "https://schema.org/ItemListOrderDescending",
-    "numberOfItems": 2,
+    "numberOfItems": 3,
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
+        "item": {
+          "@type": "VideoObject",
+          "name": "Guacamole in 3 Minutes — Chunky, From Scratch, No Measurements",
+          "description": "The whole guacamole build — avocados, cherry tomatoes, shallot, serrano, fresh lime and salt — sped up to three minutes. Chunky rather than smooth, folded by hand, with no cups and no measuring spoons. The real-time version of the same cook runs about ten minutes, because that is genuinely how long it takes.",
+          "thumbnailUrl": "https://builtbyjoshstudio.com/images/books/jjk-guacamole-3min-poster.jpg",
+          "uploadDate": "2026-09-02T00:00:00Z",
+          "duration": "PT3M50S",
+          "contentUrl": "https://www.youtube.com/watch?v=xp9sr28cHhs",
+          "embedUrl": "https://www.youtube.com/embed/xp9sr28cHhs",
+          "publisher": {
+            "@type": "Organization", "@id": "https://builtbyjoshstudio.com/#organization",
+            "name": "Built by Josh Studio LLC",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://builtbyjoshstudio.com/images/logo/logo.webp"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
         "item": {
           "@type": "VideoObject",
           "name": "One-Skillet Spicy Sausage Hash — Dinner + 3 Meal-Prep Lunches",
@@ -115,7 +137,7 @@
       },
       {
         "@type": "ListItem",
-        "position": 2,
+        "position": 3,
         "item": {
           "@type": "VideoObject",
           "name": "15-Minute Ground Beef Bulgogi Bowls (No Ribeye Needed)",
@@ -248,13 +270,32 @@
       <div class="breadcrumb"><a href="/">Home</a><span class="sep">/</span>Kitchen Videos</div>
       <div class="hero-eyebrow">Josh &amp; Jordan's Kitchen</div>
       <h1 class="vid-title">Kitchen <span class="accent">Videos</span></h1>
-      <p class="vid-intro">Every cook gets filmed twice. There's a 15-minute cut that takes you from raw ingredients to dinner on a plate — and there's the full uncut version, filmed in real time, nothing sped up, so you can see how long it actually takes.</p>
+      <p class="vid-intro">Every cook gets filmed twice. There's a short version that takes you from raw ingredients to the finished plate — sometimes a 15-minute edit, sometimes the whole thing sped up — and there's the full version, filmed in real time with nothing sped up, so you can see how long it actually takes.</p>
       <p class="vid-intro-sub">No measurements in either one. Josh cooks the savory side by taste and shows you what to taste for; Jordan runs the oven. Press play below, or subscribe on YouTube for the new cooks as they land.</p>
     </div>
   </header>
 
   <main class="wrap">
     <div class="vid-list">
+
+      <article class="vid-item">
+        <div class="yt-facade" data-ytid="xp9sr28cHhs" data-title="Guacamole in 3 Minutes — Chunky, From Scratch, No Measurements" data-source="kitchen-videos">
+          <button type="button" class="yt-facade-btn" aria-label="Play Guacamole in 3 Minutes, the sped-up version — loads the YouTube player on click">
+            <img class="yt-facade-poster" src="/images/books/jjk-guacamole-3min-poster.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="" />
+            <span class="yt-facade-play" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="vid-body">
+          <h2>Chunky Guacamole</h2>
+          <div class="vid-meta">3-minute version<span class="dot">·</span>September 2026</div>
+          <p>Avocados, cherry tomatoes, shallot, serrano, fresh lime, salt. Chunky rather than smooth — folded by hand at the end instead of mashed, with no cups and no measuring spoons anywhere in it. This is the entire build, sped up to three minutes.</p>
+          <p>It genuinely only takes about ten minutes, which is why the real-time version runs ten minutes and not an hour.</p>
+          <div class="vid-actions">
+            <a class="vid-btn" href="https://youtu.be/nXyCGLQLA3M" target="_blank" rel="noopener">Watch the full cook in real time — 10 min →</a>
+            <a class="vid-btn ghost" href="https://www.youtube.com/watch?v=xp9sr28cHhs" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+          </div>
+        </div>
+      </article>
 
       <article class="vid-item">
         <div class="yt-facade" data-ytid="8zcTjBWd93Y" data-title="One-Skillet Spicy Sausage Hash — Dinner + 3 Meal-Prep Lunches" data-source="kitchen-videos">
