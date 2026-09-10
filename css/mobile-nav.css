@@ -57,8 +57,11 @@ body.nav-open .nav-toggle span:nth-child(3) {
 
 /* Mobile breakpoint — hide horizontal nav, show hamburger,
    slide-down drawer when .nav-open is on body. !important is used
-   on display rules to defeat per-page inline overrides. */
-@media (max-width: 720px) {
+   on display rules to defeat per-page inline overrides.
+   Raised 720px → 900px on 2026-09-10: the eight-item row was already only ~8px
+   from the logo at 860px, and swapping LEGAL for the wider COOKING tipped it into
+   an overlap. Tablets get the drawer instead of a colliding row. */
+@media (max-width: 900px) {
   .site-nav .nav-links {
     display: none !important;
   }
