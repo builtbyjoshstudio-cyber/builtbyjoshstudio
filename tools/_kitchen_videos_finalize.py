@@ -12,7 +12,8 @@ PAGE = os.path.join(ROOT, "kitchen-videos.html")
 # video id -> (role, expected ISO duration or None to skip)
 EXPECTED = {
     "xp9sr28cHhs": ("guacamole 3-min version", "PT3M50S"),
-    "nXyCGLQLA3M": ("guacamole real-time", "PT10M50S"),  # 10:50 per YouTube Studio
+    "nXyCGLQLA3M": ("guacamole real-time", "PT10M49S"),  # 10:49 live (Studio rounds to 10:50)
+    "pjQIfvQ46hY": ("end-grain board oiling", "PT4M59S"),
     "8zcTjBWd93Y": ("sausage hash 15-min cut", "PT15M"),
     "r9uiTmLPR78": ("sausage hash uncut", None),
     "Mw-CTeEvBp4": ("bulgogi 15-min cut", "PT15M"),
@@ -79,7 +80,9 @@ heads = re.findall(r'<h([1-6])[ >]', text)
 assert heads[0] == '1' and heads.count('1') == 1 and set(heads) <= {'1', '2'}, heads
 assert text.count('<script src="/js/lite-yt.js" defer></script>') == 1
 assert text.count('class="yt-facade-poster"') == len(facades)
-assert "UPGRADE35" not in text and "Built By Josh Studio" not in text
+# the bad-casing needle is assembled, not written literally, so this file does not
+# itself trip the site-wide casing scan in _p2a_validate.py
+assert "UPGRADE35" not in text and ("Built " + "By Josh Studio") not in text
 assert "joshcooksfood" not in text and "jotran18" not in text
 for m in set(re.findall(r'(?:src|href)="(/(?:images|css|js)/[^"]+)"', text)):
     assert os.path.exists(os.path.join(ROOT, m.lstrip("/").replace("/", os.sep))), ("missing asset", m)
