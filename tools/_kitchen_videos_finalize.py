@@ -14,6 +14,7 @@ EXPECTED = {
     "xp9sr28cHhs": ("guacamole 3-min version", "PT3M50S"),
     "nXyCGLQLA3M": ("guacamole real-time", "PT10M49S"),  # 10:49 live (Studio rounds to 10:50)
     "pjQIfvQ46hY": ("end-grain board oiling", "PT4M59S"),
+    "RrnRbxW0wrQ": ("board conditioning 2-min", "PT2M3S"),
     "8zcTjBWd93Y": ("sausage hash 15-min cut", "PT15M"),
     "r9uiTmLPR78": ("sausage hash uncut", None),
     "Mw-CTeEvBp4": ("bulgogi 15-min cut", "PT15M"),

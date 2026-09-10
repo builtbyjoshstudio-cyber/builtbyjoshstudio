@@ -6,7 +6,7 @@ import json, re, sys, urllib.request, os
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-VIDS = ["pjQIfvQ46hY", "xp9sr28cHhs", "8zcTjBWd93Y", "Mw-CTeEvBp4"]
+VIDS = ["RrnRbxW0wrQ", "pjQIfvQ46hY", "xp9sr28cHhs", "8zcTjBWd93Y", "Mw-CTeEvBp4"]
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_kitchen_chapters.json")
 
 TITLE_RX = re.compile(r'"title":\s*\{\s*"simpleText":\s*"((?:[^"\\]|\\.)*)"')
