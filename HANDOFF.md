@@ -1,4 +1,4 @@
-# 📈 2026-09-10 — **kitchen-videos: board video added + guac UNBLOCKED + views/clicks optimization pass** (`2920c4a` + `1b1b3db`, UNPUSHED — ahead 5)
+# 📈 2026-09-10 — **kitchen-videos: board video added + guac UNBLOCKED + views/clicks optimization pass** (pushed on Josh's "push it": `2920c4a` + `1b1b3db` + docs; Pages build 75 s; **edge-verified cache-busted 9/9** — new title live, 4 chapter navs, 4 runtime badges, 44 Clip nodes, both new facades, `t=124s` deep-link, board poster 200 @ 223,883 B, `youtube_click` in the live ga4-events.js; IndexNow run 34493540219 success)
 
 - **The live gate paid for itself.** Guac published 2026-09-04; `_kitchen_videos_finalize.py --live` caught BOTH staged placeholders drifting: uploadDate (I guessed 09-02, real 2026-09-04T16:00:37-07:00) and the real-time duration (PT10M50S from Studio vs **PT10M49S** live). Corrected. All 7 videos now verify clean.
 - **Board video added** (`pjQIfvQ46hY`, 4:59, published 09-07): facade + VideoObject, labeled "Board care · 5 minutes". **This is not a cook**, so the page's second intro line was widened to cover kitchen basics rather than restructuring into sections — revisit if more basics land. Poster came from the **published YouTube thumbnail** (the local `Thumbnail Frames` PNG is the bare before/after with no text overlay); `_cooking_embed_poster.py` now accepts http sources.
@@ -11,7 +11,7 @@
   Plus a **`youtube_click` GA4 event** (mirrors `etsy_click`/`redbubble_click`) carrying video_id, start_seconds and link_kind (chapter vs button) — without it none of this is measurable.
 - **Ceiling, stated plainly:** this page will not outrank youtube.com for the videos themselves. The winnable gains are long-tail phrases inside the cooks, on-page click-through, and brand queries.
 - Builder `tools/_kitchen_optimize.py` (idempotent; two of my own bugs caught and fixed pre-commit: a global badge test silently skipped the 4th badge because two cuts are both 15:00, and `unicode_escape` mojibaked "Cảm ơn" — the exact trap in the standing rules). Verified in-browser: 0 iframes on load, 44/44 links timestamped + rel=noopener, 4/4 badges, facade still plays.
-- Rituals: sitemap (no lastmod drift beyond the page), llms regen, `_p2a_validate.py` OK, `--live` gate clean. **NEXT: push on Josh's word**, then Request-indexing `kitchen-videos.html`.
+- Rituals: sitemap (no lastmod drift beyond the page), llms regen, `_p2a_validate.py` OK, `--live` gate clean. **LIVE.** Josh: Request-index `kitchen-videos.html` (title + content both changed).
 
 # 🥑 2026-09-02 — **GUACAMOLE COOK STAGED on kitchen-videos (`04d8bc7`, UNPUSHED — both videos still PRIVATE)**
 
