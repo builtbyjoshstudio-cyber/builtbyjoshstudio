@@ -122,6 +122,28 @@
     }
   });
 
+  // -- 1c. YouTube outbound clicks (same pattern). The kitchen-videos page sends
+  //        people to YouTube from several places per video -- the chapter deep-links,
+  //        the real-time/uncut button, and "Watch on YouTube" -- so record which one
+  //        was used and which video it pointed at.
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a');
+    if (!link || !link.href) return;
+    if (link.href.indexOf('youtube.com') === -1 && link.href.indexOf('youtu.be') === -1) return;
+    if (typeof gtag !== 'function') return;
+    const m = link.href.match(/(?:v=|youtu\.be\/)([\w-]{11})/);
+    const t = link.href.match(/[?&]t=(\d+)s/);
+    gtag('event', 'youtube_click', {
+      link_url: link.href,
+      video_id: m ? m[1] : '',
+      start_seconds: t ? parseInt(t[1], 10) : 0,
+      link_kind: link.closest('.vid-chapters') ? 'chapter' : 'button',
+      link_text: (link.innerText || '').trim().substring(0, 100),
+      outbound: true,
+      transport_type: 'beacon'
+    });
+  });
+
   // -- 2 + 3. Lemon Squeezy: begin_checkout + purchase -----------------------
   // LS uses the documented LemonSqueezy.Setup({ eventHandler }) callback API
   // (NOT a DOM event). __ga4SetupLemonSqueezy() below polls until the lemon.js
