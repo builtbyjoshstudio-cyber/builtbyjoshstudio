@@ -22,9 +22,21 @@
   <!-- BOOKS -->
   <url>
     <loc>https://builtbyjoshstudio.com/books.html</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/ebonspire-chronicles-preview.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://builtbyjoshstudio.com/overlayed-echoes-preview.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://builtbyjoshstudio.com/cooking/</loc>
