@@ -14,14 +14,14 @@
   <link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reverse Roasting Timeline Calculator — Free Tool by Tynkr Tools &amp; Co</title>
-  <meta name="description" content="Free calculator that tells you exactly when to start cooking based on your target dinner time — turkey, prime rib, ribs, salmon, and more. No signup, no ads." />
+  <meta name="description" content="Free calculator that tells you exactly when to start cooking based on your target dinner time — turkey, prime rib, pork shoulder, salmon, and more. No signup, no ads." />
   <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://builtbyjoshstudio.com/blog/reverse-roasting-timeline-calculator.html" />
   <link rel="alternate" type="application/rss+xml" title="The Studio Blog — Built by Josh Studio" href="https://builtbyjoshstudio.com/feed.xml" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Reverse Roasting Timeline Calculator — Free Tool by Tynkr Tools &amp; Co" />
-  <meta property="og:description" content="A free, no-signup calculator that tells you exactly when to start cooking based on your target dinner time. Turkey, prime rib, ribs, salmon, and more." />
+  <meta property="og:description" content="A free, no-signup calculator that tells you exactly when to start cooking based on your target dinner time. Turkey, prime rib, pork shoulder, salmon, and more." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/blog/reverse-roasting-timeline-calculator.html" />
   <meta property="og:site_name" content="Built by Josh Studio" />
@@ -39,7 +39,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "The Reverse Roasting Timeline Calculator: Why Cooking Math Is Harder Than It Looks",
-  "description": "A free, no-signup calculator that tells you exactly when to start cooking based on your target dinner time. Handles turkey, prime rib, ribs, salmon, and more. Built by Josh Studio LLC.",
+  "description": "A free, no-signup calculator that tells you exactly when to start cooking based on your target dinner time. Handles turkey, prime rib, pork shoulder, salmon, and more. Built by Josh Studio LLC.",
   "author": {
     "@type": "Person", "@id": "https://builtbyjoshstudio.com/about.html#josh",
     "name": "Josh",
@@ -113,8 +113,8 @@
   },
   "featureList": [
     "Reverse timeline — input dinner time, get the start time",
-    "Per-protein presets (turkey, prime rib, leg of lamb, ribs, salmon, and more)",
-    "Weight-scaled vs fixed-time cooking handled separately",
+    "13 protein profiles (turkey, prime rib, pork shoulder, pork loin, ham, leg of lamb, fish, and more)",
+    "Oven temperature and minutes per pound set per profile",
     "Oven temperature output in Fahrenheit and Celsius",
     "Weight-tiered rest model (10 / 20 / 40 min) as a distinct timeline step",
     "Automatic 15-minute Oven Recovery Buffer for meats over 5 lbs",
@@ -421,22 +421,22 @@
       <h2>Why I Built It</h2>
       <p>The premise behind both tools is the same: home cooks shouldn't have to do mental math under pressure when a free web utility can do it for them in zero seconds.</p>
       <p>Recipe blogs and cooking sites generally don't help with timing. They tell you a turkey takes "15 minutes per pound." They don't tell you that fifteen-minute-per-pound figure assumes a specific oven temperature, assumes the turkey is fully thawed, doesn't account for the rest period, and is wrong for the smaller turkeys that most home cooks actually buy these days. They especially don't help when you're trying to land three dishes simultaneously on a single oven.</p>
-      <p>The calculator handles all of that across <strong>17 protein presets</strong> — turkey, prime rib, pork shoulder, brisket, chicken, duck, pork ribs, beef ribs, lamb, goat, whole fish, salmon, ham, beef tenderloin, pork loin, turkey breast, rack of lamb. It knows that a turkey at 325°F needs about 15 minutes per pound. It knows that prime rib at 325°F needs about 15 minutes per pound for medium-rare. It knows that brisket is a low-and-slow cook at 250°F (60 minutes per pound), that a pork shoulder follows the USDA roasting chart at 350°F (45 minutes per pound), that a rack of pork ribs takes a fixed five hours regardless of weight, and that rest time should scale with the mass of the meat, not just the species.</p>
+      <p>The calculator handles the timing for one dish at a time, across <strong>13 protein profiles</strong> — turkey, chicken, duck and goose, prime rib and other beef roasts, brisket, steaks and chops, pork shoulder, pork loin, ham, lamb, ground meats, venison and bison, and fish. It knows that a turkey at 325°F needs about 15 minutes per pound. It knows that prime rib at 325°F needs about 15 minutes per pound for medium-rare. It knows that brisket is a low-and-slow cook at 250°F (60 minutes per pound), that a pork shoulder follows the USDA roasting chart at 350°F (45 minutes per pound), and that rest time should scale with the mass of the meat, not just the species.</p>
       <p>You don't need to know any of that. You pick the protein. You enter the weight. You enter the dinner time. The tool does the rest.</p>
 
       <h2>Why Cooking Math Is Harder Than It Looks</h2>
       <p>This is the part of the post I actually wanted to write, because building the calculator turned out to be a more interesting engineering puzzle than I expected when I started.</p>
       <p>Cooking math is not linear. It looks linear — <em>minutes per pound</em> sounds like a simple multiplication — but the moment you try to model it accurately, you run into five different problems that have to be handled separately.</p>
       <p><strong>Problem 1: Weight-scaled cooking versus fixed-time cooking.</strong> Most roasts scale with weight. A bigger prime rib takes proportionally longer than a smaller one. But ribs don't work that way. A rack of pork ribs takes roughly five hours regardless of whether it's a small rack or a large one, and a rack of beef ribs takes about seven, because the cook is about breaking down connective tissue at low and slow temperature, not about reaching an internal temperature through a mass of meat. Most "minutes per pound" calculators on the internet apply the same multiplication to everything, which produces hilariously wrong answers for the cuts that don't scale.</p>
-      <p>The calculator handles this by branching at the protein-selection step. Almost every protein in the dictionary is weight-scaled (turkey 15 min/lb, prime rib 15, pork shoulder 45, brisket 60, chicken 20, leg of lamb 20, beef tenderloin 15, and so on). The two fixed-time entries — pork ribs (300 minutes flat) and beef ribs (420 minutes flat) — automatically disable the weight input when selected, so you can't accidentally generate a wildly wrong schedule by typing a number into a field that doesn't apply.</p>
+      <p>The calculator handles this by branching at the protein-selection step. An entry is either weight-scaled or fixed-time, and a fixed-time entry disables the weight input, so you can't accidentally generate a wildly wrong schedule by typing a number into a field that doesn't apply. Every profile in the current list is weight-scaled (turkey 15 min/lb, prime rib 15, pork loin 20, pork shoulder 45, ham 20, brisket 60, chicken 20, leg of lamb 20, and so on). Ribs aren't in the list right now, so the fixed-time branch is built and waiting rather than in use.</p>
       <p><strong>Problem 2: Temperature matters as much as time.</strong> A turkey takes 15 minutes per pound <em>at 325°F</em>. At 350°F it cooks faster. At 300°F (the low-and-slow method some cooks prefer) it cooks dramatically slower. You can't give someone a timing answer without also telling them what temperature the oven needs to be.</p>
       <p>The calculator's data dictionary attaches the target oven temperature to every protein entry and outputs that temperature on the "preheat" step of the timeline. So the schedule doesn't just say "turn the oven on at 1:15 PM" — it says "preheat oven to 325°F at 1:15 PM." Both Fahrenheit and Celsius, because someone outside the US is going to use this eventually and converting temperatures isn't on the user's job.</p>
       <p><strong>Problem 3: Rest times scale with mass, not species.</strong> Every roast needs to rest after it comes out of the oven. Resting allows the muscle fibers to relax and the juices to redistribute, which is why a steak that's been rested for ten minutes is juicier than one sliced immediately. But the right rest time isn't a per-species constant — it scales with mass, because a heavier piece holds more residual heat and needs longer for the gradient to even out. A 1-pound salmon fillet finishes resting long before a 14-pound turkey does, and treating them with the same rest number on the schedule gets one of them wrong.</p>
-      <p>So the calculator uses a <strong>weight-tier model</strong>: under 2 lbs gets a 10-minute rest, 2–8 lbs gets 20 minutes, anything over 8 lbs gets 40 minutes. The rest period gets its own line item on the schedule, which matters because most home cooks treat resting as optional or as something to "do quickly" — they pull the bird out, carve it immediately, and lose the juices. Having the rest step on the official schedule makes it harder to skip. (The two fixed-time cuts — pork ribs and beef ribs — keep their own short rest values, since they're not the same kind of "roast" mass problem.)</p>
+      <p>So the calculator uses a <strong>weight-tier model</strong>: under 2 lbs gets a 10-minute rest, 2–8 lbs gets 20 minutes, anything over 8 lbs gets 40 minutes. The rest period gets its own line item on the schedule, which matters because most home cooks treat resting as optional or as something to "do quickly" — they pull the bird out, carve it immediately, and lose the juices. Having the rest step on the official schedule makes it harder to skip.</p>
       <p><strong>Problem 4: The math has to work backward, not forward.</strong> Most cooking calculators online work forward: <em>I'm starting at 2:00 PM, when will it be done?</em> That's the wrong direction. Home cooks don't choose their start time; they choose their dinner time, and they need to know when to start.</p>
       <p>This sounds like a trivial flip — <em>just subtract the cook time from the dinner time</em> — but in practice the timeline includes multiple steps that all need to fit together correctly. Preheat the oven (30 minutes by default). Insert the protein. Cook for the scaled or fixed time. Remove from oven. Rest for the weight-tiered rest duration. Serve.</p>
       <p>If the user says "we eat at 6:00 PM," the calculator has to subtract the rest time first to get the <em>take-out-of-oven</em> time. Then subtract the cook time to get the <em>put-in-oven</em> time. Then subtract the preheat time to get the <em>turn-the-oven-on</em> time. Three sequential subtractions with three different durations that depend on the protein and weight, all happening in the user's head every Thanksgiving morning, all now handled in zero seconds by the calculator.</p>
-      <p><strong>Problem 5: A cold roast tanks the oven temperature.</strong> The moment a 12-pound turkey hits a preheated 325°F oven, the ambient air temperature drops sharply — sometimes 30–50°F — and the oven has to recover before any real cooking happens. Most timing models ignore this and assume the oven is at temperature the whole time, which is why home cooks find their bird is "running behind" twenty minutes in. The calculator handles it by automatically inserting a <strong>15-minute Oven Recovery &amp; Initial Searing Buffer</strong> at the front of the timeline whenever you load a meat heavier than <strong>5 lbs</strong> and it isn't a fixed-time cut. The preheat step gets pushed thirty more minutes earlier, the buffer occupies the first quarter-hour after the meat goes in, and the main roasting window starts at full temperature — the way the per-pound math actually assumes.</p>
+      <p><strong>Problem 5: A cold roast tanks the oven temperature.</strong> The moment a 12-pound turkey hits a preheated 325°F oven, the ambient air temperature drops sharply — sometimes 30–50°F — and the oven has to recover before any real cooking happens. Most timing models ignore this and assume the oven is at temperature the whole time, which is why home cooks find their bird is "running behind" twenty minutes in. The calculator handles it by automatically inserting a <strong>15-minute Oven Recovery &amp; Initial Searing Buffer</strong> at the front of the timeline whenever you load a meat heavier than <strong>5 lbs</strong> and it isn't a fixed-time cut. The preheat still starts thirty minutes before the meat goes in, the buffer occupies the first quarter-hour after that, and the main roasting window starts at full temperature — the way the per-pound math actually assumes.</p>
 
       <h2>The Disclaimer That Has to Be There</h2>
       <p>There's one thing the calculator can't do, and the UI is honest about it: the math is an estimate.</p>
@@ -444,25 +444,25 @@
       <p>The only real measure of doneness is a calibrated digital thermometer reading the internal temperature of the protein. The calculator says this directly in a small disclaimer block. The schedule tells you <em>approximately</em> when to do things. The thermometer tells you when the food is actually done. Both matter.</p>
       <p>This is the same principle as the <a href="how-i-cook-rice-finger-method.html">rice post</a> earlier — measurements and tools are starting points, not endpoints. The schedule gets you close. The thermometer verifies.</p>
 
-      <h2>The Sidebar and the Ecosystem</h2>
-      <p>If you open the calculator, you'll notice a small sidebar linking to the rest of my work — the recipe scaler, the main website, the Tynkr Tools shop, and a few of the cooking posts on this blog. That's deliberate. The free utilities are positioned as a top-of-funnel entry point to the broader catalog. Someone finds the calculator on Google when they search "when to start cooking a turkey for 6pm dinner." They use the tool. They notice there's a sidebar. They click through and find out the person who built the calculator also makes Notion templates, premium spreadsheets, and a bunch of other free stuff.</p>
-      <p>This is the same pattern the recipe scaler uses. The free tool is genuinely free and useful on its own. The sidebar is the bridge to the rest of the work, for the people who care to look.</p>
+      <h2>The Studio Band and the Ecosystem</h2>
+      <p>If you open the calculator, you'll notice a band at the bottom of the page linking to the rest of my work — the cookbook, the kitchen videos, the main website, and the newsletter. That's deliberate. The free utilities are positioned as a top-of-funnel entry point to the broader catalog. Someone finds the calculator on Google when they search "when to start cooking a turkey for 6pm dinner." They use the tool. They notice the band at the bottom. They click through and find out the person who built the calculator also makes Notion templates, premium spreadsheets, and a bunch of other free stuff.</p>
+      <p>This is the same pattern the recipe scaler uses. The free tool is genuinely free and useful on its own. The band is the bridge to the rest of the work, for the people who care to look.</p>
 
       <h2>What It Looks Like to Actually Use</h2>
       <p>The flow is short:</p>
       <ol>
         <li>Open <a href="https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/" target="_blank" rel="noopener">the calculator</a>.</li>
-        <li>Pick a protein from the dropdown (turkey, prime rib, leg of lamb, ribs, salmon, etc.).</li>
-        <li>Enter the weight in pounds (the field is disabled if you picked a fixed-time protein like ribs).</li>
+        <li>Pick a protein from the dropdown (turkey, prime rib, pork shoulder, leg of lamb, fish, etc.).</li>
+        <li>Enter the weight in pounds or kilograms.</li>
         <li>Enter the target dinner time.</li>
         <li>Click the button.</li>
       </ol>
-      <p>You get a chronological schedule that looks something like:</p>
+      <p>You get a chronological schedule. For a 16-pound turkey and a 6:00 PM dinner, it looks like this:</p>
       <blockquote class="schedule">
-        <strong>Preheat oven to 325°F (165°C):</strong> 1:15 PM<br>
-        <strong>Put turkey in oven:</strong> 1:30 PM<br>
-        <strong>Take turkey out of oven:</strong> 5:30 PM<br>
-        <strong>Rest (covered, 30 minutes):</strong> 5:30 PM – 6:00 PM<br>
+        <strong>Preheat oven to 325°F (165°C):</strong> 12:35 PM<br>
+        <strong>Turkey goes in (15-minute oven recovery buffer):</strong> 1:05 PM<br>
+        <strong>Main roast, about 240 minutes:</strong> 1:20 PM<br>
+        <strong>Out of the oven, rest 40 minutes:</strong> 5:20 PM – 6:00 PM<br>
         <strong>Serve:</strong> 6:00 PM
       </blockquote>
       <p>There's a one-click "Copy to Clipboard" button so you can text the schedule to whoever is helping you, or paste it into your phone's notes app for the morning of. That's the entire experience. Open, input, output, copy, close.</p>
@@ -531,7 +531,7 @@
         <a href="https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/" target="_blank" rel="noopener" class="sidebar-cta-btn">Open the Calculator →</a>
         <ul class="sidebar-checklist">
           <li>Input dinner time, get the full backward schedule</li>
-          <li>17 protein presets — turkey, prime rib, brisket, ribs, lamb, fish, ham, more</li>
+          <li>13 protein profiles — turkey, prime rib, brisket, pork, ham, lamb, fish, more</li>
           <li>Weight-tiered rest + 15-min Oven Recovery Buffer over 5 lbs</li>
           <li>lbs / kg toggle, oven temp in °F and °C, copy to clipboard</li>
         </ul>
