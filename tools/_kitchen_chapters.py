@@ -6,7 +6,7 @@ import json, re, sys, urllib.request, os
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-VIDS = ["HV-C97cXceE", "RrnRbxW0wrQ", "pjQIfvQ46hY", "xp9sr28cHhs", "8zcTjBWd93Y", "Mw-CTeEvBp4"]
+VIDS = ["nsKHqRSHNlI", "HV-C97cXceE", "RrnRbxW0wrQ", "pjQIfvQ46hY", "xp9sr28cHhs", "8zcTjBWd93Y", "Mw-CTeEvBp4"]
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_kitchen_chapters.json")
 
 TITLE_RX = re.compile(r'"title":\s*\{\s*"simpleText":\s*"((?:[^"\\]|\\.)*)"')
@@ -60,11 +60,22 @@ def chapters(html):
 
 
 def main():
+    # YouTube's watch HTML intermittently omits the chapter marker list (seen 2026-10-06: the
+    # sausage hash came back empty on one pull, the bulgogi on the next). Retry, and never let
+    # an empty pull erase a chapter set that was saved before.
+    prev = json.load(open(OUT, encoding="utf-8")) if os.path.exists(OUT) else {}
     data = {}
     for vid in VIDS:
-        h = fetch(vid)
-        ch = chapters(h)
+        for attempt in range(3):
+            h = fetch(vid)
+            ch = chapters(h)
+            if ch:
+                break
         length = re.search(r'"lengthSeconds":"(\d+)"', h)
+        if not ch and prev.get(vid, {}).get("chapters"):
+            ch = prev[vid]["chapters"]
+            print("%s  WARNING: live pull returned no chapters after 3 tries; keeping the %d saved ones" % (vid, len(ch)))
+        assert ch, "no chapters for %s and nothing saved -- is the video public with chapters?" % vid
         data[vid] = {"length": int(length.group(1)) if length else None, "chapters": ch}
         print("%s  %ss  %d chapters" % (vid, data[vid]["length"], len(ch)))
         for c in ch:

@@ -4,13 +4,15 @@
 #             and the schema's duration/title/uploadDate match reality.
 # RULE: never push this page without a clean `--live` run. Video metadata drifts
 # (the bulgogi cut was retitled days after publish) and staged cuts start private.
-import io, json, os, re, sys, urllib.request
+import html, io, json, os, re, sys, urllib.request
 
 ROOT = r"C:\Users\jotra\builtbyjoshstudio-workspace\builtbyjoshstudio"
 PAGE = os.path.join(ROOT, "kitchen-videos.html")
 
 # video id -> (role, expected ISO duration or None to skip)
 EXPECTED = {
+    "nsKHqRSHNlI": ("steak rice bowls 15-min cut", "PT15M"),
+    "lOKVAmLY71I": ("steak rice bowls real-time", None),  # 1644 s live = the page's "27 min"
     "HV-C97cXceE": ("taco bowls 15-min cut", "PT15M"),
     "8AEE4PkgwKQ": ("taco bowls real-time", None),  # 1707 s live = the page's "28 min"
     "xp9sr28cHhs": ("guacamole 3-min version", "PT3M50S"),
@@ -105,7 +107,7 @@ if "--live" in sys.argv:
         status = status.group(1) if status else "UNKNOWN"
         secs = re.search(r'"lengthSeconds":"(\d+)"', h)
         title = re.search(r'<meta name="title" content="([^"]*)"', h)
-        title = title.group(1) if title else ""
+        title = html.unescape(title.group(1)) if title else ""  # the meta is HTML-escaped ("&amp;")
         if status != "OK":
             bad.append("%s (%s): NOT PUBLIC -- %s" % (vid, role, status))
             continue
