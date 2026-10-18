@@ -11,6 +11,8 @@ PAGE = os.path.join(ROOT, "kitchen-videos.html")
 
 # video id -> (role, expected ISO duration or None to skip)
 EXPECTED = {
+    "qqurZXTPZMw": ("rotisserie breakdown 5-min version", "PT5M"),
+    "wsk6hwrhD78": ("rotisserie breakdown real-time", None),  # 607 s live = the page's "10 min"
     "BvA6dtVpQYw": ("cookie dough under-3-min version", "PT2M31S"),
     "gQTFDBsCJaI": ("cookie dough complete bake", None),  # 537 s live = the page's "9 min"
     "nsKHqRSHNlI": ("steak rice bowls 15-min cut", "PT15M"),
