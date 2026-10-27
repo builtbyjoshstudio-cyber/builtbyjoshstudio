@@ -16,6 +16,7 @@ PAGE = os.path.join(ROOT, "kitchen-videos.html")
 CH = os.path.join(ROOT, "tools", "_kitchen_chapters.json")
 
 LABEL = {
+    "dFLWiZrQSmQ": "Chocolate Chip Cookie Cups",
     "qqurZXTPZMw": "Breaking Down a Rotisserie Chicken",
     "BvA6dtVpQYw": "Chocolate Chip Cookie Dough",
     "nsKHqRSHNlI": "Steak and Pepper Rice Bowls",
