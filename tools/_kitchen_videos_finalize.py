@@ -6,7 +6,8 @@
 # (the bulgogi cut was retitled days after publish) and staged cuts start private.
 import html, io, json, os, re, sys, urllib.request
 
-ROOT = r"C:\Users\jotra\builtbyjoshstudio-workspace\builtbyjoshstudio"
+# derived, not hardcoded: run from a git worktree, the gate must check THAT tree's page
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(ROOT, "kitchen-videos.html")
 
 # video id -> (role, expected ISO duration or None to skip)
