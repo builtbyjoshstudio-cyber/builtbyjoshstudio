@@ -99,6 +99,13 @@ for m in set(re.findall(r'(?:src|href)="(/(?:images|css|js)/[^"]+)"', text)):
     assert os.path.exists(os.path.join(ROOT, m.lstrip("/").replace("/", os.sep))), ("missing asset", m)
 print("headings %s | assets ok" % "".join(heads))
 
+# 5b. The /cooking/ hub strip must show the 3 newest videos (Josh, 2026-10-27).
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import cooking_strip_sync
+hub_now, hub_want, _, strip = cooking_strip_sync.build(ROOT)
+assert hub_now == hub_want, "cooking/ strip is stale -- run tools/cooking_strip_sync.py --apply"
+print("cooking strip: %s" % ", ".join(c[0] for c in strip))
+
 # 6. Live verification (required before any push).
 if "--live" in sys.argv:
     print("\n-- live YouTube check --")
