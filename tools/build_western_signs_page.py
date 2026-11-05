@@ -36,19 +36,18 @@ SIGN_META = {
         dates='March 21 – April 19', dates_short='Mar 21 – Apr 19',
         sister_signs='Leo, Sagittarius',
         sku='bbj-aries-zodiac-art',
-        etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio?section_id=58115934',
     ),
-    'Taurus':       dict(slug='taurus',      symbol='♉', element='Earth', modality='Fixed',    planet='Venus',   symbol_label='The Bull',         dates='April 20 – May 20',        dates_short='Apr 20 – May 20', sister_signs='Virgo, Capricorn',     sku='bbj-taurus-zodiac-art',      etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
-    'Gemini':       dict(slug='gemini',      symbol='♊', element='Air',   modality='Mutable',  planet='Mercury', symbol_label='The Twins',        dates='May 21 – June 20',         dates_short='May 21 – Jun 20', sister_signs='Libra, Aquarius',      sku='bbj-gemini-zodiac-art',      etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
-    'Cancer':       dict(slug='cancer',      symbol='♋', element='Water', modality='Cardinal', planet='Moon',    symbol_label='The Crab',         dates='June 21 – July 22',        dates_short='Jun 21 – Jul 22', sister_signs='Scorpio, Pisces',      sku='bbj-cancer-zodiac-art',      etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
-    'Leo':          dict(slug='leo',         symbol='♌', element='Fire',  modality='Fixed',    planet='Sun',     symbol_label='The Lion',         dates='July 23 – August 22',      dates_short='Jul 23 – Aug 22', sister_signs='Aries, Sagittarius',   sku='bbj-leo-zodiac-art',         etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
-    'Virgo':        dict(slug='virgo',       symbol='♍', element='Earth', modality='Mutable',  planet='Mercury', symbol_label='The Maiden',       dates='August 23 – September 22', dates_short='Aug 23 – Sep 22', sister_signs='Taurus, Capricorn',    sku='bbj-virgo-zodiac-art',       etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
-    'Libra':        dict(slug='libra',       symbol='♎', element='Air',   modality='Cardinal', planet='Venus',   symbol_label='The Scales',       dates='September 23 – October 22',dates_short='Sep 23 – Oct 22', sister_signs='Gemini, Aquarius',     sku='bbj-libra-zodiac-art',       etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
-    'Scorpio':      dict(slug='scorpio',     symbol='♏', element='Water', modality='Fixed',    planet='Pluto',   symbol_label='The Scorpion',     dates='October 23 – November 21', dates_short='Oct 23 – Nov 21', sister_signs='Cancer, Pisces',       sku='bbj-scorpio-zodiac-art',     etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
-    'Sagittarius':  dict(slug='sagittarius', symbol='♐', element='Fire',  modality='Mutable',  planet='Jupiter', symbol_label='The Archer',       dates='November 22 – December 21',dates_short='Nov 22 – Dec 21', sister_signs='Aries, Leo',           sku='bbj-sagittarius-zodiac-art', etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
-    'Capricorn':    dict(slug='capricorn',   symbol='♑', element='Earth', modality='Cardinal', planet='Saturn',  symbol_label='The Goat',         dates='December 22 – January 19', dates_short='Dec 22 – Jan 19', sister_signs='Taurus, Virgo',        sku='bbj-capricorn-zodiac-art',   etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
-    'Aquarius':     dict(slug='aquarius',    symbol='♒', element='Air',   modality='Fixed',    planet='Uranus',  symbol_label='The Water Bearer', dates='January 20 – February 18', dates_short='Jan 20 – Feb 18', sister_signs='Gemini, Libra',        sku='bbj-aquarius-zodiac-art',    etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
-    'Pisces':       dict(slug='pisces',      symbol='♓', element='Water', modality='Mutable',  planet='Neptune', symbol_label='The Fish',         dates='February 19 – March 20',   dates_short='Feb 19 – Mar 20', sister_signs='Cancer, Scorpio',      sku='bbj-pisces-zodiac-art',       etsy_section_url='https://www.etsy.com/shop/BuiltByJoshStudio'),
+    'Taurus':       dict(slug='taurus',      symbol='♉', element='Earth', modality='Fixed',    planet='Venus',   symbol_label='The Bull',         dates='April 20 – May 20',        dates_short='Apr 20 – May 20', sister_signs='Virgo, Capricorn',     sku='bbj-taurus-zodiac-art'),
+    'Gemini':       dict(slug='gemini',      symbol='♊', element='Air',   modality='Mutable',  planet='Mercury', symbol_label='The Twins',        dates='May 21 – June 20',         dates_short='May 21 – Jun 20', sister_signs='Libra, Aquarius',      sku='bbj-gemini-zodiac-art'),
+    'Cancer':       dict(slug='cancer',      symbol='♋', element='Water', modality='Cardinal', planet='Moon',    symbol_label='The Crab',         dates='June 21 – July 22',        dates_short='Jun 21 – Jul 22', sister_signs='Scorpio, Pisces',      sku='bbj-cancer-zodiac-art'),
+    'Leo':          dict(slug='leo',         symbol='♌', element='Fire',  modality='Fixed',    planet='Sun',     symbol_label='The Lion',         dates='July 23 – August 22',      dates_short='Jul 23 – Aug 22', sister_signs='Aries, Sagittarius',   sku='bbj-leo-zodiac-art'),
+    'Virgo':        dict(slug='virgo',       symbol='♍', element='Earth', modality='Mutable',  planet='Mercury', symbol_label='The Maiden',       dates='August 23 – September 22', dates_short='Aug 23 – Sep 22', sister_signs='Taurus, Capricorn',    sku='bbj-virgo-zodiac-art'),
+    'Libra':        dict(slug='libra',       symbol='♎', element='Air',   modality='Cardinal', planet='Venus',   symbol_label='The Scales',       dates='September 23 – October 22',dates_short='Sep 23 – Oct 22', sister_signs='Gemini, Aquarius',     sku='bbj-libra-zodiac-art'),
+    'Scorpio':      dict(slug='scorpio',     symbol='♏', element='Water', modality='Fixed',    planet='Pluto',   symbol_label='The Scorpion',     dates='October 23 – November 21', dates_short='Oct 23 – Nov 21', sister_signs='Cancer, Pisces',       sku='bbj-scorpio-zodiac-art'),
+    'Sagittarius':  dict(slug='sagittarius', symbol='♐', element='Fire',  modality='Mutable',  planet='Jupiter', symbol_label='The Archer',       dates='November 22 – December 21',dates_short='Nov 22 – Dec 21', sister_signs='Aries, Leo',           sku='bbj-sagittarius-zodiac-art'),
+    'Capricorn':    dict(slug='capricorn',   symbol='♑', element='Earth', modality='Cardinal', planet='Saturn',  symbol_label='The Goat',         dates='December 22 – January 19', dates_short='Dec 22 – Jan 19', sister_signs='Taurus, Virgo',        sku='bbj-capricorn-zodiac-art'),
+    'Aquarius':     dict(slug='aquarius',    symbol='♒', element='Air',   modality='Fixed',    planet='Uranus',  symbol_label='The Water Bearer', dates='January 20 – February 18', dates_short='Jan 20 – Feb 18', sister_signs='Gemini, Libra',        sku='bbj-aquarius-zodiac-art'),
+    'Pisces':       dict(slug='pisces',      symbol='♓', element='Water', modality='Mutable',  planet='Neptune', symbol_label='The Fish',         dates='February 19 – March 20',   dates_short='Feb 19 – Mar 20', sister_signs='Cancer, Scorpio',      sku='bbj-pisces-zodiac-art'),
 }
 
 ALL_SIGNS_ORDER = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces']
@@ -372,7 +371,7 @@ def faq_data(sign, styles_csv):
         ('What formats and color profiles do the files use?',
          'All files are delivered in both PNG (lossless) and JPG (92% quality compression) formats. Color profile is sRGB — the standard for virtually every print-on-demand service and consumer printer, requiring no color conversion before printing.'),
         (f'Where can I buy the {sign} Zodiac Art Bundle?',
-         f'The {sign} bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {sign} Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built by Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
+         f'The {sign} bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {sign} Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no account required, no marketplace fees, files delivered immediately to your email.'),
         ('Do you have art for other zodiac signs and the Chinese zodiac?',
          'Yes. Built by Josh Studio publishes 12 sign-specific bundles for all Western zodiac signs (Aries through Pisces, identical structure to the Aries bundle), 12 sign-specific bundles in the Western Realms landscape series, a full 12-landscape Western Landscapes Collection, 12 animal-specific Chinese Signs bundles, and a single Chinese Realms Collection covering all 12 Chinese animals.'),
     ]
@@ -629,13 +628,12 @@ def build_page(sign, manifest):
     .ls-checkout-btn--large:disabled {{ font-size: 0.78rem; padding: 1.1rem 2.2rem; }}
     .ls-checkout-sub {{ display: block; font-size: 0.74rem; font-style: italic; color: var(--bbj-muted); text-align: center; margin-bottom: 1.4rem; line-height: 1.45; }}
 
-    /* Secondary Etsy reference block (muted, courtesy link only — not a competing sales path) */
-    .etsy-secondary {{ margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid rgba(42,32,64,0.5); }}
-    .etsy-secondary .etsy-secondary-label {{ font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-muted); margin-bottom: 0.5rem; }}
-    .etsy-secondary p {{ font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: var(--bbj-muted); line-height: 1.5; margin-bottom: 0.5rem; }}
-    .etsy-secondary a {{ color: var(--bbj-muted); text-decoration: underline; text-decoration-color: rgba(138,127,168,0.4); }}
-    .etsy-secondary a:hover {{ color: var(--bbj-accent); text-decoration-color: var(--bbj-accent); }}
-    .etsy-secondary .etsy-pause-note {{ font-style: italic; font-size: 0.72rem; opacity: 0.75; margin-top: 0.4rem; margin-bottom: 0; }}
+    /* Secondary print-on-demand link (muted, courtesy link only — not a competing sales path) */
+    .alt-shop {{ margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid rgba(42,32,64,0.5); }}
+    .alt-shop .alt-shop-label {{ font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-muted); margin-bottom: 0.5rem; }}
+    .alt-shop p {{ font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: var(--bbj-muted); line-height: 1.5; margin-bottom: 0.5rem; }}
+    .alt-shop a {{ color: var(--bbj-muted); text-decoration: underline; text-decoration-color: rgba(138,127,168,0.4); }}
+    .alt-shop a:hover {{ color: var(--bbj-accent); text-decoration-color: var(--bbj-accent); }}
 
     /* License & POD block */
     .license-block {{ background: var(--bbj-surface); border: 1px solid var(--bbj-border); padding: 2rem 2.2rem; margin-top: 2rem; }}
@@ -739,7 +737,6 @@ def build_page(sign, manifest):
     @media (max-width: 720px) {{
       .collection-hero {{ padding: 7rem 1.5rem 2rem; }}
       .short-version {{ padding: 1.6rem 1.4rem; }}
-      .etsy-notice {{ padding: 1.2rem 1.4rem; }}
       .collection-main {{ padding: 1.5rem 1.5rem 3rem; }}
       .main-column {{ font-size: 1.08rem; }}
       .faq-section {{ padding: 4rem 1.5rem 3rem; }}
@@ -933,7 +930,7 @@ def build_page(sign, manifest):
         <h2>Who Buys {sign} Zodiac Art</h2>
         <ul>
           <li>{sign} ({m['dates']}) who want a single bundle covering every art style for their sign, rather than picking one print at a time</li>
-          <li>Etsy, Printful, and Redbubble print-on-demand sellers building zodiac shops who need licensed, print-ready files with explicit POD rights</li>
+          <li>Printful, Redbubble, and other print-on-demand sellers building zodiac shops who need licensed, print-ready files with explicit POD rights</li>
           <li>Anyone shopping for a {sign} birthday gift who wants something more personal and lasting than a candle or mug</li>
           <li>Astrology content creators, bloggers, and course builders who need varied visual material for posts, social, and lesson assets — all within the personal and POD scope of the license</li>
           <li>Interior decorators and gallery-wall buyers stacking multiple signs and styles across a wall</li>
@@ -946,7 +943,7 @@ def build_page(sign, manifest):
         <p>Every {sign} Zodiac Art Bundle is a complete digital download. After purchase, you get instant access to 144 image files organized into 14 art-style subfolders — no shipping, no waiting, no physical product mailed to you.</p>
         <p>Each design is delivered in three aspect ratios: 1:1 square (4800 × 4800 pixels), 4:5 portrait (4800 × 6000 pixels), and 2:3 portrait (6000 × 9000 pixels). Every size is provided in both PNG (lossless) and JPG (92% quality) formats. All files are saved at 300 DPI in standard sRGB color space — the industry standard for high-quality print reproduction across home printers, professional print shops, and print-on-demand services.</p>
         <p>The bundle also includes two PDF documents: a <strong>License Agreement &amp; Terms of Use</strong> covering personal use, print-on-demand rights, and the 100-print-per-design cap, and a <strong>Print Guide &amp; User Manual</strong> explaining file structure, recommended print sizes, paper selection, and troubleshooting tips. Both are tailored to the Western Signs Collection.</p>
-        <p>Pricing is $24.99 for the full bundle. Visit Etsy for current sales and promotions (Etsy shop currently in temporary verification pause — see notice above).</p>
+        <p>Pricing is $24.99 for the full bundle.</p>
       </section>
 
       <section>
@@ -1004,9 +1001,8 @@ def build_page(sign, manifest):
         <li>Secure direct checkout via Lemon Squeezy</li>
       </ul>
 
-      <div class="etsy-secondary">
-        <div class="etsy-secondary-label">Looking for something different?</div>
-        <p>The Built by Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
+      <div class="alt-shop">
+        <div class="alt-shop-label">Looking for something different?</div>
         <p>Prefer it already printed? The {sign} celestial artwork is available on posters, canvas prints, apparel, and more at the studio’s Redbubble shop. <a href="https://www.redbubble.com/shop/ap/{RB_IDS[sign]}" target="_blank" rel="noopener">See {sign} on Redbubble →</a></p>
       </div>
     </aside>
@@ -1069,7 +1065,7 @@ def build_page(sign, manifest):
     <div class="section-label">Shop Reviews</div>
     <div class="reviews-header">
       <span class="star-display">★★★★★ 4.7</span>
-      <span class="review-note">Reviews from the Built by Josh Studio Etsy shop</span>
+      <span class="review-note">Verified Buyer Reviews</span>
     </div>
     <div class="reviews-grid">
       <div class="review-card">
@@ -1080,7 +1076,7 @@ def build_page(sign, manifest):
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Files came through right away and look great."</p>
-        <div class="review-author">Etsy buyer · Scorpio Zodiac Watercolor</div>
+        <div class="review-author">Verified buyer · Scorpio Zodiac Watercolor</div>
       </div>
       <div class="review-card">
         <div class="review-stars">★★★★☆</div>

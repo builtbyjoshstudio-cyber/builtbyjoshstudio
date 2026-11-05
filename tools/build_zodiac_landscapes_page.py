@@ -3,8 +3,8 @@
 Single-bundle landing page for the Western Landscapes Collection — all 12
 oil-painted zodiac landscapes sold as one $19.99 bundle. Replaces the
 prior Etsy-primary, per-landscape-CTA structure with the master pattern:
-LS-direct sidebar + final CTA, License & POD Trust block, secondary Etsy
-block, Product/FAQPage/BreadcrumbList/Organization schemas.
+LS-direct sidebar + final CTA, License & POD Trust block,
+Product/FAQPage/BreadcrumbList/Organization schemas.
 
 The 12 landscape titles and atmospheric descriptions are lifted verbatim
 from the prior page (the voice was already good per brief 5E.1). Per-
@@ -111,7 +111,7 @@ def faq_data():
         ('What formats and color profiles do the files use?',
          'All files are delivered in both PNG (lossless) and JPG (92% quality compression) formats. Color profile is sRGB — the standard for virtually every print-on-demand service and consumer printer, requiring no color conversion before printing.'),
         ('Where can I buy the Western Landscapes Bundle?',
-         'The Western Landscapes Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Western Landscapes Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built by Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
+         'The Western Landscapes Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Western Landscapes Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no account required, no marketplace fees, files delivered immediately to your email.'),
         ('How do the landscapes pair with the Western Signs and Western Realms bundles?',
          "The Western Signs Collection ($24.99 per sign × 12 signs) is figure-based — each sign rendered as a character in 14 art styles. The Western Realms Collection ($14.99 per sign × 12 signs) is landscape-based but per-sign — each sign rendered as 4 named realms with 2 variants each. The Western Landscapes Bundle ($19.99 once) is a single-bundle oil-painted landscape set covering all 12 signs. Buyers often pair a figure print from Western Signs with the matching Realm or Landscape on the same wall — figure plus environment for whichever sign matters to them."),
     ]
@@ -346,12 +346,6 @@ def build_page():
     .ls-checkout-btn--large:disabled {{ font-size:.78rem; padding:1.1rem 2.2rem; }}
     .ls-checkout-sub {{ display:block; font-size:.74rem; font-style:italic; color:var(--bbj-muted); text-align:center; margin-bottom:1.4rem; line-height:1.45; }}
 
-    .etsy-secondary {{ margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid rgba(42,32,64,.5); }}
-    .etsy-secondary .etsy-secondary-label {{ font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.5rem; }}
-    .etsy-secondary p {{ font-family:'DM Sans',sans-serif; font-size:.78rem; color:var(--bbj-muted); line-height:1.5; margin-bottom:.5rem; }}
-    .etsy-secondary a {{ color:var(--bbj-muted); text-decoration:underline; text-decoration-color:rgba(138,127,168,.4); }}
-    .etsy-secondary a:hover {{ color:var(--bbj-accent); text-decoration-color:var(--bbj-accent); }}
-    .etsy-secondary .etsy-pause-note {{ font-style:italic; font-size:.72rem; opacity:.75; margin-top:.4rem; margin-bottom:0; }}
 
     .sticky-sidebar {{ position:sticky; top:88px; background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.8rem 1.7rem; font-family:'DM Sans',sans-serif; }}
     .sticky-sidebar::before {{ content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(201,168,76,.05) 0%,transparent 60%); }}
@@ -610,11 +604,6 @@ def build_page():
         <li>Real Kansas LLC + clear POD license</li>
         <li>Secure direct checkout via Lemon Squeezy</li>
       </ul>
-
-      <div class="etsy-secondary">
-        <div class="etsy-secondary-label">Looking for something different?</div>
-        <p>The Built by Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
-      </div>
     </aside>
   </div>
 

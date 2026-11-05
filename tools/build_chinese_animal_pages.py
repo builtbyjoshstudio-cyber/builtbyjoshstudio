@@ -182,7 +182,7 @@ def faq_data(animal):
         ('What formats and color profiles do the files use?',
          'All files are delivered in both PNG (lossless) and JPG (92% quality compression) formats. Color profile is sRGB — the standard for virtually every print-on-demand service and consumer printer, requiring no color conversion before printing.'),
         (f'Where can I buy the {animal} Chinese Zodiac Art Bundle?',
-         f'The {animal} bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {animal} Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built by Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
+         f'The {animal} bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {animal} Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no account required, no marketplace fees, files delivered immediately to your email.'),
         ('Do you have art for the other Chinese zodiac animals and the Western zodiac?',
          'Yes. Built by Josh Studio publishes 12 sign-specific bundles for all Chinese zodiac animals (Rat through Pig, identical structure to this bundle), a single Chinese Realms Collection covering all 12 animals in landscape style, 12 sign-specific Western Signs bundles in 14 art styles each, 12 sign-specific Western Realms landscape bundles, and a full 12-landscape Western Landscapes Collection.'),
     ]
@@ -442,12 +442,6 @@ def build_page(animal, manifest):
     .ls-checkout-btn--large:disabled {{ font-size:.78rem; padding:1.1rem 2.2rem; }}
     .ls-checkout-sub {{ display:block; font-size:.74rem; font-style:italic; color:var(--bbj-muted); text-align:center; margin-bottom:1.4rem; line-height:1.45; }}
 
-    .etsy-secondary {{ margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid rgba(42,32,64,.5); }}
-    .etsy-secondary .etsy-secondary-label {{ font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.5rem; }}
-    .etsy-secondary p {{ font-family:'DM Sans',sans-serif; font-size:.78rem; color:var(--bbj-muted); line-height:1.5; margin-bottom:.5rem; }}
-    .etsy-secondary a {{ color:var(--bbj-muted); text-decoration:underline; text-decoration-color:rgba(138,127,168,.4); }}
-    .etsy-secondary a:hover {{ color:var(--bbj-accent); text-decoration-color:var(--bbj-accent); }}
-    .etsy-secondary .etsy-pause-note {{ font-style:italic; font-size:.72rem; opacity:.75; margin-top:.4rem; margin-bottom:0; }}
 
     .sticky-sidebar {{ position:sticky; top:88px; background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.8rem 1.7rem; font-family:'DM Sans',sans-serif; }}
     .sticky-sidebar::before {{ content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(201,168,76,.05) 0%,transparent 60%); }}
@@ -649,7 +643,7 @@ def build_page(animal, manifest):
         <ul>
           <li>People born in a Year of the {animal} ({m['years']}, and every 12 years before and after) who want their zodiac animal as wall art</li>
           <li>Buyers shopping for someone born in a Year of the {animal} — birthday, housewarming, or culturally meaningful gift</li>
-          <li>Etsy, Printful, and Redbubble print-on-demand sellers expanding into Chinese zodiac inventory with explicit POD licensing</li>
+          <li>Printful, Redbubble, and other print-on-demand sellers expanding into Chinese zodiac inventory with explicit POD licensing</li>
           <li>Buyers building a multi-animal Chinese zodiac wall arrangement — pair {animal} with the other 11 animals as a complete set</li>
           <li>Interior decorators working in Lunar New Year contexts or culturally themed spaces</li>
           <li>Collectors who already own the {m['trine']} trine and want to complete it</li>
@@ -717,11 +711,6 @@ def build_page(animal, manifest):
         <li>Real Kansas LLC + clear POD license</li>
         <li>Secure direct checkout via Lemon Squeezy</li>
       </ul>
-
-      <div class="etsy-secondary">
-        <div class="etsy-secondary-label">Looking for something different?</div>
-        <p>The Built by Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
-      </div>
     </aside>
   </div>
 

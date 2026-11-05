@@ -295,7 +295,7 @@ def faq_data(sign):
         (f"What's the difference between the {sign} Realms Bundle and the {sign} Zodiac Art Bundle?",
          f'The {sign} Zodiac Art Bundle ($24.99) contains 144 files covering 24 figure-based designs across 14 art styles — the sign rendered as a character. The {sign} Realms Bundle ($14.99) contains 48 files covering 4 landscape-style Realms with 2 variants each — {sign} rendered as place rather than figure. The two pair naturally as a figure-and-environment wall arrangement.'),
         (f'Where can I buy the {sign} Western Realms Bundle?',
-         f'The {sign} Realms Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {sign} Realms Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built by Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
+         f'The {sign} Realms Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the {sign} Realms Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no account required, no marketplace fees, files delivered immediately to your email.'),
         ('Do you have Realms for the other 11 Western zodiac signs?',
          'Yes. Built by Josh Studio publishes 12 sign-specific Realms bundles — one for every Western zodiac sign (Aries through Pisces). All 12 bundles share identical structure: 48 files, 4 Realm designs, 2 variants each, three aspect ratios, both PNG and JPG. The Chinese Realms Collection covers all 12 Chinese zodiac animals in a single bundle, also landscape-style.'),
     ]
@@ -558,12 +558,6 @@ def build_page(sign, manifest):
     .ls-checkout-btn--large:disabled {{ font-size:.78rem; padding:1.1rem 2.2rem; }}
     .ls-checkout-sub {{ display:block; font-size:.74rem; font-style:italic; color:var(--bbj-muted); text-align:center; margin-bottom:1.4rem; line-height:1.45; }}
 
-    .etsy-secondary {{ margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid rgba(42,32,64,.5); }}
-    .etsy-secondary .etsy-secondary-label {{ font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.5rem; }}
-    .etsy-secondary p {{ font-family:'DM Sans',sans-serif; font-size:.78rem; color:var(--bbj-muted); line-height:1.5; margin-bottom:.5rem; }}
-    .etsy-secondary a {{ color:var(--bbj-muted); text-decoration:underline; text-decoration-color:rgba(138,127,168,.4); }}
-    .etsy-secondary a:hover {{ color:var(--bbj-accent); text-decoration-color:var(--bbj-accent); }}
-    .etsy-secondary .etsy-pause-note {{ font-style:italic; font-size:.72rem; opacity:.75; margin-top:.4rem; margin-bottom:0; }}
 
     .sticky-sidebar {{ position:sticky; top:88px; background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.8rem 1.7rem; font-family:'DM Sans',sans-serif; }}
     .sticky-sidebar::before {{ content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(201,168,76,.05) 0%,transparent 60%); }}
@@ -767,7 +761,7 @@ def build_page(sign, manifest):
           <li>Buyers who already own the {sign} Western Signs Bundle and want the matching landscape interpretation — figure and environment as a paired wall arrangement</li>
           <li>Atmospheric decor buyers who prefer landscape art over portraiture — especially for living rooms, dining rooms, and larger spaces that benefit from depth</li>
           <li>{sign} ({m['dates']}) who want their sign represented as a place rather than a character</li>
-          <li>Etsy, Printful, and Redbubble print-on-demand sellers expanding into atmospheric and landscape categories with explicit POD licensing</li>
+          <li>Printful, Redbubble, and other print-on-demand sellers expanding into atmospheric and landscape categories with explicit POD licensing</li>
           <li>Interior decorators building moody, atmospheric, or element-aligned rooms</li>
           <li>Collectors stacking multiple zodiac landscapes from the broader BBJ Studio catalog</li>
         </ul>
@@ -834,11 +828,6 @@ def build_page(sign, manifest):
         <li>Real Kansas LLC + clear POD license</li>
         <li>Secure direct checkout via Lemon Squeezy</li>
       </ul>
-
-      <div class="etsy-secondary">
-        <div class="etsy-secondary-label">Looking for something different?</div>
-        <p>The Built by Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
-      </div>
     </aside>
   </div>
 

@@ -202,13 +202,13 @@ Trust signals:
   - Real Kansas LLC + clear POD license
   - Secure direct checkout via Lemon Squeezy
 
-Secondary Etsy reference (styled smaller/quieter, NOT a competing CTA):
+Secondary print-on-demand link (Western Signs per-sign pages only; styled
+smaller/quieter, NOT a competing CTA). No Etsy link on Collection pages —
+the Lemon Squeezy overlay is the only purchase action:
   Label: Looking for something different?
-  Body: The Built by Josh Studio Etsy storefront has additional individual
-        prints and other studio work. Visit the Etsy shop →
-  Pause note (italic, opacity 75%): Etsy storefront currently on a brief
-        verification pause while the IRS finalizes EIN verification —
-        <Bundle> purchases above are unaffected.
+  Body: Prefer it already printed? The <Sign> celestial artwork is available
+        on posters, canvas prints, apparel, and more at the studio’s
+        Redbubble shop. See <Sign> on Redbubble →
 ```
 
 ## H2: Sister nav (per-sign / per-animal pages only)

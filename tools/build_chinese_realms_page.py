@@ -3,7 +3,7 @@
 Single-bundle landing page (mirrors zodiac-landscapes.html) covering all 12
 Chinese zodiac animals as landscape-style Realm art. Replaces the Phase 4
 placeholder structure with the full master pattern: LS-direct CTAs, License
-& POD Trust block, secondary Etsy block, 12 animal Realm sub-sections,
+& POD Trust block, 12 animal Realm sub-sections,
 Related Collections, Product/FAQPage/BreadcrumbList/Organization schemas.
 
 Reads:  images/zodiac/chinese-realms/manifest.json (Phase 4 generated)
@@ -112,7 +112,7 @@ def faq_data():
         ('What formats and color profiles do the files use?',
          'All files are delivered in both PNG (lossless) and JPG (92% quality compression) formats. Color profile is sRGB — the standard for virtually every print-on-demand service and consumer printer, requiring no color conversion before printing.'),
         ('Where can I buy the Chinese Zodiac Realms Bundle?',
-         'The Chinese Zodiac Realms Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Chinese Realms Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no Etsy account required, no marketplace fees, files delivered immediately to your email. The Built by Josh Studio Etsy storefront carries other studio work but does not sell the full Collection bundles.'),
+         'The Chinese Zodiac Realms Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Chinese Realms Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no account required, no marketplace fees, files delivered immediately to your email.'),
         ('How does this bundle compare to the per-animal Chinese Signs bundles?',
          'The 12 Chinese Signs per-animal bundles ($14.99 each) are figure-based — each one covers one zodiac animal in 2 art styles (Chinese Animals + Hyper Realistic Chinese), 8 designs total per animal. The Chinese Zodiac Realms Bundle ($29.99) is the landscape-based companion — it covers all 12 animals at once, but as environments rather than figures. Buyers often pair the two: an animal figure print plus its matching Realm landscape on the same wall.'),
     ]
@@ -349,12 +349,6 @@ def build_page(manifest):
     .ls-checkout-btn--large:disabled {{ font-size:.78rem; padding:1.1rem 2.2rem; }}
     .ls-checkout-sub {{ display:block; font-size:.74rem; font-style:italic; color:var(--bbj-muted); text-align:center; margin-bottom:1.4rem; line-height:1.45; }}
 
-    .etsy-secondary {{ margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid rgba(42,32,64,.5); }}
-    .etsy-secondary .etsy-secondary-label {{ font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.5rem; }}
-    .etsy-secondary p {{ font-family:'DM Sans',sans-serif; font-size:.78rem; color:var(--bbj-muted); line-height:1.5; margin-bottom:.5rem; }}
-    .etsy-secondary a {{ color:var(--bbj-muted); text-decoration:underline; text-decoration-color:rgba(138,127,168,.4); }}
-    .etsy-secondary a:hover {{ color:var(--bbj-accent); text-decoration-color:var(--bbj-accent); }}
-    .etsy-secondary .etsy-pause-note {{ font-style:italic; font-size:.72rem; opacity:.75; margin-top:.4rem; margin-bottom:0; }}
 
     .sticky-sidebar {{ position:sticky; top:88px; background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.8rem 1.7rem; font-family:'DM Sans',sans-serif; }}
     .sticky-sidebar::before {{ content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(201,168,76,.05) 0%,transparent 60%); }}
@@ -530,7 +524,7 @@ def build_page(manifest):
         <ul>
           <li>Buyers who want one purchase that covers every Chinese zodiac animal — useful for family gifts, multi-person households, and wall arrangements that span the whole zodiac</li>
           <li>Atmospheric decor buyers who prefer landscape art over portraiture, especially for living rooms, dining rooms, and larger spaces that benefit from depth</li>
-          <li>Etsy, Printful, and Redbubble print-on-demand sellers building Chinese zodiac inventory who want a single licensed source for all 12 animal landscapes</li>
+          <li>Printful, Redbubble, and other print-on-demand sellers building Chinese zodiac inventory who want a single licensed source for all 12 animal landscapes</li>
           <li>Collectors stacking the Chinese Realms with the Chinese Signs Collection — figure and environment together for the same animal</li>
           <li>Interior decorators working in Lunar New Year contexts or culturally themed spaces who need a complete set</li>
           <li>Anyone who wants the broadest BBJ Studio landscape catalog at the lowest per-design price in the entire zodiac line</li>
@@ -598,11 +592,6 @@ def build_page(manifest):
         <li>Real Kansas LLC + clear POD license</li>
         <li>Secure direct checkout via Lemon Squeezy</li>
       </ul>
-
-      <div class="etsy-secondary">
-        <div class="etsy-secondary-label">Looking for something different?</div>
-        <p>The Built by Josh Studio Etsy storefront has additional individual prints and other studio work. <a href="https://www.etsy.com/shop/BuiltByJoshStudio" target="_blank" rel="noopener">Visit the Etsy shop →</a></p>
-      </div>
     </aside>
   </div>
 
