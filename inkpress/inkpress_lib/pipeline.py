@@ -46,6 +46,35 @@ def load_chrome(donor_path):
     return render_site.extract_chrome(path.read_text(encoding="utf-8"))
 
 
+def _delivery_notes(result):
+    doc = result.document
+    edition_label = result.edition.label if result.edition else editions.TIER_LABELS[editions.CLEAN]
+    trim = doc.meta.get("trim", render_print.DEFAULT_TRIM)
+    lines = [
+        f"{doc.plain_title()} — Buyer Delivery Package",
+        "=" * (len(doc.plain_title()) + 27),
+        "",
+        f"Author:   {doc.meta.get('author', '')}",
+        f"Edition:  {edition_label}",
+        f"Length:   {len(doc.chapters)} chapters, {doc.word_count:,} words",
+        f"Trim:     {trim}",
+        "",
+        "Included files:",
+    ]
+    for target, path in sorted(result.outputs.items()):
+        if target == "package":
+            continue
+        desc = {
+            "epub": "EPUB 3 ebook (ready for Kindle KDP, Apple Books, Kobo)",
+            "pdf": f"Print-ready KDP interior PDF ({trim} trim)",
+            "print": f"Paged-media print interior HTML ({trim} trim)",
+            "site": "Standalone web page HTML",
+        }.get(target, target)
+        lines.append(f"  - {path.name:<36} {desc}")
+    lines.append("")
+    return "\n".join(lines)
+
+
 def package_order(result, out_dir, dry_run=False):
     """Bundle all built deliverables into a deterministic buyer ZIP archive."""
     out_dir = Path(out_dir)
@@ -57,6 +86,11 @@ def package_order(result, out_dir, dry_run=False):
         zip_path.parent.mkdir(parents=True, exist_ok=True)
         stamp = (1980, 1, 1, 0, 0, 0)
         with zipfile.ZipFile(zip_path, "w") as archive:
+            notes_info = zipfile.ZipInfo("DELIVERY-NOTES.txt", date_time=stamp)
+            notes_info.compress_type = zipfile.ZIP_DEFLATED
+            notes_info.external_attr = 0o644 << 16
+            archive.writestr(notes_info, _delivery_notes(result).encode("utf-8"))
+
             for target, path in sorted(result.outputs.items()):
                 if target == "package" or not path.is_file():
                     continue
@@ -71,7 +105,7 @@ def package_order(result, out_dir, dry_run=False):
 
 def build(source, out_dir, targets=ALL_TARGETS, chrome=None, base_url=None,
           path_prefix="writing", print_css=None, dry_run=False, meta_overrides=None,
-          tier=None, edition=None, pdf=False, package=False):
+          tier=None, edition=None, pdf=False, package=False, cover=None):
     """Run the full pipeline for one manuscript.
 
     meta_overrides supplies front matter the file itself is missing — the
@@ -89,6 +123,8 @@ def build(source, out_dir, targets=ALL_TARGETS, chrome=None, base_url=None,
         for key, value in meta_overrides.items():
             if value not in (None, "", []):
                 parsed.meta[key] = value
+    if cover:
+        parsed.meta["cover"] = cover
 
     document = structure.build(parsed)
     resolved_edition = editions.from_meta(

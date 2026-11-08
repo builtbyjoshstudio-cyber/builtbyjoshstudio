@@ -55,9 +55,13 @@ def _unmask(text, store):
 def _dashes(text):
     text = text.replace("...", ELLIPSIS)
     text = text.replace(". . .", ELLIPSIS)
+    # Spaced dashes from Word/Docs become closed em-dashes.
+    text = re.sub(r"[ \t]+(?:---|--|-)[ \t]+", EM_DASH, text)
     # Longest first so --- never gets eaten by the -- rule.
     text = re.sub(r"(?<!-)---(?!-)", EM_DASH, text)
     text = re.sub(r"(?<!-)--(?!-)", EN_DASH, text)
+    # Collapse accidental double spaces inside a line.
+    text = re.sub(r"[ \t]{2,}", " ", text)
     return text
 
 

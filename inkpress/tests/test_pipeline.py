@@ -74,6 +74,11 @@ class TestTypography(unittest.TestCase):
         self.assertEqual(typography.apply('**"Stop!"**'), "**“Stop!”**")
         self.assertEqual(typography.apply("_'90s_"), "_’90s_")
 
+    def test_spaced_dashes_and_double_spaces_normalized(self):
+        self.assertEqual(typography.apply("wait - what"), "wait—what")
+        self.assertEqual(typography.apply("wait -- what"), "wait—what")
+        self.assertEqual(typography.apply("One.  Two."), "One. Two.")
+
     def test_code_spans_are_untouched(self):
         self.assertEqual(typography.apply('`a--b`'), '`a--b`')
 
@@ -775,11 +780,40 @@ class TestTierBuilds(unittest.TestCase):
                 self.assertEqual(
                     sorted(archive.namelist()),
                     [
+                        "DELIVERY-NOTES.txt",
                         "test-book-interior.html",
                         "test-book.epub",
                         "test-book.html",
                     ],
                 )
+                notes = archive.read("DELIVERY-NOTES.txt").decode("utf-8")
+                self.assertIn("Test Book", notes)
+                self.assertIn("Ashveil", notes)
+
+    def test_unnumbered_front_back_matter_and_redundant_chapter_prefixes(self):
+        raw = (
+            "---\ntitle: Test Book\nauthor: A. Writer\ndate: 2026-01-02\n"
+            "language: en\ndescription: Short.\n---\n\n"
+            "## Prologue\n\nOpening prologue.\n\n"
+            "## Chapter 1: The Gate\n\nFirst real chapter.\n\n"
+            "## Chapter Two\n\nSecond real chapter.\n\n"
+            "## About the Author\n\nBio text.\n"
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(raw, directory)
+            result = pipeline.build(
+                source, Path(directory) / "build", targets=("print",), tier="styled"
+            )
+            html = result.outputs["print"].read_text(encoding="utf-8")
+
+        self.assertEqual(result.document.chapters[0].display_number, None)
+        self.assertEqual(result.document.chapters[1].display_number, 1)
+        self.assertEqual(result.document.chapters[2].display_number, 2)
+        self.assertEqual(result.document.chapters[3].display_number, None)
+        self.assertIn('<span class="chapter-number">Chapter 1</span>', html)
+        self.assertIn('<h2 id="chapter-1-the-gate">The Gate</h2>', html)
+        self.assertNotIn('<span class="chapter-number">Chapter 2</span>', html)
+        self.assertIn('<h2 id="chapter-two">Chapter Two</h2>', html)
 
     def test_copyright_and_dedication_render_in_print_and_epub(self):
         source_text = MINIMAL.replace(

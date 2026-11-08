@@ -193,12 +193,13 @@ def _chapter_xhtml(chapter, document, edition, has_art):
             f'  <div class="chapter-art" {_CENTERED}>'
             f'<img src="art/chap-{chapter.number:03d}.svg" alt="" /></div>'
         )
-    if edition.chapter_number and not chapter.implicit:
+    number_label, display_title = chapter.heading_parts(edition.chapter_number)
+    if number_label:
         opener.append(
-            f'  <span class="chapter-number" {_CENTERED}>Chapter {chapter.number}</span>'
+            f'  <span class="chapter-number" {_CENTERED}>{inline.escape(number_label)}</span>'
         )
-    if not chapter.implicit:
-        opener.append(f'  <h2 id="{chapter.slug}">{inline.render(chapter.title)}</h2>')
+    if display_title:
+        opener.append(f'  <h2 id="{chapter.slug}">{inline.render(display_title)}</h2>')
 
     prose = body.blocks_to_html(
         chapter.blocks, heading_level=3, indent="  ",

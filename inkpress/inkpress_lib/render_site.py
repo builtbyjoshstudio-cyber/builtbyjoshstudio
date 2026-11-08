@@ -249,9 +249,14 @@ def _chapters_html(document, edition):
             if svg:
                 parts.append(f'      <div class="chapter-art">{svg}</div>')
 
-        if edition.chapter_number and not chapter.implicit:
+        number_label, display_title = chapter.heading_parts(edition.chapter_number)
+        if number_label:
             parts.append(
-                f'      <span class="chapter-number">Chapter {chapter.number}</span>'
+                f'      <span class="chapter-number">{inline.escape(number_label)}</span>'
+            )
+        if display_title:
+            parts.append(
+                f'      <h2 id="{chapter.slug}">{inline.render(display_title)}</h2>'
             )
 
         parts.append(
@@ -259,6 +264,7 @@ def _chapters_html(document, edition):
                 chapter,
                 heading_level=2,
                 indent="      ",
+                include_heading=False,
                 scene_break=(
                     f'<p class="scene-break" role="separator">'
                     f"{inline.escape(edition.scene_break)}</p>"

@@ -83,6 +83,11 @@ def parse_args(argv):
         "--print-css", metavar="FILE.css", help="override the generated paged-media CSS"
     )
     parser.add_argument(
+        "--cover",
+        metavar="IMAGE",
+        help="cover image (.svg, .png, .jpg) to embed in the EPUB",
+    )
+    parser.add_argument(
         "--pdf",
         action="store_true",
         help="also render the print interior HTML to a ready-to-upload PDF",
@@ -134,6 +139,7 @@ def main(argv=None):
             edition=args.edition,
             pdf=args.pdf,
             package=args.package,
+            cover=args.cover,
         )
     except ms.ManuscriptError as error:
         die(f"{source.name}: {error}")

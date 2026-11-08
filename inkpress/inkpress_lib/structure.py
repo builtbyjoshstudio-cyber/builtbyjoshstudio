@@ -18,6 +18,24 @@ from . import inline, typography
 
 _SLUG_STRIP_RE = re.compile(r"[^a-z0-9]+")
 _WORD_RE = re.compile(r"[A-Za-z0-9’'\-]+")
+_UNNUMBERED_RE = re.compile(
+    r"^(?:prologue|epilogue|foreword|preface|introduction|afterword|"
+    r"acknowledgm?ents|about the author|author[’']s note|also by\b.*|"
+    r"appendix\b.*|glossary)$",
+    re.IGNORECASE,
+)
+_CHAPTER_PREFIX_RE = re.compile(
+    r"^chapter\s+(?:[0-9]+|[ivxlcdm]+|one|two|three|four|five|six|seven|eight|"
+    r"nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|"
+    r"eighteen|nineteen|twenty(?:[\-\s][a-z]+)?|thirty(?:[\-\s][a-z]+)?)"
+    r"(?:\s*[:.\-—–]\s*(.+))?$",
+    re.IGNORECASE,
+)
+
+
+def is_unnumbered_heading(title):
+    plain = inline.plain(str(title)).strip()
+    return bool(_UNNUMBERED_RE.match(plain))
 
 
 def slugify(text):
@@ -30,11 +48,31 @@ def slugify(text):
 class Chapter:
     """One chapter: a title plus the blocks beneath it."""
 
-    def __init__(self, title, number, blocks=None, implicit=False):
+    def __init__(self, title, number, blocks=None, implicit=False, display_number=None):
         self.title = title
         self.number = number
         self.blocks = blocks or []
         self.implicit = implicit
+        if implicit or is_unnumbered_heading(title):
+            self.display_number = None
+        else:
+            self.display_number = number if display_number is None else display_number
+
+    def heading_parts(self, show_chapter_number=False):
+        """Return (number_label, display_title) for rendering a chapter opener."""
+        if self.implicit:
+            return None, None
+        if not show_chapter_number or self.display_number is None:
+            return None, self.title
+
+        match = _CHAPTER_PREFIX_RE.match(self.title.strip())
+        if match:
+            remainder = (match.group(1) or "").strip()
+            if remainder:
+                return f"Chapter {self.display_number}", remainder
+            return None, self.title
+
+        return f"Chapter {self.display_number}", self.title
 
     @property
     def slug(self):
@@ -87,10 +125,19 @@ def build(parsed):
 
     chapters = []
     current = None
+    numbered_count = 0
 
     for block in parsed.blocks:
         if block.kind == ms.CHAPTER:
-            current = Chapter(typography.apply(block.text), len(chapters) + 1)
+            title_text = typography.apply(block.text)
+            if is_unnumbered_heading(title_text):
+                disp_num = None
+            else:
+                numbered_count += 1
+                disp_num = numbered_count
+            current = Chapter(
+                title_text, len(chapters) + 1, display_number=disp_num
+            )
             chapters.append(current)
             continue
 

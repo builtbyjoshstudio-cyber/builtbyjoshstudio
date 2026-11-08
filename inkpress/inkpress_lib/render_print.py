@@ -436,12 +436,18 @@ def render(document, css_override=None, edition=None):
         )
     toc_setting = str(meta.get("toc", "true")).strip().lower()
     if document.has_real_chapters and len(document.chapters) > 1 and toc_setting not in ("false", "none", "no"):
-        toc_items = "\n".join(
-            f'    <li><a href="#{chapter.slug}">'
-            f'<span class="toc-num">{chapter.number}.</span>'
-            f"{inline.render(chapter.title)}</a></li>"
-            for chapter in document.chapters
-        )
+        toc_rows = []
+        for chapter in document.chapters:
+            num_span = (
+                f'<span class="toc-num">{chapter.display_number}.</span>'
+                if chapter.display_number is not None
+                else ""
+            )
+            toc_rows.append(
+                f'    <li><a href="#{chapter.slug}">'
+                f"{num_span}{inline.render(chapter.title)}</a></li>"
+            )
+        toc_items = "\n".join(toc_rows)
         front_sections.append(
             '<nav class="toc-page" role="doc-toc">\n'
             "  <h2>Contents</h2>\n"
@@ -466,14 +472,15 @@ def render(document, css_override=None, edition=None):
             if svg:
                 opener.append(f'  <div class="chapter-art">{svg}</div>')
 
-        if edition.chapter_number and not chapter.implicit:
+        number_label, display_title = chapter.heading_parts(edition.chapter_number)
+        if number_label:
             opener.append(
-                f'  <span class="chapter-number">Chapter {chapter.number}</span>'
+                f'  <span class="chapter-number">{inline.escape(number_label)}</span>'
             )
 
-        if not chapter.implicit:
+        if display_title:
             opener.append(
-                f'  <h2 id="{chapter.slug}">{inline.render(chapter.title)}</h2>'
+                f'  <h2 id="{chapter.slug}">{inline.render(display_title)}</h2>'
             )
 
         prose = body.blocks_to_html(

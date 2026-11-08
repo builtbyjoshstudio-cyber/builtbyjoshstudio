@@ -109,6 +109,7 @@ class InkpressApp(ttk.Frame):
         self.manuscript_var = tk.StringVar()
         self.out_var = tk.StringVar(value=str(HERE / "build"))
         self.chrome_var = tk.StringVar()
+        self.cover_var = tk.StringVar()
         self.status_var = tk.StringVar(value="Choose a manuscript to begin.")
         self.meta_vars = {key: tk.StringVar() for key, _ in META_FIELDS}
         self.target_vars = {key: tk.BooleanVar(value=True) for key, _, _ in TARGET_LABELS}
@@ -277,21 +278,29 @@ class InkpressApp(ttk.Frame):
             row=1, column=1, sticky="ew", padx=(PAD, PAD), pady=(6, 0)
         )
 
-        ttk.Label(box, text="Match site page").grid(row=2, column=0, sticky="w", pady=(6, 0))
-        ttk.Entry(box, textvariable=self.chrome_var).grid(
+        ttk.Label(box, text="Cover image").grid(row=2, column=0, sticky="w", pady=(6, 0))
+        ttk.Entry(box, textvariable=self.cover_var).grid(
             row=2, column=1, sticky="ew", padx=(PAD, PAD), pady=(6, 0)
         )
-        ttk.Button(box, text="Browse...", command=self._choose_chrome).grid(
+        ttk.Button(box, text="Browse...", command=self._choose_cover).grid(
             row=2, column=2, pady=(6, 0)
+        )
+
+        ttk.Label(box, text="Match site page").grid(row=3, column=0, sticky="w", pady=(6, 0))
+        ttk.Entry(box, textvariable=self.chrome_var).grid(
+            row=3, column=1, sticky="ew", padx=(PAD, PAD), pady=(6, 0)
+        )
+        ttk.Button(box, text="Browse...", command=self._choose_chrome).grid(
+            row=3, column=2, pady=(6, 0)
         )
 
         ttk.Label(
             box,
-            text="Optional: point at a page from your site and the web page copies its "
-                 "styling, menu and footer.",
+            text="Optional: attach a custom cover image for EPUB (otherwise an Edition SVG cover is "
+                 "generated), or point at a site page to copy its menu and footer.",
             foreground="#666",
             wraplength=520,
-        ).grid(row=3, column=0, columnspan=3, sticky="w", pady=(6, 0))
+        ).grid(row=4, column=0, columnspan=3, sticky="w", pady=(6, 0))
         return row + 1
 
     def _build_actions(self, row):
@@ -375,6 +384,14 @@ class InkpressApp(ttk.Frame):
         if path:
             self.chrome_var.set(path)
 
+    def _choose_cover(self):
+        path = filedialog.askopenfilename(
+            title="Choose a cover image for EPUB",
+            filetypes=[("Cover images", "*.jpg *.jpeg *.png *.svg"), ("All files", "*.*")],
+        )
+        if path:
+            self.cover_var.set(path)
+
     def _load_manuscript(self):
         """Read the file and prefill the details form."""
         path = Path(self.manuscript_var.get())
@@ -407,6 +424,9 @@ class InkpressApp(ttk.Frame):
 
         trim_val = str(parsed.meta.get("trim", "")).strip()
         self.trim_var.set(trim_val if trim_val else TRIM_CHOICES[0])
+
+        cover_val = str(parsed.meta.get("cover", "")).strip()
+        self.cover_var.set(cover_val)
 
         chapters = sum(1 for block in parsed.blocks if block.kind == ms.CHAPTER)
         words = sum(
@@ -454,6 +474,9 @@ class InkpressApp(ttk.Frame):
         trim = self.trim_var.get().strip()
         if trim:
             overrides["trim"] = trim
+        cover = self.cover_var.get().strip()
+        if cover:
+            overrides["cover"] = cover
         out_dir = self.out_var.get().strip() or str(HERE / "build")
         chrome_path = self.chrome_var.get().strip() or None
         pdf = bool(self.pdf_var.get()) and ("print" in targets)
