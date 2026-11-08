@@ -597,9 +597,26 @@ class InkpressApp(ttk.Frame):
 def main():
     initial = sys.argv[1] if len(sys.argv) > 1 else None
 
+    if platform.system() == "Windows":
+        try:
+            import ctypes
+
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
+                "builtbyjoshstudio.inkpress"
+            )
+            ctypes.windll.shcore.SetProcessDpiAwareness(1)
+        except Exception:  # noqa: BLE001
+            pass
+
     root = tk.Tk()
     root.title(f"inkpress {__version__}")
-    root.minsize(620, 720)
+    root.minsize(620, 680)
+    ico_path = HERE / "inkpress.ico"
+    if ico_path.is_file():
+        try:
+            root.iconbitmap(str(ico_path))
+        except tk.TclError:
+            pass
     try:
         ttk.Style().theme_use("vista")
     except tk.TclError:

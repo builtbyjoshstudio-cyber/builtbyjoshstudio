@@ -948,6 +948,19 @@ class TestSampleManuscript(unittest.TestCase):
         )
         self.assertGreaterEqual(svg.count("<tspan"), 2)
 
+    def test_build_exe_writes_valid_ico_and_pe_executable(self):
+        import build_exe
+
+        with tempfile.TemporaryDirectory() as directory:
+            ico = build_exe.write_icon(Path(directory) / "test.ico")
+            self.assertTrue(ico.is_file())
+            self.assertEqual(ico.read_bytes()[:4], b"\x00\x00\x01\x00")
+
+            if build_exe.find_csc():
+                exe = build_exe.build_exe(Path(directory) / "test.exe", ico)
+                self.assertTrue(exe.is_file())
+                self.assertEqual(exe.read_bytes()[:2], b"MZ")
+
 
 if __name__ == "__main__":
     unittest.main()
