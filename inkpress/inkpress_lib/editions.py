@@ -1,24 +1,21 @@
 #!/usr/bin/env python3
 """
-editions.py — the three tiers and the three illustrated editions.
+editions.py — the three tiers and the three signature framed editions.
 
-    Tier 1  clean        House typography, plain headings. No choices.
-    Tier 2  styled       House design with drop caps and chapter treatments.
-                         One fixed look, done well.
-    Tier 3  illustrated  Buyer picks an edition, which sets both the
-                         typography package and the art direction:
+    Tier 1  clean        House typography, plain headings. No borders or ornaments.
+    Tier 2  styled       House design with drop caps, chapter rules, and warm accent.
+    Tier 3  illustrated  Signature framed editions with colored page borders,
+                         ornamental chapter frames, and distinct display typography:
 
-        ashveil     charcoal epic
-        systemfall  clean geometric, system-flavoured
-        vantablack  stark high-contrast noir
+        ashveil     warm bronze double-rule frame & classic serif
+        systemfall  slate-blue geometric frame & monospace headers
+        vantablack  high-contrast architectural frame & grotesk headers
 
-A tier is a data object, not a branch in the renderers. Each one declares its
-fonts, colours, chapter-opener treatment and ornaments; every renderer reads
-the same object, so a tier looks like itself across the web page, the ebook
-and the printed interior.
-
-Fonts are stacks, never embedded files — no licences travel with the output.
+Any tier or edition can also have its border style ('none', 'single', 'double',
+'rules') and border/accent colour ('#hex') customised via front matter or the
+desktop app.
 """
+import copy
 
 CLEAN = "clean"
 STYLED = "styled"
@@ -32,17 +29,38 @@ VANTABLACK = "vantablack"
 
 EDITIONS = (ASHVEIL, SYSTEMFALL, VANTABLACK)
 
+BORDER_STYLES = ("double", "single", "rules", "none")
+
+BORDER_STYLE_LABELS = {
+    "double": "Double Frame",
+    "single": "Single Frame",
+    "rules": "Header & Footer Rules",
+    "none": "No Border",
+}
+
 TIER_LABELS = {
     CLEAN: "Tier 1 - Clean",
     STYLED: "Tier 2 - Styled",
-    ILLUSTRATED: "Tier 3 - Illustrated",
+    ILLUSTRATED: "Tier 3 - Framed Edition",
 }
 
 EDITION_LABELS = {
-    ASHVEIL: "Ashveil - charcoal epic",
-    SYSTEMFALL: "Systemfall - geometric, system-flavoured",
-    VANTABLACK: "Vantablack - high-contrast noir",
+    ASHVEIL: "Ashveil - warm bronze double frame",
+    SYSTEMFALL: "Systemfall - slate geometric frame",
+    VANTABLACK: "Vantablack - high-contrast noir frame",
 }
+
+# Curated bookish border/accent color palette for the studio UI.
+COLOR_PRESETS = (
+    ("Crimson", "#8B261D"),
+    ("Bronze", "#8A4B26"),
+    ("Navy", "#1E3A5F"),
+    ("Forest", "#24523B"),
+    ("Burgundy", "#5B2333"),
+    ("Gold", "#9A7428"),
+    ("Slate", "#2F6F8F"),
+    ("Obsidian", "#191817"),
+)
 
 # Serif stacks chosen for wide availability on Windows and macOS alike.
 _CLASSIC_SERIF = '"Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif'
@@ -53,13 +71,13 @@ _GROTESK = '"Helvetica Neue", Helvetica, Arial, sans-serif'
 
 
 class Edition:
-    """One resolved look: tier plus, for tier 3, the buyer's chosen edition."""
+    """One resolved look: tier plus typography, border style, and accent colour."""
 
     def __init__(self, tier, key, label, body_font, display_font, ink, paper,
                  accent, drop_cap=False, chapter_rule=False, art=None,
                  scene_break="* * *", display_transform="uppercase",
                  display_tracking="0.08em", display_weight="normal",
-                 chapter_number=False):
+                 chapter_number=False, border_style="none"):
         self.tier = tier
         self.key = key
         self.label = label
@@ -76,6 +94,7 @@ class Edition:
         self.display_tracking = display_tracking
         self.display_weight = display_weight
         self.chapter_number = chapter_number
+        self.border_style = border_style
 
     @property
     def is_illustrated(self):
@@ -97,6 +116,7 @@ _CLEAN = Edition(
     drop_cap=False,
     chapter_rule=False,
     art=None,
+    border_style="none",
 )
 
 _STYLED = Edition(
@@ -113,6 +133,7 @@ _STYLED = Edition(
     chapter_number=True,
     art=None,
     scene_break="❧",
+    border_style="rules",
 )
 
 _ASHVEIL = Edition(
@@ -125,11 +146,12 @@ _ASHVEIL = Edition(
     paper="#ffffff",
     accent="#8a4b26",
     drop_cap=True,
-    chapter_rule=False,
+    chapter_rule=True,
     chapter_number=True,
     art=ASHVEIL,
     scene_break="◆",
     display_tracking="0.14em",
+    border_style="double",
 )
 
 _SYSTEMFALL = Edition(
@@ -148,6 +170,7 @@ _SYSTEMFALL = Edition(
     scene_break="· · ·",
     display_transform="uppercase",
     display_tracking="0.22em",
+    border_style="single",
 )
 
 _VANTABLACK = Edition(
@@ -160,13 +183,14 @@ _VANTABLACK = Edition(
     paper="#ffffff",
     accent="#000000",
     drop_cap=True,
-    chapter_rule=False,
+    chapter_rule=True,
     chapter_number=True,
     art=VANTABLACK,
     scene_break="▬",
     display_transform="uppercase",
     display_tracking="0.02em",
     display_weight="800",
+    border_style="double",
 )
 
 _BY_EDITION = {
@@ -180,7 +204,7 @@ class EditionError(Exception):
     """Raised when a tier or edition name is not recognised."""
 
 
-def resolve(tier=None, edition=None):
+def resolve(tier=None, edition=None, border_color=None, border_style=None):
     """Resolve front matter into an Edition. Defaults to tier 1."""
     tier = (str(tier).strip().lower() if tier else CLEAN)
     edition_key = str(edition).strip().lower() if edition else None
@@ -191,20 +215,30 @@ def resolve(tier=None, edition=None):
         )
 
     if tier != ILLUSTRATED:
-        return _CLEAN if tier == CLEAN else _STYLED
+        base = _CLEAN if tier == CLEAN else _STYLED
+    else:
+        if not edition_key:
+            raise EditionError(
+                "tier 'illustrated' needs an edition - choose one of: "
+                + ", ".join(EDITIONS)
+            )
+        if edition_key not in _BY_EDITION:
+            raise EditionError(
+                f"unknown edition {edition_key!r} - choose one of: {', '.join(EDITIONS)}"
+            )
+        base = _BY_EDITION[edition_key]
 
-    if not edition_key:
-        raise EditionError(
-            "tier 'illustrated' needs an edition - choose one of: "
-            + ", ".join(EDITIONS)
-        )
+    if not border_color and not border_style:
+        return base
 
-    if edition_key not in _BY_EDITION:
-        raise EditionError(
-            f"unknown edition {edition_key!r} - choose one of: {', '.join(EDITIONS)}"
-        )
-
-    return _BY_EDITION[edition_key]
+    custom = copy.copy(base)
+    if border_color and str(border_color).strip():
+        custom.accent = str(border_color).strip()
+    if border_style and str(border_style).strip().lower() in BORDER_STYLES:
+        custom.border_style = str(border_style).strip().lower()
+        if custom.border_style != "none":
+            custom.chapter_rule = True
+    return custom
 
 
 def from_meta(meta, tier_override=None, edition_override=None):
@@ -212,4 +246,6 @@ def from_meta(meta, tier_override=None, edition_override=None):
     return resolve(
         tier_override or meta.get("tier"),
         edition_override or meta.get("edition"),
+        border_color=meta.get("border_color"),
+        border_style=meta.get("border_style"),
     )

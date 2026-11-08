@@ -808,8 +808,35 @@ class TestTierBuilds(unittest.TestCase):
                     self.assertTrue(
                         inkpress_app._enable_windows_file_drop(root, app.handle_dropped_file)
                     )
+
+                # Test colored border selection in the app
+                app._select_preset("clean", None)
+                self.assertEqual(app._resolved_edition().border_style, "none")
+                app._select_border_color("#1E3A5F")
+                resolved_custom = app._resolved_edition()
+                self.assertEqual(resolved_custom.accent, "#1E3A5F")
+                self.assertEqual(resolved_custom.border_style, "double")
         finally:
             root.destroy()
+
+    def test_custom_border_color_and_style_render_across_all_targets(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(
+                source,
+                Path(directory) / "build",
+                meta_overrides={"border_color": "#1E3A5F", "border_style": "double"},
+            )
+            print_html = result.outputs["print"].read_text(encoding="utf-8")
+            site_html = result.outputs["site"].read_text(encoding="utf-8")
+            with zipfile.ZipFile(result.outputs["epub"]) as archive:
+                epub_css = archive.read("OEBPS/style.css").decode("utf-8")
+                cover_svg = archive.read("OEBPS/cover.svg").decode("utf-8")
+
+        self.assertIn("3.5px double #1E3A5F", print_html)
+        self.assertIn("4px double #1E3A5F", site_html)
+        self.assertIn("3px double #1E3A5F", epub_css)
+        self.assertIn('stroke="#1E3A5F"', cover_svg)
 
     def test_package_bundles_buyer_deliverables(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -254,6 +254,30 @@ def build_css(document, edition=None):
 @media print { .chapter-art { break-inside: avoid; } }
 """
 
+    border_css = ""
+    b_style = getattr(edition, "border_style", "none")
+    if b_style == "double":
+        border_css = f"""
+.titlepage, .copyright-page, .dedication-page, .toc-page, .chapter {{
+  outline: 3.5px double {edition.accent};
+  outline-offset: -0.36in;
+}}
+"""
+    elif b_style == "single":
+        border_css = f"""
+.titlepage, .copyright-page, .dedication-page, .toc-page, .chapter {{
+  outline: 1.5px solid {edition.accent};
+  outline-offset: -0.36in;
+}}
+"""
+    elif b_style == "rules":
+        border_css = f"""
+.titlepage, .chapter {{
+  border-top: 2px solid {edition.accent};
+  border-bottom: 1px solid {edition.accent};
+}}
+"""
+
     return screen + f"""
 @page {{
   size: {size};
@@ -415,7 +439,7 @@ h2 + p::first-line, .opening::first-line {{ font-variant: small-caps; letter-spa
 blockquote {{ margin: 1.2em 2.2em; font-size: 10.5pt; font-style: italic; text-align: left; }}
 blockquote p {{ text-indent: 0; }}
 code {{ font-family: "Courier New", monospace; font-size: 9.5pt; }}
-{drop_cap}{chapter_rule}{chapter_number}{opener_art}"""
+{drop_cap}{chapter_rule}{chapter_number}{opener_art}{border_css}"""
 
 
 def render(document, css_override=None, edition=None):

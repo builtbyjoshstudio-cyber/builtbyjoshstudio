@@ -94,6 +94,18 @@ def build_style(edition):
 .chapter-art img { width: 100%; max-width: 100%; height: auto; }
 """
 
+    border_css = ""
+    b_style = getattr(edition, "border_style", "none")
+    if b_style == "double":
+        border_css = f""".titlepage, section {{ border: 3px double {edition.accent}; padding: 1.2em; }}
+"""
+    elif b_style == "single":
+        border_css = f""".titlepage, section {{ border: 1.5px solid {edition.accent}; padding: 1.2em; }}
+"""
+    elif b_style == "rules":
+        border_css = f""".titlepage, section {{ border-top: 2px solid {edition.accent}; border-bottom: 1px solid {edition.accent}; padding: 1em 0; }}
+"""
+
     return f"""@charset "utf-8";
 
 body {{
@@ -133,7 +145,7 @@ blockquote p {{ text-indent: 0; }}
 .titlepage {{ text-align: center; page-break-after: always; }}
 .titlepage h1 {{ text-align: center; page-break-before: avoid; }}
 .titlepage .author {{ margin-top: 2em; font-size: 1.1em; }}
-{drop_cap}{chapter_rule}{chapter_number}{chapter_art}"""
+{drop_cap}{chapter_rule}{chapter_number}{chapter_art}{border_css}"""
 
 
 def _xhtml(title, inner, language):

@@ -1,25 +1,22 @@
 #!/usr/bin/env python3
 """
-art.py — generated chapter-opener art for the tier 3 editions.
+art.py — typographic borders, ornamental rules, and framed covers.
 
-Each edition has its own art direction, drawn as SVG at build time rather than
-shipped as image files: nothing to license, nothing to lose track of, and the
-art recolours itself with the edition palette.
+Replaces procedural picture generation with clean typographic rules and
+colored border frames that match the Edition's accent colour and border style:
 
-    ashveil     charcoal epic - layered ash ridge with ember flecks
-    systemfall  geometric, system-flavoured - node grid and hairline traces
-    vantablack  high-contrast noir - solid black bar cut by negative space
+    ashveil     double-line rule with centered diamond ornament
+    systemfall  bracketed hairline rule with geometric end ticks
+    vantablack  architectural heavy-over-fine rule
 
-Output is deterministic. The generator is seeded from the chapter title and
-number, so a given chapter draws the same art on every rebuild - which is what
-keeps EPUB builds byte-identical - while different chapters differ from each
-other.
+Also renders a clean typographic SVG cover (render_cover) with single or
+double colored borders and zero generated illustrations.
 """
 import hashlib
 import textwrap
 
 VIEW_WIDTH = 600
-VIEW_HEIGHT = 120
+VIEW_HEIGHT = 32
 
 
 class _Rng:
@@ -54,130 +51,40 @@ def _fmt(value):
 
 
 def _ashveil(rng, ink, accent):
-    """Charcoal epic: a jagged ridge under drifting ash, flecked with embers."""
-    parts = []
-
-    # Three ridge layers, back to front, each darker and lower.
-    for layer in range(3):
-        opacity = 0.18 + layer * 0.22
-        base = 84 - layer * 6
-        points = [f"0,{_fmt(base + rng.between(-4, 4))}"]
-        x = 0.0
-        while x < VIEW_WIDTH:
-            x += rng.between(28, 62)
-            peak = base - rng.between(10, 34) + layer * 4
-            points.append(f"{_fmt(min(x, VIEW_WIDTH))},{_fmt(peak)}")
-        points.append(f"{VIEW_WIDTH},{VIEW_HEIGHT}")
-        points.append(f"0,{VIEW_HEIGHT}")
-        parts.append(
-            f'<polygon points="{" ".join(points)}" fill="{ink}" opacity="{opacity:.2f}"/>'
-        )
-
-    # Ash drifting above the ridge.
-    for _ in range(26):
-        cx = rng.between(0, VIEW_WIDTH)
-        cy = rng.between(6, 62)
-        radius = rng.between(0.6, 2.1)
-        parts.append(
-            f'<circle cx="{_fmt(cx)}" cy="{_fmt(cy)}" r="{_fmt(radius)}" '
-            f'fill="{ink}" opacity="{rng.between(0.08, 0.3):.2f}"/>'
-        )
-
-    # Embers, sparse and warm.
-    for _ in range(7):
-        cx = rng.between(20, VIEW_WIDTH - 20)
-        cy = rng.between(40, 92)
-        parts.append(
-            f'<circle cx="{_fmt(cx)}" cy="{_fmt(cy)}" r="{_fmt(rng.between(1.1, 2.4))}" '
-            f'fill="{accent}" opacity="{rng.between(0.5, 0.95):.2f}"/>'
-        )
-
-    parts.append(
-        f'<rect x="0" y="{VIEW_HEIGHT - 2}" width="{VIEW_WIDTH}" height="1" '
-        f'fill="{ink}" opacity="0.55"/>'
-    )
-    return parts
+    """Double-line ornamental rule with a centered diamond."""
+    inset = _fmt(rng.between(60, 96))
+    right = _fmt(VIEW_WIDTH - float(inset))
+    mid = VIEW_WIDTH // 2
+    return [
+        f'<line x1="{inset}" y1="14" x2="{mid - 16}" y2="14" stroke="{accent}" stroke-width="1.5"/>',
+        f'<line x1="{mid + 16}" y1="14" x2="{right}" y2="14" stroke="{accent}" stroke-width="1.5"/>',
+        f'<line x1="{inset}" y1="18" x2="{mid - 16}" y2="18" stroke="{ink}" stroke-width="0.7" opacity="0.55"/>',
+        f'<line x1="{mid + 16}" y1="18" x2="{right}" y2="18" stroke="{ink}" stroke-width="0.7" opacity="0.55"/>',
+        f'<polygon points="{mid},10 {mid + 6},16 {mid},22 {mid - 6},16" fill="{accent}"/>',
+    ]
 
 
 def _systemfall(rng, ink, accent):
-    """Geometric and system-flavoured: a node grid over orthogonal traces."""
-    parts = []
-    columns = 12
-    spacing = VIEW_WIDTH / (columns + 1)
-    baseline = 74
-
-    # Orthogonal traces stepping across the band.
-    x = spacing * 0.5
-    y = baseline
-    path = [f"M {_fmt(x)} {_fmt(y)}"]
-    while x < VIEW_WIDTH - spacing:
-        run = rng.between(spacing * 0.8, spacing * 2.0)
-        x = min(x + run, VIEW_WIDTH - 6)
-        path.append(f"L {_fmt(x)} {_fmt(y)}")
-        if rng.chance(0.6):
-            y = max(22, min(baseline + 22, y + rng.between(-24, 24)))
-            path.append(f"L {_fmt(x)} {_fmt(y)}")
-    parts.append(
-        f'<path d="{" ".join(path)}" fill="none" stroke="{accent}" '
-        'stroke-width="1" opacity="0.75"/>'
-    )
-
-    # Node grid.
-    for column in range(1, columns + 1):
-        cx = column * spacing
-        for row, cy in enumerate((36, 58, 80)):
-            if not rng.chance(0.55):
-                continue
-            size = 3.4 if rng.chance(0.3) else 2.2
-            filled = rng.chance(0.4)
-            parts.append(
-                f'<rect x="{_fmt(cx - size / 2)}" y="{_fmt(cy - size / 2)}" '
-                f'width="{_fmt(size)}" height="{_fmt(size)}" '
-                f'fill="{accent if filled else "none"}" stroke="{ink}" '
-                f'stroke-width="0.8" opacity="{0.85 if filled else 0.45:.2f}"/>'
-            )
-
-    parts.append(
-        f'<rect x="0" y="{VIEW_HEIGHT - 2}" width="{VIEW_WIDTH}" height="1" '
-        f'fill="{ink}" opacity="0.9"/>'
-    )
-    return parts
+    """Geometric bracketed rule with end ticks."""
+    inset = _fmt(rng.between(48, 84))
+    right = _fmt(VIEW_WIDTH - float(inset))
+    mid = VIEW_WIDTH // 2
+    return [
+        f'<line x1="{inset}" y1="16" x2="{right}" y2="16" stroke="{accent}" stroke-width="1.2"/>',
+        f'<line x1="{inset}" y1="10" x2="{inset}" y2="22" stroke="{accent}" stroke-width="1.5"/>',
+        f'<line x1="{right}" y1="10" x2="{right}" y2="22" stroke="{accent}" stroke-width="1.5"/>',
+        f'<rect x="{mid - 3}" y="13" width="6" height="6" fill="{ VIEW_WIDTH and "#ffffff" }" stroke="{accent}" stroke-width="1.2"/>',
+    ]
 
 
 def _vantablack(rng, ink, accent):
-    """High-contrast noir: a solid bar cut by hard negative space."""
-    parts = []
-    bar_top = 30
-    bar_height = 58
-
-    parts.append(
-        f'<rect x="0" y="{bar_top}" width="{VIEW_WIDTH}" height="{bar_height}" fill="{ink}"/>'
-    )
-
-    # Negative-space cuts through the bar.
-    cut_x = rng.between(VIEW_WIDTH * 0.35, VIEW_WIDTH * 0.72)
-    slant = rng.between(10, 26)
-    parts.append(
-        f'<polygon points="{_fmt(cut_x)},{bar_top} '
-        f'{_fmt(cut_x + slant)},{bar_top} '
-        f'{_fmt(cut_x + slant - 14)},{bar_top + bar_height} '
-        f'{_fmt(cut_x - 14)},{bar_top + bar_height}" fill="#ffffff"/>'
-    )
-
-    thin_x = rng.between(VIEW_WIDTH * 0.08, VIEW_WIDTH * 0.28)
-    parts.append(
-        f'<rect x="{_fmt(thin_x)}" y="{bar_top}" width="3" height="{bar_height}" '
-        'fill="#ffffff"/>'
-    )
-
-    # A single detached block, offset below the bar.
-    block = rng.between(9, 16)
-    parts.append(
-        f'<rect x="{_fmt(rng.between(VIEW_WIDTH * 0.74, VIEW_WIDTH * 0.9))}" '
-        f'y="{_fmt(bar_top + bar_height + 8)}" width="{_fmt(block)}" '
-        f'height="{_fmt(block)}" fill="{ink}"/>'
-    )
-    return parts
+    """Architectural heavy-over-fine double rule."""
+    inset = _fmt(rng.between(40, 76))
+    right = _fmt(VIEW_WIDTH - float(inset))
+    return [
+        f'<rect x="{inset}" y="11" width="{_fmt(float(right) - float(inset))}" height="3.5" fill="{accent}"/>',
+        f'<line x1="{inset}" y1="19" x2="{right}" y2="19" stroke="{ink}" stroke-width="1"/>',
+    ]
 
 
 _GENERATORS = {
@@ -202,11 +109,7 @@ def _escape_xml(text):
 
 
 def render(name, seed, ink="#000000", accent="#000000", title=""):
-    """Return a standalone SVG string for one chapter opener.
-
-    seed drives the generator, so the same chapter always draws the same art.
-    Returns "" for an edition that has no art direction (tiers 1 and 2).
-    """
+    """Return a clean typographic chapter-header rule SVG for the edition."""
     generator = _GENERATORS.get(name)
     if generator is None:
         return ""
@@ -214,16 +117,16 @@ def render(name, seed, ink="#000000", accent="#000000", title=""):
     shapes = generator(_Rng(seed), ink, accent)
     safe_title = _escape_xml(title)
     label = (
-        f"<title>Chapter opener art for {safe_title}</title>"
+        f"<title>Chapter header rule for {safe_title}</title>"
         if safe_title
-        else "<title>Chapter opener art</title>"
+        else "<title>Chapter header rule</title>"
     )
 
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" '
         f'viewBox="0 0 {VIEW_WIDTH} {VIEW_HEIGHT}" '
         f'width="100%" height="{VIEW_HEIGHT}" role="img" '
-        f'preserveAspectRatio="xMidYMax meet">'
+        f'preserveAspectRatio="xMidYMid meet">'
         f"{label}"
         + "".join(shapes)
         + "</svg>"
@@ -231,11 +134,12 @@ def render(name, seed, ink="#000000", accent="#000000", title=""):
 
 
 def render_cover(edition, title, subtitle="", author="", seed=""):
-    """Return a deterministic 600x900 SVG book cover matching the Edition."""
+    """Return a clean typographic 600x900 SVG book cover with colored borders."""
     width, height = 600, 900
     ink = edition.ink
     paper = edition.paper
     accent = edition.accent
+    border_style = getattr(edition, "border_style", "double") or "double"
     display_font = _escape_xml(edition.display_font)
     body_font = _escape_xml(edition.body_font)
     safe_title = _escape_xml(title)
@@ -246,25 +150,44 @@ def render_cover(edition, title, subtitle="", author="", seed=""):
     title_lines = textwrap.wrap(str(title).strip() or "Untitled", width=22)[:4]
     font_size = 34 if len(title_lines) == 1 else (30 if len(title_lines) == 2 else 26)
     line_step = int(font_size * 1.28)
-    start_y = 260 - ((len(title_lines) - 1) * line_step) // 2
+    start_y = 290 - ((len(title_lines) - 1) * line_step) // 2
     tspans = "".join(
         f'<tspan x="300" y="{start_y + idx * line_step}">{_escape_xml(line)}</tspan>'
         for idx, line in enumerate(title_lines)
     )
     sub_y = start_y + len(title_lines) * line_step + 24
 
-    band = ""
-    generator = _GENERATORS.get(edition.art)
-    if generator is not None:
-        shapes = generator(_Rng(seed or f"cover|{edition.key}|{title}"), ink, accent)
-        band = f'<g transform="translate(0, 520)">{"".join(shapes)}</g>'
-
     sub_el = (
         f'<text x="300" y="{sub_y}" text-anchor="middle" font-family="{body_font}" '
-        f'font-size="20" font-style="italic" fill="{ink}" opacity="0.78">{safe_sub}</text>'
+        f'font-size="20" font-style="italic" fill="{ink}" opacity="0.82">{safe_sub}</text>'
         if safe_sub
         else ""
     )
+
+    rule_y = (sub_y + 36) if safe_sub else (start_y + len(title_lines) * line_step + 24)
+
+    border_els = []
+    if border_style == "double":
+        border_els.append(
+            f'<rect x="34" y="34" width="{width - 68}" height="{height - 68}" '
+            f'fill="none" stroke="{accent}" stroke-width="3"/>'
+        )
+        border_els.append(
+            f'<rect x="44" y="44" width="{width - 88}" height="{height - 88}" '
+            f'fill="none" stroke="{accent}" stroke-width="1" opacity="0.75"/>'
+        )
+    elif border_style == "single":
+        border_els.append(
+            f'<rect x="38" y="38" width="{width - 76}" height="{height - 76}" '
+            f'fill="none" stroke="{accent}" stroke-width="2"/>'
+        )
+    elif border_style == "rules":
+        border_els.append(
+            f'<line x1="48" y1="54" x2="{width - 48}" y2="54" stroke="{accent}" stroke-width="2.5"/>'
+        )
+        border_els.append(
+            f'<line x1="48" y1="{height - 54}" x2="{width - 48}" y2="{height - 54}" stroke="{accent}" stroke-width="2.5"/>'
+        )
 
     return (
         '<?xml version="1.0" encoding="utf-8"?>\n'
@@ -272,17 +195,14 @@ def render_cover(edition, title, subtitle="", author="", seed=""):
         f'width="{width}" height="{height}" role="img">'
         f"<title>{safe_title}</title>"
         f'<rect x="0" y="0" width="{width}" height="{height}" fill="{paper}"/>'
-        f'<rect x="36" y="36" width="{width - 72}" height="{height - 72}" '
-        f'fill="none" stroke="{ink}" stroke-width="1.5" opacity="0.35"/>'
-        f'<rect x="44" y="44" width="{width - 88}" height="{height - 88}" '
-        f'fill="none" stroke="{accent}" stroke-width="0.8" opacity="0.55"/>'
-        f'<text x="300" y="{start_y}" text-anchor="middle" font-family="{display_font}" '
+        + "".join(border_els)
+        + f'<text x="300" y="{start_y}" text-anchor="middle" font-family="{display_font}" '
         f'font-size="{font_size}" font-weight="{_escape_xml(edition.display_weight)}" '
         f'fill="{ink}">{tspans}</text>'
         f"{sub_el}"
-        f'<text x="300" y="430" text-anchor="middle" font-family="{display_font}" '
+        f'<line x1="220" y1="{rule_y}" x2="380" y2="{rule_y}" stroke="{accent}" stroke-width="1.5"/>'
+        f'<text x="300" y="{rule_y + 42}" text-anchor="middle" font-family="{display_font}" '
         f'font-size="18" fill="{accent}">{safe_ornament}</text>'
-        f"{band}"
         f'<text x="300" y="790" text-anchor="middle" font-family="{display_font}" '
         f'font-size="18" letter-spacing="3" fill="{ink}">{safe_author.upper()}</text>'
         "</svg>"

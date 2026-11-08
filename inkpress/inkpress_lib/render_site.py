@@ -228,6 +228,20 @@ def _edition_css(edition):
             "  .dispatch-body .chapter-art svg { display: block; width: 100%; height: auto; }"
         )
 
+    b_style = getattr(edition, "border_style", "none")
+    if b_style == "double":
+        rules.append(
+            f"  .dispatch {{ border: 4px double {edition.accent}; margin-top: 2rem; margin-bottom: 2rem; }}"
+        )
+    elif b_style == "single":
+        rules.append(
+            f"  .dispatch {{ border: 1.5px solid {edition.accent}; margin-top: 2rem; margin-bottom: 2rem; }}"
+        )
+    elif b_style == "rules":
+        rules.append(
+            f"  .dispatch-header {{ border-top: 2px solid {edition.accent}; border-bottom: 1px solid {edition.accent}; padding: 1.2rem 0; }}"
+        )
+
     return "\n".join(rules)
 
 

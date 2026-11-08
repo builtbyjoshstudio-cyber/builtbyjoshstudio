@@ -4,11 +4,12 @@ inkpress_app.py — the inkpress Editorial Studio desktop app.
 
 A modern two-column studio window over the same pipeline the CLI uses:
   - Header bar: studio branding + keyboard shortcut badges.
-  - Left column: interactive drag-and-drop zone, quick edition presets,
-    and clean tabbed configuration (Book Details / Formats & Print Options)
-    so controls never clip on High-DPI screens.
-  - Right column: live two-page spread preview (Cover + Chapter 1 Opener)
-    and tabbed Chapter Outline / KDP Spine Inspector & Build Log.
+  - Left column: interactive drag-and-drop zone and clean tabbed configuration
+    (Book Details / Edition, Borders & Print / Outputs) so controls never clip
+    on High-DPI screens.
+  - Right column: live two-page spread preview (Typographic Framed Cover +
+    Chapter 1 Opener with customizable colored borders) and tabbed Chapter
+    Outline / KDP Spine Inspector & Build Log.
   - Bottom bar: persistent Format Book primary CTA and preview actions.
 
 Launch by double-clicking inkpress.exe (or inkpress-app.cmd), or:
@@ -28,7 +29,7 @@ from pathlib import Path
 
 try:
     import tkinter as tk
-    from tkinter import filedialog, ttk
+    from tkinter import colorchooser, filedialog, ttk
 except ImportError:  # pragma: no cover - only on a Python built without Tk
     sys.stderr.write(
         "This build of Python has no Tkinter, so the desktop app cannot start.\n"
@@ -40,7 +41,7 @@ except ImportError:  # pragma: no cover - only on a Python built without Tk
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from inkpress_lib import __version__, art, editions, inline  # noqa: E402
+from inkpress_lib import __version__, editions, inline  # noqa: E402
 from inkpress_lib import manuscript as ms  # noqa: E402
 from inkpress_lib import pipeline, render_print, structure, validate  # noqa: E402
 
@@ -53,6 +54,13 @@ TIER_BY_LABEL = {editions.TIER_LABELS[key]: key for key in editions.TIERS}
 EDITION_CHOICES = [editions.EDITION_LABELS[key] for key in editions.EDITIONS]
 EDITION_BY_LABEL = {editions.EDITION_LABELS[key]: key for key in editions.EDITIONS}
 
+BORDER_STYLE_CHOICES = [
+    editions.BORDER_STYLE_LABELS[key] for key in editions.BORDER_STYLES
+]
+BORDER_STYLE_BY_LABEL = {
+    editions.BORDER_STYLE_LABELS[key]: key for key in editions.BORDER_STYLES
+}
+
 TRIM_CHOICES = ("6x9", "5.5x8.5", "5.25x8", "5x8")
 
 _WORDS_PER_PAGE = {
@@ -63,7 +71,7 @@ _WORDS_PER_PAGE = {
 }
 
 TARGET_LABELS = (
-    ("epub", "Ebook (EPUB 3)", "Kindle, Kobo, Apple Books (with cover)"),
+    ("epub", "Ebook (EPUB 3)", "Kindle, Kobo, Apple Books (with framed cover)"),
     ("print", "Print interior (HTML)", "Paged-media paperback layout"),
     ("site", "Web reader page (HTML)", "Standalone or site-matched article"),
 )
@@ -97,7 +105,6 @@ INK_BODY = "#2E2B28"
 INK_MUTED = "#6E665E"
 ACCENT_CRIMSON = "#8B261D"
 ACCENT_CRIMSON_HOVER = "#A63026"
-ACCENT_GOLD = "#B8863B"
 
 PAD = 10
 _WNDPROC_REFS = []
@@ -413,11 +420,16 @@ class InkpressApp(ttk.Frame):
         self.busy = False
         self._drop_hover = False
         self._preset_buttons = {}
+        self._color_swatch_buttons = {}
 
         self.manuscript_var = tk.StringVar()
         self.out_var = tk.StringVar(value=str(HERE / "build"))
         self.chrome_var = tk.StringVar()
         self.cover_var = tk.StringVar()
+        self.border_color_var = tk.StringVar(value="")
+        self.border_style_var = tk.StringVar(
+            value=editions.BORDER_STYLE_LABELS["none"]
+        )
         self.status_var = tk.StringVar(
             value="No manuscript loaded yet — drop a file above or click Load Sample."
         )
@@ -498,6 +510,10 @@ class InkpressApp(ttk.Frame):
             self.tier_var.set(data["tier"])
         if data.get("edition") in EDITION_CHOICES:
             self.edition_var.set(data["edition"])
+        if data.get("border_style") in BORDER_STYLE_CHOICES:
+            self.border_style_var.set(data["border_style"])
+        if data.get("border_color"):
+            self.border_color_var.set(str(data["border_color"]))
         if data.get("out_dir"):
             self.out_var.set(str(data["out_dir"]))
 
@@ -508,6 +524,8 @@ class InkpressApp(ttk.Frame):
             "trim": self.trim_var.get().strip(),
             "tier": self.tier_var.get(),
             "edition": self.edition_var.get(),
+            "border_style": self.border_style_var.get(),
+            "border_color": self.border_color_var.get().strip(),
             "out_dir": self.out_var.get().strip(),
         }
         try:
@@ -560,7 +578,6 @@ class InkpressApp(ttk.Frame):
             font=("Consolas", 8),
         ).grid(row=0, column=3, sticky="e")
 
-        # Warm crimson accent rule under header
         tk.Frame(header_wrap, bg=ACCENT_CRIMSON, height=2).grid(
             row=1, column=0, sticky="ew"
         )
@@ -624,7 +641,6 @@ class InkpressApp(ttk.Frame):
             fill=bg,
         )
 
-        # Document icon on the left
         ix, iy = 22, h // 2
         c.create_rectangle(ix - 8, iy - 11, ix + 8, iy + 11, fill="#FFFFFF", outline=border)
         c.create_line(ix - 4, iy - 4, ix + 4, iy - 4, fill=border)
@@ -642,7 +658,7 @@ class InkpressApp(ttk.Frame):
         c.create_text(
             42,
             iy + 8,
-            text="Click to browse  ·  Drop a cover or web template to attach",
+            text="Click to browse  ·  Drop a web template (.html) or output folder",
             anchor="w",
             fill=INK_MUTED,
             font=("Segoe UI", 7),
@@ -652,25 +668,62 @@ class InkpressApp(ttk.Frame):
         self.tier_var.set(editions.TIER_LABELS[tier_key])
         if edition_key:
             self.edition_var.set(editions.EDITION_LABELS[edition_key])
-        self._sync_edition_state()
+        base = editions.resolve(
+            tier_key, edition_key if tier_key == editions.ILLUSTRATED else None
+        )
+        self.border_style_var.set(
+            editions.BORDER_STYLE_LABELS.get(base.border_style, BORDER_STYLE_CHOICES[0])
+        )
+        self.border_color_var.set(base.accent)
+        self._sync_edition_state(reset_from_tier=False)
+
+    def _select_border_color(self, hex_color):
+        self.border_color_var.set(hex_color)
+        # If borders are currently 'none', enable Double Frame automatically when picking a color
+        if BORDER_STYLE_BY_LABEL.get(self.border_style_var.get()) == "none":
+            self.border_style_var.set(editions.BORDER_STYLE_LABELS["double"])
+        self._sync_edition_state(reset_from_tier=False)
+
+    def _pick_custom_color(self):
+        initial = self.border_color_var.get().strip() or ACCENT_CRIMSON
+        _rgb, hex_val = colorchooser.askcolor(
+            color=initial, title="Choose Border & Accent Color"
+        )
+        if hex_val:
+            self._select_border_color(hex_val)
 
     def _resolved_edition(self):
         tier = TIER_BY_LABEL.get(self.tier_var.get(), editions.CLEAN)
         edition_key = EDITION_BY_LABEL.get(self.edition_var.get(), editions.ASHVEIL)
+        b_style = BORDER_STYLE_BY_LABEL.get(self.border_style_var.get())
+        b_color = self.border_color_var.get().strip() or None
         return editions.resolve(
-            tier, edition_key if tier == editions.ILLUSTRATED else None
+            tier,
+            edition_key if tier == editions.ILLUSTRATED else None,
+            border_color=b_color,
+            border_style=b_style,
         )
 
-    def _sync_edition_state(self):
-        """Edition only applies to tier 3, so only enable it there."""
+    def _sync_edition_state(self, reset_from_tier=True):
+        """Synchronize tier/edition dropdowns, border controls, and live preview."""
         tier = TIER_BY_LABEL.get(self.tier_var.get(), editions.CLEAN)
         edition_key = EDITION_BY_LABEL.get(self.edition_var.get(), editions.ASHVEIL)
-        resolved = self._resolved_edition()
         if hasattr(self, "edition_box"):
             if tier == editions.ILLUSTRATED:
                 self.edition_box.configure(state="readonly")
             else:
                 self.edition_box.configure(state="disabled")
+
+        if reset_from_tier:
+            base = editions.resolve(
+                tier, edition_key if tier == editions.ILLUSTRATED else None
+            )
+            self.border_style_var.set(
+                editions.BORDER_STYLE_LABELS.get(base.border_style, BORDER_STYLE_CHOICES[0])
+            )
+            self.border_color_var.set(base.accent)
+
+        resolved = self._resolved_edition()
 
         active_pair = (tier, edition_key if tier == editions.ILLUSTRATED else None)
         for pair, btn in self._preset_buttons.items():
@@ -679,23 +732,29 @@ class InkpressApp(ttk.Frame):
             else:
                 btn.configure(bg=BG_SUBTLE, fg=INK_BODY, activebackground="#EDE7DC")
 
+        active_hex = resolved.accent.lower()
+        for hex_code, btn in self._color_swatch_buttons.items():
+            is_sel = hex_code.lower() == active_hex
+            btn.configure(
+                relief="solid",
+                bd=2 if is_sel else 1,
+                text="✓" if is_sel else "",
+                fg="#FFFFFF",
+            )
+
         if hasattr(self, "swatch_canvas"):
             self.swatch_canvas.delete("all")
             self.swatch_canvas.create_rectangle(0, 0, 22, 16, fill=resolved.ink, outline="")
             self.swatch_canvas.create_rectangle(22, 0, 44, 16, fill=resolved.accent, outline="")
 
-        features = []
+        features = [editions.BORDER_STYLE_LABELS.get(resolved.border_style, "No Border")]
         if resolved.drop_cap:
             features.append("drop caps")
         if resolved.chapter_rule:
             features.append("chapter rules")
-        if resolved.art:
-            features.append(f"{resolved.art} SVG art")
-        if not features:
-            features.append("plain headings")
         if hasattr(self, "tier_hint"):
             self.tier_hint.configure(
-                text=f"{resolved.label}  ·  Scene break: {resolved.scene_break}  ·  {', '.join(features)}"
+                text=f"Color: {resolved.accent.upper()}  ·  Scene break: {resolved.scene_break}  ·  {', '.join(features)}"
             )
         if hasattr(self, "page_canvas"):
             self._draw_page_preview()
@@ -740,7 +799,7 @@ class InkpressApp(ttk.Frame):
         self._populate_outputs_tab(outputs_tab)
 
         self.left_notebook.add(details_tab, text="2 · Book Details")
-        self.left_notebook.add(style_tab, text="3 · Edition & Style")
+        self.left_notebook.add(style_tab, text="3 · Borders & Style")
         self.left_notebook.add(outputs_tab, text="4 · Outputs")
 
     def _populate_details_tab(self, box):
@@ -783,7 +842,7 @@ class InkpressApp(ttk.Frame):
 
     def _populate_style_tab(self, box):
         r = 0
-        ttk.Label(box, text="DESIGN TIER & EDITION", style="Section.TLabel").grid(
+        ttk.Label(box, text="TYPOGRAPHY TIER & EDITION", style="Section.TLabel").grid(
             row=r, column=0, columnspan=3, sticky="w", pady=(0, 6)
         )
         r += 1
@@ -804,8 +863,57 @@ class InkpressApp(ttk.Frame):
         self.edition_box.bind("<<ComboboxSelected>>", lambda _event: self._sync_edition_state())
         r += 1
 
+        tk.Frame(box, bg=BORDER_CARD, height=1).grid(
+            row=r, column=0, columnspan=3, sticky="ew", pady=(8, 8)
+        )
+        r += 1
+
+        ttk.Label(box, text="COLORED PAGE & COVER BORDERS", style="Section.TLabel").grid(
+            row=r, column=0, columnspan=3, sticky="w", pady=(0, 6)
+        )
+        r += 1
+
+        ttk.Label(box, text="Border style").grid(row=r, column=0, sticky="w", pady=3)
+        border_cb = ttk.Combobox(
+            box,
+            textvariable=self.border_style_var,
+            values=BORDER_STYLE_CHOICES,
+            state="readonly",
+        )
+        border_cb.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
+        border_cb.bind(
+            "<<ComboboxSelected>>",
+            lambda _e: self._sync_edition_state(reset_from_tier=False),
+        )
+        r += 1
+
+        ttk.Label(box, text="Border color").grid(row=r, column=0, sticky="w", pady=4)
+        palette_row = tk.Frame(box, bg=BG_CARD)
+        palette_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=4)
+
+        for idx, (_name, hex_code) in enumerate(editions.COLOR_PRESETS):
+            sw = tk.Button(
+                palette_row,
+                bg=hex_code,
+                activebackground=hex_code,
+                width=2,
+                height=1,
+                bd=1,
+                relief="solid",
+                cursor="hand2",
+                font=("Segoe UI", 7, "bold"),
+                command=lambda h=hex_code: self._select_border_color(h),
+            )
+            sw.grid(row=0, column=idx, padx=(0, 4))
+            self._color_swatch_buttons[hex_code] = sw
+
+        ttk.Button(palette_row, text="Custom...", command=self._pick_custom_color).grid(
+            row=0, column=len(editions.COLOR_PRESETS), padx=(4, 0)
+        )
+        r += 1
+
         swatch_row = tk.Frame(box, bg=BG_CARD)
-        swatch_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(6, 8))
+        swatch_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(4, 8))
         self.swatch_canvas = tk.Canvas(
             swatch_row,
             width=44,
@@ -824,28 +932,10 @@ class InkpressApp(ttk.Frame):
         )
         r += 1
 
-        ttk.Label(box, text="PRINT TRIM & ASSETS", style="Section.TLabel").grid(
-            row=r, column=0, columnspan=3, sticky="w", pady=(0, 6)
-        )
-        r += 1
-
         ttk.Label(box, text="Print trim").grid(row=r, column=0, sticky="w", pady=3)
         trim_cb = ttk.Combobox(box, textvariable=self.trim_var, values=TRIM_CHOICES)
         trim_cb.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
         trim_cb.bind("<<ComboboxSelected>>", lambda _e: self._refresh_kdp_and_preview())
-        r += 1
-
-        pickers = (
-            ("Cover image", self.cover_var, self._choose_cover),
-            ("Web template", self.chrome_var, self._choose_chrome),
-        )
-        for label, var, cmd in pickers:
-            ttk.Label(box, text=label).grid(row=r, column=0, sticky="w", pady=3)
-            ttk.Entry(box, textvariable=var).grid(
-                row=r, column=1, sticky="ew", padx=(8, 8), pady=3
-            )
-            ttk.Button(box, text="Browse...", command=cmd).grid(row=r, column=2, pady=3)
-            r += 1
 
     def _populate_outputs_tab(self, box):
         r = 0
@@ -884,16 +974,22 @@ class InkpressApp(ttk.Frame):
         )
         r += 1
 
-        ttk.Label(box, text="OUTPUT DESTINATION", style="Section.TLabel").grid(
+        ttk.Label(box, text="OUTPUT & WEB TEMPLATE", style="Section.TLabel").grid(
             row=r, column=0, columnspan=3, sticky="w", pady=(0, 6)
         )
         r += 1
 
-        ttk.Label(box, text="Save to").grid(row=r, column=0, sticky="w", pady=3)
-        ttk.Entry(box, textvariable=self.out_var).grid(
-            row=r, column=1, sticky="ew", padx=(8, 8), pady=3
+        pickers = (
+            ("Save to", self.out_var, self._choose_out),
+            ("Web template", self.chrome_var, self._choose_chrome),
         )
-        ttk.Button(box, text="Browse...", command=self._choose_out).grid(row=r, column=2, pady=3)
+        for label, var, cmd in pickers:
+            ttk.Label(box, text=label).grid(row=r, column=0, sticky="w", pady=3)
+            ttk.Entry(box, textvariable=var).grid(
+                row=r, column=1, sticky="ew", padx=(8, 8), pady=3
+            )
+            ttk.Button(box, text="Browse...", command=cmd).grid(row=r, column=2, pady=3)
+            r += 1
 
     def _build_action_bar(self, row):
         wrap = tk.Frame(self, bg=BG_CARD)
@@ -937,7 +1033,7 @@ class InkpressApp(ttk.Frame):
         card.columnconfigure(0, weight=1)
 
         preset_bar = tk.Frame(card, bg=BG_CARD)
-        preset_bar.grid(row=1, column=0, sticky="ew", pady=(0, 8))
+        preset_bar.grid(row=1, column=0, sticky="ew", pady=(0, 6))
         presets = (
             ("Clean", editions.CLEAN, None),
             ("Styled", editions.STYLED, None),
@@ -961,15 +1057,62 @@ class InkpressApp(ttk.Frame):
             btn.grid(row=0, column=idx, sticky="ew", padx=(0 if idx == 0 else 4, 0))
             self._preset_buttons[(t_key, e_key)] = btn
 
+        # Quick Border Style + Border Color toolbar right above the spread canvas
+        border_bar = tk.Frame(card, bg=BG_CARD)
+        border_bar.grid(row=2, column=0, sticky="ew", pady=(0, 8))
+        tk.Label(
+            border_bar,
+            text="Border:",
+            bg=BG_CARD,
+            fg=INK_MUTED,
+            font=("Segoe UI", 8, "bold"),
+        ).pack(side="left", padx=(0, 4))
+
+        border_quick_cb = ttk.Combobox(
+            border_bar,
+            textvariable=self.border_style_var,
+            values=BORDER_STYLE_CHOICES,
+            state="readonly",
+            width=16,
+        )
+        border_quick_cb.pack(side="left", padx=(0, 10))
+        border_quick_cb.bind(
+            "<<ComboboxSelected>>",
+            lambda _e: self._sync_edition_state(reset_from_tier=False),
+        )
+
+        tk.Label(
+            border_bar,
+            text="Color:",
+            bg=BG_CARD,
+            fg=INK_MUTED,
+            font=("Segoe UI", 8, "bold"),
+        ).pack(side="left", padx=(0, 4))
+
+        for _name, hex_code in editions.COLOR_PRESETS:
+            sw = tk.Button(
+                border_bar,
+                bg=hex_code,
+                activebackground=hex_code,
+                width=2,
+                height=1,
+                bd=1,
+                relief="solid",
+                cursor="hand2",
+                font=("Segoe UI", 6),
+                command=lambda h=hex_code: self._select_border_color(h),
+            )
+            sw.pack(side="left", padx=(0, 3))
+
         self.page_canvas = tk.Canvas(
             card,
             width=450,
-            height=280,
+            height=262,
             bg="#E5E0D5",
             highlightthickness=1,
             highlightbackground="#CFC8BA",
         )
-        self.page_canvas.grid(row=2, column=0, sticky="ew")
+        self.page_canvas.grid(row=3, column=0, sticky="ew")
         self.page_canvas.bind("<Configure>", lambda _e: self._draw_page_preview())
         self._sync_edition_state()
 
@@ -1053,90 +1196,39 @@ class InkpressApp(ttk.Frame):
         self.notebook.add(outline_tab, text="Chapters & KDP Specs")
         self.notebook.add(log_tab, text="Build Log")
 
-    def _draw_art_motif(self, canvas, edition, ax0, ay0, ax1, ay1, seed_label, dark_bg=False):
-        """Draw the Edition's generative artwork motif onto a canvas region."""
-        inner_w = ax1 - ax0
-        art_h = ay1 - ay0
-        rng = art._Rng(f"{edition.key}|1|{seed_label}")
-
-        if edition.art == editions.ASHVEIL:
-            tints = (
-                ("#2D2A27", "#433E39", "#0E0D0C")
-                if dark_bg
-                else ("#D0CEC9", "#8C8881", edition.ink)
-            )
-            for layer, tint in enumerate(tints):
-                base = ay0 + art_h * 0.72 - layer * 2
-                pts = [ax0, ay1, ax0, base]
-                x = float(ax0)
-                while x < ax1:
-                    x = min(float(ax1), x + rng.between(12, 22))
-                    peak = base - rng.between(4, 12) + layer * 2
-                    pts.extend([x, peak])
-                pts.extend([ax1, ay1])
-                canvas.create_polygon(pts, fill=tint, outline="")
-            for _ in range(6):
-                ex = rng.between(ax0 + 8, ax1 - 8)
-                ey = rng.between(ay0 + 6, ay1 - 5)
-                canvas.create_oval(
-                    ex - 1.5, ey - 1.5, ex + 1.5, ey + 1.5,
-                    fill=edition.accent, outline=""
-                )
-            canvas.create_line(ax0, ay1, ax1, ay1, fill=edition.accent if dark_bg else edition.ink, width=1)
-
-        elif edition.art == editions.SYSTEMFALL:
-            cols = 9
-            step = inner_w / float(cols + 1)
-            tx = ax0 + step * 0.5
-            ty = ay0 + art_h * 0.6
-            trace_pts = [tx, ty]
-            while tx < ax1 - step:
-                tx = min(ax1 - 4, tx + rng.between(step * 0.8, step * 1.8))
-                trace_pts.extend([tx, ty])
-                if rng.chance(0.6):
-                    ty = max(ay0 + 5, min(ay1 - 5, ty + rng.between(-8, 8)))
-                    trace_pts.extend([tx, ty])
-            canvas.create_line(trace_pts, fill=edition.accent, width=1)
-            for c in range(1, cols + 1):
-                nx = ax0 + c * step
-                for ny in (ay0 + art_h * 0.28, ay0 + art_h * 0.52, ay0 + art_h * 0.76):
-                    if rng.chance(0.5):
-                        filled = rng.chance(0.4)
-                        canvas.create_rectangle(
-                            nx - 1.5, ny - 1.5, nx + 1.5, ny + 1.5,
-                            fill=edition.accent if filled else (INK_DARK if dark_bg else edition.paper),
-                            outline=edition.accent if dark_bg else edition.ink,
-                        )
-            canvas.create_line(ax0, ay1, ax1, ay1, fill=edition.accent if dark_bg else edition.ink, width=1)
-
-        elif edition.art == editions.VANTABLACK:
-            bt = ay0 + 5
-            bh = max(14, art_h - 12)
-            bar_fill = edition.accent if dark_bg else edition.ink
-            cut_fill = INK_DARK if dark_bg else edition.paper
-            canvas.create_rectangle(ax0, bt, ax1, bt + bh, fill=bar_fill, outline="")
-            cut_x = ax0 + inner_w * 0.52
-            canvas.create_polygon(
-                [cut_x, bt, cut_x + 8, bt, cut_x + 2, bt + bh, cut_x - 6, bt + bh],
-                fill=cut_fill,
-                outline="",
-            )
-            thin_x = ax0 + inner_w * 0.18
+    def _draw_sheet_border(self, canvas, x0, y0, x1, y1, border_style, color):
+        """Draw the selected colored border style inside a miniature page sheet."""
+        if border_style == "double":
             canvas.create_rectangle(
-                thin_x, bt, thin_x + 2, bt + bh, fill=cut_fill, outline=""
+                x0 + 8, y0 + 8, x1 - 8, y1 - 8, outline=color, width=2
+            )
+            canvas.create_rectangle(
+                x0 + 12, y0 + 12, x1 - 12, y1 - 12, outline=color, width=1
+            )
+        elif border_style == "single":
+            canvas.create_rectangle(
+                x0 + 9, y0 + 9, x1 - 9, y1 - 9, outline=color, width=1.5
+            )
+        elif border_style == "rules":
+            canvas.create_line(
+                x0 + 12, y0 + 12, x1 - 12, y0 + 12, fill=color, width=2
+            )
+            canvas.create_line(
+                x0 + 12, y1 - 12, x1 - 12, y1 - 12, fill=color, width=1.5
             )
 
     def _draw_page_preview(self):
-        """Render a miniature two-page studio preview: Cover + Chapter 1 Opener."""
+        """Render a miniature two-page studio preview: Typographic Cover + Chapter Opener."""
         if not hasattr(self, "page_canvas"):
             return
         canvas = self.page_canvas
         canvas.delete("all")
 
         c_width = max(int(canvas.winfo_width()), 450)
-        c_height = max(int(canvas.winfo_height()), 295)
+        c_height = max(int(canvas.winfo_height()), 262)
 
         edition = self._resolved_edition()
+        border_style = getattr(edition, "border_style", "double")
         doc = self.current_document
         book_title = (
             self.meta_vars["title"].get().strip()
@@ -1163,99 +1255,89 @@ class InkpressApp(ttk.Frame):
         )
         heading_style = "bold" if edition.display_weight == "800" else "normal"
 
-        # Two side-by-side sheets: Left = Cover, Right = Chapter 1 Interior
-        page_w = 182
-        page_h = 248
+        page_w = 180
+        page_h = 230
         gap = 18
         total_w = page_w * 2 + gap
         start_x = (c_width - total_w) // 2
-        sy0 = (c_height - page_h) // 2 + 4
+        sy0 = (c_height - page_h) // 2 + 5
         sy1 = sy0 + page_h
 
-        # ---------------- LEFT SHEET: COVER PREVIEW ----------------
+        # ---------------- LEFT SHEET: FRAMED COVER PREVIEW ----------------
         cx0 = start_x
         cx1 = cx0 + page_w
         canvas.create_rectangle(cx0 + 3, sy0 + 4, cx1 + 3, sy1 + 4, fill="#C5BFB2", outline="")
+        canvas.create_rectangle(cx0, sy0, cx1, sy1, fill=edition.paper, outline="#B8B1A4")
 
-        dark_cover = edition.tier == editions.ILLUSTRATED
-        cov_bg = edition.ink if dark_cover else edition.paper
-        cov_fg = edition.paper if dark_cover else edition.ink
-        canvas.create_rectangle(cx0, sy0, cx1, sy1, fill=cov_bg, outline="#B8B1A4")
-        canvas.create_rectangle(
-            cx0 + 9, sy0 + 9, cx1 - 9, sy1 - 9, outline=edition.accent, width=1
+        self._draw_sheet_border(
+            canvas,
+            cx0,
+            sy0,
+            cx1,
+            sy1,
+            border_style if border_style != "none" else "single",
+            edition.accent,
         )
 
         canvas.create_text(
             cx0 + page_w // 2,
             sy0 - 9,
-            text="EPUB COVER",
+            text="TYPOGRAPHIC COVER",
             fill=INK_MUTED,
             font=("Segoe UI", 7, "bold"),
         )
 
         title_item = canvas.create_text(
             cx0 + page_w // 2,
-            sy0 + 36,
+            sy0 + 42,
             text=book_title.upper(),
             anchor="n",
-            width=page_w - 28,
+            width=page_w - 36,
             justify="center",
-            fill=cov_fg,
+            fill=edition.ink,
             font=(heading_face, 7, "bold"),
         )
         t_bbox = canvas.bbox(title_item)
-        title_bottom = t_bbox[3] if t_bbox else (sy0 + 64)
+        title_bottom = t_bbox[3] if t_bbox else (sy0 + 68)
 
         if subtitle:
             sub_item = canvas.create_text(
                 cx0 + page_w // 2,
-                title_bottom + 5,
+                title_bottom + 6,
                 text=subtitle[:36],
                 anchor="n",
-                width=page_w - 30,
+                width=page_w - 38,
                 justify="center",
-                fill=edition.accent if dark_cover else "#666",
+                fill="#5A534C",
                 font=("Georgia", 6, "italic"),
             )
             s_bbox = canvas.bbox(sub_item)
-            rule_y = (s_bbox[3] + 8) if s_bbox else (title_bottom + 20)
+            rule_y = (s_bbox[3] + 10) if s_bbox else (title_bottom + 22)
         else:
-            rule_y = title_bottom + 10
+            rule_y = title_bottom + 12
 
         canvas.create_line(
-            cx0 + page_w // 2 - 22,
+            cx0 + page_w // 2 - 24,
             rule_y,
-            cx0 + page_w // 2 + 22,
+            cx0 + page_w // 2 + 24,
             rule_y,
             fill=edition.accent,
             width=1.5,
         )
 
-        if edition.art:
-            self._draw_art_motif(
-                canvas,
-                edition,
-                cx0 + 18,
-                sy0 + 132,
-                cx1 - 18,
-                sy0 + 170,
-                book_title,
-                dark_bg=True,
-            )
-        else:
-            canvas.create_text(
-                cx0 + page_w // 2,
-                sy0 + 150,
-                text=edition.scene_break,
-                fill=edition.accent,
-                font=("Georgia", 11),
-            )
+        canvas.create_text(
+            cx0 + page_w // 2,
+            rule_y + 18,
+            text=edition.scene_break,
+            fill=edition.accent,
+            font=("Georgia", 9),
+        )
 
         canvas.create_text(
             cx0 + page_w // 2,
-            sy1 - 22,
+            sy1 - 24,
             text=author_name[:22].upper(),
-            fill=cov_fg,
+            fill=edition.ink,
             font=("Segoe UI", 6, "bold"),
         )
 
@@ -1265,6 +1347,8 @@ class InkpressApp(ttk.Frame):
 
         canvas.create_rectangle(sx0 + 3, sy0 + 4, sx1 + 3, sy1 + 4, fill="#C5BFB2", outline="")
         canvas.create_rectangle(sx0, sy0, sx1, sy1, fill=edition.paper, outline="#B8B1A4")
+
+        self._draw_sheet_border(canvas, sx0, sy0, sx1, sy1, border_style, edition.accent)
 
         canvas.create_text(
             sx0 + page_w // 2,
@@ -1276,65 +1360,53 @@ class InkpressApp(ttk.Frame):
 
         # Running head
         canvas.create_text(
-            sx1 - 14,
-            sy0 + 12,
-            text=book_title[:22].upper(),
+            sx1 - 18,
+            sy0 + 20,
+            text=book_title[:20].upper(),
             anchor="e",
             fill="#7A756E",
             font=("Georgia", 5),
         )
 
-        cursor_y = sy0 + 22
-        margin_x = sx0 + 16
-        inner_w = page_w - 32
-
-        if edition.art:
-            art_h = 30
-            self._draw_art_motif(
-                canvas,
-                edition,
-                margin_x,
-                cursor_y,
-                margin_x + inner_w,
-                cursor_y + art_h,
-                chap_title,
-                dark_bg=False,
-            )
-            cursor_y += art_h + 11
-        else:
-            cursor_y += 14
+        cursor_y = sy0 + 34
+        margin_x = sx0 + 20
+        inner_w = page_w - 40
 
         if edition.chapter_number:
-            canvas.create_text(
+            cnum_item = canvas.create_text(
                 sx0 + page_w // 2,
                 cursor_y,
                 text="CHAPTER 1",
+                anchor="n",
                 fill=edition.accent,
                 font=("Consolas" if edition.key == editions.SYSTEMFALL else "Georgia", 6, "bold"),
             )
-            cursor_y += 15
+            cn_bbox = canvas.bbox(cnum_item)
+            cursor_y = (cn_bbox[3] + 4) if cn_bbox else (cursor_y + 15)
 
-        canvas.create_text(
+        ch_item = canvas.create_text(
             sx0 + page_w // 2,
             cursor_y,
-            text=inline.plain(chap_title)[:20].upper(),
+            text=inline.plain(chap_title)[:22].upper(),
+            anchor="n",
             width=inner_w,
             justify="center",
             fill=edition.ink,
-            font=(heading_face, 8, heading_style),
+            font=(heading_face, 7, heading_style),
         )
-        cursor_y += 13
+        ch_bbox = canvas.bbox(ch_item)
+        cursor_y = (ch_bbox[3] + 7) if ch_bbox else (cursor_y + 18)
 
         if edition.chapter_rule:
             canvas.create_line(
-                sx0 + page_w // 2 - 15,
+                sx0 + page_w // 2 - 22,
                 cursor_y,
-                sx0 + page_w // 2 + 15,
+                sx0 + page_w // 2 + 22,
                 cursor_y,
                 fill=edition.accent,
-                width=1,
+                width=1.5,
             )
-            cursor_y += 11
+            cursor_y += 12
         else:
             cursor_y += 7
 
@@ -1362,7 +1434,7 @@ class InkpressApp(ttk.Frame):
                 fill="#3E3B38" if idx > 0 else edition.ink,
                 width=2,
             )
-        cursor_y += len(line_offsets) * 7 + 9
+        cursor_y += len(line_offsets) * 7 + 10
 
         canvas.create_text(
             sx0 + page_w // 2,
@@ -1375,7 +1447,7 @@ class InkpressApp(ttk.Frame):
 
         for idx in range(4):
             ly = cursor_y + idx * 7
-            if ly > sy1 - 20:
+            if ly > sy1 - 28:
                 break
             indent_px = 9 if idx == 0 else 0
             end_trim = 24 if idx == 3 else 0
@@ -1390,7 +1462,7 @@ class InkpressApp(ttk.Frame):
 
         canvas.create_text(
             sx0 + page_w // 2,
-            sy1 - 10,
+            sy1 - 21,
             text="1",
             fill="#6E665E",
             font=("Georgia", 6),
@@ -1424,7 +1496,7 @@ class InkpressApp(ttk.Frame):
         ext = path.suffix.lower()
         if ext in (".jpg", ".jpeg", ".png", ".svg"):
             self.cover_var.set(str(path))
-            self.write(f"Cover image attached via drag & drop: {path.name}", "ok")
+            self.write(f"Cover file attached: {path.name}", "ok")
         elif ext in (".html", ".htm"):
             self.chrome_var.set(str(path))
             self.write(f"Web template attached via drag & drop: {path.name}", "ok")
@@ -1462,14 +1534,6 @@ class InkpressApp(ttk.Frame):
         )
         if path:
             self.chrome_var.set(path)
-
-    def _choose_cover(self):
-        path = filedialog.askopenfilename(
-            title="Choose a cover image for EPUB",
-            filetypes=[("Cover images", "*.jpg *.jpeg *.png *.svg"), ("All files", "*.*")],
-        )
-        if path:
-            self.cover_var.set(path)
 
     def _refresh_kdp_and_preview(self):
         doc = self.current_document
@@ -1514,7 +1578,15 @@ class InkpressApp(ttk.Frame):
 
         edition_key = str(parsed.meta.get("edition", "")).strip().lower()
         self.edition_var.set(editions.EDITION_LABELS.get(edition_key, EDITION_CHOICES[0]))
-        self._sync_edition_state()
+        self._sync_edition_state(reset_from_tier=True)
+
+        if parsed.meta.get("border_style"):
+            bs_key = str(parsed.meta["border_style"]).strip().lower()
+            if bs_key in editions.BORDER_STYLE_LABELS:
+                self.border_style_var.set(editions.BORDER_STYLE_LABELS[bs_key])
+        if parsed.meta.get("border_color"):
+            self.border_color_var.set(str(parsed.meta["border_color"]).strip())
+        self._sync_edition_state(reset_from_tier=False)
 
         trim_val = str(parsed.meta.get("trim", "")).strip()
         self.trim_var.set(trim_val if trim_val else TRIM_CHOICES[0])
@@ -1591,6 +1663,12 @@ class InkpressApp(ttk.Frame):
         trim = self.trim_var.get().strip()
         if trim:
             overrides["trim"] = trim
+        b_style = BORDER_STYLE_BY_LABEL.get(self.border_style_var.get())
+        if b_style:
+            overrides["border_style"] = b_style
+        b_color = self.border_color_var.get().strip()
+        if b_color:
+            overrides["border_color"] = b_color
         cover = self.cover_var.get().strip()
         if cover:
             overrides["cover"] = cover
