@@ -48,11 +48,12 @@ def slugify(text):
 class Chapter:
     """One chapter: a title plus the blocks beneath it."""
 
-    def __init__(self, title, number, blocks=None, implicit=False, display_number=None):
+    def __init__(self, title, number, blocks=None, implicit=False, display_number=None, slug=None):
         self.title = title
         self.number = number
         self.blocks = blocks or []
         self.implicit = implicit
+        self._slug = slug
         if implicit or is_unnumbered_heading(title):
             self.display_number = None
         else:
@@ -76,7 +77,7 @@ class Chapter:
 
     @property
     def slug(self):
-        return slugify(self.title)
+        return self._slug or slugify(self.title)
 
     @property
     def word_count(self):
@@ -126,6 +127,7 @@ def build(parsed):
     chapters = []
     current = None
     numbered_count = 0
+    slug_counts = {}
 
     for block in parsed.blocks:
         if block.kind == ms.CHAPTER:
@@ -135,8 +137,18 @@ def build(parsed):
             else:
                 numbered_count += 1
                 disp_num = numbered_count
+            base_slug = slugify(title_text)
+            slug_counts[base_slug] = slug_counts.get(base_slug, 0) + 1
+            unique_slug = (
+                base_slug
+                if slug_counts[base_slug] == 1
+                else f"{base_slug}-{slug_counts[base_slug]}"
+            )
             current = Chapter(
-                title_text, len(chapters) + 1, display_number=disp_num
+                title_text,
+                len(chapters) + 1,
+                display_number=disp_num,
+                slug=unique_slug,
             )
             chapters.append(current)
             continue

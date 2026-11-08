@@ -81,6 +81,7 @@ def check(document, targets, edition=None):
         errors.append("manuscript contains no prose")
 
     seen_slugs = {}
+    seen_titles = {}
     for chapter in document.chapters:
         if not chapter.title.strip():
             errors.append(f"chapter {chapter.number} has an empty title")
@@ -90,6 +91,15 @@ def check(document, targets, edition=None):
                 f"chapter {chapter.number} and chapter {seen_slugs[slug]} both slugify to {slug!r}"
             )
         seen_slugs[slug] = chapter.number
+
+        norm_title = chapter.title.strip().lower()
+        if norm_title in seen_titles:
+            warnings.append(
+                f"chapter {chapter.number} and chapter {seen_titles[norm_title]} "
+                f"share the title {chapter.title!r} (linked as #{slug})"
+            )
+        else:
+            seen_titles[norm_title] = chapter.number
 
         if not any(block.kind == ms.PARAGRAPH for block in chapter.blocks):
             warnings.append(f"chapter {chapter.number} ({chapter.title!r}) has no paragraphs")

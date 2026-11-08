@@ -83,6 +83,8 @@ def build_style(edition):
   text-align: center;
   color: {edition.accent};
   margin-bottom: 1em;
+  break-after: avoid;
+  page-break-after: avoid;
 }}
 """
 
@@ -110,9 +112,9 @@ h1, h2 {{
   line-height: 1.2;
   page-break-before: always;
 }}
-h1 {{ font-size: 1.6em; margin: 2em 0 1em; }}
-h2 {{ font-size: 1.3em; margin: 1.6em 0 0.8em; }}
-h3 {{ font-size: 1.1em; margin: 1.4em 0 0.6em; text-align: left; font-style: italic; }}
+h1 {{ font-size: 1.6em; margin: 2em 0 1em; break-after: avoid; page-break-after: avoid; }}
+h2 {{ font-size: 1.3em; margin: 1.6em 0 0.8em; break-after: avoid; page-break-after: avoid; }}
+h3 {{ font-size: 1.1em; margin: 1.4em 0 0.6em; text-align: left; font-style: italic; break-after: avoid; page-break-after: avoid; }}
 p {{ margin: 0; text-indent: 1.4em; }}
 h1 + p, h2 + p, h3 + p, blockquote + p, .scene-break + p, .chapter-number + p, .opening {{
   text-indent: 0;

@@ -33,7 +33,9 @@ SCENE_BREAK = "scene_break"
 BLOCKQUOTE = "blockquote"
 PARAGRAPH = "paragraph"
 
-_SCENE_BREAK_RE = re.compile(r"^\s*(\*\s*\*\s*\*|#\s*#\s*#|---+|___+)\s*$")
+_SCENE_BREAK_RE = re.compile(
+    r"^\s*(?:(?:\*\s*){3,}|(?:#\s*){3,}|#|---+|_{3,}|(?:~\s*){3,})\s*$"
+)
 _LIST_ITEM_RE = re.compile(r"^\s*-\s+(.*)$")
 _CHAPTER_NUM_RE = (
     r"(?:[0-9]+|[ivxlcdm]+|one|two|three|four|five|six|seven|eight|nine|ten|"

@@ -64,6 +64,7 @@ class TestTypography(unittest.TestCase):
 
     def test_elided_decade(self):
         self.assertEqual(typography.apply("the '90s"), "the ’90s")
+        self.assertEqual(typography.apply("the ‘90s"), "the ’90s")
 
     def test_single_quotes_are_directional(self):
         self.assertEqual(typography.apply("he said 'go' then"), "he said ‘go’ then")
@@ -206,6 +207,16 @@ class TestManuscript(unittest.TestCase):
         self.assertEqual(len(doc.chapters), 2)
         self.assertEqual(doc.chapters[0].title, "Chapter 1")
         self.assertEqual(doc.chapters[1].title, "Chapter Two: The Return")
+
+    def test_shunn_and_tilde_scene_breaks(self):
+        raw = (
+            "---\ntitle: Breaks\nauthor: A. Writer\ndate: 2026-01-02\n---\n\n"
+            "Scene one.\n\n#\n\nScene two.\n\n~ ~ ~\n\nScene three.\n\n****\n\nScene four.\n"
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            parsed = ms.load(write_temp(raw, directory))
+        breaks = [b for b in parsed.blocks if b.kind == ms.SCENE_BREAK]
+        self.assertEqual(len(breaks), 3)
 
 
 class TestStructure(unittest.TestCase):
@@ -870,6 +881,29 @@ class TestTierBuilds(unittest.TestCase):
         self.assertIn("OEBPS/cover.svg", names)
         self.assertIn('properties="cover-image"', opf)
         self.assertIn("Test Book", cover_svg)
+
+    def test_dual_pov_duplicate_chapter_titles_disambiguate_and_warn(self):
+        raw = (
+            "---\ntitle: Dual POV\nauthor: A. Writer\ndate: 2026-01-02\n"
+            "language: en\ndescription: Dual POV novel.\n---\n\n"
+            "## Mara\n\nChapter one prose.\n\n"
+            "## Corin\n\nChapter two prose.\n\n"
+            "## Mara\n\nChapter three prose.\n"
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(raw, directory)
+            result = pipeline.build(
+                source, Path(directory) / "build", targets=("print", "site")
+            )
+            print_html = result.outputs["print"].read_text(encoding="utf-8")
+
+        self.assertEqual(
+            [ch.slug for ch in result.document.chapters],
+            ["mara", "corin", "mara-2"],
+        )
+        self.assertIn('id="mara"', print_html)
+        self.assertIn('id="mara-2"', print_html)
+        self.assertTrue(any("share the title" in w for w in result.warnings))
 
 
 class TestSampleManuscript(unittest.TestCase):

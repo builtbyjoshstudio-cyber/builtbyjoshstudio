@@ -237,6 +237,8 @@ def build_css(document, edition=None):
   text-align: center;
   color: {edition.accent};
   margin-bottom: 1.1em;
+  break-after: avoid;
+  page-break-after: avoid;
 }}
 """
 
@@ -383,8 +385,17 @@ body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
   /* Absolute, not a percentage: a percentage resolves against container
      width, so it collapses or explodes whenever the layout width changes. */
   margin: {"0.9in" if edition.art else "1.5in"} 0 2.2em;
+  break-after: avoid;
+  page-break-after: avoid;
 }}
-.chapter h3 {{ font-size: 11.5pt; font-style: italic; text-align: left; margin: 1.8em 0 0.7em; }}
+.chapter h3 {{
+  font-size: 11.5pt;
+  font-style: italic;
+  text-align: left;
+  margin: 1.8em 0 0.7em;
+  break-after: avoid;
+  page-break-after: avoid;
+}}
 
 p {{ margin: 0; text-indent: 1.4em; orphans: 2; widows: 2; }}
 h2 + p, h3 + p, blockquote + p, .scene-break + p, .chapter-number + p, .opening {{ text-indent: 0; }}

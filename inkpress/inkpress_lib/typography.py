@@ -91,7 +91,7 @@ def _quotes(text):
         if char not in ("*", "_"):
             previous = out[-1] if out else " "
 
-    return "".join(out)
+    return re.sub(r"‘(?=\d)", RIGHT_SINGLE, "".join(out))
 
 
 def apply(text):
