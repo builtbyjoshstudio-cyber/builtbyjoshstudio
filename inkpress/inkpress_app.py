@@ -40,7 +40,7 @@ sys.path.insert(0, str(HERE))
 
 from inkpress_lib import __version__, editions  # noqa: E402
 from inkpress_lib import manuscript as ms  # noqa: E402
-from inkpress_lib import pipeline, validate  # noqa: E402
+from inkpress_lib import pipeline, render_print, validate  # noqa: E402
 
 TIER_CHOICES = [editions.TIER_LABELS[key] for key in editions.TIERS]
 TIER_BY_LABEL = {editions.TIER_LABELS[key]: key for key in editions.TIERS}
@@ -48,14 +48,25 @@ TIER_BY_LABEL = {editions.TIER_LABELS[key]: key for key in editions.TIERS}
 EDITION_CHOICES = [editions.EDITION_LABELS[key] for key in editions.EDITIONS]
 EDITION_BY_LABEL = {editions.EDITION_LABELS[key]: key for key in editions.EDITIONS}
 
+TRIM_CHOICES = ("6x9", "5.5x8.5", "5.25x8", "5x8")
+
 TARGET_LABELS = (
     ("site", "Web page", "A styled page for your site"),
     ("epub", "Ebook (EPUB)", "For Kindle, Kobo, Apple Books"),
     ("print", "Print interior", "Paperback pages, ready for PDF"),
 )
 
+OUTPUT_NAMES = {
+    "site": "Web page",
+    "epub": "Ebook (EPUB)",
+    "print": "Print interior",
+    "pdf": "Print PDF",
+    "package": "Buyer ZIP",
+}
+
 META_FIELDS = (
     ("title", "Title"),
+    ("subtitle", "Subtitle"),
     ("author", "Author"),
     ("date", "Date"),
     ("description", "Description"),
@@ -100,6 +111,9 @@ class InkpressApp(ttk.Frame):
         self.status_var = tk.StringVar(value="Choose a manuscript to begin.")
         self.meta_vars = {key: tk.StringVar() for key, _ in META_FIELDS}
         self.target_vars = {key: tk.BooleanVar(value=True) for key, _, _ in TARGET_LABELS}
+        self.pdf_var = tk.BooleanVar(value=bool(render_print.find_pdf_renderer()))
+        self.package_var = tk.BooleanVar(value=False)
+        self.trim_var = tk.StringVar(value=TRIM_CHOICES[0])
         self.tier_var = tk.StringVar(value=TIER_CHOICES[0])
         self.edition_var = tk.StringVar(value=EDITION_CHOICES[0])
 
@@ -207,6 +221,22 @@ class InkpressApp(ttk.Frame):
             ttk.Label(box, text=hint, foreground="#666").grid(
                 row=index, column=1, sticky="w", padx=(PAD, 0)
             )
+
+        pdf_row = len(TARGET_LABELS)
+        ttk.Checkbutton(box, text="Print PDF", variable=self.pdf_var).grid(
+            row=pdf_row, column=0, sticky="w"
+        )
+        ttk.Label(box, text="Render paperback interior directly to .pdf", foreground="#666").grid(
+            row=pdf_row, column=1, sticky="w", padx=(PAD, 0)
+        )
+
+        pkg_row = pdf_row + 1
+        ttk.Checkbutton(box, text="Package buyer ZIP", variable=self.package_var).grid(
+            row=pkg_row, column=0, sticky="w"
+        )
+        ttk.Label(box, text="Bundle outputs into build/orders/<slug>-<edition>.zip", foreground="#666").grid(
+            row=pkg_row, column=1, sticky="w", padx=(PAD, 0)
+        )
         return row + 1
 
     def _build_options(self, row):
@@ -220,12 +250,17 @@ class InkpressApp(ttk.Frame):
         )
         ttk.Button(box, text="Browse...", command=self._choose_out).grid(row=0, column=2)
 
-        ttk.Label(box, text="Match site page").grid(row=1, column=0, sticky="w", pady=(6, 0))
-        ttk.Entry(box, textvariable=self.chrome_var).grid(
+        ttk.Label(box, text="Print trim").grid(row=1, column=0, sticky="w", pady=(6, 0))
+        ttk.Combobox(box, textvariable=self.trim_var, values=TRIM_CHOICES).grid(
             row=1, column=1, sticky="ew", padx=(PAD, PAD), pady=(6, 0)
         )
+
+        ttk.Label(box, text="Match site page").grid(row=2, column=0, sticky="w", pady=(6, 0))
+        ttk.Entry(box, textvariable=self.chrome_var).grid(
+            row=2, column=1, sticky="ew", padx=(PAD, PAD), pady=(6, 0)
+        )
         ttk.Button(box, text="Browse...", command=self._choose_chrome).grid(
-            row=1, column=2, pady=(6, 0)
+            row=2, column=2, pady=(6, 0)
         )
 
         ttk.Label(
@@ -234,7 +269,7 @@ class InkpressApp(ttk.Frame):
                  "styling, menu and footer.",
             foreground="#666",
             wraplength=520,
-        ).grid(row=2, column=0, columnspan=3, sticky="w", pady=(6, 0))
+        ).grid(row=3, column=0, columnspan=3, sticky="w", pady=(6, 0))
         return row + 1
 
     def _build_actions(self, row):
@@ -285,7 +320,10 @@ class InkpressApp(ttk.Frame):
         path = filedialog.askopenfilename(
             title="Choose a manuscript",
             initialdir=str(HERE / "manuscripts"),
-            filetypes=[("Manuscripts", "*.md *.markdown *.txt"), ("All files", "*.*")],
+            filetypes=[
+                ("Manuscripts", "*.md *.markdown *.txt *.docx"),
+                ("All files", "*.*"),
+            ],
         )
         if path:
             self.manuscript_var.set(path)
@@ -328,6 +366,16 @@ class InkpressApp(ttk.Frame):
         if not self.meta_vars["title"].get():
             self.meta_vars["title"].set(path.stem.replace("-", " ").replace("_", " ").title())
 
+        tier_key = str(parsed.meta.get("tier", "")).strip().lower()
+        self.tier_var.set(editions.TIER_LABELS.get(tier_key, TIER_CHOICES[0]))
+
+        edition_key = str(parsed.meta.get("edition", "")).strip().lower()
+        self.edition_var.set(editions.EDITION_LABELS.get(edition_key, EDITION_CHOICES[0]))
+        self._sync_edition_state()
+
+        trim_val = str(parsed.meta.get("trim", "")).strip()
+        self.trim_var.set(trim_val if trim_val else TRIM_CHOICES[0])
+
         chapters = sum(1 for block in parsed.blocks if block.kind == ms.CHAPTER)
         words = sum(
             len(block.text.split())
@@ -361,8 +409,13 @@ class InkpressApp(ttk.Frame):
             return
 
         overrides = {key: var.get().strip() for key, var in self.meta_vars.items()}
+        trim = self.trim_var.get().strip()
+        if trim:
+            overrides["trim"] = trim
         out_dir = self.out_var.get().strip() or str(HERE / "build")
         chrome_path = self.chrome_var.get().strip() or None
+        pdf = bool(self.pdf_var.get()) and ("print" in targets)
+        package = bool(self.package_var.get())
 
         tier = TIER_BY_LABEL.get(self.tier_var.get(), editions.CLEAN)
         edition = (
@@ -379,11 +432,12 @@ class InkpressApp(ttk.Frame):
 
         threading.Thread(
             target=self._run_build,
-            args=(source, out_dir, targets, overrides, chrome_path, tier, edition),
+            args=(source, out_dir, targets, overrides, chrome_path, tier, edition, pdf, package),
             daemon=True,
         ).start()
 
-    def _run_build(self, source, out_dir, targets, overrides, chrome_path, tier, edition):
+    def _run_build(self, source, out_dir, targets, overrides, chrome_path, tier, edition,
+                   pdf=False, package=False):
         """Worker thread. Never touches widgets — results go through the queue."""
         try:
             chrome = pipeline.load_chrome(chrome_path) if chrome_path else None
@@ -395,6 +449,8 @@ class InkpressApp(ttk.Frame):
                 meta_overrides=overrides,
                 tier=tier,
                 edition=edition,
+                pdf=pdf,
+                package=package,
             )
             self.results.put(("done", result, out_dir))
         except editions.EditionError as error:
@@ -429,7 +485,7 @@ class InkpressApp(ttk.Frame):
             for warning in payload.warnings:
                 self.write(f"  Heads up: {warning}", "warn")
             for target, path in payload:
-                label = dict((key, name) for key, name, _ in TARGET_LABELS)[target]
+                label = OUTPUT_NAMES.get(target, target)
                 self.write(f"  {label}: {path}", "ok")
             self.write("Done.", "ok")
             self.last_out_dir = out_dir

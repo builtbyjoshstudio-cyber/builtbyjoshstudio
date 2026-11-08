@@ -15,11 +15,95 @@ Trim size, margins and gutter come from front matter:
     margin: 0.75in
     gutter: 0.25in      extra inner margin for the bound edge
 """
+import shutil
+import subprocess
+import tempfile
+from pathlib import Path
+
 from . import art, body, editions, inline
 
 DEFAULT_TRIM = "6x9"
 DEFAULT_MARGIN = "0.75in"
 DEFAULT_GUTTER = "0.25in"
+
+_PAGED_TOOLS = ("weasyprint", "prince", "pagedjs-cli")
+_CHROMIUM_CANDIDATES = (
+    "msedge",
+    "chrome",
+    "chromium",
+    "google-chrome",
+    r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+    r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+    r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+    r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+)
+
+
+def _default_gutter(word_count):
+    """Scale KDP inner gutter by approximate book length when not explicitly set."""
+    if word_count > 65000:
+        return "0.5in"
+    if word_count > 35000:
+        return "0.375in"
+    return DEFAULT_GUTTER
+
+
+def find_pdf_renderer():
+    """Return (kind, executable) for the best available PDF renderer, or None."""
+    for tool in _PAGED_TOOLS:
+        found = shutil.which(tool)
+        if found:
+            return tool, found
+    for candidate in _CHROMIUM_CANDIDATES:
+        found = shutil.which(candidate)
+        if found:
+            return "chromium", found
+        if Path(candidate).is_file():
+            return "chromium", str(Path(candidate))
+    return None
+
+
+def render_pdf(html_path, pdf_path=None, renderer=None):
+    """Render a print interior HTML file to PDF. Returns pdf_path."""
+    html_path = Path(html_path).resolve()
+    pdf_path = Path(pdf_path).resolve() if pdf_path else html_path.with_suffix(".pdf")
+    pdf_path.parent.mkdir(parents=True, exist_ok=True)
+
+    resolved = renderer or find_pdf_renderer()
+    if not resolved:
+        raise RuntimeError(
+            "no PDF renderer found (install weasyprint, prince, or Microsoft Edge / Chrome)"
+        )
+
+    kind, exe = resolved
+    if kind == "weasyprint":
+        cmd = [exe, str(html_path), str(pdf_path)]
+        proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
+    elif kind in ("prince", "pagedjs-cli"):
+        cmd = [exe, str(html_path), "-o", str(pdf_path)]
+        proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
+    elif kind == "chromium":
+        with tempfile.TemporaryDirectory() as user_data_dir:
+            cmd = [
+                exe,
+                "--headless",
+                "--disable-gpu",
+                "--no-pdf-header-footer",
+                f"--user-data-dir={user_data_dir}",
+                f"--print-to-pdf={pdf_path}",
+                html_path.as_uri(),
+            ]
+            proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
+    else:
+        raise ValueError(f"unsupported PDF renderer kind: {kind}")
+
+    if proc.returncode != 0 or not pdf_path.is_file() or pdf_path.stat().st_size == 0:
+        detail = (proc.stderr or proc.stdout or "").strip()
+        raise RuntimeError(f"PDF rendering via {kind} failed: {detail or proc.returncode}")
+
+    return pdf_path
 
 
 def _trim_dimensions(trim):
@@ -56,7 +140,7 @@ def build_css(document, edition=None):
     trim_width, trim_height = _trim_dimensions(meta.get("trim", DEFAULT_TRIM))
     size = f"{trim_width} {trim_height}"
     margin = meta.get("margin", DEFAULT_MARGIN)
-    gutter = meta.get("gutter", DEFAULT_GUTTER)
+    gutter = meta.get("gutter") or _default_gutter(document.word_count)
     title = inline.plain(document.title).replace('"', '\\"')
     author = str(meta.get("author", "")).replace('"', '\\"')
 
@@ -69,7 +153,7 @@ def build_css(document, edition=None):
     background: #d9d9dc;
     padding: 24px 0;
   }}
-  .titlepage, .chapter {{
+  .titlepage, .copyright-page, .dedication-page, .chapter {{
     width: {trim_width};
     min-height: {trim_height};
     margin: 0 auto 24px;
@@ -189,7 +273,13 @@ def build_css(document, edition=None):
 /* Front matter carries no running heads or folios. */
 @page blank {{ @top-left {{ content: "" }} @top-right {{ content: "" }} @bottom-center {{ content: "" }} }}
 
-html {{ font-family: {edition.body_font}; font-size: 11pt; color: {edition.ink}; }}
+html {{
+  font-family: {edition.body_font};
+  font-size: 11pt;
+  color: {edition.ink};
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}}
 body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
 
 .titlepage {{ page: blank; text-align: center; page-break-after: always; }}
@@ -208,6 +298,23 @@ body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }}
+.copyright-page {{
+  page: blank;
+  page-break-after: always;
+  font-size: 9pt;
+  line-height: 1.5;
+  text-align: left;
+  padding-top: 4.2in;
+}}
+.copyright-page p {{ text-indent: 0; margin: 0 0 0.8em; }}
+.dedication-page {{
+  page: blank;
+  page-break-after: always;
+  text-align: center;
+  font-style: italic;
+  padding-top: 2.4in;
+}}
+.dedication-page p {{ text-indent: 0; }}
 
 .chapter {{ page-break-before: right; }}
 .chapter h2 {{
@@ -224,7 +331,7 @@ body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
 .chapter h3 {{ font-size: 11.5pt; font-style: italic; text-align: left; margin: 1.8em 0 0.7em; }}
 
 p {{ margin: 0; text-indent: 1.4em; orphans: 2; widows: 2; }}
-h2 + p, h3 + p, blockquote + p, .scene-break + p, .chapter-number + p {{ text-indent: 0; }}
+h2 + p, h3 + p, blockquote + p, .scene-break + p, .chapter-number + p, .opening {{ text-indent: 0; }}
 /* Small caps on the opening line only. Scoped to the sheet width so it can
    never run away across a full browser window. */
 h2 + p::first-line, .opening::first-line {{ font-variant: small-caps; letter-spacing: 0.04em; }}
@@ -254,6 +361,22 @@ def render(document, css_override=None, edition=None):
     if meta.get("subtitle"):
         title_bits.append(f'  <p class="subtitle">{inline.render(meta["subtitle"])}</p>')
     title_bits.append(f'  <p class="author">{inline.escape(meta.get("author", ""))}</p>')
+
+    front_sections = [
+        f'<section class="titlepage">\n{chr(10).join(title_bits)}\n</section>'
+    ]
+    if meta.get("copyright"):
+        front_sections.append(
+            '<section class="copyright-page">\n'
+            f'  <p>{inline.render(str(meta["copyright"]))}</p>\n'
+            "</section>"
+        )
+    if meta.get("dedication"):
+        front_sections.append(
+            '<section class="dedication-page">\n'
+            f'  <p>{inline.render(str(meta["dedication"]))}</p>\n'
+            "</section>"
+        )
 
     scene_break = _scene_break_html(edition)
 
@@ -307,9 +430,7 @@ def render(document, css_override=None, edition=None):
 </head>
 <body>
 {note}
-<section class="titlepage">
-{chr(10).join(title_bits)}
-</section>
+{chr(10).join(front_sections)}
 
 {chr(10).join(chapters)}
 </body>

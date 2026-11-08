@@ -126,6 +126,61 @@ class TestManuscript(unittest.TestCase):
         with self.assertRaises(ms.ManuscriptError):
             ms.load(Path("does-not-exist.md"))
 
+    def test_utf8_bom_does_not_break_front_matter(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "bom.md"
+            path.write_bytes(b"\xef\xbb\xbf" + MINIMAL.encode("utf-8"))
+            parsed = ms.load(path)
+        self.assertEqual(parsed.meta["title"], "Test Book")
+        self.assertEqual(len(parsed.blocks), 6)
+
+    def test_docx_manuscript_loads_chapters_and_inline_runs(self):
+        core_xml = """<?xml version="1.0" encoding="UTF-8"?>
+        <cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties"
+                           xmlns:dc="http://purl.org/dc/elements/1.1/">
+          <dc:title>Word Draft</dc:title>
+          <dc:creator>J. Author</dc:creator>
+          <dc:language>en</dc:language>
+        </cp:coreProperties>"""
+        doc_xml = """<?xml version="1.0" encoding="UTF-8"?>
+        <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+          <w:body>
+            <w:p>
+              <w:pPr><w:pStyle w:val="Heading1"/></w:pPr>
+              <w:r><w:t>Chapter One</w:t></w:r>
+            </w:p>
+            <w:p>
+              <w:r><w:t>Opening with </w:t></w:r>
+              <w:r><w:rPr><w:i/></w:rPr><w:t>italic</w:t></w:r>
+              <w:r><w:t> and </w:t></w:r>
+              <w:r><w:rPr><w:b/></w:rPr><w:t>bold</w:t></w:r>
+              <w:r><w:t> words.</w:t></w:r>
+            </w:p>
+            <w:p>
+              <w:pPr><w:pStyle w:val="Quote"/></w:pPr>
+              <w:r><w:t>A quoted line.</w:t></w:r>
+            </w:p>
+          </w:body>
+        </w:document>"""
+
+        with tempfile.TemporaryDirectory() as directory:
+            docx_path = Path(directory) / "draft.docx"
+            with zipfile.ZipFile(docx_path, "w") as archive:
+                archive.writestr("docProps/core.xml", core_xml)
+                archive.writestr("word/document.xml", doc_xml)
+
+            parsed = ms.load(docx_path)
+            doc = structure.build(parsed)
+
+        self.assertEqual(doc.title, "Word Draft")
+        self.assertEqual(doc.meta["author"], "J. Author")
+        self.assertEqual(len(doc.chapters), 1)
+        self.assertEqual(doc.chapters[0].title, "Chapter One")
+        rendered = "\n".join(body.blocks_to_html(doc.chapters[0].blocks))
+        self.assertIn("<em>italic</em>", rendered)
+        self.assertIn("<strong>bold</strong>", rendered)
+        self.assertIn("<blockquote>", rendered)
+
 
 class TestStructure(unittest.TestCase):
     def test_chapters_and_word_count(self):
@@ -603,6 +658,120 @@ class TestTierBuilds(unittest.TestCase):
             source = write_temp(source_text, directory)
             with self.assertRaises(editions.EditionError):
                 pipeline.build(source, Path(directory) / "build", targets=("print",))
+
+    def test_chapter_rule_appears_in_all_three_targets(self):
+        with tempfile.TemporaryDirectory() as directory:
+            clean = self._build(directory, "clean")
+            styled = self._build(directory, "styled")
+
+            clean_site = clean.outputs["site"].read_text(encoding="utf-8")
+            styled_site = styled.outputs["site"].read_text(encoding="utf-8")
+            self.assertNotIn("h2::after", clean_site)
+            self.assertIn("h2::after", styled_site)
+
+            with zipfile.ZipFile(clean.outputs["epub"]) as archive:
+                clean_epub_css = archive.read("OEBPS/style.css").decode()
+            with zipfile.ZipFile(styled.outputs["epub"]) as archive:
+                styled_epub_css = archive.read("OEBPS/style.css").decode()
+            self.assertNotIn("h2::after", clean_epub_css)
+            self.assertIn("h2::after", styled_epub_css)
+
+    def test_implicit_chapter_omits_duplicate_heading_in_epub_and_marks_opening(self):
+        source_text = MINIMAL.replace("## One\n\n", "").replace("## Two\n\n", "")
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(source_text, directory)
+            result = pipeline.build(
+                source, Path(directory) / "build", tier="styled"
+            )
+            print_html = result.outputs["print"].read_text(encoding="utf-8")
+            with zipfile.ZipFile(result.outputs["epub"]) as archive:
+                chap_xhtml = archive.read("OEBPS/chap-001.xhtml").decode()
+
+        self.assertNotIn("<h2", chap_xhtml)
+        self.assertNotIn("chapter-number", chap_xhtml)
+        self.assertIn('class="opening"', chap_xhtml)
+        self.assertIn('class="opening"', print_html)
+
+    def test_app_prefills_tier_and_edition_from_front_matter(self):
+        try:
+            import tkinter as tk
+            import inkpress_app
+        except ImportError:
+            self.skipTest("Tkinter unavailable")
+
+        try:
+            root = tk.Tk()
+            root.withdraw()
+        except tk.TclError:
+            self.skipTest("No display available for Tk")
+
+        try:
+            source_text = MINIMAL.replace(
+                "language: en", "language: en\ntier: illustrated\nedition: systemfall"
+            )
+            with tempfile.TemporaryDirectory() as directory:
+                source = write_temp(source_text, directory)
+                app = inkpress_app.InkpressApp(root, initial_manuscript=source)
+                self.assertEqual(
+                    app.tier_var.get(), editions.TIER_LABELS[editions.ILLUSTRATED]
+                )
+                self.assertEqual(
+                    app.edition_var.get(), editions.EDITION_LABELS[editions.SYSTEMFALL]
+                )
+                self.assertEqual(str(app.edition_box.cget("state")), "readonly")
+        finally:
+            root.destroy()
+
+    def test_package_bundles_buyer_deliverables(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(
+                source,
+                Path(directory) / "build",
+                tier="illustrated",
+                edition="ashveil",
+                package=True,
+            )
+            self.assertIn("package", result.outputs)
+            zip_path = result.outputs["package"]
+            self.assertTrue(zip_path.is_file())
+            self.assertEqual(zip_path.name, "test-book-ashveil.zip")
+
+            with zipfile.ZipFile(zip_path) as archive:
+                self.assertEqual(
+                    sorted(archive.namelist()),
+                    [
+                        "test-book-interior.html",
+                        "test-book.epub",
+                        "test-book.html",
+                    ],
+                )
+
+    def test_copyright_and_dedication_render_in_print_and_epub(self):
+        source_text = MINIMAL.replace(
+            "language: en",
+            "language: en\ncopyright: Copyright 2026 A. Writer\ndedication: For Mara",
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(source_text, directory)
+            result = pipeline.build(
+                source, Path(directory) / "build", targets=("print", "epub")
+            )
+            print_html = result.outputs["print"].read_text(encoding="utf-8")
+            with zipfile.ZipFile(result.outputs["epub"]) as archive:
+                titlepage = archive.read("OEBPS/titlepage.xhtml").decode()
+
+        self.assertIn("copyright-page", print_html)
+        self.assertIn("Copyright 2026 A. Writer", print_html)
+        self.assertIn("dedication-page", print_html)
+        self.assertIn("For Mara", titlepage)
+
+    def test_dynamic_kdp_gutter_scales_with_word_count(self):
+        from inkpress_lib.render_print import _default_gutter
+
+        self.assertEqual(_default_gutter(5000), "0.25in")
+        self.assertEqual(_default_gutter(45000), "0.375in")
+        self.assertEqual(_default_gutter(75000), "0.5in")
 
 
 class TestSampleManuscript(unittest.TestCase):

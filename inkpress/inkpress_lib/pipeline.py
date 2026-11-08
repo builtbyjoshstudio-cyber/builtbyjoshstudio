@@ -10,6 +10,7 @@ Everything left of the fork happens exactly once, which is the whole point of
 the design: the site page and the book files cannot drift apart because they
 are rendered from the same Document object.
 """
+import zipfile
 from pathlib import Path
 
 from . import editions
@@ -45,9 +46,32 @@ def load_chrome(donor_path):
     return render_site.extract_chrome(path.read_text(encoding="utf-8"))
 
 
+def package_order(result, out_dir, dry_run=False):
+    """Bundle all built deliverables into a deterministic buyer ZIP archive."""
+    out_dir = Path(out_dir)
+    slug = result.document.slug
+    edition_key = result.edition.key if result.edition else editions.CLEAN
+    zip_path = out_dir / "orders" / f"{slug}-{edition_key}.zip"
+
+    if not dry_run:
+        zip_path.parent.mkdir(parents=True, exist_ok=True)
+        stamp = (1980, 1, 1, 0, 0, 0)
+        with zipfile.ZipFile(zip_path, "w") as archive:
+            for target, path in sorted(result.outputs.items()):
+                if target == "package" or not path.is_file():
+                    continue
+                info = zipfile.ZipInfo(path.name, date_time=stamp)
+                info.compress_type = zipfile.ZIP_DEFLATED
+                info.external_attr = 0o644 << 16
+                archive.writestr(info, path.read_bytes())
+
+    result.add("package", zip_path)
+    return zip_path
+
+
 def build(source, out_dir, targets=ALL_TARGETS, chrome=None, base_url=None,
           path_prefix="writing", print_css=None, dry_run=False, meta_overrides=None,
-          tier=None, edition=None):
+          tier=None, edition=None, pdf=False, package=False):
     """Run the full pipeline for one manuscript.
 
     meta_overrides supplies front matter the file itself is missing — the
@@ -101,10 +125,24 @@ def build(source, out_dir, targets=ALL_TARGETS, chrome=None, base_url=None,
             path.write_text(html, encoding="utf-8")
         result.add("print", path)
 
+        if pdf:
+            pdf_path = out_dir / "print" / f"{slug}-interior.pdf"
+            if dry_run:
+                result.add("pdf", pdf_path)
+            else:
+                try:
+                    render_print.render_pdf(path, pdf_path)
+                    result.add("pdf", pdf_path)
+                except RuntimeError as error:
+                    result.warnings.append(str(error))
+
     if "epub" in targets:
         path = out_dir / "epub" / f"{slug}.epub"
         if not dry_run:
             render_epub.render(document, path, edition=resolved_edition)
         result.add("epub", path)
+
+    if package:
+        package_order(result, out_dir, dry_run=dry_run)
 
     return result

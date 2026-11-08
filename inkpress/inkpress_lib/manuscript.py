@@ -20,6 +20,8 @@ Supported block syntax (prose fiction subset):
     plain text          paragraph (blank-line separated)
 """
 import re
+import xml.etree.ElementTree as ET
+import zipfile
 from pathlib import Path
 
 FRONT_MATTER_FENCE = "---"
@@ -33,6 +35,8 @@ PARAGRAPH = "paragraph"
 
 _SCENE_BREAK_RE = re.compile(r"^\s*(\*\s*\*\s*\*|#\s*#\s*#|---+|___+)\s*$")
 _LIST_ITEM_RE = re.compile(r"^\s*-\s+(.*)$")
+_W_NS = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+_DC_NS = "{http://purl.org/dc/elements/1.1/}"
 
 
 class ManuscriptError(Exception):
@@ -185,19 +189,143 @@ def parse_blocks(lines, offset=0):
     return blocks
 
 
+def _docx_flag_enabled(rpr, tag):
+    if rpr is None:
+        return False
+    el = rpr.find(f"{_W_NS}{tag}")
+    if el is None:
+        return False
+    val = el.get(f"{_W_NS}val", "true").strip().lower()
+    return val not in ("0", "false", "none")
+
+
+def _wrap_inline(text, marker):
+    stripped = text.strip()
+    if not stripped:
+        return text
+    lead = text[: len(text) - len(text.lstrip())]
+    tail = text[len(text.rstrip()) :]
+    return f"{lead}{marker}{stripped}{marker}{tail}"
+
+
+def _read_docx(path):
+    """Extract metadata and markdown-like lines from a Word .docx archive."""
+    try:
+        with zipfile.ZipFile(path) as archive:
+            names = set(archive.namelist())
+            if "word/document.xml" not in names:
+                raise ManuscriptError(f"{path.name} is not a valid Word .docx document")
+            doc_xml = archive.read("word/document.xml")
+            core_xml = archive.read("docProps/core.xml") if "docProps/core.xml" in names else None
+    except zipfile.BadZipFile as error:
+        raise ManuscriptError(f"could not read .docx file {path.name}: {error}") from error
+
+    doc_meta = {}
+    if core_xml:
+        try:
+            core_root = ET.fromstring(core_xml)
+            for tag, key in (
+                ("title", "title"),
+                ("creator", "author"),
+                ("description", "description"),
+                ("language", "language"),
+            ):
+                node = core_root.find(f".//{_DC_NS}{tag}")
+                if node is not None and node.text and node.text.strip():
+                    doc_meta[key] = node.text.strip()
+        except ET.ParseError:
+            pass
+
+    try:
+        root = ET.fromstring(doc_xml)
+    except ET.ParseError as error:
+        raise ManuscriptError(f"corrupt XML in {path.name}: {error}") from error
+
+    paragraphs = []
+    for p_node in root.iter(f"{_W_NS}p"):
+        style = ""
+        ppr = p_node.find(f"{_W_NS}pPr")
+        if ppr is not None:
+            pstyle = ppr.find(f"{_W_NS}pStyle")
+            if pstyle is not None:
+                raw_style = pstyle.get(f"{_W_NS}val", "")
+                style = re.sub(r"[\s\-_]+", "", raw_style).lower()
+
+        chunks = []
+        for child in p_node:
+            if child.tag == f"{_W_NS}r":
+                rpr = child.find(f"{_W_NS}rPr")
+                run_parts = []
+                for item in child:
+                    if item.tag == f"{_W_NS}t" and item.text:
+                        run_parts.append(item.text)
+                    elif item.tag == f"{_W_NS}br":
+                        run_parts.append("\n")
+                run_text = "".join(run_parts)
+                if run_text:
+                    if _docx_flag_enabled(rpr, "i"):
+                        run_text = _wrap_inline(run_text, "*")
+                    if _docx_flag_enabled(rpr, "b"):
+                        run_text = _wrap_inline(run_text, "**")
+                    chunks.append(run_text)
+
+        text = "".join(chunks).strip()
+        if not text:
+            continue
+        paragraphs.append((style, text))
+
+    lines = []
+    in_front_matter = False
+    for index, (style, text) in enumerate(paragraphs):
+        if index == 0 and text == FRONT_MATTER_FENCE:
+            in_front_matter = True
+            lines.append(FRONT_MATTER_FENCE)
+            continue
+        if in_front_matter:
+            lines.extend(text.split("\n"))
+            if text.strip() == FRONT_MATTER_FENCE or text.endswith(f"\n{FRONT_MATTER_FENCE}"):
+                in_front_matter = False
+                lines.append("")
+            continue
+
+        if style == "title":
+            doc_meta.setdefault("title", text)
+            lines.extend([f"# {text}", ""])
+        elif style == "subtitle":
+            doc_meta.setdefault("subtitle", text)
+        elif style in ("heading1", "heading2"):
+            lines.extend([f"## {text}", ""])
+        elif style == "heading3":
+            lines.extend([f"### {text}", ""])
+        elif style in ("quote", "intensequote", "blocktext"):
+            for qline in text.split("\n"):
+                lines.append(f"> {qline.strip()}")
+            lines.append("")
+        else:
+            lines.extend([text, ""])
+
+    return doc_meta, lines
+
+
 def load(path):
-    """Read and parse a manuscript file."""
+    """Read and parse a manuscript file (.md, .markdown, .txt, or .docx)."""
     path = Path(path)
     if not path.is_file():
         raise ManuscriptError(f"manuscript not found: {path}")
 
-    text = path.read_text(encoding="utf-8")
-    lines = text.replace("\r\n", "\n").replace("\r", "\n").split("\n")
+    doc_meta = {}
+    if path.suffix.lower() == ".docx":
+        doc_meta, lines = _read_docx(path)
+    else:
+        text = path.read_text(encoding="utf-8-sig")
+        lines = text.replace("\r\n", "\n").replace("\r", "\n").split("\n")
 
     meta, body_start = parse_front_matter(lines)
+    merged_meta = dict(doc_meta)
+    merged_meta.update(meta)
     blocks = parse_blocks(lines[body_start:], offset=body_start)
 
     if not blocks:
         raise ManuscriptError(f"{path.name} has front matter but no body content")
 
-    return Manuscript(meta, blocks, source_path=path)
+    return Manuscript(merged_meta, blocks, source_path=path)

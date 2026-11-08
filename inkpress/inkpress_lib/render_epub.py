@@ -51,6 +51,19 @@ def build_style(edition):
 .opening {{ text-indent: 0; }}
 """
 
+    chapter_rule = ""
+    if edition.chapter_rule:
+        chapter_rule = f"""h2::after {{
+  content: "";
+  display: block;
+  width: 2.2em;
+  height: 1px;
+  margin: 0.65em 0 0;
+  background: {edition.accent};
+  opacity: 0.75;
+}}
+"""
+
     chapter_number = ""
     if edition.chapter_number:
         chapter_number = f""".chapter-number {{
@@ -93,7 +106,7 @@ h1 {{ font-size: 1.6em; margin: 2em 0 1em; }}
 h2 {{ font-size: 1.3em; margin: 1.6em 0 0.8em; }}
 h3 {{ font-size: 1.1em; margin: 1.4em 0 0.6em; text-align: left; font-style: italic; }}
 p {{ margin: 0; text-indent: 1.4em; }}
-h1 + p, h2 + p, h3 + p, blockquote + p, .scene-break + p, .chapter-number + p {{
+h1 + p, h2 + p, h3 + p, blockquote + p, .scene-break + p, .chapter-number + p, .opening {{
   text-indent: 0;
 }}
 .scene-break {{
@@ -110,7 +123,7 @@ blockquote p {{ text-indent: 0; }}
 .titlepage {{ text-align: center; page-break-after: always; }}
 .titlepage h1 {{ text-align: center; page-break-before: avoid; }}
 .titlepage .author {{ margin-top: 2em; font-size: 1.1em; }}
-{drop_cap}{chapter_number}{chapter_art}"""
+{drop_cap}{chapter_rule}{chapter_number}{chapter_art}"""
 
 
 def _xhtml(title, inner, language):
@@ -139,11 +152,24 @@ def _title_page(document):
     parts.append(
         f'  <p class="author" {_CENTERED}>{inline.escape(meta.get("author", ""))}</p>'
     )
-    return (
+    sections = [
         f'<section class="titlepage" epub:type="titlepage" {_CENTERED}>\n'
         + "\n".join(parts)
         + "\n</section>"
-    )
+    ]
+    if meta.get("copyright"):
+        sections.append(
+            '<section class="copyright-page" epub:type="copyright-page">\n'
+            f'  <p style="text-indent: 0;">{inline.render(str(meta["copyright"]))}</p>\n'
+            "</section>"
+        )
+    if meta.get("dedication"):
+        sections.append(
+            f'<section class="dedication-page" epub:type="dedication" {_CENTERED}>\n'
+            f'  <p {_CENTERED}><em>{inline.render(str(meta["dedication"]))}</em></p>\n'
+            "</section>"
+        )
+    return "\n".join(sections)
 
 
 def _chapter_xhtml(chapter, document, edition, has_art):
@@ -158,11 +184,12 @@ def _chapter_xhtml(chapter, document, edition, has_art):
             f'  <div class="chapter-art" {_CENTERED}>'
             f'<img src="art/chap-{chapter.number:03d}.svg" alt="" /></div>'
         )
-    if edition.chapter_number:
+    if edition.chapter_number and not chapter.implicit:
         opener.append(
             f'  <span class="chapter-number" {_CENTERED}>Chapter {chapter.number}</span>'
         )
-    opener.append(f'  <h2 id="{chapter.slug}">{inline.render(chapter.title)}</h2>')
+    if not chapter.implicit:
+        opener.append(f'  <h2 id="{chapter.slug}">{inline.render(chapter.title)}</h2>')
 
     prose = body.blocks_to_html(
         chapter.blocks, heading_level=3, indent="  ",

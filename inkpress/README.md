@@ -99,6 +99,8 @@ Useful flags:
 | `--targets site` | build one target instead of all three (`site`, `epub`, `print`) |
 | `--tier` | `clean`, `styled`, or `illustrated` |
 | `--edition` | illustrated tier only: `ashveil`, `systemfall`, or `vantablack` |
+| `--pdf` | also render the print interior HTML to a ready-to-upload PDF |
+| `--package` | bundle built deliverables into `build/orders/<slug>-<edition>.zip` |
 | `--check` | parse and validate only, write nothing |
 | `--dry-run` | report the paths it would write |
 | `--chrome-from PAGE.html` | inherit nav, footer and stylesheets from a live site page |
@@ -160,7 +162,8 @@ Prose after a scene break.
 | `image` | — | absolute URL for OG and Twitter cards |
 | `slug` | — | overrides the slug derived from the title |
 | `url` | — | overrides the canonical URL |
-| `trim`, `margin`, `gutter` | — | print geometry, default `6x9` / `0.75in` / `0.25in` |
+| `trim`, `margin`, `gutter` | — | print geometry, default `6x9` / `0.75in` / `0.25in` (gutter auto-scales for long novels) |
+| `copyright`, `dedication` | — | optional front-matter pages in print and EPUB |
 | `publisher`, `subjects` | — | EPUB metadata |
 | `uuid` | — | pins the EPUB identifier across editions |
 

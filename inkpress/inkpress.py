@@ -83,6 +83,16 @@ def parse_args(argv):
         "--print-css", metavar="FILE.css", help="override the generated paged-media CSS"
     )
     parser.add_argument(
+        "--pdf",
+        action="store_true",
+        help="also render the print interior HTML to a ready-to-upload PDF",
+    )
+    parser.add_argument(
+        "--package",
+        action="store_true",
+        help="bundle built deliverables into a buyer ZIP in build/orders/",
+    )
+    parser.add_argument(
         "--check", action="store_true", help="parse and validate only, write nothing"
     )
     parser.add_argument("--dry-run", action="store_true", help="report paths, write nothing")
@@ -122,6 +132,8 @@ def main(argv=None):
             dry_run=args.dry_run or args.check,
             tier=args.tier,
             edition=args.edition,
+            pdf=args.pdf,
+            package=args.package,
         )
     except ms.ManuscriptError as error:
         die(f"{source.name}: {error}")

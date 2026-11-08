@@ -53,7 +53,7 @@ def blocks_to_html(blocks, heading_level=2, indent="  ", scene_break=SCENE_BREAK
     capital; tier 1 leaves it alone.
     """
     out = []
-    drop_cap_pending = drop_cap
+    first_paragraph = True
 
     for block in blocks:
         if block.kind == ms.SCENE_BREAK:
@@ -70,9 +70,10 @@ def blocks_to_html(blocks, heading_level=2, indent="  ", scene_break=SCENE_BREAK
 
         elif block.kind == ms.PARAGRAPH:
             paragraph = inline.render(block.text.replace("\n", " "))
-            if drop_cap_pending:
-                paragraph = apply_drop_cap(paragraph)
-                drop_cap_pending = False
+            if first_paragraph:
+                first_paragraph = False
+                if drop_cap:
+                    paragraph = apply_drop_cap(paragraph)
                 out.append(f'{indent}<p class="opening">{paragraph}</p>')
             else:
                 out.append(f"{indent}<p>{paragraph}</p>")

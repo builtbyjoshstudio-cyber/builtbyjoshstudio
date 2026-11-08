@@ -207,6 +207,13 @@ def _edition_css(edition):
         )
         rules.append("  .dispatch-body .opening { text-indent: 0; }")
 
+    if edition.chapter_rule:
+        rules.append(
+            f'  .dispatch-body h2::after {{ content: ""; display: block;'
+            f" width: 2.2em; height: 1px; margin: 0.65em 0 0;"
+            f" background: {edition.accent}; opacity: 0.75; }}"
+        )
+
     if edition.chapter_number:
         rules.append(
             f"  .dispatch-body .chapter-number {{ display: block; font-family: "
