@@ -2,11 +2,14 @@
 """
 inkpress_app.py — the inkpress Editorial Studio desktop app.
 
-A two-column studio window over the same pipeline the CLI uses:
-  - Left column: manuscript loader (with one-click sample), book details,
-    tier & edition selector, format targets, and print/web options.
-  - Right column: live miniature book page & chapter-opener art preview canvas,
-    chapter outline & KDP paperback spine/page estimator, and build log.
+A modern two-column studio window over the same pipeline the CLI uses:
+  - Header bar: studio branding + keyboard shortcut badges.
+  - Left column: interactive drag-and-drop zone, quick edition presets,
+    and clean tabbed configuration (Book Details / Formats & Print Options)
+    so controls never clip on High-DPI screens.
+  - Right column: live two-page spread preview (Cover + Chapter 1 Opener)
+    and tabbed Chapter Outline / KDP Spine Inspector & Build Log.
+  - Bottom bar: persistent Format Book primary CTA and preview actions.
 
 Launch by double-clicking inkpress.exe (or inkpress-app.cmd), or:
     python inkpress_app.py
@@ -84,7 +87,19 @@ META_FIELDS = (
     ("copyright", "Copyright"),
 )
 
-PAD = 8
+# Studio color palette
+BG_APP = "#F4F1EA"
+BG_CARD = "#FFFFFF"
+BG_SUBTLE = "#FAF8F4"
+BORDER_CARD = "#DDD6C9"
+INK_DARK = "#191817"
+INK_BODY = "#2E2B28"
+INK_MUTED = "#6E665E"
+ACCENT_CRIMSON = "#8B261D"
+ACCENT_CRIMSON_HOVER = "#A63026"
+ACCENT_GOLD = "#B8863B"
+
+PAD = 10
 _WNDPROC_REFS = []
 
 
@@ -190,10 +205,9 @@ def estimate_kdp_stats(word_count, chapter_count, trim="6x9"):
     front_pages = 4 if chapter_count > 1 else 2
     chapter_overhead = max(1, round(chapter_count * 0.6))
     total_pages = prose_pages + front_pages + chapter_overhead if word_count > 0 else 0
-    # KDP requires even page count for spine calculation
     if total_pages % 2 == 1:
         total_pages += 1
-    spine_in = round(total_pages * 0.0025, 3)  # KDP cream paper multiplier
+    spine_in = round(total_pages * 0.0025, 3)
     gutter = render_print._default_gutter(word_count)
     return {
         "pages": total_pages,
@@ -220,8 +234,171 @@ def open_folder(path):
         return False
 
 
+def _configure_studio_theme(root):
+    """Apply a cohesive warm-paper editorial theme over ttk."""
+    root.configure(bg=BG_APP)
+    style = ttk.Style(root)
+    try:
+        style.theme_use("clam")
+    except tk.TclError:
+        pass
+
+    style.configure(".", background=BG_APP, foreground=INK_BODY, font=("Segoe UI", 9))
+    style.configure("TFrame", background=BG_APP)
+    style.configure("Card.TFrame", background=BG_CARD)
+    style.configure("TLabel", background=BG_CARD, foreground=INK_BODY, font=("Segoe UI", 9))
+    style.configure(
+        "Muted.TLabel", background=BG_CARD, foreground=INK_MUTED, font=("Segoe UI", 8)
+    )
+    style.configure(
+        "Section.TLabel",
+        background=BG_CARD,
+        foreground="#7A6D5D",
+        font=("Segoe UI", 8, "bold"),
+    )
+    style.configure(
+        "TCheckbutton",
+        background=BG_CARD,
+        foreground=INK_BODY,
+        font=("Segoe UI", 9, "bold"),
+    )
+    style.map("TCheckbutton", background=[("active", BG_CARD)])
+
+    style.configure(
+        "TEntry",
+        fieldbackground=BG_SUBTLE,
+        foreground=INK_DARK,
+        bordercolor="#D2C9BA",
+        lightcolor=BG_SUBTLE,
+        darkcolor=BG_SUBTLE,
+        padding=4,
+    )
+    style.configure(
+        "TCombobox",
+        fieldbackground=BG_SUBTLE,
+        background=BG_SUBTLE,
+        foreground=INK_DARK,
+        bordercolor="#D2C9BA",
+        arrowcolor=INK_BODY,
+        padding=4,
+    )
+    style.map(
+        "TCombobox",
+        fieldbackground=[("readonly", BG_SUBTLE), ("disabled", "#EFECE6")],
+        selectbackground=[("readonly", BG_SUBTLE)],
+        selectforeground=[("readonly", INK_DARK)],
+    )
+
+    style.configure(
+        "TButton",
+        background="#EDE8DF",
+        foreground=INK_DARK,
+        bordercolor="#CFC6B8",
+        lightcolor="#EDE8DF",
+        darkcolor="#EDE8DF",
+        focusthickness=0,
+        padding=(10, 5),
+        font=("Segoe UI", 9),
+    )
+    style.map(
+        "TButton",
+        background=[("active", "#E2DBD0"), ("disabled", "#F2EFE9")],
+        foreground=[("disabled", "#A8A096")],
+    )
+
+    style.configure(
+        "Primary.TButton",
+        background=ACCENT_CRIMSON,
+        foreground="#FFFFFF",
+        bordercolor=ACCENT_CRIMSON,
+        lightcolor=ACCENT_CRIMSON,
+        darkcolor=ACCENT_CRIMSON,
+        padding=(16, 7),
+        font=("Segoe UI", 9, "bold"),
+    )
+    style.map(
+        "Primary.TButton",
+        background=[("active", ACCENT_CRIMSON_HOVER), ("disabled", "#B89A96")],
+        foreground=[("disabled", "#F5ECEB")],
+    )
+
+    style.configure(
+        "TNotebook",
+        background=BG_APP,
+        borderwidth=0,
+        tabmargins=(0, 0, 0, 0),
+    )
+    style.configure(
+        "TNotebook.Tab",
+        background="#E5DFD3",
+        foreground=INK_MUTED,
+        padding=(9, 6),
+        borderwidth=0,
+        font=("Segoe UI", 9, "bold"),
+    )
+    style.map(
+        "TNotebook.Tab",
+        background=[("selected", BG_CARD), ("active", "#EDE8DE")],
+        foreground=[("selected", INK_DARK), ("active", INK_DARK)],
+    )
+
+    style.configure(
+        "Treeview",
+        background=BG_CARD,
+        fieldbackground=BG_CARD,
+        foreground=INK_BODY,
+        rowheight=24,
+        borderwidth=0,
+        font=("Segoe UI", 9),
+    )
+    style.configure(
+        "Treeview.Heading",
+        background="#EFECE4",
+        foreground=INK_DARK,
+        relief="flat",
+        padding=(6, 4),
+        font=("Segoe UI", 8, "bold"),
+    )
+    style.map("Treeview", background=[("selected", "#EFE7DA")], foreground=[("selected", INK_DARK)])
+
+    style.configure(
+        "Horizontal.TProgressbar",
+        troughcolor="#E6E0D4",
+        background=ACCENT_CRIMSON,
+        bordercolor="#E6E0D4",
+        lightcolor=ACCENT_CRIMSON,
+        darkcolor=ACCENT_CRIMSON,
+        thickness=8,
+    )
+
+
+def _make_card(parent, title=None, pad=12):
+    """Create a crisp bordered studio card container."""
+    outer = tk.Frame(
+        parent,
+        bg=BG_CARD,
+        highlightthickness=1,
+        highlightbackground=BORDER_CARD,
+        highlightcolor=BORDER_CARD,
+        padx=pad,
+        pady=pad,
+    )
+    if title:
+        hdr = tk.Label(
+            outer,
+            text=title.upper(),
+            bg=BG_CARD,
+            fg="#7A6D5D",
+            font=("Segoe UI", 8, "bold"),
+            anchor="w",
+        )
+        hdr.grid(row=0, column=0, columnspan=10, sticky="w", pady=(0, 8))
+    return outer
+
+
 class InkpressApp(ttk.Frame):
     def __init__(self, master, initial_manuscript=None):
+        _configure_studio_theme(master)
         super().__init__(master, padding=0)
         self.grid(sticky="nsew")
         master.columnconfigure(0, weight=1)
@@ -234,16 +411,18 @@ class InkpressApp(ttk.Frame):
         self.last_outputs = {}
         self.current_document = None
         self.busy = False
+        self._drop_hover = False
+        self._preset_buttons = {}
 
         self.manuscript_var = tk.StringVar()
         self.out_var = tk.StringVar(value=str(HERE / "build"))
         self.chrome_var = tk.StringVar()
         self.cover_var = tk.StringVar()
         self.status_var = tk.StringVar(
-            value="Drag & drop a manuscript (.md, .docx, .txt) anywhere onto this window, or click Choose file / Load Sample."
+            value="No manuscript loaded yet — drop a file above or click Load Sample."
         )
         self.kdp_summary_var = tk.StringVar(
-            value="KDP Estimate: load a manuscript to see page count, gutter, and spine width."
+            value="Load a manuscript to calculate KDP page count, inner gutter, and spine width."
         )
         self.meta_vars = {key: tk.StringVar() for key, _ in META_FIELDS}
         self.target_vars = {key: tk.BooleanVar(value=True) for key, _, _ in TARGET_LABELS}
@@ -258,31 +437,31 @@ class InkpressApp(ttk.Frame):
 
         self._build_header()
 
-        body_frame = ttk.Frame(self, padding=PAD)
+        # Main two-column studio body
+        body_frame = ttk.Frame(self, padding=(14, 12, 14, 8))
         body_frame.grid(row=1, column=0, sticky="nsew")
-        body_frame.columnconfigure(0, weight=5, minsize=430)
-        body_frame.columnconfigure(1, weight=6, minsize=440)
+        body_frame.columnconfigure(0, weight=5, minsize=440)
+        body_frame.columnconfigure(1, weight=6, minsize=460)
         body_frame.rowconfigure(0, weight=1)
 
         left_col = ttk.Frame(body_frame)
-        left_col.grid(row=0, column=0, sticky="nsew", padx=(0, PAD))
+        left_col.grid(row=0, column=0, sticky="nsew", padx=(0, 12))
         left_col.columnconfigure(0, weight=1)
+        left_col.rowconfigure(1, weight=1)
 
         right_col = ttk.Frame(body_frame)
         right_col.grid(row=0, column=1, sticky="nsew")
         right_col.columnconfigure(0, weight=1)
         right_col.rowconfigure(1, weight=1)
 
-        lrow = 0
-        lrow = self._build_manuscript_row(left_col, lrow)
-        lrow = self._build_details(left_col, lrow)
-        lrow = self._build_tier(left_col, lrow)
-        lrow = self._build_targets(left_col, lrow)
-        lrow = self._build_options(left_col, lrow)
-        self._build_actions(left_col, lrow)
+        self._build_manuscript_card(left_col, 0)
+        self._build_config_tabs(left_col, 1)
 
         self._build_preview_card(right_col, 0)
         self._build_inspector_and_log(right_col, 1)
+
+        # Persistent bottom action bar (never clipped)
+        self._build_action_bar(row=2)
 
         for key in ("title", "subtitle", "author"):
             self.meta_vars[key].trace_add("write", lambda *_args: self._draw_page_preview())
@@ -339,142 +518,141 @@ class InkpressApp(ttk.Frame):
     # ---------------------------------------------------------------- layout
 
     def _build_header(self):
-        banner = tk.Frame(self, bg="#191817", padx=14, pady=10)
+        header_wrap = tk.Frame(self, bg=INK_DARK)
+        header_wrap.grid(row=0, column=0, sticky="ew")
+        header_wrap.columnconfigure(0, weight=1)
+
+        banner = tk.Frame(header_wrap, bg=INK_DARK, padx=16, pady=10)
         banner.grid(row=0, column=0, sticky="ew")
-        banner.columnconfigure(1, weight=1)
+        banner.columnconfigure(2, weight=1)
 
         tk.Label(
             banner,
             text="INKPRESS",
-            bg="#191817",
-            fg="#fdfbf7",
-            font=("Georgia", 13, "bold"),
+            bg=INK_DARK,
+            fg="#FDFBF7",
+            font=("Georgia", 14, "bold"),
         ).grid(row=0, column=0, sticky="w")
 
         tk.Label(
             banner,
-            text=f"  v{__version__}  ·  Book & Dispatch Formatting Studio",
-            bg="#191817",
-            fg="#b8afa6",
+            text=f"STUDIO v{__version__}",
+            bg="#2C2825",
+            fg="#D6C7B2",
+            padx=7,
+            pady=2,
+            font=("Segoe UI", 7, "bold"),
+        ).grid(row=0, column=1, sticky="w", padx=(10, 10))
+
+        tk.Label(
+            banner,
+            text="Book, EPUB & KDP Print Formatting Pipeline",
+            bg=INK_DARK,
+            fg="#A89F94",
             font=("Segoe UI", 9),
-        ).grid(row=0, column=1, sticky="w")
+        ).grid(row=0, column=2, sticky="w")
 
         tk.Label(
             banner,
             text="Ctrl+O Open   ·   F5 Format",
-            bg="#191817",
-            fg="#8c8278",
+            bg=INK_DARK,
+            fg="#857B70",
             font=("Consolas", 8),
-        ).grid(row=0, column=2, sticky="e")
+        ).grid(row=0, column=3, sticky="e")
 
-    def _build_manuscript_row(self, parent, row):
-        box = ttk.LabelFrame(parent, text="1. Manuscript (Browse or Drag & Drop)", padding=PAD)
-        box.grid(row=row, column=0, sticky="ew", pady=(0, PAD))
-        box.columnconfigure(0, weight=1)
-
-        drop_strip = tk.Label(
-            box,
-            text="⇩  Drop a .md, .docx, or .txt manuscript anywhere on this window (or click here to browse)",
-            bg="#f3f0ea",
-            fg="#5a4f44",
-            relief="ridge",
-            bd=1,
-            padx=8,
-            pady=5,
-            cursor="hand2",
-            font=("Segoe UI", 8, "bold"),
+        # Warm crimson accent rule under header
+        tk.Frame(header_wrap, bg=ACCENT_CRIMSON, height=2).grid(
+            row=1, column=0, sticky="ew"
         )
-        drop_strip.grid(row=0, column=0, columnspan=3, sticky="ew", pady=(0, 6))
-        drop_strip.bind("<Button-1>", lambda _e: self._choose_manuscript())
 
-        entry = ttk.Entry(box, textvariable=self.manuscript_var)
-        entry.grid(row=1, column=0, sticky="ew", padx=(0, 6))
+    def _build_manuscript_card(self, parent, row):
+        card = _make_card(parent, "1 · Manuscript Source", pad=11)
+        card.grid(row=row, column=0, sticky="ew", pady=(0, 10))
+        card.columnconfigure(0, weight=1)
+
+        self.drop_canvas = tk.Canvas(
+            card,
+            height=58,
+            bg=BG_SUBTLE,
+            highlightthickness=0,
+            cursor="hand2",
+        )
+        self.drop_canvas.grid(row=1, column=0, columnspan=3, sticky="ew", pady=(0, 8))
+        self.drop_canvas.bind("<Configure>", lambda _e: self._draw_drop_zone())
+        self.drop_canvas.bind("<Button-1>", lambda _e: self._choose_manuscript())
+        self.drop_canvas.bind("<Enter>", lambda _e: self._set_drop_hover(True))
+        self.drop_canvas.bind("<Leave>", lambda _e: self._set_drop_hover(False))
+
+        entry = ttk.Entry(card, textvariable=self.manuscript_var)
+        entry.grid(row=2, column=0, sticky="ew", padx=(0, 6))
         entry.bind("<Return>", lambda _e: self._load_manuscript())
 
-        ttk.Button(box, text="Choose file...", command=self._choose_manuscript).grid(
-            row=1, column=1, padx=(0, 4)
+        ttk.Button(card, text="Browse...", command=self._choose_manuscript).grid(
+            row=2, column=1, padx=(0, 4)
         )
-        ttk.Button(box, text="Load Sample", command=self._load_sample).grid(
-            row=1, column=2
-        )
-
-        ttk.Label(box, textvariable=self.status_var, foreground="#333", wraplength=410).grid(
-            row=2, column=0, columnspan=3, sticky="w", pady=(6, 0)
-        )
-        return row + 1
-
-    def _build_details(self, parent, row):
-        box = ttk.LabelFrame(parent, text="2. Book Details", padding=PAD)
-        box.grid(row=row, column=0, sticky="ew", pady=(0, PAD))
-        box.columnconfigure(1, weight=1)
-        box.columnconfigure(3, weight=1)
-
-        # Compact two-column grid for short fields, full-width for longer ones
-        paired = (
-            ("title", "Title", "subtitle", "Subtitle"),
-            ("author", "Author", "publisher", "Publisher"),
-            ("date", "Date", "dedication", "Dedication"),
-        )
-        for r_idx, (k1, l1, k2, l2) in enumerate(paired):
-            ttk.Label(box, text=l1).grid(row=r_idx, column=0, sticky="w", pady=2)
-            ttk.Entry(box, textvariable=self.meta_vars[k1]).grid(
-                row=r_idx, column=1, sticky="ew", padx=(6, 10), pady=2
-            )
-            ttk.Label(box, text=l2).grid(row=r_idx, column=2, sticky="w", pady=2)
-            ttk.Entry(box, textvariable=self.meta_vars[k2]).grid(
-                row=r_idx, column=3, sticky="ew", padx=(6, 0), pady=2
-            )
-
-        ttk.Label(box, text="Description").grid(row=3, column=0, sticky="w", pady=2)
-        ttk.Entry(box, textvariable=self.meta_vars["description"]).grid(
-            row=3, column=1, columnspan=3, sticky="ew", padx=(6, 0), pady=2
-        )
-
-        ttk.Label(box, text="Copyright").grid(row=4, column=0, sticky="w", pady=2)
-        ttk.Entry(box, textvariable=self.meta_vars["copyright"]).grid(
-            row=4, column=1, columnspan=3, sticky="ew", padx=(6, 0), pady=2
+        ttk.Button(card, text="Load Sample", command=self._load_sample).grid(
+            row=2, column=2
         )
 
         ttk.Label(
-            box,
-            text="Prefilled from the manuscript (.md or .docx). Leave Copyright blank for automatic © line.",
-            foreground="#666",
-            wraplength=410,
-        ).grid(row=5, column=0, columnspan=4, sticky="w", pady=(4, 0))
-        return row + 1
+            card,
+            textvariable=self.status_var,
+            style="Muted.TLabel",
+            wraplength=420,
+        ).grid(row=3, column=0, columnspan=3, sticky="w", pady=(6, 0))
 
-    def _build_tier(self, parent, row):
-        box = ttk.LabelFrame(parent, text="3. Design Tier & Edition", padding=PAD)
-        box.grid(row=row, column=0, sticky="ew", pady=(0, PAD))
-        box.columnconfigure(1, weight=1)
+    def _set_drop_hover(self, hovered):
+        self._drop_hover = bool(hovered)
+        self._draw_drop_zone()
 
-        ttk.Label(box, text="Tier").grid(row=0, column=0, sticky="w")
-        tier_box = ttk.Combobox(
-            box, textvariable=self.tier_var, values=TIER_CHOICES,
-            state="readonly",
+    def _draw_drop_zone(self):
+        if not hasattr(self, "drop_canvas"):
+            return
+        c = self.drop_canvas
+        c.delete("all")
+        w = max(int(c.winfo_width()), 380)
+        h = max(int(c.winfo_height()), 58)
+
+        bg = "#F5EFE6" if self._drop_hover else BG_SUBTLE
+        border = ACCENT_CRIMSON if self._drop_hover else "#C8BFAF"
+        c.configure(bg=bg)
+        c.create_rectangle(
+            2, 2, w - 3, h - 3,
+            outline=border,
+            width=1.5 if self._drop_hover else 1,
+            dash=(5, 3),
+            fill=bg,
         )
-        tier_box.grid(row=0, column=1, sticky="ew", padx=(PAD, 0))
-        tier_box.bind("<<ComboboxSelected>>", lambda _event: self._sync_edition_state())
 
-        ttk.Label(box, text="Edition").grid(row=1, column=0, sticky="w", pady=(6, 0))
-        self.edition_box = ttk.Combobox(
-            box, textvariable=self.edition_var, values=EDITION_CHOICES,
-            state="disabled",
+        # Document icon on the left
+        ix, iy = 22, h // 2
+        c.create_rectangle(ix - 8, iy - 11, ix + 8, iy + 11, fill="#FFFFFF", outline=border)
+        c.create_line(ix - 4, iy - 4, ix + 4, iy - 4, fill=border)
+        c.create_line(ix - 4, iy, ix + 4, iy, fill=border)
+        c.create_line(ix - 4, iy + 4, ix + 2, iy + 4, fill=border)
+
+        c.create_text(
+            42,
+            iy - 7,
+            text="Drop a manuscript here (.md, .docx, .txt)",
+            anchor="w",
+            fill=INK_DARK,
+            font=("Segoe UI", 8, "bold"),
         )
-        self.edition_box.grid(row=1, column=1, sticky="ew", padx=(PAD, 0), pady=(6, 0))
-        self.edition_box.bind("<<ComboboxSelected>>", lambda _event: self._sync_edition_state())
-
-        swatch_row = ttk.Frame(box)
-        swatch_row.grid(row=2, column=0, columnspan=2, sticky="ew", pady=(6, 0))
-        self.swatch_canvas = tk.Canvas(
-            swatch_row, width=44, height=18, highlightthickness=1, highlightbackground="#ccc"
+        c.create_text(
+            42,
+            iy + 8,
+            text="Click to browse  ·  Drop a cover or web template to attach",
+            anchor="w",
+            fill=INK_MUTED,
+            font=("Segoe UI", 7),
         )
-        self.swatch_canvas.grid(row=0, column=0, sticky="w", padx=(0, PAD))
-        self.tier_hint = ttk.Label(swatch_row, text="", foreground="#555", wraplength=355)
-        self.tier_hint.grid(row=0, column=1, sticky="w")
 
+    def _select_preset(self, tier_key, edition_key):
+        self.tier_var.set(editions.TIER_LABELS[tier_key])
+        if edition_key:
+            self.edition_var.set(editions.EDITION_LABELS[edition_key])
         self._sync_edition_state()
-        return row + 1
 
     def _resolved_edition(self):
         tier = TIER_BY_LABEL.get(self.tier_var.get(), editions.CLEAN)
@@ -486,15 +664,25 @@ class InkpressApp(ttk.Frame):
     def _sync_edition_state(self):
         """Edition only applies to tier 3, so only enable it there."""
         tier = TIER_BY_LABEL.get(self.tier_var.get(), editions.CLEAN)
+        edition_key = EDITION_BY_LABEL.get(self.edition_var.get(), editions.ASHVEIL)
         resolved = self._resolved_edition()
-        if tier == editions.ILLUSTRATED:
-            self.edition_box.configure(state="readonly")
-        else:
-            self.edition_box.configure(state="disabled")
+        if hasattr(self, "edition_box"):
+            if tier == editions.ILLUSTRATED:
+                self.edition_box.configure(state="readonly")
+            else:
+                self.edition_box.configure(state="disabled")
 
-        self.swatch_canvas.delete("all")
-        self.swatch_canvas.create_rectangle(0, 0, 22, 18, fill=resolved.ink, outline="")
-        self.swatch_canvas.create_rectangle(22, 0, 44, 18, fill=resolved.accent, outline="")
+        active_pair = (tier, edition_key if tier == editions.ILLUSTRATED else None)
+        for pair, btn in self._preset_buttons.items():
+            if pair == active_pair:
+                btn.configure(bg=INK_DARK, fg="#FDFBF7", activebackground=INK_DARK)
+            else:
+                btn.configure(bg=BG_SUBTLE, fg=INK_BODY, activebackground="#EDE7DC")
+
+        if hasattr(self, "swatch_canvas"):
+            self.swatch_canvas.delete("all")
+            self.swatch_canvas.create_rectangle(0, 0, 22, 16, fill=resolved.ink, outline="")
+            self.swatch_canvas.create_rectangle(22, 0, 44, 16, fill=resolved.accent, outline="")
 
         features = []
         if resolved.drop_cap:
@@ -505,88 +693,228 @@ class InkpressApp(ttk.Frame):
             features.append(f"{resolved.art} SVG art")
         if not features:
             features.append("plain headings")
-        self.tier_hint.configure(
-            text=f"{resolved.label}  |  Scene break: {resolved.scene_break}  |  {', '.join(features)}"
-        )
+        if hasattr(self, "tier_hint"):
+            self.tier_hint.configure(
+                text=f"{resolved.label}  ·  Scene break: {resolved.scene_break}  ·  {', '.join(features)}"
+            )
         if hasattr(self, "page_canvas"):
             self._draw_page_preview()
 
-    def _build_targets(self, parent, row):
-        box = ttk.LabelFrame(parent, text="4. Deliverables", padding=PAD)
-        box.grid(row=row, column=0, sticky="ew", pady=(0, PAD))
+    def _build_config_tabs(self, parent, row):
+        self.left_notebook = ttk.Notebook(parent)
+        self.left_notebook.grid(row=row, column=0, sticky="nsew")
 
-        for index, (key, label, hint) in enumerate(TARGET_LABELS):
-            ttk.Checkbutton(box, text=label, variable=self.target_vars[key]).grid(
-                row=index, column=0, sticky="w"
+        details_tab = tk.Frame(
+            self.left_notebook,
+            bg=BG_CARD,
+            padx=14,
+            pady=12,
+            highlightthickness=1,
+            highlightbackground=BORDER_CARD,
+        )
+        details_tab.columnconfigure(1, weight=1)
+        details_tab.columnconfigure(3, weight=1)
+
+        style_tab = tk.Frame(
+            self.left_notebook,
+            bg=BG_CARD,
+            padx=14,
+            pady=12,
+            highlightthickness=1,
+            highlightbackground=BORDER_CARD,
+        )
+        style_tab.columnconfigure(1, weight=1)
+
+        outputs_tab = tk.Frame(
+            self.left_notebook,
+            bg=BG_CARD,
+            padx=14,
+            pady=12,
+            highlightthickness=1,
+            highlightbackground=BORDER_CARD,
+        )
+        outputs_tab.columnconfigure(1, weight=1)
+
+        self._populate_details_tab(details_tab)
+        self._populate_style_tab(style_tab)
+        self._populate_outputs_tab(outputs_tab)
+
+        self.left_notebook.add(details_tab, text="2 · Book Details")
+        self.left_notebook.add(style_tab, text="3 · Edition & Style")
+        self.left_notebook.add(outputs_tab, text="4 · Outputs")
+
+    def _populate_details_tab(self, box):
+        r = 0
+        for key, label in (("title", "Title"), ("subtitle", "Subtitle")):
+            ttk.Label(box, text=label).grid(row=r, column=0, sticky="w", pady=4)
+            ttk.Entry(box, textvariable=self.meta_vars[key]).grid(
+                row=r, column=1, columnspan=3, sticky="ew", padx=(8, 0), pady=4
             )
-            ttk.Label(box, text=hint, foreground="#666").grid(
-                row=index, column=1, sticky="w", padx=(PAD, 0)
+            r += 1
+
+        paired = (
+            ("author", "Author", "publisher", "Publisher"),
+            ("date", "Date", "dedication", "Dedication"),
+        )
+        for k1, l1, k2, l2 in paired:
+            ttk.Label(box, text=l1).grid(row=r, column=0, sticky="w", pady=4)
+            ttk.Entry(box, textvariable=self.meta_vars[k1]).grid(
+                row=r, column=1, sticky="ew", padx=(8, 12), pady=4
             )
+            ttk.Label(box, text=l2).grid(row=r, column=2, sticky="w", pady=4)
+            ttk.Entry(box, textvariable=self.meta_vars[k2]).grid(
+                row=r, column=3, sticky="ew", padx=(8, 0), pady=4
+            )
+            r += 1
 
-        pdf_row = len(TARGET_LABELS)
-        ttk.Checkbutton(box, text="Print PDF (KDP ready)", variable=self.pdf_var).grid(
-            row=pdf_row, column=0, sticky="w"
-        )
-        ttk.Label(box, text="Direct PDF export via headless browser / WeasyPrint", foreground="#666").grid(
-            row=pdf_row, column=1, sticky="w", padx=(PAD, 0)
-        )
+        for key, label in (("description", "Description"), ("copyright", "Copyright")):
+            ttk.Label(box, text=label).grid(row=r, column=0, sticky="w", pady=4)
+            ttk.Entry(box, textvariable=self.meta_vars[key]).grid(
+                row=r, column=1, columnspan=3, sticky="ew", padx=(8, 0), pady=4
+            )
+            r += 1
 
-        pkg_row = pdf_row + 1
-        ttk.Checkbutton(box, text="Package buyer ZIP", variable=self.package_var).grid(
-            row=pkg_row, column=0, sticky="w"
-        )
-        ttk.Label(box, text="Bundle outputs + delivery notes into build/orders/", foreground="#666").grid(
-            row=pkg_row, column=1, sticky="w", padx=(PAD, 0)
-        )
-        return row + 1
+        ttk.Label(
+            box,
+            text="Prefilled from your manuscript (.md or .docx). Leave Copyright blank for an automatic © page.",
+            style="Muted.TLabel",
+            wraplength=410,
+        ).grid(row=r, column=0, columnspan=4, sticky="w", pady=(8, 0))
 
-    def _build_options(self, parent, row):
-        box = ttk.LabelFrame(parent, text="5. Trim & Output Options", padding=PAD)
-        box.grid(row=row, column=0, sticky="ew", pady=(0, PAD))
-        box.columnconfigure(1, weight=1)
+    def _populate_style_tab(self, box):
+        r = 0
+        ttk.Label(box, text="DESIGN TIER & EDITION", style="Section.TLabel").grid(
+            row=r, column=0, columnspan=3, sticky="w", pady=(0, 6)
+        )
+        r += 1
 
-        ttk.Label(box, text="Print trim").grid(row=0, column=0, sticky="w")
+        ttk.Label(box, text="Tier").grid(row=r, column=0, sticky="w", pady=3)
+        tier_box = ttk.Combobox(
+            box, textvariable=self.tier_var, values=TIER_CHOICES, state="readonly"
+        )
+        tier_box.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
+        tier_box.bind("<<ComboboxSelected>>", lambda _event: self._sync_edition_state())
+        r += 1
+
+        ttk.Label(box, text="Edition").grid(row=r, column=0, sticky="w", pady=3)
+        self.edition_box = ttk.Combobox(
+            box, textvariable=self.edition_var, values=EDITION_CHOICES, state="disabled"
+        )
+        self.edition_box.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
+        self.edition_box.bind("<<ComboboxSelected>>", lambda _event: self._sync_edition_state())
+        r += 1
+
+        swatch_row = tk.Frame(box, bg=BG_CARD)
+        swatch_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(6, 8))
+        self.swatch_canvas = tk.Canvas(
+            swatch_row,
+            width=44,
+            height=16,
+            bg=BG_CARD,
+            highlightthickness=1,
+            highlightbackground="#CFC6B8",
+        )
+        self.swatch_canvas.grid(row=0, column=0, sticky="w", padx=(0, 8))
+        self.tier_hint = ttk.Label(swatch_row, text="", style="Muted.TLabel", wraplength=355)
+        self.tier_hint.grid(row=0, column=1, sticky="w")
+        r += 1
+
+        tk.Frame(box, bg=BORDER_CARD, height=1).grid(
+            row=r, column=0, columnspan=3, sticky="ew", pady=(4, 8)
+        )
+        r += 1
+
+        ttk.Label(box, text="PRINT TRIM & ASSETS", style="Section.TLabel").grid(
+            row=r, column=0, columnspan=3, sticky="w", pady=(0, 6)
+        )
+        r += 1
+
+        ttk.Label(box, text="Print trim").grid(row=r, column=0, sticky="w", pady=3)
         trim_cb = ttk.Combobox(box, textvariable=self.trim_var, values=TRIM_CHOICES)
-        trim_cb.grid(row=0, column=1, sticky="ew", padx=(PAD, PAD))
+        trim_cb.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
         trim_cb.bind("<<ComboboxSelected>>", lambda _e: self._refresh_kdp_and_preview())
+        r += 1
 
-        ttk.Label(box, text="Save to").grid(row=1, column=0, sticky="w", pady=(5, 0))
+        pickers = (
+            ("Cover image", self.cover_var, self._choose_cover),
+            ("Web template", self.chrome_var, self._choose_chrome),
+        )
+        for label, var, cmd in pickers:
+            ttk.Label(box, text=label).grid(row=r, column=0, sticky="w", pady=3)
+            ttk.Entry(box, textvariable=var).grid(
+                row=r, column=1, sticky="ew", padx=(8, 8), pady=3
+            )
+            ttk.Button(box, text="Browse...", command=cmd).grid(row=r, column=2, pady=3)
+            r += 1
+
+    def _populate_outputs_tab(self, box):
+        r = 0
+        ttk.Label(box, text="DELIVERABLES TO BUILD", style="Section.TLabel").grid(
+            row=r, column=0, columnspan=3, sticky="w", pady=(0, 6)
+        )
+        r += 1
+
+        for key, label, hint in TARGET_LABELS:
+            ttk.Checkbutton(box, text=label, variable=self.target_vars[key]).grid(
+                row=r, column=0, sticky="w", pady=3
+            )
+            ttk.Label(box, text=hint, style="Muted.TLabel").grid(
+                row=r, column=1, columnspan=2, sticky="w", padx=(8, 0), pady=3
+            )
+            r += 1
+
+        ttk.Checkbutton(box, text="Print PDF (KDP ready)", variable=self.pdf_var).grid(
+            row=r, column=0, sticky="w", pady=3
+        )
+        ttk.Label(
+            box, text="Direct PDF via headless Edge/Chrome or WeasyPrint", style="Muted.TLabel"
+        ).grid(row=r, column=1, columnspan=2, sticky="w", padx=(8, 0), pady=3)
+        r += 1
+
+        ttk.Checkbutton(box, text="Package buyer ZIP", variable=self.package_var).grid(
+            row=r, column=0, sticky="w", pady=3
+        )
+        ttk.Label(
+            box, text="Bundle outputs + delivery notes in build/orders/", style="Muted.TLabel"
+        ).grid(row=r, column=1, columnspan=2, sticky="w", padx=(8, 0), pady=3)
+        r += 1
+
+        tk.Frame(box, bg=BORDER_CARD, height=1).grid(
+            row=r, column=0, columnspan=3, sticky="ew", pady=(10, 10)
+        )
+        r += 1
+
+        ttk.Label(box, text="OUTPUT DESTINATION", style="Section.TLabel").grid(
+            row=r, column=0, columnspan=3, sticky="w", pady=(0, 6)
+        )
+        r += 1
+
+        ttk.Label(box, text="Save to").grid(row=r, column=0, sticky="w", pady=3)
         ttk.Entry(box, textvariable=self.out_var).grid(
-            row=1, column=1, sticky="ew", padx=(PAD, PAD), pady=(5, 0)
+            row=r, column=1, sticky="ew", padx=(8, 8), pady=3
         )
-        ttk.Button(box, text="Browse...", command=self._choose_out).grid(
-            row=1, column=2, pady=(5, 0)
-        )
+        ttk.Button(box, text="Browse...", command=self._choose_out).grid(row=r, column=2, pady=3)
 
-        ttk.Label(box, text="Cover image").grid(row=2, column=0, sticky="w", pady=(5, 0))
-        ttk.Entry(box, textvariable=self.cover_var).grid(
-            row=2, column=1, sticky="ew", padx=(PAD, PAD), pady=(5, 0)
-        )
-        ttk.Button(box, text="Browse...", command=self._choose_cover).grid(
-            row=2, column=2, pady=(5, 0)
-        )
+    def _build_action_bar(self, row):
+        wrap = tk.Frame(self, bg=BG_CARD)
+        wrap.grid(row=row, column=0, sticky="ew")
+        wrap.columnconfigure(0, weight=1)
 
-        ttk.Label(box, text="Web template").grid(row=3, column=0, sticky="w", pady=(5, 0))
-        ttk.Entry(box, textvariable=self.chrome_var).grid(
-            row=3, column=1, sticky="ew", padx=(PAD, PAD), pady=(5, 0)
-        )
-        ttk.Button(box, text="Browse...", command=self._choose_chrome).grid(
-            row=3, column=2, pady=(5, 0)
-        )
-        return row + 1
+        tk.Frame(wrap, bg=BORDER_CARD, height=1).grid(row=0, column=0, sticky="ew")
 
-    def _build_actions(self, parent, row):
-        bar = ttk.Frame(parent)
-        bar.grid(row=row, column=0, sticky="ew")
+        bar = tk.Frame(wrap, bg=BG_CARD, padx=14, pady=10)
+        bar.grid(row=1, column=0, sticky="ew")
         bar.columnconfigure(4, weight=1)
 
-        self.format_button = ttk.Button(bar, text="Format Book", command=self._start_build)
+        self.format_button = ttk.Button(
+            bar, text="✦  Format Book", style="Primary.TButton", command=self._start_build
+        )
         self.format_button.grid(row=0, column=0)
 
         self.open_button = ttk.Button(
             bar, text="Open Folder", command=self._open_output, state="disabled"
         )
-        self.open_button.grid(row=0, column=1, padx=(6, 0))
+        self.open_button.grid(row=0, column=1, padx=(8, 0))
 
         self.preview_print_button = ttk.Button(
             bar, text="Preview Print", command=self._preview_print, state="disabled"
@@ -598,57 +926,88 @@ class InkpressApp(ttk.Frame):
         )
         self.preview_web_button.grid(row=0, column=3, padx=(6, 0))
 
-        self.progress = ttk.Progressbar(bar, mode="indeterminate")
-        self.progress.grid(row=0, column=4, sticky="ew", padx=(8, 0))
-        return row + 1
+        self.progress = ttk.Progressbar(bar, mode="determinate", maximum=100, value=0)
+        self.progress.grid(row=0, column=4, sticky="ew", padx=(14, 0))
 
     # ---------------------------------------------------- right column studio
 
     def _build_preview_card(self, parent, row):
-        box = ttk.LabelFrame(parent, text="Live Page & Edition Preview", padding=PAD)
-        box.grid(row=row, column=0, sticky="ew", pady=(0, PAD))
-        box.columnconfigure(0, weight=1)
+        card = _make_card(parent, "Live Book Spread Preview (Cover & Chapter Opener)", pad=10)
+        card.grid(row=row, column=0, sticky="ew", pady=(0, 10))
+        card.columnconfigure(0, weight=1)
+
+        preset_bar = tk.Frame(card, bg=BG_CARD)
+        preset_bar.grid(row=1, column=0, sticky="ew", pady=(0, 8))
+        presets = (
+            ("Clean", editions.CLEAN, None),
+            ("Styled", editions.STYLED, None),
+            ("Ashveil", editions.ILLUSTRATED, editions.ASHVEIL),
+            ("Systemfall", editions.ILLUSTRATED, editions.SYSTEMFALL),
+            ("Vantablack", editions.ILLUSTRATED, editions.VANTABLACK),
+        )
+        for idx, (label, t_key, e_key) in enumerate(presets):
+            preset_bar.columnconfigure(idx, weight=1)
+            btn = tk.Button(
+                preset_bar,
+                text=label,
+                bd=1,
+                relief="solid",
+                padx=6,
+                pady=3,
+                cursor="hand2",
+                font=("Segoe UI", 8, "bold"),
+                command=lambda tk_k=t_key, ed_k=e_key: self._select_preset(tk_k, ed_k),
+            )
+            btn.grid(row=0, column=idx, sticky="ew", padx=(0 if idx == 0 else 4, 0))
+            self._preset_buttons[(t_key, e_key)] = btn
 
         self.page_canvas = tk.Canvas(
-            box,
-            width=420,
-            height=295,
-            bg="#e3e1dc",
+            card,
+            width=450,
+            height=280,
+            bg="#E5E0D5",
             highlightthickness=1,
-            highlightbackground="#c8c4bc",
+            highlightbackground="#CFC8BA",
         )
-        self.page_canvas.grid(row=0, column=0, sticky="ew")
+        self.page_canvas.grid(row=2, column=0, sticky="ew")
         self.page_canvas.bind("<Configure>", lambda _e: self._draw_page_preview())
+        self._sync_edition_state()
 
     def _build_inspector_and_log(self, parent, row):
         self.notebook = ttk.Notebook(parent)
         self.notebook.grid(row=row, column=0, sticky="nsew")
 
-        # Tab 1: Chapter Outline & KDP Paperback Estimator
-        outline_tab = ttk.Frame(self.notebook, padding=PAD)
+        outline_tab = tk.Frame(
+            self.notebook,
+            bg=BG_CARD,
+            padx=10,
+            pady=10,
+            highlightthickness=1,
+            highlightbackground=BORDER_CARD,
+        )
         outline_tab.columnconfigure(0, weight=1)
         outline_tab.rowconfigure(1, weight=1)
 
         ttk.Label(
             outline_tab,
             textvariable=self.kdp_summary_var,
-            foreground="#191817",
+            foreground=INK_DARK,
             font=("Segoe UI", 9, "bold"),
-            wraplength=410,
-        ).grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 6))
+            wraplength=430,
+        ).grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 8))
 
         columns = ("num", "title", "words", "status")
         self.chapter_tree = ttk.Treeview(
-            outline_tab, columns=columns, show="headings", height=7
+            outline_tab, columns=columns, show="headings", height=6
         )
         self.chapter_tree.heading("num", text="#")
         self.chapter_tree.heading("title", text="Chapter / Section")
         self.chapter_tree.heading("words", text="Words")
-        self.chapter_tree.heading("status", text="Notes")
+        self.chapter_tree.heading("status", text="Role")
 
-        self.chapter_tree.column("num", width=36, anchor="center", stretch=False)
-        self.chapter_tree.column("title", width=185, anchor="w")
-        self.chapter_tree.column("words", width=65, anchor="e", stretch=False)
+        self.chapter_tree.column("num", width=38, anchor="center", stretch=False)
+        self.chapter_tree.column("title", width=195, anchor="w")
+        self.chapter_tree.column("words", width=70, anchor="e", stretch=False)
         self.chapter_tree.column("status", width=115, anchor="w")
         self.chapter_tree.grid(row=1, column=0, sticky="nsew")
 
@@ -658,35 +1017,123 @@ class InkpressApp(ttk.Frame):
         tree_scroll.grid(row=1, column=1, sticky="ns")
         self.chapter_tree.configure(yscrollcommand=tree_scroll.set)
 
-        # Tab 2: Build Log
-        log_tab = ttk.Frame(self.notebook, padding=PAD)
+        log_tab = tk.Frame(
+            self.notebook,
+            bg=BG_CARD,
+            padx=10,
+            pady=10,
+            highlightthickness=1,
+            highlightbackground=BORDER_CARD,
+        )
         log_tab.columnconfigure(0, weight=1)
         log_tab.rowconfigure(0, weight=1)
 
         self.log = tk.Text(
-            log_tab, height=8, wrap="word", state="disabled", font=("Consolas", 9)
+            log_tab,
+            height=7,
+            wrap="word",
+            state="disabled",
+            bg=BG_SUBTLE,
+            fg=INK_BODY,
+            relief="flat",
+            padx=8,
+            pady=6,
+            font=("Consolas", 9),
         )
         self.log.grid(row=0, column=0, sticky="nsew")
         scroll = ttk.Scrollbar(log_tab, orient="vertical", command=self.log.yview)
         scroll.grid(row=0, column=1, sticky="ns")
         self.log.configure(yscrollcommand=scroll.set)
 
-        self.log.tag_configure("ok", foreground="#1a7f37")
-        self.log.tag_configure("warn", foreground="#9a6700")
-        self.log.tag_configure("error", foreground="#b42318")
-        self.log.tag_configure("muted", foreground="#666")
+        self.log.tag_configure("ok", foreground="#1A7F37")
+        self.log.tag_configure("warn", foreground="#9A6700")
+        self.log.tag_configure("error", foreground="#B42318")
+        self.log.tag_configure("muted", foreground=INK_MUTED)
 
         self.notebook.add(outline_tab, text="Chapters & KDP Specs")
         self.notebook.add(log_tab, text="Build Log")
 
+    def _draw_art_motif(self, canvas, edition, ax0, ay0, ax1, ay1, seed_label, dark_bg=False):
+        """Draw the Edition's generative artwork motif onto a canvas region."""
+        inner_w = ax1 - ax0
+        art_h = ay1 - ay0
+        rng = art._Rng(f"{edition.key}|1|{seed_label}")
+
+        if edition.art == editions.ASHVEIL:
+            tints = (
+                ("#2D2A27", "#433E39", "#0E0D0C")
+                if dark_bg
+                else ("#D0CEC9", "#8C8881", edition.ink)
+            )
+            for layer, tint in enumerate(tints):
+                base = ay0 + art_h * 0.72 - layer * 2
+                pts = [ax0, ay1, ax0, base]
+                x = float(ax0)
+                while x < ax1:
+                    x = min(float(ax1), x + rng.between(12, 22))
+                    peak = base - rng.between(4, 12) + layer * 2
+                    pts.extend([x, peak])
+                pts.extend([ax1, ay1])
+                canvas.create_polygon(pts, fill=tint, outline="")
+            for _ in range(6):
+                ex = rng.between(ax0 + 8, ax1 - 8)
+                ey = rng.between(ay0 + 6, ay1 - 5)
+                canvas.create_oval(
+                    ex - 1.5, ey - 1.5, ex + 1.5, ey + 1.5,
+                    fill=edition.accent, outline=""
+                )
+            canvas.create_line(ax0, ay1, ax1, ay1, fill=edition.accent if dark_bg else edition.ink, width=1)
+
+        elif edition.art == editions.SYSTEMFALL:
+            cols = 9
+            step = inner_w / float(cols + 1)
+            tx = ax0 + step * 0.5
+            ty = ay0 + art_h * 0.6
+            trace_pts = [tx, ty]
+            while tx < ax1 - step:
+                tx = min(ax1 - 4, tx + rng.between(step * 0.8, step * 1.8))
+                trace_pts.extend([tx, ty])
+                if rng.chance(0.6):
+                    ty = max(ay0 + 5, min(ay1 - 5, ty + rng.between(-8, 8)))
+                    trace_pts.extend([tx, ty])
+            canvas.create_line(trace_pts, fill=edition.accent, width=1)
+            for c in range(1, cols + 1):
+                nx = ax0 + c * step
+                for ny in (ay0 + art_h * 0.28, ay0 + art_h * 0.52, ay0 + art_h * 0.76):
+                    if rng.chance(0.5):
+                        filled = rng.chance(0.4)
+                        canvas.create_rectangle(
+                            nx - 1.5, ny - 1.5, nx + 1.5, ny + 1.5,
+                            fill=edition.accent if filled else (INK_DARK if dark_bg else edition.paper),
+                            outline=edition.accent if dark_bg else edition.ink,
+                        )
+            canvas.create_line(ax0, ay1, ax1, ay1, fill=edition.accent if dark_bg else edition.ink, width=1)
+
+        elif edition.art == editions.VANTABLACK:
+            bt = ay0 + 5
+            bh = max(14, art_h - 12)
+            bar_fill = edition.accent if dark_bg else edition.ink
+            cut_fill = INK_DARK if dark_bg else edition.paper
+            canvas.create_rectangle(ax0, bt, ax1, bt + bh, fill=bar_fill, outline="")
+            cut_x = ax0 + inner_w * 0.52
+            canvas.create_polygon(
+                [cut_x, bt, cut_x + 8, bt, cut_x + 2, bt + bh, cut_x - 6, bt + bh],
+                fill=cut_fill,
+                outline="",
+            )
+            thin_x = ax0 + inner_w * 0.18
+            canvas.create_rectangle(
+                thin_x, bt, thin_x + 2, bt + bh, fill=cut_fill, outline=""
+            )
+
     def _draw_page_preview(self):
-        """Render a miniature book page showing the active Edition's typography and art."""
+        """Render a miniature two-page studio preview: Cover + Chapter 1 Opener."""
         if not hasattr(self, "page_canvas"):
             return
         canvas = self.page_canvas
         canvas.delete("all")
 
-        c_width = max(int(canvas.winfo_width()), 420)
+        c_width = max(int(canvas.winfo_width()), 450)
         c_height = max(int(canvas.winfo_height()), 295)
 
         edition = self._resolved_edition()
@@ -694,6 +1141,10 @@ class InkpressApp(ttk.Frame):
         book_title = (
             self.meta_vars["title"].get().strip()
             or (doc.plain_title() if doc else "The Lamplighter’s Round")
+        )
+        subtitle = (
+            self.meta_vars["subtitle"].get().strip()
+            or (doc.meta.get("subtitle", "") if doc else "A Short Passage for Setting the Press")
         )
         author_name = (
             self.meta_vars["author"].get().strip()
@@ -705,229 +1156,244 @@ class InkpressApp(ttk.Frame):
             else "The First Round"
         )
 
-        # Page sheet geometry centered in the studio preview canvas
-        sheet_w = 216
-        sheet_h = 272
-        sx0 = (c_width - sheet_w) // 2
-        sy0 = (c_height - sheet_h) // 2
-        sx1 = sx0 + sheet_w
-        sy1 = sy0 + sheet_h
-
-        # Drop shadow + paper sheet
-        canvas.create_rectangle(
-            sx0 + 4, sy0 + 5, sx1 + 4, sy1 + 5, fill="#b8b4ac", outline=""
-        )
-        canvas.create_rectangle(
-            sx0, sy0, sx1, sy1, fill=edition.paper, outline="#beb9b0"
-        )
-
-        # Running head (recto)
-        canvas.create_text(
-            sx1 - 18,
-            sy0 + 13,
-            text=book_title[:24].upper(),
-            anchor="e",
-            fill="#777",
-            font=("Georgia", 6),
-        )
-
-        cursor_y = sy0 + 26
-        margin_x = sx0 + 20
-        inner_w = sheet_w - 40
-
-        # Chapter opener artwork for Tier 3 Illustrated editions
-        if edition.art:
-            art_h = 36
-            ax0, ay0 = margin_x, cursor_y
-            ax1, ay1 = margin_x + inner_w, cursor_y + art_h
-            rng = art._Rng(f"{edition.key}|1|{chap_title}")
-
-            if edition.art == editions.ASHVEIL:
-                for layer, tint in enumerate(("#d0cec9", "#8c8881", edition.ink)):
-                    base = ay0 + 25 - layer * 2
-                    pts = [ax0, ay1, ax0, base]
-                    x = float(ax0)
-                    while x < ax1:
-                        x = min(float(ax1), x + rng.between(12, 24))
-                        peak = base - rng.between(4, 12) + layer * 2
-                        pts.extend([x, peak])
-                    pts.extend([ax1, ay1])
-                    canvas.create_polygon(pts, fill=tint, outline="")
-                for _ in range(6):
-                    ex = rng.between(ax0 + 8, ax1 - 8)
-                    ey = rng.between(ay0 + 10, ay1 - 5)
-                    canvas.create_oval(
-                        ex - 1.5, ey - 1.5, ex + 1.5, ey + 1.5,
-                        fill=edition.accent, outline=""
-                    )
-                canvas.create_line(ax0, ay1, ax1, ay1, fill=edition.ink, width=1)
-
-            elif edition.art == editions.SYSTEMFALL:
-                cols = 10
-                step = inner_w / float(cols + 1)
-                tx = ax0 + step * 0.5
-                ty = ay0 + 22
-                trace_pts = [tx, ty]
-                while tx < ax1 - step:
-                    tx = min(ax1 - 4, tx + rng.between(step * 0.8, step * 1.8))
-                    trace_pts.extend([tx, ty])
-                    if rng.chance(0.6):
-                        ty = max(ay0 + 6, min(ay1 - 6, ty + rng.between(-8, 8)))
-                        trace_pts.extend([tx, ty])
-                canvas.create_line(trace_pts, fill=edition.accent, width=1)
-                for c in range(1, cols + 1):
-                    nx = ax0 + c * step
-                    for ny in (ay0 + 10, ay0 + 18, ay0 + 26):
-                        if rng.chance(0.5):
-                            filled = rng.chance(0.4)
-                            canvas.create_rectangle(
-                                nx - 1.5, ny - 1.5, nx + 1.5, ny + 1.5,
-                                fill=edition.accent if filled else edition.paper,
-                                outline=edition.ink,
-                            )
-                canvas.create_line(ax0, ay1, ax1, ay1, fill=edition.ink, width=1)
-
-            elif edition.art == editions.VANTABLACK:
-                bt = ay0 + 6
-                bh = 20
-                canvas.create_rectangle(ax0, bt, ax1, bt + bh, fill=edition.ink, outline="")
-                cut_x = ax0 + inner_w * 0.52
-                canvas.create_polygon(
-                    [cut_x, bt, cut_x + 8, bt, cut_x + 2, bt + bh, cut_x - 6, bt + bh],
-                    fill=edition.paper,
-                    outline="",
-                )
-                thin_x = ax0 + inner_w * 0.18
-                canvas.create_rectangle(
-                    thin_x, bt, thin_x + 2, bt + bh, fill=edition.paper, outline=""
-                )
-                bx = ax0 + inner_w * 0.82
-                canvas.create_rectangle(
-                    bx, bt + bh + 3, bx + 5, bt + bh + 8, fill=edition.ink, outline=""
-                )
-
-            cursor_y += art_h + 10
-        else:
-            cursor_y += 18
-
-        # Chapter number banner
-        if edition.chapter_number:
-            canvas.create_text(
-                sx0 + sheet_w // 2,
-                cursor_y,
-                text="CHAPTER 1",
-                fill=edition.accent,
-                font=("Consolas" if edition.key == editions.SYSTEMFALL else "Georgia", 7),
-            )
-            cursor_y += 14
-
-        # Chapter heading
         heading_face = (
             "Consolas"
             if edition.key == editions.SYSTEMFALL
             else ("Arial" if edition.key == editions.VANTABLACK else "Georgia")
         )
         heading_style = "bold" if edition.display_weight == "800" else "normal"
-        canvas.create_text(
-            sx0 + sheet_w // 2,
-            cursor_y,
-            text=inline.plain(chap_title)[:22].upper(),
-            fill=edition.ink,
-            font=(heading_face, 10, heading_style),
+
+        # Two side-by-side sheets: Left = Cover, Right = Chapter 1 Interior
+        page_w = 182
+        page_h = 248
+        gap = 18
+        total_w = page_w * 2 + gap
+        start_x = (c_width - total_w) // 2
+        sy0 = (c_height - page_h) // 2 + 4
+        sy1 = sy0 + page_h
+
+        # ---------------- LEFT SHEET: COVER PREVIEW ----------------
+        cx0 = start_x
+        cx1 = cx0 + page_w
+        canvas.create_rectangle(cx0 + 3, sy0 + 4, cx1 + 3, sy1 + 4, fill="#C5BFB2", outline="")
+
+        dark_cover = edition.tier == editions.ILLUSTRATED
+        cov_bg = edition.ink if dark_cover else edition.paper
+        cov_fg = edition.paper if dark_cover else edition.ink
+        canvas.create_rectangle(cx0, sy0, cx1, sy1, fill=cov_bg, outline="#B8B1A4")
+        canvas.create_rectangle(
+            cx0 + 9, sy0 + 9, cx1 - 9, sy1 - 9, outline=edition.accent, width=1
         )
-        cursor_y += 12
+
+        canvas.create_text(
+            cx0 + page_w // 2,
+            sy0 - 9,
+            text="EPUB COVER",
+            fill=INK_MUTED,
+            font=("Segoe UI", 7, "bold"),
+        )
+
+        title_item = canvas.create_text(
+            cx0 + page_w // 2,
+            sy0 + 36,
+            text=book_title.upper(),
+            anchor="n",
+            width=page_w - 28,
+            justify="center",
+            fill=cov_fg,
+            font=(heading_face, 7, "bold"),
+        )
+        t_bbox = canvas.bbox(title_item)
+        title_bottom = t_bbox[3] if t_bbox else (sy0 + 64)
+
+        if subtitle:
+            sub_item = canvas.create_text(
+                cx0 + page_w // 2,
+                title_bottom + 5,
+                text=subtitle[:36],
+                anchor="n",
+                width=page_w - 30,
+                justify="center",
+                fill=edition.accent if dark_cover else "#666",
+                font=("Georgia", 6, "italic"),
+            )
+            s_bbox = canvas.bbox(sub_item)
+            rule_y = (s_bbox[3] + 8) if s_bbox else (title_bottom + 20)
+        else:
+            rule_y = title_bottom + 10
+
+        canvas.create_line(
+            cx0 + page_w // 2 - 22,
+            rule_y,
+            cx0 + page_w // 2 + 22,
+            rule_y,
+            fill=edition.accent,
+            width=1.5,
+        )
+
+        if edition.art:
+            self._draw_art_motif(
+                canvas,
+                edition,
+                cx0 + 18,
+                sy0 + 132,
+                cx1 - 18,
+                sy0 + 170,
+                book_title,
+                dark_bg=True,
+            )
+        else:
+            canvas.create_text(
+                cx0 + page_w // 2,
+                sy0 + 150,
+                text=edition.scene_break,
+                fill=edition.accent,
+                font=("Georgia", 11),
+            )
+
+        canvas.create_text(
+            cx0 + page_w // 2,
+            sy1 - 22,
+            text=author_name[:22].upper(),
+            fill=cov_fg,
+            font=("Segoe UI", 6, "bold"),
+        )
+
+        # ---------------- RIGHT SHEET: CHAPTER 1 INTERIOR ----------------
+        sx0 = cx1 + gap
+        sx1 = sx0 + page_w
+
+        canvas.create_rectangle(sx0 + 3, sy0 + 4, sx1 + 3, sy1 + 4, fill="#C5BFB2", outline="")
+        canvas.create_rectangle(sx0, sy0, sx1, sy1, fill=edition.paper, outline="#B8B1A4")
+
+        canvas.create_text(
+            sx0 + page_w // 2,
+            sy0 - 9,
+            text=f"CHAPTER OPENER ({self.trim_var.get() or '6x9'})",
+            fill=INK_MUTED,
+            font=("Segoe UI", 7, "bold"),
+        )
+
+        # Running head
+        canvas.create_text(
+            sx1 - 14,
+            sy0 + 12,
+            text=book_title[:22].upper(),
+            anchor="e",
+            fill="#7A756E",
+            font=("Georgia", 5),
+        )
+
+        cursor_y = sy0 + 22
+        margin_x = sx0 + 16
+        inner_w = page_w - 32
+
+        if edition.art:
+            art_h = 30
+            self._draw_art_motif(
+                canvas,
+                edition,
+                margin_x,
+                cursor_y,
+                margin_x + inner_w,
+                cursor_y + art_h,
+                chap_title,
+                dark_bg=False,
+            )
+            cursor_y += art_h + 11
+        else:
+            cursor_y += 14
+
+        if edition.chapter_number:
+            canvas.create_text(
+                sx0 + page_w // 2,
+                cursor_y,
+                text="CHAPTER 1",
+                fill=edition.accent,
+                font=("Consolas" if edition.key == editions.SYSTEMFALL else "Georgia", 6, "bold"),
+            )
+            cursor_y += 15
+
+        canvas.create_text(
+            sx0 + page_w // 2,
+            cursor_y,
+            text=inline.plain(chap_title)[:20].upper(),
+            width=inner_w,
+            justify="center",
+            fill=edition.ink,
+            font=(heading_face, 8, heading_style),
+        )
+        cursor_y += 13
 
         if edition.chapter_rule:
             canvas.create_line(
-                sx0 + sheet_w // 2 - 16,
+                sx0 + page_w // 2 - 15,
                 cursor_y,
-                sx0 + sheet_w // 2 + 16,
+                sx0 + page_w // 2 + 15,
                 cursor_y,
                 fill=edition.accent,
                 width=1,
             )
-            cursor_y += 10
+            cursor_y += 11
         else:
-            cursor_y += 6
+            cursor_y += 7
 
-        # Opening paragraph with optional Drop Cap
         if edition.drop_cap:
             canvas.create_text(
                 margin_x,
-                cursor_y - 2,
+                cursor_y - 3,
                 text="T",
                 anchor="nw",
                 fill=edition.accent,
-                font=(heading_face, 22, "bold"),
+                font=(heading_face, 14, "bold"),
             )
-            line_offsets = [18, 18, 0, 0]
+            line_offsets = [16, 16, 0, 0]
         else:
             line_offsets = [0, 0, 0, 0]
 
         for idx, indent_px in enumerate(line_offsets):
-            ly = cursor_y + idx * 8
-            end_trim = 14 if idx == len(line_offsets) - 1 else 0
+            ly = cursor_y + idx * 7
+            end_trim = 12 if idx == len(line_offsets) - 1 else 0
             canvas.create_line(
                 margin_x + indent_px,
                 ly,
                 margin_x + inner_w - end_trim,
                 ly,
-                fill="#3a3835" if idx > 0 else edition.ink,
+                fill="#3E3B38" if idx > 0 else edition.ink,
                 width=2,
             )
-        cursor_y += len(line_offsets) * 8 + 10
+        cursor_y += len(line_offsets) * 7 + 9
 
-        # Scene break ornament
         canvas.create_text(
-            sx0 + sheet_w // 2,
+            sx0 + page_w // 2,
             cursor_y,
             text=edition.scene_break,
             fill=edition.accent,
-            font=("Georgia", 9),
+            font=("Georgia", 8),
         )
-        cursor_y += 14
+        cursor_y += 11
 
-        # Second paragraph lines
         for idx in range(4):
-            ly = cursor_y + idx * 8
-            if ly > sy1 - 24:
+            ly = cursor_y + idx * 7
+            if ly > sy1 - 20:
                 break
-            indent_px = 10 if idx == 0 else 0
-            end_trim = 28 if idx == 3 else 0
+            indent_px = 9 if idx == 0 else 0
+            end_trim = 24 if idx == 3 else 0
             canvas.create_line(
                 margin_x + indent_px,
                 ly,
                 margin_x + inner_w - end_trim,
                 ly,
-                fill="#4a4845",
+                fill="#524E4A",
                 width=2,
             )
 
-        # Bottom folio
         canvas.create_text(
-            sx0 + sheet_w // 2,
-            sy1 - 11,
+            sx0 + page_w // 2,
+            sy1 - 10,
             text="1",
-            fill="#666",
-            font=("Georgia", 7),
-        )
-
-        # Side badge labels
-        canvas.create_text(
-            10,
-            12,
-            text=edition.label,
-            anchor="nw",
-            fill="#333",
-            font=("Segoe UI", 8, "bold"),
-        )
-        canvas.create_text(
-            10,
-            c_height - 10,
-            text=f"{author_name[:22]}  ·  {self.trim_var.get() or '6x9'} trim",
-            anchor="sw",
-            fill="#555",
-            font=("Segoe UI", 8),
+            fill="#6E665E",
+            font=("Georgia", 6),
         )
 
     # ---------------------------------------------------------------- helpers
@@ -1011,9 +1477,9 @@ class InkpressApp(ttk.Frame):
             trim = self.trim_var.get().strip() or "6x9"
             stats = estimate_kdp_stats(doc.word_count, len(doc.chapters), trim=trim)
             self.kdp_summary_var.set(
-                f"KDP Paperback ({trim}): ~{stats['pages']} pages  ·  "
-                f"Inner gutter: {stats['gutter']}  ·  "
-                f"Cream spine width: {stats['spine_in']:.3f} in"
+                f"KDP Paperback ({trim}): ~{stats['pages']} pages   ·   "
+                f"Inner gutter: {stats['gutter']}   ·   "
+                f"Cream spine: {stats['spine_in']:.3f} in"
             )
         self._draw_page_preview()
 
@@ -1056,7 +1522,6 @@ class InkpressApp(ttk.Frame):
         cover_val = str(parsed.meta.get("cover", "")).strip()
         self.cover_var.set(cover_val)
 
-        # Populate chapter outline treeview
         for item in self.chapter_tree.get_children():
             self.chapter_tree.delete(item)
 
@@ -1085,7 +1550,7 @@ class InkpressApp(ttk.Frame):
             else ("no chapter breaks" if not doc.has_real_chapters else "1 chapter")
         )
         self.status_var.set(
-            f"{path.name} — {chapter_text}, {doc.word_count:,} words (~{stats['pages']} paperback pages)."
+            f"Loaded {path.name} — {chapter_text}, {doc.word_count:,} words (~{stats['pages']} paperback pages)."
         )
         self._refresh_kdp_and_preview()
         self.write(f"Loaded {path.name} ({chapter_text}, {doc.word_count:,} words).", "muted")
@@ -1146,6 +1611,7 @@ class InkpressApp(ttk.Frame):
 
         self.busy = True
         self.format_button.configure(state="disabled")
+        self.progress.configure(mode="indeterminate")
         self.progress.start(12)
         self.write("")
         self.write(f"Formatting {source.name}...")
@@ -1197,6 +1663,7 @@ class InkpressApp(ttk.Frame):
     def _finish(self, kind, payload, out_dir):
         self.busy = False
         self.progress.stop()
+        self.progress.configure(mode="determinate", value=100 if kind == "done" else 0)
         self.format_button.configure(state="normal")
 
         if kind == "done":
@@ -1265,17 +1732,14 @@ def main():
 
     root = tk.Tk()
     root.title(f"inkpress {__version__} — Book & Dispatch Formatting Studio")
-    root.minsize(920, 640)
+    root.geometry("1120x820")
+    root.minsize(980, 740)
     ico_path = HERE / "inkpress.ico"
     if ico_path.is_file():
         try:
             root.iconbitmap(str(ico_path))
         except tk.TclError:
             pass
-    try:
-        ttk.Style().theme_use("vista")
-    except tk.TclError:
-        pass
 
     InkpressApp(root, initial_manuscript=initial)
     root.mainloop()
