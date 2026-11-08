@@ -769,6 +769,18 @@ class TestTierBuilds(unittest.TestCase):
                     app.edition_var.get(), editions.EDITION_LABELS[editions.SYSTEMFALL]
                 )
                 self.assertEqual(str(app.edition_box.cget("state")), "readonly")
+                self.assertEqual(len(app.chapter_tree.get_children()), 2)
+
+                for ed_label in inkpress_app.EDITION_CHOICES:
+                    app.edition_var.set(ed_label)
+                    app._sync_edition_state()
+                    self.assertGreater(len(app.page_canvas.find_all()), 5)
+
+                stats_6x9 = inkpress_app.estimate_kdp_stats(60000, 20, trim="6x9")
+                stats_5x8 = inkpress_app.estimate_kdp_stats(60000, 20, trim="5x8")
+                self.assertEqual(stats_6x9["pages"] % 2, 0)
+                self.assertGreater(stats_5x8["pages"], stats_6x9["pages"])
+                self.assertGreater(stats_6x9["spine_in"], 0.4)
         finally:
             root.destroy()
 
