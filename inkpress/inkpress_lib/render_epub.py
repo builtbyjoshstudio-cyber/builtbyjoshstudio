@@ -18,8 +18,16 @@ byte-identical archive.
 """
 import uuid
 import zipfile
+from pathlib import Path
 
-from . import art, body, editions, inline
+from . import art, body, editions, inline, render_print
+
+_COVER_MEDIA_TYPES = {
+    ".svg": "image/svg+xml",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png": "image/png",
+}
 
 # Stable namespace so the same book always gets the same UUID.
 _NAMESPACE = uuid.UUID("6f9b1c2e-3a4d-5e6f-8a9b-0c1d2e3f4a5b")
@@ -157,10 +165,11 @@ def _title_page(document):
         + "\n".join(parts)
         + "\n</section>"
     ]
-    if meta.get("copyright"):
+    copyright_line = render_print._copyright_text(meta)
+    if copyright_line:
         sections.append(
             '<section class="copyright-page" epub:type="copyright-page">\n'
-            f'  <p style="text-indent: 0;">{inline.render(str(meta["copyright"]))}</p>\n'
+            f'  <p style="text-indent: 0;">{inline.render(copyright_line)}</p>\n'
             "</section>"
         )
     if meta.get("dedication"):
@@ -214,7 +223,7 @@ def _nav_xhtml(document):
     return _xhtml("Contents", inner, document.meta.get("language", "en"))
 
 
-def _package_opf(document, book_uuid, modified, edition, art_numbers):
+def _package_opf(document, book_uuid, modified, edition, art_numbers, cover_item=None):
     meta = document.meta
     language = meta.get("language", "en")
 
@@ -223,6 +232,12 @@ def _package_opf(document, book_uuid, modified, edition, art_numbers):
         '    <item id="style" href="style.css" media-type="text/css"/>',
         '    <item id="titlepage" href="titlepage.xhtml" media-type="application/xhtml+xml"/>',
     ]
+    if cover_item:
+        cover_href, cover_media = cover_item
+        manifest.append(
+            f'    <item id="cover-image" href="{cover_href}" '
+            f'media-type="{cover_media}" properties="cover-image"/>'
+        )
     spine = ['    <itemref idref="titlepage"/>', '    <itemref idref="nav"/>']
 
     for chapter in document.chapters:
@@ -307,6 +322,30 @@ def render(document, out_path, edition=None):
                     '<?xml version="1.0" encoding="utf-8"?>\n' + svg
                 )
 
+    cover_href = "cover.svg"
+    cover_media = "image/svg+xml"
+    cover_data = None
+    custom_cover = meta.get("cover")
+    if custom_cover:
+        cover_path = Path(str(custom_cover))
+        if not cover_path.is_Absolute() and document.source_path if hasattr(Path, "is_Absolute") else not cover_path.is_absolute() and document.source_path:
+            candidate = Path(document.source_path).parent / cover_path
+            if candidate.is_file():
+                cover_path = candidate
+        ext = cover_path.suffix.lower()
+        if cover_path.is_file() and ext in _COVER_MEDIA_TYPES:
+            cover_href = f"cover{ext}"
+            cover_media = _COVER_MEDIA_TYPES[ext]
+            cover_data = cover_path.read_bytes()
+
+    if cover_data is None:
+        cover_data = art.render_cover(
+            edition,
+            title=inline.plain(document.title),
+            subtitle=inline.plain(str(meta.get("subtitle", ""))),
+            author=str(meta.get("author", "")),
+        ).encode("utf-8")
+
     with zipfile.ZipFile(out_path, "w") as archive:
         # Must be first and stored, per the EPUB OCF spec.
         write(archive, "mimetype", "application/epub+zip", zipfile.ZIP_STORED)
@@ -315,8 +354,16 @@ def render(document, out_path, edition=None):
         write(
             archive,
             "OEBPS/content.opf",
-            _package_opf(document, book_uuid, modified, edition, sorted(artwork)),
+            _package_opf(
+                document,
+                book_uuid,
+                modified,
+                edition,
+                sorted(artwork),
+                cover_item=(cover_href, cover_media),
+            ),
         )
+        write(archive, f"OEBPS/{cover_href}", cover_data)
         write(archive, "OEBPS/nav.xhtml", _nav_xhtml(document))
         write(
             archive,

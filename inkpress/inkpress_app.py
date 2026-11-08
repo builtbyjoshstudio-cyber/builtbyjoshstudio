@@ -103,6 +103,7 @@ class InkpressApp(ttk.Frame):
 
         self.results = queue.Queue()
         self.last_out_dir = None
+        self.last_outputs = {}
         self.busy = False
 
         self.manuscript_var = tk.StringVar()
@@ -188,9 +189,16 @@ class InkpressApp(ttk.Frame):
             state="disabled",
         )
         self.edition_box.grid(row=1, column=1, sticky="ew", padx=(PAD, 0), pady=(6, 0))
+        self.edition_box.bind("<<ComboboxSelected>>", lambda _event: self._sync_edition_state())
 
-        self.tier_hint = ttk.Label(box, text="", foreground="#666", wraplength=520)
-        self.tier_hint.grid(row=2, column=0, columnspan=2, sticky="w", pady=(6, 0))
+        swatch_row = ttk.Frame(box)
+        swatch_row.grid(row=2, column=0, columnspan=2, sticky="ew", pady=(6, 0))
+        self.swatch_canvas = tk.Canvas(
+            swatch_row, width=44, height=18, highlightthickness=1, highlightbackground="#ccc"
+        )
+        self.swatch_canvas.grid(row=0, column=0, sticky="w", padx=(0, PAD))
+        self.tier_hint = ttk.Label(swatch_row, text="", foreground="#666", wraplength=460)
+        self.tier_hint.grid(row=0, column=1, sticky="w")
 
         self._sync_edition_state()
         return row + 1
@@ -198,17 +206,31 @@ class InkpressApp(ttk.Frame):
     def _sync_edition_state(self):
         """Edition only applies to tier 3, so only enable it there."""
         tier = TIER_BY_LABEL.get(self.tier_var.get(), editions.CLEAN)
+        edition_key = EDITION_BY_LABEL.get(self.edition_var.get(), editions.ASHVEIL)
+        resolved = editions.resolve(
+            tier, edition_key if tier == editions.ILLUSTRATED else None
+        )
         if tier == editions.ILLUSTRATED:
             self.edition_box.configure(state="readonly")
-            self.tier_hint.configure(
-                text="Edition sets both the typography package and the chapter-opener art."
-            )
         else:
             self.edition_box.configure(state="disabled")
-            self.tier_hint.configure(
-                text="Clean: house typography, plain headings. "
-                     "Styled: drop caps and chapter treatments."
-            )
+
+        self.swatch_canvas.delete("all")
+        self.swatch_canvas.create_rectangle(0, 0, 22, 18, fill=resolved.ink, outline="")
+        self.swatch_canvas.create_rectangle(22, 0, 44, 18, fill=resolved.accent, outline="")
+
+        features = []
+        if resolved.drop_cap:
+            features.append("drop caps")
+        if resolved.chapter_rule:
+            features.append("chapter rules")
+        if resolved.art:
+            features.append(f"{resolved.art} SVG art")
+        if not features:
+            features.append("plain headings")
+        self.tier_hint.configure(
+            text=f"{resolved.label}  |  Scene break: {resolved.scene_break}  |  {', '.join(features)}"
+        )
 
     def _build_targets(self, row):
         box = ttk.LabelFrame(self, text="Formats to build", padding=PAD)
@@ -275,7 +297,7 @@ class InkpressApp(ttk.Frame):
     def _build_actions(self, row):
         bar = ttk.Frame(self)
         bar.grid(row=row, column=0, sticky="ew", pady=(0, PAD))
-        bar.columnconfigure(2, weight=1)
+        bar.columnconfigure(4, weight=1)
 
         self.format_button = ttk.Button(bar, text="Format", command=self._start_build)
         self.format_button.grid(row=0, column=0)
@@ -285,8 +307,18 @@ class InkpressApp(ttk.Frame):
         )
         self.open_button.grid(row=0, column=1, padx=(PAD, 0))
 
+        self.preview_print_button = ttk.Button(
+            bar, text="Preview Print", command=self._preview_print, state="disabled"
+        )
+        self.preview_print_button.grid(row=0, column=2, padx=(PAD, 0))
+
+        self.preview_web_button = ttk.Button(
+            bar, text="Preview Web", command=self._preview_web, state="disabled"
+        )
+        self.preview_web_button.grid(row=0, column=3, padx=(PAD, 0))
+
         self.progress = ttk.Progressbar(bar, mode="indeterminate")
-        self.progress.grid(row=0, column=2, sticky="ew", padx=(PAD, 0))
+        self.progress.grid(row=0, column=4, sticky="ew", padx=(PAD, 0))
         return row + 1
 
     def _build_log(self, row):
@@ -392,6 +424,16 @@ class InkpressApp(ttk.Frame):
         if self.last_out_dir and not open_folder(self.last_out_dir):
             self.write(f"Could not open {self.last_out_dir}", "warn")
 
+    def _preview_print(self):
+        target = self.last_outputs.get("pdf") or self.last_outputs.get("print")
+        if target and not open_folder(target):
+            self.write(f"Could not open {target}", "warn")
+
+    def _preview_web(self):
+        target = self.last_outputs.get("site")
+        if target and not open_folder(target):
+            self.write(f"Could not open {target}", "warn")
+
     # ------------------------------------------------------------------ build
 
     def _start_build(self):
@@ -489,7 +531,14 @@ class InkpressApp(ttk.Frame):
                 self.write(f"  {label}: {path}", "ok")
             self.write("Done.", "ok")
             self.last_out_dir = out_dir
+            self.last_outputs = dict(payload.outputs)
             self.open_button.configure(state="normal")
+            self.preview_print_button.configure(
+                state="normal" if ("pdf" in payload.outputs or "print" in payload.outputs) else "disabled"
+            )
+            self.preview_web_button.configure(
+                state="normal" if "site" in payload.outputs else "disabled"
+            )
 
         elif kind == "invalid":
             self.write("Cannot format yet - some details are missing:", "error")

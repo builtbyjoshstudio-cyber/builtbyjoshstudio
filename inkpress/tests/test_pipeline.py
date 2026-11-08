@@ -68,6 +68,12 @@ class TestTypography(unittest.TestCase):
     def test_single_quotes_are_directional(self):
         self.assertEqual(typography.apply("he said 'go' then"), "he said ‘go’ then")
 
+    def test_quotes_inside_and_outside_emphasis(self):
+        self.assertEqual(typography.apply('*"Hello,"*'), "*“Hello,”*")
+        self.assertEqual(typography.apply('"*Hello,*"'), "“*Hello,*”")
+        self.assertEqual(typography.apply('**"Stop!"**'), "**“Stop!”**")
+        self.assertEqual(typography.apply("_'90s_"), "_’90s_")
+
     def test_code_spans_are_untouched(self):
         self.assertEqual(typography.apply('`a--b`'), '`a--b`')
 
@@ -181,6 +187,21 @@ class TestManuscript(unittest.TestCase):
         self.assertIn("<strong>bold</strong>", rendered)
         self.assertIn("<blockquote>", rendered)
 
+    def test_bare_chapter_headings_detected_when_no_h2_present(self):
+        raw = (
+            "---\ntitle: Plain Draft\nauthor: A. Writer\ndate: 2026-01-02\n---\n\n"
+            "Chapter 1\n\n"
+            "First chapter prose.\n\n"
+            "Chapter Two: The Return\n\n"
+            "Chapter two starts with a normal sentence about chapters.\n"
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            doc = structure.build(ms.load(write_temp(raw, directory)))
+
+        self.assertEqual(len(doc.chapters), 2)
+        self.assertEqual(doc.chapters[0].title, "Chapter 1")
+        self.assertEqual(doc.chapters[1].title, "Chapter Two: The Return")
+
 
 class TestStructure(unittest.TestCase):
     def test_chapters_and_word_count(self):
@@ -236,6 +257,19 @@ class TestValidate(unittest.TestCase):
             validate.check(document, ("print",))  # print does not need it
             with self.assertRaises(validate.ValidationError):
                 validate.check(document, ("site",))
+
+    def test_proofing_warns_on_repeated_words_and_placeholders(self):
+        source = MINIMAL.replace(
+            "First paragraph.",
+            "She walked into the the room and had had enough. TODO fix ending.",
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            document = self._document(source, directory)
+            warnings = validate.check(document, ("print",))
+
+        self.assertTrue(any("the the" in w for w in warnings))
+        self.assertFalse(any("had had" in w for w in warnings))
+        self.assertTrue(any("TODO" in w for w in warnings))
 
 
 class TestPipeline(unittest.TestCase):
@@ -772,6 +806,36 @@ class TestTierBuilds(unittest.TestCase):
         self.assertEqual(_default_gutter(5000), "0.25in")
         self.assertEqual(_default_gutter(45000), "0.375in")
         self.assertEqual(_default_gutter(75000), "0.5in")
+
+    def test_print_includes_toc_and_auto_copyright(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(
+                source, Path(directory) / "build", targets=("print",)
+            )
+            html = result.outputs["print"].read_text(encoding="utf-8")
+
+        self.assertIn('class="toc-page"', html)
+        self.assertIn("Copyright © 2026 by A. Writer", html)
+
+    def test_epub_includes_generated_cover_image(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(
+                source,
+                Path(directory) / "build",
+                targets=("epub",),
+                tier="illustrated",
+                edition="vantablack",
+            )
+            with zipfile.ZipFile(result.outputs["epub"]) as archive:
+                names = archive.namelist()
+                opf = archive.read("OEBPS/content.opf").decode()
+                cover_svg = archive.read("OEBPS/cover.svg").decode()
+
+        self.assertIn("OEBPS/cover.svg", names)
+        self.assertIn('properties="cover-image"', opf)
+        self.assertIn("Test Book", cover_svg)
 
 
 class TestSampleManuscript(unittest.TestCase):

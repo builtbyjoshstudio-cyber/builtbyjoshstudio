@@ -127,6 +127,25 @@ def _trim_to_size(trim):
     return f"{width} {height}"
 
 
+def _copyright_text(meta):
+    raw = meta.get("copyright")
+    if raw is not None:
+        text = str(raw).strip()
+        if text.lower() in ("none", "false", "no", ""):
+            return ""
+        return text
+    author = str(meta.get("author", "")).strip()
+    date_val = str(meta.get("date", "")).strip()
+    year = date_val[:4] if len(date_val) >= 4 and date_val[:4].isdigit() else ""
+    if not author:
+        return ""
+    year_part = f" {year}" if year else ""
+    line = f"Copyright ©{year_part} by {author}. All rights reserved."
+    if meta.get("publisher"):
+        line += f" Published by {meta['publisher']}."
+    return line
+
+
 def _scene_break_html(edition):
     return (
         f'<p class="scene-break" role="separator">'
@@ -153,7 +172,7 @@ def build_css(document, edition=None):
     background: #d9d9dc;
     padding: 24px 0;
   }}
-  .titlepage, .copyright-page, .dedication-page, .chapter {{
+  .titlepage, .copyright-page, .dedication-page, .toc-page, .chapter {{
     width: {trim_width};
     min-height: {trim_height};
     margin: 0 auto 24px;
@@ -315,6 +334,43 @@ body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
   padding-top: 2.4in;
 }}
 .dedication-page p {{ text-indent: 0; }}
+.toc-page {{
+  page: blank;
+  page-break-after: always;
+  padding-top: 1.2in;
+}}
+.toc-page h2 {{
+  font-family: {edition.display_font};
+  font-size: 14pt;
+  font-weight: {edition.display_weight};
+  letter-spacing: {edition.display_tracking};
+  text-transform: {edition.display_transform};
+  text-align: center;
+  margin: 0 0 1.8em;
+}}
+.toc-page ol {{
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 3.6in;
+}}
+.toc-page li {{
+  margin: 0.55em 0;
+  text-align: left;
+  font-size: 10.5pt;
+}}
+.toc-page a {{
+  color: inherit;
+  text-decoration: none;
+}}
+.toc-page .toc-num {{
+  color: {edition.accent};
+  font-family: {edition.display_font};
+  font-size: 9pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-right: 0.75em;
+}}
 
 .chapter {{ page-break-before: right; }}
 .chapter h2 {{
@@ -365,10 +421,11 @@ def render(document, css_override=None, edition=None):
     front_sections = [
         f'<section class="titlepage">\n{chr(10).join(title_bits)}\n</section>'
     ]
-    if meta.get("copyright"):
+    copyright_line = _copyright_text(meta)
+    if copyright_line:
         front_sections.append(
             '<section class="copyright-page">\n'
-            f'  <p>{inline.render(str(meta["copyright"]))}</p>\n'
+            f"  <p>{inline.render(copyright_line)}</p>\n"
             "</section>"
         )
     if meta.get("dedication"):
@@ -376,6 +433,20 @@ def render(document, css_override=None, edition=None):
             '<section class="dedication-page">\n'
             f'  <p>{inline.render(str(meta["dedication"]))}</p>\n'
             "</section>"
+        )
+    toc_setting = str(meta.get("toc", "true")).strip().lower()
+    if document.has_real_chapters and len(document.chapters) > 1 and toc_setting not in ("false", "none", "no"):
+        toc_items = "\n".join(
+            f'    <li><a href="#{chapter.slug}">'
+            f'<span class="toc-num">{chapter.number}.</span>'
+            f"{inline.render(chapter.title)}</a></li>"
+            for chapter in document.chapters
+        )
+        front_sections.append(
+            '<nav class="toc-page" role="doc-toc">\n'
+            "  <h2>Contents</h2>\n"
+            f"  <ol>\n{toc_items}\n  </ol>\n"
+            "</nav>"
         )
 
     scene_break = _scene_break_html(edition)

@@ -190,6 +190,16 @@ def is_available(name):
     return name in _GENERATORS
 
 
+def _escape_xml(text):
+    return (
+        str(text)
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+    )
+
+
 def render(name, seed, ink="#000000", accent="#000000", title=""):
     """Return a standalone SVG string for one chapter opener.
 
@@ -201,9 +211,7 @@ def render(name, seed, ink="#000000", accent="#000000", title=""):
         return ""
 
     shapes = generator(_Rng(seed), ink, accent)
-    safe_title = (
-        str(title).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    )
+    safe_title = _escape_xml(title)
     label = (
         f"<title>Chapter opener art for {safe_title}</title>"
         if safe_title
@@ -218,4 +226,53 @@ def render(name, seed, ink="#000000", accent="#000000", title=""):
         f"{label}"
         + "".join(shapes)
         + "</svg>"
+    )
+
+
+def render_cover(edition, title, subtitle="", author="", seed=""):
+    """Return a deterministic 600x900 SVG book cover matching the Edition."""
+    width, height = 600, 900
+    ink = edition.ink
+    paper = edition.paper
+    accent = edition.accent
+    display_font = _escape_xml(edition.display_font)
+    body_font = _escape_xml(edition.body_font)
+    safe_title = _escape_xml(title)
+    safe_sub = _escape_xml(subtitle)
+    safe_author = _escape_xml(author)
+    safe_ornament = _escape_xml(edition.scene_break)
+
+    band = ""
+    generator = _GENERATORS.get(edition.art)
+    if generator is not None:
+        shapes = generator(_Rng(seed or f"cover|{edition.key}|{title}"), ink, accent)
+        band = f'<g transform="translate(0, 520)">{"".join(shapes)}</g>'
+
+    sub_el = (
+        f'<text x="300" y="340" text-anchor="middle" font-family="{body_font}" '
+        f'font-size="20" font-style="italic" fill="{ink}" opacity="0.78">{safe_sub}</text>'
+        if safe_sub
+        else ""
+    )
+
+    return (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" '
+        f'width="{width}" height="{height}" role="img">'
+        f"<title>{safe_title}</title>"
+        f'<rect x="0" y="0" width="{width}" height="{height}" fill="{paper}"/>'
+        f'<rect x="36" y="36" width="{width - 72}" height="{height - 72}" '
+        f'fill="none" stroke="{ink}" stroke-width="1.5" opacity="0.35"/>'
+        f'<rect x="44" y="44" width="{width - 88}" height="{height - 88}" '
+        f'fill="none" stroke="{accent}" stroke-width="0.8" opacity="0.55"/>'
+        f'<text x="300" y="280" text-anchor="middle" font-family="{display_font}" '
+        f'font-size="34" font-weight="{_escape_xml(edition.display_weight)}" '
+        f'fill="{ink}">{safe_title}</text>'
+        f"{sub_el}"
+        f'<text x="300" y="430" text-anchor="middle" font-family="{display_font}" '
+        f'font-size="18" fill="{accent}">{safe_ornament}</text>'
+        f"{band}"
+        f'<text x="300" y="790" text-anchor="middle" font-family="{display_font}" '
+        f'font-size="18" letter-spacing="3" fill="{ink}">{safe_author.upper()}</text>'
+        "</svg>"
     )

@@ -10,6 +10,8 @@ Requirements differ per target: the site page needs SEO metadata that an EPUB
 does not care about, and the EPUB needs an author and a language that the site
 page can infer. Targets are checked only if they were requested.
 """
+import re
+
 from . import manuscript as ms
 
 # Front matter every target needs.
@@ -23,6 +25,11 @@ REQUIRED_BY_TARGET = {
 }
 
 _DATE_HINT = "expected YYYY-MM-DD"
+_REPEATED_WORD_RE = re.compile(r"\b([A-Za-z]{2,})\s+\1\b", re.IGNORECASE)
+_ALLOWED_DOUBLES = frozenset(
+    {"had", "that", "ha", "bye", "no", "there", "very", "so", "now", "blah", "hear"}
+)
+_PLACEHOLDER_RE = re.compile(r"\b(?:TODO|FIXME|TK)\b|\[\s*(?:TODO|TK|insert\b[^\]]*)\]", re.IGNORECASE)
 
 
 class ValidationError(Exception):
@@ -86,6 +93,26 @@ def check(document, targets, edition=None):
 
         if not any(block.kind == ms.PARAGRAPH for block in chapter.blocks):
             warnings.append(f"chapter {chapter.number} ({chapter.title!r}) has no paragraphs")
+
+        for block in chapter.blocks:
+            if block.kind not in (ms.PARAGRAPH, ms.BLOCKQUOTE):
+                continue
+            for match in _REPEATED_WORD_RE.finditer(block.text):
+                word = match.group(1)
+                if word.lower() not in _ALLOWED_DOUBLES:
+                    warnings.append(
+                        f"chapter {chapter.number} (line {block.line}): "
+                        f"repeated word '{word} {word}'"
+                    )
+            for match in _PLACEHOLDER_RE.finditer(block.text):
+                token = match.group(0)
+                if token.upper() in ("TODO", "FIXME", "TK") or token.startswith("["):
+                    if token.upper() == "TK" and token != "TK":
+                        continue
+                    warnings.append(
+                        f"chapter {chapter.number} (line {block.line}): "
+                        f"unresolved placeholder {token!r}"
+                    )
 
     if "site" in targets and document.word_count > 8000:
         warnings.append(

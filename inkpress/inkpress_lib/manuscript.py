@@ -35,6 +35,17 @@ PARAGRAPH = "paragraph"
 
 _SCENE_BREAK_RE = re.compile(r"^\s*(\*\s*\*\s*\*|#\s*#\s*#|---+|___+)\s*$")
 _LIST_ITEM_RE = re.compile(r"^\s*-\s+(.*)$")
+_CHAPTER_NUM_RE = (
+    r"(?:[0-9]+|[ivxlcdm]+|one|two|three|four|five|six|seven|eight|nine|ten|"
+    r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|"
+    r"nineteen|twenty(?:[\-\s][a-z]+)?|thirty(?:[\-\s][a-z]+)?)"
+)
+_BARE_CHAPTER_RE = re.compile(
+    rf"^(?:chapter\s+{_CHAPTER_NUM_RE}(?:\s*[:.\-—–]\s*.+)?"
+    r"|prologue(?:\s*[:.\-—–]\s*.+)?"
+    r"|epilogue(?:\s*[:.\-—–]\s*.+)?)$",
+    re.IGNORECASE,
+)
 _W_NS = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 _DC_NS = "{http://purl.org/dc/elements/1.1/}"
 
@@ -126,19 +137,35 @@ def parse_front_matter(lines):
     raise ManuscriptError("front matter opened with '---' but was never closed")
 
 
+def _is_bare_chapter_heading(text):
+    stripped = text.strip()
+    if len(stripped) > 80 or stripped.endswith((".", "?", "!", ",", ";", '"', "'")):
+        return False
+    return bool(_BARE_CHAPTER_RE.match(stripped))
+
+
 def parse_blocks(lines, offset=0):
     """Turn body lines into a flat list of Blocks."""
     blocks = []
     buffer = []
     buffer_kind = PARAGRAPH
     buffer_line = offset + 1
+    has_explicit_h2 = any(raw.strip().startswith("## ") for raw in lines)
 
     def flush():
         nonlocal buffer, buffer_kind
         if buffer:
             text = "\n".join(buffer).strip()
             if text:
-                blocks.append(Block(buffer_kind, text, buffer_line))
+                if (
+                    not has_explicit_h2
+                    and buffer_kind == PARAGRAPH
+                    and len(buffer) == 1
+                    and _is_bare_chapter_heading(text)
+                ):
+                    blocks.append(Block(CHAPTER, text, buffer_line))
+                else:
+                    blocks.append(Block(buffer_kind, text, buffer_line))
         buffer = []
         buffer_kind = PARAGRAPH
 

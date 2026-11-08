@@ -84,7 +84,8 @@ def _quotes(text):
         else:
             out.append(char)
 
-        previous = out[-1] if out else " "
+        if char not in ("*", "_"):
+            previous = out[-1] if out else " "
 
     return "".join(out)
 
