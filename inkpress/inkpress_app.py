@@ -85,6 +85,102 @@ META_FIELDS = (
 )
 
 PAD = 8
+_WNDPROC_REFS = []
+
+
+def _enable_windows_file_drop(root, on_drop_callback):
+    """Enable native Windows Explorer file drag-and-drop onto the Tk window via Win32 WM_DROPFILES."""
+    if platform.system() != "Windows":
+        return False
+    if getattr(root, "_inkpress_drop_enabled", False):
+        return True
+    try:
+        import ctypes
+        from ctypes import wintypes
+
+        WM_DROPFILES = 0x0233
+        WM_NCDESTROY = 0x0082
+        GWL_WNDPROC = -4
+        MSGFLT_ALLOW = 1
+
+        LRESULT = ctypes.c_ssize_t
+        WNDPROC = ctypes.WINFUNCTYPE(
+            LRESULT,
+            wintypes.HWND,
+            wintypes.UINT,
+            wintypes.WPARAM,
+            wintypes.LPARAM,
+        )
+
+        user32 = ctypes.windll.user32
+        shell32 = ctypes.windll.shell32
+
+        user32.SetWindowLongPtrW.argtypes = [wintypes.HWND, ctypes.c_int, WNDPROC]
+        user32.SetWindowLongPtrW.restype = ctypes.c_void_p
+        user32.CallWindowProcW.argtypes = [
+            ctypes.c_void_p,
+            wintypes.HWND,
+            wintypes.UINT,
+            wintypes.WPARAM,
+            wintypes.LPARAM,
+        ]
+        user32.CallWindowProcW.restype = LRESULT
+        shell32.DragAcceptFiles.argtypes = [wintypes.HWND, wintypes.BOOL]
+        shell32.DragQueryFileW.argtypes = [
+            ctypes.c_void_p,
+            wintypes.UINT,
+            wintypes.LPWSTR,
+            wintypes.UINT,
+        ]
+        shell32.DragQueryFileW.restype = wintypes.UINT
+        shell32.DragFinish.argtypes = [ctypes.c_void_p]
+
+        root.update_idletasks()
+        frame_hex = root.wm_frame()
+        hwnd = (
+            int(frame_hex, 16)
+            if frame_hex and frame_hex != "0x0"
+            else user32.GetParent(root.winfo_id())
+        )
+        if not hwnd:
+            hwnd = root.winfo_id()
+
+        try:
+            user32.ChangeWindowMessageFilterEx(hwnd, WM_DROPFILES, MSGFLT_ALLOW, None)
+            user32.ChangeWindowMessageFilterEx(hwnd, 0x0049, MSGFLT_ALLOW, None)
+        except Exception:  # noqa: BLE001
+            pass
+
+        old_wndproc = [None]
+
+        def _wnd_proc(h_wnd, msg, w_param, l_param):
+            if msg == WM_DROPFILES:
+                hdrop = ctypes.c_void_p(w_param)
+                count = shell32.DragQueryFileW(hdrop, 0xFFFFFFFF, None, 0)
+                dropped = []
+                for idx in range(count):
+                    length = shell32.DragQueryFileW(hdrop, idx, None, 0)
+                    buf = ctypes.create_unicode_buffer(length + 1)
+                    shell32.DragQueryFileW(hdrop, idx, buf, length + 1)
+                    if buf.value:
+                        dropped.append(buf.value)
+                shell32.DragFinish(hdrop)
+                for path in dropped:
+                    root.after(0, lambda p=path: on_drop_callback(p))
+                return 0
+            res = user32.CallWindowProcW(old_wndproc[0], h_wnd, msg, w_param, l_param)
+            if msg == WM_NCDESTROY and proc_ref in _WNDPROC_REFS:
+                _WNDPROC_REFS.remove(proc_ref)
+            return res
+
+        proc_ref = WNDPROC(_wnd_proc)
+        _WNDPROC_REFS.append(proc_ref)
+        old_wndproc[0] = user32.SetWindowLongPtrW(hwnd, GWL_WNDPROC, proc_ref)
+        shell32.DragAcceptFiles(hwnd, True)
+        root._inkpress_drop_enabled = True
+        return True
+    except Exception:  # noqa: BLE001
+        return False
 
 
 def estimate_kdp_stats(word_count, chapter_count, trim="6x9"):
@@ -144,7 +240,7 @@ class InkpressApp(ttk.Frame):
         self.chrome_var = tk.StringVar()
         self.cover_var = tk.StringVar()
         self.status_var = tk.StringVar(
-            value="Choose a manuscript (.md, .docx, .txt) or click Load Sample to explore."
+            value="Drag & drop a manuscript (.md, .docx, .txt) anywhere onto this window, or click Choose file / Load Sample."
         )
         self.kdp_summary_var = tk.StringVar(
             value="KDP Estimate: load a manuscript to see page count, gutter, and spine width."
@@ -195,6 +291,7 @@ class InkpressApp(ttk.Frame):
         master.bind("<Control-Return>", lambda _e: self._start_build())
         master.bind("<F5>", lambda _e: self._start_build())
 
+        self.after(50, lambda: _enable_windows_file_drop(master, self.handle_dropped_file))
         self.after(120, self._drain)
 
         if initial_manuscript:
@@ -271,23 +368,38 @@ class InkpressApp(ttk.Frame):
         ).grid(row=0, column=2, sticky="e")
 
     def _build_manuscript_row(self, parent, row):
-        box = ttk.LabelFrame(parent, text="1. Manuscript", padding=PAD)
+        box = ttk.LabelFrame(parent, text="1. Manuscript (Browse or Drag & Drop)", padding=PAD)
         box.grid(row=row, column=0, sticky="ew", pady=(0, PAD))
         box.columnconfigure(0, weight=1)
 
+        drop_strip = tk.Label(
+            box,
+            text="⇩  Drop a .md, .docx, or .txt manuscript anywhere on this window (or click here to browse)",
+            bg="#f3f0ea",
+            fg="#5a4f44",
+            relief="ridge",
+            bd=1,
+            padx=8,
+            pady=5,
+            cursor="hand2",
+            font=("Segoe UI", 8, "bold"),
+        )
+        drop_strip.grid(row=0, column=0, columnspan=3, sticky="ew", pady=(0, 6))
+        drop_strip.bind("<Button-1>", lambda _e: self._choose_manuscript())
+
         entry = ttk.Entry(box, textvariable=self.manuscript_var)
-        entry.grid(row=0, column=0, sticky="ew", padx=(0, 6))
+        entry.grid(row=1, column=0, sticky="ew", padx=(0, 6))
         entry.bind("<Return>", lambda _e: self._load_manuscript())
 
         ttk.Button(box, text="Choose file...", command=self._choose_manuscript).grid(
-            row=0, column=1, padx=(0, 4)
+            row=1, column=1, padx=(0, 4)
         )
         ttk.Button(box, text="Load Sample", command=self._load_sample).grid(
-            row=0, column=2
+            row=1, column=2
         )
 
         ttk.Label(box, textvariable=self.status_var, foreground="#333", wraplength=410).grid(
-            row=1, column=0, columnspan=3, sticky="w", pady=(6, 0)
+            row=2, column=0, columnspan=3, sticky="w", pady=(6, 0)
         )
         return row + 1
 
@@ -832,6 +944,29 @@ class InkpressApp(ttk.Frame):
             self._load_manuscript()
         else:
             self.write("Sample manuscript not found in manuscripts/.", "warn")
+
+    def handle_dropped_file(self, dropped_path):
+        """Handle a file or folder dragged and dropped onto the app window."""
+        path = Path(str(dropped_path).strip().strip('"'))
+        if path.is_dir():
+            self.out_var.set(str(path))
+            self.write(f"Output folder set via drag & drop: {path}", "ok")
+            return
+        if not path.is_file():
+            return
+
+        ext = path.suffix.lower()
+        if ext in (".jpg", ".jpeg", ".png", ".svg"):
+            self.cover_var.set(str(path))
+            self.write(f"Cover image attached via drag & drop: {path.name}", "ok")
+        elif ext in (".html", ".htm"):
+            self.chrome_var.set(str(path))
+            self.write(f"Web template attached via drag & drop: {path.name}", "ok")
+        else:
+            self.manuscript_var.set(str(path))
+            self._load_manuscript()
+            if hasattr(self, "notebook"):
+                self.notebook.select(0)
 
     def _choose_manuscript(self):
         path = filedialog.askopenfilename(

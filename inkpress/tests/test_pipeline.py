@@ -781,6 +781,33 @@ class TestTierBuilds(unittest.TestCase):
                 self.assertEqual(stats_6x9["pages"] % 2, 0)
                 self.assertGreater(stats_5x8["pages"], stats_6x9["pages"])
                 self.assertGreater(stats_6x9["spine_in"], 0.4)
+
+                # Test drag-and-drop handler routing for manuscripts, covers, templates, and folders
+                dropped_ms = Path(directory) / "dropped-book.md"
+                dropped_ms.write_text(MINIMAL, encoding="utf-8")
+                app.handle_dropped_file(f'"{dropped_ms}"')
+                self.assertEqual(Path(app.manuscript_var.get()), dropped_ms)
+                self.assertEqual(app.meta_vars["title"].get(), "Test Book")
+
+                dropped_cover = Path(directory) / "cover.svg"
+                dropped_cover.write_text("<svg xmlns='http://www.w3.org/2000/svg'/>", encoding="utf-8")
+                app.handle_dropped_file(str(dropped_cover))
+                self.assertEqual(Path(app.cover_var.get()), dropped_cover)
+
+                dropped_chrome = Path(directory) / "template.html"
+                dropped_chrome.write_text("<html><body><main></main></body></html>", encoding="utf-8")
+                app.handle_dropped_file(str(dropped_chrome))
+                self.assertEqual(Path(app.chrome_var.get()), dropped_chrome)
+
+                dropped_out = Path(directory) / "custom-out"
+                dropped_out.mkdir()
+                app.handle_dropped_file(str(dropped_out))
+                self.assertEqual(Path(app.out_var.get()), dropped_out)
+
+                if inkpress_app.platform.system() == "Windows":
+                    self.assertTrue(
+                        inkpress_app._enable_windows_file_drop(root, app.handle_dropped_file)
+                    )
         finally:
             root.destroy()
 
