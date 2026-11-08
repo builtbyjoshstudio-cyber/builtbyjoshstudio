@@ -107,6 +107,13 @@ def parse_args(argv):
 
 
 def main(argv=None):
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(encoding="utf-8", errors="replace")
+            except Exception:  # noqa: BLE001
+                pass
+
     args = parse_args(argv if argv is not None else sys.argv[1:])
 
     source = Path(args.manuscript)

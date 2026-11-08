@@ -923,6 +923,31 @@ class TestSampleManuscript(unittest.TestCase):
         self.assertIn("’", html)  # apostrophe
         self.assertNotIn("---", html)
 
+    def test_powershell_scripts_remain_utf8_bom_and_plain_ascii(self):
+        for script_name in ("bootstrap-inkpress.ps1", "inkpress.ps1"):
+            script_path = HERE.parent / script_name
+            raw = script_path.read_bytes()
+            self.assertTrue(
+                raw.startswith(b"\xef\xbb\xbf"),
+                f"{script_name} is missing its UTF-8 BOM",
+            )
+            body_bytes = raw[3:]
+            non_ascii = [b for b in body_bytes if b >= 128]
+            self.assertEqual(
+                non_ascii,
+                [],
+                f"{script_name} contains non-ASCII bytes: {non_ascii}",
+            )
+
+    def test_long_cover_title_wraps_into_multiple_tspans(self):
+        edition = editions.resolve("illustrated", "ashveil")
+        svg = art.render_cover(
+            edition,
+            title="The Chronicles of the Last Lamplighter of Harbour Row",
+            author="J.S. Warden",
+        )
+        self.assertGreaterEqual(svg.count("<tspan"), 2)
+
 
 if __name__ == "__main__":
     unittest.main()

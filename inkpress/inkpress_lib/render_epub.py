@@ -331,7 +331,7 @@ def render(document, out_path, edition=None):
     custom_cover = meta.get("cover")
     if custom_cover:
         cover_path = Path(str(custom_cover))
-        if not cover_path.is_Absolute() and document.source_path if hasattr(Path, "is_Absolute") else not cover_path.is_absolute() and document.source_path:
+        if not cover_path.is_absolute() and document.source_path:
             candidate = Path(document.source_path).parent / cover_path
             if candidate.is_file():
                 cover_path = candidate

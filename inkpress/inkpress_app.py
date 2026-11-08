@@ -337,7 +337,7 @@ class InkpressApp(ttk.Frame):
         box.rowconfigure(0, weight=1)
         self.rowconfigure(row, weight=1)
 
-        self.log = tk.Text(box, height=11, wrap="word", state="disabled",
+        self.log = tk.Text(box, height=8, wrap="word", state="disabled",
                            font=("Consolas", 9))
         self.log.grid(row=0, column=0, sticky="nsew")
         scroll = ttk.Scrollbar(box, orient="vertical", command=self.log.yview)

@@ -16,6 +16,7 @@ keeps EPUB builds byte-identical - while different chapters differ from each
 other.
 """
 import hashlib
+import textwrap
 
 VIEW_WIDTH = 600
 VIEW_HEIGHT = 120
@@ -242,6 +243,16 @@ def render_cover(edition, title, subtitle="", author="", seed=""):
     safe_author = _escape_xml(author)
     safe_ornament = _escape_xml(edition.scene_break)
 
+    title_lines = textwrap.wrap(str(title).strip() or "Untitled", width=22)[:4]
+    font_size = 34 if len(title_lines) == 1 else (30 if len(title_lines) == 2 else 26)
+    line_step = int(font_size * 1.28)
+    start_y = 260 - ((len(title_lines) - 1) * line_step) // 2
+    tspans = "".join(
+        f'<tspan x="300" y="{start_y + idx * line_step}">{_escape_xml(line)}</tspan>'
+        for idx, line in enumerate(title_lines)
+    )
+    sub_y = start_y + len(title_lines) * line_step + 24
+
     band = ""
     generator = _GENERATORS.get(edition.art)
     if generator is not None:
@@ -249,7 +260,7 @@ def render_cover(edition, title, subtitle="", author="", seed=""):
         band = f'<g transform="translate(0, 520)">{"".join(shapes)}</g>'
 
     sub_el = (
-        f'<text x="300" y="340" text-anchor="middle" font-family="{body_font}" '
+        f'<text x="300" y="{sub_y}" text-anchor="middle" font-family="{body_font}" '
         f'font-size="20" font-style="italic" fill="{ink}" opacity="0.78">{safe_sub}</text>'
         if safe_sub
         else ""
@@ -265,9 +276,9 @@ def render_cover(edition, title, subtitle="", author="", seed=""):
         f'fill="none" stroke="{ink}" stroke-width="1.5" opacity="0.35"/>'
         f'<rect x="44" y="44" width="{width - 88}" height="{height - 88}" '
         f'fill="none" stroke="{accent}" stroke-width="0.8" opacity="0.55"/>'
-        f'<text x="300" y="280" text-anchor="middle" font-family="{display_font}" '
-        f'font-size="34" font-weight="{_escape_xml(edition.display_weight)}" '
-        f'fill="{ink}">{safe_title}</text>'
+        f'<text x="300" y="{start_y}" text-anchor="middle" font-family="{display_font}" '
+        f'font-size="{font_size}" font-weight="{_escape_xml(edition.display_weight)}" '
+        f'fill="{ink}">{tspans}</text>'
         f"{sub_el}"
         f'<text x="300" y="430" text-anchor="middle" font-family="{display_font}" '
         f'font-size="18" fill="{accent}">{safe_ornament}</text>'
