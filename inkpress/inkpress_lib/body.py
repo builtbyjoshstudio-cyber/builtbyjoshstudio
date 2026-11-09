@@ -12,7 +12,7 @@ from . import manuscript as ms
 SCENE_BREAK_HTML = '<p class="scene-break" role="separator">* * *</p>'
 
 
-def apply_drop_cap(html):
+def apply_drop_cap(html, custom_letter=None):
     """Wrap the opening character of a rendered paragraph in a drop-cap span.
 
     Operates on rendered HTML so it survives inline markup, skipping over any
@@ -41,12 +41,17 @@ def apply_drop_cap(html):
     if index >= length:
         return html
 
+    chosen = str(custom_letter).strip()[:1].upper() if custom_letter else ""
+    if chosen and html[index].upper() != chosen:
+        opener = html[start:index] + chosen
+        return f'{html[:start]}<span class="dropcap">{opener}</span>{html[index:]}'
+
     opener = html[start:index + 1]
     return f'{html[:start]}<span class="dropcap">{opener}</span>{html[index + 1:]}'
 
 
 def blocks_to_html(blocks, heading_level=2, indent="  ", scene_break=SCENE_BREAK_HTML,
-                   drop_cap=False):
+                   drop_cap=False, drop_cap_letter=None):
     """Convert a chapter's blocks to a list of HTML strings.
 
     drop_cap marks the first paragraph so tiers 2 and 3 can set an opening
@@ -73,7 +78,7 @@ def blocks_to_html(blocks, heading_level=2, indent="  ", scene_break=SCENE_BREAK
             if first_paragraph:
                 first_paragraph = False
                 if drop_cap:
-                    paragraph = apply_drop_cap(paragraph)
+                    paragraph = apply_drop_cap(paragraph, custom_letter=drop_cap_letter)
                 out.append(f'{indent}<p class="opening">{paragraph}</p>')
             else:
                 out.append(f"{indent}<p>{paragraph}</p>")
@@ -82,7 +87,7 @@ def blocks_to_html(blocks, heading_level=2, indent="  ", scene_break=SCENE_BREAK
 
 
 def chapter_to_html(chapter, heading_level=2, indent="  ", include_heading=True,
-                    scene_break=SCENE_BREAK_HTML, drop_cap=False):
+                    scene_break=SCENE_BREAK_HTML, drop_cap=False, drop_cap_letter=None):
     """Convert one chapter, optionally with its own heading, to an HTML string."""
     parts = []
 
@@ -92,7 +97,8 @@ def chapter_to_html(chapter, heading_level=2, indent="  ", include_heading=True,
 
     parts.extend(
         blocks_to_html(chapter.blocks, heading_level=heading_level, indent=indent,
-                       scene_break=scene_break, drop_cap=drop_cap)
+                       scene_break=scene_break, drop_cap=drop_cap,
+                       drop_cap_letter=drop_cap_letter)
     )
     return "\n".join(parts)
 

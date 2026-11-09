@@ -971,6 +971,48 @@ class TestTierBuilds(unittest.TestCase):
         self.assertIn('id="mara-2"', print_html)
         self.assertTrue(any("share the title" in w for w in result.warnings))
 
+    def test_drop_letter_is_tier2_feature_with_style_and_custom_letter(self):
+        # Tier 1 (Clean) ignores drop_cap_style and drop_cap_letter
+        clean_ed = editions.resolve(
+            "clean", drop_cap_style="boxed", drop_cap_letter="W"
+        )
+        self.assertFalse(clean_ed.drop_cap)
+        self.assertEqual(clean_ed.drop_cap_style, "none")
+        self.assertEqual(clean_ed.drop_cap_letter, "")
+
+        # Tier 2 (Styled) supports custom drop_cap_style and drop_cap_letter
+        styled_ed = editions.resolve(
+            "styled", drop_cap_style="framed", drop_cap_letter="w"
+        )
+        self.assertTrue(styled_ed.drop_cap)
+        self.assertEqual(styled_ed.drop_cap_style, "framed")
+        self.assertEqual(styled_ed.drop_cap_letter, "W")
+
+        # Pipeline renders custom drop letter and style CSS across Print, EPUB, and Site
+        with tempfile.TemporaryDirectory() as directory:
+            source = write_temp(MINIMAL, directory)
+            result = pipeline.build(
+                source,
+                Path(directory) / "build",
+                targets=("print", "epub", "site"),
+                tier="styled",
+                meta_overrides={
+                    "drop_cap_style": "boxed",
+                    "drop_cap_letter": "W",
+                },
+            )
+            print_html = result.outputs["print"].read_text(encoding="utf-8")
+            site_html = result.outputs["site"].read_text(encoding="utf-8")
+            with zipfile.ZipFile(result.outputs["epub"]) as archive:
+                ch1_xhtml = archive.read("OEBPS/chap-001.xhtml").decode()
+                epub_css = archive.read("OEBPS/style.css").decode()
+
+        self.assertIn('<span class="dropcap">W</span>First paragraph.', print_html)
+        self.assertIn('<span class="dropcap">W</span>First paragraph.', site_html)
+        self.assertIn('<span class="dropcap">W</span>First paragraph.', ch1_xhtml)
+        self.assertIn("background: #6b5b4a;", print_html)
+        self.assertIn("background: #6b5b4a;", epub_css)
+
 
 class TestSampleManuscript(unittest.TestCase):
     def test_sample_builds_cleanly(self):

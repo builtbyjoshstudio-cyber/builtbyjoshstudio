@@ -38,6 +38,15 @@ BORDER_STYLE_LABELS = {
     "none": "No Border",
 }
 
+DROP_CAP_STYLES = ("classic", "framed", "boxed", "none")
+
+DROP_CAP_STYLE_LABELS = {
+    "classic": "Classic Initial",
+    "framed": "Framed Box Initial",
+    "boxed": "Solid Illuminated Box",
+    "none": "No Drop Letter",
+}
+
 TIER_LABELS = {
     CLEAN: "Tier 1 - Clean",
     STYLED: "Tier 2 - Styled",
@@ -77,7 +86,8 @@ class Edition:
                  accent, drop_cap=False, chapter_rule=False, art=None,
                  scene_break="* * *", display_transform="uppercase",
                  display_tracking="0.08em", display_weight="normal",
-                 chapter_number=False, border_style="none"):
+                 chapter_number=False, border_style="none",
+                 drop_cap_style="classic", drop_cap_letter=""):
         self.tier = tier
         self.key = key
         self.label = label
@@ -95,6 +105,8 @@ class Edition:
         self.display_weight = display_weight
         self.chapter_number = chapter_number
         self.border_style = border_style
+        self.drop_cap_style = drop_cap_style if drop_cap else "none"
+        self.drop_cap_letter = drop_cap_letter if drop_cap else ""
 
     @property
     def is_illustrated(self):
@@ -152,6 +164,7 @@ _ASHVEIL = Edition(
     scene_break="◆",
     display_tracking="0.14em",
     border_style="double",
+    drop_cap_style="framed",
 )
 
 _SYSTEMFALL = Edition(
@@ -171,6 +184,7 @@ _SYSTEMFALL = Edition(
     display_transform="uppercase",
     display_tracking="0.22em",
     border_style="single",
+    drop_cap_style="framed",
 )
 
 _VANTABLACK = Edition(
@@ -191,6 +205,7 @@ _VANTABLACK = Edition(
     display_tracking="0.02em",
     display_weight="800",
     border_style="double",
+    drop_cap_style="boxed",
 )
 
 _BY_EDITION = {
@@ -204,7 +219,8 @@ class EditionError(Exception):
     """Raised when a tier or edition name is not recognised."""
 
 
-def resolve(tier=None, edition=None, border_color=None, border_style=None):
+def resolve(tier=None, edition=None, border_color=None, border_style=None,
+            drop_cap_style=None, drop_cap_letter=None):
     """Resolve front matter into an Edition. Defaults to tier 1."""
     tier = (str(tier).strip().lower() if tier else CLEAN)
     edition_key = str(edition).strip().lower() if edition else None
@@ -228,7 +244,7 @@ def resolve(tier=None, edition=None, border_color=None, border_style=None):
             )
         base = _BY_EDITION[edition_key]
 
-    if not border_color and not border_style:
+    if not any((border_color, border_style, drop_cap_style, drop_cap_letter)):
         return base
 
     custom = copy.copy(base)
@@ -238,6 +254,17 @@ def resolve(tier=None, edition=None, border_color=None, border_style=None):
         custom.border_style = str(border_style).strip().lower()
         if custom.border_style != "none":
             custom.chapter_rule = True
+    # Drop letters are a Tier 2+ feature; Tier 1 Clean never sets drop caps.
+    if tier != CLEAN:
+        if drop_cap_style and str(drop_cap_style).strip().lower() in DROP_CAP_STYLES:
+            style_val = str(drop_cap_style).strip().lower()
+            custom.drop_cap_style = style_val
+            custom.drop_cap = style_val != "none"
+        if drop_cap_letter is not None:
+            letter_val = str(drop_cap_letter).strip()
+            if letter_val.lower().startswith("auto"):
+                letter_val = ""
+            custom.drop_cap_letter = letter_val[:1].upper() if letter_val else ""
     return custom
 
 
@@ -248,4 +275,6 @@ def from_meta(meta, tier_override=None, edition_override=None):
         edition_override or meta.get("edition"),
         border_color=meta.get("border_color"),
         border_style=meta.get("border_style"),
+        drop_cap_style=meta.get("drop_cap_style"),
+        drop_cap_letter=meta.get("drop_cap_letter"),
     )

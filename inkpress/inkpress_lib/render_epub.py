@@ -48,7 +48,35 @@ _CENTERED = 'style="text-align: center; text-indent: 0;"'
 def build_style(edition):
     drop_cap = ""
     if edition.drop_cap:
-        drop_cap = f""".dropcap {{
+        dc_style = getattr(edition, "drop_cap_style", "classic")
+        if dc_style == "framed":
+            drop_cap = f""".dropcap {{
+  float: left;
+  font-family: {edition.display_font};
+  font-size: 2.3em;
+  line-height: 1;
+  padding: 0.12em 0.22em;
+  margin: 0.04em 0.22em 0.04em 0;
+  border: 1.5px solid {edition.accent};
+  color: {edition.accent};
+}}
+.opening {{ text-indent: 0; }}
+"""
+        elif dc_style == "boxed":
+            drop_cap = f""".dropcap {{
+  float: left;
+  font-family: {edition.display_font};
+  font-size: 2.3em;
+  line-height: 1;
+  padding: 0.14em 0.24em;
+  margin: 0.04em 0.22em 0.04em 0;
+  background: {edition.accent};
+  color: {edition.paper};
+}}
+.opening {{ text-indent: 0; }}
+"""
+        else:
+            drop_cap = f""".dropcap {{
   float: left;
   font-family: {edition.display_font};
   font-size: 3em;
@@ -218,6 +246,7 @@ def _chapter_xhtml(chapter, document, edition, has_art):
     prose = body.blocks_to_html(
         chapter.blocks, heading_level=3, indent="  ",
         scene_break=scene_break, drop_cap=edition.drop_cap,
+        drop_cap_letter=getattr(edition, "drop_cap_letter", None),
     )
     inner = '<section epub:type="chapter">\n' + "\n".join(opener + prose) + "\n</section>"
     return _xhtml(inline.plain(chapter.title), inner, document.meta.get("language", "en"))

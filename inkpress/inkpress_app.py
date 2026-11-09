@@ -61,6 +61,16 @@ BORDER_STYLE_BY_LABEL = {
     editions.BORDER_STYLE_LABELS[key]: key for key in editions.BORDER_STYLES
 }
 
+DROP_CAP_STYLE_CHOICES = [
+    editions.DROP_CAP_STYLE_LABELS[key] for key in editions.DROP_CAP_STYLES
+]
+DROP_CAP_STYLE_BY_LABEL = {
+    editions.DROP_CAP_STYLE_LABELS[key]: key for key in editions.DROP_CAP_STYLES
+}
+DROP_LETTER_CHOICES = ["Auto (1st)"] + [
+    chr(c) for c in range(ord("A"), ord("Z") + 1)
+]
+
 TRIM_CHOICES = ("6x9", "5.5x8.5", "5.25x8", "5x8")
 
 _WORDS_PER_PAGE = {
@@ -421,6 +431,7 @@ class InkpressApp(ttk.Frame):
         self._drop_hover = False
         self._preset_buttons = {}
         self._color_swatch_buttons = {}
+        self._drop_cap_widgets = []
 
         self.manuscript_var = tk.StringVar()
         self.out_var = tk.StringVar(value=str(HERE / "build"))
@@ -430,6 +441,10 @@ class InkpressApp(ttk.Frame):
         self.border_style_var = tk.StringVar(
             value=editions.BORDER_STYLE_LABELS["none"]
         )
+        self.drop_cap_style_var = tk.StringVar(
+            value=editions.DROP_CAP_STYLE_LABELS["none"]
+        )
+        self.drop_cap_letter_var = tk.StringVar(value=DROP_LETTER_CHOICES[0])
         self.status_var = tk.StringVar(
             value="No manuscript loaded yet — drop a file above or click Load Sample."
         )
@@ -514,6 +529,10 @@ class InkpressApp(ttk.Frame):
             self.border_style_var.set(data["border_style"])
         if data.get("border_color"):
             self.border_color_var.set(str(data["border_color"]))
+        if data.get("drop_cap_style") in DROP_CAP_STYLE_CHOICES:
+            self.drop_cap_style_var.set(data["drop_cap_style"])
+        if data.get("drop_cap_letter") in DROP_LETTER_CHOICES:
+            self.drop_cap_letter_var.set(data["drop_cap_letter"])
         if data.get("out_dir"):
             self.out_var.set(str(data["out_dir"]))
 
@@ -526,6 +545,8 @@ class InkpressApp(ttk.Frame):
             "edition": self.edition_var.get(),
             "border_style": self.border_style_var.get(),
             "border_color": self.border_color_var.get().strip(),
+            "drop_cap_style": self.drop_cap_style_var.get(),
+            "drop_cap_letter": self.drop_cap_letter_var.get(),
             "out_dir": self.out_var.get().strip(),
         }
         try:
@@ -664,6 +685,26 @@ class InkpressApp(ttk.Frame):
             font=("Segoe UI", 7),
         )
 
+    def _first_paragraph_letter(self):
+        """Return the chosen custom drop letter or the opening paragraph's first letter."""
+        chosen = self.drop_cap_letter_var.get().strip()
+        if len(chosen) == 1 and chosen.isalnum():
+            return chosen.upper()
+        doc = self.current_document
+        if doc and doc.chapters:
+            first_ch = next(
+                (ch for ch in doc.chapters if ch.display_number is not None),
+                doc.chapters[0],
+            )
+            for block in first_ch.blocks:
+                if getattr(block, "kind", "") == "paragraph":
+                    plain_txt = inline.plain(getattr(block, "text", ""))
+                    for ch in plain_txt:
+                        if ch.isalnum():
+                            return ch.upper()
+                    break
+        return "T"
+
     def _select_preset(self, tier_key, edition_key):
         self.tier_var.set(editions.TIER_LABELS[tier_key])
         if edition_key:
@@ -675,6 +716,11 @@ class InkpressApp(ttk.Frame):
             editions.BORDER_STYLE_LABELS.get(base.border_style, BORDER_STYLE_CHOICES[0])
         )
         self.border_color_var.set(base.accent)
+        self.drop_cap_style_var.set(
+            editions.DROP_CAP_STYLE_LABELS.get(
+                base.drop_cap_style, DROP_CAP_STYLE_CHOICES[-1]
+            )
+        )
         self._sync_edition_state(reset_from_tier=False)
 
     def _select_border_color(self, hex_color):
@@ -697,15 +743,24 @@ class InkpressApp(ttk.Frame):
         edition_key = EDITION_BY_LABEL.get(self.edition_var.get(), editions.ASHVEIL)
         b_style = BORDER_STYLE_BY_LABEL.get(self.border_style_var.get())
         b_color = self.border_color_var.get().strip() or None
+        dc_style = DROP_CAP_STYLE_BY_LABEL.get(self.drop_cap_style_var.get())
+        dc_letter_raw = self.drop_cap_letter_var.get().strip()
+        dc_letter = (
+            dc_letter_raw.upper()
+            if (len(dc_letter_raw) == 1 and dc_letter_raw.isalnum())
+            else ""
+        )
         return editions.resolve(
             tier,
             edition_key if tier == editions.ILLUSTRATED else None,
             border_color=b_color,
             border_style=b_style,
+            drop_cap_style=dc_style,
+            drop_cap_letter=dc_letter,
         )
 
     def _sync_edition_state(self, reset_from_tier=True):
-        """Synchronize tier/edition dropdowns, border controls, and live preview."""
+        """Synchronize tier/edition dropdowns, border/drop-letter controls, and live preview."""
         tier = TIER_BY_LABEL.get(self.tier_var.get(), editions.CLEAN)
         edition_key = EDITION_BY_LABEL.get(self.edition_var.get(), editions.ASHVEIL)
         if hasattr(self, "edition_box"):
@@ -722,6 +777,28 @@ class InkpressApp(ttk.Frame):
                 editions.BORDER_STYLE_LABELS.get(base.border_style, BORDER_STYLE_CHOICES[0])
             )
             self.border_color_var.set(base.accent)
+            self.drop_cap_style_var.set(
+                editions.DROP_CAP_STYLE_LABELS.get(
+                    base.drop_cap_style, DROP_CAP_STYLE_CHOICES[-1]
+                )
+            )
+
+        is_tier2_plus = tier != editions.CLEAN
+        for w in self._drop_cap_widgets:
+            w.configure(state="readonly" if is_tier2_plus else "disabled")
+        if hasattr(self, "drop_tier_badge"):
+            if is_tier2_plus:
+                self.drop_tier_badge.configure(
+                    text="TIER 2+ ACTIVE",
+                    bg="#E6F2EA",
+                    fg="#1A7F37",
+                )
+            else:
+                self.drop_tier_badge.configure(
+                    text="TIER 2+ ONLY (SELECT TIER 2 OR 3)",
+                    bg="#EFE8DC",
+                    fg="#7A6D5D",
+                )
 
         resolved = self._resolved_edition()
 
@@ -749,7 +826,8 @@ class InkpressApp(ttk.Frame):
 
         features = [editions.BORDER_STYLE_LABELS.get(resolved.border_style, "No Border")]
         if resolved.drop_cap:
-            features.append("drop caps")
+            letter_disp = resolved.drop_cap_letter or self._first_paragraph_letter()
+            features.append(f"drop letter '{letter_disp}' ({resolved.drop_cap_style})")
         if resolved.chapter_rule:
             features.append("chapter rules")
         if hasattr(self, "tier_hint"):
@@ -777,8 +855,8 @@ class InkpressApp(ttk.Frame):
         style_tab = tk.Frame(
             self.left_notebook,
             bg=BG_CARD,
-            padx=14,
-            pady=12,
+            padx=12,
+            pady=9,
             highlightthickness=1,
             highlightbackground=BORDER_CARD,
         )
@@ -843,53 +921,124 @@ class InkpressApp(ttk.Frame):
     def _populate_style_tab(self, box):
         r = 0
         ttk.Label(box, text="TYPOGRAPHY TIER & EDITION", style="Section.TLabel").grid(
-            row=r, column=0, columnspan=3, sticky="w", pady=(0, 6)
+            row=r, column=0, columnspan=3, sticky="w", pady=(0, 4)
         )
         r += 1
 
-        ttk.Label(box, text="Tier").grid(row=r, column=0, sticky="w", pady=3)
+        ttk.Label(box, text="Tier").grid(row=r, column=0, sticky="w", pady=2)
+        tier_row = tk.Frame(box, bg=BG_CARD)
+        tier_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
+        tier_row.columnconfigure(0, weight=1)
+
         tier_box = ttk.Combobox(
-            box, textvariable=self.tier_var, values=TIER_CHOICES, state="readonly"
+            tier_row, textvariable=self.tier_var, values=TIER_CHOICES, state="readonly"
         )
-        tier_box.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
+        tier_box.grid(row=0, column=0, sticky="ew", padx=(0, 8))
         tier_box.bind("<<ComboboxSelected>>", lambda _event: self._sync_edition_state())
+
+        ttk.Label(tier_row, text="Trim:").grid(row=0, column=1, sticky="w", padx=(0, 4))
+        trim_cb = ttk.Combobox(
+            tier_row, textvariable=self.trim_var, values=TRIM_CHOICES, width=7
+        )
+        trim_cb.grid(row=0, column=2, sticky="e")
+        trim_cb.bind("<<ComboboxSelected>>", lambda _e: self._refresh_kdp_and_preview())
         r += 1
 
-        ttk.Label(box, text="Edition").grid(row=r, column=0, sticky="w", pady=3)
+        ttk.Label(box, text="Edition").grid(row=r, column=0, sticky="w", pady=2)
         self.edition_box = ttk.Combobox(
             box, textvariable=self.edition_var, values=EDITION_CHOICES, state="disabled"
         )
-        self.edition_box.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
+        self.edition_box.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
         self.edition_box.bind("<<ComboboxSelected>>", lambda _event: self._sync_edition_state())
         r += 1
 
         tk.Frame(box, bg=BORDER_CARD, height=1).grid(
-            row=r, column=0, columnspan=3, sticky="ew", pady=(8, 8)
+            row=r, column=0, columnspan=3, sticky="ew", pady=(5, 5)
+        )
+        r += 1
+
+        drop_hdr_row = tk.Frame(box, bg=BG_CARD)
+        drop_hdr_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(0, 4))
+        ttk.Label(
+            drop_hdr_row,
+            text="FIRST PARAGRAPH DROP LETTER",
+            style="Section.TLabel",
+        ).pack(side="left")
+        self.drop_tier_badge = tk.Label(
+            drop_hdr_row,
+            text="TIER 2+ ONLY (SELECT TIER 2 OR 3)",
+            bg="#EFE8DC",
+            fg="#7A6D5D",
+            padx=6,
+            pady=1,
+            font=("Segoe UI", 7, "bold"),
+        )
+        self.drop_tier_badge.pack(side="left", padx=(8, 0))
+        r += 1
+
+        ttk.Label(box, text="Drop letter").grid(row=r, column=0, sticky="w", pady=2)
+        drop_row = tk.Frame(box, bg=BG_CARD)
+        drop_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
+        drop_row.columnconfigure(0, weight=1)
+
+        self.drop_cap_style_box = ttk.Combobox(
+            drop_row,
+            textvariable=self.drop_cap_style_var,
+            values=DROP_CAP_STYLE_CHOICES,
+            state="disabled",
+            width=18,
+        )
+        self.drop_cap_style_box.grid(row=0, column=0, sticky="ew", padx=(0, 8))
+        self.drop_cap_style_box.bind(
+            "<<ComboboxSelected>>",
+            lambda _e: self._sync_edition_state(reset_from_tier=False),
+        )
+
+        ttk.Label(drop_row, text="Letter:").grid(
+            row=0, column=1, sticky="w", padx=(0, 4)
+        )
+        self.drop_cap_letter_box = ttk.Combobox(
+            drop_row,
+            textvariable=self.drop_cap_letter_var,
+            values=DROP_LETTER_CHOICES,
+            state="disabled",
+            width=10,
+        )
+        self.drop_cap_letter_box.grid(row=0, column=2, sticky="e")
+        self.drop_cap_letter_box.bind(
+            "<<ComboboxSelected>>",
+            lambda _e: self._sync_edition_state(reset_from_tier=False),
+        )
+        self._drop_cap_widgets = [self.drop_cap_style_box, self.drop_cap_letter_box]
+        r += 1
+
+        tk.Frame(box, bg=BORDER_CARD, height=1).grid(
+            row=r, column=0, columnspan=3, sticky="ew", pady=(5, 5)
         )
         r += 1
 
         ttk.Label(box, text="COLORED PAGE & COVER BORDERS", style="Section.TLabel").grid(
-            row=r, column=0, columnspan=3, sticky="w", pady=(0, 6)
+            row=r, column=0, columnspan=3, sticky="w", pady=(0, 4)
         )
         r += 1
 
-        ttk.Label(box, text="Border style").grid(row=r, column=0, sticky="w", pady=3)
+        ttk.Label(box, text="Border style").grid(row=r, column=0, sticky="w", pady=2)
         border_cb = ttk.Combobox(
             box,
             textvariable=self.border_style_var,
             values=BORDER_STYLE_CHOICES,
             state="readonly",
         )
-        border_cb.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
+        border_cb.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
         border_cb.bind(
             "<<ComboboxSelected>>",
             lambda _e: self._sync_edition_state(reset_from_tier=False),
         )
         r += 1
 
-        ttk.Label(box, text="Border color").grid(row=r, column=0, sticky="w", pady=4)
+        ttk.Label(box, text="Border color").grid(row=r, column=0, sticky="w", pady=3)
         palette_row = tk.Frame(box, bg=BG_CARD)
-        palette_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=4)
+        palette_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
 
         for idx, (_name, hex_code) in enumerate(editions.COLOR_PRESETS):
             sw = tk.Button(
@@ -901,19 +1050,19 @@ class InkpressApp(ttk.Frame):
                 bd=1,
                 relief="solid",
                 cursor="hand2",
-                font=("Segoe UI", 7, "bold"),
+                font=("Segoe UI", 6, "bold"),
                 command=lambda h=hex_code: self._select_border_color(h),
             )
-            sw.grid(row=0, column=idx, padx=(0, 4))
+            sw.grid(row=0, column=idx, padx=(0, 3))
             self._color_swatch_buttons[hex_code] = sw
 
-        ttk.Button(palette_row, text="Custom...", command=self._pick_custom_color).grid(
-            row=0, column=len(editions.COLOR_PRESETS), padx=(4, 0)
-        )
+        ttk.Button(
+            palette_row, text="Custom...", command=self._pick_custom_color
+        ).grid(row=0, column=len(editions.COLOR_PRESETS), padx=(3, 0))
         r += 1
 
         swatch_row = tk.Frame(box, bg=BG_CARD)
-        swatch_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(4, 8))
+        swatch_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(4, 0))
         self.swatch_canvas = tk.Canvas(
             swatch_row,
             width=44,
@@ -925,17 +1074,6 @@ class InkpressApp(ttk.Frame):
         self.swatch_canvas.grid(row=0, column=0, sticky="w", padx=(0, 8))
         self.tier_hint = ttk.Label(swatch_row, text="", style="Muted.TLabel", wraplength=355)
         self.tier_hint.grid(row=0, column=1, sticky="w")
-        r += 1
-
-        tk.Frame(box, bg=BORDER_CARD, height=1).grid(
-            row=r, column=0, columnspan=3, sticky="ew", pady=(4, 8)
-        )
-        r += 1
-
-        ttk.Label(box, text="Print trim").grid(row=r, column=0, sticky="w", pady=3)
-        trim_cb = ttk.Combobox(box, textvariable=self.trim_var, values=TRIM_CHOICES)
-        trim_cb.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
-        trim_cb.bind("<<ComboboxSelected>>", lambda _e: self._refresh_kdp_and_preview())
 
     def _populate_outputs_tab(self, box):
         r = 0
@@ -1411,17 +1549,55 @@ class InkpressApp(ttk.Frame):
             cursor_y += 7
 
         if edition.drop_cap:
-            canvas.create_text(
-                margin_x,
-                cursor_y - 3,
-                text="T",
-                anchor="nw",
-                fill=edition.accent,
-                font=(heading_face, 14, "bold"),
-            )
-            line_offsets = [16, 16, 0, 0]
+            letter = edition.drop_cap_letter or self._first_paragraph_letter()
+            dc_style = getattr(edition, "drop_cap_style", "classic")
+            if dc_style == "boxed":
+                canvas.create_rectangle(
+                    margin_x,
+                    cursor_y - 3,
+                    margin_x + 18,
+                    cursor_y + 13,
+                    fill=edition.accent,
+                    outline=edition.accent,
+                )
+                canvas.create_text(
+                    margin_x + 9,
+                    cursor_y + 5,
+                    text=letter,
+                    fill=edition.paper,
+                    font=(heading_face, 10, "bold"),
+                )
+                line_offsets = [22, 22, 0, 0]
+            elif dc_style == "framed":
+                canvas.create_rectangle(
+                    margin_x,
+                    cursor_y - 3,
+                    margin_x + 18,
+                    cursor_y + 13,
+                    fill=edition.paper,
+                    outline=edition.accent,
+                    width=1.5,
+                )
+                canvas.create_text(
+                    margin_x + 9,
+                    cursor_y + 5,
+                    text=letter,
+                    fill=edition.accent,
+                    font=(heading_face, 10, "bold"),
+                )
+                line_offsets = [22, 22, 0, 0]
+            else:
+                canvas.create_text(
+                    margin_x + 1,
+                    cursor_y - 4,
+                    text=letter,
+                    anchor="nw",
+                    fill=edition.accent,
+                    font=(heading_face, 14, "bold"),
+                )
+                line_offsets = [16, 16, 0, 0]
         else:
-            line_offsets = [0, 0, 0, 0]
+            line_offsets = [9, 0, 0, 0]
 
         for idx, indent_px in enumerate(line_offsets):
             ly = cursor_y + idx * 7
@@ -1586,6 +1762,16 @@ class InkpressApp(ttk.Frame):
                 self.border_style_var.set(editions.BORDER_STYLE_LABELS[bs_key])
         if parsed.meta.get("border_color"):
             self.border_color_var.set(str(parsed.meta["border_color"]).strip())
+        if parsed.meta.get("drop_cap_style"):
+            dc_key = str(parsed.meta["drop_cap_style"]).strip().lower()
+            if dc_key in editions.DROP_CAP_STYLE_LABELS:
+                self.drop_cap_style_var.set(editions.DROP_CAP_STYLE_LABELS[dc_key])
+        if parsed.meta.get("drop_cap_letter"):
+            dc_let = str(parsed.meta["drop_cap_letter"]).strip()[:1].upper()
+            if dc_let in DROP_LETTER_CHOICES:
+                self.drop_cap_letter_var.set(dc_let)
+        else:
+            self.drop_cap_letter_var.set(DROP_LETTER_CHOICES[0])
         self._sync_edition_state(reset_from_tier=False)
 
         trim_val = str(parsed.meta.get("trim", "")).strip()
@@ -1669,6 +1855,12 @@ class InkpressApp(ttk.Frame):
         b_color = self.border_color_var.get().strip()
         if b_color:
             overrides["border_color"] = b_color
+        dc_style = DROP_CAP_STYLE_BY_LABEL.get(self.drop_cap_style_var.get())
+        if dc_style:
+            overrides["drop_cap_style"] = dc_style
+        dc_letter_raw = self.drop_cap_letter_var.get().strip()
+        if len(dc_letter_raw) == 1 and dc_letter_raw.isalnum():
+            overrides["drop_cap_letter"] = dc_letter_raw.upper()
         cover = self.cover_var.get().strip()
         if cover:
             overrides["cover"] = cover

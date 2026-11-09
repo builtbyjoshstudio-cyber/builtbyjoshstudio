@@ -198,7 +198,37 @@ def build_css(document, edition=None):
 
     drop_cap = ""
     if edition.drop_cap:
-        drop_cap = f"""
+        dc_style = getattr(edition, "drop_cap_style", "classic")
+        if dc_style == "framed":
+            drop_cap = f"""
+.opening .dropcap {{
+  float: left;
+  font-family: {edition.display_font};
+  font-size: 2.35em;
+  line-height: 1;
+  padding: 0.12em 0.22em;
+  margin: 0.04em 0.22em 0.04em 0;
+  border: 1.5px solid {edition.accent};
+  color: {edition.accent};
+}}
+.opening {{ text-indent: 0; }}
+"""
+        elif dc_style == "boxed":
+            drop_cap = f"""
+.opening .dropcap {{
+  float: left;
+  font-family: {edition.display_font};
+  font-size: 2.35em;
+  line-height: 1;
+  padding: 0.14em 0.24em;
+  margin: 0.04em 0.22em 0.04em 0;
+  background: {edition.accent};
+  color: {edition.paper};
+}}
+.opening {{ text-indent: 0; }}
+"""
+        else:
+            drop_cap = f"""
 .opening .dropcap {{
   float: left;
   font-family: {edition.display_font};
@@ -521,6 +551,7 @@ def render(document, css_override=None, edition=None):
         prose = body.blocks_to_html(
             chapter.blocks, heading_level=3, indent="  ",
             scene_break=scene_break, drop_cap=edition.drop_cap,
+            drop_cap_letter=getattr(edition, "drop_cap_letter", None),
         )
         inner = "\n".join(part for part in (opener + prose) if part)
         chapters.append(f'<section class="chapter">\n{inner}\n</section>')

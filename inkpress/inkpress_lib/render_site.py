@@ -200,11 +200,27 @@ def _edition_css(edition):
     ]
 
     if edition.drop_cap:
-        rules.append(
-            f"  .dispatch-body .dropcap {{ float: left; font-family: "
-            f"{edition.display_font}; font-size: 3.1em; line-height: 0.82;"
-            f" padding: 0.04em 0.09em 0 0; color: {edition.accent}; }}"
-        )
+        dc_style = getattr(edition, "drop_cap_style", "classic")
+        if dc_style == "framed":
+            rules.append(
+                f"  .dispatch-body .dropcap {{ float: left; font-family: "
+                f"{edition.display_font}; font-size: 2.35em; line-height: 1;"
+                f" padding: 0.12em 0.22em; margin: 0.04em 0.22em 0.04em 0;"
+                f" border: 1.5px solid {edition.accent}; color: {edition.accent}; }}"
+            )
+        elif dc_style == "boxed":
+            rules.append(
+                f"  .dispatch-body .dropcap {{ float: left; font-family: "
+                f"{edition.display_font}; font-size: 2.35em; line-height: 1;"
+                f" padding: 0.14em 0.24em; margin: 0.04em 0.22em 0.04em 0;"
+                f" background: {edition.accent}; color: {edition.paper}; }}"
+            )
+        else:
+            rules.append(
+                f"  .dispatch-body .dropcap {{ float: left; font-family: "
+                f"{edition.display_font}; font-size: 3.1em; line-height: 0.82;"
+                f" padding: 0.04em 0.09em 0 0; color: {edition.accent}; }}"
+            )
         rules.append("  .dispatch-body .opening { text-indent: 0; }")
 
     if edition.chapter_rule:
@@ -284,6 +300,7 @@ def _chapters_html(document, edition):
                     f"{inline.escape(edition.scene_break)}</p>"
                 ),
                 drop_cap=edition.drop_cap,
+                drop_cap_letter=getattr(edition, "drop_cap_letter", None),
             )
         )
         sections.append("\n".join(part for part in parts if part))
