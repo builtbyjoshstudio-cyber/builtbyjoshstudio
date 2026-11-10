@@ -155,7 +155,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 [assembly: AssemblyTitle("inkpress")]
@@ -164,6 +166,58 @@ using System.Windows.Forms;
 
 internal static class Program
 {{
+    private delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+
+    [DllImport("shell32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern int SetCurrentProcessExplicitAppUserModelID(string AppID);
+
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+    private static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, IntPtr lParam);
+
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+    private static extern int GetWindowTextW(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+
+    [DllImport("user32.dll")]
+    private static extern bool IsWindowVisible(IntPtr hWnd);
+
+    [DllImport("user32.dll")]
+    private static extern bool IsIconic(IntPtr hWnd);
+
+    [DllImport("user32.dll")]
+    private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+    [DllImport("user32.dll")]
+    private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+    private static bool FocusExistingWindow()
+    {{
+        IntPtr found = IntPtr.Zero;
+        EnumWindows((hWnd, lParam) =>
+        {{
+            if (!IsWindowVisible(hWnd)) return true;
+            StringBuilder sb = new StringBuilder(256);
+            if (GetWindowTextW(hWnd, sb, sb.Capacity) > 0)
+            {{
+                string title = sb.ToString();
+                if (title.StartsWith("inkpress ", StringComparison.OrdinalIgnoreCase) &&
+                    title.IndexOf("Formatting Studio", StringComparison.OrdinalIgnoreCase) >= 0)
+                {{
+                    found = hWnd;
+                    return false;
+                }}
+            }}
+            return true;
+        }}, IntPtr.Zero);
+
+        if (found != IntPtr.Zero)
+        {{
+            if (IsIconic(found)) ShowWindow(found, 9); // SW_RESTORE
+            SetForegroundWindow(found);
+            return true;
+        }}
+        return false;
+    }}
+
     private static string QuoteArg(string arg)
     {{
         if (string.IsNullOrEmpty(arg)) return "\\"\\"";
@@ -192,42 +246,80 @@ internal static class Program
     [STAThread]
     private static int Main(string[] args)
     {{
-        string script = FindScript();
-        if (script == null)
-        {{
-            MessageBox.Show(
-                "Could not find inkpress_app.py next to inkpress.exe.",
-                "inkpress",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-            );
-            return 1;
-        }}
+        try {{ SetCurrentProcessExplicitAppUserModelID("builtbyjoshstudio.inkpress"); }} catch {{ }}
 
-        StringBuilder sb = new StringBuilder();
-        sb.Append(QuoteArg(script));
-        foreach (string a in args)
+        if (args == null || args.Length == 0)
         {{
-            sb.Append(' ');
-            sb.Append(QuoteArg(a));
-        }}
-
-        string[] candidates = new string[] {{ FindPython(), "pyw.exe", "pythonw.exe", "python.exe" }};
-        foreach (string exe in candidates)
-        {{
-            try
+            if (FocusExistingWindow()) return 0;
+            Mutex existingApp;
+            if (Mutex.TryOpenExisting("Local\\\\BuiltByJoshStudio_Inkpress_SingleInstance", out existingApp))
             {{
-                ProcessStartInfo psi = new ProcessStartInfo();
-                psi.FileName = exe;
-                psi.Arguments = sb.ToString();
-                psi.WorkingDirectory = Path.GetDirectoryName(script);
-                psi.UseShellExecute = false;
-                psi.CreateNoWindow = true;
-                Process proc = Process.Start(psi);
-                if (proc != null) return 0;
+                existingApp.Close();
+                FocusExistingWindow();
+                return 0;
             }}
-            catch
+        }}
+
+        bool createdLauncherLock = false;
+        using (Mutex launcherLock = new Mutex(true, "Local\\\\BuiltByJoshStudio_Inkpress_LauncherLock", out createdLauncherLock))
+        {{
+            if (!createdLauncherLock && (args == null || args.Length == 0))
             {{
+                FocusExistingWindow();
+                return 0;
+            }}
+
+            string script = FindScript();
+            if (script == null)
+            {{
+                MessageBox.Show(
+                    "Could not find inkpress_app.py next to inkpress.exe.",
+                    "inkpress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return 1;
+            }}
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(QuoteArg(script));
+            foreach (string a in args)
+            {{
+                sb.Append(' ');
+                sb.Append(QuoteArg(a));
+            }}
+
+            string[] candidates = new string[] {{ FindPython(), "pyw.exe", "pythonw.exe", "python.exe" }};
+            foreach (string exe in candidates)
+            {{
+                try
+                {{
+                    ProcessStartInfo psi = new ProcessStartInfo();
+                    psi.FileName = exe;
+                    psi.Arguments = sb.ToString();
+                    psi.WorkingDirectory = Path.GetDirectoryName(script);
+                    psi.UseShellExecute = false;
+                    psi.CreateNoWindow = true;
+                    Process proc = Process.Start(psi);
+                    if (proc != null)
+                    {{
+                        // Hold the launcher lock briefly until the Python app acquires its own single-instance mutex
+                        for (int i = 0; i < 25; i++)
+                        {{
+                            Thread.Sleep(60);
+                            Mutex appMutex;
+                            if (Mutex.TryOpenExisting("Local\\\\BuiltByJoshStudio_Inkpress_SingleInstance", out appMutex))
+                            {{
+                                appMutex.Close();
+                                break;
+                            }}
+                        }}
+                        return 0;
+                    }}
+                }}
+                catch
+                {{
+                }}
             }}
         }}
 

@@ -2,19 +2,15 @@
 """
 inkpress_app.py — the inkpress Editorial Studio desktop app.
 
-A modern two-column studio window over the same pipeline the CLI uses:
-  - Header bar: studio branding + keyboard shortcut badges.
-  - Left column: interactive drag-and-drop zone and clean tabbed configuration
-    (Book Details / Edition, Borders & Print / Outputs) so controls never clip
-    on High-DPI screens.
-  - Right column: live two-page spread preview (Typographic Framed Cover +
-    Chapter 1 Opener with customizable colored borders) and tabbed Chapter
-    Outline / KDP Spine Inspector & Build Log.
-  - Bottom bar: persistent Format Book primary CTA and preview actions.
-
-Launch by double-clicking inkpress.exe (or inkpress-app.cmd), or:
-    python inkpress_app.py
-    python inkpress_app.py path\\to\\draft.md
+A modern dark-obsidian two-column studio over the same pipeline the CLI uses:
+  - Single-instance Win32 mutex so clicking/double-clicking taskbar or desktop
+    shortcuts focuses the existing studio window instead of opening duplicates.
+  - Left column: interactive drag-and-drop zone + segmented pill navigation
+    (Book Details / Style & Borders / Export & Outputs) and live studio telemetry.
+  - Right column: hero-sized responsive two-page spread preview (Typographic
+    Framed Cover + Chapter 1 Opener with customizable colored borders and Tier 2+
+    drop letters) that scales dynamically when maximized, plus a compact bottom
+    Chapter & KDP Inspector / Build Console dock.
 """
 import json
 import os
@@ -72,6 +68,12 @@ DROP_LETTER_CHOICES = ["Auto (1st)"] + [
 ]
 
 TRIM_CHOICES = ("6x9", "5.5x8.5", "5.25x8", "5x8")
+_TRIM_ASPECT = {
+    "6x9": 6.0 / 9.0,
+    "5.5x8.5": 5.5 / 8.5,
+    "5.25x8": 5.25 / 8.0,
+    "5x8": 5.0 / 8.0,
+}
 
 _WORDS_PER_PAGE = {
     "6x9": 320,
@@ -105,19 +107,117 @@ META_FIELDS = (
     ("copyright", "Copyright"),
 )
 
-# Studio color palette
-BG_APP = "#F4F1EA"
-BG_CARD = "#FFFFFF"
-BG_SUBTLE = "#FAF8F4"
-BORDER_CARD = "#DDD6C9"
-INK_DARK = "#191817"
-INK_BODY = "#2E2B28"
-INK_MUTED = "#6E665E"
-ACCENT_CRIMSON = "#8B261D"
-ACCENT_CRIMSON_HOVER = "#A63026"
+# Modern Dark Obsidian Studio Palette
+BG_APP = "#0D0F14"
+BG_CARD = "#141821"
+BG_SUBTLE = "#1C2230"
+BG_STAGE = "#0A0C10"
+BG_PILL_TROUGH = "#0E1118"
+BG_PILL_ACTIVE = "#252E42"
+BORDER_CARD = "#232A3B"
+BORDER_INPUT = "#2D364B"
+INK_DARK = "#F4F6FA"
+INK_BODY = "#D0D7E6"
+INK_MUTED = "#7E8B9F"
+ACCENT_CRIMSON = "#E04F44"
+ACCENT_CRIMSON_HOVER = "#F26157"
 
 PAD = 10
 _WNDPROC_REFS = []
+_SINGLE_INSTANCE_HANDLE = None
+
+
+def _focus_existing_studio_window():
+    """Find an already-open inkpress Studio window and bring it to the foreground."""
+    if platform.system() != "Windows":
+        return False
+    try:
+        import ctypes
+        from ctypes import wintypes
+
+        user32 = ctypes.windll.user32
+        WNDENUMPROC = ctypes.WINFUNCTYPE(wintypes.BOOL, wintypes.HWND, wintypes.LPARAM)
+        found = [None]
+
+        def _enum_cb(hwnd, _lparam):
+            if not user32.IsWindowVisible(hwnd):
+                return True
+            buf = ctypes.create_unicode_buffer(256)
+            if user32.GetWindowTextW(hwnd, buf, 256) > 0:
+                title = buf.value
+                if (
+                    title.lower().startswith("inkpress ")
+                    and "formatting studio" in title.lower()
+                ):
+                    found[0] = hwnd
+                    return False
+            return True
+
+        cb_ref = WNDENUMPROC(_enum_cb)
+        user32.EnumWindows(cb_ref, 0)
+        if found[0]:
+            if user32.IsIconic(found[0]):
+                user32.ShowWindow(found[0], 9)  # SW_RESTORE
+            user32.SetForegroundWindow(found[0])
+            return True
+    except Exception:  # noqa: BLE001
+        pass
+    return False
+
+
+def _acquire_single_instance_lock():
+    """Acquire a process-wide Win32 named mutex so clicking taskbar links never opens twice."""
+    global _SINGLE_INSTANCE_HANDLE
+    if platform.system() != "Windows":
+        return True
+    try:
+        import ctypes
+
+        kernel32 = ctypes.windll.kernel32
+        kernel32.CreateMutexW.argtypes = [
+            ctypes.c_void_p,
+            ctypes.c_int,
+            ctypes.c_wchar_p,
+        ]
+        kernel32.CreateMutexW.restype = ctypes.c_void_p
+        handle = kernel32.CreateMutexW(
+            None, False, "Local\\BuiltByJoshStudio_Inkpress_SingleInstance"
+        )
+        last_err = kernel32.GetLastError()
+        if last_err == 183:  # ERROR_ALREADY_EXISTS
+            _focus_existing_studio_window()
+            if handle:
+                kernel32.CloseHandle(handle)
+            return False
+        _SINGLE_INSTANCE_HANDLE = handle
+        return True
+    except Exception:  # noqa: BLE001
+        return True
+
+
+def _apply_windows_dark_titlebar(root):
+    """Enable Windows 11/10 immersive dark mode on the native window titlebar."""
+    if platform.system() != "Windows":
+        return
+    try:
+        import ctypes
+
+        root.update_idletasks()
+        frame_hex = root.wm_frame()
+        hwnd = (
+            int(frame_hex, 16)
+            if frame_hex and frame_hex != "0x0"
+            else ctypes.windll.user32.GetParent(root.winfo_id())
+        )
+        if not hwnd:
+            hwnd = root.winfo_id()
+        val = ctypes.c_int(1)
+        # DWMWA_USE_IMMERSIVE_DARK_MODE = 20 (fallback 19 on older Win10 builds)
+        ctypes.windll.dwmapi.DwmSetWindowAttribute(
+            hwnd, 20, ctypes.byref(val), ctypes.sizeof(val)
+        )
+    except Exception:  # noqa: BLE001
+        pass
 
 
 def _enable_windows_file_drop(root, on_drop_callback):
@@ -252,75 +352,134 @@ def open_folder(path):
 
 
 def _configure_studio_theme(root):
-    """Apply a cohesive warm-paper editorial theme over ttk."""
+    """Apply a sleek modern dark-obsidian studio theme over ttk."""
     root.configure(bg=BG_APP)
+    root.option_add("*TCombobox*Listbox*Background", "#181D29")
+    root.option_add("*TCombobox*Listbox*Foreground", INK_DARK)
+    root.option_add("*TCombobox*Listbox*selectBackground", ACCENT_CRIMSON)
+    root.option_add("*TCombobox*Listbox*selectForeground", "#FFFFFF")
+    root.option_add("*TCombobox*Listbox*Font", ("Segoe UI", 9))
+
     style = ttk.Style(root)
     try:
         style.theme_use("clam")
     except tk.TclError:
         pass
 
-    style.configure(".", background=BG_APP, foreground=INK_BODY, font=("Segoe UI", 9))
+    style.configure(
+        ".",
+        background=BG_APP,
+        foreground=INK_BODY,
+        borderwidth=0,
+        focusthickness=0,
+        font=("Segoe UI", 9),
+    )
     style.configure("TFrame", background=BG_APP)
     style.configure("Card.TFrame", background=BG_CARD)
-    style.configure("TLabel", background=BG_CARD, foreground=INK_BODY, font=("Segoe UI", 9))
+    style.configure(
+        "TLabel", background=BG_CARD, foreground=INK_BODY, font=("Segoe UI", 9)
+    )
     style.configure(
         "Muted.TLabel", background=BG_CARD, foreground=INK_MUTED, font=("Segoe UI", 8)
     )
     style.configure(
         "Section.TLabel",
         background=BG_CARD,
-        foreground="#7A6D5D",
+        foreground="#94A3B8",
         font=("Segoe UI", 8, "bold"),
     )
     style.configure(
         "TCheckbutton",
         background=BG_CARD,
-        foreground=INK_BODY,
+        foreground=INK_DARK,
+        indicatorbackground=BG_SUBTLE,
+        indicatorforeground=ACCENT_CRIMSON,
+        indicatorrelief="flat",
         font=("Segoe UI", 9, "bold"),
     )
-    style.map("TCheckbutton", background=[("active", BG_CARD)])
+    style.map(
+        "TCheckbutton",
+        background=[("active", BG_CARD)],
+        indicatorbackground=[
+            ("selected", ACCENT_CRIMSON),
+            ("active", "#263044"),
+            ("!selected", BG_SUBTLE),
+        ],
+    )
 
     style.configure(
         "TEntry",
         fieldbackground=BG_SUBTLE,
         foreground=INK_DARK,
-        bordercolor="#D2C9BA",
+        insertcolor=INK_DARK,
+        bordercolor=BORDER_INPUT,
         lightcolor=BG_SUBTLE,
         darkcolor=BG_SUBTLE,
-        padding=4,
+        borderwidth=1,
+        relief="flat",
+        padding=(7, 5),
     )
+    style.map(
+        "TEntry",
+        bordercolor=[("focus", ACCENT_CRIMSON)],
+        fieldbackground=[("readonly", BG_SUBTLE), ("disabled", "#12161F")],
+    )
+
     style.configure(
         "TCombobox",
         fieldbackground=BG_SUBTLE,
-        background=BG_SUBTLE,
+        background="#252D3F",
         foreground=INK_DARK,
-        bordercolor="#D2C9BA",
+        bordercolor=BORDER_INPUT,
+        lightcolor=BG_SUBTLE,
+        darkcolor=BG_SUBTLE,
         arrowcolor=INK_BODY,
-        padding=4,
+        arrowsize=12,
+        borderwidth=1,
+        relief="flat",
+        padding=(7, 4),
     )
     style.map(
         "TCombobox",
-        fieldbackground=[("readonly", BG_SUBTLE), ("disabled", "#EFECE6")],
+        fieldbackground=[
+            ("readonly", BG_SUBTLE),
+            ("disabled", "#11151E"),
+        ],
+        background=[
+            ("readonly", "#252D3F"),
+            ("active", "#2E384E"),
+            ("disabled", "#141821"),
+        ],
+        foreground=[
+            ("readonly", INK_DARK),
+            ("disabled", "#4B5565"),
+        ],
+        arrowcolor=[
+            ("disabled", "#4B5565"),
+            ("active", "#FFFFFF"),
+        ],
         selectbackground=[("readonly", BG_SUBTLE)],
         selectforeground=[("readonly", INK_DARK)],
     )
 
     style.configure(
         "TButton",
-        background="#EDE8DF",
+        background="#22293A",
         foreground=INK_DARK,
-        bordercolor="#CFC6B8",
-        lightcolor="#EDE8DF",
-        darkcolor="#EDE8DF",
+        bordercolor="#2F384E",
+        lightcolor="#22293A",
+        darkcolor="#22293A",
+        borderwidth=1,
+        relief="flat",
         focusthickness=0,
-        padding=(10, 5),
-        font=("Segoe UI", 9),
+        padding=(12, 6),
+        font=("Segoe UI", 9, "bold"),
     )
     style.map(
         "TButton",
-        background=[("active", "#E2DBD0"), ("disabled", "#F2EFE9")],
-        foreground=[("disabled", "#A8A096")],
+        background=[("active", "#2C354B"), ("disabled", "#151923")],
+        foreground=[("disabled", "#4B5565")],
+        bordercolor=[("active", "#3D4966"), ("disabled", "#1D2230")],
     )
 
     style.configure(
@@ -330,67 +489,145 @@ def _configure_studio_theme(root):
         bordercolor=ACCENT_CRIMSON,
         lightcolor=ACCENT_CRIMSON,
         darkcolor=ACCENT_CRIMSON,
-        padding=(16, 7),
+        borderwidth=0,
+        relief="flat",
+        padding=(20, 7),
         font=("Segoe UI", 9, "bold"),
     )
     style.map(
         "Primary.TButton",
-        background=[("active", ACCENT_CRIMSON_HOVER), ("disabled", "#B89A96")],
-        foreground=[("disabled", "#F5ECEB")],
+        background=[("active", ACCENT_CRIMSON_HOVER), ("disabled", "#4A2624")],
+        foreground=[("disabled", "#8E6F6D")],
     )
 
+    # Hide native 1990s protruding notebook tabs; we render modern segmented pill bars
     style.configure(
-        "TNotebook",
-        background=BG_APP,
+        "Hidden.TNotebook",
+        background=BG_CARD,
         borderwidth=0,
         tabmargins=(0, 0, 0, 0),
     )
-    style.configure(
-        "TNotebook.Tab",
-        background="#E5DFD3",
-        foreground=INK_MUTED,
-        padding=(9, 6),
-        borderwidth=0,
-        font=("Segoe UI", 9, "bold"),
-    )
-    style.map(
-        "TNotebook.Tab",
-        background=[("selected", BG_CARD), ("active", "#EDE8DE")],
-        foreground=[("selected", INK_DARK), ("active", INK_DARK)],
-    )
+    style.layout("Hidden.TNotebook.Tab", [])
 
+    style.layout("Treeview", [("Treeview.treearea", {"sticky": "nswe"})])
     style.configure(
         "Treeview",
         background=BG_CARD,
         fieldbackground=BG_CARD,
         foreground=INK_BODY,
-        rowheight=24,
+        bordercolor=BG_CARD,
+        lightcolor=BG_CARD,
+        darkcolor=BG_CARD,
+        rowheight=26,
         borderwidth=0,
+        relief="flat",
         font=("Segoe UI", 9),
     )
     style.configure(
         "Treeview.Heading",
-        background="#EFECE4",
-        foreground=INK_DARK,
+        background="#1C2230",
+        foreground="#94A3B8",
         relief="flat",
-        padding=(6, 4),
+        borderwidth=0,
+        padding=(8, 5),
         font=("Segoe UI", 8, "bold"),
     )
-    style.map("Treeview", background=[("selected", "#EFE7DA")], foreground=[("selected", INK_DARK)])
+    style.map(
+        "Treeview",
+        background=[("selected", "#232B3E")],
+        foreground=[("selected", "#FFFFFF")],
+    )
+    style.map(
+        "Treeview.Heading",
+        background=[("active", "#232B3E")],
+    )
+
+    style.layout(
+        "Vertical.TScrollbar",
+        [
+            (
+                "Vertical.Scrollbar.trough",
+                {
+                    "children": [
+                        (
+                            "Vertical.Scrollbar.thumb",
+                            {"expand": "1", "sticky": "nswe"},
+                        )
+                    ],
+                    "sticky": "ns",
+                },
+            )
+        ],
+    )
+    style.configure(
+        "Vertical.TScrollbar",
+        background="#283248",
+        troughcolor=BG_CARD,
+        bordercolor=BG_CARD,
+        lightcolor="#283248",
+        darkcolor="#283248",
+        relief="flat",
+        borderwidth=0,
+        width=8,
+    )
+    style.map(
+        "Vertical.TScrollbar",
+        background=[("active", "#384664")],
+    )
 
     style.configure(
         "Horizontal.TProgressbar",
-        troughcolor="#E6E0D4",
+        troughcolor="#1A202D",
         background=ACCENT_CRIMSON,
-        bordercolor="#E6E0D4",
+        bordercolor="#1A202D",
         lightcolor=ACCENT_CRIMSON,
         darkcolor=ACCENT_CRIMSON,
-        thickness=8,
+        thickness=6,
     )
 
 
-def _make_card(parent, title=None, pad=12):
-    """Create a crisp bordered studio card container."""
+class _TabDeck(tk.Frame):
+    """Borderless modern panel deck with a ttk.Notebook-compatible .select() API."""
+
+    def __init__(self, parent, on_change=None):
+        super().__init__(parent, bg=BG_CARD, bd=0, highlightthickness=0)
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(0, weight=1)
+        self._pages = []
+        self._active = 0
+        self._on_change = on_change
+
+    def add(self, frame, text=""):
+        idx = len(self._pages)
+        self._pages.append((frame, text))
+        frame.grid(row=0, column=0, sticky="nsew")
+        if idx == 0:
+            frame.tkraise()
+        else:
+            frame.grid_remove()
+
+    def select(self, idx=None):
+        if idx is None:
+            return self._active
+        idx = int(idx)
+        if 0 <= idx < len(self._pages):
+            self._active = idx
+            for i, (frame, _txt) in enumerate(self._pages):
+                if i == idx:
+                    frame.grid()
+                    frame.tkraise()
+                else:
+                    frame.grid_remove()
+            if self._on_change:
+                self._on_change()
+        return self._active
+
+    def index(self, item):
+        return int(item)
+
+
+def _make_card(parent, title=None, subtitle=None, pad=12):
+    """Create a dark studio panel card with optional header bar."""
     outer = tk.Frame(
         parent,
         bg=BG_CARD,
@@ -401,15 +638,25 @@ def _make_card(parent, title=None, pad=12):
         pady=pad,
     )
     if title:
-        hdr = tk.Label(
-            outer,
+        hdr_row = tk.Frame(outer, bg=BG_CARD)
+        hdr_row.grid(row=0, column=0, columnspan=10, sticky="ew", pady=(0, 8))
+        tk.Label(
+            hdr_row,
             text=title.upper(),
             bg=BG_CARD,
-            fg="#7A6D5D",
+            fg="#94A3B8",
             font=("Segoe UI", 8, "bold"),
             anchor="w",
-        )
-        hdr.grid(row=0, column=0, columnspan=10, sticky="w", pady=(0, 8))
+        ).pack(side="left")
+        if subtitle:
+            tk.Label(
+                hdr_row,
+                text=subtitle,
+                bg=BG_CARD,
+                fg="#5E6B80",
+                font=("Segoe UI", 8),
+                anchor="e",
+            ).pack(side="right")
     return outer
 
 
@@ -432,6 +679,8 @@ class InkpressApp(ttk.Frame):
         self._preset_buttons = {}
         self._color_swatch_buttons = {}
         self._drop_cap_widgets = []
+        self._left_pill_buttons = []
+        self._right_pill_buttons = []
 
         self.manuscript_var = tk.StringVar()
         self.out_var = tk.StringVar(value=str(HERE / "build"))
@@ -446,7 +695,7 @@ class InkpressApp(ttk.Frame):
         )
         self.drop_cap_letter_var = tk.StringVar(value=DROP_LETTER_CHOICES[0])
         self.status_var = tk.StringVar(
-            value="No manuscript loaded yet — drop a file above or click Load Sample."
+            value="Drop a manuscript (.md, .docx, .txt) above or click Load Sample."
         )
         self.kdp_summary_var = tk.StringVar(
             value="Load a manuscript to calculate KDP page count, inner gutter, and spine width."
@@ -464,22 +713,24 @@ class InkpressApp(ttk.Frame):
 
         self._build_header()
 
-        # Main two-column studio body
-        body_frame = ttk.Frame(self, padding=(14, 12, 14, 8))
+        # Main two-column studio workspace
+        body_frame = tk.Frame(self, bg=BG_APP, padx=14, pady=12)
         body_frame.grid(row=1, column=0, sticky="nsew")
-        body_frame.columnconfigure(0, weight=5, minsize=440)
-        body_frame.columnconfigure(1, weight=6, minsize=460)
+        body_frame.columnconfigure(0, weight=4, minsize=440)
+        body_frame.columnconfigure(1, weight=7, minsize=520)
         body_frame.rowconfigure(0, weight=1)
 
-        left_col = ttk.Frame(body_frame)
+        left_col = tk.Frame(body_frame, bg=BG_APP)
         left_col.grid(row=0, column=0, sticky="nsew", padx=(0, 12))
         left_col.columnconfigure(0, weight=1)
         left_col.rowconfigure(1, weight=1)
 
-        right_col = ttk.Frame(body_frame)
+        right_col = tk.Frame(body_frame, bg=BG_APP)
         right_col.grid(row=0, column=1, sticky="nsew")
         right_col.columnconfigure(0, weight=1)
-        right_col.rowconfigure(1, weight=1)
+        # Give the Live Book Spread Preview hero weight so it scales with the window
+        right_col.rowconfigure(0, weight=5)
+        right_col.rowconfigure(1, weight=2)
 
         self._build_manuscript_card(left_col, 0)
         self._build_config_tabs(left_col, 1)
@@ -487,7 +738,7 @@ class InkpressApp(ttk.Frame):
         self._build_preview_card(right_col, 0)
         self._build_inspector_and_log(right_col, 1)
 
-        # Persistent bottom action bar (never clipped)
+        # Persistent bottom studio action bar
         self._build_action_bar(row=2)
 
         for key in ("title", "subtitle", "author"):
@@ -497,6 +748,7 @@ class InkpressApp(ttk.Frame):
         master.bind("<Control-Return>", lambda _e: self._start_build())
         master.bind("<F5>", lambda _e: self._start_build())
 
+        self.after(40, lambda: _apply_windows_dark_titlebar(master))
         self.after(50, lambda: _enable_windows_file_drop(master, self.handle_dropped_file))
         self.after(120, self._drain)
 
@@ -557,60 +809,73 @@ class InkpressApp(ttk.Frame):
     # ---------------------------------------------------------------- layout
 
     def _build_header(self):
-        header_wrap = tk.Frame(self, bg=INK_DARK)
+        header_wrap = tk.Frame(self, bg="#090B0E")
         header_wrap.grid(row=0, column=0, sticky="ew")
         header_wrap.columnconfigure(0, weight=1)
 
-        banner = tk.Frame(header_wrap, bg=INK_DARK, padx=16, pady=10)
+        banner = tk.Frame(header_wrap, bg="#090B0E", padx=18, pady=10)
         banner.grid(row=0, column=0, sticky="ew")
         banner.columnconfigure(2, weight=1)
+
+        brand_dot = tk.Canvas(
+            banner, width=10, height=10, bg="#090B0E", highlightthickness=0
+        )
+        brand_dot.create_oval(1, 1, 9, 9, fill=ACCENT_CRIMSON, outline="")
+        brand_dot.grid(row=0, column=0, sticky="w", padx=(0, 8))
 
         tk.Label(
             banner,
             text="INKPRESS",
-            bg=INK_DARK,
-            fg="#FDFBF7",
-            font=("Georgia", 14, "bold"),
-        ).grid(row=0, column=0, sticky="w")
+            bg="#090B0E",
+            fg=INK_DARK,
+            font=("Segoe UI", 12, "bold"),
+        ).grid(row=0, column=1, sticky="w")
 
         tk.Label(
             banner,
-            text=f"STUDIO v{__version__}",
-            bg="#2C2825",
-            fg="#D6C7B2",
-            padx=7,
+            text=f"STUDIO {__version__}",
+            bg="#1A202E",
+            fg="#94A3B8",
+            padx=8,
             pady=2,
             font=("Segoe UI", 7, "bold"),
-        ).grid(row=0, column=1, sticky="w", padx=(10, 10))
+        ).grid(row=0, column=2, sticky="w", padx=(10, 12))
 
         tk.Label(
             banner,
-            text="Book, EPUB & KDP Print Formatting Pipeline",
-            bg=INK_DARK,
-            fg="#A89F94",
-            font=("Segoe UI", 9),
-        ).grid(row=0, column=2, sticky="w")
+            text="EPUB 3  ·  KDP Print Interior  ·  Web Reader",
+            bg="#090B0E",
+            fg="#64748B",
+            font=("Segoe UI", 8, "bold"),
+        ).grid(row=0, column=3, sticky="e", padx=(0, 14))
 
         tk.Label(
             banner,
             text="Ctrl+O Open   ·   F5 Format",
-            bg=INK_DARK,
-            fg="#857B70",
+            bg="#131722",
+            fg="#7E8B9F",
+            padx=8,
+            pady=2,
             font=("Consolas", 8),
-        ).grid(row=0, column=3, sticky="e")
+        ).grid(row=0, column=4, sticky="e")
 
-        tk.Frame(header_wrap, bg=ACCENT_CRIMSON, height=2).grid(
+        tk.Frame(header_wrap, bg=BORDER_CARD, height=1).grid(
             row=1, column=0, sticky="ew"
         )
 
     def _build_manuscript_card(self, parent, row):
-        card = _make_card(parent, "1 · Manuscript Source", pad=11)
-        card.grid(row=row, column=0, sticky="ew", pady=(0, 10))
+        card = _make_card(
+            parent,
+            "Manuscript Source",
+            subtitle=".md  ·  .docx  ·  .txt",
+            pad=12,
+        )
+        card.grid(row=row, column=0, sticky="ew", pady=(0, 12))
         card.columnconfigure(0, weight=1)
 
         self.drop_canvas = tk.Canvas(
             card,
-            height=58,
+            height=62,
             bg=BG_SUBTLE,
             highlightthickness=0,
             cursor="hand2",
@@ -626,7 +891,7 @@ class InkpressApp(ttk.Frame):
         entry.bind("<Return>", lambda _e: self._load_manuscript())
 
         ttk.Button(card, text="Browse...", command=self._choose_manuscript).grid(
-            row=2, column=1, padx=(0, 4)
+            row=2, column=1, padx=(0, 6)
         )
         ttk.Button(card, text="Load Sample", command=self._load_sample).grid(
             row=2, column=2
@@ -637,7 +902,7 @@ class InkpressApp(ttk.Frame):
             textvariable=self.status_var,
             style="Muted.TLabel",
             wraplength=420,
-        ).grid(row=3, column=0, columnspan=3, sticky="w", pady=(6, 0))
+        ).grid(row=3, column=0, columnspan=3, sticky="w", pady=(7, 0))
 
     def _set_drop_hover(self, hovered):
         self._drop_hover = bool(hovered)
@@ -649,40 +914,52 @@ class InkpressApp(ttk.Frame):
         c = self.drop_canvas
         c.delete("all")
         w = max(int(c.winfo_width()), 380)
-        h = max(int(c.winfo_height()), 58)
+        h = max(int(c.winfo_height()), 62)
 
-        bg = "#F5EFE6" if self._drop_hover else BG_SUBTLE
-        border = ACCENT_CRIMSON if self._drop_hover else "#C8BFAF"
+        bg = "#21293B" if self._drop_hover else "#181D29"
+        border = ACCENT_CRIMSON if self._drop_hover else "#2E384D"
         c.configure(bg=bg)
         c.create_rectangle(
-            2, 2, w - 3, h - 3,
+            1,
+            1,
+            w - 2,
+            h - 2,
             outline=border,
             width=1.5 if self._drop_hover else 1,
             dash=(5, 3),
             fill=bg,
         )
 
-        ix, iy = 22, h // 2
-        c.create_rectangle(ix - 8, iy - 11, ix + 8, iy + 11, fill="#FFFFFF", outline=border)
-        c.create_line(ix - 4, iy - 4, ix + 4, iy - 4, fill=border)
-        c.create_line(ix - 4, iy, ix + 4, iy, fill=border)
-        c.create_line(ix - 4, iy + 4, ix + 2, iy + 4, fill=border)
+        ix, iy = 26, h // 2
+        c.create_oval(
+            ix - 13,
+            iy - 13,
+            ix + 13,
+            iy + 13,
+            fill="#252E42" if not self._drop_hover else ACCENT_CRIMSON,
+            outline="",
+        )
+        c.create_rectangle(
+            ix - 5, iy - 7, ix + 5, iy + 7, fill="", outline="#F4F6FA", width=1.2
+        )
+        c.create_line(ix - 2, iy - 2, ix + 2, iy - 2, fill="#F4F6FA")
+        c.create_line(ix - 2, iy + 2, ix + 2, iy + 2, fill="#F4F6FA")
 
         c.create_text(
-            42,
+            48,
             iy - 7,
-            text="Drop a manuscript here (.md, .docx, .txt)",
+            text="Drop manuscript here, or click to browse",
             anchor="w",
             fill=INK_DARK,
-            font=("Segoe UI", 8, "bold"),
+            font=("Segoe UI", 9, "bold"),
         )
         c.create_text(
-            42,
-            iy + 8,
-            text="Click to browse  ·  Drop a web template (.html) or output folder",
+            48,
+            iy + 9,
+            text="Supports Markdown (.md), Word (.docx), plain text (.txt), or output folder",
             anchor="w",
             fill=INK_MUTED,
-            font=("Segoe UI", 7),
+            font=("Segoe UI", 8),
         )
 
     def _first_paragraph_letter(self):
@@ -725,7 +1002,6 @@ class InkpressApp(ttk.Frame):
 
     def _select_border_color(self, hex_color):
         self.border_color_var.set(hex_color)
-        # If borders are currently 'none', enable Double Frame automatically when picking a color
         if BORDER_STYLE_BY_LABEL.get(self.border_style_var.get()) == "none":
             self.border_style_var.set(editions.BORDER_STYLE_LABELS["double"])
         self._sync_edition_state(reset_from_tier=False)
@@ -790,14 +1066,14 @@ class InkpressApp(ttk.Frame):
             if is_tier2_plus:
                 self.drop_tier_badge.configure(
                     text="TIER 2+ ACTIVE",
-                    bg="#E6F2EA",
-                    fg="#1A7F37",
+                    bg="#133326",
+                    fg="#34D399",
                 )
             else:
                 self.drop_tier_badge.configure(
-                    text="TIER 2+ ONLY (SELECT TIER 2 OR 3)",
-                    bg="#EFE8DC",
-                    fg="#7A6D5D",
+                    text="TIER 2+ ONLY",
+                    bg="#1F2637",
+                    fg="#7E8B9F",
                 )
 
         resolved = self._resolved_edition()
@@ -805,16 +1081,27 @@ class InkpressApp(ttk.Frame):
         active_pair = (tier, edition_key if tier == editions.ILLUSTRATED else None)
         for pair, btn in self._preset_buttons.items():
             if pair == active_pair:
-                btn.configure(bg=INK_DARK, fg="#FDFBF7", activebackground=INK_DARK)
+                btn.configure(
+                    bg=ACCENT_CRIMSON,
+                    fg="#FFFFFF",
+                    activebackground=ACCENT_CRIMSON_HOVER,
+                    highlightbackground=ACCENT_CRIMSON,
+                )
             else:
-                btn.configure(bg=BG_SUBTLE, fg=INK_BODY, activebackground="#EDE7DC")
+                btn.configure(
+                    bg="#181D29",
+                    fg=INK_BODY,
+                    activebackground="#232B3D",
+                    highlightbackground="#262F42",
+                )
 
         active_hex = resolved.accent.lower()
         for hex_code, btn in self._color_swatch_buttons.items():
             is_sel = hex_code.lower() == active_hex
             btn.configure(
-                relief="solid",
-                bd=2 if is_sel else 1,
+                highlightthickness=2 if is_sel else 1,
+                highlightbackground="#FFFFFF" if is_sel else "#2A3244",
+                highlightcolor="#FFFFFF" if is_sel else "#2A3244",
                 text="✓" if is_sel else "",
                 fg="#FFFFFF",
             )
@@ -832,53 +1119,116 @@ class InkpressApp(ttk.Frame):
             features.append("chapter rules")
         if hasattr(self, "tier_hint"):
             self.tier_hint.configure(
-                text=f"Color: {resolved.accent.upper()}  ·  Scene break: {resolved.scene_break}  ·  {', '.join(features)}"
+                text=f"Accent: {resolved.accent.upper()}  ·  Scene break: {resolved.scene_break}  ·  {', '.join(features)}"
             )
         if hasattr(self, "page_canvas"):
             self._draw_page_preview()
 
-    def _build_config_tabs(self, parent, row):
-        self.left_notebook = ttk.Notebook(parent)
-        self.left_notebook.grid(row=row, column=0, sticky="nsew")
+    def _switch_left_tab(self, idx):
+        self.left_notebook.select(idx)
+        self._update_left_pills()
 
-        details_tab = tk.Frame(
-            self.left_notebook,
-            bg=BG_CARD,
-            padx=14,
-            pady=12,
+    def _update_left_pills(self, *_args):
+        if not hasattr(self, "left_notebook") or not self._left_pill_buttons:
+            return
+        try:
+            active_idx = self.left_notebook.index(self.left_notebook.select())
+        except tk.TclError:
+            active_idx = 0
+        for idx, btn in enumerate(self._left_pill_buttons):
+            if idx == active_idx:
+                btn.configure(
+                    bg=BG_PILL_ACTIVE,
+                    fg="#FFFFFF",
+                    activebackground=BG_PILL_ACTIVE,
+                )
+            else:
+                btn.configure(
+                    bg=BG_PILL_TROUGH,
+                    fg=INK_MUTED,
+                    activebackground="#181E2B",
+                )
+
+    def _switch_right_tab(self, idx):
+        self.notebook.select(idx)
+        self._update_right_pills()
+
+    def _update_right_pills(self, *_args):
+        if not hasattr(self, "notebook") or not self._right_pill_buttons:
+            return
+        try:
+            active_idx = self.notebook.index(self.notebook.select())
+        except tk.TclError:
+            active_idx = 0
+        for idx, btn in enumerate(self._right_pill_buttons):
+            if idx == active_idx:
+                btn.configure(
+                    bg=BG_PILL_ACTIVE,
+                    fg="#FFFFFF",
+                    activebackground=BG_PILL_ACTIVE,
+                )
+            else:
+                btn.configure(
+                    bg=BG_PILL_TROUGH,
+                    fg=INK_MUTED,
+                    activebackground="#181E2B",
+                )
+
+    def _build_config_tabs(self, parent, row):
+        card = _make_card(parent, pad=12)
+        card.grid(row=row, column=0, sticky="nsew")
+        card.columnconfigure(0, weight=1)
+        card.rowconfigure(1, weight=1)
+
+        # Sleek segmented pill bar (replaces 1990s protruding folder tabs)
+        pill_bar = tk.Frame(
+            card,
+            bg=BG_PILL_TROUGH,
+            padx=3,
+            pady=3,
             highlightthickness=1,
-            highlightbackground=BORDER_CARD,
+            highlightbackground="#1F2636",
         )
+        pill_bar.grid(row=0, column=0, sticky="ew", pady=(0, 12))
+        tab_titles = ("Book Details", "Borders & Style", "Outputs & Export")
+        for idx, label in enumerate(tab_titles):
+            pill_bar.columnconfigure(idx, weight=1)
+            btn = tk.Button(
+                pill_bar,
+                text=label,
+                bd=0,
+                relief="flat",
+                highlightthickness=0,
+                padx=8,
+                pady=5,
+                cursor="hand2",
+                font=("Segoe UI", 8, "bold"),
+                command=lambda i=idx: self._switch_left_tab(i),
+            )
+            btn.grid(row=0, column=idx, sticky="ew", padx=(0 if idx == 0 else 3, 0))
+            self._left_pill_buttons.append(btn)
+
+        self.left_notebook = _TabDeck(card, on_change=self._update_left_pills)
+        self.left_notebook.grid(row=1, column=0, sticky="nsew")
+
+        details_tab = tk.Frame(self.left_notebook, bg=BG_CARD, padx=4, pady=4)
         details_tab.columnconfigure(1, weight=1)
         details_tab.columnconfigure(3, weight=1)
 
-        style_tab = tk.Frame(
-            self.left_notebook,
-            bg=BG_CARD,
-            padx=12,
-            pady=9,
-            highlightthickness=1,
-            highlightbackground=BORDER_CARD,
-        )
+        style_tab = tk.Frame(self.left_notebook, bg=BG_CARD, padx=4, pady=4)
         style_tab.columnconfigure(1, weight=1)
 
-        outputs_tab = tk.Frame(
-            self.left_notebook,
-            bg=BG_CARD,
-            padx=14,
-            pady=12,
-            highlightthickness=1,
-            highlightbackground=BORDER_CARD,
-        )
+        outputs_tab = tk.Frame(self.left_notebook, bg=BG_CARD, padx=4, pady=4)
         outputs_tab.columnconfigure(1, weight=1)
 
         self._populate_details_tab(details_tab)
         self._populate_style_tab(style_tab)
         self._populate_outputs_tab(outputs_tab)
 
-        self.left_notebook.add(details_tab, text="2 · Book Details")
-        self.left_notebook.add(style_tab, text="3 · Borders & Style")
-        self.left_notebook.add(outputs_tab, text="4 · Outputs")
+        self.left_notebook.add(details_tab, text="Book Details")
+        self.left_notebook.add(style_tab, text="Borders & Style")
+        self.left_notebook.add(outputs_tab, text="Outputs")
+        self._update_left_pills()
 
     def _populate_details_tab(self, box):
         r = 0
@@ -916,7 +1266,7 @@ class InkpressApp(ttk.Frame):
             text="Prefilled from your manuscript (.md or .docx). Leave Copyright blank for an automatic © page.",
             style="Muted.TLabel",
             wraplength=410,
-        ).grid(row=r, column=0, columnspan=4, sticky="w", pady=(8, 0))
+        ).grid(row=r, column=0, columnspan=4, sticky="w", pady=(10, 0))
 
     def _populate_style_tab(self, box):
         r = 0
@@ -925,9 +1275,9 @@ class InkpressApp(ttk.Frame):
         )
         r += 1
 
-        ttk.Label(box, text="Tier").grid(row=r, column=0, sticky="w", pady=2)
+        ttk.Label(box, text="Tier").grid(row=r, column=0, sticky="w", pady=3)
         tier_row = tk.Frame(box, bg=BG_CARD)
-        tier_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
+        tier_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
         tier_row.columnconfigure(0, weight=1)
 
         tier_box = ttk.Combobox(
@@ -944,16 +1294,16 @@ class InkpressApp(ttk.Frame):
         trim_cb.bind("<<ComboboxSelected>>", lambda _e: self._refresh_kdp_and_preview())
         r += 1
 
-        ttk.Label(box, text="Edition").grid(row=r, column=0, sticky="w", pady=2)
+        ttk.Label(box, text="Edition").grid(row=r, column=0, sticky="w", pady=3)
         self.edition_box = ttk.Combobox(
             box, textvariable=self.edition_var, values=EDITION_CHOICES, state="disabled"
         )
-        self.edition_box.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
+        self.edition_box.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
         self.edition_box.bind("<<ComboboxSelected>>", lambda _event: self._sync_edition_state())
         r += 1
 
         tk.Frame(box, bg=BORDER_CARD, height=1).grid(
-            row=r, column=0, columnspan=3, sticky="ew", pady=(5, 5)
+            row=r, column=0, columnspan=3, sticky="ew", pady=(6, 6)
         )
         r += 1
 
@@ -966,9 +1316,9 @@ class InkpressApp(ttk.Frame):
         ).pack(side="left")
         self.drop_tier_badge = tk.Label(
             drop_hdr_row,
-            text="TIER 2+ ONLY (SELECT TIER 2 OR 3)",
-            bg="#EFE8DC",
-            fg="#7A6D5D",
+            text="TIER 2+ ONLY",
+            bg="#1F2637",
+            fg="#7E8B9F",
             padx=6,
             pady=1,
             font=("Segoe UI", 7, "bold"),
@@ -976,9 +1326,9 @@ class InkpressApp(ttk.Frame):
         self.drop_tier_badge.pack(side="left", padx=(8, 0))
         r += 1
 
-        ttk.Label(box, text="Drop letter").grid(row=r, column=0, sticky="w", pady=2)
+        ttk.Label(box, text="Drop letter").grid(row=r, column=0, sticky="w", pady=3)
         drop_row = tk.Frame(box, bg=BG_CARD)
-        drop_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
+        drop_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
         drop_row.columnconfigure(0, weight=1)
 
         self.drop_cap_style_box = ttk.Combobox(
@@ -1013,7 +1363,7 @@ class InkpressApp(ttk.Frame):
         r += 1
 
         tk.Frame(box, bg=BORDER_CARD, height=1).grid(
-            row=r, column=0, columnspan=3, sticky="ew", pady=(5, 5)
+            row=r, column=0, columnspan=3, sticky="ew", pady=(6, 6)
         )
         r += 1
 
@@ -1022,14 +1372,14 @@ class InkpressApp(ttk.Frame):
         )
         r += 1
 
-        ttk.Label(box, text="Border style").grid(row=r, column=0, sticky="w", pady=2)
+        ttk.Label(box, text="Border style").grid(row=r, column=0, sticky="w", pady=3)
         border_cb = ttk.Combobox(
             box,
             textvariable=self.border_style_var,
             values=BORDER_STYLE_CHOICES,
             state="readonly",
         )
-        border_cb.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
+        border_cb.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
         border_cb.bind(
             "<<ComboboxSelected>>",
             lambda _e: self._sync_edition_state(reset_from_tier=False),
@@ -1047,32 +1397,50 @@ class InkpressApp(ttk.Frame):
                 activebackground=hex_code,
                 width=2,
                 height=1,
-                bd=1,
-                relief="solid",
+                bd=0,
+                relief="flat",
+                highlightthickness=1,
+                highlightbackground="#2A3244",
                 cursor="hand2",
                 font=("Segoe UI", 6, "bold"),
                 command=lambda h=hex_code: self._select_border_color(h),
             )
-            sw.grid(row=0, column=idx, padx=(0, 3))
+            sw.grid(row=0, column=idx, padx=(0, 4))
             self._color_swatch_buttons[hex_code] = sw
 
         ttk.Button(
             palette_row, text="Custom...", command=self._pick_custom_color
-        ).grid(row=0, column=len(editions.COLOR_PRESETS), padx=(3, 0))
+        ).grid(row=0, column=len(editions.COLOR_PRESETS), padx=(4, 0))
         r += 1
 
-        swatch_row = tk.Frame(box, bg=BG_CARD)
-        swatch_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(4, 0))
+        swatch_row = tk.Frame(
+            box,
+            bg="#0F131B",
+            padx=8,
+            pady=6,
+            highlightthickness=1,
+            highlightbackground="#1E2534",
+        )
+        swatch_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(8, 0))
         self.swatch_canvas = tk.Canvas(
             swatch_row,
             width=44,
             height=16,
-            bg=BG_CARD,
+            bg="#0F131B",
             highlightthickness=1,
-            highlightbackground="#CFC6B8",
+            highlightbackground="#2D364B",
         )
         self.swatch_canvas.grid(row=0, column=0, sticky="w", padx=(0, 8))
-        self.tier_hint = ttk.Label(swatch_row, text="", style="Muted.TLabel", wraplength=355)
+        self.tier_hint = tk.Label(
+            swatch_row,
+            text="",
+            bg="#0F131B",
+            fg=INK_MUTED,
+            justify="left",
+            anchor="w",
+            wraplength=345,
+            font=("Segoe UI", 8),
+        )
         self.tier_hint.grid(row=0, column=1, sticky="w")
 
     def _populate_outputs_tab(self, box):
@@ -1084,27 +1452,27 @@ class InkpressApp(ttk.Frame):
 
         for key, label, hint in TARGET_LABELS:
             ttk.Checkbutton(box, text=label, variable=self.target_vars[key]).grid(
-                row=r, column=0, sticky="w", pady=3
+                row=r, column=0, sticky="w", pady=4
             )
             ttk.Label(box, text=hint, style="Muted.TLabel").grid(
-                row=r, column=1, columnspan=2, sticky="w", padx=(8, 0), pady=3
+                row=r, column=1, columnspan=2, sticky="w", padx=(8, 0), pady=4
             )
             r += 1
 
         ttk.Checkbutton(box, text="Print PDF (KDP ready)", variable=self.pdf_var).grid(
-            row=r, column=0, sticky="w", pady=3
+            row=r, column=0, sticky="w", pady=4
         )
         ttk.Label(
             box, text="Direct PDF via headless Edge/Chrome or WeasyPrint", style="Muted.TLabel"
-        ).grid(row=r, column=1, columnspan=2, sticky="w", padx=(8, 0), pady=3)
+        ).grid(row=r, column=1, columnspan=2, sticky="w", padx=(8, 0), pady=4)
         r += 1
 
         ttk.Checkbutton(box, text="Package buyer ZIP", variable=self.package_var).grid(
-            row=r, column=0, sticky="w", pady=3
+            row=r, column=0, sticky="w", pady=4
         )
         ttk.Label(
             box, text="Bundle outputs + delivery notes in build/orders/", style="Muted.TLabel"
-        ).grid(row=r, column=1, columnspan=2, sticky="w", padx=(8, 0), pady=3)
+        ).grid(row=r, column=1, columnspan=2, sticky="w", padx=(8, 0), pady=4)
         r += 1
 
         tk.Frame(box, bg=BORDER_CARD, height=1).grid(
@@ -1122,23 +1490,23 @@ class InkpressApp(ttk.Frame):
             ("Web template", self.chrome_var, self._choose_chrome),
         )
         for label, var, cmd in pickers:
-            ttk.Label(box, text=label).grid(row=r, column=0, sticky="w", pady=3)
+            ttk.Label(box, text=label).grid(row=r, column=0, sticky="w", pady=4)
             ttk.Entry(box, textvariable=var).grid(
-                row=r, column=1, sticky="ew", padx=(8, 8), pady=3
+                row=r, column=1, sticky="ew", padx=(8, 8), pady=4
             )
-            ttk.Button(box, text="Browse...", command=cmd).grid(row=r, column=2, pady=3)
+            ttk.Button(box, text="Browse...", command=cmd).grid(row=r, column=2, pady=4)
             r += 1
 
     def _build_action_bar(self, row):
-        wrap = tk.Frame(self, bg=BG_CARD)
+        wrap = tk.Frame(self, bg="#090B0E")
         wrap.grid(row=row, column=0, sticky="ew")
         wrap.columnconfigure(0, weight=1)
 
         tk.Frame(wrap, bg=BORDER_CARD, height=1).grid(row=0, column=0, sticky="ew")
 
-        bar = tk.Frame(wrap, bg=BG_CARD, padx=14, pady=10)
+        bar = tk.Frame(wrap, bg="#090B0E", padx=16, pady=10)
         bar.grid(row=1, column=0, sticky="ew")
-        bar.columnconfigure(4, weight=1)
+        bar.columnconfigure(3, weight=1)
 
         self.format_button = ttk.Button(
             bar, text="✦  Format Book", style="Primary.TButton", command=self._start_build
@@ -1148,7 +1516,7 @@ class InkpressApp(ttk.Frame):
         self.open_button = ttk.Button(
             bar, text="Open Folder", command=self._open_output, state="disabled"
         )
-        self.open_button.grid(row=0, column=1, padx=(8, 0))
+        self.open_button.grid(row=0, column=1, padx=(10, 0))
 
         self.preview_print_button = ttk.Button(
             bar, text="Preview Print", command=self._preview_print, state="disabled"
@@ -1158,20 +1526,35 @@ class InkpressApp(ttk.Frame):
         self.preview_web_button = ttk.Button(
             bar, text="Preview Web", command=self._preview_web, state="disabled"
         )
-        self.preview_web_button.grid(row=0, column=3, padx=(6, 0))
+        self.preview_web_button.grid(row=0, column=3, sticky="w", padx=(6, 0))
 
-        self.progress = ttk.Progressbar(bar, mode="determinate", maximum=100, value=0)
-        self.progress.grid(row=0, column=4, sticky="ew", padx=(14, 0))
+        self.progress = ttk.Progressbar(
+            bar, mode="determinate", maximum=100, value=0, length=220
+        )
+        self.progress.grid(row=0, column=4, sticky="e", padx=(14, 0))
 
     # ---------------------------------------------------- right column studio
 
     def _build_preview_card(self, parent, row):
-        card = _make_card(parent, "Live Book Spread Preview (Cover & Chapter Opener)", pad=10)
-        card.grid(row=row, column=0, sticky="ew", pady=(0, 10))
+        card = _make_card(
+            parent,
+            "Live Book Spread Preview",
+            subtitle="Interactive Cover & Chapter 1 Stage",
+            pad=12,
+        )
+        card.grid(row=row, column=0, sticky="nsew", pady=(0, 12))
         card.columnconfigure(0, weight=1)
+        card.rowconfigure(3, weight=1)
 
-        preset_bar = tk.Frame(card, bg=BG_CARD)
-        preset_bar.grid(row=1, column=0, sticky="ew", pady=(0, 6))
+        preset_bar = tk.Frame(
+            card,
+            bg=BG_PILL_TROUGH,
+            padx=3,
+            pady=3,
+            highlightthickness=1,
+            highlightbackground="#1F2636",
+        )
+        preset_bar.grid(row=1, column=0, sticky="ew", pady=(0, 8))
         presets = (
             ("Clean", editions.CLEAN, None),
             ("Styled", editions.STYLED, None),
@@ -1184,15 +1567,16 @@ class InkpressApp(ttk.Frame):
             btn = tk.Button(
                 preset_bar,
                 text=label,
-                bd=1,
-                relief="solid",
-                padx=6,
-                pady=3,
+                bd=0,
+                relief="flat",
+                highlightthickness=1,
+                padx=8,
+                pady=4,
                 cursor="hand2",
                 font=("Segoe UI", 8, "bold"),
                 command=lambda tk_k=t_key, ed_k=e_key: self._select_preset(tk_k, ed_k),
             )
-            btn.grid(row=0, column=idx, sticky="ew", padx=(0 if idx == 0 else 4, 0))
+            btn.grid(row=0, column=idx, sticky="ew", padx=(0 if idx == 0 else 3, 0))
             self._preset_buttons[(t_key, e_key)] = btn
 
         # Quick Border Style + Border Color toolbar right above the spread canvas
@@ -1204,16 +1588,16 @@ class InkpressApp(ttk.Frame):
             bg=BG_CARD,
             fg=INK_MUTED,
             font=("Segoe UI", 8, "bold"),
-        ).pack(side="left", padx=(0, 4))
+        ).pack(side="left", padx=(0, 6))
 
         border_quick_cb = ttk.Combobox(
             border_bar,
             textvariable=self.border_style_var,
             values=BORDER_STYLE_CHOICES,
             state="readonly",
-            width=16,
+            width=18,
         )
-        border_quick_cb.pack(side="left", padx=(0, 10))
+        border_quick_cb.pack(side="left", padx=(0, 14))
         border_quick_cb.bind(
             "<<ComboboxSelected>>",
             lambda _e: self._sync_edition_state(reset_from_tier=False),
@@ -1221,11 +1605,11 @@ class InkpressApp(ttk.Frame):
 
         tk.Label(
             border_bar,
-            text="Color:",
+            text="Accent:",
             bg=BG_CARD,
             fg=INK_MUTED,
             font=("Segoe UI", 8, "bold"),
-        ).pack(side="left", padx=(0, 4))
+        ).pack(side="left", padx=(0, 6))
 
         for _name, hex_code in editions.COLOR_PRESETS:
             sw = tk.Button(
@@ -1234,91 +1618,114 @@ class InkpressApp(ttk.Frame):
                 activebackground=hex_code,
                 width=2,
                 height=1,
-                bd=1,
-                relief="solid",
+                bd=0,
+                relief="flat",
+                highlightthickness=1,
+                highlightbackground="#2A3244",
                 cursor="hand2",
                 font=("Segoe UI", 6),
                 command=lambda h=hex_code: self._select_border_color(h),
             )
-            sw.pack(side="left", padx=(0, 3))
+            sw.pack(side="left", padx=(0, 4))
 
         self.page_canvas = tk.Canvas(
             card,
-            width=450,
-            height=262,
-            bg="#E5E0D5",
+            width=480,
+            height=275,
+            bg=BG_STAGE,
             highlightthickness=1,
-            highlightbackground="#CFC8BA",
+            highlightbackground="#1F2636",
         )
-        self.page_canvas.grid(row=3, column=0, sticky="ew")
+        self.page_canvas.grid(row=3, column=0, sticky="nsew")
         self.page_canvas.bind("<Configure>", lambda _e: self._draw_page_preview())
         self._sync_edition_state()
 
     def _build_inspector_and_log(self, parent, row):
-        self.notebook = ttk.Notebook(parent)
-        self.notebook.grid(row=row, column=0, sticky="nsew")
+        card = _make_card(parent, pad=10)
+        card.grid(row=row, column=0, sticky="nsew")
+        card.columnconfigure(0, weight=1)
+        card.rowconfigure(1, weight=1)
 
-        outline_tab = tk.Frame(
-            self.notebook,
-            bg=BG_CARD,
-            padx=10,
-            pady=10,
+        top_bar = tk.Frame(card, bg=BG_CARD)
+        top_bar.grid(row=0, column=0, sticky="ew", pady=(0, 8))
+        top_bar.columnconfigure(1, weight=1)
+
+        pill_bar = tk.Frame(
+            top_bar,
+            bg=BG_PILL_TROUGH,
+            padx=3,
+            pady=3,
             highlightthickness=1,
-            highlightbackground=BORDER_CARD,
+            highlightbackground="#1F2636",
         )
-        outline_tab.columnconfigure(0, weight=1)
-        outline_tab.rowconfigure(1, weight=1)
+        pill_bar.grid(row=0, column=0, sticky="w")
+        for idx, label in enumerate(("Chapters & KDP", "Build Console")):
+            btn = tk.Button(
+                pill_bar,
+                text=label,
+                bd=0,
+                relief="flat",
+                highlightthickness=0,
+                padx=8,
+                pady=4,
+                cursor="hand2",
+                font=("Segoe UI", 8, "bold"),
+                command=lambda i=idx: self._switch_right_tab(i),
+            )
+            btn.grid(row=0, column=idx, padx=(0 if idx == 0 else 3, 0))
+            self._right_pill_buttons.append(btn)
 
-        ttk.Label(
-            outline_tab,
+        tk.Label(
+            top_bar,
             textvariable=self.kdp_summary_var,
-            foreground=INK_DARK,
-            font=("Segoe UI", 9, "bold"),
-            wraplength=430,
-        ).grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 8))
+            bg=BG_CARD,
+            fg="#94A3B8",
+            font=("Segoe UI", 8, "bold"),
+            anchor="e",
+        ).grid(row=0, column=1, sticky="e", padx=(8, 0))
+
+        self.notebook = _TabDeck(card, on_change=self._update_right_pills)
+        self.notebook.grid(row=1, column=0, sticky="nsew")
+
+        outline_tab = tk.Frame(self.notebook, bg=BG_CARD)
+        outline_tab.columnconfigure(0, weight=1)
+        outline_tab.rowconfigure(0, weight=1)
 
         columns = ("num", "title", "words", "status")
         self.chapter_tree = ttk.Treeview(
-            outline_tab, columns=columns, show="headings", height=6
+            outline_tab, columns=columns, show="headings", height=4
         )
         self.chapter_tree.heading("num", text="#")
         self.chapter_tree.heading("title", text="Chapter / Section")
         self.chapter_tree.heading("words", text="Words")
         self.chapter_tree.heading("status", text="Role")
 
-        self.chapter_tree.column("num", width=38, anchor="center", stretch=False)
-        self.chapter_tree.column("title", width=195, anchor="w")
-        self.chapter_tree.column("words", width=70, anchor="e", stretch=False)
-        self.chapter_tree.column("status", width=115, anchor="w")
-        self.chapter_tree.grid(row=1, column=0, sticky="nsew")
+        self.chapter_tree.column("num", width=42, anchor="center", stretch=False)
+        self.chapter_tree.column("title", width=210, anchor="w")
+        self.chapter_tree.column("words", width=75, anchor="e", stretch=False)
+        self.chapter_tree.column("status", width=120, anchor="w")
+        self.chapter_tree.grid(row=0, column=0, sticky="nsew")
 
         tree_scroll = ttk.Scrollbar(
             outline_tab, orient="vertical", command=self.chapter_tree.yview
         )
-        tree_scroll.grid(row=1, column=1, sticky="ns")
+        tree_scroll.grid(row=0, column=1, sticky="ns")
         self.chapter_tree.configure(yscrollcommand=tree_scroll.set)
 
-        log_tab = tk.Frame(
-            self.notebook,
-            bg=BG_CARD,
-            padx=10,
-            pady=10,
-            highlightthickness=1,
-            highlightbackground=BORDER_CARD,
-        )
+        log_tab = tk.Frame(self.notebook, bg=BG_CARD)
         log_tab.columnconfigure(0, weight=1)
         log_tab.rowconfigure(0, weight=1)
 
         self.log = tk.Text(
             log_tab,
-            height=7,
+            height=5,
             wrap="word",
             state="disabled",
-            bg=BG_SUBTLE,
+            bg="#0E1118",
             fg=INK_BODY,
             relief="flat",
-            padx=8,
-            pady=6,
+            padx=10,
+            pady=8,
             font=("Consolas", 9),
         )
         self.log.grid(row=0, column=0, sticky="nsew")
@@ -1326,44 +1733,77 @@ class InkpressApp(ttk.Frame):
         scroll.grid(row=0, column=1, sticky="ns")
         self.log.configure(yscrollcommand=scroll.set)
 
-        self.log.tag_configure("ok", foreground="#1A7F37")
-        self.log.tag_configure("warn", foreground="#9A6700")
-        self.log.tag_configure("error", foreground="#B42318")
+        self.log.tag_configure("ok", foreground="#34D399")
+        self.log.tag_configure("warn", foreground="#FBBF24")
+        self.log.tag_configure("error", foreground="#F87171")
         self.log.tag_configure("muted", foreground=INK_MUTED)
 
         self.notebook.add(outline_tab, text="Chapters & KDP Specs")
-        self.notebook.add(log_tab, text="Build Log")
+        self.notebook.add(log_tab, text="Build Console")
+        self._update_right_pills()
 
-    def _draw_sheet_border(self, canvas, x0, y0, x1, y1, border_style, color):
-        """Draw the selected colored border style inside a miniature page sheet."""
+    def _draw_sheet_border(self, canvas, x0, y0, x1, y1, border_style, color, scale=1.0):
+        """Draw the selected colored border style inside a page sheet."""
+        pad_outer = max(7, int(round(8 * scale)))
+        pad_inner = max(11, int(round(12 * scale)))
         if border_style == "double":
             canvas.create_rectangle(
-                x0 + 8, y0 + 8, x1 - 8, y1 - 8, outline=color, width=2
+                x0 + pad_outer,
+                y0 + pad_outer,
+                x1 - pad_outer,
+                y1 - pad_outer,
+                outline=color,
+                width=max(1.5, 2.0 * scale),
             )
             canvas.create_rectangle(
-                x0 + 12, y0 + 12, x1 - 12, y1 - 12, outline=color, width=1
+                x0 + pad_inner,
+                y0 + pad_inner,
+                x1 - pad_inner,
+                y1 - pad_inner,
+                outline=color,
+                width=max(1.0, 1.0 * scale),
             )
         elif border_style == "single":
             canvas.create_rectangle(
-                x0 + 9, y0 + 9, x1 - 9, y1 - 9, outline=color, width=1.5
+                x0 + pad_outer + 1,
+                y0 + pad_outer + 1,
+                x1 - pad_outer - 1,
+                y1 - pad_outer - 1,
+                outline=color,
+                width=max(1.5, 1.6 * scale),
             )
         elif border_style == "rules":
             canvas.create_line(
-                x0 + 12, y0 + 12, x1 - 12, y0 + 12, fill=color, width=2
+                x0 + pad_inner,
+                y0 + pad_inner,
+                x1 - pad_inner,
+                y0 + pad_inner,
+                fill=color,
+                width=max(1.5, 2.0 * scale),
             )
             canvas.create_line(
-                x0 + 12, y1 - 12, x1 - 12, y1 - 12, fill=color, width=1.5
+                x0 + pad_inner,
+                y1 - pad_inner,
+                x1 - pad_inner,
+                y1 - pad_inner,
+                fill=color,
+                width=max(1.2, 1.5 * scale),
             )
 
     def _draw_page_preview(self):
-        """Render a miniature two-page studio preview: Typographic Cover + Chapter Opener."""
+        """Render a responsive, hero-sized two-page spread preview on the dark studio stage."""
         if not hasattr(self, "page_canvas"):
             return
         canvas = self.page_canvas
         canvas.delete("all")
 
-        c_width = max(int(canvas.winfo_width()), 450)
-        c_height = max(int(canvas.winfo_height()), 262)
+        c_width = max(int(canvas.winfo_width()), 480)
+        c_height = max(int(canvas.winfo_height()), 265)
+
+        # Subtle studio stage framing lines
+        canvas.create_rectangle(
+            8, 8, c_width - 8, c_height - 8, outline="#161B26", width=1
+        )
 
         edition = self._resolved_edition()
         border_style = getattr(edition, "border_style", "double")
@@ -1374,7 +1814,11 @@ class InkpressApp(ttk.Frame):
         )
         subtitle = (
             self.meta_vars["subtitle"].get().strip()
-            or (doc.meta.get("subtitle", "") if doc else "A Short Passage for Setting the Press")
+            or (
+                doc.meta.get("subtitle", "")
+                if doc
+                else "A Short Passage for Setting the Press"
+            )
         )
         author_name = (
             self.meta_vars["author"].get().strip()
@@ -1393,19 +1837,39 @@ class InkpressApp(ttk.Frame):
         )
         heading_style = "bold" if edition.display_weight == "800" else "normal"
 
-        page_w = 180
-        page_h = 230
-        gap = 18
+        trim_key = self.trim_var.get().strip() or "6x9"
+        aspect = _TRIM_ASPECT.get(trim_key, 6.0 / 9.0)
+
+        avail_h = max(215, c_height - 46)
+        avail_w = max(360, c_width - 56)
+        gap = max(18, int(avail_w * 0.035))
+
+        page_h = min(avail_h, int((avail_w - gap) / (2.0 * aspect)))
+        page_h = max(210, page_h)
+        page_w = max(145, int(round(page_h * aspect)))
+        scale = page_h / 230.0
+
+        def fs(pt):
+            return max(pt, int(round(pt * (0.75 + 0.25 * scale))))
+
         total_w = page_w * 2 + gap
         start_x = (c_width - total_w) // 2
-        sy0 = (c_height - page_h) // 2 + 5
+        sy0 = (c_height - page_h) // 2 + 6
         sy1 = sy0 + page_h
 
         # ---------------- LEFT SHEET: FRAMED COVER PREVIEW ----------------
         cx0 = start_x
         cx1 = cx0 + page_w
-        canvas.create_rectangle(cx0 + 3, sy0 + 4, cx1 + 3, sy1 + 4, fill="#C5BFB2", outline="")
-        canvas.create_rectangle(cx0, sy0, cx1, sy1, fill=edition.paper, outline="#B8B1A4")
+        # Soft multi-layer studio shadow
+        canvas.create_rectangle(
+            cx0 + 5, sy0 + 6, cx1 + 5, sy1 + 6, fill="#040507", outline=""
+        )
+        canvas.create_rectangle(
+            cx0 + 2, sy0 + 3, cx1 + 2, sy1 + 3, fill="#07090E", outline=""
+        )
+        canvas.create_rectangle(
+            cx0, sy0, cx1, sy1, fill=edition.paper, outline="#2D3548"
+        )
 
         self._draw_sheet_border(
             canvas,
@@ -1415,100 +1879,115 @@ class InkpressApp(ttk.Frame):
             sy1,
             border_style if border_style != "none" else "single",
             edition.accent,
+            scale=scale,
         )
 
         canvas.create_text(
             cx0 + page_w // 2,
-            sy0 - 9,
+            sy0 - 11,
             text="TYPOGRAPHIC COVER",
-            fill=INK_MUTED,
+            fill="#64748B",
             font=("Segoe UI", 7, "bold"),
         )
 
         title_item = canvas.create_text(
             cx0 + page_w // 2,
-            sy0 + 42,
+            sy0 + int(42 * scale),
             text=book_title.upper(),
             anchor="n",
-            width=page_w - 36,
+            width=page_w - int(36 * scale),
             justify="center",
             fill=edition.ink,
-            font=(heading_face, 7, "bold"),
+            font=(heading_face, fs(8), "bold"),
         )
         t_bbox = canvas.bbox(title_item)
-        title_bottom = t_bbox[3] if t_bbox else (sy0 + 68)
+        title_bottom = t_bbox[3] if t_bbox else (sy0 + int(68 * scale))
 
         if subtitle:
             sub_item = canvas.create_text(
                 cx0 + page_w // 2,
-                title_bottom + 6,
-                text=subtitle[:36],
+                title_bottom + int(6 * scale),
+                text=subtitle[:42],
                 anchor="n",
-                width=page_w - 38,
+                width=page_w - int(38 * scale),
                 justify="center",
                 fill="#5A534C",
-                font=("Georgia", 6, "italic"),
+                font=("Georgia", fs(6), "italic"),
             )
             s_bbox = canvas.bbox(sub_item)
-            rule_y = (s_bbox[3] + 10) if s_bbox else (title_bottom + 22)
+            rule_y = (
+                (s_bbox[3] + int(10 * scale))
+                if s_bbox
+                else (title_bottom + int(22 * scale))
+            )
         else:
-            rule_y = title_bottom + 12
+            rule_y = title_bottom + int(12 * scale)
 
+        rule_half = int(26 * scale)
         canvas.create_line(
-            cx0 + page_w // 2 - 24,
+            cx0 + page_w // 2 - rule_half,
             rule_y,
-            cx0 + page_w // 2 + 24,
+            cx0 + page_w // 2 + rule_half,
             rule_y,
             fill=edition.accent,
-            width=1.5,
+            width=max(1.5, 1.6 * scale),
         )
 
         canvas.create_text(
             cx0 + page_w // 2,
-            rule_y + 18,
+            rule_y + int(18 * scale),
             text=edition.scene_break,
             fill=edition.accent,
-            font=("Georgia", 9),
+            font=("Georgia", fs(9)),
         )
 
         canvas.create_text(
             cx0 + page_w // 2,
-            sy1 - 24,
-            text=author_name[:22].upper(),
+            sy1 - int(24 * scale),
+            text=author_name[:24].upper(),
             fill=edition.ink,
-            font=("Segoe UI", 6, "bold"),
+            font=("Segoe UI", fs(6), "bold"),
         )
 
         # ---------------- RIGHT SHEET: CHAPTER 1 INTERIOR ----------------
         sx0 = cx1 + gap
         sx1 = sx0 + page_w
 
-        canvas.create_rectangle(sx0 + 3, sy0 + 4, sx1 + 3, sy1 + 4, fill="#C5BFB2", outline="")
-        canvas.create_rectangle(sx0, sy0, sx1, sy1, fill=edition.paper, outline="#B8B1A4")
+        canvas.create_rectangle(
+            sx0 + 5, sy0 + 6, sx1 + 5, sy1 + 6, fill="#040507", outline=""
+        )
+        canvas.create_rectangle(
+            sx0 + 2, sy0 + 3, sx1 + 2, sy1 + 3, fill="#07090E", outline=""
+        )
+        canvas.create_rectangle(
+            sx0, sy0, sx1, sy1, fill=edition.paper, outline="#2D3548"
+        )
 
-        self._draw_sheet_border(canvas, sx0, sy0, sx1, sy1, border_style, edition.accent)
+        self._draw_sheet_border(
+            canvas, sx0, sy0, sx1, sy1, border_style, edition.accent, scale=scale
+        )
 
         canvas.create_text(
             sx0 + page_w // 2,
-            sy0 - 9,
-            text=f"CHAPTER OPENER ({self.trim_var.get() or '6x9'})",
-            fill=INK_MUTED,
+            sy0 - 11,
+            text=f"CHAPTER OPENER ({trim_key})",
+            fill="#64748B",
             font=("Segoe UI", 7, "bold"),
         )
 
         # Running head
         canvas.create_text(
-            sx1 - 18,
-            sy0 + 20,
-            text=book_title[:20].upper(),
+            sx1 - int(18 * scale),
+            sy0 + int(20 * scale),
+            text=book_title[:22].upper(),
             anchor="e",
             fill="#7A756E",
-            font=("Georgia", 5),
+            font=("Georgia", fs(5)),
         )
 
-        cursor_y = sy0 + 34
-        margin_x = sx0 + 20
-        inner_w = page_w - 40
+        cursor_y = sy0 + int(34 * scale)
+        margin_x = sx0 + int(20 * scale)
+        inner_w = page_w - int(40 * scale)
 
         if edition.chapter_number:
             cnum_item = canvas.create_text(
@@ -1517,36 +1996,50 @@ class InkpressApp(ttk.Frame):
                 text="CHAPTER 1",
                 anchor="n",
                 fill=edition.accent,
-                font=("Consolas" if edition.key == editions.SYSTEMFALL else "Georgia", 6, "bold"),
+                font=(
+                    "Consolas" if edition.key == editions.SYSTEMFALL else "Georgia",
+                    fs(6),
+                    "bold",
+                ),
             )
             cn_bbox = canvas.bbox(cnum_item)
-            cursor_y = (cn_bbox[3] + 4) if cn_bbox else (cursor_y + 15)
+            cursor_y = (
+                (cn_bbox[3] + int(4 * scale))
+                if cn_bbox
+                else (cursor_y + int(15 * scale))
+            )
 
         ch_item = canvas.create_text(
             sx0 + page_w // 2,
             cursor_y,
-            text=inline.plain(chap_title)[:22].upper(),
+            text=inline.plain(chap_title)[:24].upper(),
             anchor="n",
             width=inner_w,
             justify="center",
             fill=edition.ink,
-            font=(heading_face, 7, heading_style),
+            font=(heading_face, fs(7), heading_style),
         )
         ch_bbox = canvas.bbox(ch_item)
-        cursor_y = (ch_bbox[3] + 7) if ch_bbox else (cursor_y + 18)
+        cursor_y = (
+            (ch_bbox[3] + int(7 * scale)) if ch_bbox else (cursor_y + int(18 * scale))
+        )
 
         if edition.chapter_rule:
+            c_rule_half = int(22 * scale)
             canvas.create_line(
-                sx0 + page_w // 2 - 22,
+                sx0 + page_w // 2 - c_rule_half,
                 cursor_y,
-                sx0 + page_w // 2 + 22,
+                sx0 + page_w // 2 + c_rule_half,
                 cursor_y,
                 fill=edition.accent,
-                width=1.5,
+                width=max(1.5, 1.5 * scale),
             )
-            cursor_y += 12
+            cursor_y += int(12 * scale)
         else:
-            cursor_y += 7
+            cursor_y += int(7 * scale)
+
+        line_step = max(7, int(round(7 * scale)))
+        box_sz = max(16, int(round(17 * scale)))
 
         if edition.drop_cap:
             letter = edition.drop_cap_letter or self._first_paragraph_letter()
@@ -1555,37 +2048,39 @@ class InkpressApp(ttk.Frame):
                 canvas.create_rectangle(
                     margin_x,
                     cursor_y - 3,
-                    margin_x + 18,
-                    cursor_y + 13,
+                    margin_x + box_sz,
+                    cursor_y + box_sz - 3,
                     fill=edition.accent,
                     outline=edition.accent,
                 )
                 canvas.create_text(
-                    margin_x + 9,
-                    cursor_y + 5,
+                    margin_x + box_sz // 2,
+                    cursor_y + box_sz // 2 - 3,
                     text=letter,
                     fill=edition.paper,
-                    font=(heading_face, 10, "bold"),
+                    font=(heading_face, fs(9), "bold"),
                 )
-                line_offsets = [22, 22, 0, 0]
+                indent_dc = box_sz + max(4, int(5 * scale))
+                line_offsets = [indent_dc, indent_dc, 0, 0, 0]
             elif dc_style == "framed":
                 canvas.create_rectangle(
                     margin_x,
                     cursor_y - 3,
-                    margin_x + 18,
-                    cursor_y + 13,
+                    margin_x + box_sz,
+                    cursor_y + box_sz - 3,
                     fill=edition.paper,
                     outline=edition.accent,
                     width=1.5,
                 )
                 canvas.create_text(
-                    margin_x + 9,
-                    cursor_y + 5,
+                    margin_x + box_sz // 2,
+                    cursor_y + box_sz // 2 - 3,
                     text=letter,
                     fill=edition.accent,
-                    font=(heading_face, 10, "bold"),
+                    font=(heading_face, fs(9), "bold"),
                 )
-                line_offsets = [22, 22, 0, 0]
+                indent_dc = box_sz + max(4, int(5 * scale))
+                line_offsets = [indent_dc, indent_dc, 0, 0, 0]
             else:
                 canvas.create_text(
                     margin_x + 1,
@@ -1593,55 +2088,57 @@ class InkpressApp(ttk.Frame):
                     text=letter,
                     anchor="nw",
                     fill=edition.accent,
-                    font=(heading_face, 14, "bold"),
+                    font=(heading_face, fs(13), "bold"),
                 )
-                line_offsets = [16, 16, 0, 0]
+                indent_dc = max(15, int(16 * scale))
+                line_offsets = [indent_dc, indent_dc, 0, 0, 0]
         else:
-            line_offsets = [9, 0, 0, 0]
+            line_offsets = [int(9 * scale), 0, 0, 0, 0]
 
+        line_w = max(2.0, 2.0 * scale)
         for idx, indent_px in enumerate(line_offsets):
-            ly = cursor_y + idx * 7
-            end_trim = 12 if idx == len(line_offsets) - 1 else 0
+            ly = cursor_y + idx * line_step
+            end_trim = int(14 * scale) if idx == len(line_offsets) - 1 else 0
             canvas.create_line(
                 margin_x + indent_px,
                 ly,
                 margin_x + inner_w - end_trim,
                 ly,
                 fill="#3E3B38" if idx > 0 else edition.ink,
-                width=2,
+                width=line_w,
             )
-        cursor_y += len(line_offsets) * 7 + 10
+        cursor_y += len(line_offsets) * line_step + int(10 * scale)
 
         canvas.create_text(
             sx0 + page_w // 2,
             cursor_y,
             text=edition.scene_break,
             fill=edition.accent,
-            font=("Georgia", 8),
+            font=("Georgia", fs(8)),
         )
-        cursor_y += 11
+        cursor_y += int(11 * scale)
 
-        for idx in range(4):
-            ly = cursor_y + idx * 7
-            if ly > sy1 - 28:
+        for idx in range(5):
+            ly = cursor_y + idx * line_step
+            if ly > sy1 - int(28 * scale):
                 break
-            indent_px = 9 if idx == 0 else 0
-            end_trim = 24 if idx == 3 else 0
+            indent_px = int(9 * scale) if idx == 0 else 0
+            end_trim = int(24 * scale) if idx == 4 else 0
             canvas.create_line(
                 margin_x + indent_px,
                 ly,
                 margin_x + inner_w - end_trim,
                 ly,
                 fill="#524E4A",
-                width=2,
+                width=line_w,
             )
 
         canvas.create_text(
             sx0 + page_w // 2,
-            sy1 - 21,
+            sy1 - int(20 * scale),
             text="1",
             fill="#6E665E",
-            font=("Georgia", 6),
+            font=("Georgia", fs(6)),
         )
 
     # ---------------------------------------------------------------- helpers
@@ -1680,7 +2177,7 @@ class InkpressApp(ttk.Frame):
             self.manuscript_var.set(str(path))
             self._load_manuscript()
             if hasattr(self, "notebook"):
-                self.notebook.select(0)
+                self._switch_right_tab(0)
 
     def _choose_manuscript(self):
         path = filedialog.askopenfilename(
@@ -1717,9 +2214,9 @@ class InkpressApp(ttk.Frame):
             trim = self.trim_var.get().strip() or "6x9"
             stats = estimate_kdp_stats(doc.word_count, len(doc.chapters), trim=trim)
             self.kdp_summary_var.set(
-                f"KDP Paperback ({trim}): ~{stats['pages']} pages   ·   "
-                f"Inner gutter: {stats['gutter']}   ·   "
-                f"Cream spine: {stats['spine_in']:.3f} in"
+                f"KDP ({trim}): ~{stats['pages']} pp  ·  "
+                f"Gutter {stats['gutter']}  ·  "
+                f"Spine {stats['spine_in']:.3f}\""
             )
         self._draw_page_preview()
 
@@ -1835,13 +2332,13 @@ class InkpressApp(ttk.Frame):
 
         source = Path(self.manuscript_var.get())
         if not source.is_file():
-            self.notebook.select(1)
+            self._switch_right_tab(1)
             self.write("Choose a manuscript first (or click Load Sample).", "error")
             return
 
         targets = [key for key, _, _ in TARGET_LABELS if self.target_vars[key].get()]
         if not targets:
-            self.notebook.select(1)
+            self._switch_right_tab(1)
             self.write("Tick at least one format to build.", "error")
             return
 
@@ -1877,7 +2374,7 @@ class InkpressApp(ttk.Frame):
         )
 
         self._save_prefs()
-        self.notebook.select(1)
+        self._switch_right_tab(1)
 
         self.busy = True
         self.format_button.configure(state="disabled")
@@ -2000,10 +2497,13 @@ def main():
         except Exception:  # noqa: BLE001
             pass
 
+    if not initial and not _acquire_single_instance_lock():
+        return
+
     root = tk.Tk()
     root.title(f"inkpress {__version__} — Book & Dispatch Formatting Studio")
-    root.geometry("1120x820")
-    root.minsize(980, 740)
+    root.geometry("1160x820")
+    root.minsize(980, 720)
     ico_path = HERE / "inkpress.ico"
     if ico_path.is_file():
         try:
