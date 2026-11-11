@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-glass="cosmic">
+<html lang="en" data-theme="cosmic">
 <head>
     <!-- Google Analytics 4 -->
     <script>(function(){var l=function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J";document.head.appendChild(s);};var i=window.requestIdleCallback||function(cb){return setTimeout(cb,300);};var g=function(){i(l,{timeout:1500});};if(document.readyState==="complete"){g();}else{window.addEventListener("load",g);}})();</script>
@@ -12,7 +12,7 @@
   <meta charset="UTF-8" />
   <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
   <link rel="preload" as="image" href="/images/zodiac/scorpio.webp" fetchpriority="high">
-  <link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scorpio Wall Art & Zodiac Art Prints — 14 Styles | BBJ Studio</title>
   <meta name="description" content="Scorpio wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included." />
@@ -190,227 +190,9 @@
   }
   </script>
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bbj-bg: #f1eee6;
-      --bbj-surface: #ffffff;
-      --bbj-surface-2: #f8f5ee;
-      --bbj-accent: #ff5a30;
-      --bbj-accent2: #ff5a30;
-      --bbj-text: #14130e;
-      --bbj-muted: #6d695d;
-      --bbj-border: #e2ddd0;
-      --body-read: #14130e;
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Hanken Grotesk', sans-serif; background: var(--bbj-bg); color: var(--bbj-text); overflow-x: hidden; min-height: 100vh; }
-    .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-    .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0; animation: twinkle var(--d) ease-in-out infinite var(--delay); }
-    @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: var(--op); transform: scale(1); } }
-    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 64px; background: rgba(241,238,230,0.92);  border-bottom: 1px solid var(--bbj-border); }
-    .nav-logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--bbj-text); text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--bbj-muted); transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--bbj-accent); }
-    .collection-hero { padding: 9rem 2rem 3rem; max-width: 1200px; margin: 0 auto; text-align: center; position: relative; }
-    .collection-hero::before { content: ''; position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse at 50% 0%, rgba(255,90,48,0.1) 0%, transparent 55%),
-                  radial-gradient(ellipse at 20% 80%, rgba(255,90,48,0.08) 0%, transparent 50%); }
-    .breadcrumb { font-family: 'Bricolage Grotesque', serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-muted); margin-bottom: 1.4rem; position: relative; }
-    .breadcrumb a { color: var(--bbj-accent); text-decoration: none; }
-    .breadcrumb a:hover { text-decoration: underline; }
-    .breadcrumb .sep { margin: 0 0.6rem; opacity: 0.5; }
-    .hero-eyebrow { font-family: 'Bricolage Grotesque', serif; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 1.2rem; position: relative; }
-    h1.collection-title { font-family: 'Bricolage Grotesque', serif; font-size: clamp(2.2rem, 5.5vw, 3.8rem); font-weight: 700; letter-spacing: 0.02em; line-height: 1.12; color: var(--bbj-text); margin-bottom: 1.4rem; max-width: 900px; margin-left: auto; margin-right: auto; position: relative; }
-    .collection-tagline { font-family: 'Hanken Grotesk', serif; font-size: clamp(1.05rem, 1.5vw, 1.18rem); color: var(--body-read); max-width: 760px; margin: 0 auto 2.5rem; line-height: 1.65; position: relative; }
-    .hero-image { max-width: 420px; margin: 0 auto; position: relative; border: 1px solid var(--bbj-border); overflow: hidden; aspect-ratio: 4/5; }
-    .hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-image::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,90,48,0.08) 0%, transparent 70%); pointer-events: none; }
-
-    /* The Short Version block (GEO-citable summary) */
-    .short-version { max-width: 1000px; margin: 3rem auto 0; padding: 2rem 2.4rem; background: var(--bbj-surface); border: 1px solid var(--bbj-border); border-left: 4px solid var(--bbj-accent); position: relative; }
-    .short-version-label { font-family: 'Bricolage Grotesque', serif; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 0.9rem; }
-    .short-version p { font-family: 'Hanken Grotesk', serif; font-size: 1.05rem; line-height: 1.75; color: var(--body-read); margin: 0; }
-
-    /* Main grid */
-    .collection-main { max-width: 1200px; margin: 2rem auto 0; padding: 2rem 2rem 4rem; display: grid; grid-template-columns: 1fr 340px; gap: 3rem; align-items: start; }
-    .main-column { font-family: 'Hanken Grotesk', serif; font-size: 1.15rem; line-height: 1.75; color: var(--body-read); min-width: 0; }
-    .main-column section { margin-bottom: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--bbj-border); }
-    .main-column section:first-child { border-top: none; padding-top: 0; }
-    .main-column h2 { font-family: 'Bricolage Grotesque', serif; font-size: clamp(1.4rem, 2.6vw, 1.85rem); font-weight: 700; letter-spacing: 0.02em; color: var(--bbj-text); margin-bottom: 1.3rem; line-height: 1.2; }
-    .main-column p { margin-bottom: 1.3rem; }
-    .main-column p strong { color: var(--bbj-text); font-weight: 600; }
-    .main-column ul { list-style: none; margin: 0 0 1.5rem 0; padding: 0; }
-    .main-column ul li { position: relative; padding-left: 1.6rem; margin-bottom: 0.8rem; }
-    .main-column ul li::before { content: '◆'; position: absolute; left: 0; color: var(--bbj-accent); font-size: 0.7rem; top: 0.5rem; }
-
-    /* Quick facts data block */
-    .quick-facts { background: var(--bbj-surface); border: 1px solid var(--bbj-border); padding: 1.3rem 1.7rem; margin: 0 0 2rem 0 !important; }
-    .quick-facts li { padding-left: 0 !important; margin-bottom: 0.5rem !important; font-family: 'Hanken Grotesk', sans-serif; font-size: 0.95rem; color: var(--body-read); }
-    .quick-facts li::before { content: '' !important; }
-    .quick-facts li strong { font-family: 'Bricolage Grotesque', serif; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bbj-accent); display: inline-block; min-width: 145px; }
-
-    /* 14-style grouped layout */
-    .styles-grouped { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 1.5rem; }
-    .style-block { display: flex; flex-direction: column; gap: 0.8rem; }
-    .style-block-title { font-family: 'Bricolage Grotesque', serif; font-size: 1.1rem; font-weight: 700; color: var(--bbj-text); letter-spacing: 0.04em; text-transform: uppercase; padding-bottom: 0.6rem; border-bottom: 1px solid var(--bbj-border); margin: 0; }
-    .style-block-desc { font-family: 'Hanken Grotesk', serif; font-size: 1rem; line-height: 1.65; color: var(--body-read); margin: 0 0 0.5rem 0 !important; padding-left: 0 !important; }
-    .style-block-desc::before { content: '' !important; }
-    .styles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .style-card { background: var(--bbj-surface); border: 1px solid var(--bbj-border); padding: 0; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.25s, background 0.25s; }
-    .style-card:hover { border-color: rgba(255,90,48,0.35); background: var(--bbj-surface-2); }
-    .style-card img { width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; display: block; background: linear-gradient(135deg, #1d1b15 0%, #14130e 100%); border-bottom: 1px solid var(--bbj-border); }
-    .style-card-body { padding: 0.9rem 1.1rem 1rem; }
-
-    /* Lemon Squeezy checkout button (sidebar + final CTA) */
-    .ls-checkout-btn { display: block; width: 100%; background: var(--bbj-accent); color: var(--bbj-bg); border: none; font-family: 'Bricolage Grotesque', serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 1.05rem 1rem; text-align: center; cursor: pointer; transition: background 0.2s, transform 0.2s; margin-bottom: 0.7rem; }
-    .ls-checkout-btn:hover:not(:disabled) { background: #ff6a45; transform: translateY(-1px); }
-    .ls-checkout-btn:disabled { background: transparent; color: var(--bbj-muted); border: 1px solid var(--bbj-border); cursor: default; font-weight: 600; letter-spacing: 0.12em; font-size: 0.74rem; }
-    .ls-checkout-btn--large { display: inline-block; width: auto; padding: 1.15rem 2.5rem; font-size: 0.82rem; margin: 0; }
-    .ls-checkout-btn--large:disabled { font-size: 0.78rem; padding: 1.1rem 2.2rem; }
-    .ls-checkout-sub { display: block; font-size: 0.74rem; font-style: italic; color: var(--bbj-muted); text-align: center; margin-bottom: 1.4rem; line-height: 1.45; }
-
-    /* Secondary print-on-demand link (muted, courtesy link only — not a competing sales path) */
-    .alt-shop { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid rgba(226,221,208,0.5); }
-    .alt-shop .alt-shop-label { font-family: 'Bricolage Grotesque', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-muted); margin-bottom: 0.5rem; }
-    .alt-shop p { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.78rem; color: var(--bbj-muted); line-height: 1.5; margin-bottom: 0.5rem; }
-    .alt-shop a { color: var(--bbj-muted); text-decoration: underline; text-decoration-color: rgba(109,105,93,0.4); }
-    .alt-shop a:hover { color: var(--bbj-accent); text-decoration-color: var(--bbj-accent); }
-
-    /* License & POD block */
-    .license-block { background: var(--bbj-surface); border: 1px solid var(--bbj-border); padding: 2rem 2.2rem; margin-top: 2rem; }
-    .license-block h3 { font-family: 'Bricolage Grotesque', serif; font-size: 1.02rem; font-weight: 700; color: var(--bbj-text); letter-spacing: 0.05em; text-transform: uppercase; margin: 1.6rem 0 0.8rem 0; padding-bottom: 0.4rem; border-bottom: 1px solid var(--bbj-border); }
-    .license-block h3:first-child { margin-top: 0; }
-    .license-block ul { margin-bottom: 1.4rem !important; }
-    .license-block p.disclosure { background: rgba(255,90,48,0.07); border-left: 3px solid var(--bbj-accent2); padding: 1rem 1.2rem; margin-bottom: 1.4rem; font-size: 1rem; line-height: 1.65; }
-    .license-block p.contact-line { margin-bottom: 1.5rem; font-size: 1rem; color: var(--body-read); }
-    .license-block a.pdf-link { display: inline-block; font-family: 'Bricolage Grotesque', serif; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bbj-accent); text-decoration: none; padding: 0.6rem 1.1rem; border: 1px solid var(--bbj-accent); margin: 0.4rem 0.4rem 0 0; transition: background 0.2s, color 0.2s; }
-    .license-block a.pdf-link:hover { background: var(--bbj-accent); color: var(--bbj-bg); }
-
-    /* Sticky sidebar */
-    .sticky-sidebar { position: sticky; top: 88px; background: var(--bbj-surface); border: 1px solid var(--bbj-border); padding: 1.8rem 1.7rem; font-family: 'Hanken Grotesk', sans-serif; }
-    .sticky-sidebar::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(135deg, rgba(255,90,48,0.05) 0%, transparent 60%); }
-    .sticky-sidebar > * { position: relative; }
-    .sidebar-label { font-family: 'Bricolage Grotesque', serif; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-muted); margin-bottom: 0.4rem; }
-    .price-drop-pill { display:inline-block; font-family:'Hanken Grotesk',sans-serif; font-size:0.6rem; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:#14130e; background:var(--bbj-accent); padding:4px 10px; border-radius:999px; margin-bottom:0.6rem; }
-    .price-was { font-size:1.4rem; font-weight:700; color:var(--bbj-muted); text-decoration:line-through; margin-right:0.4rem; }
-    .sidebar-price { font-family: 'Bricolage Grotesque', serif; font-size: 2.4rem; font-weight: 700; color: var(--bbj-accent); letter-spacing: -0.02em; line-height: 1; margin-bottom: 0.4rem; }
-    .sidebar-price-note { font-size: 0.78rem; color: var(--bbj-muted); letter-spacing: 0.02em; margin-bottom: 1.4rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--bbj-border); }
-    .sidebar-included-label { font-family: 'Bricolage Grotesque', serif; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-muted); margin-bottom: 0.8rem; }
-    .sidebar-included { list-style: none; padding: 0; margin: 0 0 1.5rem 0; }
-    .sidebar-included li { font-size: 0.84rem; color: var(--body-read); padding: 0.42rem 0 0.42rem 1.3rem; position: relative; line-height: 1.35; border-bottom: 1px solid rgba(226,221,208,0.5); }
-    .sidebar-included li:last-child { border-bottom: none; }
-    .sidebar-included li::before { content: '✓'; position: absolute; left: 0; color: var(--bbj-accent); font-weight: 700; font-size: 0.85rem; }
-    .sidebar-cta { display: block; background: var(--bbj-accent); color: var(--bbj-bg); font-family: 'Bricolage Grotesque', serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 1.05rem 1rem; text-align: center; text-decoration: none; transition: background 0.2s, transform 0.2s; margin-bottom: 0.7rem; }
-    .sidebar-cta:hover { background: #ff6a45; transform: translateY(-1px); }
-    .sidebar-cta-sub { display: block; font-size: 0.74rem; font-style: italic; color: var(--bbj-muted); text-align: center; margin-bottom: 1.4rem; line-height: 1.4; }
-    .sidebar-trust { list-style: none; padding: 0; margin: 0; }
-    .sidebar-trust li { font-size: 0.74rem; color: var(--bbj-muted); padding: 0.35rem 0 0.35rem 1.2rem; position: relative; line-height: 1.35; }
-    .sidebar-trust li::before { content: '✦'; position: absolute; left: 0; color: var(--bbj-accent); font-size: 0.72rem; top: 0.38rem; }
-
-    /* FAQ */
-    .faq-section { max-width: 900px; margin: 0 auto; padding: 5rem 2rem 4rem; }
-    .section-label { font-family: 'Bricolage Grotesque', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-accent); text-align: center; margin-bottom: 0.6rem; }
-    .section-title-main { font-family: 'Bricolage Grotesque', serif; font-size: clamp(1.8rem, 3.2vw, 2.4rem); font-weight: 700; letter-spacing: 0.02em; color: var(--bbj-text); text-align: center; margin-bottom: 2.8rem; }
-    .faq-list { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--bbj-border); }
-    .faq-item { border-bottom: 1px solid var(--bbj-border); padding: 1.6rem 0; }
-    .faq-item h3 { font-family: 'Bricolage Grotesque', serif; font-size: 1.05rem; font-weight: 600; color: var(--bbj-text); margin-bottom: 0.7rem; letter-spacing: 0.01em; }
-    .faq-item p { font-family: 'Hanken Grotesk', serif; font-size: 1.05rem; line-height: 1.65; color: var(--body-read); margin: 0; }
-
-    /* Sister-sign nav grid */
-    .sister-nav-section { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 2rem; }
-    .sister-intro { font-family: 'Hanken Grotesk', serif; font-style: italic; font-size: 1.05rem; color: var(--body-read); text-align: center; max-width: 720px; margin: 0 auto 2rem; }
-    .sister-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
-    .sister-card { background: var(--bbj-surface); border: 1px solid var(--bbj-border); padding: 1rem 1rem 1rem; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s, background 0.2s; display: flex; flex-direction: column; align-items: center; gap: 0.35rem; position: relative; }
-    .sister-card:hover { transform: translateY(-2px); border-color: rgba(255,90,48,0.4); background: var(--bbj-surface-2); }
-    .sister-card-current { border-color: var(--bbj-accent); background: rgba(255,90,48,0.05); cursor: default; }
-    .sister-card-current:hover { transform: none; }
-    .sister-glyph { font-size: 1.5rem; color: var(--bbj-accent); line-height: 1; }
-    .sister-name { font-family: 'Bricolage Grotesque', serif; font-size: 0.92rem; font-weight: 700; letter-spacing: 0.03em; color: var(--bbj-text); }
-    .sister-meta { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.7rem; color: var(--bbj-muted); letter-spacing: 0.04em; text-align: center; }
-    .sister-here { font-family: 'Bricolage Grotesque', serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-accent); margin-top: 0.3rem; }
-
-    /* Reviews */
-    .reviews-section { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 0; }
-    .reviews-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.8rem; }
-    .reviews-header .star-display { font-family: 'Bricolage Grotesque', serif; font-size: 1.2rem; color: var(--bbj-accent); font-weight: 700; }
-    .reviews-header .review-note { font-family: 'Hanken Grotesk', serif; font-size: 0.95rem; font-style: italic; color: var(--bbj-muted); }
-    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .review-card { background: var(--bbj-surface); border: 1px solid var(--bbj-border); padding: 1.4rem; position: relative; }
-    .review-card .review-stars { font-size: 0.9rem; color: var(--bbj-accent); margin-bottom: 0.5rem; }
-    .review-card .review-text { font-family: 'Hanken Grotesk', serif; font-size: 1rem; font-style: italic; color: var(--body-read); line-height: 1.55; margin-bottom: 0.7rem; }
-    .review-card .review-author { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.78rem; color: var(--bbj-muted); }
-
-    /* Related Collections */
-    .related-section { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 5rem; }
-    .related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
-    .related-card { background: var(--bbj-surface); border: 1px solid var(--bbj-border); padding: 1.6rem 1.6rem 1.4rem; text-decoration: none; color: inherit; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
-    .related-card::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(135deg, rgba(255,90,48,0.04) 0%, transparent 60%); }
-    .related-card:hover { transform: translateY(-3px); border-color: rgba(255,90,48,0.35); box-shadow: 0 14px 40px rgba(255,90,48,0.08); }
-    .related-card > * { position: relative; z-index: 1; }
-    .related-meta { font-family: 'Bricolage Grotesque', serif; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 0.7rem; }
-    .related-card h3 { font-family: 'Bricolage Grotesque', serif; font-size: 1.1rem; font-weight: 700; color: var(--bbj-text); margin-bottom: 0.6rem; letter-spacing: 0.01em; line-height: 1.25; }
-    .related-card p { font-family: 'Hanken Grotesk', serif; font-size: 0.95rem; font-style: italic; color: var(--bbj-muted); line-height: 1.5; margin-bottom: 1rem; flex: 1; }
-    .related-link { font-family: 'Bricolage Grotesque', serif; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bbj-accent); }
-
-    /* Final CTA band */
-    .cta-band { padding: 5rem 2rem; text-align: center; background: linear-gradient(135deg, #1d1b15 0%, #14130e 100%); border-top: 1px solid var(--bbj-border); border-bottom: 1px solid var(--bbj-border); position: relative; }
-    .cta-band .cta-eyebrow { font-family: 'Bricolage Grotesque', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 1rem; }
-    .cta-band h2 { font-family: 'Bricolage Grotesque', serif; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; color: var(--bbj-text); margin-bottom: 0.8rem; letter-spacing: 0.02em; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.2; }
-    .cta-band h2 .italic-accent { color: var(--bbj-accent); font-style: italic; font-family: 'Hanken Grotesk', serif; font-weight: 400; }
-    .cta-band .cta-sub { font-family: 'Hanken Grotesk', serif; color: var(--body-read); font-size: 1.05rem; max-width: 620px; margin: 0 auto 2rem; line-height: 1.6; }
-    .cta-band .cta-sub-line { display: block; font-family: 'Hanken Grotesk', serif; font-style: italic; font-size: 0.9rem; color: var(--bbj-muted); margin-top: 1rem; }
-
-    /* Footer */
-    footer { background: #14130e; padding: 3rem 5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-    .footer-left { font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
-    .footer-left strong { color: rgba(255,255,255,0.7); }
-    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
-    .footer-links a { font-size: 0.75rem; color: rgba(255,255,255,0.62); text-decoration: none; transition: color 0.2s; letter-spacing: 0.06em; text-transform: uppercase; }
-    .footer-links a:hover { color: rgba(255,255,255,0.7); }
-    .footer-legal { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.62); width: 100%; text-align: center; margin-top: 1rem; line-height: 1.6; }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .collection-main { grid-template-columns: 1fr; gap: 2.5rem; }
-      .sticky-sidebar { position: static; order: -1; max-width: 500px; margin: 0 auto; width: 100%; }
-      .related-grid { grid-template-columns: repeat(2, 1fr); }
-      .reviews-grid { grid-template-columns: 1fr; }
-      .sister-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 720px) {
-      .collection-hero { padding: 7rem 1.5rem 2rem; }
-      .short-version { padding: 1.6rem 1.4rem; }
-      .collection-main { padding: 1.5rem 1.5rem 3rem; }
-      .main-column { font-size: 1.08rem; }
-      .faq-section { padding: 4rem 1.5rem 3rem; }
-      .related-section { padding: 2rem 1.5rem 4rem; }
-      .related-grid { grid-template-columns: 1fr; }
-      .site-nav { padding: 0 1.5rem; }
-      .nav-links { gap: 1.2rem; }
-      .sister-grid { grid-template-columns: repeat(2, 1fr); }
-      .styles-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; padding: 2rem; text-align: center; }
-    }
-
-    .nav-logo { white-space: nowrap; }
-    .nav-logo .logo-short { display: none; }
-    @media (max-width: 720px) {
-      .site-nav { padding: 0 1rem; }
-      .nav-logo { font-size: 0.88rem; }
-      .nav-logo .logo-full { display: none; }
-      .nav-logo .logo-short { display: inline; }
-      .nav-links { gap: 0.9rem; }
-      .nav-links a { font-size: 0.72rem; letter-spacing: 0.04em; }
-    }
-    @media (max-width: 420px) {
-      .nav-logo { font-size: 0.78rem; }
-      .nav-links { gap: 0.55rem; }
-      .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
-    }
-  </style>
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/layouts.css" />
   <link rel="stylesheet" href="/css/mobile-nav.css" />
 
   <!-- Organization schema (site-wide, from Message 1 identity cleanup) -->
@@ -501,14 +283,14 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 </head>
-<body>
+<body class="cosmos">
   <!-- STAR FIELD -->
-  <div class="stars" id="starsContainer"></div>
 
   <!-- NAV -->
-  <nav class="site-nav">
-    <a href="../" class="nav-logo"><span class="logo-full">Built by Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
-    <ul class="nav-links">
+  <nav class="site-nav nav" aria-label="Main">
+    <div class="wrap">
+    <a href="../" class="nav-logo wordmark">Built <em>by</em> Josh Studio</a>
+    <ul class="nav-links nav__links">
       <li><a href="../#tynkr">Tynkr Tools</a></li>
       <li><a href="../#builtbyjosh" class="active">Zodiac Art</a></li>
       <li><a href="../blog.html">Blog</a></li>
@@ -521,42 +303,50 @@
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
       <span></span><span></span><span></span>
     </button>
+    </div>
   </nav>
 
   <!-- HERO -->
-  <header class="collection-hero">
-    <div class="breadcrumb">
+  <div class="wrap">
+    <div class="breadcrumb crumbs">
       <a href="../">Home</a><span class="sep">/</span><a href="./">Collections</a><span class="sep">/</span><span>Scorpio</span>
     </div>
-    <div class="hero-eyebrow">♏ Scorpio · Water Sign · October 23 – November 21</div>
-    <h1 class="collection-title">Scorpio Zodiac Art Bundle — 144 Print-Ready Files</h1>
-    <p class="collection-tagline">24 original Scorpio designs across 14 art styles — depth, intensity, and what's underneath. From the visceral menace of the Halloween Horrors to softer watercolor interpretations, mythic guardian armor in obsidian, vintage poster regalia, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.</p>
-    <div class="hero-image">
-      <img src="../images/zodiac/scorpio.webp" alt="Scorpio zodiac art bundle preview — 14 art styles including celestial animals, mythic guardians, watercolor, Halloween Horrors, and vintage posters, from Built by Josh Studio" fetchpriority="high" width="720" height="900" />
+  <header class="collection-hero zhero">
+    <span class="bignum" aria-hidden="true">08</span>
+    <div class="zhero__text">
+      <p class="hero-eyebrow eyebrow">♏ Scorpio · Water Sign · October 23 – November 21</p>
+      <h1 class="collection-title">Scorpio Zodiac Art Bundle — 144 Print-Ready Files</h1>
+      <p class="collection-tagline measure lead">24 original Scorpio designs across 14 art styles — depth, intensity, and what's underneath. From the visceral menace of the Halloween Horrors to softer watercolor interpretations, mythic guardian armor in obsidian, vintage poster regalia, and more. Every design ships in three print-ready sizes and both PNG and JPG, totaling 144 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.</p>
     </div>
+    <figure class="hero-image frame glow">
+      <img src="../images/zodiac/scorpio.webp" alt="Scorpio zodiac art bundle preview — 14 art styles including celestial animals, mythic guardians, watercolor, Halloween Horrors, and vintage posters, from Built by Josh Studio" fetchpriority="high" width="720" height="900" />
+    </figure>
   </header>
+  </div>
 
   <!-- The Short Version (GEO-citable summary) -->
-  <aside class="short-version">
-    <div class="short-version-label">The Short Version</div>
+  <div class="wrap">
+  <aside class="short-version short">
+    <span class="short__label">The Short Version</span>
     <p>The Scorpio Zodiac Art Bundle from Built by Josh Studio is a digital art collection containing 144 print-ready image files. Each bundle covers one Western zodiac sign and includes 24 original designs across 14 art-style series — Anime, Celestial Animals, Halloween, Halloween Horrors, Hyper Realistic, Mythic Guardians, Punk, Punk Oil, Silhouette Aspects, Silhouettes, Silhouettes Fantasy, Vintage Posters, Watercolor 1, Watercolor 2. Every design is delivered in three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) at 300 DPI, in both PNG and JPG formats, with maximum dimensions of 6000 × 9000 pixels. The bundle is priced at $10.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
   </aside>
+  </div>
 
   <!-- MAIN LAYOUT -->
-  <div class="collection-main">
+  <div class="collection-main layout wrap">
 
     <!-- MAIN COLUMN -->
     <main class="main-column">
 
       <section>
-        <h2>Scorpio Zodiac Art Bundle — The Full Collection</h2>
+        <div class="section-head"><div><span class="num">01</span><h2>Scorpio Zodiac Art Bundle — The Full Collection</h2></div></div>
         <p>The Scorpio Zodiac Art Bundle from Built by Josh Studio is one of 12 sign-specific bundles in the Western Signs Collection. Each Scorpio bundle contains 144 print-ready digital files — 24 unique designs rendered across 14 distinct art-style series, with every design delivered in three aspect ratios and both PNG and JPG formats.</p>
         <p>The 14 styles span the full visual range of the catalog. Some are atmospheric and editorial — Celestial Animals, Mythic Guardians, Vintage Posters. Some are stylized — Anime, Punk, Punk Oil. Some are softer — Watercolor 1, Watercolor 2, Silhouettes Fantasy. Some are graphic and high-contrast — Silhouettes, Silhouette Aspects, Hyper Realistic, Halloween, Halloween Horrors. Buyers don't pick one style; the bundle includes all 14.</p>
         <p>Built by Josh Studio LLC, a Kansas-based independent creative studio, publishes this zodiac art under its own name. Every bundle is original work — concepted, generated, curated, and finalized by a single founder.</p>
       </section>
 
       <section>
-        <h2>What Makes Scorpio, Scorpio</h2>
+        <div class="section-head"><div><span class="num">02</span><h2>What Makes Scorpio, Scorpio</h2></div></div>
         <ul class="quick-facts">
           <li><strong>Element:</strong> Water</li>
           <li><strong>Modality:</strong> Fixed</li>
@@ -571,20 +361,15 @@
       </section>
 
       <section>
-        <h2>The 14 Art Styles in the Scorpio Bundle</h2>
+        <div class="section-head"><div><span class="num">03</span><h2>The 14 Art Styles in the Scorpio Bundle</h2></div></div>
         <p>The current page lists 14 distinct art-style series. The bundle includes all of them — every design, every variant, every format.</p>
         <div class="styles-grouped">
         <div class="style-block">
           <h3 class="style-block-title">Anime</h3>
         <p class="style-block-desc">Stylized, Japanese-illustration-inspired. Scorpio rendered with anime intensity — narrowed eyes, deep palettes, the kinetic feel of something about to strike. Reads like a key visual from a darker animated series.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/anime-1.webp" alt="Anime variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/anime-1.webp" alt="Anime variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
           </div>
         </div>
@@ -592,14 +377,9 @@
         <div class="style-block">
           <h3 class="style-block-title">Celestial Animals</h3>
         <p class="style-block-desc">Cosmic-symbolic and sacred-geometric. Gold linework, deep cosmic backgrounds, and the scorpion positioned as a celestial archetype — venom-tipped geometry against the deepest cosmic black.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/celestial-animals-1.webp" alt="Celestial Animals variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/celestial-animals-1.webp" alt="Celestial Animals variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
           </div>
         </div>
@@ -607,21 +387,11 @@
         <div class="style-block">
           <h3 class="style-block-title">Halloween</h3>
         <p class="style-block-desc">Seasonal but not costume-y. Scorpio energy filtered through pumpkin-light, autumn palettes, and the season the sign was born to own. The scorpion at the height of its hour, designed to work year-round on a wall.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/halloween-1.webp" alt="Halloween variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/halloween-1.webp" alt="Halloween variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/halloween-2.webp" alt="Halloween variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/halloween-2.webp" alt="Halloween variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 2</h4></div></div>
 
           </div>
         </div>
@@ -629,21 +399,11 @@
         <div class="style-block">
           <h3 class="style-block-title">Halloween Horrors</h3>
         <p class="style-block-desc">The darker companion to the Halloween series. Macabre, shadow-drenched, and unapologetically horror-leaning. Scorpio rendered without restraint — blood-deep crimson, obsidian sting, the horror this sign carries by default.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/halloween-horrors-1.webp" alt="Halloween Horrors variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/halloween-horrors-1.webp" alt="Halloween Horrors variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/halloween-horrors-2.webp" alt="Halloween Horrors variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/halloween-horrors-2.webp" alt="Halloween Horrors variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 2</h4></div></div>
 
           </div>
         </div>
@@ -651,35 +411,15 @@
         <div class="style-block">
           <h3 class="style-block-title">Hyper Realistic</h3>
         <p class="style-block-desc">Photoreal portraiture with cinematic lighting and material detail. Chitin texture, venom gleam, the exact weight of a curved tail. Designed for buyers who want gallery-quality realism rather than symbolic stylization.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/hyper-realistic-signs-1.webp" alt="Hyper Realistic variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/hyper-realistic-signs-1.webp" alt="Hyper Realistic variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/hyper-realistic-signs-2.webp" alt="Hyper Realistic variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/hyper-realistic-signs-2.webp" alt="Hyper Realistic variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 2</h4></div></div>
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/hyper-realistic-signs-3.webp" alt="Hyper Realistic variant 3 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 3</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/hyper-realistic-signs-3.webp" alt="Hyper Realistic variant 3 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 3</h4></div></div>
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/hyper-realistic-signs-4.webp" alt="Hyper Realistic variant 4 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 4</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/hyper-realistic-signs-4.webp" alt="Hyper Realistic variant 4 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 4</h4></div></div>
 
           </div>
         </div>
@@ -687,14 +427,9 @@
         <div class="style-block">
           <h3 class="style-block-title">Mythic Guardians</h3>
         <p class="style-block-desc">Hyper-realistic warrior portraiture — black-armored assassins, venomous guardians, cinematic mythological figures. The signature hero-pose look of the catalog rendered in obsidian and blood.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/mythic-guardians-1.webp" alt="Mythic Guardians variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/mythic-guardians-1.webp" alt="Mythic Guardians variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
           </div>
         </div>
@@ -702,14 +437,9 @@
         <div class="style-block">
           <h3 class="style-block-title">Punk</h3>
         <p class="style-block-desc">Bold, graphic, attitude-forward. Scorpio reimagined with punk-rock visual language — sharp angles, defiant compositions, high-contrast color. Loud on purpose, intentionally menacing.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/punk-1.webp" alt="Punk variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/punk-1.webp" alt="Punk variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
           </div>
         </div>
@@ -717,14 +447,9 @@
         <div class="style-block">
           <h3 class="style-block-title">Punk Oil</h3>
         <p class="style-block-desc">The Punk style brushed through oil-painting texture. Painterly weight applied to a sign already built around intensity — more layered, slightly more vintage in feel, still dangerous.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/punk-oil-1.webp" alt="Punk Oil variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/punk-oil-1.webp" alt="Punk Oil variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
           </div>
         </div>
@@ -732,21 +457,11 @@
         <div class="style-block">
           <h3 class="style-block-title">Silhouette Aspects</h3>
         <p class="style-block-desc">Pure form against atmospheric backdrop. The scorpion and Scorpio iconography stripped to silhouette, with mood carried by sky and palette — blood moons, deep dusk, the colors of something hunting.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/silhouette-aspects-1.webp" alt="Silhouette Aspects variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/silhouette-aspects-1.webp" alt="Silhouette Aspects variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/silhouette-aspects-2.webp" alt="Silhouette Aspects variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/silhouette-aspects-2.webp" alt="Silhouette Aspects variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 2</h4></div></div>
 
           </div>
         </div>
@@ -754,21 +469,11 @@
         <div class="style-block">
           <h3 class="style-block-title">Silhouettes</h3>
         <p class="style-block-desc">Stark high-contrast silhouettes — bolder edges, simpler compositions, gallery-wall ready. Designed to anchor a multi-sign or multi-style wall arrangement.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/silhouettes-1.webp" alt="Silhouettes variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/silhouettes-1.webp" alt="Silhouettes variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/silhouettes-2.webp" alt="Silhouettes variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/silhouettes-2.webp" alt="Silhouettes variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 2</h4></div></div>
 
           </div>
         </div>
@@ -776,14 +481,9 @@
         <div class="style-block">
           <h3 class="style-block-title">Silhouettes Fantasy</h3>
         <p class="style-block-desc">Silhouettes pushed into fantasy territory — magical elements, ethereal backdrops, mythic atmosphere. The bridge between the graphic silhouettes and the cinematic Mythic Guardians.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/silhouettes-fantasy-1.webp" alt="Silhouettes Fantasy variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/silhouettes-fantasy-1.webp" alt="Silhouettes Fantasy variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
           </div>
         </div>
@@ -791,21 +491,11 @@
         <div class="style-block">
           <h3 class="style-block-title">Vintage Posters</h3>
         <p class="style-block-desc">Classic printed-poster aesthetic. Bold typography, textured paper feel, mid-century color palettes. Reads like framed ephemera from a darker era — the kind of design that suits a sign comfortable in shadow.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/vintage-posters-1.webp" alt="Vintage Posters variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/vintage-posters-1.webp" alt="Vintage Posters variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/vintage-posters-2.webp" alt="Vintage Posters variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/vintage-posters-2.webp" alt="Vintage Posters variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 2</h4></div></div>
 
           </div>
         </div>
@@ -813,21 +503,11 @@
         <div class="style-block">
           <h3 class="style-block-title">Watercolor 1</h3>
         <p class="style-block-desc">Soft painterly washes — crimson, deep purple, ink black. Fluid movement, organic edges, gentler but no less Scorpio. The studio's classic watercolor approach applied to a sign that bleeds.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/watercolor-1-1.webp" alt="Watercolor 1 variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/watercolor-1-1.webp" alt="Watercolor 1 variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/watercolor-1-2.webp" alt="Watercolor 1 variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/watercolor-1-2.webp" alt="Watercolor 1 variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 2</h4></div></div>
 
           </div>
         </div>
@@ -835,21 +515,11 @@
         <div class="style-block">
           <h3 class="style-block-title">Watercolor 2</h3>
         <p class="style-block-desc">A second watercolor interpretation with different palette and brushwork emphasis — more saturated, slightly more graphic, designed to pair with or stand against the Watercolor 1 series.</p>
-          <div class="styles-grid">
+          <div class="styles-grid grid grid--catalog">
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/watercolor-2-1.webp" alt="Watercolor 2 variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 1</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/watercolor-2-1.webp" alt="Watercolor 2 variant 1 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="style-card">
-              <img src="../images/zodiac/scorpio/watercolor-2-2.webp" alt="Watercolor 2 variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900">
-              <div class="style-card-body">
-                <h4 style="font-family:'Bricolage Grotesque',serif;font-size:.85rem;font-weight:600;color:var(--bbj-muted);letter-spacing:.08em;text-transform:uppercase;margin:0">Variant 2</h4>
-              </div>
-            </div>
+            <div class="style-card card"><div class="card__media"><img src="../images/zodiac/scorpio/watercolor-2-2.webp" alt="Watercolor 2 variant 2 — Scorpio Zodiac Art Print" loading="lazy" width="720" height="900"></div><div class="style-card-body card__body"><h4>Variant 2</h4></div></div>
 
           </div>
         </div>
@@ -857,7 +527,7 @@
       </section>
 
       <section>
-        <h2>Who Buys Scorpio Zodiac Art</h2>
+        <div class="section-head"><div><span class="num">04</span><h2>Who Buys Scorpio Zodiac Art</h2></div></div>
         <ul>
           <li>Scorpio (October 23 – November 21) who want a single bundle covering every art style for their sign, rather than picking one print at a time</li>
           <li>Printful, Redbubble, and other print-on-demand sellers building zodiac shops who need licensed, print-ready files with explicit POD rights</li>
@@ -869,7 +539,7 @@
       </section>
 
       <section>
-        <h2>What's Included With Every Scorpio Bundle</h2>
+        <div class="section-head"><div><span class="num">05</span><h2>What's Included With Every Scorpio Bundle</h2></div></div>
         <p>Every Scorpio Zodiac Art Bundle is a complete digital download. After purchase, you get instant access to 144 image files organized into 14 art-style subfolders — no shipping, no waiting, no physical product mailed to you.</p>
         <p>Each design is delivered in three aspect ratios: 1:1 square (4800 × 4800 pixels), 4:5 portrait (4800 × 6000 pixels), and 2:3 portrait (6000 × 9000 pixels). Every size is provided in both PNG (lossless) and JPG (92% quality) formats. All files are saved at 300 DPI in standard sRGB color space — the industry standard for high-quality print reproduction across home printers, professional print shops, and print-on-demand services.</p>
         <p>The bundle also includes two PDF documents: a <strong>License Agreement &amp; Terms of Use</strong> covering personal use, print-on-demand rights, and the 100-print-per-design cap, and a <strong>Print Guide &amp; User Manual</strong> explaining file structure, recommended print sizes, paper selection, and troubleshooting tips. Both are tailored to the Western Signs Collection.</p>
@@ -877,8 +547,8 @@
       </section>
 
       <section>
-        <h2>Licensing &amp; Print-on-Demand Rights</h2>
-        <div class="license-block">
+        <div class="section-head"><div><span class="num">06</span><h2>Licensing &amp; Print-on-Demand Rights</h2></div></div>
+        <div class="license-block panel panel--inset">
           <p>The Scorpio Zodiac Art Bundle ships with a clear, plain-English license — not a vague "for personal use" disclaimer.</p>
           <h3>You may</h3>
           <ul>
@@ -894,24 +564,24 @@
             <li>Exceed the 100-print-per-design cap (it does not reset and is cumulative across all channels)</li>
             <li>Claim authorship of the designs or register them as your own intellectual property</li>
           </ul>
-          <p class="disclosure"><strong>AI disclosure:</strong> The designs in the bundle were created using a combination of human creative direction and AI image generation tools, including Leonardo.ai, with selection, curation, refinement, and final arrangement by Built by Josh Studio LLC. This is disclosed in full in the license agreement.</p>
-          <p class="contact-line"><strong>Need more than 100 prints per design?</strong> Extended commercial licensing is available — contact <a href="mailto:josh@builtbyjoshstudio.com" style="color:var(--bbj-accent);text-decoration:none">josh@builtbyjoshstudio.com</a> before exceeding the cap.</p>
-          <a href="/legal/license-western-signs.pdf" class="pdf-link">Read the full Western Signs License (PDF) →</a>
-          <a href="/legal/print-guide-western-signs.pdf" class="pdf-link">Read the Western Signs Print Guide (PDF) →</a>
+          <p class="disclosure note"><strong>AI disclosure:</strong> The designs in the bundle were created using a combination of human creative direction and AI image generation tools, including Leonardo.ai, with selection, curation, refinement, and final arrangement by Built by Josh Studio LLC. This is disclosed in full in the license agreement.</p>
+          <p class="contact-line note"><strong>Need more than 100 prints per design?</strong> Extended commercial licensing is available — contact <a href="mailto:josh@builtbyjoshstudio.com">josh@builtbyjoshstudio.com</a> before exceeding the cap.</p>
+          <a href="/legal/license-western-signs.pdf" class="pdf-link btn btn--sm">Read the full Western Signs License (PDF) →</a>
+          <a href="/legal/print-guide-western-signs.pdf" class="pdf-link btn btn--sm">Read the Western Signs Print Guide (PDF) →</a>
         </div>
       </section>
 
     </main>
 
     <!-- STICKY SIDEBAR -->
-    <aside class="sticky-sidebar">
-      <div class="sidebar-label">Bundle Price</div>
-      <div class="price-drop-pill">Price drop</div>
-      <div class="sidebar-price"><span class="price-was">$24.99</span> $10.99</div>
-      <div class="sidebar-price-note">One-time payment · Instant digital download · Secure Lemon Squeezy checkout</div>
+    <aside class="sticky-sidebar buy" aria-label="Buy">
+      <div class="sidebar-label eyebrow eyebrow--plain">Bundle Price</div>
+      <div class="price-drop-pill badge badge--pos">Price drop</div>
+      <div class="sidebar-price buy__price"><span class="price-was">$24.99</span> $10.99</div>
+      <div class="sidebar-price-note buy__meta">One-time payment · Instant digital download · Secure Lemon Squeezy checkout</div>
 
-      <div class="sidebar-included-label">What's Included</div>
-      <ul class="sidebar-included">
+      <div class="sidebar-included-label label">What's Included</div>
+      <ul class="sidebar-included buy__list">
         <li>144 print-ready digital files</li>
         <li>24 original designs in 14 art styles</li>
         <li>Three aspect ratios: 1:1, 4:5, 2:3</li>
@@ -922,18 +592,18 @@
         <li>Instant download — no shipping</li>
       </ul>
 
-      <button class="ls-checkout-btn" data-checkout-url="https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/3413255c-d3cc-4e32-ba40-c1519bdb857c?embed=1" data-product-name="Scorpio Zodiac Art Bundle" data-product-price="10.99" data-item-category="Zodiac Art Bundle">Buy the Scorpio Bundle — $10.99</button>
-      <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
+      <button class="ls-checkout-btn btn btn--primary btn--block btn--lg" data-checkout-url="https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/3413255c-d3cc-4e32-ba40-c1519bdb857c?embed=1" data-product-name="Scorpio Zodiac Art Bundle" data-product-price="10.99" data-item-category="Zodiac Art Bundle">Buy the Scorpio Bundle — $10.99</button>
+      <span class="ls-checkout-sub buy__meta">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
 
-      <ul class="sidebar-trust">
+      <ul class="sidebar-trust buy__trust">
         <li>Instant digital download</li>
         <li>300 DPI print-ready files</li>
         <li>Real Kansas LLC + clear POD license</li>
         <li>Secure direct checkout via Lemon Squeezy</li>
       </ul>
 
-      <div class="alt-shop">
-        <div class="alt-shop-label">Looking for something different?</div>
+      <div class="alt-shop buy__more">
+        <div class="alt-shop-label eyebrow eyebrow--muted">Looking for something different?</div>
         <p>Prefer it already printed? The Scorpio celestial artwork is available on posters, canvas prints, apparel, and more at the studio’s Redbubble shop. <a href="https://www.redbubble.com/shop/ap/174064256" target="_blank" rel="noopener">See Scorpio on Redbubble →</a></p>
       </div>
     </aside>
@@ -941,91 +611,88 @@
   </div>
 
   <!-- FAQ -->
-  <section class="faq-section">
-    <div class="section-label">Frequently Asked</div>
-    <h2 class="section-title-main">Frequently Asked Questions</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <h3>What is included in the Scorpio Zodiac Art Bundle?</h3>
-        <p>The Scorpio bundle includes 144 print-ready digital files covering 24 original Scorpio designs across 14 art-style series — Anime, Celestial Animals, Halloween, Halloween Horrors, Hyper Realistic, Mythic Guardians, Punk, Punk Oil, Silhouette Aspects, Silhouettes, Silhouettes Fantasy, Vintage Posters, Watercolor 1, Watercolor 2. Every design ships in three aspect ratios (1:1, 4:5, 2:3) and both PNG and JPG formats, at 300 DPI. The bundle also includes a License Agreement and a Print Guide as PDFs.</p>
-      </div>
-      <div class="faq-item">
-        <h3>How much does the Scorpio Zodiac Art Bundle cost?</h3>
-        <p>The Scorpio bundle is priced at $10.99 — one-time payment, instant digital download. That works out to roughly $0.46 per individual design.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Can I use the Scorpio Zodiac Art Bundle for print-on-demand or commercial sales?</h3>
-        <p>Yes. The license includes print-on-demand rights for up to 100 physical units per individual design, cumulative across all formats, vendors, and time periods combined. You can sell framed prints, posters, canvases, mugs, t-shirts, and similar physical products made from the designs within that cap. For more than 100 prints of any single design, contact Built by Josh Studio LLC about extended commercial licensing.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What sizes can I print the Scorpio art at?</h3>
-        <p>The largest file (6000 × 9000 pixels) prints crisply up to 20" × 30" at full 300 DPI. With a print provider running 150 DPI for large-format jobs, prints up to roughly 40" × 60" still look excellent. The bundle also includes 1:1 files (4800 × 4800) for square framing and 4:5 files (4800 × 6000) for standard portrait sizes like 8×10 and 16×20.</p>
-      </div>
-      <div class="faq-item">
-        <h3>How were the Scorpio designs created?</h3>
-        <p>The Scorpio designs were created by Built by Josh Studio LLC using a combination of human creative direction and AI image generation tools, including Leonardo.ai. Every design is selected, curated, refined, and finalized by the studio's founder. This is disclosed in full in the license agreement included with every bundle.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What formats and color profiles do the files use?</h3>
-        <p>All files are delivered in both PNG (lossless) and JPG (92% quality compression) formats. Color profile is sRGB — the standard for virtually every print-on-demand service and consumer printer, requiring no color conversion before printing.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Where can I buy the Scorpio Zodiac Art Bundle?</h3>
-        <p>The Scorpio bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Scorpio Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no account required, no marketplace fees, files delivered immediately to your email.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Do you have art for other zodiac signs and the Chinese zodiac?</h3>
-        <p>Yes. Built by Josh Studio publishes 12 sign-specific bundles for all Western zodiac signs (Aries through Pisces, identical structure to the Aries bundle), 12 sign-specific bundles in the Western Realms landscape series, a full 12-landscape Western Landscapes Collection, 12 animal-specific Chinese Signs bundles, and a single Chinese Realms Collection covering all 12 Chinese animals.</p>
-      </div>
+  <section class="faq-section section wrap">
+    <div class="section-head"><div><span class="num">07</span><h2>Frequently Asked Questions</h2></div><span class="aside">Frequently Asked</span></div>
+    <div class="faq-list faq">
+      <details class="faq-item" open>
+      <summary><h3>What is included in the Scorpio Zodiac Art Bundle?</h3></summary>
+      <p>The Scorpio bundle includes 144 print-ready digital files covering 24 original Scorpio designs across 14 art-style series — Anime, Celestial Animals, Halloween, Halloween Horrors, Hyper Realistic, Mythic Guardians, Punk, Punk Oil, Silhouette Aspects, Silhouettes, Silhouettes Fantasy, Vintage Posters, Watercolor 1, Watercolor 2. Every design ships in three aspect ratios (1:1, 4:5, 2:3) and both PNG and JPG formats, at 300 DPI. The bundle also includes a License Agreement and a Print Guide as PDFs.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>How much does the Scorpio Zodiac Art Bundle cost?</h3></summary>
+      <p>The Scorpio bundle is priced at $10.99 — one-time payment, instant digital download. That works out to roughly $0.46 per individual design.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>Can I use the Scorpio Zodiac Art Bundle for print-on-demand or commercial sales?</h3></summary>
+      <p>Yes. The license includes print-on-demand rights for up to 100 physical units per individual design, cumulative across all formats, vendors, and time periods combined. You can sell framed prints, posters, canvases, mugs, t-shirts, and similar physical products made from the designs within that cap. For more than 100 prints of any single design, contact Built by Josh Studio LLC about extended commercial licensing.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>What sizes can I print the Scorpio art at?</h3></summary>
+      <p>The largest file (6000 × 9000 pixels) prints crisply up to 20" × 30" at full 300 DPI. With a print provider running 150 DPI for large-format jobs, prints up to roughly 40" × 60" still look excellent. The bundle also includes 1:1 files (4800 × 4800) for square framing and 4:5 files (4800 × 6000) for standard portrait sizes like 8×10 and 16×20.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>How were the Scorpio designs created?</h3></summary>
+      <p>The Scorpio designs were created by Built by Josh Studio LLC using a combination of human creative direction and AI image generation tools, including Leonardo.ai. Every design is selected, curated, refined, and finalized by the studio's founder. This is disclosed in full in the license agreement included with every bundle.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>What formats and color profiles do the files use?</h3></summary>
+      <p>All files are delivered in both PNG (lossless) and JPG (92% quality compression) formats. Color profile is sRGB — the standard for virtually every print-on-demand service and consumer printer, requiring no color conversion before printing.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>Where can I buy the Scorpio Zodiac Art Bundle?</h3></summary>
+      <p>The Scorpio bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Scorpio Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no account required, no marketplace fees, files delivered immediately to your email.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>Do you have art for other zodiac signs and the Chinese zodiac?</h3></summary>
+      <p>Yes. Built by Josh Studio publishes 12 sign-specific bundles for all Western zodiac signs (Aries through Pisces, identical structure to the Aries bundle), 12 sign-specific bundles in the Western Realms landscape series, a full 12-landscape Western Landscapes Collection, 12 animal-specific Chinese Signs bundles, and a single Chinese Realms Collection covering all 12 Chinese animals.</p>
+    </details>
     </div>
   </section>
 
   <!-- SISTER-SIGN NAV (Brief 1.12) -->
-  <section class="sister-nav-section">
-    <div class="section-label">Browse All Signs</div>
-    <h2 class="section-title-main">Browse All 12 Western Zodiac Sign Bundles</h2>
-    <p class="sister-intro">Every Western zodiac sign has its own bundle in the same structure — 144 files, 14 styles, 24 designs, $10.99 per sign. Click any sign below to see its full collection.</p>
+  <section class="sister-nav-section section wrap">
+    <div class="section-head"><div><span class="num">08</span><h2>Browse All 12 Western Zodiac Sign Bundles</h2></div><span class="aside">Browse All Signs</span></div>
+    <p class="sister-intro sub">Every Western zodiac sign has its own bundle in the same structure — 144 files, 14 styles, 24 designs, $10.99 per sign. Click any sign below to see its full collection.</p>
     <div class="sister-grid">
-        <a href="aries-zodiac-art.html" class="sister-card"><span class="sister-glyph">♈</span><span class="sister-name">Aries</span><span class="sister-meta">Fire · Mar 21 – Apr 19</span></a>
-        <a href="taurus-zodiac-art.html" class="sister-card"><span class="sister-glyph">♉</span><span class="sister-name">Taurus</span><span class="sister-meta">Earth · Apr 20 – May 20</span></a>
-        <a href="gemini-zodiac-art.html" class="sister-card"><span class="sister-glyph">♊</span><span class="sister-name">Gemini</span><span class="sister-meta">Air · May 21 – Jun 20</span></a>
-        <a href="cancer-zodiac-art.html" class="sister-card"><span class="sister-glyph">♋</span><span class="sister-name">Cancer</span><span class="sister-meta">Water · Jun 21 – Jul 22</span></a>
-        <a href="leo-zodiac-art.html" class="sister-card"><span class="sister-glyph">♌</span><span class="sister-name">Leo</span><span class="sister-meta">Fire · Jul 23 – Aug 22</span></a>
-        <a href="virgo-zodiac-art.html" class="sister-card"><span class="sister-glyph">♍</span><span class="sister-name">Virgo</span><span class="sister-meta">Earth · Aug 23 – Sep 22</span></a>
-        <a href="libra-zodiac-art.html" class="sister-card"><span class="sister-glyph">♎</span><span class="sister-name">Libra</span><span class="sister-meta">Air · Sep 23 – Oct 22</span></a>
-        <div class="sister-card sister-card-current"><span class="sister-glyph">♏</span><span class="sister-name">Scorpio</span><span class="sister-meta">Water · Oct 23 – Nov 21</span><span class="sister-here">You are here</span></div>
-        <a href="sagittarius-zodiac-art.html" class="sister-card"><span class="sister-glyph">♐</span><span class="sister-name">Sagittarius</span><span class="sister-meta">Fire · Nov 22 – Dec 21</span></a>
-        <a href="capricorn-zodiac-art.html" class="sister-card"><span class="sister-glyph">♑</span><span class="sister-name">Capricorn</span><span class="sister-meta">Earth · Dec 22 – Jan 19</span></a>
-        <a href="aquarius-zodiac-art.html" class="sister-card"><span class="sister-glyph">♒</span><span class="sister-name">Aquarius</span><span class="sister-meta">Air · Jan 20 – Feb 18</span></a>
-        <a href="pisces-zodiac-art.html" class="sister-card"><span class="sister-glyph">♓</span><span class="sister-name">Pisces</span><span class="sister-meta">Water · Feb 19 – Mar 20</span></a>
+        <a href="aries-zodiac-art.html" class="sister-card card"><span class="sister-glyph">♈</span><span class="sister-name">Aries</span><span class="sister-meta">Fire · Mar 21 – Apr 19</span></a>
+        <a href="taurus-zodiac-art.html" class="sister-card card"><span class="sister-glyph">♉</span><span class="sister-name">Taurus</span><span class="sister-meta">Earth · Apr 20 – May 20</span></a>
+        <a href="gemini-zodiac-art.html" class="sister-card card"><span class="sister-glyph">♊</span><span class="sister-name">Gemini</span><span class="sister-meta">Air · May 21 – Jun 20</span></a>
+        <a href="cancer-zodiac-art.html" class="sister-card card"><span class="sister-glyph">♋</span><span class="sister-name">Cancer</span><span class="sister-meta">Water · Jun 21 – Jul 22</span></a>
+        <a href="leo-zodiac-art.html" class="sister-card card"><span class="sister-glyph">♌</span><span class="sister-name">Leo</span><span class="sister-meta">Fire · Jul 23 – Aug 22</span></a>
+        <a href="virgo-zodiac-art.html" class="sister-card card"><span class="sister-glyph">♍</span><span class="sister-name">Virgo</span><span class="sister-meta">Earth · Aug 23 – Sep 22</span></a>
+        <a href="libra-zodiac-art.html" class="sister-card card"><span class="sister-glyph">♎</span><span class="sister-name">Libra</span><span class="sister-meta">Air · Sep 23 – Oct 22</span></a>
+        <div class="sister-card sister-card-current card"><span class="sister-glyph">♏</span><span class="sister-name">Scorpio</span><span class="sister-meta">Water · Oct 23 – Nov 21</span><span class="sister-here">You are here</span></div>
+        <a href="sagittarius-zodiac-art.html" class="sister-card card"><span class="sister-glyph">♐</span><span class="sister-name">Sagittarius</span><span class="sister-meta">Fire · Nov 22 – Dec 21</span></a>
+        <a href="capricorn-zodiac-art.html" class="sister-card card"><span class="sister-glyph">♑</span><span class="sister-name">Capricorn</span><span class="sister-meta">Earth · Dec 22 – Jan 19</span></a>
+        <a href="aquarius-zodiac-art.html" class="sister-card card"><span class="sister-glyph">♒</span><span class="sister-name">Aquarius</span><span class="sister-meta">Air · Jan 20 – Feb 18</span></a>
+        <a href="pisces-zodiac-art.html" class="sister-card card"><span class="sister-glyph">♓</span><span class="sister-name">Pisces</span><span class="sister-meta">Water · Feb 19 – Mar 20</span></a>
     </div>
   </section>
 
   <!-- RELATED COLLECTIONS (Brief 1.13 — internal links only) -->
-  <section class="related-section">
-    <div class="section-label">Explore the rest of the BBJ Studio zodiac catalog</div>
-    <h2 class="section-title-main">Related Collections</h2>
-    <div class="related-grid">
-      <a href="zodiac-landscapes.html" class="related-card">
-        <div class="related-meta">Western Landscapes Collection</div>
+  <section class="related-section section wrap">
+    <div class="section-head"><div><span class="num">09</span><h2>Related Collections</h2></div><span class="aside">Explore the rest of the BBJ Studio zodiac catalog</span></div>
+    <div class="related-grid grid grid--4">
+      <a href="zodiac-landscapes.html" class="related-card card">
+        <div class="related-meta line-tag">Western Landscapes Collection</div>
         <h3>Zodiac Landscapes</h3>
         <p>One mythic environment per sign — 12 oil-painted landscapes for all the Western signs in a single bundle.</p>
         <span class="related-link">View Collection →</span>
       </a>
-      <a href="scorpio-zodiac-realms.html" class="related-card">
-        <div class="related-meta">Western Realms · Scorpio</div>
+      <a href="scorpio-zodiac-realms.html" class="related-card card">
+        <div class="related-meta line-tag">Western Realms · Scorpio</div>
         <h3>Scorpio Zodiac Realms</h3>
         <p>Four hybrid cosmos-landscape Realm interpretations of Scorpio — 8 designs across 4 named realms for the same sign.</p>
         <span class="related-link">View Collection →</span>
       </a>
-      <a href="chinese-zodiac-art.html" class="related-card">
-        <div class="related-meta">Eastern Zodiac · 12 Animals</div>
+      <a href="chinese-zodiac-art.html" class="related-card card">
+        <div class="related-meta line-tag">Eastern Zodiac · 12 Animals</div>
         <h3>Chinese Zodiac Signs</h3>
         <p>All 12 Chinese animals in two art styles — hyper-realistic and watercolor. 8 designs per animal, 12 animal bundles.</p>
         <span class="related-link">View Collection →</span>
       </a>
-      <a href="chinese-zodiac-realms.html" class="related-card">
-        <div class="related-meta">Eastern Zodiac · Lunar Realms</div>
+      <a href="chinese-zodiac-realms.html" class="related-card card">
+        <div class="related-meta line-tag">Eastern Zodiac · Lunar Realms</div>
         <h3>Chinese Zodiac Realms</h3>
         <p>Landscape-style art for all 12 Chinese animals — 24 designs in a single bundle.</p>
         <span class="related-link">View Collection →</span>
@@ -1034,24 +701,24 @@
   </section>
 
   <!-- REVIEWS -->
-  <section class="reviews-section">
-    <div class="section-label">Shop Reviews</div>
+  <section class="reviews-section section wrap">
+    <p class="section-label eyebrow">Shop Reviews</p>
     <div class="reviews-header">
       <span class="star-display">★★★★★ 4.7</span>
       <span class="review-note">Verified Buyer Reviews</span>
     </div>
-    <div class="reviews-grid">
-      <div class="review-card">
+    <div class="reviews-grid grid grid--3">
+      <div class="review-card card card--hair">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Fantastic artwork, I really love it!"</p>
         <div class="review-author">Louise · Leo Zodiac Sign Print</div>
       </div>
-      <div class="review-card">
+      <div class="review-card card card--hair">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Files came through right away and look great."</p>
         <div class="review-author">Verified buyer · Scorpio Zodiac Watercolor</div>
       </div>
-      <div class="review-card">
+      <div class="review-card card card--hair">
         <div class="review-stars">★★★★☆</div>
         <p class="review-text">"Downloaded easily and what I wanted."</p>
         <div class="review-author">Mary · Scorpio Zodiac Sign Print</div>
@@ -1060,18 +727,25 @@
   </section>
 
   <!-- FINAL CTA -->
-  <section class="cta-band">
-    <div class="cta-eyebrow">Browse the Collection</div>
-    <h2>14 Styles. 24 Designs. <span class="italic-accent">One Scorpio Bundle.</span></h2>
-    <p class="cta-sub">Every art-style series in one $10.99 bundle. Print at home, print at a shop, sell on-demand up to 100 prints per design. Instant download, real license, no subscription.</p>
-    <button class="ls-checkout-btn ls-checkout-btn--large" data-checkout-url="https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/3413255c-d3cc-4e32-ba40-c1519bdb857c?embed=1" data-product-name="Scorpio Zodiac Art Bundle" data-product-price="10.99" data-item-category="Zodiac Art Bundle">Buy the Scorpio Bundle — $10.99</button>
-    <span class="cta-sub-line">Instant download — 144 print-ready files in your inbox the moment checkout completes.</span>
+  <section class="cta-band wrap">
+    <div class="cta">
+      <div>
+        <p class="cta-eyebrow eyebrow eyebrow--plain">Browse the Collection</p>
+        <h2>14 Styles. 24 Designs. <span class="italic-accent hi">One Scorpio Bundle.</span></h2>
+        <p class="cta-sub lede">Every art-style series in one $10.99 bundle. Print at home, print at a shop, sell on-demand up to 100 prints per design. Instant download, real license, no subscription.</p>
+        <span class="cta-sub-line note">Instant download — 144 print-ready files in your inbox the moment checkout completes.</span>
+      </div>
+    <button class="ls-checkout-btn ls-checkout-btn--large btn btn--primary btn--lg" data-checkout-url="https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/3413255c-d3cc-4e32-ba40-c1519bdb857c?embed=1" data-product-name="Scorpio Zodiac Art Bundle" data-product-price="10.99" data-item-category="Zodiac Art Bundle">Buy the Scorpio Bundle — $10.99</button>
+    </div>
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="footer-left"><strong>Built by Josh Studio</strong> · All digital products — instant download</div>
-    <ul class="footer-links">
+  <footer class="footer">
+    <div class="wrap">
+    <p class="footer__sign">Built <em>by</em> Josh.</p>
+    <div class="footer__top">
+      <div><span class="wordmark">Built <em>by</em> Josh Studio</span><p>All digital products — instant download</p></div>
+    <ul class="footer__links">
       <li><a href="../">Home</a></li>
       <li><a href="../collections/">Collections</a></li>
       <li><a href="../blog.html">Blog</a></li>
@@ -1088,46 +762,22 @@
       <li><a href="../privacy.html">Privacy</a></li>
       <li><a href="../terms.html">Terms</a></li>
     </ul>
-    <nav aria-label="More from Built by Josh Studio" style="flex:0 0 100%;max-width:1160px;margin:0 auto 14px;padding:14px 0 0;border-top:1px solid rgba(128,128,128,.18);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11.5px;letter-spacing:.05em;">
-      <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-      <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-      <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tynkr apps</a>
-      <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Kitchen tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Money tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tabletop tools</a>
-    </nav>
-    <div class="footer-legal">
-      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
-      Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.
+      <nav aria-label="More from Built by Josh Studio">
+        <p class="footer__label">More from the studio:</p>
+        <ul>
+          <li><a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a></li>
+          <li><a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom"><span>&copy; 2026 Built by Josh Studio LLC. All rights reserved.</span><span>Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</span></div>
     </div>
   </footer>
 
   <!-- STAR FIELD JS -->
-  <script>
-    // Star field -- deferred (after load + idle) and lighter, so it never competes with first paint / LCP
-    (function () {
-      var run = function () {
-        var container = document.getElementById('starsContainer');
-        if (!container) return;
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        var w = window.innerWidth, h = window.innerHeight, mobile = w < 768;
-        var starCount = Math.min(mobile ? 70 : 150, Math.max(mobile ? 35 : 60, Math.round((w * h) / (mobile ? 16000 : 11000))));
-        var frag = document.createDocumentFragment();
-        for (var i = 0; i < starCount; i++) {
-          var s = document.createElement('div');
-          s.className = 'star';
-          var big = Math.random() > 0.82;
-          var sz = big ? (Math.random() > 0.6 ? 4 : 3) : 2;
-          s.style.cssText = 'left:' + (Math.random() * 100) + '%;top:' + (Math.random() * 100) + '%;--d:' + (2 + Math.random() * 4) + 's;--delay:-' + (Math.random() * 4) + 's;--op:' + (0.45 + Math.random() * 0.55) + ';width:' + sz + 'px;height:' + sz + 'px;';
-          frag.appendChild(s);
-        }
-        container.appendChild(frag);
-      };
-      var idle = window.requestIdleCallback || function (cb) { return setTimeout(cb, 250); };
-      var go = function () { idle(run, { timeout: 2000 }); };
-      if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
-    })();
-  </script>
 
   <!-- GA4: view_item -->
   <script>
