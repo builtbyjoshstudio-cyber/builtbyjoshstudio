@@ -119,7 +119,9 @@ def run(apply):
             n_badge += 1
 
     # ---- CSS (once) ----
-    if ".vid-chapters {" not in work:
+    # Since the Ledger redesign the page has no <style> of its own: the chapter and
+    # duration-badge rules live in /css/layouts.css, so there is nothing to inject.
+    if ".vid-chapters {" not in work and "/css/layouts.css" not in work:
         anchor = "    /* ── CROSS-SELL ── */"
         assert anchor in work, "css anchor not found"
         css = (
