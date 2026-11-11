@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Built by Josh Studio — page layouts
+   Loads after tokens.css and components.css. This file only arranges things:
+   every colour, shadow, radius and type size comes from the tokens, so a page
+   type is restyled here once instead of in each page's own <style> block.
+   ========================================================================== */
+
+/* --- site chrome: nav and footer, every migrated page ---------------------- */
+.site-nav .nav-toggle { color: var(--ink); }
+.nav__links a.active { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+section[id] { scroll-margin-top: 80px; }
+.footer__top { grid-template-columns: 1.2fr 2fr 1fr; }
+.footer__links { columns: 3; column-gap: var(--space-8); display: block; }
+.footer__links li { margin-bottom: var(--space-2); break-inside: avoid; }
+.footer__label { font-size: var(--text-label); letter-spacing: var(--tracking-label); text-transform: uppercase; font-weight: 600; color: rgba(255,255,255,.55); margin-bottom: var(--space-3); }
+.footer .wordmark { margin-bottom: var(--space-3); }
+.footer__bottom a { text-decoration: underline; text-underline-offset: 2px; }
+
+/* --- shared helpers ----------------------------------------------------------- */
+.lead { font-size: var(--text-lead); color: var(--muted); }
+.sub { color: var(--muted); margin: calc(-1 * var(--space-4)) 0 var(--space-8); }
+.note { font-size: var(--text-small); color: var(--muted); }
+.crumbs { font-family: var(--font-mono); font-size: var(--text-label); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: var(--space-4) 0; border-bottom: var(--hair); }
+.crumbs a { color: inherit; font-weight: inherit; }
+.crumbs .sep { margin: 0 6px; opacity: .6; }
+
+/* --- product pages -------------------------------------------------------------- */
+.phero { padding-bottom: 40px; }
+.phero .eyebrow { margin-top: 56px; }
+.phero h1 { max-width: 26ch; }
+.phero h1 .hi { display: block; font-size: .62em; line-height: 1.25; letter-spacing: -0.015em; margin-top: var(--space-2); }
+.hero-meta-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+.hero-meta-chips strong { color: var(--ink); }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 64px; padding-top: 48px; align-items: start; }
+.layout main > section + section, .layout main > section + p + section { margin-top: 48px; }
+.layout main .section-head { margin-bottom: var(--space-5); }
+.layout main p { font-size: 1.0625rem; }
+.persona-spotlights { list-style: none; margin: var(--space-5) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+.modules-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); margin-top: var(--space-5); }
+.steps-list { display: grid; gap: var(--space-3); }
+.persona, .module-card, .step-card, .related-card { padding: var(--space-5); gap: var(--space-2); }
+.persona h3, .module-card h3, .step-card h3, .related-card h3 { margin: 0; font-size: var(--text-h4); }
+.persona p, .module-card p, .step-card p, .related-card p { margin: 0; font-size: var(--text-small); color: var(--muted); }
+.step-card { flex-direction: row; gap: var(--space-4); align-items: flex-start; }
+.step-num { display: inline-grid; place-items: center; flex: none; min-width: 32px; height: 32px; padding: 0 10px; border-radius: var(--r-s); background: var(--accent-soft); color: var(--accent); font-family: var(--font-mono); font-size: var(--text-label); font-weight: 500; }
+.step-body { display: grid; gap: var(--space-1); }
+.lite-banner { margin: 48px 0; }
+.lite-banner h2 { font-size: var(--text-h3); margin-bottom: var(--space-2); }
+.buy .price-was { color: var(--muted); font-size: 1.125rem; font-weight: 500; letter-spacing: 0; text-decoration: line-through; margin-right: var(--space-2); }
+.buy .label { margin-top: var(--space-5); }
+.buy .btn { margin-top: var(--space-2); text-align: center; }
+.buy ul.buy__trust { list-style: none; padding: 0; margin: var(--space-4) 0 0; display: grid; gap: var(--space-1); }
+.buy .studio-guarantee { margin-top: var(--space-5); padding: var(--space-5); border-radius: var(--r); }
+.buy .studio-guarantee h3 { font-size: var(--text-h4); margin-bottom: var(--space-2); }
+.buy .studio-guarantee p { font-size: var(--text-small); color: var(--muted); margin: 0; }
+.buy__more { margin-top: var(--space-4); padding-top: var(--space-4); border-top: var(--hair); font-size: var(--text-small); }
+.buy__more .eyebrow { display: flex; }
+.buy__more a { font-weight: 600; }
+.comparison-table .highlight-col, .comparison-table .highlight { color: var(--ink); font-weight: 600; background: var(--accent-soft); }
+.comparison-table .neutral { color: var(--muted); }
+.table-scroll { overflow-x: auto; }
+.faq summary h3 { margin: 0; font: inherit; letter-spacing: inherit; }
+.related-link { font-size: var(--text-small); font-weight: 600; color: var(--accent); margin-top: auto; padding-top: var(--space-2); }
+.cta-band .cta h2 { font-size: var(--text-h3); margin: 0 0 var(--space-1); }
+
+@media (max-width: 900px) {
+  .footer__top { grid-template-columns: 1fr; }
+  .footer__links { columns: 2; }
+  .layout { grid-template-columns: 1fr; gap: 40px; }
+  .persona-spotlights, .modules-list { grid-template-columns: 1fr; }
+  .phero .eyebrow { margin-top: 40px; }
+}

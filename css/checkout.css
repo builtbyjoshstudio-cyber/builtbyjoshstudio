@@ -1,143 +1,31 @@
 /* ==========================================================================
-   Tynkr Tools & Co — Checkout shared styles
-   ==========================================================================
-   Loaded by every product page. Defines the "Try It Free First" lite banner,
-   its sidebar mirror, and a single-card variant of the format picker (used
-   when a product page sells one bundle instead of multiple format options).
-
-   Color tokens fall back gracefully if a page hasn't loaded its own theme
-   variables — but every product page already defines --tynkr-* variables.
+   Tynkr Tools & Co — checkout shared styles (product pages and /free/)
+   The "Try It Free First" lite banner, its sidebar mirror, the single-card
+   variant of the format picker, and the Related Reading list. Tokens only.
+   Buttons take their look from .btn in components.css where a page adds it.
    ========================================================================== */
 
-/* ===== TRY THE LITE VERSION FREE — main banner above the buy CTA ===== */
-.lite-banner {
-  background: #fff;
-  border: 1px solid var(--tynkr-border, #e2ddd0);
-  border-left: 4px solid var(--tynkr-accent, #2438e8);
-  border-radius: 12px;
-  padding: 1.6rem 1.8rem;
-  margin: 2rem 0;
-}
+/* --- lite banner above the buy CTA --------------------------------------------- */
+.lite-banner { background: var(--surface-2); border: var(--hair); border-left: 3px solid var(--accent); border-radius: var(--r); padding: var(--space-6); margin: var(--space-8) 0; }
+.lite-banner .lite-eyebrow { font-size: var(--text-small); font-weight: 600; color: var(--accent); margin-bottom: var(--space-2); }
+.lite-banner h2 { font-size: var(--text-h3); line-height: 1.25; margin-bottom: var(--space-2); color: var(--ink); }
+.lite-banner .lite-desc { color: var(--ink-2); line-height: 1.55; margin-bottom: var(--space-4); }
+.lite-cta { display: inline-block; padding: 12px 20px; background: var(--accent); color: var(--accent-ink); text-decoration: none; border-radius: var(--r-s); font-weight: 600; font-size: var(--text-ui); transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease); }
+.lite-cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); text-decoration: none; }
 
-.lite-banner .lite-eyebrow {
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--tynkr-accent, #2438e8);
-  font-weight: 700;
-  margin-bottom: 0.55rem;
-}
+/* --- sidebar mirror: compact lite CTA below the primary buy button ------------ */
+.sidebar-lite { margin-top: var(--space-4); padding-top: var(--space-4); border-top: var(--hair); }
+.sidebar-lite-label { font-size: var(--text-label); font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); margin-bottom: var(--space-2); }
+.sidebar-lite-cta { display: block; width: 100%; padding: 10px 16px; background: transparent; color: var(--accent); border: 1px solid var(--accent); border-radius: var(--r-s); font-weight: 600; font-size: var(--text-ui); text-align: center; text-decoration: none; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease); }
+.sidebar-lite-cta:hover { background: var(--accent); color: var(--accent-ink); text-decoration: none; }
 
-.lite-banner h2 {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.45rem;
-  font-weight: 700;
-  margin-bottom: 0.55rem;
-  color: var(--tynkr-text, #14130e);
-  line-height: 1.25;
-}
+/* --- single-card format picker (a page that sells one bundle, not three) ------ */
+.format-picker.single { grid-template-columns: minmax(0, 1fr); max-width: 540px; }
 
-.lite-banner .lite-desc {
-  color: var(--body-read, #14130e);
-  line-height: 1.55;
-  margin-bottom: 1.1rem;
-  font-family: 'Hanken Grotesk', sans-serif;
-}
-
-.lite-cta {
-  display: inline-block;
-  padding: 0.85rem 1.6rem;
-  background: var(--tynkr-accent, #2438e8);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 8px;
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: opacity 0.2s, transform 0.2s;
-}
-
-.lite-cta:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
-}
-
-/* ===== Sidebar mirror — compact lite CTA below the primary buy button ===== */
-.sidebar-lite {
-  margin-top: 1.2rem;
-  padding-top: 1.2rem;
-  border-top: 1px dashed var(--tynkr-border, #e2ddd0);
-}
-
-.sidebar-lite-label {
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--tynkr-muted, #6d695d);
-  margin-bottom: 0.55rem;
-  font-weight: 600;
-}
-
-.sidebar-lite-cta {
-  display: block;
-  width: 100%;
-  padding: 0.8rem 1rem;
-  background: transparent;
-  color: var(--tynkr-accent, #2438e8);
-  border: 1.5px solid var(--tynkr-accent, #2438e8);
-  border-radius: 8px;
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-align: center;
-  text-decoration: none;
-  transition: background 0.15s, color 0.15s;
-}
-
-.sidebar-lite-cta:hover {
-  background: var(--tynkr-accent, #2438e8);
-  color: #fff;
-}
-
-/* ===== Single-card format picker (used when a page sells 1 bundle, not 3) ===== */
-.format-picker.single {
-  grid-template-columns: minmax(0, 1fr);
-  max-width: 540px;
-}
-
-/* ===== Related Reading list on product pages ===== */
-.related-reading {
-  list-style: none;
-  margin: 1rem 0 0;
-  padding: 0;
-  border-left: 2px solid var(--tynkr-border, #e2ddd0);
-}
-.related-reading li {
-  padding: 0.5rem 0 0.5rem 1.1rem;
-  border-bottom: 1px dashed var(--tynkr-border, #e2ddd0);
-}
-.related-reading li:last-child {
-  border-bottom: none;
-}
-.related-reading a {
-  color: var(--tynkr-accent, #2438e8);
-  text-decoration: none;
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 500;
-  transition: color 0.15s, transform 0.15s;
-  display: inline-block;
-}
-.related-reading a:hover {
-  color: var(--tynkr-text, #14130e);
-  transform: translateX(2px);
-}
-.related-reading a::after {
-  content: ' \2192';
-  opacity: 0.5;
-  transition: opacity 0.15s;
-}
-.related-reading a:hover::after {
-  opacity: 1;
-}
+/* --- Related Reading list on product pages --------------------------------------- */
+.related-reading { list-style: none; margin: var(--space-4) 0 0; padding: 0; border-left: 2px solid var(--line); }
+.related-reading li { padding: var(--space-2) 0 var(--space-2) var(--space-4); border-bottom: var(--hair); }
+.related-reading li:last-child { border-bottom: 0; }
+.related-reading a { color: var(--accent); text-decoration: none; font-weight: 500; display: inline-block; }
+.related-reading a:hover { color: var(--ink); }
+.related-reading a::after { content: ' \2192'; opacity: 0.6; }
