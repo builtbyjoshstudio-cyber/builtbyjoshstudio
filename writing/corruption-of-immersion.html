@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-glass="books">
+<html lang="en" data-theme="light">
 <head>
   <!-- Google Analytics 4 -->
   <script>(function(){var l=function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J";document.head.appendChild(s);};var i=window.requestIdleCallback||function(cb){return setTimeout(cb,300);};var g=function(){i(l,{timeout:1500});};if(document.readyState==="complete"){g();}else{window.addEventListener("load",g);}})();</script>
@@ -11,7 +11,7 @@
   </script>
   <meta charset="UTF-8" />
   <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
-  <link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Glitch in the Soul — A Dispatch from Overlayed Echoes</title>
   <meta name="description" content="An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — what five friends learned when the simulation started writing back." />
@@ -67,203 +67,10 @@
   </script>
 
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/layouts.css" />
+  <link rel="stylesheet" href="/css/pages/dispatch.css" />
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --tynkr-bg: #f1eee6;
-      --tynkr-surface: #ffffff;
-      --tynkr-accent: #ff5a30;
-      --tynkr-text: #14130e;
-      --tynkr-muted: #6d695d;
-      --tynkr-border: #e2ddd0;
-      --body-read: #3a3a3a;
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Hanken Grotesk', sans-serif;
-      background: var(--tynkr-bg);
-      color: var(--tynkr-text);
-      line-height: 1.65;
-      min-height: 100vh;
-      padding-top: 80px;
-      overflow-x: hidden;
-    }
-
-    /* NAV — matches site standard */
-    .site-nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem 2rem;
-      background: rgba(241, 238, 230, 0.92);
-      border-bottom: 1px solid var(--tynkr-border);
-      z-index: 100;
-    }
-    .nav-logo {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: var(--tynkr-text);
-      text-decoration: none;
-    }
-    .logo-short { display: none; }
-    .nav-links { list-style: none; display: flex; gap: 2rem; }
-    .nav-links a {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--tynkr-text);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.15s;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--tynkr-accent); }
-    @media (max-width: 700px) {
-      .logo-full { display: none; }
-      .logo-short { display: inline; }
-      .nav-links { gap: 1rem; }
-      .nav-links a { font-size: 0.75rem; }
-    }
-
-    /* DISPATCH — single-column reading world */
-    .dispatch {
-      max-width: 720px;
-      margin: 3rem auto 0;
-      padding: 0 1.5rem;
-    }
-    .dispatch-header {
-      padding-bottom: 1.8rem;
-      margin-bottom: 1.8rem;
-      border-bottom: 1px solid var(--tynkr-border);
-    }
-    .dispatch-eyebrow {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--tynkr-accent);
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .dispatch h1 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 2.3rem;
-      font-weight: 800;
-      line-height: 1.14;
-      color: var(--tynkr-text);
-      margin-bottom: 1rem;
-    }
-    .dispatch-standfirst {
-      font-style: italic;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: var(--tynkr-accent);
-      margin-bottom: 0.9rem;
-    }
-    .dispatch-log {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.85rem;
-      font-style: italic;
-      color: var(--tynkr-muted);
-      letter-spacing: 0.02em;
-    }
-    .dispatch-body { }
-    .dispatch-body p {
-      font-size: 1.1rem;
-      line-height: 1.75;
-      color: var(--body-read);
-      margin-bottom: 1.2rem;
-    }
-    .dispatch-body p em { color: inherit; }
-    .dispatch-body h2 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-      line-height: 1.2;
-      color: var(--tynkr-text);
-      margin: 2.6rem 0 1rem;
-    }
-    .dispatch-body hr {
-      border: 0;
-      height: 1px;
-      background: var(--tynkr-border);
-      margin: 2.6rem auto;
-    }
-    .dispatch-close-q {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      line-height: 1.2;
-      color: var(--tynkr-text);
-      margin: 2.6rem 0 1rem;
-    }
-    .dispatch-pitch {
-      font-style: italic;
-      font-size: 1.08rem;
-      line-height: 1.65;
-      color: var(--body-read);
-      margin: 2rem 0 0;
-    }
-
-    /* DIEGETIC CTAs — soft, books-world, not a sales band */
-    .dispatch-cta {
-      max-width: 720px;
-      margin: 2.4rem auto 4rem;
-      padding: 0 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-    .dispatch-cta a {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--tynkr-accent);
-      text-decoration: none;
-      padding: 0.9rem 1.2rem;
-      border: 1px solid var(--tynkr-border);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.55);
-      transition: transform 0.15s, border-color 0.15s, background 0.15s;
-    }
-    .dispatch-cta a:hover {
-      transform: translateY(-2px);
-      border-color: var(--tynkr-accent);
-      background: rgba(255, 255, 255, 0.85);
-    }
-
-    /* FOOTER — matches site standard */
-    footer {
-      background: var(--tynkr-surface);
-      border-top: 1px solid var(--tynkr-border);
-      padding: 2rem;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-left {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.88rem;
-      color: var(--tynkr-muted);
-    }
-    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.4rem; }
-    .footer-links a {
-      font-size: 0.82rem;
-      color: var(--tynkr-text);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    .footer-links a:hover { color: var(--tynkr-accent); }
-    .footer-legal {
-      width: 100%;
-      font-size: 0.78rem;
-      color: var(--tynkr-muted);
-      line-height: 1.5;
-      margin-top: 0.4rem;
-    }
-  </style>
   <link rel="stylesheet" href="/css/mobile-nav.css" />
 
   <!-- Schema.org Organization -->
@@ -328,9 +135,10 @@
 </head>
 <body>
 
-  <nav class="site-nav">
-    <a href="../" class="nav-logo"><span class="logo-full">Built by Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
-    <ul class="nav-links">
+  <nav class="site-nav nav" aria-label="Main">
+    <div class="wrap">
+    <a href="../" class="nav-logo wordmark">Built <em>by</em> Josh Studio</a>
+    <ul class="nav-links nav__links">
       <li><a href="../#tynkr">Tynkr Tools</a></li>
       <li><a href="../#builtbyjosh">Zodiac Art</a></li>
       <li><a href="../blog.html">Blog</a></li>
@@ -345,6 +153,7 @@
       <span></span>
       <span></span>
     </button>
+    </div>
   </nav>
 
   <article class="dispatch">
@@ -453,11 +262,12 @@
     <a href="https://www.amazon.com/dp/B0H3826V21" data-dispatch-cta="amazon" rel="noopener" target="_blank">Available now on Amazon — free with Kindle Unlimited →</a>
   </nav>
 
-  <footer>
-    <div class="footer-left">
-      <strong>Built by Josh Studio</strong> · All digital products — instant download
-    </div>
-    <ul class="footer-links">
+  <footer class="footer">
+    <div class="wrap">
+    <p class="footer__sign">Built <em>by</em> Josh.</p>
+    <div class="footer__top">
+      <div><span class="wordmark">Built <em>by</em> Josh Studio</span><p>All digital products — instant download</p></div>
+    <ul class="footer__links">
       <li><a href="../">Home</a></li>
       <li><a href="../blog.html">Blog</a></li>
       <li><a href="../resources/">Resources</a></li>
@@ -473,17 +283,18 @@
       <li><a href="../privacy.html">Privacy</a></li>
       <li><a href="../terms.html">Terms</a></li>
     </ul>
-      <nav aria-label="More from Built by Josh Studio" style="flex:0 0 100%;max-width:1160px;margin:0 auto 14px;padding:14px 0 0;border-top:1px solid rgba(128,128,128,.18);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11.5px;letter-spacing:.05em;">
-      <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-      <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-      <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tynkr apps</a>
-      <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Kitchen tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Money tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tabletop tools</a>
-    </nav>
-    <div class="footer-legal">
-      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
-      Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.
+      <nav aria-label="More from Built by Josh Studio">
+        <p class="footer__label">More from the studio:</p>
+        <ul>
+          <li><a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a></li>
+          <li><a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom"><span>&copy; 2026 Built by Josh Studio LLC. All rights reserved.</span><span>Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</span></div>
     </div>
   </footer>
 
