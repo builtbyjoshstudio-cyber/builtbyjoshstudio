@@ -108,6 +108,25 @@ body.cosmos::before, body.cosmos::after { position: fixed; inset: 0; }
 .license-block { padding: var(--space-6); border-radius: var(--r); }
 .license-block h3 { font-size: var(--text-h4); margin-top: var(--space-4); }
 .license-block .btn { margin: var(--space-2) var(--space-2) 0 0; }
+/* the three single zodiac pages: Chinese hub (animal cards), Landscapes, Chinese Realms */
+.animal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); margin-top: var(--space-5); }
+.animal-card { scroll-margin-top: 88px; display: flex; flex-direction: column; overflow: hidden; background: var(--surface); border: var(--hair); border-radius: var(--r); box-shadow: var(--shadow); }
+.cosmos .animal-card, .cosmos .landscape-block, .cosmos .grid-intro-cta { background: rgba(18, 20, 58, .72); border-color: var(--line-2); }
+.animal-card-img img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.animal-card-body { padding: var(--space-4) var(--space-5); display: grid; gap: var(--space-2); }
+.animal-card-body h3 { margin: 0; font-size: var(--text-h4); }
+.animal-card-body p { margin: 0; font-size: var(--text-small); color: var(--muted); }
+.animal-years { font-family: var(--font-mono); font-size: var(--text-label); color: var(--muted); }
+.animal-cta-card { font-size: var(--text-small); font-weight: 600; color: var(--accent); }
+.landscapes-grouped { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); margin-top: var(--space-5); }
+.landscape-block { scroll-margin-top: 88px; background: var(--surface); border: var(--hair); border-radius: var(--r); box-shadow: var(--shadow); padding: var(--space-4); }
+.landscape-block-title { margin: 0 0 var(--space-1); font-size: var(--text-h4); }
+.landscape-block-desc { margin: 0 0 var(--space-3); font-size: var(--text-small); color: var(--muted); }
+.landscape-img { border-radius: var(--r-s); overflow: hidden; }
+.landscape-img img { width: 100%; height: auto; display: block; }
+.landscape-meta, .realm-meta { font-size: var(--text-label); font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--accent); margin-top: var(--space-2); }
+.grid-intro-cta { background: var(--surface); border: var(--hair); border-left: 3px solid var(--accent); border-radius: 0 var(--r) var(--r) 0; padding: var(--space-5) var(--space-6); margin: var(--space-5) 0 var(--space-8); }
+.grid-intro-cta .btn { margin-top: var(--space-3); }
 .buy .ls-checkout-sub { display: block; margin: var(--space-2) 0 0; }
 .buy__more p { margin: var(--space-1) 0 0; font-size: var(--text-small); color: var(--muted); max-width: none; }
 .sister-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-3); }
@@ -124,6 +143,23 @@ body.cosmos::before, body.cosmos::after { position: fixed; inset: 0; }
 .review-stars { color: var(--accent); letter-spacing: .1em; }
 .review-text { margin: 0; font-style: italic; color: var(--ink); }
 .review-author { font-size: var(--text-small); color: var(--muted); }
+
+/* --- hubs: collections (cosmic) and products (light) ------------------------------------ */
+.shop-hero.wrap { padding-top: 56px; padding-bottom: var(--space-2); }
+.collection-grid.grid { grid-template-columns: repeat(6, 1fr); }
+.collection-grid.hub-grid--3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
+.collection-card { color: inherit; }
+.collection-card .card__media { aspect-ratio: 4 / 5; }
+.collection-card .card__body { padding: 12px 14px 14px; gap: 2px; }
+.collection-card .line-tag { text-transform: none; letter-spacing: 0; }
+.card-name { font-family: var(--font-display); font-size: var(--text-h4); font-weight: 700; color: var(--ink); }
+.card-link, .card-view { font-size: var(--text-small); font-weight: 600; color: var(--accent); }
+.card.product-card { padding: var(--space-5); gap: var(--space-2); color: inherit; border: var(--hair); border-radius: var(--r); box-shadow: var(--shadow); }
+.card.product-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--line-2); text-decoration: none; }
+.card-title { font-family: var(--font-display); font-size: var(--text-h3); font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
+.card-desc { flex: 1; font-size: var(--text-small); color: var(--muted); }
+.card-footer { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); margin-top: var(--space-3); padding-top: var(--space-3); border-top: var(--hair); }
+.card-price { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 500; color: var(--ink); }
 
 /* --- blog posts ---------------------------------------------------------------------- */
 /* Selectors under .post outrank the old article/sidebar rules still kept in tokens.css. */
@@ -269,6 +305,8 @@ body.cosmos::before, body.cosmos::after { position: fixed; inset: 0; }
 .back-to-blog, .studio-sig { text-align: center; font-size: var(--text-small); color: var(--muted); max-width: none; margin: var(--space-8) 0 0; }
 
 @media (max-width: 900px) {
+  .collection-grid.grid, .collection-grid.hub-grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .animal-grid, .landscapes-grouped { grid-template-columns: minmax(0, 1fr); }
   .vid-item { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .series { padding: 28px 24px; }
   .ck-videos, .ck-cols, .ck-book { grid-template-columns: minmax(0, 1fr); }

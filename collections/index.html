@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-glass="cosmic">
+<html lang="en" data-theme="cosmic">
 <head>
     <!-- Google Analytics 4 -->
     <script>(function(){var l=function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J";document.head.appendChild(s);};var i=window.requestIdleCallback||function(cb){return setTimeout(cb,300);};var g=function(){i(l,{timeout:1500});};if(document.readyState==="complete"){g();}else{window.addEventListener("load",g);}})();</script>
@@ -11,7 +11,7 @@
     </script>
   <meta charset="UTF-8" />
   <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
-  <link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zodiac Art Collections — Built by Josh Studio</title>
   <meta name="description" content="Original zodiac art print collections — all 12 Western signs across 12 distinct styles, 12 Chinese zodiac Lunar Guardians, and 12 oil-painted zodiac landscapes. Instant digital downloads from Built by Josh Studio." />
@@ -91,70 +91,9 @@
   <meta name="twitter:description" content="Original zodiac art print collections — all 12 Western signs across 12 distinct styles, 12 Chinese zodiac Lunar Guardians, and 12 oil-painted zodiac landscapes. Instant digital downloads from Built by Josh Studio." />
   <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/og/zodiac/index.jpg" />
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bbj-bg: #f1eee6; --bbj-surface: #ffffff; --bbj-accent: #ff5a30; --bbj-text: #14130e; --bbj-muted: #6d695d; --bbj-border: #e2ddd0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Hanken Grotesk', sans-serif; background: var(--bbj-bg); color: var(--bbj-text); overflow-x: hidden; min-height: 100vh; }
-    .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-    .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0; animation: twinkle var(--d) ease-in-out infinite var(--delay); }
-    @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: var(--op); transform: scale(1); } }
-    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 64px; background: rgba(241,238,230,0.92);  border-bottom: 1px solid var(--bbj-border); }
-    .nav-logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--bbj-text); text-decoration: none; letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--bbj-muted); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--bbj-accent); } .nav-links a.active { color: var(--bbj-accent); }
-
-    .shop-hero {
-      padding: 10rem 2rem 4rem; text-align: center; position: relative; overflow: hidden;
-      background: radial-gradient(ellipse at 50% 20%, rgba(255,90,48,0.08) 0%, transparent 60%), linear-gradient(180deg, #1d1b15 0%, #14130e 100%);
-      border-bottom: 1px solid var(--bbj-border);
-    }
-    .hero-eyebrow { font-family: 'Bricolage Grotesque', serif; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 1.2rem; position: relative; }
-    .hero-title { font-family: 'Bricolage Grotesque', serif; font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 700; letter-spacing: 0.02em; line-height: 1.1; color: var(--bbj-text); margin-bottom: 1.4rem; position: relative; }
-    .hero-title span { color: var(--bbj-accent); font-family: 'Hanken Grotesk', serif; font-style: italic; font-weight: 400; }
-    .hero-sub { font-family: 'Hanken Grotesk', serif; font-style: italic; font-size: clamp(1rem, 1.6vw, 1.2rem); color: var(--bbj-muted); max-width: 600px; margin: 0 auto; line-height: 1.6; position: relative; }
-
-    .collections-section { padding: 5rem 5rem 6rem; max-width: 1400px; margin: 0 auto; }
-    .section-label { font-family: 'Bricolage Grotesque', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bbj-accent); text-align: center; margin-bottom: 0.6rem; }
-    .section-title { font-family: 'Bricolage Grotesque', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--bbj-text); text-align: center; margin-bottom: 3rem; letter-spacing: 0.02em; }
-
-    .collection-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-    .collection-card {
-      background: var(--bbj-surface); border: 1px solid var(--bbj-border); text-decoration: none; color: inherit;
-      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; display: flex; flex-direction: column;
-      position: relative; overflow: hidden;
-    }
-    .collection-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,90,48,0.04) 0%, transparent 60%); pointer-events: none; }
-    .collection-card:hover { transform: translateY(-4px); border-color: rgba(255,90,48,0.35); box-shadow: 0 16px 48px rgba(255,90,48,0.1); }
-    .collection-card > * { position: relative; z-index: 1; }
-    .card-img { aspect-ratio: 1/1; overflow: hidden; background: linear-gradient(135deg, #1d1b15 0%, #14130e 100%); }
-    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-    .collection-card:hover .card-img img { transform: scale(1.05); }
-    .card-body { padding: 1.25rem 1.4rem 1.4rem; }
-    .card-sign { font-family: 'Bricolage Grotesque', serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bbj-accent); margin-bottom: 0.4rem; }
-    .card-name { font-family: 'Bricolage Grotesque', serif; font-size: 1.05rem; font-weight: 700; color: var(--bbj-text); margin-bottom: 0.4rem; }
-    .card-desc { font-family: 'Hanken Grotesk', serif; font-size: 0.9rem; font-style: italic; color: var(--bbj-muted); line-height: 1.5; margin-bottom: 1rem; }
-    .card-link { font-family: 'Bricolage Grotesque', serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bbj-accent); padding-top: 0.8rem; border-top: 1px solid var(--bbj-border); display: block; }
-
-    .coming-card { opacity: 0.45; cursor: default; }
-    .coming-card:hover { transform: none; border-color: var(--bbj-border); box-shadow: none; }
-
-    footer { background: #14130e; padding: 3rem 5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-    .footer-left { font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
-    .footer-left strong { color: rgba(255,255,255,0.7); }
-    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
-    .footer-links a { font-size: 0.75rem; color: rgba(255,255,255,0.62); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
-    .footer-links a:hover { color: rgba(255,255,255,0.7); }
-
-    @media (max-width: 1024px) { .collection-grid { grid-template-columns: repeat(3, 1fr); } .collections-section { padding: 4rem 2rem; } }
-    @media (max-width: 720px) { .collection-grid { grid-template-columns: repeat(2, 1fr); } .shop-hero { padding: 8rem 1.5rem 3rem; } .site-nav { padding: 0 1.5rem; } .nav-links { gap: 1.2rem; } footer { flex-direction: column; padding: 2rem; text-align: center; } }
-    @media (max-width: 480px) { .collection-grid { grid-template-columns: 1fr; } }
-    .nav-logo { white-space: nowrap; } .nav-logo .logo-short { display: none; }
-    @media (max-width: 720px) { .site-nav { padding: 0 1rem; } .nav-logo { font-size: 0.88rem; } .nav-logo .logo-full { display: none; } .nav-logo .logo-short { display: inline; } .nav-links { gap: 0.9rem; } .nav-links a { font-size: 0.72rem; letter-spacing: 0.04em; } }
-    @media (max-width: 420px) { .nav-logo { font-size: 0.78rem; } .nav-links { gap: 0.55rem; } .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; } }
-  </style>
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/layouts.css" />
 
   <link rel="stylesheet" href="/css/mobile-nav.css" />
   <script type="application/ld+json">
@@ -244,13 +183,13 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 </head>
-<body>
+<body class="cosmos">
 
-  <div class="stars" id="starsContainer"></div>
 
-  <nav class="site-nav">
-    <a href="../" class="nav-logo"><span class="logo-full">Built by Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
-    <ul class="nav-links">
+  <nav class="site-nav nav" aria-label="Main">
+    <div class="wrap">
+    <a href="../" class="nav-logo wordmark">Built <em>by</em> Josh Studio</a>
+    <ul class="nav-links nav__links">
       <li><a href="../#tynkr">Tynkr Tools</a></li>
       <li><a href="../#builtbyjosh" class="active">Zodiac Art</a></li>
       <li><a href="../blog.html">Blog</a></li>
@@ -265,123 +204,123 @@
       <span></span>
       <span></span>
     </button>
+    </div>
   </nav>
 
-  <header class="shop-hero">
-    <div class="hero-eyebrow">Built by Josh Studio · Zodiac Art</div>
-    <h1 class="hero-title">Zodiac Art <span>Collections</span></h1>
-    <p class="hero-sub">Original digital art prints for every zodiac sign. Twelve styles per sign plus the Chinese zodiac and oil-painted landscapes series — all instant download, all print-ready.</p>
+  <header class="shop-hero wrap">
+    <p class="hero-eyebrow eyebrow">Built by Josh Studio · Zodiac Art</p>
+    <h1 class="hero-title">Zodiac Art <span class="hi">Collections</span></h1>
+    <p class="hero-sub measure lead">Original digital art prints for every zodiac sign. Twelve styles per sign plus the Chinese zodiac and oil-painted landscapes series — all instant download, all print-ready.</p>
   </header>
 
-  <section class="collections-section" id="western-signs">
-    <div class="section-label">Western Zodiac</div>
-    <h2 class="section-title">Browse by Sign</h2>
+  <section class="collections-section section wrap" id="western-signs">
+    <div class="section-head"><div><span class="num">01</span><h2 class="section-title">Browse by Sign</h2></div><span class="aside">Western Zodiac</span></div>
 
-    <div class="collection-grid">
+    <div class="collection-grid grid grid--catalog">
 
-      <a href="aries-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/aries.webp" alt="Aries zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♈ Fire · Mar 21 – Apr 19</div>
+      <a href="aries-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/aries.webp" alt="Aries zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♈ Fire · Mar 21 – Apr 19</div>
           <div class="card-name">Aries</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="taurus-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/taurus.webp" alt="Taurus zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♉ Earth · Apr 20 – May 20</div>
+      <a href="taurus-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/taurus.webp" alt="Taurus zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♉ Earth · Apr 20 – May 20</div>
           <div class="card-name">Taurus</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="gemini-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/gemini.webp" alt="Gemini zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♊ Air · May 21 – Jun 20</div>
+      <a href="gemini-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/gemini.webp" alt="Gemini zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♊ Air · May 21 – Jun 20</div>
           <div class="card-name">Gemini</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="cancer-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/cancer.webp" alt="Cancer zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♋ Water · Jun 21 – Jul 22</div>
+      <a href="cancer-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/cancer.webp" alt="Cancer zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♋ Water · Jun 21 – Jul 22</div>
           <div class="card-name">Cancer</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="leo-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/leo.webp" alt="Leo zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♌ Fire · Jul 23 – Aug 22</div>
+      <a href="leo-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/leo.webp" alt="Leo zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♌ Fire · Jul 23 – Aug 22</div>
           <div class="card-name">Leo</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="virgo-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/virgo.webp" alt="Virgo zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♍ Earth · Aug 23 – Sep 22</div>
+      <a href="virgo-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/virgo.webp" alt="Virgo zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♍ Earth · Aug 23 – Sep 22</div>
           <div class="card-name">Virgo</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="libra-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/libra.webp" alt="Libra zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♎ Air · Sep 23 – Oct 22</div>
+      <a href="libra-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/libra.webp" alt="Libra zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♎ Air · Sep 23 – Oct 22</div>
           <div class="card-name">Libra</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="scorpio-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/scorpio.webp" alt="Scorpio zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♏ Water · Oct 23 – Nov 21</div>
+      <a href="scorpio-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/scorpio.webp" alt="Scorpio zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♏ Water · Oct 23 – Nov 21</div>
           <div class="card-name">Scorpio</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="sagittarius-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/sagittarius.webp" alt="Sagittarius zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♐ Fire · Nov 22 – Dec 21</div>
+      <a href="sagittarius-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/sagittarius.webp" alt="Sagittarius zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♐ Fire · Nov 22 – Dec 21</div>
           <div class="card-name">Sagittarius</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="capricorn-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/capricorn.webp" alt="Capricorn zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♑ Earth · Dec 22 – Jan 19</div>
+      <a href="capricorn-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/capricorn.webp" alt="Capricorn zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♑ Earth · Dec 22 – Jan 19</div>
           <div class="card-name">Capricorn</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="aquarius-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/aquarius.webp" alt="Aquarius zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♒ Air · Jan 20 – Feb 18</div>
+      <a href="aquarius-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/aquarius.webp" alt="Aquarius zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♒ Air · Jan 20 – Feb 18</div>
           <div class="card-name">Aquarius</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="pisces-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/pisces.webp" alt="Pisces zodiac art" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♓ Water · Feb 19 – Mar 20</div>
+      <a href="pisces-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/pisces.webp" alt="Pisces zodiac art" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♓ Water · Feb 19 – Mar 20</div>
           <div class="card-name">Pisces</div>
           <span class="card-link">View Collection →</span>
         </div>
@@ -391,115 +330,114 @@
   </section>
 
 
-  <section class="collections-section" style="padding-top:0">
-    <div class="section-label">Western Zodiac Realms</div>
-    <h2 class="section-title">Browse Realms by Sign</h2>
+  <section class="collections-section section wrap">
+    <div class="section-head"><div><span class="num">02</span><h2 class="section-title">Browse Realms by Sign</h2></div><span class="aside">Western Zodiac Realms</span></div>
 
-    <div class="collection-grid">
+    <div class="collection-grid grid grid--catalog">
 
-      <a href="aries-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/aries.webp" alt="Aries zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♈ Fire · Mar 21 – Apr 19</div>
+      <a href="aries-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/aries.webp" alt="Aries zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♈ Fire · Mar 21 – Apr 19</div>
           <div class="card-name">Aries Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="taurus-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/taurus.webp" alt="Taurus zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♉ Earth · Apr 20 – May 20</div>
+      <a href="taurus-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/taurus.webp" alt="Taurus zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♉ Earth · Apr 20 – May 20</div>
           <div class="card-name">Taurus Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="gemini-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/gemini.webp" alt="Gemini zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♊ Air · May 21 – Jun 20</div>
+      <a href="gemini-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/gemini.webp" alt="Gemini zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♊ Air · May 21 – Jun 20</div>
           <div class="card-name">Gemini Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="cancer-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/cancer.webp" alt="Cancer zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♋ Water · Jun 21 – Jul 22</div>
+      <a href="cancer-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/cancer.webp" alt="Cancer zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♋ Water · Jun 21 – Jul 22</div>
           <div class="card-name">Cancer Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="leo-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/leo.webp" alt="Leo zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♌ Fire · Jul 23 – Aug 22</div>
+      <a href="leo-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/leo.webp" alt="Leo zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♌ Fire · Jul 23 – Aug 22</div>
           <div class="card-name">Leo Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="virgo-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/virgo.webp" alt="Virgo zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♍ Earth · Aug 23 – Sep 22</div>
+      <a href="virgo-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/virgo.webp" alt="Virgo zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♍ Earth · Aug 23 – Sep 22</div>
           <div class="card-name">Virgo Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="libra-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/libra.webp" alt="Libra zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♎ Air · Sep 23 – Oct 22</div>
+      <a href="libra-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/libra.webp" alt="Libra zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♎ Air · Sep 23 – Oct 22</div>
           <div class="card-name">Libra Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="scorpio-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/scorpio.webp" alt="Scorpio zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♏ Water · Oct 23 – Nov 21</div>
+      <a href="scorpio-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/scorpio.webp" alt="Scorpio zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♏ Water · Oct 23 – Nov 21</div>
           <div class="card-name">Scorpio Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="sagittarius-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/sagittarius.webp" alt="Sagittarius zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♐ Fire · Nov 22 – Dec 21</div>
+      <a href="sagittarius-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/sagittarius.webp" alt="Sagittarius zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♐ Fire · Nov 22 – Dec 21</div>
           <div class="card-name">Sagittarius Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="capricorn-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/capricorn.webp" alt="Capricorn zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♑ Earth · Dec 22 – Jan 19</div>
+      <a href="capricorn-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/capricorn.webp" alt="Capricorn zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♑ Earth · Dec 22 – Jan 19</div>
           <div class="card-name">Capricorn Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="aquarius-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/aquarius.webp" alt="Aquarius zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♒ Air · Jan 20 – Feb 18</div>
+      <a href="aquarius-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/aquarius.webp" alt="Aquarius zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♒ Air · Jan 20 – Feb 18</div>
           <div class="card-name">Aquarius Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="pisces-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/realms/pisces.webp" alt="Pisces zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">♓ Water · Feb 19 – Mar 20</div>
+      <a href="pisces-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/realms/pisces.webp" alt="Pisces zodiac realms art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">♓ Water · Feb 19 – Mar 20</div>
           <div class="card-name">Pisces Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
@@ -509,115 +447,114 @@
   </section>
 
 
-  <section class="collections-section" style="padding-top:0">
-    <div class="section-label">Chinese Zodiac</div>
-    <h2 class="section-title">Browse Chinese by Animal</h2>
+  <section class="collections-section section wrap">
+    <div class="section-head"><div><span class="num">03</span><h2 class="section-title">Browse Chinese by Animal</h2></div><span class="aside">Chinese Zodiac</span></div>
 
-    <div class="collection-grid">
+    <div class="collection-grid grid grid--catalog">
 
-      <a href="rat-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/rat.webp" alt="Year of the Rat Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Rat · 2008, 2020, 2032</div>
+      <a href="rat-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/rat.webp" alt="Year of the Rat Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Rat · 2008, 2020, 2032</div>
           <div class="card-name">Year of the Rat</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="ox-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/ox.webp" alt="Year of the Ox Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Ox · 2009, 2021, 2033</div>
+      <a href="ox-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/ox.webp" alt="Year of the Ox Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Ox · 2009, 2021, 2033</div>
           <div class="card-name">Year of the Ox</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="tiger-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/tiger.webp" alt="Year of the Tiger Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Tiger · 2010, 2022, 2034</div>
+      <a href="tiger-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/tiger.webp" alt="Year of the Tiger Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Tiger · 2010, 2022, 2034</div>
           <div class="card-name">Year of the Tiger</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="rabbit-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/rabbit.webp" alt="Year of the Rabbit Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Rabbit · 2011, 2023, 2035</div>
+      <a href="rabbit-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/rabbit.webp" alt="Year of the Rabbit Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Rabbit · 2011, 2023, 2035</div>
           <div class="card-name">Year of the Rabbit</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="dragon-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/dragon.webp" alt="Year of the Dragon Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Dragon · 2012, 2024, 2036</div>
+      <a href="dragon-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/dragon.webp" alt="Year of the Dragon Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Dragon · 2012, 2024, 2036</div>
           <div class="card-name">Year of the Dragon</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="snake-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/snake.webp" alt="Year of the Snake Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Snake · 2013, 2025, 2037</div>
+      <a href="snake-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/snake.webp" alt="Year of the Snake Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Snake · 2013, 2025, 2037</div>
           <div class="card-name">Year of the Snake</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="horse-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/horse.webp" alt="Year of the Horse Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Horse · 2014, 2026, 2038</div>
+      <a href="horse-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/horse.webp" alt="Year of the Horse Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Horse · 2014, 2026, 2038</div>
           <div class="card-name">Year of the Horse</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="goat-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/goat.webp" alt="Year of the Goat Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Goat · 2015, 2027, 2039</div>
+      <a href="goat-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/goat.webp" alt="Year of the Goat Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Goat · 2015, 2027, 2039</div>
           <div class="card-name">Year of the Goat</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="monkey-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/monkey.webp" alt="Year of the Monkey Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Monkey · 2016, 2028, 2040</div>
+      <a href="monkey-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/monkey.webp" alt="Year of the Monkey Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Monkey · 2016, 2028, 2040</div>
           <div class="card-name">Year of the Monkey</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="rooster-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/rooster.webp" alt="Year of the Rooster Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Rooster · 2017, 2029, 2041</div>
+      <a href="rooster-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/rooster.webp" alt="Year of the Rooster Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Rooster · 2017, 2029, 2041</div>
           <div class="card-name">Year of the Rooster</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="dog-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/dog.webp" alt="Year of the Dog Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Dog · 2018, 2030, 2042</div>
+      <a href="dog-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/dog.webp" alt="Year of the Dog Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Dog · 2018, 2030, 2042</div>
           <div class="card-name">Year of the Dog</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="pig-chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/pig.webp" alt="Year of the Pig Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Pig · 2019, 2031, 2043</div>
+      <a href="pig-chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/pig.webp" alt="Year of the Pig Chinese zodiac art bundle" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Pig · 2019, 2031, 2043</div>
           <div class="card-name">Year of the Pig</div>
           <span class="card-link">View Collection →</span>
         </div>
@@ -626,34 +563,33 @@
     </div>
   </section>
 
-  <section class="collections-section" style="padding-top:0">
-    <div class="section-label">Signature Series</div>
-    <h2 class="section-title">Series Collections</h2>
+  <section class="collections-section section wrap">
+    <div class="section-head"><div><span class="num">04</span><h2 class="section-title">Series Collections</h2></div><span class="aside">Signature Series</span></div>
 
-    <div class="collection-grid" style="grid-template-columns:repeat(3,1fr);max-width:1100px;margin:0 auto">
+    <div class="collection-grid grid grid--catalog hub-grid--3">
 
-      <a href="chinese-zodiac-art.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese/tiger.webp" alt="Chinese Zodiac art — Lunar Guardians collection" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Chinese Zodiac · 12 Lunar Guardians</div>
+      <a href="chinese-zodiac-art.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese/tiger.webp" alt="Chinese Zodiac art — Lunar Guardians collection" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Chinese Zodiac · 12 Lunar Guardians</div>
           <div class="card-name">Chinese Zodiac Art</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="zodiac-landscapes.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/landscapes/aries.jpg" alt="Zodiac Landscapes — oil-painted environments for all 12 signs" loading="lazy" width="600" height="600" /></div>
-        <div class="card-body">
-          <div class="card-sign">Zodiac Landscapes · 12 Oil-Painted Worlds</div>
+      <a href="zodiac-landscapes.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/landscapes/aries.jpg" alt="Zodiac Landscapes — oil-painted environments for all 12 signs" loading="lazy" width="600" height="600" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Zodiac Landscapes · 12 Oil-Painted Worlds</div>
           <div class="card-name">Zodiac Landscapes</div>
           <span class="card-link">View Collection →</span>
         </div>
       </a>
 
-      <a href="chinese-zodiac-realms.html" class="collection-card">
-        <div class="card-img"><img src="../images/zodiac/chinese-realms/dragon.webp" alt="Chinese Zodiac Realms — hybrid cosmos-landscape series for all 12 animals" loading="lazy" width="720" height="900" /></div>
-        <div class="card-body">
-          <div class="card-sign">Chinese Zodiac Realms · 24 Designs · 12 Animals</div>
+      <a href="chinese-zodiac-realms.html" class="collection-card card">
+        <div class="card-img card__media"><img src="../images/zodiac/chinese-realms/dragon.webp" alt="Chinese Zodiac Realms — hybrid cosmos-landscape series for all 12 animals" loading="lazy" width="720" height="900" /></div>
+        <div class="card-body card__body">
+          <div class="card-sign line-tag">Chinese Zodiac Realms · 24 Designs · 12 Animals</div>
           <div class="card-name">Chinese Zodiac Realms</div>
           <span class="card-link">View Collection →</span>
         </div>
@@ -663,9 +599,12 @@
     </div>
   </section>
 
-  <footer>
-    <div class="footer-left"><strong>Built by Josh Studio</strong> · All digital products — instant download</div>
-    <ul class="footer-links">
+  <footer class="footer">
+    <div class="wrap">
+    <p class="footer__sign">Built <em>by</em> Josh.</p>
+    <div class="footer__top">
+      <div><span class="wordmark">Built <em>by</em> Josh Studio</span><p>All digital products — instant download</p></div>
+    <ul class="footer__links">
       <li><a href="../">Home</a></li>
       <li><a href="../collections/">Collections</a></li>
       <li><a href="../blog.html">Blog</a></li>
@@ -682,45 +621,21 @@
       <li><a href="../privacy.html">Privacy</a></li>
       <li><a href="../terms.html">Terms</a></li>
     </ul>
-      <nav aria-label="More from Built by Josh Studio" style="flex:0 0 100%;max-width:1160px;margin:0 auto 14px;padding:14px 0 0;border-top:1px solid rgba(128,128,128,.18);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11.5px;letter-spacing:.05em;">
-      <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-      <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-      <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tynkr apps</a>
-      <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Kitchen tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Money tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tabletop tools</a>
-    </nav>
-    <div class="footer-legal">
-      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
-      Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.
+      <nav aria-label="More from Built by Josh Studio">
+        <p class="footer__label">More from the studio:</p>
+        <ul>
+          <li><a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a></li>
+          <li><a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom"><span>&copy; 2026 Built by Josh Studio LLC. All rights reserved.</span><span>Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</span></div>
     </div>
   </footer>
 
-  <script>
-    // Star field -- deferred (after load + idle) and lighter, so it never competes with first paint / LCP
-    (function () {
-      var run = function () {
-        var container = document.getElementById('starsContainer');
-        if (!container) return;
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        var w = window.innerWidth, h = window.innerHeight, mobile = w < 768;
-        var starCount = Math.min(mobile ? 70 : 150, Math.max(mobile ? 35 : 60, Math.round((w * h) / (mobile ? 16000 : 11000))));
-        var frag = document.createDocumentFragment();
-        for (var i = 0; i < starCount; i++) {
-          var s = document.createElement('div');
-          s.className = 'star';
-          var big = Math.random() > 0.82;
-          var sz = big ? (Math.random() > 0.6 ? 4 : 3) : 2;
-          s.style.cssText = 'left:' + (Math.random() * 100) + '%;top:' + (Math.random() * 100) + '%;--d:' + (2 + Math.random() * 4) + 's;--delay:-' + (Math.random() * 4) + 's;--op:' + (0.45 + Math.random() * 0.55) + ';width:' + sz + 'px;height:' + sz + 'px;';
-          frag.appendChild(s);
-        }
-        container.appendChild(frag);
-      };
-      var idle = window.requestIdleCallback || function (cb) { return setTimeout(cb, 250); };
-      var go = function () { idle(run, { timeout: 2000 }); };
-      if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
-    })();
-  </script>
 
   <script src="/js/mobile-nav.js" defer></script>
   <script src="/js/ga4-events.js" defer></script>

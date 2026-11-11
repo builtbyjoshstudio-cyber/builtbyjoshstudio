@@ -11,7 +11,7 @@
     </script>
   <meta charset="UTF-8" />
   <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
-  <link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Notion Templates & Budget Spreadsheets — Built by Josh Studio</title>
   <meta name="description" content="Notion templates and budget spreadsheets for solo creators — Creator OS systems plus budget & home-buying workbooks for Excel and Sheets." />
@@ -34,290 +34,9 @@
   <meta name="twitter:title" content="Notion Templates & Budget Spreadsheets — Built by Josh Studio" />
   <meta name="twitter:description" content="Creator OS systems in Notion, plus budget & home-buying workbooks for Excel + Sheets." />
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --tynkr-bg: #f1eee6;
-      --tynkr-surface: #ffffff;
-      --tynkr-accent: #ff5a30;
-      --tynkr-accent2: #14130e;
-      --tynkr-text: #14130e;
-      --tynkr-muted: #6d695d;
-      --tynkr-border: #e2ddd0;
-      --body-read: #3a3a3a;
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Hanken Grotesk', sans-serif;
-      background: var(--tynkr-bg);
-      color: var(--tynkr-text);
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    .site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      height: 64px;
-      background: rgba(241,238,230,0.97);
-      border-bottom: 1px solid var(--tynkr-border);
-    }
-    .nav-logo {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: var(--tynkr-text);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--tynkr-muted);
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--tynkr-accent); }
-    .nav-links a.active { color: var(--tynkr-accent); }
-
-    .shop-hero {
-      padding: 10rem 2rem 4rem;
-      text-align: center;
-      background:
-        radial-gradient(ellipse at 50% 20%, rgba(255,90,48,0.05) 0%, transparent 60%),
-        linear-gradient(180deg, #f1eee6 0%, #f8f5ee 100%);
-      border-bottom: 1px solid var(--tynkr-border);
-      position: relative;
-      overflow: hidden;
-    }
-    .shop-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(255,90,48,0.3) 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: 0.08;
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--tynkr-accent);
-      margin-bottom: 1.2rem;
-      position: relative;
-    }
-    .hero-title {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: clamp(2.4rem, 6vw, 4.5rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-      color: var(--tynkr-text);
-      margin-bottom: 1.4rem;
-      position: relative;
-    }
-    .hero-title span {
-      color: var(--tynkr-accent);
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-style: italic;
-      font-weight: 400;
-    }
-    .hero-sub {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-style: italic;
-      font-size: clamp(1rem, 1.6vw, 1.2rem);
-      color: var(--body-read);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
-      position: relative;
-    }
-
-    .shop-section {
-      padding: 5rem 5rem 6rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .section-label {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--tynkr-accent);
-      text-align: center;
-      margin-bottom: 0.6rem;
-    }
-    .section-title {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 800;
-      color: var(--tynkr-text);
-      text-align: center;
-      margin-bottom: 3rem;
-      letter-spacing: -0.01em;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.6rem;
-    }
-    .product-card {
-      background: var(--tynkr-surface);
-      border: 1px solid var(--tynkr-border);
-      padding: 0;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-    .product-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,90,48,0.03) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .product-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255,90,48,0.25);
-      box-shadow: 0 16px 48px rgba(255,90,48,0.06);
-    }
-    .product-card > * { position: relative; z-index: 1; }
-    .card-meta {
-      padding: 1.5rem 1.6rem 0.5rem;
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--tynkr-accent);
-    }
-    .card-title {
-      padding: 0 1.6rem;
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--tynkr-text);
-      margin-bottom: 0.7rem;
-      letter-spacing: -0.005em;
-      line-height: 1.25;
-    }
-    .card-desc {
-      padding: 0 1.6rem 1.4rem;
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-style: italic;
-      font-size: 0.98rem;
-      line-height: 1.6;
-      color: var(--body-read);
-      flex: 1;
-    }
-    .card-footer {
-      padding: 1.1rem 1.6rem 1.4rem;
-      border-top: 1px solid var(--tynkr-border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .card-price {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--tynkr-accent);
-    }
-    .card-view {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--tynkr-accent);
-    }
-
-    .coming-soon {
-      background: rgba(255,90,48,0.02);
-      border: 1px dashed var(--tynkr-border);
-      color: var(--tynkr-muted);
-      cursor: default;
-    }
-    .coming-soon:hover { transform: none; border-color: var(--tynkr-border); box-shadow: none; }
-    .coming-soon .card-title,
-    .coming-soon .card-price,
-    .coming-soon .card-view,
-    .coming-soon .card-meta { color: var(--tynkr-muted); }
-    .coming-soon .card-view { letter-spacing: 0.14em; }
-
-    footer {
-      background: #f1eee6;
-      padding: 3rem 5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-    .footer-left {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(0,0,0,0.62);
-    }
-    .footer-left strong { color: rgba(0,0,0,0.7); }
-    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
-    .footer-links a {
-      font-size: 0.75rem;
-      color: rgba(0,0,0,0.62);
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: rgba(0,0,0,0.7); }
-
-    @media (max-width: 960px) {
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .shop-section { padding: 4rem 2rem; }
-    }
-    @media (max-width: 640px) {
-      .product-grid { grid-template-columns: 1fr; }
-      .shop-hero { padding: 8rem 1.5rem 3rem; }
-      .site-nav { padding: 0 1.5rem; }
-      .nav-links { gap: 1.2rem; }
-      footer { flex-direction: column; padding: 2rem; text-align: center; }
-    }
-  
-    /* ── MOBILE NAV FIX ── */
-    .nav-logo { white-space: nowrap; }
-    .nav-logo .logo-short { display: none; }
-    @media (max-width: 720px) {
-      .site-nav { padding: 0 1rem; }
-      .nav-logo { font-size: 0.88rem; }
-      .nav-logo .logo-full { display: none; }
-      .nav-logo .logo-short { display: inline; }
-      .nav-links { gap: 0.9rem; }
-      .nav-links a { font-size: 0.72rem; letter-spacing: 0.04em; }
-    }
-    @media (max-width: 420px) {
-      .nav-logo { font-size: 0.78rem; }
-      .nav-links { gap: 0.55rem; }
-      .nav-links a { font-size: 0.62rem; letter-spacing: 0.03em; }
-    }
-  </style>
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/layouts.css" />
 
   <link rel="stylesheet" href="/css/mobile-nav.css" />
   <script type="application/ld+json">
@@ -409,9 +128,10 @@
 </head>
 <body>
 
-  <nav class="site-nav">
-    <a href="../" class="nav-logo"><span class="logo-full">Built by Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
-    <ul class="nav-links">
+  <nav class="site-nav nav" aria-label="Main">
+    <div class="wrap">
+    <a href="../" class="nav-logo wordmark">Built <em>by</em> Josh Studio</a>
+    <ul class="nav-links nav__links">
       <li><a href="../#tynkr" class="active">Tynkr Tools</a></li>
       <li><a href="../#builtbyjosh">Zodiac Art</a></li>
       <li><a href="../blog.html">Blog</a></li>
@@ -426,22 +146,22 @@
       <span></span>
       <span></span>
     </button>
+    </div>
   </nav>
 
-  <header class="shop-hero">
-    <div class="hero-eyebrow">Tynkr Tools &amp; Co · The Shop</div>
-    <h1 class="hero-title">Notion Templates &amp; Budget Spreadsheets for <span>Solo Creators</span></h1>
-    <p class="hero-sub">Creator operating systems in Notion, plus budget and home-buying workbooks in Excel and Google Sheets. Every product is an instant download — buy direct here, or on Etsy.</p>
+  <header class="shop-hero wrap">
+    <p class="hero-eyebrow eyebrow">Tynkr Tools &amp; Co · The Shop</p>
+    <h1 class="hero-title">Notion Templates &amp; Budget Spreadsheets for <span class="hi">Solo Creators</span></h1>
+    <p class="hero-sub measure lead">Creator operating systems in Notion, plus budget and home-buying workbooks in Excel and Google Sheets. Every product is an instant download — buy direct here, or on Etsy.</p>
   </header>
 
-  <section class="shop-section">
-    <div class="section-label">The Creator OS Line</div>
-    <h2 class="section-title">Five systems. One unified stack.</h2>
+  <section class="shop-section section wrap">
+    <div class="section-head"><div><span class="num">01</span><h2 class="section-title">Five systems. One unified stack.</h2></div><span class="aside">The Creator OS Line</span></div>
 
-    <div class="product-grid">
+    <div class="product-grid grid grid--3">
 
-      <a href="creator-content-os.html" class="product-card">
-        <div class="card-meta">Notion · Content System</div>
+      <a href="creator-content-os.html" class="product-card card">
+        <div class="card-meta line-tag">Notion · Content System</div>
         <div class="card-title">Creator Content OS</div>
         <div class="card-desc">One workspace for every stage of content — library, pipeline, calendar, repurposing, campaigns, assets, and performance.</div>
         <div class="card-footer">
@@ -450,8 +170,8 @@
         </div>
       </a>
 
-      <a href="creator-business-os.html" class="product-card">
-        <div class="card-meta">Notion · Creator Business</div>
+      <a href="creator-business-os.html" class="product-card card">
+        <div class="card-meta line-tag">Notion · Creator Business</div>
         <div class="card-title">Creator Business OS</div>
         <div class="card-desc">Contacts, leads, deals, deliverables, offers, and invoices — a full business OS for solo creators without a team.</div>
         <div class="card-footer">
@@ -460,8 +180,8 @@
         </div>
       </a>
 
-      <a href="creator-finance-os.html" class="product-card">
-        <div class="card-meta">Notion · Creator Finance</div>
+      <a href="creator-finance-os.html" class="product-card card">
+        <div class="card-meta line-tag">Notion · Creator Finance</div>
         <div class="card-title">Creator Finance OS</div>
         <div class="card-desc">Revenue, expenses, budgets, goals, debt, and tax estimates for creators who want control without an accountant.</div>
         <div class="card-footer">
@@ -470,8 +190,8 @@
         </div>
       </a>
 
-      <a href="creator-launch-os.html" class="product-card">
-        <div class="card-meta">Notion · Creator Launches</div>
+      <a href="creator-launch-os.html" class="product-card card">
+        <div class="card-meta line-tag">Notion · Creator Launches</div>
         <div class="card-title">Creator Launch OS</div>
         <div class="card-desc">Launch command center, task management, asset tracker, and promo content coordination for product drops.</div>
         <div class="card-footer">
@@ -480,8 +200,8 @@
         </div>
       </a>
 
-      <a href="creator-product-os.html" class="product-card">
-        <div class="card-meta">Notion · Creator Catalog</div>
+      <a href="creator-product-os.html" class="product-card card">
+        <div class="card-meta line-tag">Notion · Creator Catalog</div>
         <div class="card-title">Creator Product OS</div>
         <div class="card-desc">Digital product catalog management — products, files, cross-platform listings, bundles, versions, and support.</div>
         <div class="card-footer">
@@ -490,8 +210,8 @@
         </div>
       </a>
 
-      <a href="creator-os-full-stack.html" class="product-card">
-        <div class="card-meta">Notion · Full Bundle</div>
+      <a href="creator-os-full-stack.html" class="product-card card">
+        <div class="card-meta line-tag">Notion · Full Bundle</div>
         <div class="card-title">Creator OS Full Stack</div>
         <div class="card-desc">Every Creator OS template bundled into one unified operating system. Content, business, finance, launch, and product.</div>
         <div class="card-footer">
@@ -503,14 +223,13 @@
     </div>
   </section>
 
-  <section class="shop-section">
-    <div class="section-label">Spreadsheet Workbooks</div>
-    <h2 class="section-title">Budget &amp; home-buying systems.</h2>
+  <section class="shop-section section wrap">
+    <div class="section-head"><div><span class="num">02</span><h2 class="section-title">Budget &amp; home-buying systems.</h2></div><span class="aside">Spreadsheet Workbooks</span></div>
 
-    <div class="product-grid">
+    <div class="product-grid grid grid--3">
 
-      <a href="ultimate-budget-workbook.html" class="product-card">
-        <div class="card-meta">Excel + Sheets · Personal Finance</div>
+      <a href="ultimate-budget-workbook.html" class="product-card card">
+        <div class="card-meta line-tag">Excel + Sheets · Personal Finance</div>
         <div class="card-title">Ultimate Budget Workbook</div>
         <div class="card-desc">23-tab personal finance system — Control Panel, monthly budgets, debt payoff, net worth, and the 50/30/20 rule, in Excel and Google Sheets.</div>
         <div class="card-footer">
@@ -519,8 +238,8 @@
         </div>
       </a>
 
-      <a href="home-buying-mortgage-workbook.html" class="product-card">
-        <div class="card-meta">Excel + Sheets · Home Buying</div>
+      <a href="home-buying-mortgage-workbook.html" class="product-card card">
+        <div class="card-meta line-tag">Excel + Sheets · Home Buying</div>
         <div class="card-title">Home Buying &amp; Mortgage Workbook</div>
         <div class="card-desc">15-tab home buying system — affordability, mortgage comparison, amortization, closing costs, and first-year budget, in Excel and Google Sheets.</div>
         <div class="card-footer">
@@ -532,14 +251,13 @@
     </div>
   </section>
 
-  <section class="shop-section">
-    <div class="section-label">Now in Print</div>
-    <h2 class="section-title">The Guided Series &mdash; paperback planners.</h2>
+  <section class="shop-section section wrap">
+    <div class="section-head"><div><span class="num">03</span><h2 class="section-title">The Guided Series &mdash; paperback planners.</h2></div><span class="aside">Now in Print</span></div>
 
-    <div class="product-grid">
+    <div class="product-grid grid grid--3">
 
-      <a href="/planners/guided-wedding-planner.html" class="product-card">
-        <div class="card-meta">Paperback &middot; Wedding</div>
+      <a href="/planners/guided-wedding-planner.html" class="product-card card">
+        <div class="card-meta line-tag">Paperback &middot; Wedding</div>
         <div class="card-title">The Guided Wedding Planner</div>
         <div class="card-desc">An undated couple's companion &mdash; budget, guest list, vendors, timeline &amp; day-of. In paperback on Amazon.</div>
         <div class="card-footer">
@@ -548,8 +266,8 @@
         </div>
       </a>
 
-      <a href="/planners/guided-budget-planner.html" class="product-card">
-        <div class="card-meta">Paperback &middot; Budget</div>
+      <a href="/planners/guided-budget-planner.html" class="product-card card">
+        <div class="card-meta line-tag">Paperback &middot; Budget</div>
         <div class="card-title">The Guided Budget Planner</div>
         <div class="card-desc">An undated 12-month guided budget planner &amp; expense tracker. The print companion to the Ultimate Budget Workbook.</div>
         <div class="card-footer">
@@ -558,8 +276,8 @@
         </div>
       </a>
 
-      <a href="/planners/guided-home-buying-workbook.html" class="product-card">
-        <div class="card-meta">Paperback &middot; Home Buying</div>
+      <a href="/planners/guided-home-buying-workbook.html" class="product-card card">
+        <div class="card-meta line-tag">Paperback &middot; Home Buying</div>
         <div class="card-title">The Guided Home Buying Workbook</div>
         <div class="card-desc">An undated first-time buyer's companion &mdash; affordability, mortgage, closing &amp; first year. Print companion to the digital workbook.</div>
         <div class="card-footer">
@@ -568,8 +286,8 @@
         </div>
       </a>
 
-      <a href="/planners/guided-debt-payoff-planner.html" class="product-card">
-        <div class="card-meta">Paperback &middot; Debt Payoff</div>
+      <a href="/planners/guided-debt-payoff-planner.html" class="product-card card">
+        <div class="card-meta line-tag">Paperback &middot; Debt Payoff</div>
         <div class="card-title">The Guided Debt Payoff Planner</div>
         <div class="card-desc">An undated snowball &amp; avalanche workbook to become debt-free &mdash; trackers, check-ins &amp; payoff charts.</div>
         <div class="card-footer">
@@ -578,8 +296,8 @@
         </div>
       </a>
 
-      <a href="/planners/guided-savings-planner.html" class="product-card">
-        <div class="card-meta">Paperback &middot; Savings</div>
+      <a href="/planners/guided-savings-planner.html" class="product-card card">
+        <div class="card-meta line-tag">Paperback &middot; Savings</div>
         <div class="card-title">The Guided Savings Planner</div>
         <div class="card-desc">An undated money challenge workbook &mdash; 52-week, 100-envelope &amp; no-spend trackers, plus an emergency fund plan.</div>
         <div class="card-footer">
@@ -591,14 +309,13 @@
     </div>
   </section>
 
-  <section class="shop-section">
-    <div class="section-label">Coming Soon</div>
-    <h2 class="section-title">Tynkr desktop apps &mdash; local-first Windows software.</h2>
+  <section class="shop-section section wrap">
+    <div class="section-head"><div><span class="num">04</span><h2 class="section-title">Tynkr desktop apps &mdash; local-first Windows software.</h2></div><span class="aside">Coming Soon</span></div>
 
-    <div class="product-grid">
+    <div class="product-grid grid grid--3">
 
-      <a href="https://tynkr.builtbyjoshstudio.com/ledger/" target="_blank" rel="noopener" class="product-card">
-        <div class="card-meta">Desktop App &middot; Finance</div>
+      <a href="https://tynkr.builtbyjoshstudio.com/ledger/" target="_blank" rel="noopener" class="product-card card">
+        <div class="card-meta line-tag">Desktop App &middot; Finance</div>
         <div class="card-title">Tynkr Ledger &mdash; Personal Finance OS</div>
         <div class="card-desc">Transactions, budgets, bills, debt payoff &amp; net worth &mdash; on your own disk. Local-first Windows app &mdash; no cloud, no accounts, no subscription.</div>
         <div class="card-footer">
@@ -607,8 +324,8 @@
         </div>
       </a>
 
-      <a href="https://tynkr.builtbyjoshstudio.com/vault/" target="_blank" rel="noopener" class="product-card">
-        <div class="card-meta">Desktop App &middot; Notes</div>
+      <a href="https://tynkr.builtbyjoshstudio.com/vault/" target="_blank" rel="noopener" class="product-card card">
+        <div class="card-meta line-tag">Desktop App &middot; Notes</div>
         <div class="card-title">Tynkr Vault &mdash; Second Brain OS</div>
         <div class="card-desc">Notes, tasks &amp; weekly reviews as plain Markdown files you own. Local-first Windows app &mdash; no cloud, no accounts, no subscription.</div>
         <div class="card-footer">
@@ -617,8 +334,8 @@
         </div>
       </a>
 
-      <a href="https://tynkr.builtbyjoshstudio.com/hearth/" target="_blank" rel="noopener" class="product-card">
-        <div class="card-meta">Desktop App &middot; Home Buying</div>
+      <a href="https://tynkr.builtbyjoshstudio.com/hearth/" target="_blank" rel="noopener" class="product-card card">
+        <div class="card-meta line-tag">Desktop App &middot; Home Buying</div>
         <div class="card-title">Tynkr Hearth &mdash; Homebuyer OS</div>
         <div class="card-desc">The whole home purchase, mapped &mdash; mortgage math, cash-to-close, roadmap. Local-first Windows app &mdash; no cloud, no accounts, no subscription.</div>
         <div class="card-footer">
@@ -627,8 +344,8 @@
         </div>
       </a>
 
-      <a href="https://tynkr.builtbyjoshstudio.com/forge/" target="_blank" rel="noopener" class="product-card">
-        <div class="card-meta">Desktop App &middot; Business</div>
+      <a href="https://tynkr.builtbyjoshstudio.com/forge/" target="_blank" rel="noopener" class="product-card card">
+        <div class="card-meta line-tag">Desktop App &middot; Business</div>
         <div class="card-title">Tynkr Forge &mdash; Small Business OS</div>
         <div class="card-desc">Invoicing, CRM, purchase orders, contracts &amp; expenses in one place. Local-first Windows app &mdash; no cloud, no accounts, no subscription.</div>
         <div class="card-footer">
@@ -640,11 +357,12 @@
     </div>
   </section>
 
-  <footer>
-    <div class="footer-left">
-      <strong>Built by Josh Studio</strong> · All digital products — instant download
-    </div>
-    <ul class="footer-links">
+  <footer class="footer">
+    <div class="wrap">
+    <p class="footer__sign">Built <em>by</em> Josh.</p>
+    <div class="footer__top">
+      <div><span class="wordmark">Built <em>by</em> Josh Studio</span><p>All digital products — instant download</p></div>
+    <ul class="footer__links">
       <li><a href="../">Home</a></li>
       <li><a href="../products/">Products</a></li>
       <li><a href="../blog.html">Blog</a></li>
@@ -661,17 +379,18 @@
       <li><a href="../privacy.html">Privacy</a></li>
       <li><a href="../terms.html">Terms</a></li>
     </ul>
-      <nav aria-label="More from Built by Josh Studio" style="flex:0 0 100%;max-width:1160px;margin:0 auto 14px;padding:14px 0 0;border-top:1px solid rgba(128,128,128,.18);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11.5px;letter-spacing:.05em;">
-      <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-      <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-      <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tynkr apps</a>
-      <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Kitchen tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Money tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tabletop tools</a>
-    </nav>
-    <div class="footer-legal">
-      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
-      Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.
+      <nav aria-label="More from Built by Josh Studio">
+        <p class="footer__label">More from the studio:</p>
+        <ul>
+          <li><a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a></li>
+          <li><a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom"><span>&copy; 2026 Built by Josh Studio LLC. All rights reserved.</span><span>Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</span></div>
     </div>
   </footer>
 
