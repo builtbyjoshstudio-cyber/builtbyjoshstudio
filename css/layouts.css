@@ -125,7 +125,53 @@ body.cosmos::before, body.cosmos::after { position: fixed; inset: 0; }
 .review-text { margin: 0; font-style: italic; color: var(--ink); }
 .review-author { font-size: var(--text-small); color: var(--muted); }
 
+/* --- blog posts ---------------------------------------------------------------------- */
+/* Selectors under .post outrank the old article/sidebar rules still kept in tokens.css. */
+.bhead { padding: 40px 0 32px; border-bottom: var(--hair); max-width: 860px; margin: 0 auto; }
+.bhead h1 { margin: 0; }
+.bhead .lead { font-style: italic; margin: var(--space-4) 0 0; max-width: none; }
+.back-link { font-size: var(--text-small); margin-bottom: var(--space-5); }
+.back-link a { color: var(--muted); }
+.meta { display: flex; gap: var(--space-4); flex-wrap: wrap; font-family: var(--font-mono); font-size: var(--text-label); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: var(--space-5); }
+.meta .dot { display: none; }
+.post { display: grid; grid-template-columns: minmax(0, 700px) 300px; gap: 80px; justify-content: center; padding-top: 48px; padding-bottom: 0; }
+.short > p { margin: 0; font-size: var(--text-ui); max-width: none; }
+.post .prose > .short:first-child { margin-top: 0; }
+.post .prose ul, .post .prose ol { color: var(--ink-2); padding-left: 1.25em; margin: 0 0 var(--space-4); }
+.post .prose li { margin-bottom: var(--space-2); }
+.post .prose h3 { margin-top: var(--space-8); }
+.post .prose img { height: auto; border-radius: var(--r); }
+.inline-cta { margin: var(--space-10) 0; padding: var(--space-6); }
+.post .inline-cta h3 { margin: 0 0 var(--space-2); }
+.inline-cta p { font-size: var(--text-ui); color: var(--muted); }
+.inline-cta .btn { margin: var(--space-1) var(--space-2) 0 0; }
+.related-posts { margin-top: var(--space-16); border-top: var(--hair); padding-top: var(--space-10); }
+.post .related-posts-label { margin-top: 0; font-size: var(--text-h3); }
+.related-posts-grid.grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+.related-post-card { padding: var(--space-5); gap: var(--space-2); color: inherit; }
+.post .related-post-card h3 { margin: 0; font-size: var(--text-h4); }
+.related-post-card p { margin: 0; font-size: var(--text-small); color: var(--muted); }
+.author-bio { margin-top: var(--space-10); padding: var(--space-6); border-radius: var(--r); }
+.author-bio p { margin: var(--space-2) 0; font-size: var(--text-ui); color: var(--muted); }
+.side { position: sticky; top: 88px; align-self: start; display: grid; gap: var(--space-5); }
+.post .article-sidebar-sticky { position: static; border: var(--hair); padding: var(--space-5); box-shadow: var(--shadow); }
+.post .sidebar-thumb { height: auto; border: var(--hair); border-radius: var(--r-s); margin-bottom: var(--space-4); }
+.post .sidebar-price-block { color: var(--ink); }
+.post .sidebar-cta-btn { font-family: var(--font-ui); font-size: var(--text-ui); font-weight: 600; letter-spacing: -0.005em; text-transform: none; padding: 12px 20px; border: 1px solid var(--accent); box-shadow: var(--shadow); margin-bottom: var(--space-4); }
+.post .sidebar-checklist { border-top: var(--hair); }
+.post .sidebar-checklist li::before { color: var(--pos) !important; }
+.side .note { margin: var(--space-2) 0 var(--space-3); }
+.bcta { width: min(860px, calc(100% - 2 * var(--gutter))); margin: var(--space-16) auto 0; text-align: center; }
+.bcta h2 { font-size: 1.625rem; margin-bottom: var(--space-3); }
+.bcta p { margin-left: auto; margin-right: auto; color: var(--muted); }
+.bcta .cta-buttons { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin: var(--space-5) 0; }
+.bcta .contact { font-size: var(--text-small); color: var(--muted); }
+.back-to-blog, .studio-sig { text-align: center; font-size: var(--text-small); color: var(--muted); max-width: none; margin: var(--space-8) 0 0; }
+
 @media (max-width: 900px) {
+  .post { grid-template-columns: 1fr; gap: 40px; }
+  .side { position: static; }
+  .related-posts-grid.grid { grid-template-columns: 1fr; }
   .footer__top { grid-template-columns: 1fr; }
   .footer .footer__links { columns: 2; }
   .layout { grid-template-columns: 1fr; gap: 40px; }
