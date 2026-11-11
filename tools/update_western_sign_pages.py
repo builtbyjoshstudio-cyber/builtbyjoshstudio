@@ -22,6 +22,15 @@ Run:
     python tools/update_western_sign_pages.py [SIGN ...]
 With no args, updates all 12 signs.
 """
+
+# RETIRED 2026-11-11 - DO NOT RUN. The live pages in collections/ are the source of truth now.
+# They have moved on from this script's template: prices, titles and meta, structured data,
+# the tracking snippet and the whole "Ledger" redesign markup. Running this would overwrite
+# live pages with that old content, including the wrong price. To change the pages, write a
+# small count-asserted script that edits them in place. Kept for its per-page copy and data.
+raise SystemExit("RETIRED 2026-11-11: this script would overwrite live zodiac pages with stale "
+                 "content (old price, old markup). Edit the pages in place instead; see the "
+                 "note at the top of this file.")
 import json
 import re
 import sys

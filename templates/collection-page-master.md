@@ -2,6 +2,13 @@
 
 Internal documentation. Not a live page.
 
+> **SUPERSEDED 2026-11-11.** The markup and CSS below are the pre-redesign pattern. The live
+> pages in `collections/` are the reference now: they use the "Ledger" system
+> (`css/tokens.css`, `css/components.css`, `css/layouts.css`, `<html data-theme="cosmic">`,
+> `<body class="cosmos">`), and their prices, titles and structured data have moved on from
+> what is written here. To make a new Collection page, copy the closest live page. The five
+> page generators in `tools/` are retired for the same reason and refuse to run.
+
 Use this skeleton for any BBJ Studio Collection page where the bundle is sold direct
 on builtbyjoshstudio.com via Lemon Squeezy overlay checkout. NOT for the Tynkr
 product pages — those follow a separate template.
