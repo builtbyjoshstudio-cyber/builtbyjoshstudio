@@ -89,11 +89,6 @@ body.nav-open .nav-toggle span:nth-child(3) {
     overflow-y: auto;
   }
 
-  /* Dark-themed nav (homepage hero, etc.) gets a dark drawer */
-  body.nav-open .site-nav.dark .nav-links {
-    background: rgba(20, 19, 14, 0.98);
-  }
-
   /* Drawer link styling — bigger tap targets, more breathing room */
   body.nav-open .site-nav .nav-links a {
     display: block;
@@ -102,42 +97,11 @@ body.nav-open .nav-toggle span:nth-child(3) {
     padding: 0.9rem 0.4rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   }
-  body.nav-open .site-nav.dark .nav-links a {
-    border-bottom-color: rgba(255, 255, 255, 0.08);
-  }
 
   /* Prevent body scroll behind drawer */
   body.nav-open {
     overflow: hidden;
   }
-}
-
-/* ─────────────────────────────────────────────────────────────────
-   FOOTER LEGAL — copyright + LLC attribution line
-   Sits below the existing footer-left / footer-links row.
-
-   The site mixes light-cream footers (most pages) and a near-black
-   footer (homepage #14130e). Using `inherit` or `currentColor`
-   produces invisible text on the homepage because the body color
-   cascade is dark. An explicit mid-gray with its own alpha works
-   on both backgrounds without needing theme detection.
-   ───────────────────────────────────────────────────────────────── */
-.footer-legal {
-  flex-basis: 100%;
-  width: 100%;
-  padding-top: 1.4rem;
-  margin-top: 0.4rem;
-  border-top: 1px solid rgba(127, 127, 127, 0.22);
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  line-height: 1.5;
-  text-align: center;
-  color: #6d6b66; /* AA on the cream footers (P3); dark footers override below/inline */
-}
-.footer-legal br + * { margin-top: 0.2rem; }
-@media (max-width: 720px) {
-  .footer-legal { font-size: 0.65rem; padding-top: 1.1rem; }
 }
 
 /* Reduced motion: skip the hamburger animation */
