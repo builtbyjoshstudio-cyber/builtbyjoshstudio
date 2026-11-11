@@ -1,0 +1,51 @@
+/* Built by Josh Studio - sample-chapter pages (fiction previews).
+   Replaces the two pages' own <style> blocks: one light theme for both books, every colour,
+   font and shadow from the tokens. Loads after tokens.css, components.css and layouts.css. */
+
+.hero { max-width: 720px; margin: 0 auto; padding: 3.5rem var(--gutter) 1.5rem; text-align: center; }
+.hero p { margin-left: auto; margin-right: auto; }
+.kicker { font-size: var(--text-label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.hero h1 { font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.15; margin: 0 0 0.6rem; }
+.hero .byline { color: var(--muted); font-style: italic; font-size: 1.05rem; margin-bottom: 0; }
+.hook { font-family: var(--font-display); font-weight: 700; font-size: 1.18rem; color: var(--ink); max-width: 640px; margin-top: 1.6rem; margin-bottom: 0; }
+.blurb { max-width: 640px; margin-top: 1.75rem; margin-bottom: 0; color: var(--ink-2); font-size: 1.08rem; }
+.hook + .blurb { margin-top: 1rem; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin: 2rem auto 0; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn-primary:hover { background: #2f5470; border-color: #2f5470; color: #fff; }
+.btn-secondary { background: transparent; color: var(--ink); border-color: var(--line-2); }
+.download-note { font-size: var(--text-small); color: var(--muted); text-align: center; margin-top: 0.85rem; margin-bottom: 0; }
+.preview-uplink { font-size: var(--text-small); text-align: center; margin-top: 1rem; margin-bottom: 0; }
+.preview-uplink a, .sample-end-nav a { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+.trailer { max-width: 520px; margin: 1.5rem auto 0; padding: 0 var(--gutter); }
+.trailer-eyebrow { text-align: center; margin-bottom: 0.9rem; }
+.trailer-eyebrow span { font-size: var(--text-label); letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+
+/* reading column: .prose gives the measure and size; this centres it */
+.reader-divider { border: 0; height: 1px; background: var(--line); max-width: 900px; margin: 2.5rem auto 0; }
+.reader { margin: 2.5rem auto 0; padding: 0 var(--gutter) 1rem; max-width: calc(var(--measure) + 2 * var(--gutter)); font-size: 1.125rem; }
+.reader p { margin-bottom: 1.25rem; line-height: 1.75; }
+.reader h2.chapter { font-size: 1.7rem; text-align: center; margin: 3.5rem 0 0.5rem; line-height: 1.25; scroll-margin-top: 5rem; }
+.reader h2.chapter::after { content: ""; display: block; width: 48px; height: 2px; background: var(--accent); margin: 1rem auto 1.5rem; }
+.reader h2.chapter + p::first-letter { font-family: var(--font-display); font-size: 3.1rem; line-height: 0.8; float: left; padding: 0.05em 0.08em 0 0; font-weight: 800; color: var(--accent); }
+.scene-break { text-align: center; color: var(--muted); letter-spacing: 0.6em; margin: 2rem auto; }
+.scene-break-hr { border: none; margin: 0; }
+.notebook { background: var(--surface-2); border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 var(--r) var(--r) 0; }
+.notebook p { font-style: italic; font-size: 1.04rem; }
+.notebook p:last-child { margin-bottom: 0; }
+.note-head { font-weight: 700; color: var(--ink); }
+
+.sample-end { max-width: 900px; margin: 3rem auto 0; padding: 2.5rem var(--gutter); text-align: center; border-top: 1px solid var(--line); }
+.sample-end h3 { font-size: 1.5rem; margin: 0 0 0.5rem; }
+.sample-end p { color: var(--muted); max-width: 480px; margin: 0 auto 1.5rem; }
+.sample-end .end-series { font-size: var(--text-small); margin: 1.25rem auto 0; }
+.sample-end .sample-end-nav { font-size: var(--text-small); margin: 1.25rem auto 0; }
+.sample-end .end-copyright { font-size: var(--text-label); margin: 0.9rem auto 0; }
+.sample-end + .footer { margin-top: 3rem; }
+
+@media (max-width: 480px) {
+  .reader { font-size: 1.06rem; }
+  .hero { padding-top: 2.5rem; }
+}

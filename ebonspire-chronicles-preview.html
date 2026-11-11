@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <!-- Google Analytics 4 -->
   <script>(function(){var l=function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J";document.head.appendChild(s);};var i=window.requestIdleCallback||function(cb){return setTimeout(cb,300);};var g=function(){i(l,{timeout:1500});};if(document.readyState==="complete"){g();}else{window.addEventListener("load",g);}})();</script>
@@ -11,7 +11,7 @@
   </script>
 <meta charset="UTF-8">
 <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
-<link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ebonspire Chronicles — Free Sample (Ch. 1) | Dark Fantasy Noir</title>
 <link rel="canonical" href="https://builtbyjoshstudio.com/ebonspire-chronicles-preview.html">
@@ -101,160 +101,33 @@
 }
 </script>
 
-<style>
-  :root {
-    --ink: #14130e;
-    --paper: #f1eee6;
-    --paper-card: #fffdf8;
-    --leyline-blue: #2438e8;
-    --accent: var(--leyline-blue);
-    --accent-deep: #1c2cc0;
-    --muted: #6d695d;
-    --rule: #e2ddd0;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; overflow-x: hidden; }
-  body {
-    margin: 0;
-    overflow-x: hidden;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--accent); }
-  /* Nav */
-  .site-nav {
-    background: var(--ink);
-    color: #f3efe6;
-    padding: 0.9rem 1.25rem;
-    display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 0.9rem;
-  }
-  .site-nav .brand { font-weight: 700; margin-right: auto; color: #fff; text-decoration: none; letter-spacing: 0.02em; }
-  .site-nav a { color: #cfc7b8; text-decoration: none; }
-  .site-nav a:hover { color: #fff; }
-  /* Hero */
-  .hero {
-    max-width: 720px; margin: 0 auto; padding: 3.5rem 1.5rem 1.5rem; text-align: center;
-  }
-  .kicker {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.72rem;
-    color: var(--accent); font-weight: 700; margin-bottom: 1rem;
-  }
-  .hero h1 { font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.15; margin: 0 0 0.6rem; }
-  .hero .byline { color: var(--muted); font-style: italic; font-size: 1.05rem; margin: 0; }
-  .hook {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-weight: 700; font-size: 1.18rem; color: var(--accent-deep);
-    max-width: 640px; margin: 1.6rem auto 0;
-  }
-  .blurb {
-    max-width: 640px; margin: 1rem auto 0; color: #3b352d; font-size: 1.08rem;
-  }
-  /* CTA buttons */
-  .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin: 2rem auto 0; }
-  .btn {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    display: inline-block; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none;
-    font-weight: 600; font-size: 0.95rem; transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .btn:hover { transform: translateY(-2px); }
-  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 4px 14px rgba(36,56,232,0.3); }
-  .btn-primary:hover { background: var(--accent-deep); }
-  .btn-secondary { background: transparent; color: var(--accent-deep); border: 1.5px solid var(--accent); }
-  .btn-secondary:hover { background: rgba(36,56,232,0.08); }
-  .download-note {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 0.8rem; color: var(--muted); text-align: center; margin: 0.85rem auto 0;
-  }
-  .preview-uplink {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 0.85rem; text-align: center; margin: 1rem auto 0;
-  }
-  .preview-uplink a { color: var(--accent-deep); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }
-  .preview-uplink a:hover { color: var(--accent); }
-  /* Reading area */
-  .reader {
-    max-width: 900px; margin: 2.5rem auto 0; padding: 0 1.5rem 1rem;
-  }
-  .reader-divider {
-    border: 0; height: 1px; background: var(--rule); max-width: 900px; margin: 2.5rem auto 0;
-  }
-  h2.chapter {
-    font-size: 1.7rem; text-align: center; margin: 3.5rem 0 0.5rem; font-weight: 700;
-    line-height: 1.25; scroll-margin-top: 5rem;
-  }
-  h2.chapter::after {
-    content: ""; display: block; width: 48px; height: 2px; background: var(--accent);
-    margin: 1rem auto 1.5rem;
-  }
-  .reader p { margin: 0 0 1.25rem; font-size: 1.12rem; }
-  h2.chapter + p::first-letter {
-    font-size: 3.1rem; line-height: 0.8; float: left; padding: 0.05em 0.08em 0 0;
-    font-weight: 700; color: var(--accent-deep);
-  }
-  .scene-break { text-align: center; color: var(--muted); letter-spacing: 0.6em; margin: 2rem 0; }
-  .scene-break-hr { border: none; margin: 0; }
-  .notebook {
-    background: var(--paper-card); border-left: 3px solid var(--accent);
-    padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 6px 6px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-  }
-  .notebook p { font-style: italic; color: #463f35; font-size: 1.04rem; }
-  .notebook p:last-child { margin-bottom: 0; }
-  .notebook p::first-letter { font-size: inherit; float: none; color: inherit; font-weight: inherit; padding: 0; }
-  /* End block */
-  .sample-end {
-    max-width: 900px; margin: 3rem auto 0; padding: 2.5rem 1.5rem;
-    text-align: center; background: var(--paper-card); border-top: 1px solid var(--rule);
-  }
-  .sample-end h3 { font-size: 1.5rem; margin: 0 0 0.5rem; }
-  .sample-end p { color: var(--muted); max-width: 480px; margin: 0 auto 1.5rem; }
-  .sample-end .end-series {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 0.85rem; margin: 1.25rem auto 0;
-  }
-  .sample-end .end-copyright {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 0.75rem; margin: 0.9rem auto 0;
-  }
-  .sample-end-nav {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 0.85rem;
-  }
-  .sample-end-nav a { color: var(--accent-deep); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }
-  .sample-end-nav a:hover { color: var(--accent); }
-  /* Footer */
-  footer {
-    background: var(--ink); color: #cfc7b8; margin-top: 3rem; padding: 2rem 1.5rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 0.85rem; text-align: center;
-  }
-  footer a { color: #cfc7b8; text-decoration: none; margin: 0 0.5rem; }
-  footer a:hover { color: #fff; }
-  footer .copy { margin-top: 1rem; color: #8a8170; font-size: 0.78rem; }
-  @media (max-width: 480px) {
-    .reader p { font-size: 1.06rem; }
-    .hero { padding-top: 2.5rem; }
-  }
-</style>
+<link rel="stylesheet" href="/css/tokens.css" />
+<link rel="stylesheet" href="/css/components.css" />
+<link rel="stylesheet" href="/css/layouts.css" />
+<link rel="stylesheet" href="/css/pages/preview.css" />
+<link rel="stylesheet" href="/css/mobile-nav.css" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 </head>
 <body>
-  <nav class="site-nav">
-    <a class="brand" href="https://builtbyjoshstudio.com/">BBJ Studio</a>
-    <a href="https://builtbyjoshstudio.com/#tynkr">Tynkr Tools</a>
-    <a href="https://builtbyjoshstudio.com/#builtbyjosh">Zodiac Art</a>
-    <a href="https://builtbyjoshstudio.com/blog.html">Blog</a>
-    <a href="https://builtbyjoshstudio.com/about.html">About</a>
-    <a href="https://builtbyjoshstudio.com/books.html">Writing</a>
+  <nav class="site-nav nav" aria-label="Main">
+    <div class="wrap">
+    <a href="https://builtbyjoshstudio.com/" class="nav-logo wordmark">Built <em>by</em> Josh Studio</a>
+    <ul class="nav-links nav__links">
+      <li><a href="https://builtbyjoshstudio.com/#tynkr">Tynkr Tools</a></li>
+      <li><a href="https://builtbyjoshstudio.com/#builtbyjosh">Zodiac Art</a></li>
+      <li><a href="https://builtbyjoshstudio.com/blog.html">Blog</a></li>
+      <li><a href="https://builtbyjoshstudio.com/about.html">About</a></li>
+      <li><a href="https://builtbyjoshstudio.com/books.html">Writing</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    </div>
   </nav>
 
   <header class="hero">
@@ -272,7 +145,7 @@
 
   <hr class="reader-divider">
 
-  <main class="reader">
+  <main class="reader prose">
 <h2 class="chapter" id="read-chapter-one">Chapter One: Blood in the Rain</h2>
 <p>The rain came down like it had something to prove, hammering the Spire’s windows hard enough to rattle the frames. Outside, Ebonspire’s fog-choked skyline bled into the storm—five districts stacked like broken teeth, each rotting a little faster than the last.</p>
 <p>The city was built on the corpse of a volcano, a jagged island of black basalt rising from the churning gray ocean. The mountain held the city like a secret, its veins humming with power too old to name. The Spire’s geothermal pumps siphoned the earth’s remaining heat for the floor-wards of the Merchant Quarter, leaving the Docks to freeze in the shadow of the cliffs. Down there, the stone wept condensation that froze into sheets of black ice, preserving the dead’s footprints until the acid rain washed them away.</p>
@@ -423,22 +296,30 @@
     <p class="end-copyright">Excerpt from Ebonspire Chronicles: Book One &copy; 2026 J.&thinsp;S. Warden. All rights reserved.</p>
   </section>
 
-  <footer>
-    <div>
-      <a href="https://builtbyjoshstudio.com/">Home</a>
-      <a href="https://builtbyjoshstudio.com/books.html">Writing</a>
-      <a href="https://builtbyjoshstudio.com/blog.html">Blog</a>
-      <a href="https://builtbyjoshstudio.com/about.html">About</a>
+  <footer class="footer">
+    <div class="wrap">
+    <p class="footer__sign">Built <em>by</em> Josh.</p>
+    <div class="footer__top">
+      <div><span class="wordmark">Built <em>by</em> Josh Studio</span></div>
+    <ul class="footer__links">
+      <li><a href="https://builtbyjoshstudio.com/">Home</a></li>
+      <li><a href="https://builtbyjoshstudio.com/books.html">Writing</a></li>
+      <li><a href="https://builtbyjoshstudio.com/blog.html">Blog</a></li>
+      <li><a href="https://builtbyjoshstudio.com/about.html">About</a></li>
+    </ul>
+      <nav aria-label="More from Built by Josh Studio">
+        <p class="footer__label">More from the studio:</p>
+        <ul>
+          <li><a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a></li>
+          <li><a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a></li>
+        </ul>
+      </nav>
     </div>
-    <nav aria-label="More from Built by Josh Studio" style="flex:0 0 100%;max-width:1160px;margin:0 auto 14px;padding:14px 0 0;border-top:1px solid rgba(128,128,128,.18);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11.5px;letter-spacing:.05em;">
-      <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-      <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-      <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tynkr apps</a>
-      <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Kitchen tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Money tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tabletop tools</a>
-    </nav>
-    <div class="copy">&copy; 2026 Built by Josh Studio LLC. All rights reserved. <em>Ebonspire Chronicles</em> &copy; 2026 J.S. Warden.</div>
+    <div class="footer__bottom"><span>&copy; 2026 Built by Josh Studio LLC. All rights reserved. <em>Ebonspire Chronicles</em> &copy; 2026 J.S. Warden.</span></div>
+    </div>
   </footer>
 
   <!-- Funnel tracking: delegated click listener (same shape as the OE preview page).
@@ -463,5 +344,6 @@
       });
     })();
   </script>
+  <script src="/js/mobile-nav.js" defer></script>
 </body>
 </html>
