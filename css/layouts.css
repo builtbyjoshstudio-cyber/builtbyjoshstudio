@@ -141,6 +141,7 @@ body.cosmos::before, body.cosmos::after { position: fixed; inset: 0; }
 .post .prose li { margin-bottom: var(--space-2); }
 .post .prose h3 { margin-top: var(--space-8); }
 .post .prose img { height: auto; border-radius: var(--r); }
+.post .prose table { margin: var(--space-5) 0 var(--space-6); }
 .inline-cta { margin: var(--space-10) 0; padding: var(--space-6); }
 .post .inline-cta h3 { margin: 0 0 var(--space-2); }
 .inline-cta p { font-size: var(--text-ui); color: var(--muted); }
@@ -166,15 +167,34 @@ body.cosmos::before, body.cosmos::after { position: fixed; inset: 0; }
 .bcta p { margin-left: auto; margin-right: auto; color: var(--muted); }
 .bcta .cta-buttons { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin: var(--space-5) 0; }
 .bcta .contact { font-size: var(--text-small); color: var(--muted); }
+/* blocks only a few posts use */
+.disclaimer { font-size: var(--text-small); line-height: 1.6; color: var(--muted); background: var(--surface-2); border: var(--hair); border-radius: var(--r); padding: var(--space-4) var(--space-5); margin: var(--space-8) 0; }
+.disclaimer strong { color: var(--ink); }
+.disclaimer p { font-size: inherit; color: inherit; margin: 0; max-width: none; }
+.post .prose blockquote.schedule { font-size: var(--text-ui); font-weight: 400; letter-spacing: 0; line-height: 1.6; background: var(--surface); border: var(--hair); border-left: 3px solid var(--accent); }
+.prose blockquote strong { color: var(--ink); }
+.formula-block { font-family: var(--font-mono); font-size: var(--text-ui); line-height: 1.6; background: var(--surface-2); border: var(--hair); border-radius: var(--r); padding: var(--space-4) var(--space-5); margin: var(--space-5) 0; overflow-x: auto; }
+.price-block { background: var(--surface-2); border: var(--hair); border-left: 3px solid var(--accent); border-radius: 0 var(--r) var(--r) 0; padding: var(--space-5) var(--space-6); margin: var(--space-8) 0; }
+.price-block .total { font-size: var(--text-small); color: var(--muted); margin-bottom: var(--space-2); }
+.price-block .total strong { color: var(--ink); font-weight: 600; }
+.price-block .bundle { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
+.price-block .bundle em { font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-2); }
+.pillar-link { display: inline-block; font-size: var(--text-label); font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; padding: 6px 12px; border: 1px solid var(--line-2); border-radius: var(--r-s); }
+.pillar-link:hover { border-color: var(--accent); background: var(--accent-soft); text-decoration: none; }
+.product-links-label { text-align: center; font-size: var(--text-label); font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); margin-top: var(--space-8); }
+.product-links { max-width: 640px; margin: var(--space-4) auto 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-2); }
+.product-links a { display: block; padding: 12px 16px; font-size: var(--text-small); font-weight: 600; background: var(--surface); border: var(--hair); border-radius: var(--r-s); }
+.product-links a:hover { border-color: var(--accent); background: var(--accent-soft); text-decoration: none; }
 .back-to-blog, .studio-sig { text-align: center; font-size: var(--text-small); color: var(--muted); max-width: none; margin: var(--space-8) 0 0; }
 
 @media (max-width: 900px) {
-  .post { grid-template-columns: 1fr; gap: 40px; }
+  .post { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .post .prose table { display: block; overflow-x: auto; } /* a wide table scrolls inside the column instead of widening the page */
   .side { position: static; }
   .related-posts-grid.grid { grid-template-columns: 1fr; }
   .footer__top { grid-template-columns: 1fr; }
   .footer .footer__links { columns: 2; }
-  .layout { grid-template-columns: 1fr; gap: 40px; }
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .persona-spotlights, .modules-list { grid-template-columns: 1fr; }
   .phero .eyebrow { margin-top: 40px; }
   .zhero { grid-template-columns: 1fr; gap: 32px; padding: 40px 0; }
