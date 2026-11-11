@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-glass="cosmic">
+<html lang="en" data-theme="cosmic">
 <head>
     <!-- Google Analytics 4 -->
     <script>(function(){var l=function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J";document.head.appendChild(s);};var i=window.requestIdleCallback||function(cb){return setTimeout(cb,300);};var g=function(){i(l,{timeout:1500});};if(document.readyState==="complete"){g();}else{window.addEventListener("load",g);}})();</script>
@@ -12,7 +12,7 @@
   <meta charset="UTF-8" />
   <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
   <link rel="preload" as="image" href="/images/zodiac/realms/aquarius.webp" fetchpriority="high">
-  <link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aquarius Western Realms Bundle — 48 Print-Ready Landscape Files</title>
   <meta name="description" content="Aquarius Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included." />
@@ -182,191 +182,9 @@
   }
   </script>
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bbj-bg: #f1eee6; --bbj-surface: #ffffff; --bbj-surface-2: #f8f5ee;
-      --bbj-accent: #ff5a30; --bbj-accent2: #ff5a30;
-      --bbj-text: #14130e; --bbj-muted: #6d695d; --bbj-border: #e2ddd0;
-      --body-read: #14130e;
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Hanken Grotesk', sans-serif; background: var(--bbj-bg); color: var(--bbj-text); overflow-x: hidden; min-height: 100vh; }
-    .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-    .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0; animation: twinkle var(--d) ease-in-out infinite var(--delay); }
-    @keyframes twinkle { 0%,100% { opacity: 0; transform: scale(.5); } 50% { opacity: var(--op); transform: scale(1); } }
-    .site-nav { position: fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 2.5rem; height:64px; background:rgba(241,238,230,.92);  border-bottom:1px solid var(--bbj-border); }
-    .nav-logo { font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:1.1rem; letter-spacing:-.02em; color:var(--bbj-text); text-decoration:none; }
-    .nav-links { display:flex; gap:2rem; list-style:none; }
-    .nav-links a { font-family:'Hanken Grotesk',sans-serif; font-size:.85rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; color:var(--bbj-muted); transition:color .2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--bbj-accent); }
-
-    .collection-hero { padding:9rem 2rem 3rem; max-width:1200px; margin:0 auto; text-align:center; position:relative; }
-    .collection-hero::before { content:''; position:absolute; inset:0; pointer-events:none;
-      background: radial-gradient(ellipse at 50% 0%, rgba(255,90,48,.1) 0%, transparent 55%),
-                  radial-gradient(ellipse at 20% 80%, rgba(255,90,48,.08) 0%, transparent 50%); }
-    .breadcrumb { font-family:'Bricolage Grotesque',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:1.4rem; position:relative; }
-    .breadcrumb a { color:var(--bbj-accent); text-decoration:none; }
-    .breadcrumb a:hover { text-decoration:underline; }
-    .breadcrumb .sep { margin:0 .6rem; opacity:.5; }
-    .hero-eyebrow { font-family:'Bricolage Grotesque',serif; font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:1.2rem; position:relative; }
-    h1.collection-title { font-family:'Bricolage Grotesque',serif; font-size:clamp(2.2rem,5.5vw,3.8rem); font-weight:700; letter-spacing:.02em; line-height:1.12; color:var(--bbj-text); margin-bottom:1.4rem; max-width:900px; margin-left:auto; margin-right:auto; position:relative; }
-    .collection-tagline { font-family:'Hanken Grotesk',serif; font-size:clamp(1.05rem,1.5vw,1.18rem); color:var(--body-read); max-width:760px; margin:0 auto 2.5rem; line-height:1.65; position:relative; }
-    .hero-image { max-width:420px; margin:0 auto; position:relative; border:1px solid var(--bbj-border); overflow:hidden; aspect-ratio:4/5; }
-    .hero-image img { width:100%; height:100%; object-fit:cover; display:block; }
-    .hero-image::after { content:''; position:absolute; inset:0; background: radial-gradient(circle at 50% 50%, rgba(255,90,48,.08) 0%, transparent 70%); pointer-events:none; }
-
-    .short-version { max-width:1000px; margin:3rem auto 0; padding:2rem 2.4rem; background:var(--bbj-surface); border:1px solid var(--bbj-border); border-left:4px solid var(--bbj-accent); position:relative; }
-    .short-version-label { font-family:'Bricolage Grotesque',serif; font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:.9rem; }
-    .short-version p { font-family:'Hanken Grotesk',serif; font-size:1.05rem; line-height:1.75; color:var(--body-read); margin:0; }
-
-    .collection-main { max-width:1200px; margin:2rem auto 0; padding:2rem 2rem 4rem; display:grid; grid-template-columns:1fr 340px; gap:3rem; align-items:start; }
-    .main-column { font-family:'Hanken Grotesk',serif; font-size:1.15rem; line-height:1.75; color:var(--body-read); min-width:0; }
-    .main-column section { margin-bottom:3rem; padding-top:2.5rem; border-top:1px solid var(--bbj-border); }
-    .main-column section:first-child { border-top:none; padding-top:0; }
-    .main-column h2 { font-family:'Bricolage Grotesque',serif; font-size:clamp(1.4rem,2.6vw,1.85rem); font-weight:700; letter-spacing:.02em; color:var(--bbj-text); margin-bottom:1.3rem; line-height:1.2; }
-    .main-column p { margin-bottom:1.3rem; }
-    .main-column p strong { color:var(--bbj-text); font-weight:600; }
-    .main-column ul { list-style:none; margin:0 0 1.5rem 0; padding:0; }
-    .main-column ul li { position:relative; padding-left:1.6rem; margin-bottom:.8rem; }
-    .main-column ul li::before { content:'◆'; position:absolute; left:0; color:var(--bbj-accent); font-size:.7rem; top:.5rem; }
-
-    .quick-facts { background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.3rem 1.7rem; margin:0 0 2rem 0 !important; }
-    .quick-facts li { padding-left:0 !important; margin-bottom:.5rem !important; font-family:'Hanken Grotesk',sans-serif; font-size:.95rem; color:var(--body-read); }
-    .quick-facts li::before { content:'' !important; }
-    .quick-facts li strong { font-family:'Bricolage Grotesque',serif; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--bbj-accent); display:inline-block; min-width:170px; }
-
-    .realms-grouped { display:flex; flex-direction:column; gap:2.5rem; margin-top:1.5rem; }
-    .realm-block { display:flex; flex-direction:column; gap:.8rem; }
-    .realm-block-title { font-family:'Bricolage Grotesque',serif; font-size:1.15rem; font-weight:700; color:var(--bbj-text); letter-spacing:.04em; text-transform:uppercase; padding-bottom:.6rem; border-bottom:1px solid var(--bbj-border); margin:0; }
-    .realm-block-desc { font-family:'Hanken Grotesk',serif; font-size:1rem; line-height:1.65; color:var(--body-read); margin:0 0 .5rem 0 !important; padding-left:0 !important; }
-    .realm-block-desc::before { content:'' !important; }
-    .designs-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
-    .design-card { background:var(--bbj-surface); border:1px solid var(--bbj-border); overflow:hidden; display:flex; flex-direction:column; transition:border-color .25s, background .25s; }
-    .design-card:hover { border-color:rgba(255,90,48,.35); background:var(--bbj-surface-2); }
-    .design-card img { width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; display:block; background: linear-gradient(135deg,#1d1b15 0%,#14130e 100%); border-bottom:1px solid var(--bbj-border); }
-    .design-card-body { padding:.9rem 1.1rem 1rem; }
-    .design-card-body h4 { font-family:'Bricolage Grotesque',serif; font-size:.85rem; font-weight:600; color:var(--bbj-muted); letter-spacing:.08em; text-transform:uppercase; margin:0; }
-
-    .realm-tally { font-family:'Hanken Grotesk',serif; font-style:italic; font-size:1rem; color:var(--bbj-muted); margin-top:1.5rem; padding-top:1rem; border-top:1px solid rgba(226,221,208,.5); }
-
-    .license-block { background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:2rem 2.2rem; margin-top:2rem; }
-    .license-block h3 { font-family:'Bricolage Grotesque',serif; font-size:1.02rem; font-weight:700; color:var(--bbj-text); letter-spacing:.05em; text-transform:uppercase; margin:1.6rem 0 .8rem 0; padding-bottom:.4rem; border-bottom:1px solid var(--bbj-border); }
-    .license-block h3:first-child { margin-top:0; }
-    .license-block ul { margin-bottom:1.4rem !important; }
-    .license-block p.disclosure { background:rgba(255,90,48,.07); border-left:3px solid var(--bbj-accent2); padding:1rem 1.2rem; margin-bottom:1.4rem; font-size:1rem; line-height:1.65; }
-    .license-block p.contact-line { margin-bottom:1.5rem; font-size:1rem; color:var(--body-read); }
-    .license-block a.pdf-link { display:inline-block; font-family:'Bricolage Grotesque',serif; font-size:.74rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--bbj-accent); text-decoration:none; padding:.6rem 1.1rem; border:1px solid var(--bbj-accent); margin:.4rem .4rem 0 0; transition:background .2s, color .2s; }
-    .license-block a.pdf-link:hover { background:var(--bbj-accent); color:var(--bbj-bg); }
-
-    .ls-checkout-btn { display:block; width:100%; background:var(--bbj-accent); color:var(--bbj-bg); border:none; font-family:'Bricolage Grotesque',serif; font-size:.82rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:1.05rem 1rem; text-align:center; cursor:pointer; transition:background .2s, transform .2s; margin-bottom:.7rem; }
-    .ls-checkout-btn:hover:not(:disabled) { background:#ff6a45; transform:translateY(-1px); }
-    .ls-checkout-btn:disabled { background:transparent; color:var(--bbj-muted); border:1px solid var(--bbj-border); cursor:default; font-weight:600; letter-spacing:.12em; font-size:.74rem; }
-    .ls-checkout-btn--large { display:inline-block; width:auto; padding:1.15rem 2.5rem; font-size:.82rem; margin:0; }
-    .ls-checkout-btn--large:disabled { font-size:.78rem; padding:1.1rem 2.2rem; }
-    .ls-checkout-sub { display:block; font-size:.74rem; font-style:italic; color:var(--bbj-muted); text-align:center; margin-bottom:1.4rem; line-height:1.45; }
-
-
-    .sticky-sidebar { position:sticky; top:88px; background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.8rem 1.7rem; font-family:'Hanken Grotesk',sans-serif; }
-    .sticky-sidebar::before { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(255,90,48,.05) 0%,transparent 60%); }
-    .sticky-sidebar > * { position:relative; }
-    .sidebar-label { font-family:'Bricolage Grotesque',serif; font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.4rem; }
-    .price-drop-pill { display:inline-block; font-family:'Hanken Grotesk',sans-serif; font-size:0.6rem; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:#14130e; background:var(--bbj-accent); padding:4px 10px; border-radius:999px; margin-bottom:0.6rem; }
-    .price-was { font-size:1.4rem; font-weight:700; color:var(--bbj-muted); text-decoration:line-through; margin-right:0.4rem; }
-    .sidebar-price { font-family:'Bricolage Grotesque',serif; font-size:2.4rem; font-weight:700; color:var(--bbj-accent); letter-spacing:-.02em; line-height:1; margin-bottom:.4rem; }
-    .sidebar-price-note { font-size:.78rem; color:var(--bbj-muted); letter-spacing:.02em; margin-bottom:1.4rem; padding-bottom:1.4rem; border-bottom:1px solid var(--bbj-border); }
-    .sidebar-included-label { font-family:'Bricolage Grotesque',serif; font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-muted); margin-bottom:.8rem; }
-    .sidebar-included { list-style:none; padding:0; margin:0 0 1.5rem 0; }
-    .sidebar-included li { font-size:.84rem; color:var(--body-read); padding:.42rem 0 .42rem 1.3rem; position:relative; line-height:1.35; border-bottom:1px solid rgba(226,221,208,.5); }
-    .sidebar-included li:last-child { border-bottom:none; }
-    .sidebar-included li::before { content:'✓'; position:absolute; left:0; color:var(--bbj-accent); font-weight:700; font-size:.85rem; }
-    .sidebar-trust { list-style:none; padding:0; margin:0; }
-    .sidebar-trust li { font-size:.74rem; color:var(--bbj-muted); padding:.35rem 0 .35rem 1.2rem; position:relative; line-height:1.35; }
-    .sidebar-trust li::before { content:'✦'; position:absolute; left:0; color:var(--bbj-accent); font-size:.72rem; top:.38rem; }
-
-    .faq-section { max-width:900px; margin:0 auto; padding:5rem 2rem 4rem; }
-    .section-label { font-family:'Bricolage Grotesque',serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-accent); text-align:center; margin-bottom:.6rem; }
-    .section-title-main { font-family:'Bricolage Grotesque',serif; font-size:clamp(1.8rem,3.2vw,2.4rem); font-weight:700; letter-spacing:.02em; color:var(--bbj-text); text-align:center; margin-bottom:2.8rem; }
-    .faq-list { display:flex; flex-direction:column; gap:0; border-top:1px solid var(--bbj-border); }
-    .faq-item { border-bottom:1px solid var(--bbj-border); padding:1.6rem 0; }
-    .faq-item h3 { font-family:'Bricolage Grotesque',serif; font-size:1.05rem; font-weight:600; color:var(--bbj-text); margin-bottom:.7rem; letter-spacing:.01em; }
-    .faq-item p { font-family:'Hanken Grotesk',serif; font-size:1.05rem; line-height:1.65; color:var(--body-read); margin:0; }
-
-    .sister-nav-section { max-width:1200px; margin:0 auto; padding:3rem 2rem 2rem; }
-    .sister-intro { font-family:'Hanken Grotesk',serif; font-style:italic; font-size:1.05rem; color:var(--body-read); text-align:center; max-width:720px; margin:0 auto 2rem; }
-    .sister-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; }
-    .sister-card { background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1rem 1rem; text-decoration:none; color:inherit; transition:transform .2s, border-color .2s, background .2s; display:flex; flex-direction:column; align-items:center; gap:.35rem; position:relative; }
-    .sister-card:hover { transform:translateY(-2px); border-color:rgba(255,90,48,.4); background:var(--bbj-surface-2); }
-    .sister-card-current { border-color:var(--bbj-accent); background:rgba(255,90,48,.05); cursor:default; }
-    .sister-card-current:hover { transform:none; }
-    .sister-glyph { font-size:1.5rem; color:var(--bbj-accent); line-height:1; }
-    .sister-name { font-family:'Bricolage Grotesque',serif; font-size:.92rem; font-weight:700; letter-spacing:.03em; color:var(--bbj-text); }
-    .sister-meta { font-family:'Hanken Grotesk',sans-serif; font-size:.7rem; color:var(--bbj-muted); letter-spacing:.04em; text-align:center; }
-    .sister-here { font-family:'Bricolage Grotesque',serif; font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-accent); margin-top:.3rem; }
-
-    .related-section { max-width:1200px; margin:0 auto; padding:3rem 2rem 5rem; }
-    .related-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.4rem; }
-    .related-card { background:var(--bbj-surface); border:1px solid var(--bbj-border); padding:1.6rem 1.6rem 1.4rem; text-decoration:none; color:inherit; transition:transform .25s, border-color .25s, box-shadow .25s; display:flex; flex-direction:column; position:relative; overflow:hidden; }
-    .related-card::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg, rgba(255,90,48,.04) 0%, transparent 60%); }
-    .related-card:hover { transform:translateY(-3px); border-color:rgba(255,90,48,.35); box-shadow:0 14px 40px rgba(255,90,48,.08); }
-    .related-card > * { position:relative; z-index:1; }
-    .related-meta { font-family:'Bricolage Grotesque',serif; font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:.7rem; }
-    .related-card h3 { font-family:'Bricolage Grotesque',serif; font-size:1.1rem; font-weight:700; color:var(--bbj-text); margin-bottom:.6rem; letter-spacing:.01em; line-height:1.25; }
-    .related-card p { font-family:'Hanken Grotesk',serif; font-size:.95rem; font-style:italic; color:var(--bbj-muted); line-height:1.5; margin-bottom:1rem; flex:1; }
-    .related-link { font-family:'Bricolage Grotesque',serif; font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--bbj-accent); }
-
-    .cta-band { padding:5rem 2rem; text-align:center; background:linear-gradient(135deg,#1d1b15 0%,#14130e 100%); border-top:1px solid var(--bbj-border); border-bottom:1px solid var(--bbj-border); position:relative; }
-    .cta-band .cta-eyebrow { font-family:'Bricolage Grotesque',serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bbj-accent); margin-bottom:1rem; }
-    .cta-band h2 { font-family:'Bricolage Grotesque',serif; font-size:clamp(1.7rem,3.2vw,2.4rem); font-weight:700; color:var(--bbj-text); margin-bottom:.8rem; letter-spacing:.02em; max-width:720px; margin-left:auto; margin-right:auto; line-height:1.2; }
-    .cta-band h2 .italic-accent { color:var(--bbj-accent); font-style:italic; font-family:'Hanken Grotesk',serif; font-weight:400; }
-    .cta-band .cta-sub { font-family:'Hanken Grotesk',serif; color:var(--body-read); font-size:1.05rem; max-width:620px; margin:0 auto 2rem; line-height:1.6; }
-    .cta-band .cta-sub-line { display:block; font-family:'Hanken Grotesk',serif; font-style:italic; font-size:.9rem; color:var(--bbj-muted); margin-top:1rem; }
-
-    footer { background:#14130e; padding:3rem 5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; }
-    .footer-left { font-family:'Bricolage Grotesque',sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.3); }
-    .footer-left strong { color:rgba(255,255,255,.7); }
-    .footer-links { display:flex; gap:1.5rem; list-style:none; }
-    .footer-links a { font-size:.75rem; color:rgba(255,255,255,.3); text-decoration:none; transition:color .2s; letter-spacing:.06em; text-transform:uppercase; }
-    .footer-links a:hover { color:rgba(255,255,255,.7); }
-    .footer-legal { font-family:'Hanken Grotesk',sans-serif; font-size:.7rem; color:rgba(255,255,255,.3); width:100%; text-align:center; margin-top:1rem; line-height:1.6; }
-
-    @media (max-width:1024px) {
-      .collection-main { grid-template-columns:1fr; gap:2.5rem; }
-      .sticky-sidebar { position:static; order:-1; max-width:500px; margin:0 auto; width:100%; }
-      .related-grid { grid-template-columns:repeat(2,1fr); }
-      .sister-grid { grid-template-columns:repeat(3,1fr); }
-    }
-    @media (max-width:720px) {
-      .collection-hero { padding:7rem 1.5rem 2rem; }
-      .short-version { padding:1.6rem 1.4rem; }
-      .collection-main { padding:1.5rem 1.5rem 3rem; }
-      .main-column { font-size:1.08rem; }
-      .faq-section { padding:4rem 1.5rem 3rem; }
-      .related-section { padding:2rem 1.5rem 4rem; }
-      .related-grid { grid-template-columns:1fr; }
-      .site-nav { padding:0 1.5rem; }
-      .nav-links { gap:1.2rem; }
-      .sister-grid { grid-template-columns:repeat(2,1fr); }
-      .designs-grid { grid-template-columns:1fr; }
-      footer { flex-direction:column; padding:2rem; text-align:center; }
-    }
-    .nav-logo { white-space:nowrap; }
-    .nav-logo .logo-short { display:none; }
-    @media (max-width:720px) {
-      .site-nav { padding:0 1rem; }
-      .nav-logo { font-size:.88rem; }
-      .nav-logo .logo-full { display:none; }
-      .nav-logo .logo-short { display:inline; }
-      .nav-links { gap:.9rem; }
-      .nav-links a { font-size:.72rem; letter-spacing:.04em; }
-    }
-    @media (max-width:420px) {
-      .nav-logo { font-size:.78rem; }
-      .nav-links { gap:.55rem; }
-      .nav-links a { font-size:.62rem; letter-spacing:.03em; }
-    }
-  </style>
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/layouts.css" />
   <link rel="stylesheet" href="/css/mobile-nav.css" />
 
   <!-- Organization schema (site-wide) -->
@@ -402,12 +220,12 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 </head>
-<body>
-  <div class="stars" id="starsContainer"></div>
+<body class="cosmos">
 
-  <nav class="site-nav">
-    <a href="../" class="nav-logo"><span class="logo-full">Built by Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
-    <ul class="nav-links">
+  <nav class="site-nav nav" aria-label="Main">
+    <div class="wrap">
+    <a href="../" class="nav-logo wordmark">Built <em>by</em> Josh Studio</a>
+    <ul class="nav-links nav__links">
       <li><a href="../#tynkr">Tynkr Tools</a></li>
       <li><a href="../#builtbyjosh" class="active">Zodiac Art</a></li>
       <li><a href="../blog.html">Blog</a></li>
@@ -420,37 +238,45 @@
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
       <span></span><span></span><span></span>
     </button>
+    </div>
   </nav>
 
-  <header class="collection-hero">
-    <div class="breadcrumb">
+  <div class="wrap">
+    <div class="breadcrumb crumbs">
       <a href="../">Home</a><span class="sep">/</span><a href="./">Collections</a><span class="sep">/</span><a href="../#western-realms">Western Realms</a><span class="sep">/</span><span>Aquarius</span>
     </div>
-    <div class="hero-eyebrow">♒ Aquarius · Air Sign · Western Realms</div>
-    <h1 class="collection-title">Aquarius Western Realms Bundle — 48 Print-Ready Landscape Files</h1>
-    <p class="collection-tagline">Four mythic Aquarius Realms — luminous, ahead-of-now landscapes rendered with cinematic depth. The Celestial Spire, the Cosmic Waterfall, and two more electric environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.</p>
-    <div class="hero-image">
-      <img src="../images/zodiac/realms/aquarius.webp" alt="Aquarius Western Realms preview — four landscape-style air-realms in hybrid cosmos style, from Built by Josh Studio" fetchpriority="high" width="720" height="900" />
+  <header class="collection-hero zhero">
+    <span class="bignum" aria-hidden="true">11</span>
+    <div class="zhero__text">
+      <p class="hero-eyebrow eyebrow">♒ Aquarius · Air Sign · Western Realms</p>
+      <h1 class="collection-title">Aquarius Western Realms Bundle — 48 Print-Ready Landscape Files</h1>
+      <p class="collection-tagline measure lead">Four mythic Aquarius Realms — luminous, ahead-of-now landscapes rendered with cinematic depth. The Celestial Spire, the Cosmic Waterfall, and two more electric environments, each delivered in two numbered variants across three print-ready sizes and both PNG and JPG. 48 files in one bundle. Licensed for personal use and print-on-demand up to 100 prints per design.</p>
     </div>
+    <figure class="hero-image frame glow">
+      <img src="../images/zodiac/realms/aquarius.webp" alt="Aquarius Western Realms preview — four landscape-style air-realms in hybrid cosmos style, from Built by Josh Studio" fetchpriority="high" width="720" height="900" />
+    </figure>
   </header>
+  </div>
 
-  <aside class="short-version">
-    <div class="short-version-label">The Short Version</div>
+  <div class="wrap">
+  <aside class="short-version short">
+    <span class="short__label">The Short Version</span>
     <p>The Aquarius Western Realms Bundle from Built by Josh Studio is a landscape-style digital art collection containing 48 print-ready image files. Each Realms bundle covers one Western zodiac sign and includes 4 unique Realm designs — atmospheric mythic environments rather than figures — with 2 numbered variants per design. Every design is delivered in three aspect ratios (1:1 square, 4:5 portrait, 2:3 portrait) at 300 DPI, in both PNG and JPG formats, with maximum dimensions of 6000 × 9000 pixels. The bundle is priced at $7.99 and includes a personal-use license plus print-on-demand rights for up to 100 physical prints per design. Files are instant-download — no physical shipping. All bundles are produced by Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138).</p>
   </aside>
+  </div>
 
-  <div class="collection-main">
+  <div class="collection-main layout wrap">
     <main class="main-column">
 
       <section>
-        <h2>The Aquarius Western Realms Bundle</h2>
+        <div class="section-head"><div><span class="num">01</span><h2>The Aquarius Western Realms Bundle</h2></div></div>
         <p>The Aquarius Western Realms Bundle is one of 12 sign-specific Realms bundles in the Western Realms Collection. Each Realms bundle pairs a Western zodiac sign with four distinct landscape-style interpretations — environments rather than figures, atmospheres rather than portraits. The Aquarius bundle contains 48 print-ready digital files: 4 original Realm designs, each in 2 numbered variants, each variant rendered in three aspect ratios and both PNG and JPG formats.</p>
         <p>Where the Western Signs Collection gives you the water bearer in 14 art styles, the Western Realms Collection gives you the world the water bearer inhabits. Same Aquarius energy, translated into landscape — the two Collections pair naturally as a figure-and-environment wall arrangement.</p>
         <p>Built by Josh Studio LLC, a Kansas-based independent creative studio, publishes this zodiac art under its own name. Every Realm is original work — concepted, generated, curated, and finalized by a single founder.</p>
       </section>
 
       <section>
-        <h2>What Makes Aquarius, Aquarius</h2>
+        <div class="section-head"><div><span class="num">02</span><h2>What Makes Aquarius, Aquarius</h2></div></div>
         <ul class="quick-facts">
           <li><strong>Element:</strong> Air</li>
           <li><strong>Modality:</strong> Fixed</li>
@@ -465,27 +291,17 @@
       </section>
 
       <section>
-        <h2>The Four Aquarius Realms</h2>
+        <div class="section-head"><div><span class="num">03</span><h2>The Four Aquarius Realms</h2></div></div>
         <p>The Aquarius Realms bundle contains 4 unique landscape designs, each delivered in 2 numbered variants — same Realm, alternate compositions. The 4 Realm titles are:</p>
         <div class="realms-grouped">
         <div class="realm-block">
           <h3 class="realm-block-title">The Celestial Spire</h3>
           <p class="realm-block-desc">A towering spire of light piercing a cosmic sky, geometry meeting transmission. The Aquarius Realm of architectural intelligence — innovation made monument.</p>
-          <div class="designs-grid">
+          <div class="designs-grid grid grid--catalog">
 
-            <div class="design-card">
-              <img src="../images/zodiac/realms/aquarius/the-celestial-spire-1.webp" alt="The Celestial Spire variant 1 — Aquarius Western Realms art print" loading="lazy" width="720" height="900">
-              <div class="design-card-body">
-                <h4>Variant 1</h4>
-              </div>
-            </div>
+            <div class="design-card card"><div class="card__media"><img src="../images/zodiac/realms/aquarius/the-celestial-spire-1.webp" alt="The Celestial Spire variant 1 — Aquarius Western Realms art print" loading="lazy" width="720" height="900"></div><div class="design-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="design-card">
-              <img src="../images/zodiac/realms/aquarius/the-celestial-spire-2.webp" alt="The Celestial Spire variant 2 — Aquarius Western Realms art print" loading="lazy" width="720" height="900">
-              <div class="design-card-body">
-                <h4>Variant 2</h4>
-              </div>
-            </div>
+            <div class="design-card card"><div class="card__media"><img src="../images/zodiac/realms/aquarius/the-celestial-spire-2.webp" alt="The Celestial Spire variant 2 — Aquarius Western Realms art print" loading="lazy" width="720" height="900"></div><div class="design-card-body card__body"><h4>Variant 2</h4></div></div>
 
           </div>
         </div>
@@ -493,21 +309,11 @@
         <div class="realm-block">
           <h3 class="realm-block-title">The Cosmic Waterfall</h3>
           <p class="realm-block-desc">A cascade of starlight falling from a galactic ridge into deep space, the water-bearer's pour rendered cosmic. The Aquarius Realm where ideas flow downhill at the speed of light.</p>
-          <div class="designs-grid">
+          <div class="designs-grid grid grid--catalog">
 
-            <div class="design-card">
-              <img src="../images/zodiac/realms/aquarius/the-cosmic-waterfall-1.webp" alt="The Cosmic Waterfall variant 1 — Aquarius Western Realms art print" loading="lazy" width="720" height="900">
-              <div class="design-card-body">
-                <h4>Variant 1</h4>
-              </div>
-            </div>
+            <div class="design-card card"><div class="card__media"><img src="../images/zodiac/realms/aquarius/the-cosmic-waterfall-1.webp" alt="The Cosmic Waterfall variant 1 — Aquarius Western Realms art print" loading="lazy" width="720" height="900"></div><div class="design-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="design-card">
-              <img src="../images/zodiac/realms/aquarius/the-cosmic-waterfall-2.webp" alt="The Cosmic Waterfall variant 2 — Aquarius Western Realms art print" loading="lazy" width="720" height="900">
-              <div class="design-card-body">
-                <h4>Variant 2</h4>
-              </div>
-            </div>
+            <div class="design-card card"><div class="card__media"><img src="../images/zodiac/realms/aquarius/the-cosmic-waterfall-2.webp" alt="The Cosmic Waterfall variant 2 — Aquarius Western Realms art print" loading="lazy" width="720" height="900"></div><div class="design-card-body card__body"><h4>Variant 2</h4></div></div>
 
           </div>
         </div>
@@ -515,21 +321,11 @@
         <div class="realm-block">
           <h3 class="realm-block-title">The Flow of Stars</h3>
           <p class="realm-block-desc">A river of stars curving across an empty sky, current visible in the spacing of points. The Aquarius Realm of dispersed intelligence — pattern emerging from drift.</p>
-          <div class="designs-grid">
+          <div class="designs-grid grid grid--catalog">
 
-            <div class="design-card">
-              <img src="../images/zodiac/realms/aquarius/the-flow-of-stars-1.webp" alt="The Flow of Stars variant 1 — Aquarius Western Realms art print" loading="lazy" width="720" height="900">
-              <div class="design-card-body">
-                <h4>Variant 1</h4>
-              </div>
-            </div>
+            <div class="design-card card"><div class="card__media"><img src="../images/zodiac/realms/aquarius/the-flow-of-stars-1.webp" alt="The Flow of Stars variant 1 — Aquarius Western Realms art print" loading="lazy" width="720" height="900"></div><div class="design-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="design-card">
-              <img src="../images/zodiac/realms/aquarius/the-flow-of-stars-2.webp" alt="The Flow of Stars variant 2 — Aquarius Western Realms art print" loading="lazy" width="720" height="900">
-              <div class="design-card-body">
-                <h4>Variant 2</h4>
-              </div>
-            </div>
+            <div class="design-card card"><div class="card__media"><img src="../images/zodiac/realms/aquarius/the-flow-of-stars-2.webp" alt="The Flow of Stars variant 2 — Aquarius Western Realms art print" loading="lazy" width="720" height="900"></div><div class="design-card-body card__body"><h4>Variant 2</h4></div></div>
 
           </div>
         </div>
@@ -537,30 +333,20 @@
         <div class="realm-block">
           <h3 class="realm-block-title">The River of Light</h3>
           <p class="realm-block-desc">A luminous river running through a velvet-dark landscape, banks lit by reflected radiance. The Aquarius Realm of inherited futurism — landscape from somewhere ahead.</p>
-          <div class="designs-grid">
+          <div class="designs-grid grid grid--catalog">
 
-            <div class="design-card">
-              <img src="../images/zodiac/realms/aquarius/the-river-of-light-1.webp" alt="The River of Light variant 1 — Aquarius Western Realms art print" loading="lazy" width="720" height="900">
-              <div class="design-card-body">
-                <h4>Variant 1</h4>
-              </div>
-            </div>
+            <div class="design-card card"><div class="card__media"><img src="../images/zodiac/realms/aquarius/the-river-of-light-1.webp" alt="The River of Light variant 1 — Aquarius Western Realms art print" loading="lazy" width="720" height="900"></div><div class="design-card-body card__body"><h4>Variant 1</h4></div></div>
 
-            <div class="design-card">
-              <img src="../images/zodiac/realms/aquarius/the-river-of-light-2.webp" alt="The River of Light variant 2 — Aquarius Western Realms art print" loading="lazy" width="720" height="900">
-              <div class="design-card-body">
-                <h4>Variant 2</h4>
-              </div>
-            </div>
+            <div class="design-card card"><div class="card__media"><img src="../images/zodiac/realms/aquarius/the-river-of-light-2.webp" alt="The River of Light variant 2 — Aquarius Western Realms art print" loading="lazy" width="720" height="900"></div><div class="design-card-body card__body"><h4>Variant 2</h4></div></div>
 
           </div>
         </div>
         </div>
-        <p class="realm-tally">Each Realm ships with 2 numbered variants — alternate compositions of the same Realm concept. Eight total designs in the bundle. With three sizes and two formats per design, that's 48 files in total.</p>
+        <p class="realm-tally note">Each Realm ships with 2 numbered variants — alternate compositions of the same Realm concept. Eight total designs in the bundle. With three sizes and two formats per design, that's 48 files in total.</p>
       </section>
 
       <section>
-        <h2>Who Buys the Aquarius Realms</h2>
+        <div class="section-head"><div><span class="num">04</span><h2>Who Buys the Aquarius Realms</h2></div></div>
         <ul>
           <li>Buyers who already own the Aquarius Western Signs Bundle and want the matching landscape interpretation — figure and environment as a paired wall arrangement</li>
           <li>Atmospheric decor buyers who prefer landscape art over portraiture — especially for living rooms, dining rooms, and larger spaces that benefit from depth</li>
@@ -572,7 +358,7 @@
       </section>
 
       <section>
-        <h2>What's Included With Every Aquarius Realms Bundle</h2>
+        <div class="section-head"><div><span class="num">05</span><h2>What's Included With Every Aquarius Realms Bundle</h2></div></div>
         <p>Every Aquarius Realms Bundle is a complete digital download. After purchase, you get instant access to 48 image files organized by Realm — no shipping, no waiting, no physical product mailed to you.</p>
         <p>Each Realm design is delivered in three aspect ratios: 1:1 square (4800 × 4800 pixels), 4:5 portrait (4800 × 6000 pixels), and 2:3 portrait (6000 × 9000 pixels). Every size is provided in both PNG (lossless) and JPG (92% quality) formats. All files are saved at 300 DPI in standard sRGB color space — the industry standard for high-quality print reproduction across home printers, professional print shops, and print-on-demand services.</p>
         <p>The bundle also includes two PDF documents: a <strong>License Agreement &amp; Terms of Use</strong> covering personal use, print-on-demand rights, and the 100-print-per-design cap, and a <strong>Print Guide &amp; User Manual</strong> explaining file structure, recommended print sizes, paper selection, and troubleshooting tips. Both are tailored to the Western Realms Collection.</p>
@@ -580,8 +366,8 @@
       </section>
 
       <section>
-        <h2>Licensing &amp; Print-on-Demand Rights</h2>
-        <div class="license-block">
+        <div class="section-head"><div><span class="num">06</span><h2>Licensing &amp; Print-on-Demand Rights</h2></div></div>
+        <div class="license-block panel panel--inset">
           <p>The Aquarius Western Realms Bundle ships with a clear, plain-English license — not a vague "for personal use" disclaimer.</p>
           <h3>You may</h3>
           <ul>
@@ -597,23 +383,23 @@
             <li>Exceed the 100-print-per-design cap (it does not reset and is cumulative across all channels)</li>
             <li>Claim authorship of the designs or register them as your own intellectual property</li>
           </ul>
-          <p class="disclosure"><strong>AI disclosure:</strong> The designs in the bundle were created using a combination of human creative direction and AI image generation tools, including Leonardo.ai, with selection, curation, refinement, and final arrangement by Built by Josh Studio LLC. This is disclosed in full in the license agreement.</p>
-          <p class="contact-line"><strong>Need more than 100 prints per design?</strong> Extended commercial licensing is available — contact <a href="mailto:josh@builtbyjoshstudio.com" style="color:var(--bbj-accent);text-decoration:none">josh@builtbyjoshstudio.com</a> before exceeding the cap.</p>
-          <a href="/legal/license-western-realms.pdf" class="pdf-link">Read the Western Realms License (PDF) →</a>
-          <a href="/legal/print-guide-western-realms.pdf" class="pdf-link">Read the Western Realms Print Guide (PDF) →</a>
+          <p class="disclosure note"><strong>AI disclosure:</strong> The designs in the bundle were created using a combination of human creative direction and AI image generation tools, including Leonardo.ai, with selection, curation, refinement, and final arrangement by Built by Josh Studio LLC. This is disclosed in full in the license agreement.</p>
+          <p class="contact-line note"><strong>Need more than 100 prints per design?</strong> Extended commercial licensing is available — contact <a href="mailto:josh@builtbyjoshstudio.com">josh@builtbyjoshstudio.com</a> before exceeding the cap.</p>
+          <a href="/legal/license-western-realms.pdf" class="pdf-link btn btn--sm">Read the Western Realms License (PDF) →</a>
+          <a href="/legal/print-guide-western-realms.pdf" class="pdf-link btn btn--sm">Read the Western Realms Print Guide (PDF) →</a>
         </div>
       </section>
 
     </main>
 
-    <aside class="sticky-sidebar">
-      <div class="sidebar-label">Bundle Price</div>
-      <div class="price-drop-pill">Price drop</div>
-      <div class="sidebar-price"><span class="price-was">$14.99</span> $7.99</div>
-      <div class="sidebar-price-note">One-time payment · Instant digital download · Secure Lemon Squeezy checkout</div>
+    <aside class="sticky-sidebar buy" aria-label="Buy">
+      <div class="sidebar-label eyebrow eyebrow--plain">Bundle Price</div>
+      <div class="price-drop-pill badge badge--pos">Price drop</div>
+      <div class="sidebar-price buy__price"><span class="price-was">$14.99</span> $7.99</div>
+      <div class="sidebar-price-note buy__meta">One-time payment · Instant digital download · Secure Lemon Squeezy checkout</div>
 
-      <div class="sidebar-included-label">What's Included</div>
-      <ul class="sidebar-included">
+      <div class="sidebar-included-label label">What's Included</div>
+      <ul class="sidebar-included buy__list">
         <li>48 print-ready digital files</li>
         <li>4 unique Realm designs × 2 variants each</li>
         <li>Three aspect ratios: 1:1, 4:5, 2:3</li>
@@ -624,10 +410,10 @@
         <li>Instant download — no shipping</li>
       </ul>
 
-      <button class="ls-checkout-btn" data-checkout-url="https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/9482fef7-2db3-4300-b5d1-7c645f0d2c85?embed=1" data-product-name="Aquarius Western Realms Bundle" data-product-price="7.99" data-item-category="Zodiac Realm Bundle">Buy the Aquarius Realms Bundle — $7.99</button>
-      <span class="ls-checkout-sub">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
+      <button class="ls-checkout-btn btn btn--primary btn--block btn--lg" data-checkout-url="https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/9482fef7-2db3-4300-b5d1-7c645f0d2c85?embed=1" data-product-name="Aquarius Western Realms Bundle" data-product-price="7.99" data-item-category="Zodiac Realm Bundle">Buy the Aquarius Realms Bundle — $7.99</button>
+      <span class="ls-checkout-sub buy__meta">Instant download · License &amp; Print Guide included · Secure checkout via Lemon Squeezy</span>
 
-      <ul class="sidebar-trust">
+      <ul class="sidebar-trust buy__trust">
         <li>Instant digital download</li>
         <li>300 DPI print-ready files</li>
         <li>Real Kansas LLC + clear POD license</li>
@@ -636,89 +422,86 @@
     </aside>
   </div>
 
-  <section class="faq-section">
-    <div class="section-label">Frequently Asked</div>
-    <h2 class="section-title-main">Frequently Asked Questions</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <h3>What is included in the Aquarius Western Realms Bundle?</h3>
-        <p>The Aquarius Realms bundle includes 48 print-ready digital files covering 4 unique Aquarius Realm designs (The Celestial Spire, The Cosmic Waterfall, The Flow of Stars, The River of Light), each with 2 numbered variants. Every design ships in three aspect ratios (1:1, 4:5, 2:3) and both PNG and JPG formats, at 300 DPI. The bundle also includes a License Agreement and a Print Guide as PDFs.</p>
-      </div>
-      <div class="faq-item">
-        <h3>How much does the Aquarius Western Realms Bundle cost?</h3>
-        <p>The Aquarius Realms bundle is priced at $7.99 — one-time payment, instant digital download. That works out to roughly $1.00 per unique design or $0.17 per file variant.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Can I use the Aquarius Realms Bundle for print-on-demand or commercial sales?</h3>
-        <p>Yes. The license includes print-on-demand rights for up to 100 physical units per individual design, cumulative across all formats, vendors, and time periods combined. You can sell framed prints, posters, canvases, and similar physical products made from the Realm designs within that cap. For more than 100 prints of any single design, contact Built by Josh Studio LLC about extended commercial licensing.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What sizes can I print the Aquarius Realms art at?</h3>
-        <p>The largest file (6000 × 9000 pixels) prints crisply up to 20" × 30" at full 300 DPI. With a print provider running 150 DPI for large-format jobs, prints up to roughly 40" × 60" still look excellent. The bundle also includes 1:1 files (4800 × 4800) for square framing and 4:5 files (4800 × 6000) for standard portrait sizes like 8×10 and 16×20.</p>
-      </div>
-      <div class="faq-item">
-        <h3>How were the Aquarius Realm designs created?</h3>
-        <p>The Aquarius Realm designs were created by Built by Josh Studio LLC using a combination of human creative direction and AI image generation tools, including Leonardo.ai. Every design is selected, curated, refined, and finalized by the studio's founder. This is disclosed in full in the license agreement included with every bundle.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What's the difference between the Aquarius Realms Bundle and the Aquarius Zodiac Art Bundle?</h3>
-        <p>The Aquarius Zodiac Art Bundle ($10.99) contains 144 files covering 24 figure-based designs across 14 art styles — the sign rendered as a character. The Aquarius Realms Bundle ($7.99) contains 48 files covering 4 landscape-style Realms with 2 variants each — Aquarius rendered as place rather than figure. The two pair naturally as a figure-and-environment wall arrangement.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Where can I buy the Aquarius Western Realms Bundle?</h3>
-        <p>The Aquarius Realms Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Aquarius Realms Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no account required, no marketplace fees, files delivered immediately to your email.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Do you have Realms for the other 11 Western zodiac signs?</h3>
-        <p>Yes. Built by Josh Studio publishes 12 sign-specific Realms bundles — one for every Western zodiac sign (Aries through Pisces). All 12 bundles share identical structure: 48 files, 4 Realm designs, 2 variants each, three aspect ratios, both PNG and JPG. The Chinese Realms Collection covers all 12 Chinese zodiac animals in a single bundle, also landscape-style.</p>
-      </div>
+  <section class="faq-section section wrap">
+    <div class="section-head"><div><span class="num">07</span><h2>Frequently Asked Questions</h2></div><span class="aside">Frequently Asked</span></div>
+    <div class="faq-list faq">
+      <details class="faq-item" open>
+      <summary><h3>What is included in the Aquarius Western Realms Bundle?</h3></summary>
+      <p>The Aquarius Realms bundle includes 48 print-ready digital files covering 4 unique Aquarius Realm designs (The Celestial Spire, The Cosmic Waterfall, The Flow of Stars, The River of Light), each with 2 numbered variants. Every design ships in three aspect ratios (1:1, 4:5, 2:3) and both PNG and JPG formats, at 300 DPI. The bundle also includes a License Agreement and a Print Guide as PDFs.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>How much does the Aquarius Western Realms Bundle cost?</h3></summary>
+      <p>The Aquarius Realms bundle is priced at $7.99 — one-time payment, instant digital download. That works out to roughly $1.00 per unique design or $0.17 per file variant.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>Can I use the Aquarius Realms Bundle for print-on-demand or commercial sales?</h3></summary>
+      <p>Yes. The license includes print-on-demand rights for up to 100 physical units per individual design, cumulative across all formats, vendors, and time periods combined. You can sell framed prints, posters, canvases, and similar physical products made from the Realm designs within that cap. For more than 100 prints of any single design, contact Built by Josh Studio LLC about extended commercial licensing.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>What sizes can I print the Aquarius Realms art at?</h3></summary>
+      <p>The largest file (6000 × 9000 pixels) prints crisply up to 20" × 30" at full 300 DPI. With a print provider running 150 DPI for large-format jobs, prints up to roughly 40" × 60" still look excellent. The bundle also includes 1:1 files (4800 × 4800) for square framing and 4:5 files (4800 × 6000) for standard portrait sizes like 8×10 and 16×20.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>How were the Aquarius Realm designs created?</h3></summary>
+      <p>The Aquarius Realm designs were created by Built by Josh Studio LLC using a combination of human creative direction and AI image generation tools, including Leonardo.ai. Every design is selected, curated, refined, and finalized by the studio's founder. This is disclosed in full in the license agreement included with every bundle.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>What's the difference between the Aquarius Realms Bundle and the Aquarius Zodiac Art Bundle?</h3></summary>
+      <p>The Aquarius Zodiac Art Bundle ($10.99) contains 144 files covering 24 figure-based designs across 14 art styles — the sign rendered as a character. The Aquarius Realms Bundle ($7.99) contains 48 files covering 4 landscape-style Realms with 2 variants each — Aquarius rendered as place rather than figure. The two pair naturally as a figure-and-environment wall arrangement.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>Where can I buy the Aquarius Western Realms Bundle?</h3></summary>
+      <p>The Aquarius Realms Bundle is sold directly on builtbyjoshstudio.com via secure Lemon Squeezy checkout. Click the "Buy the Aquarius Realms Bundle" button on this page to open the checkout overlay, complete the purchase, and receive instant access to the full bundle — no account required, no marketplace fees, files delivered immediately to your email.</p>
+    </details>
+      <details class="faq-item">
+      <summary><h3>Do you have Realms for the other 11 Western zodiac signs?</h3></summary>
+      <p>Yes. Built by Josh Studio publishes 12 sign-specific Realms bundles — one for every Western zodiac sign (Aries through Pisces). All 12 bundles share identical structure: 48 files, 4 Realm designs, 2 variants each, three aspect ratios, both PNG and JPG. The Chinese Realms Collection covers all 12 Chinese zodiac animals in a single bundle, also landscape-style.</p>
+    </details>
     </div>
   </section>
 
-  <section class="sister-nav-section">
-    <div class="section-label">Browse All Realms</div>
-    <h2 class="section-title-main">Browse All 12 Western Realms Bundles</h2>
-    <p class="sister-intro">Every Western zodiac sign has its own Realms bundle in the same structure — 48 files, 4 Realm designs, 2 variants each, $7.99 per sign. Click any sign below to see its Realms.</p>
+  <section class="sister-nav-section section wrap">
+    <div class="section-head"><div><span class="num">08</span><h2>Browse All 12 Western Realms Bundles</h2></div><span class="aside">Browse All Realms</span></div>
+    <p class="sister-intro sub">Every Western zodiac sign has its own Realms bundle in the same structure — 48 files, 4 Realm designs, 2 variants each, $7.99 per sign. Click any sign below to see its Realms.</p>
     <div class="sister-grid">
-        <a href="aries-zodiac-realms.html" class="sister-card"><span class="sister-glyph">♈</span><span class="sister-name">Aries</span><span class="sister-meta">Fire · Mar 21 – Apr 19</span></a>
-        <a href="taurus-zodiac-realms.html" class="sister-card"><span class="sister-glyph">♉</span><span class="sister-name">Taurus</span><span class="sister-meta">Earth · Apr 20 – May 20</span></a>
-        <a href="gemini-zodiac-realms.html" class="sister-card"><span class="sister-glyph">♊</span><span class="sister-name">Gemini</span><span class="sister-meta">Air · May 21 – Jun 20</span></a>
-        <a href="cancer-zodiac-realms.html" class="sister-card"><span class="sister-glyph">♋</span><span class="sister-name">Cancer</span><span class="sister-meta">Water · Jun 21 – Jul 22</span></a>
-        <a href="leo-zodiac-realms.html" class="sister-card"><span class="sister-glyph">♌</span><span class="sister-name">Leo</span><span class="sister-meta">Fire · Jul 23 – Aug 22</span></a>
-        <a href="virgo-zodiac-realms.html" class="sister-card"><span class="sister-glyph">♍</span><span class="sister-name">Virgo</span><span class="sister-meta">Earth · Aug 23 – Sep 22</span></a>
-        <a href="libra-zodiac-realms.html" class="sister-card"><span class="sister-glyph">♎</span><span class="sister-name">Libra</span><span class="sister-meta">Air · Sep 23 – Oct 22</span></a>
-        <a href="scorpio-zodiac-realms.html" class="sister-card"><span class="sister-glyph">♏</span><span class="sister-name">Scorpio</span><span class="sister-meta">Water · Oct 23 – Nov 21</span></a>
-        <a href="sagittarius-zodiac-realms.html" class="sister-card"><span class="sister-glyph">♐</span><span class="sister-name">Sagittarius</span><span class="sister-meta">Fire · Nov 22 – Dec 21</span></a>
-        <a href="capricorn-zodiac-realms.html" class="sister-card"><span class="sister-glyph">♑</span><span class="sister-name">Capricorn</span><span class="sister-meta">Earth · Dec 22 – Jan 19</span></a>
-        <div class="sister-card sister-card-current"><span class="sister-glyph">♒</span><span class="sister-name">Aquarius</span><span class="sister-meta">Air · Jan 20 – Feb 18</span><span class="sister-here">You are here</span></div>
-        <a href="pisces-zodiac-realms.html" class="sister-card"><span class="sister-glyph">♓</span><span class="sister-name">Pisces</span><span class="sister-meta">Water · Feb 19 – Mar 20</span></a>
+        <a href="aries-zodiac-realms.html" class="sister-card card"><span class="sister-glyph">♈</span><span class="sister-name">Aries</span><span class="sister-meta">Fire · Mar 21 – Apr 19</span></a>
+        <a href="taurus-zodiac-realms.html" class="sister-card card"><span class="sister-glyph">♉</span><span class="sister-name">Taurus</span><span class="sister-meta">Earth · Apr 20 – May 20</span></a>
+        <a href="gemini-zodiac-realms.html" class="sister-card card"><span class="sister-glyph">♊</span><span class="sister-name">Gemini</span><span class="sister-meta">Air · May 21 – Jun 20</span></a>
+        <a href="cancer-zodiac-realms.html" class="sister-card card"><span class="sister-glyph">♋</span><span class="sister-name">Cancer</span><span class="sister-meta">Water · Jun 21 – Jul 22</span></a>
+        <a href="leo-zodiac-realms.html" class="sister-card card"><span class="sister-glyph">♌</span><span class="sister-name">Leo</span><span class="sister-meta">Fire · Jul 23 – Aug 22</span></a>
+        <a href="virgo-zodiac-realms.html" class="sister-card card"><span class="sister-glyph">♍</span><span class="sister-name">Virgo</span><span class="sister-meta">Earth · Aug 23 – Sep 22</span></a>
+        <a href="libra-zodiac-realms.html" class="sister-card card"><span class="sister-glyph">♎</span><span class="sister-name">Libra</span><span class="sister-meta">Air · Sep 23 – Oct 22</span></a>
+        <a href="scorpio-zodiac-realms.html" class="sister-card card"><span class="sister-glyph">♏</span><span class="sister-name">Scorpio</span><span class="sister-meta">Water · Oct 23 – Nov 21</span></a>
+        <a href="sagittarius-zodiac-realms.html" class="sister-card card"><span class="sister-glyph">♐</span><span class="sister-name">Sagittarius</span><span class="sister-meta">Fire · Nov 22 – Dec 21</span></a>
+        <a href="capricorn-zodiac-realms.html" class="sister-card card"><span class="sister-glyph">♑</span><span class="sister-name">Capricorn</span><span class="sister-meta">Earth · Dec 22 – Jan 19</span></a>
+        <div class="sister-card sister-card-current card"><span class="sister-glyph">♒</span><span class="sister-name">Aquarius</span><span class="sister-meta">Air · Jan 20 – Feb 18</span><span class="sister-here">You are here</span></div>
+        <a href="pisces-zodiac-realms.html" class="sister-card card"><span class="sister-glyph">♓</span><span class="sister-name">Pisces</span><span class="sister-meta">Water · Feb 19 – Mar 20</span></a>
     </div>
   </section>
 
-  <section class="related-section">
-    <div class="section-label">Explore the rest of the BBJ Studio zodiac catalog</div>
-    <h2 class="section-title-main">Related Collections</h2>
-    <div class="related-grid">
-      <a href="aquarius-zodiac-art.html" class="related-card">
-        <div class="related-meta">Western Signs · Aquarius</div>
+  <section class="related-section section wrap">
+    <div class="section-head"><div><span class="num">09</span><h2>Related Collections</h2></div><span class="aside">Explore the rest of the BBJ Studio zodiac catalog</span></div>
+    <div class="related-grid grid grid--4">
+      <a href="aquarius-zodiac-art.html" class="related-card card">
+        <div class="related-meta line-tag">Western Signs · Aquarius</div>
         <h3>Aquarius Zodiac Art Bundle</h3>
         <p>The 14-style figure version of Aquarius — 144 files, 24 designs, $10.99. Pairs with this Realms bundle as figure-and-environment.</p>
         <span class="related-link">View Collection →</span>
       </a>
-      <a href="zodiac-landscapes.html" class="related-card">
-        <div class="related-meta">Western Landscapes Collection</div>
+      <a href="zodiac-landscapes.html" class="related-card card">
+        <div class="related-meta line-tag">Western Landscapes Collection</div>
         <h3>Zodiac Landscapes</h3>
         <p>One mythic landscape per Western zodiac sign, oil-painted. The companion full-collection bundle to the per-sign Realms.</p>
         <span class="related-link">View Collection →</span>
       </a>
-      <a href="chinese-zodiac-realms.html" class="related-card">
-        <div class="related-meta">Eastern Zodiac · Lunar Realms</div>
+      <a href="chinese-zodiac-realms.html" class="related-card card">
+        <div class="related-meta line-tag">Eastern Zodiac · Lunar Realms</div>
         <h3>Chinese Zodiac Realms</h3>
         <p>Landscape-style art for all 12 Chinese zodiac animals — 24 designs in a single bundle.</p>
         <span class="related-link">View Collection →</span>
       </a>
-      <a href="chinese-zodiac-art.html" class="related-card">
-        <div class="related-meta">Eastern Zodiac · 12 Animals</div>
+      <a href="chinese-zodiac-art.html" class="related-card card">
+        <div class="related-meta line-tag">Eastern Zodiac · 12 Animals</div>
         <h3>Chinese Zodiac Signs</h3>
         <p>All 12 Chinese animals in two art styles — hyper-realistic and watercolor. 8 designs per animal, 12 animal bundles.</p>
         <span class="related-link">View Collection →</span>
@@ -726,17 +509,24 @@
     </div>
   </section>
 
-  <section class="cta-band">
-    <div class="cta-eyebrow">Browse the Collection</div>
-    <h2>4 Realms. 8 Variants. <span class="italic-accent">One Aquarius Bundle.</span></h2>
-    <p class="cta-sub">Four mythic Aquarius landscapes, each in two compositional variants, every variant in three sizes and two formats. The full landscape interpretation of Aquarius — $7.99, instant download, license and print guide included.</p>
-    <button class="ls-checkout-btn ls-checkout-btn--large" data-checkout-url="https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/9482fef7-2db3-4300-b5d1-7c645f0d2c85?embed=1" data-product-name="Aquarius Western Realms Bundle" data-product-price="7.99" data-item-category="Zodiac Realm Bundle">Buy the Aquarius Realms Bundle — $7.99</button>
-    <span class="cta-sub-line">Instant download — 48 print-ready Aquarius Realm files in your inbox the moment checkout completes.</span>
+  <section class="cta-band wrap">
+    <div class="cta">
+      <div>
+        <p class="cta-eyebrow eyebrow eyebrow--plain">Browse the Collection</p>
+        <h2>4 Realms. 8 Variants. <span class="italic-accent hi">One Aquarius Bundle.</span></h2>
+        <p class="cta-sub lede">Four mythic Aquarius landscapes, each in two compositional variants, every variant in three sizes and two formats. The full landscape interpretation of Aquarius — $7.99, instant download, license and print guide included.</p>
+        <span class="cta-sub-line note">Instant download — 48 print-ready Aquarius Realm files in your inbox the moment checkout completes.</span>
+      </div>
+    <button class="ls-checkout-btn ls-checkout-btn--large btn btn--primary btn--lg" data-checkout-url="https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/9482fef7-2db3-4300-b5d1-7c645f0d2c85?embed=1" data-product-name="Aquarius Western Realms Bundle" data-product-price="7.99" data-item-category="Zodiac Realm Bundle">Buy the Aquarius Realms Bundle — $7.99</button>
+    </div>
   </section>
 
-  <footer>
-    <div class="footer-left"><strong>Built by Josh Studio</strong> · All digital products — instant download</div>
-    <ul class="footer-links">
+  <footer class="footer">
+    <div class="wrap">
+    <p class="footer__sign">Built <em>by</em> Josh.</p>
+    <div class="footer__top">
+      <div><span class="wordmark">Built <em>by</em> Josh Studio</span><p>All digital products — instant download</p></div>
+    <ul class="footer__links">
       <li><a href="../">Home</a></li>
       <li><a href="../collections/">Collections</a></li>
       <li><a href="../blog.html">Blog</a></li>
@@ -753,45 +543,21 @@
       <li><a href="../privacy.html">Privacy</a></li>
       <li><a href="../terms.html">Terms</a></li>
     </ul>
-    <nav aria-label="More from Built by Josh Studio" style="flex:0 0 100%;max-width:1160px;margin:0 auto 14px;padding:14px 0 0;border-top:1px solid rgba(128,128,128,.18);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11.5px;letter-spacing:.05em;">
-      <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-      <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-      <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tynkr apps</a>
-      <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Kitchen tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Money tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tabletop tools</a>
-    </nav>
-    <div class="footer-legal">
-      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
-      Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.
+      <nav aria-label="More from Built by Josh Studio">
+        <p class="footer__label">More from the studio:</p>
+        <ul>
+          <li><a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a></li>
+          <li><a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom"><span>&copy; 2026 Built by Josh Studio LLC. All rights reserved.</span><span>Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</span></div>
     </div>
   </footer>
 
-  <script>
-    // Star field -- deferred (after load + idle) and lighter, so it never competes with first paint / LCP
-    (function () {
-      var run = function () {
-        var container = document.getElementById('starsContainer');
-        if (!container) return;
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        var w = window.innerWidth, h = window.innerHeight, mobile = w < 768;
-        var starCount = Math.min(mobile ? 70 : 150, Math.max(mobile ? 35 : 60, Math.round((w * h) / (mobile ? 16000 : 11000))));
-        var frag = document.createDocumentFragment();
-        for (var i = 0; i < starCount; i++) {
-          var s = document.createElement('div');
-          s.className = 'star';
-          var big = Math.random() > 0.82;
-          var sz = big ? (Math.random() > 0.6 ? 4 : 3) : 2;
-          s.style.cssText = 'left:' + (Math.random() * 100) + '%;top:' + (Math.random() * 100) + '%;--d:' + (2 + Math.random() * 4) + 's;--delay:-' + (Math.random() * 4) + 's;--op:' + (0.45 + Math.random() * 0.55) + ';width:' + sz + 'px;height:' + sz + 'px;';
-          frag.appendChild(s);
-        }
-        container.appendChild(frag);
-      };
-      var idle = window.requestIdleCallback || function (cb) { return setTimeout(cb, 250); };
-      var go = function () { idle(run, { timeout: 2000 }); };
-      if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
-    })();
-  </script>
   <!-- GA4: view_item -->
   <script>
     (function () {
