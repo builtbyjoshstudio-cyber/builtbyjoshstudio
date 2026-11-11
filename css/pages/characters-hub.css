@@ -1,0 +1,30 @@
+/* Built by Josh Studio - characters-hub pages.
+   Converted from the page's own <style> block by tools/_redesign_p4_pages.py: colours, fonts,
+   shadows and borders now come from the tokens. Loads after tokens.css, components.css and
+   layouts.css. */
+
+.hub { max-width: 1320px; margin: 3rem auto 0; padding: 0 1.5rem; }
+.hub-header { text-align: center; max-width: 720px; margin: 0 auto; }
+.hub-eyebrow { font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 0.9rem; }
+.hub h1 { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; line-height: 1.1; color: var(--ink); margin-bottom: 1rem; }
+.hub-intro { font-size: 1.12rem; line-height: 1.7; color: var(--ink-2); }
+.hub-intro em { font-style: italic; }
+.hub-row-label { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; color: var(--ink); text-align: center; margin: 2.8rem 0 0; }
+.hub-row-label::after { content: ''; display: block; width: 30px; height: 2px; background: var(--accent); margin: 0.55rem auto 0; border-radius: 2px; }
+.character-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.4rem; margin: 1.2rem 0 0; }
+@media (max-width: 1120px) {
+  .character-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .character-grid { grid-template-columns: 1fr; }
+}
+.character-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; }
+.character-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 12px 28px rgba(28, 28, 28, 0.12); }
+.character-card-portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top center; display: block; background: #eee; }
+.character-card-body { padding: 1rem 1.1rem 1.2rem; }
+.character-card-name { font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--ink); line-height: 1.15; }
+.character-card-role { font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin: 0.3rem 0 0.6rem; }
+.character-card-hook { font-size: 0.92rem; line-height: 1.5; color: var(--ink-2); }
+.hub-more { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 2.6rem 0 4rem; }
+.hub-more a { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--accent); text-decoration: none; padding: 0.85rem 1.2rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(255, 255, 255, 0.55); transition: transform 0.15s, border-color 0.15s, background 0.15s; }
+.hub-more a:hover { transform: translateY(-2px); border-color: var(--accent); background: rgba(255, 255, 255, 0.85); }

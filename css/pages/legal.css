@@ -1,0 +1,47 @@
+/* Built by Josh Studio - legal pages.
+   Converted from the page's own <style> block by tools/_redesign_p4_pages.py: colours, fonts,
+   shadows and borders now come from the tokens. Loads after tokens.css, components.css and
+   layouts.css. */
+
+.stars { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.star { position: absolute; width: 2px; height: 2px; background: var(--surface); border-radius: 50%; opacity: 0; animation: twinkle var(--d) ease-in-out infinite var(--delay); }
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: var(--op); transform: scale(1); } }
+.legal-hero { padding: 8rem 2rem 2rem; max-width: 1000px; margin: 0 auto; text-align: center; position: relative; }
+.legal-hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: none; }
+.breadcrumb { font-family: var(--font-display); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.4rem; position: relative; }
+.breadcrumb a { color: var(--accent); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { margin: 0 0.6rem; opacity: 0.5; }
+h1.legal-title { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 700; letter-spacing: 0.02em; line-height: 1.2; color: var(--ink); margin-bottom: 1.2rem; position: relative; }
+.legal-lead { font-family: var(--font-ui); font-size: clamp(1.05rem, 1.5vw, 1.18rem); color: var(--ink-2); max-width: 760px; margin: 0 auto; line-height: 1.7; position: relative; }
+.legal-main { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+.legal-main section { margin-bottom: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
+.legal-main section:first-child { border-top: none; padding-top: 0; }
+.legal-main h2 { font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 1.85rem); font-weight: 700; letter-spacing: 0.02em; color: var(--ink); margin-bottom: 1.3rem; line-height: 1.2; }
+.legal-main h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--ink); letter-spacing: 0.03em; margin-top: 2rem; margin-bottom: 0.7rem; }
+.legal-main h3, .legal-main h4 { font-family: var(--font-display); font-size: 0.92rem; font-weight: 700; color: var(--ink); letter-spacing: 0.05em; text-transform: uppercase; margin-top: 1.5rem; margin-bottom: 0.7rem; }
+.legal-main p { font-family: var(--font-ui); font-size: 1.08rem; line-height: 1.7; color: var(--ink-2); margin-bottom: 1.1rem; }
+.legal-main p strong { color: var(--ink); font-weight: 600; }
+.legal-main ul { list-style: none; margin: 0 0 1.5rem 0; padding: 0; }
+.legal-main ul li { position: relative; padding-left: 1.6rem; margin-bottom: 0.7rem; font-family: var(--font-ui); font-size: 1.05rem; line-height: 1.6; color: var(--ink-2); }
+.legal-main ul li::before { content: '◆'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 0.55rem; }
+.legal-main a { color: var(--accent); text-decoration: none; }
+.legal-main a:hover { text-decoration: underline; }
+.collection-block { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); padding: 1.7rem 1.9rem; margin-bottom: 1.5rem; }
+.collection-block h3 { margin-top: 0; margin-bottom: 0.6rem; }
+.collection-block p { margin-bottom: 1rem; font-size: 1rem; }
+.collection-block ul { margin-bottom: 0; }
+.collection-block ul li { font-size: 0.98rem; padding-left: 1.3rem; }
+.collection-block ul li::before { content: '→'; left: 0; top: 0.1rem; color: var(--accent); font-weight: 700; }
+.collection-block a.pdf-link { font-family: var(--font-ui); font-weight: 600; color: var(--accent); }
+.universal-block { background: var(--surface); border: 1px solid var(--line); padding: 1.8rem 2rem; }
+.universal-block h4 { margin-top: 1.4rem; }
+.universal-block h4:first-child { margin-top: 0; }
+.about-block { background: var(--surface); border: 1px solid var(--line); padding: 1.7rem 2rem; }
+.about-block .about-line { font-family: var(--font-ui); font-size: 0.94rem; color: var(--ink-2); margin-bottom: 0.5rem; line-height: 1.55; }
+.about-block .about-line strong { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); display: inline-block; min-width: 175px; }
+@media (max-width: 720px) {
+  .legal-hero { padding: 7rem 1.5rem 1rem; }
+  .legal-main { padding: 2rem 1.5rem 3rem; }
+  .about-block .about-line strong { display: block; min-width: 0; margin-bottom: 0.2rem; }
+}

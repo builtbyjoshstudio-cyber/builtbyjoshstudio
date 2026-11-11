@@ -1,0 +1,63 @@
+/* Built by Josh Studio - character pages.
+   Converted from the page's own <style> block by tools/_redesign_p4_pages.py: colours, fonts,
+   shadows and borders now come from the tokens. Loads after tokens.css, components.css and
+   layouts.css. */
+
+.character { max-width: 720px; margin: 3rem auto 0; padding: 0 1.5rem; }
+.character-header { text-align: center; }
+.character-eyebrow { font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 0.9rem; }
+.character h1 { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; line-height: 1.1; color: var(--ink); margin-bottom: 0.55rem; }
+.character-role { font-style: italic; font-size: 1.12rem; line-height: 1.5; color: var(--accent); }
+.character-portrait { margin: 2rem auto; max-width: 360px; }
+.character-portrait img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(28, 28, 28, 0.10); }
+.character-body { border-top: 1px solid var(--line); padding-top: 1.8rem; }
+.character-body p { font-size: 1.1rem; line-height: 1.75; color: var(--ink-2); margin-bottom: 1.2rem; }
+.character-body p:last-child { margin-bottom: 0; }
+.character-relationships { margin-top: 2.4rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
+.character-relationships-label { font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 1rem; }
+.character-relationships ul { list-style: none; margin: 0 0 1.1rem; padding: 0; }
+.character-relationships li { font-size: 1rem; line-height: 1.6; color: var(--ink-2); padding-left: 1.2rem; position: relative; margin-bottom: 0.5rem; }
+.character-relationships li::before { content: '\25C6'; position: absolute; left: 0; top: 0.42rem; font-size: 0.62rem; color: var(--accent); }
+.character-relationships li strong { color: var(--ink); font-weight: 600; }
+.character-relationships .arrangement { font-size: 1rem; line-height: 1.65; color: var(--ink-2); font-style: italic; margin: 0; }
+.character-stage { margin-top: 2.4rem; padding: 1.1rem 1.3rem; background: var(--accent-soft); border-left: 3px solid var(--accent); font-size: 0.95rem; line-height: 1.6; color: var(--ink-2); }
+.character-stage strong { color: var(--ink); }
+.character-cta { max-width: 720px; margin: 2.6rem auto 1rem; padding: 0 1.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
+.character-cta a { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--accent); text-decoration: none; padding: 0.9rem 1.2rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(255, 255, 255, 0.55); transition: transform 0.15s, border-color 0.15s, background 0.15s; }
+.character-cta a:hover { transform: translateY(-2px); border-color: var(--accent); background: rgba(255, 255, 255, 0.85); }
+.character-download { max-width: 720px; margin: 0 auto 4rem; padding: 0 1.5rem; text-align: center; }
+.character-download a { font-family: var(--font-ui); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+.character-download a:hover { border-color: var(--accent); }
+.character-stage2 { max-width: 720px; margin: 3.2rem auto 0; padding: 2.4rem 1.5rem 0; border-top: 1px solid var(--line); }
+.stage2-divider { text-align: center; margin-bottom: 1.6rem; }
+.stage2-divider span { font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.stage2-portrait { margin: 0 auto 1.6rem; max-width: 360px; }
+.stage2-portrait img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(28, 28, 28, 0.10); }
+.stage2-desc { font-size: 1.1rem; line-height: 1.75; color: var(--ink-2); margin-bottom: 1.6rem; }
+.stage2-desc strong { color: var(--ink); font-weight: 600; }
+.stat-block { background: rgba(255, 255, 255, 0.55); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 28px -12px rgba(28, 28, 28, 0.10); }
+.stat-block-head { font-family: var(--font-display); font-weight: 800; font-size: 1rem; color: var(--ink); padding: 0.85rem 1.2rem; border-bottom: 1px solid var(--line); background: var(--accent-soft); }
+.stat-block-head .stat-block-class { color: var(--accent); font-weight: 700; }
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.stat { text-align: center; padding: 1.05rem 0.5rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stat:nth-child(3n) { border-right: none; }
+.stat:nth-child(n+4) { border-bottom: none; }
+.stat-name { display: block; font-family: var(--font-ui); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 0.4rem; }
+.stat-val { display: block; font-family: var(--font-display); font-size: 1.85rem; font-weight: 800; color: var(--ink); line-height: 1; }
+.stage2-download { margin-top: 1.4rem; text-align: center; }
+.stage2-download a { font-family: var(--font-ui); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+.stage2-download a:hover { border-color: var(--accent); }
+.character-video { max-width: 720px; margin: 3.2rem auto 0; padding: 2.4rem 1.5rem 0; border-top: 1px solid var(--line); }
+.character-video-divider { text-align: center; margin-bottom: 1.6rem; }
+.character-video-divider span { font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.yt-facade { position: relative; max-width: 360px; margin: 0 auto; aspect-ratio: 9 / 16; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(28, 28, 28, 0.10); background: var(--accent-deep); }
+.yt-facade-btn { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.yt-facade-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.yt-facade-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px; border-radius: 50%; background: var(--accent); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35); transition: transform .15s, background .15s; }
+.yt-facade-play::after { content: ''; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%); border-style: solid; border-width: 12px 0 12px 20px; border-color: transparent transparent transparent #fff; }
+.yt-facade-btn:hover .yt-facade-play, .yt-facade-btn:focus-visible .yt-facade-play { transform: translate(-50%, -50%) scale(1.08); background: var(--accent); }
+.yt-facade-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.yt-facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .yt-facade-play { transition: none; }
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-glass="books">
+<html lang="en" data-theme="light">
 <head>
   <!-- Google Analytics 4 -->
   <script>(function(){var l=function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J";document.head.appendChild(s);};var i=window.requestIdleCallback||function(cb){return setTimeout(cb,300);};var g=function(){i(l,{timeout:1500});};if(document.readyState==="complete"){g();}else{window.addEventListener("load",g);}})();</script>
@@ -11,7 +11,7 @@
   </script>
   <meta charset="UTF-8" />
   <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
-  <link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/css/fonts/hanken-grotesk-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kael — Overlayed Echoes Characters | J.S. Warden</title>
   <meta name="description" content="Meet Kael, the game master of Overlayed Echoes — the quiet one who holds the story together. From J.S. Warden's near-future LitRPG." />
@@ -68,266 +68,10 @@
   </script>
 
   <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/layouts.css" />
+  <link rel="stylesheet" href="/css/pages/character.css" />
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --tynkr-bg: #f1eee6;
-      --tynkr-surface: #ffffff;
-      --tynkr-accent: #ff5a30;
-      --tynkr-text: #14130e;
-      --tynkr-muted: #6d695d;
-      --tynkr-border: #e2ddd0;
-      --body-read: #3a3a3a;
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Hanken Grotesk', sans-serif;
-      background: var(--tynkr-bg);
-      color: var(--tynkr-text);
-      line-height: 1.65;
-      min-height: 100vh;
-      padding-top: 80px;
-      overflow-x: hidden;
-    }
-
-    /* NAV — matches site standard */
-    .site-nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem 2rem;
-      background: rgba(241, 238, 230, 0.92);
-      border-bottom: 1px solid var(--tynkr-border);
-      z-index: 100;
-    }
-    .nav-logo {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: var(--tynkr-text);
-      text-decoration: none;
-    }
-    .logo-short { display: none; }
-    .nav-links { list-style: none; display: flex; gap: 2rem; }
-    .nav-links a {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--tynkr-text);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.15s;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--tynkr-accent); }
-    @media (max-width: 700px) {
-      .logo-full { display: none; }
-      .logo-short { display: inline; }
-      .nav-links { gap: 1rem; }
-      .nav-links a { font-size: 0.75rem; }
-    }
-
-    /* CHARACTER — profile reading world */
-    .character {
-      max-width: 720px;
-      margin: 3rem auto 0;
-      padding: 0 1.5rem;
-    }
-    .character-header { text-align: center; }
-    .character-eyebrow {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--tynkr-accent);
-      font-weight: 700;
-      margin-bottom: 0.9rem;
-    }
-    .character h1 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 2.6rem;
-      font-weight: 800;
-      line-height: 1.1;
-      color: var(--tynkr-text);
-      margin-bottom: 0.55rem;
-    }
-    .character-role {
-      font-style: italic;
-      font-size: 1.12rem;
-      line-height: 1.5;
-      color: var(--tynkr-accent);
-    }
-    .character-portrait {
-      margin: 2rem auto;
-      max-width: 360px;
-    }
-    .character-portrait img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 14px;
-      border: 1px solid var(--tynkr-border);
-      box-shadow: 0 10px 30px rgba(28, 28, 28, 0.10);
-    }
-    .character-body {
-      border-top: 1px solid var(--tynkr-border);
-      padding-top: 1.8rem;
-    }
-    .character-body p {
-      font-size: 1.1rem;
-      line-height: 1.75;
-      color: var(--body-read);
-      margin-bottom: 1.2rem;
-    }
-    .character-body p:last-child { margin-bottom: 0; }
-
-    .character-relationships {
-      margin-top: 2.4rem;
-      padding-top: 1.8rem;
-      border-top: 1px solid var(--tynkr-border);
-    }
-    .character-relationships-label {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--tynkr-accent);
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .character-relationships ul { list-style: none; margin: 0 0 1.1rem; padding: 0; }
-    .character-relationships li {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--body-read);
-      padding-left: 1.2rem;
-      position: relative;
-      margin-bottom: 0.5rem;
-    }
-    .character-relationships li::before {
-      content: '\25C6';
-      position: absolute;
-      left: 0;
-      top: 0.42rem;
-      font-size: 0.62rem;
-      color: var(--tynkr-accent);
-    }
-    .character-relationships li strong { color: var(--tynkr-text); font-weight: 600; }
-    .character-relationships .arrangement {
-      font-size: 1rem;
-      line-height: 1.65;
-      color: var(--body-read);
-      font-style: italic;
-      margin: 0;
-    }
-
-    .character-stage {
-      margin-top: 2.4rem;
-      padding: 1.1rem 1.3rem;
-      background: rgba(255, 90, 48, 0.05);
-      border-left: 3px solid var(--tynkr-accent);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--body-read);
-    }
-    .character-stage strong { color: var(--tynkr-text); }
-
-    /* DIEGETIC CTAs — soft, books-world, not a sales band */
-    .character-cta {
-      max-width: 720px;
-      margin: 2.6rem auto 1rem;
-      padding: 0 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-    .character-cta a {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--tynkr-accent);
-      text-decoration: none;
-      padding: 0.9rem 1.2rem;
-      border: 1px solid var(--tynkr-border);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.55);
-      transition: transform 0.15s, border-color 0.15s, background 0.15s;
-    }
-    .character-cta a:hover {
-      transform: translateY(-2px);
-      border-color: var(--tynkr-accent);
-      background: rgba(255, 255, 255, 0.85);
-    }
-
-    .character-download { max-width: 720px; margin: 0 auto 4rem; padding: 0 1.5rem; text-align: center; }
-    .character-download a { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; color: var(--tynkr-accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
-    .character-download a:hover { border-color: var(--tynkr-accent); }
-
-    /* STAGE 2 — In the Game */
-    .character-stage2 { max-width: 720px; margin: 3.2rem auto 0; padding: 2.4rem 1.5rem 0; border-top: 1px solid var(--tynkr-border); }
-    .stage2-divider { text-align: center; margin-bottom: 1.6rem; }
-    .stage2-divider span { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tynkr-accent); font-weight: 700; }
-    .stage2-portrait { margin: 0 auto 1.6rem; max-width: 360px; }
-    .stage2-portrait img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--tynkr-border); box-shadow: 0 10px 30px rgba(28, 28, 28, 0.10); }
-    .stage2-desc { font-size: 1.1rem; line-height: 1.75; color: var(--body-read); margin-bottom: 1.6rem; }
-    .stage2-desc strong { color: var(--tynkr-text); font-weight: 600; }
-    .stat-block { background: rgba(255, 255, 255, 0.55); border: 1px solid var(--tynkr-border); border-radius: 14px; overflow: hidden; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 28px -12px rgba(28, 28, 28, 0.10); }
-    .stat-block-head { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1rem; color: var(--tynkr-text); padding: 0.85rem 1.2rem; border-bottom: 1px solid var(--tynkr-border); background: rgba(255, 90, 48, 0.05); }
-    .stat-block-head .stat-block-class { color: var(--tynkr-accent); font-weight: 700; }
-    .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-    .stat { text-align: center; padding: 1.05rem 0.5rem; border-right: 1px solid var(--tynkr-border); border-bottom: 1px solid var(--tynkr-border); }
-    .stat:nth-child(3n) { border-right: none; }
-    .stat:nth-child(n+4) { border-bottom: none; }
-    .stat-name { display: block; font-family: 'Hanken Grotesk', sans-serif; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tynkr-muted); font-weight: 600; margin-bottom: 0.4rem; }
-    .stat-val { display: block; font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.85rem; font-weight: 800; color: var(--tynkr-text); line-height: 1; }
-    .stage2-download { margin-top: 1.4rem; text-align: center; }
-    .stage2-download a { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; color: var(--tynkr-accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
-    .stage2-download a:hover { border-color: var(--tynkr-accent); }
-
-    /* FOOTER — matches site standard */
-    footer {
-      background: var(--tynkr-surface);
-      border-top: 1px solid var(--tynkr-border);
-      padding: 2rem;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-left {
-      font-family: 'Hanken Grotesk', sans-serif;
-      font-size: 0.88rem;
-      color: var(--tynkr-muted);
-    }
-    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.4rem; }
-    .footer-links a {
-      font-size: 0.82rem;
-      color: var(--tynkr-text);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    .footer-links a:hover { color: var(--tynkr-accent); }
-    .footer-legal {
-      width: 100%;
-      font-size: 0.78rem;
-      color: var(--tynkr-muted);
-      line-height: 1.5;
-      margin-top: 0.4rem;
-    }
-    /* CHARACTER REVEAL — click-to-load YouTube facade */
-    .character-video { max-width: 720px; margin: 3.2rem auto 0; padding: 2.4rem 1.5rem 0; border-top: 1px solid var(--tynkr-border); }
-    .character-video-divider { text-align: center; margin-bottom: 1.6rem; }
-    .character-video-divider span { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tynkr-accent); font-weight: 700; }
-    .yt-facade { position: relative; max-width: 360px; margin: 0 auto; aspect-ratio: 9 / 16; border: 1px solid var(--tynkr-border); border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(28, 28, 28, 0.10); background: #000; }
-    .yt-facade-btn { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; }
-    .yt-facade-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .yt-facade-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px; border-radius: 50%; background: var(--tynkr-accent); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35); transition: transform .15s, background .15s; }
-    .yt-facade-play::after { content: ''; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%); border-style: solid; border-width: 12px 0 12px 20px; border-color: transparent transparent transparent #fff; }
-    .yt-facade-btn:hover .yt-facade-play, .yt-facade-btn:focus-visible .yt-facade-play { transform: translate(-50%, -50%) scale(1.08); background: #ff6a2a; }
-    .yt-facade-btn:focus-visible { outline: 3px solid var(--tynkr-accent); outline-offset: 3px; }
-    .yt-facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    @media (prefers-reduced-motion: reduce) { .yt-facade-play { transition: none; } }
-  </style>
   <link rel="stylesheet" href="/css/mobile-nav.css" />
 
   <!-- Schema.org Organization -->
@@ -408,9 +152,10 @@
 </head>
 <body>
 
-  <nav class="site-nav">
-    <a href="../../" class="nav-logo"><span class="logo-full">Built by Josh Studio</span><span class="logo-short">BBJ Studio</span></a>
-    <ul class="nav-links">
+  <nav class="site-nav nav" aria-label="Main">
+    <div class="wrap">
+    <a href="../../" class="nav-logo wordmark">Built <em>by</em> Josh Studio</a>
+    <ul class="nav-links nav__links">
       <li><a href="../../#tynkr">Tynkr Tools</a></li>
       <li><a href="../../#builtbyjosh">Zodiac Art</a></li>
       <li><a href="../../blog.html">Blog</a></li>
@@ -425,6 +170,7 @@
       <span></span>
       <span></span>
     </button>
+    </div>
   </nav>
 
   <article class="character">
@@ -496,11 +242,12 @@
 
   <p class="character-download"><a href="/images/characters/kael-card.jpg" download data-char-cta="card">Download character card ↓</a></p>
 
-  <footer>
-    <div class="footer-left">
-      <strong>Built by Josh Studio</strong> · All digital products — instant download
-    </div>
-    <ul class="footer-links">
+  <footer class="footer">
+    <div class="wrap">
+    <p class="footer__sign">Built <em>by</em> Josh.</p>
+    <div class="footer__top">
+      <div><span class="wordmark">Built <em>by</em> Josh Studio</span><p>All digital products — instant download</p></div>
+    <ul class="footer__links">
       <li><a href="../../">Home</a></li>
       <li><a href="../../blog.html">Blog</a></li>
       <li><a href="../../resources/">Resources</a></li>
@@ -516,17 +263,18 @@
       <li><a href="../../privacy.html">Privacy</a></li>
       <li><a href="../../terms.html">Terms</a></li>
     </ul>
-      <nav aria-label="More from Built by Josh Studio" style="flex:0 0 100%;max-width:1160px;margin:0 auto 14px;padding:14px 0 0;border-top:1px solid rgba(128,128,128,.18);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11.5px;letter-spacing:.05em;">
-      <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-      <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-      <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tynkr apps</a>
-      <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Kitchen tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Money tools</a>
-      <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.85;border-bottom:1px solid currentColor;">Tabletop tools</a>
-    </nav>
-    <div class="footer-legal">
-      &copy; 2026 Built by Josh Studio LLC. All rights reserved.<br>
-      Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.
+      <nav aria-label="More from Built by Josh Studio">
+        <p class="footer__label">More from the studio:</p>
+        <ul>
+          <li><a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a></li>
+          <li><a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a></li>
+          <li><a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom"><span>&copy; 2026 Built by Josh Studio LLC. All rights reserved.</span><span>Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</span></div>
     </div>
   </footer>
 
