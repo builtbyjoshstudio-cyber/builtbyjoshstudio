@@ -974,6 +974,52 @@ class InkpressApp(ttk.Frame):
         ttk.Button(btn_row, text="Close", command=dlg.destroy).pack(side="right")
         key_entry.bind("<Return>", lambda _e: _do_activate())
 
+        # Founder-only built-in customer key minter (hidden from Free & regular Pro users)
+        if self.license_info and self.license_info.get("plan") == "FOUNDER":
+            tk.Frame(wrap, bg=BORDER_CARD, height=1).pack(fill="x", pady=(16, 12))
+            tk.Label(
+                wrap,
+                text="FOUNDER TOOLS · MINT CUSTOMER PRO KEY",
+                bg=BG_CARD,
+                fg="#34D399",
+                font=("Segoe UI", 8, "bold"),
+                anchor="w",
+            ).pack(fill="x")
+
+            mint_email_var = tk.StringVar()
+            mint_out_var = tk.StringVar(
+                value="Enter a buyer email or order ID and click Mint & Copy."
+            )
+
+            mint_row = tk.Frame(wrap, bg=BG_CARD)
+            mint_row.pack(fill="x", pady=(6, 6))
+            mint_row.columnconfigure(0, weight=1)
+            mint_entry = ttk.Entry(mint_row, textvariable=mint_email_var)
+            mint_entry.grid(row=0, column=0, sticky="ew", padx=(0, 8))
+
+            def _do_mint_customer():
+                ident = mint_email_var.get().strip() or "buyer@inkpress"
+                minted = license_mod.generate_key(ident, plan="PRO")
+                dlg.clipboard_clear()
+                dlg.clipboard_append(minted)
+                dlg.update_idletasks()
+                mint_out_var.set(f"Copied to clipboard:  {minted}")
+                self.write(f"Minted customer PRO key for {ident}: {minted} (copied)", "ok")
+
+            ttk.Button(
+                mint_row, text="Mint & Copy Key", command=_do_mint_customer
+            ).grid(row=0, column=1)
+            mint_entry.bind("<Return>", lambda _e: _do_mint_customer())
+
+            tk.Label(
+                wrap,
+                textvariable=mint_out_var,
+                bg=BG_CARD,
+                fg=INK_BODY,
+                font=("Consolas", 9, "bold"),
+                anchor="w",
+            ).pack(fill="x")
+
     # ---------------------------------------------------------------- layout
 
     def _build_header(self):
