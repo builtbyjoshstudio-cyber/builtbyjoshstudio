@@ -48,12 +48,14 @@ def slugify(text):
 class Chapter:
     """One chapter: a title plus the blocks beneath it."""
 
-    def __init__(self, title, number, blocks=None, implicit=False, display_number=None, slug=None):
+    def __init__(self, title, number, blocks=None, implicit=False,
+                 display_number=None, slug=None, part_title=None):
         self.title = title
         self.number = number
         self.blocks = blocks or []
         self.implicit = implicit
         self._slug = slug
+        self.part_title = part_title
         if implicit or is_unnumbered_heading(title):
             self.display_number = None
         else:
@@ -83,8 +85,11 @@ class Chapter:
     def word_count(self):
         total = 0
         for block in self.blocks:
-            if block.kind in (ms.PARAGRAPH, ms.BLOCKQUOTE, ms.SECTION):
+            if block.kind in (ms.PARAGRAPH, ms.BLOCKQUOTE, ms.SECTION, ms.ULIST, ms.OLIST):
                 total += len(_WORD_RE.findall(block.text))
+            elif block.kind == ms.CALLOUT:
+                _, _, cbody = block.text.partition("\n")
+                total += len(_WORD_RE.findall(cbody))
         return total
 
 
@@ -120,7 +125,19 @@ def build(parsed):
     """Manuscript -> Document. Applies typography to every text-bearing block."""
     meta = dict(parsed.meta)
 
-    for key in ("title", "subtitle", "standfirst", "eyebrow", "logline"):
+    for key in (
+        "title",
+        "subtitle",
+        "standfirst",
+        "eyebrow",
+        "logline",
+        "dedication",
+        "epigraph",
+        "also_by",
+        "about_author",
+        "acknowledgments",
+        "newsletter_cta",
+    ):
         if meta.get(key):
             meta[key] = typography.apply(str(meta[key]))
 
@@ -128,8 +145,17 @@ def build(parsed):
     current = None
     numbered_count = 0
     slug_counts = {}
+    pending_part = None
 
     for block in parsed.blocks:
+        if block.kind == ms.PART:
+            part_text = typography.apply(block.text)
+            if current is None or not current.blocks:
+                pending_part = part_text
+            else:
+                pending_part = part_text
+            continue
+
         if block.kind == ms.CHAPTER:
             title_text = typography.apply(block.text)
             if is_unnumbered_heading(title_text):
@@ -149,18 +175,36 @@ def build(parsed):
                 len(chapters) + 1,
                 display_number=disp_num,
                 slug=unique_slug,
+                part_title=pending_part,
             )
+            pending_part = None
             chapters.append(current)
             continue
 
         if current is None:
             current = Chapter(
-                meta.get("title", "Untitled"), 1, implicit=True
+                meta.get("title", "Untitled"),
+                1,
+                implicit=True,
+                part_title=pending_part,
             )
+            pending_part = None
             chapters.append(current)
+        elif pending_part is not None:
+            current.blocks.append(ms.Block(ms.PART, pending_part, block.line))
+            pending_part = None
 
-        if block.kind in (ms.PARAGRAPH, ms.BLOCKQUOTE, ms.SECTION):
+        if block.kind in (ms.PARAGRAPH, ms.BLOCKQUOTE, ms.SECTION, ms.ULIST, ms.OLIST):
             block.text = typography.apply(block.text)
+        elif block.kind == ms.CALLOUT:
+            variant, _, cbody = block.text.partition("\n")
+            block.text = f"{variant}\n{typography.apply(cbody)}"
+        elif block.kind == ms.IMAGE:
+            parts = block.text.split("\t")
+            src_txt = parts[0] if len(parts) > 0 else ""
+            alt_txt = typography.apply(parts[1]) if len(parts) > 1 and parts[1] else ""
+            cap_txt = typography.apply(parts[2]) if len(parts) > 2 and parts[2] else ""
+            block.text = f"{src_txt}\t{alt_txt}\t{cap_txt}"
 
         current.blocks.append(block)
 

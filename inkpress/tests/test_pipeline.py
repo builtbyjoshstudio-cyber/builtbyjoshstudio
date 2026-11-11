@@ -1070,5 +1070,381 @@ class TestSampleManuscript(unittest.TestCase):
                 self.assertEqual(exe.read_bytes()[:2], b"MZ")
 
 
+def _make_tiny_png(width=64, height=96):
+    """Build a valid minimal RGB PNG byte buffer using only Python stdlib."""
+    import struct
+    import zlib
+
+    raw_rows = b"".join(b"\x00" + (b"\x1e\x29\x3b" * width) for _ in range(height))
+
+    def _chunk(tag, payload):
+        crc = zlib.crc32(tag + payload) & 0xFFFFFFFF
+        return struct.pack(">I", len(payload)) + tag + payload + struct.pack(">I", crc)
+
+    ihdr = struct.pack(">IIBBBBB", width, height, 8, 2, 0, 0, 0)
+    idat = zlib.compress(raw_rows)
+    return b"\x89PNG\r\n\x1a\n" + _chunk(b"IHDR", ihdr) + _chunk(b"IDAT", idat) + _chunk(b"IEND", b"")
+
+
+class TestMarketBlockTypes(unittest.TestCase):
+    def test_multiline_yaml_lists_callouts_parts_and_inline_images(self):
+        with tempfile.TemporaryDirectory() as directory:
+            tmp = Path(directory)
+            img_path = tmp / "harbor-map.png"
+            img_path.write_bytes(_make_tiny_png(800, 600))
+
+            text = """---
+title: System of the Tides
+author: J.S. Warden
+date: 2026-09-15
+language: en
+description: A LitRPG maritime fantasy with maps, letters, and part dividers.
+dedication: |
+  For the night watch,
+  who keep the lanterns lit.
+---
+
+# Part I: The Outer Shoals
+
+## Chapter 1: Wake-Up Prompt
+
+First paragraph at the dock.
+
+- Salt rations
+- Brass sextant
+
+1. Check the tide gauge
+2. Sound the bell
+
+::: system
+**QUEST UNLOCKED:** Light the Breakwater Beacon
+Reward: +250 Harbor Renown
+:::
+
+::: letter
+Harbor Master,
+
+Do not open the sea-gate before midnight.
+:::
+
+![Map of the Outer Shoals](harbor-map.png "Chart drawn in 1894")
+
+## Chapter 2: The Sea-Gate
+
+Second chapter prose so the print Table of Contents is generated.
+"""
+            src = write_temp(text, tmp)
+            parsed = ms.load(src)
+            self.assertIn("For the night watch,\nwho keep the lanterns lit.", parsed.meta["dedication"])
+
+            doc = structure.build(parsed)
+            self.assertEqual(len(doc.chapters), 2)
+            self.assertEqual(doc.chapters[0].part_title, "Part I: The Outer Shoals")
+            self.assertGreater(doc.word_count, 30)
+
+            out = tmp / "out"
+            res = pipeline.build(
+                src,
+                out_dir=out,
+                targets=("print", "epub", "site"),
+                tier="styled",
+            )
+
+            print_html = res.outputs["print"].read_text(encoding="utf-8")
+            self.assertIn('class="part-page"', print_html)
+            self.assertIn('class="toc-part"', print_html)
+            self.assertIn("<li>Salt rations</li>", print_html)
+            self.assertIn("<li>Check the tide gauge</li>", print_html)
+            self.assertIn('class="callout callout-system"', print_html)
+            self.assertIn('class="callout callout-letter"', print_html)
+            self.assertIn('class="inline-figure"', print_html)
+            self.assertIn("Chart drawn in 1894", print_html)
+            self.assertIn("file:///", print_html)
+
+            site_html = res.outputs["site"].read_text(encoding="utf-8")
+            self.assertIn('class="part-divider"', site_html)
+            self.assertIn('class="callout callout-system"', site_html)
+            self.assertIn('class="inline-figure"', site_html)
+
+            with zipfile.ZipFile(res.outputs["epub"]) as zf:
+                names = set(zf.namelist())
+                self.assertIn("OEBPS/images/img-001.png", names)
+                opf = zf.read("OEBPS/content.opf").decode("utf-8")
+                self.assertIn('href="images/img-001.png"', opf)
+                self.assertIn('media-type="image/png"', opf)
+                chap1 = zf.read("OEBPS/chap-001.xhtml").decode("utf-8")
+                self.assertIn('class="part-page"', chap1)
+                self.assertIn('src="images/img-001.png"', chap1)
+                self.assertIn('class="callout callout-system"', chap1)
+
+    def test_docx_part_headings_lists_and_intense_quote_callouts(self):
+        with tempfile.TemporaryDirectory() as directory:
+            docx_path = Path(directory) / "book.docx"
+            document_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:body>
+    <w:p>
+      <w:pPr><w:pStyle w:val="Heading1"/></w:pPr>
+      <w:r><w:t>Part I: Iron Harbor</w:t></w:r>
+    </w:p>
+    <w:p>
+      <w:pPr><w:pStyle w:val="Heading2"/></w:pPr>
+      <w:r><w:t>The Watchtower</w:t></w:r>
+    </w:p>
+    <w:p>
+      <w:r><w:t>Opening prose line.</w:t></w:r>
+    </w:p>
+    <w:p>
+      <w:pPr><w:pStyle w:val="ListBullet"/></w:pPr>
+      <w:r><w:t>First supply crate</w:t></w:r>
+    </w:p>
+    <w:p>
+      <w:pPr><w:pStyle w:val="ListBullet"/></w:pPr>
+      <w:r><w:t>Second supply crate</w:t></w:r>
+    </w:p>
+    <w:p>
+      <w:pPr><w:pStyle w:val="IntenseQuote"/></w:pPr>
+      <w:r><w:t>SYSTEM ALERT: Tide rising.</w:t></w:r>
+    </w:p>
+  </w:body>
+</w:document>"""
+            with zipfile.ZipFile(docx_path, "w") as zf:
+                zf.writestr("word/document.xml", document_xml)
+
+            parsed = ms.load(docx_path)
+            kinds = [b.kind for b in parsed.blocks]
+            self.assertIn(ms.PART, kinds)
+            self.assertIn(ms.ULIST, kinds)
+            self.assertIn(ms.CALLOUT, kinds)
+            doc = structure.build(parsed)
+            self.assertEqual(doc.chapters[0].part_title, "Part I: Iron Harbor")
+
+
+class TestFontPairingsAndBackMatter(unittest.TestCase):
+    def test_font_pairing_overrides_typography_stack(self):
+        ed = editions.resolve("styled", font_pairing="garamond")
+        self.assertEqual(ed.font_pairing, "garamond")
+        self.assertIn("Garamond", ed.body_font)
+
+        mono = editions.from_meta({"tier": "styled", "font_pairing": "mono_serif"})
+        self.assertEqual(mono.font_pairing, "mono_serif")
+        self.assertIn("Consolas", mono.display_font)
+
+        with self.assertRaises(editions.EditionError):
+            editions.resolve("styled", font_pairing="papyrus_comic")
+
+    def test_structured_front_and_back_matter_and_isbn_render_everywhere(self):
+        with tempfile.TemporaryDirectory() as directory:
+            tmp = Path(directory)
+            src = write_temp(MINIMAL, tmp)
+            overrides = {
+                "isbn": "978-1-999999-01-2",
+                "also_by": "The Fog Bell\nHarbor of Glass",
+                "epigraph": "All rivers remember the sea.\n— Old Mariner Proverb",
+                "dedication": "For Mara.\nAlways.",
+                "acknowledgments": "Thanks to my beta readers and harbor historians.",
+                "about_author": "A. Writer lives on the northern coast and writes maritime mysteries.",
+                "newsletter_cta": "Get the free prequel novella when you join the reader list.",
+                "newsletter_url": "https://example.com/readers",
+                "font_pairing": "baskerville",
+            }
+            res = pipeline.build(
+                src,
+                out_dir=tmp / "out",
+                targets=("print", "epub", "site"),
+                meta_overrides=overrides,
+                tier="styled",
+            )
+
+            print_html = res.outputs["print"].read_text(encoding="utf-8")
+            self.assertIn("Baskerville", print_html)
+            self.assertIn("978-1-999999-01-2", print_html)
+            self.assertIn('class="also-by-page"', print_html)
+            self.assertIn("Harbor of Glass", print_html)
+            self.assertIn('class="epigraph-page"', print_html)
+            self.assertIn('class="backmatter-page"', print_html)
+            self.assertIn("Acknowledgments", print_html)
+            self.assertIn("About the Author", print_html)
+            self.assertIn('class="newsletter-cta"', print_html)
+            self.assertIn("https://example.com/readers", print_html)
+
+            site_html = res.outputs["site"].read_text(encoding="utf-8")
+            self.assertIn('class="dispatch-backmatter"', site_html)
+            self.assertIn("https://example.com/readers", site_html)
+
+            with zipfile.ZipFile(res.outputs["epub"]) as zf:
+                names = set(zf.namelist())
+                self.assertIn("OEBPS/backmatter.xhtml", names)
+                opf = zf.read("OEBPS/content.opf").decode("utf-8")
+                self.assertIn("urn:isbn:978-1-999999-01-2", opf)
+                self.assertIn('href="backmatter.xhtml"', opf)
+                title_xhtml = zf.read("OEBPS/titlepage.xhtml").decode("utf-8")
+                self.assertIn("Harbor of Glass", title_xhtml)
+                self.assertIn("All rivers remember the sea.", title_xhtml)
+                back_xhtml = zf.read("OEBPS/backmatter.xhtml").decode("utf-8")
+                self.assertIn("Acknowledgments", back_xhtml)
+                self.assertIn("About the Author", back_xhtml)
+                self.assertIn("https://example.com/readers", back_xhtml)
+
+
+class TestKdpPreflightAndValidation(unittest.TestCase):
+    def test_low_res_cover_missing_image_and_short_kdp_page_count_warn(self):
+        with tempfile.TemporaryDirectory() as directory:
+            tmp = Path(directory)
+            small_cover = tmp / "tiny-cover.png"
+            small_cover.write_bytes(_make_tiny_png(120, 180))
+            self.assertEqual(validate._image_dimensions(small_cover), (120, 180))
+
+            text = """---
+title: Short Proof
+author: A. Writer
+date: 2026-05-01
+language: en
+description: A short test book with ISBN and inline image check.
+isbn: 978-1-999999-02-9
+cover: tiny-cover.png
+---
+
+## One
+
+A very short chapter.
+
+![Missing Diagram](does-not-exist.png)
+"""
+            src = write_temp(text, tmp)
+            parsed = ms.load(src)
+            doc = structure.build(parsed)
+            warnings = validate.check(doc, targets=("print", "epub"))
+            joined = "\n".join(warnings)
+            self.assertIn("120x180px", joined)
+            self.assertIn("does-not-exist.png", joined)
+            self.assertIn("24-page paperback minimum", joined)
+
+
+class TestProjectSidecarAndLicense(unittest.TestCase):
+    def test_project_sidecar_roundtrip_and_pipeline_merge(self):
+        from inkpress_lib import project
+
+        with tempfile.TemporaryDirectory() as directory:
+            tmp = Path(directory)
+            src = write_temp(MINIMAL, tmp)
+            saved_path = project.save_project(
+                src,
+                {
+                    "subtitle": "From the Sidecar",
+                    "isbn": "978-1-999999-09-8",
+                    "tier": "styled",
+                    "font_pairing": "palatino",
+                },
+            )
+            self.assertTrue(saved_path.is_file())
+            loaded = project.load_project(src)
+            self.assertEqual(loaded["subtitle"], "From the Sidecar")
+
+            res = pipeline.build(
+                src,
+                out_dir=tmp / "out",
+                targets=("print",),
+                meta_overrides={"subtitle": "Explicit Override Wins"},
+            )
+            html_out = res.outputs["print"].read_text(encoding="utf-8")
+            self.assertIn("Explicit Override Wins", html_out)
+            self.assertIn("978-1-999999-09-8", html_out)
+            self.assertIn("Palatino", html_out)
+
+    def test_offline_license_mint_verify_tamper_and_storage(self):
+        from inkpress_lib import license as lic
+
+        key = lic.generate_key("reader@example.com", plan="PRO")
+        self.assertTrue(key.startswith("INKP-"))
+        self.assertEqual(len(key.split("-")), 5)
+
+        # Lowercase + confusable O/I normalization works offline
+        info = lic.verify_key(key.lower())
+        self.assertTrue(info["valid"])
+        self.assertEqual(info["plan"], "PRO")
+
+        # Tampering with a character invalidates the HMAC signature
+        last_ch = "A" if key[-1] != "A" else "B"
+        tampered = key[:-1] + last_ch
+        self.assertIsNone(lic.verify_key(tampered))
+        self.assertIsNone(lic.verify_key("FAKE-1234-5678-9ABC-DEFG"))
+
+        with tempfile.TemporaryDirectory() as directory:
+            lic_file = Path(directory) / "license.json"
+            self.assertIsNone(lic.load_saved_license(lic_file))
+            lic.save_license(key, email="reader@example.com", license_path=lic_file)
+            reloaded = lic.load_saved_license(lic_file)
+            self.assertTrue(reloaded["valid"])
+            self.assertEqual(reloaded["email"], "reader@example.com")
+            lic.clear_license(lic_file)
+            self.assertIsNone(lic.load_saved_license(lic_file))
+
+    def test_studio_app_free_vs_pro_gating_and_project_save(self):
+        import tkinter as tk
+        import inkpress_app
+        from inkpress_lib import license as lic
+
+        with tempfile.TemporaryDirectory() as directory:
+            tmp = Path(directory)
+            lic_file = tmp / "test_license.json"
+            src = write_temp(MINIMAL, tmp)
+
+            root = tk.Tk()
+            root.withdraw()
+            try:
+                inkpress_app._configure_studio_theme(root)
+                app = inkpress_app.InkpressApp(
+                    root, initial_manuscript=src, license_path=lic_file
+                )
+                self.assertFalse(app.is_pro_unlocked())
+                self.assertEqual(
+                    app._pro_features_requested("clean", "none", "edition", False, False),
+                    [],
+                )
+                pro_reasons = app._pro_features_requested(
+                    "illustrated", "double", "garamond", True, True
+                )
+                self.assertEqual(len(pro_reasons), 5)
+
+                # Save project sidecar via UI and reload
+                app.meta_vars["isbn"].set("978-1-999999-77-7")
+                app.meta_vars["about_author"].set("J.S. Warden writes by lantern light.")
+                sidecar = app._save_project()
+                self.assertTrue(sidecar and sidecar.is_file())
+
+                app.meta_vars["isbn"].set("")
+                app._load_manuscript()
+                self.assertEqual(app.meta_vars["isbn"].get(), "978-1-999999-77-7")
+
+                # Activate Studio Pro key and confirm unlocked state
+                pro_key = lic.generate_key("buyer@example.com", plan="PRO")
+                app.license_info = lic.save_license(pro_key, license_path=lic_file)
+                app._refresh_license_badge()
+                self.assertTrue(app.is_pro_unlocked())
+                self.assertIn("STUDIO PRO", app.license_badge_btn.cget("text"))
+            finally:
+                root.destroy()
+
+
+class TestStandaloneBundleRelease(unittest.TestCase):
+    def test_lightweight_bundle_creates_portable_exe_installer_and_zip(self):
+        import bundle_release
+
+        with tempfile.TemporaryDirectory() as directory:
+            bundle_dir, zip_path = bundle_release.build_bundle(
+                out_root=directory,
+                include_runtime=False,
+                create_zip=True,
+            )
+            self.assertTrue((bundle_dir / "inkpress.exe").is_file())
+            self.assertEqual((bundle_dir / "inkpress.exe").read_bytes()[:2], b"MZ")
+            self.assertTrue((bundle_dir / "inkpress_app.py").is_file())
+            self.assertTrue((bundle_dir / "inkpress_lib" / "pipeline.py").is_file())
+            self.assertTrue((bundle_dir / "README.txt").is_file())
+            self.assertTrue((bundle_dir / "installer" / "inkpress-setup.iss").is_file())
+            self.assertTrue(zip_path and zip_path.is_file())
+
+
 if __name__ == "__main__":
     unittest.main()

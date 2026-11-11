@@ -21,12 +21,22 @@ import zipfile
 from pathlib import Path
 
 from . import art, body, editions, inline, render_print
+from . import manuscript as ms
 
 _COVER_MEDIA_TYPES = {
     ".svg": "image/svg+xml",
     ".jpg": "image/jpeg",
     ".jpeg": "image/jpeg",
     ".png": "image/png",
+}
+
+_INLINE_IMAGE_MEDIA_TYPES = {
+    ".svg": "image/svg+xml",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png": "image/png",
+    ".gif": "image/gif",
+    ".webp": "image/webp",
 }
 
 # Stable namespace so the same book always gets the same UUID.
@@ -156,7 +166,7 @@ h1 {{ font-size: 1.6em; margin: 2em 0 1em; break-after: avoid; page-break-after:
 h2 {{ font-size: 1.3em; margin: 1.6em 0 0.8em; break-after: avoid; page-break-after: avoid; }}
 h3 {{ font-size: 1.1em; margin: 1.4em 0 0.6em; text-align: left; font-style: italic; break-after: avoid; page-break-after: avoid; }}
 p {{ margin: 0; text-indent: 1.4em; }}
-h1 + p, h2 + p, h3 + p, blockquote + p, .scene-break + p, .chapter-number + p, .opening {{
+h1 + p, h2 + p, h3 + p, blockquote + p, ul + p, ol + p, aside + p, figure + p, .scene-break + p, .chapter-number + p, .part-divider + p, .opening {{
   text-indent: 0;
 }}
 .scene-break {{
@@ -170,6 +180,58 @@ h1 + p, h2 + p, h3 + p, blockquote + p, .scene-break + p, .chapter-number + p, .
    otherwise stretch their word spacing into visible rivers. */
 blockquote {{ margin: 1.2em 2em; font-style: italic; text-align: left; }}
 blockquote p {{ text-indent: 0; }}
+ul, ol {{ margin: 0.9em 0 0.9em 2em; padding: 0; text-align: left; }}
+li {{ margin: 0.25em 0; }}
+.callout {{
+  margin: 1.2em 0.8em;
+  padding: 0.85em 1.1em;
+  border: 1px solid {edition.accent};
+  text-align: left;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}}
+.callout p {{ text-indent: 0; margin: 0 0 0.5em; }}
+.callout p:last-child {{ margin-bottom: 0; }}
+.callout-system {{
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 0.92em;
+  border: 1.5px solid {edition.accent};
+}}
+.callout-letter {{
+  font-style: italic;
+  border: none;
+  border-left: 2px solid {edition.accent};
+  padding: 0.35em 1.1em;
+}}
+.inline-figure {{
+  margin: 1.4em 0;
+  text-align: center;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}}
+.inline-figure img {{ max-width: 100%; height: auto; }}
+.inline-figure figcaption {{ margin-top: 0.4em; font-size: 0.88em; font-style: italic; }}
+.part-page {{ text-align: center; page-break-after: always; padding-top: 3em; }}
+.part-page h1 {{ text-align: center; color: {edition.accent}; page-break-before: avoid; }}
+.part-divider {{
+  font-family: {edition.display_font};
+  text-align: center;
+  text-indent: 0;
+  letter-spacing: {edition.display_tracking};
+  text-transform: {edition.display_transform};
+  color: {edition.accent};
+  margin: 2em 0 1em;
+}}
+.also-by-page, .dedication-page, .epigraph-page {{ text-align: center; page-break-after: always; }}
+.backmatter-page {{ page-break-before: always; }}
+.backmatter-page p {{ text-indent: 0; margin: 0 0 0.8em; }}
+.newsletter-cta {{
+  margin: 1.6em 0;
+  padding: 1em;
+  border: 1px solid {edition.accent};
+  text-align: center;
+}}
+.newsletter-cta p {{ text-indent: 0; text-align: center; margin: 0 0 0.5em; }}
 .titlepage {{ text-align: center; page-break-after: always; }}
 .titlepage h1 {{ text-align: center; page-break-before: avoid; }}
 .titlepage .author {{ margin-top: 2em; font-size: 1.1em; }}
@@ -194,6 +256,17 @@ def _xhtml(title, inner, language):
 
 def _title_page(document):
     meta = document.meta
+    sections = []
+    if str(meta.get("also_by", "") or "").strip():
+        heading = f"Also by {meta['author']}" if meta.get("author") else "Also by the Author"
+        also_paras = "\n  ".join(render_print.multiline_paragraphs(meta["also_by"], extra_attrs=_CENTERED))
+        sections.append(
+            f'<section class="also-by-page" {_CENTERED}>\n'
+            f"  <h2 {_CENTERED}>{inline.escape(heading)}</h2>\n"
+            f"  {also_paras}\n"
+            "</section>"
+        )
+
     parts = [f'  <h1 {_CENTERED}>{inline.render(document.title)}</h1>']
     if meta.get("subtitle"):
         parts.append(
@@ -202,32 +275,53 @@ def _title_page(document):
     parts.append(
         f'  <p class="author" {_CENTERED}>{inline.escape(meta.get("author", ""))}</p>'
     )
-    sections = [
+    sections.append(
         f'<section class="titlepage" epub:type="titlepage" {_CENTERED}>\n'
         + "\n".join(parts)
         + "\n</section>"
-    ]
-    copyright_line = render_print._copyright_text(meta)
-    if copyright_line:
+    )
+
+    copyright_paras = render_print._copyright_paragraphs(meta, extra_attrs='style="text-indent: 0;"')
+    if copyright_paras:
         sections.append(
-            '<section class="copyright-page" epub:type="copyright-page">\n'
-            f'  <p style="text-indent: 0;">{inline.render(copyright_line)}</p>\n'
-            "</section>"
+            '<section class="copyright-page" epub:type="copyright-page">\n  '
+            + "\n  ".join(copyright_paras)
+            + "\n</section>"
         )
-    if meta.get("dedication"):
+    if str(meta.get("dedication", "") or "").strip():
+        ded_paras = "\n  ".join(
+            render_print.multiline_paragraphs(meta["dedication"], extra_attrs=_CENTERED)
+        )
         sections.append(
             f'<section class="dedication-page" epub:type="dedication" {_CENTERED}>\n'
-            f'  <p {_CENTERED}><em>{inline.render(str(meta["dedication"]))}</em></p>\n'
+            f"  {ded_paras}\n"
+            "</section>"
+        )
+    if str(meta.get("epigraph", "") or "").strip():
+        epi_paras = "\n  ".join(
+            render_print.multiline_paragraphs(meta["epigraph"], extra_attrs=_CENTERED)
+        )
+        sections.append(
+            f'<section class="epigraph-page" epub:type="epigraph" {_CENTERED}>\n'
+            f"  {epi_paras}\n"
             "</section>"
         )
     return "\n".join(sections)
 
 
-def _chapter_xhtml(chapter, document, edition, has_art):
+def _chapter_xhtml(chapter, document, edition, has_art, image_resolver=None):
     scene_break = (
         f'<p class="scene-break" style="text-align: center; text-indent: 0;">'
         f"{inline.escape(edition.scene_break)}</p>"
     )
+
+    part_section = ""
+    if getattr(chapter, "part_title", None):
+        part_section = (
+            f'<section class="part-page" epub:type="part" {_CENTERED}>\n'
+            f"  <h1 {_CENTERED}>{inline.render(chapter.part_title)}</h1>\n"
+            "</section>\n"
+        )
 
     opener = []
     if has_art:
@@ -247,17 +341,26 @@ def _chapter_xhtml(chapter, document, edition, has_art):
         chapter.blocks, heading_level=3, indent="  ",
         scene_break=scene_break, drop_cap=edition.drop_cap,
         drop_cap_letter=getattr(edition, "drop_cap_letter", None),
+        image_resolver=image_resolver,
     )
-    inner = '<section epub:type="chapter">\n' + "\n".join(opener + prose) + "\n</section>"
+    inner = part_section + '<section epub:type="chapter">\n' + "\n".join(opener + prose) + "\n</section>"
     return _xhtml(inline.plain(chapter.title), inner, document.meta.get("language", "en"))
 
 
-def _nav_xhtml(document):
-    items = "\n".join(
-        f'      <li><a href="chap-{chapter.number:03d}.xhtml">'
-        f"{inline.escape(inline.plain(chapter.title))}</a></li>"
-        for chapter in document.chapters
-    )
+def _nav_xhtml(document, include_backmatter=False):
+    rows = []
+    for chapter in document.chapters:
+        label = inline.plain(chapter.title)
+        if getattr(chapter, "part_title", None):
+            label = f"{inline.plain(chapter.part_title)} — {label}"
+        rows.append(
+            f'      <li><a href="chap-{chapter.number:03d}.xhtml">'
+            f"{inline.escape(label)}</a></li>"
+        )
+    if include_backmatter:
+        bm_label = "About the Author" if document.meta.get("about_author") else "Back Matter"
+        rows.append(f'      <li><a href="backmatter.xhtml">{inline.escape(bm_label)}</a></li>')
+    items = "\n".join(rows)
     inner = f"""<nav epub:type="toc" id="toc">
   <h1>Contents</h1>
   <ol>
@@ -267,7 +370,8 @@ def _nav_xhtml(document):
     return _xhtml("Contents", inner, document.meta.get("language", "en"))
 
 
-def _package_opf(document, book_uuid, modified, edition, art_numbers, cover_item=None):
+def _package_opf(document, book_uuid, modified, edition, art_numbers,
+                 cover_item=None, inline_images=None, include_backmatter=False):
     meta = document.meta
     language = meta.get("language", "en")
 
@@ -292,13 +396,27 @@ def _package_opf(document, book_uuid, modified, edition, art_numbers, cover_item
         )
         spine.append(f'    <itemref idref="{item_id}"/>')
 
+    if include_backmatter:
+        manifest.append(
+            '    <item id="backmatter" href="backmatter.xhtml" media-type="application/xhtml+xml"/>'
+        )
+        spine.append('    <itemref idref="backmatter"/>')
+
     for number in art_numbers:
         manifest.append(
             f'    <item id="art{number:03d}" href="art/chap-{number:03d}.svg" '
             'media-type="image/svg+xml"/>'
         )
 
+    for item_id, href, media_type, _ in (inline_images or ()):
+        manifest.append(
+            f'    <item id="{item_id}" href="{href}" media-type="{media_type}"/>'
+        )
+
     optional = []
+    isbn = str(meta.get("isbn", "") or "").strip()
+    if isbn:
+        optional.append(f'    <dc:identifier id="isbn-id">urn:isbn:{inline.escape(isbn)}</dc:identifier>')
     if meta.get("publisher"):
         optional.append(f'    <dc:publisher>{inline.escape(meta["publisher"])}</dc:publisher>')
     if meta.get("description"):
@@ -366,6 +484,36 @@ def render(document, out_path, edition=None):
                     '<?xml version="1.0" encoding="utf-8"?>\n' + svg
                 )
 
+    inline_images = []
+    image_map_by_resolved = {}
+    image_href_by_raw = {}
+    for chapter in document.chapters:
+        for block in chapter.blocks:
+            if block.kind != ms.IMAGE:
+                continue
+            src, _, _ = body.parse_image_block(block.text)
+            local = render_print.resolve_image_path(src, document)
+            if local is None or not local.is_file():
+                continue
+            ext = local.suffix.lower()
+            if ext not in _INLINE_IMAGE_MEDIA_TYPES:
+                continue
+            resolved_key = str(local.resolve())
+            if resolved_key not in image_map_by_resolved:
+                idx = len(inline_images) + 1
+                item_id = f"img{idx:03d}"
+                href = f"images/img-{idx:03d}{ext}"
+                media_type = _INLINE_IMAGE_MEDIA_TYPES[ext]
+                inline_images.append((item_id, href, media_type, local.read_bytes()))
+                image_map_by_resolved[resolved_key] = href
+            image_href_by_raw[src] = image_map_by_resolved[resolved_key]
+
+    def _epub_image_resolver(src):
+        return image_href_by_raw.get(src, src)
+
+    back_sections = render_print.render_back_matter_sections(meta)
+    include_backmatter = bool(back_sections)
+
     cover_href = "cover.svg"
     cover_media = "image/svg+xml"
     cover_data = None
@@ -405,10 +553,12 @@ def render(document, out_path, edition=None):
                 edition,
                 sorted(artwork),
                 cover_item=(cover_href, cover_media),
+                inline_images=inline_images,
+                include_backmatter=include_backmatter,
             ),
         )
         write(archive, f"OEBPS/{cover_href}", cover_data)
-        write(archive, "OEBPS/nav.xhtml", _nav_xhtml(document))
+        write(archive, "OEBPS/nav.xhtml", _nav_xhtml(document, include_backmatter=include_backmatter))
         write(
             archive,
             "OEBPS/titlepage.xhtml",
@@ -419,9 +569,23 @@ def render(document, out_path, edition=None):
             write(
                 archive,
                 f"OEBPS/chap-{chapter.number:03d}.xhtml",
-                _chapter_xhtml(chapter, document, edition, chapter.number in artwork),
+                _chapter_xhtml(
+                    chapter,
+                    document,
+                    edition,
+                    chapter.number in artwork,
+                    image_resolver=_epub_image_resolver,
+                ),
+            )
+        if include_backmatter:
+            write(
+                archive,
+                "OEBPS/backmatter.xhtml",
+                _xhtml("Back Matter", "\n".join(back_sections), meta.get("language", "en")),
             )
         for number, svg in sorted(artwork.items()):
             write(archive, f"OEBPS/art/chap-{number:03d}.svg", svg)
+        for _, href, _, img_bytes in inline_images:
+            write(archive, f"OEBPS/{href}", img_bytes)
 
     return out_path

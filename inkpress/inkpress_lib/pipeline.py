@@ -15,7 +15,7 @@ from pathlib import Path
 
 from . import editions
 from . import manuscript as ms
-from . import render_epub, render_print, render_site, structure, validate
+from . import project, render_epub, render_print, render_site, structure, validate
 
 ALL_TARGETS = ("site", "epub", "print")
 
@@ -119,6 +119,11 @@ def build(source, out_dir, targets=ALL_TARGETS, chrome=None, base_url=None,
 
     parsed = ms.load(source)
 
+    sidecar_meta = project.load_project(source)
+    for key, value in sidecar_meta.items():
+        if value not in (None, "", []):
+            parsed.meta[key] = value
+
     if meta_overrides:
         for key, value in meta_overrides.items():
             if value not in (None, "", []):
@@ -132,7 +137,9 @@ def build(source, out_dir, targets=ALL_TARGETS, chrome=None, base_url=None,
     )
 
     result = BuildResult(document, resolved_edition)
-    result.warnings = validate.check(document, targets, resolved_edition)
+    result.warnings = validate.check(
+        document, targets, resolved_edition, kdp_preflight=bool(pdf)
+    )
 
     out_dir = Path(out_dir)
     slug = document.slug

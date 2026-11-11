@@ -74,9 +74,37 @@ COLOR_PRESETS = (
 # Serif stacks chosen for wide availability on Windows and macOS alike.
 _CLASSIC_SERIF = '"Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif'
 _TRANSITIONAL_SERIF = 'Georgia, "Times New Roman", Times, serif'
+_GARAMOND_SERIF = '"EB Garamond", Garamond, "Apple Garamond", "Palatino Linotype", Georgia, serif'
+_BASKERVILLE_SERIF = 'Baskerville, "Baskerville Old Face", "Libre Baskerville", Georgia, serif'
 _GEOMETRIC_SANS = '"Futura", "Century Gothic", "Avenir Next", "Segoe UI", sans-serif'
 _MONO = '"JetBrains Mono", "Cascadia Mono", Consolas, ui-monospace, monospace'
 _GROTESK = '"Helvetica Neue", Helvetica, Arial, sans-serif'
+
+FONT_PAIRINGS = (
+    "edition",
+    "garamond",
+    "palatino",
+    "baskerville",
+    "sans_serif",
+    "mono_serif",
+)
+
+FONT_PAIRING_LABELS = {
+    "edition": "Edition Default",
+    "garamond": "Classic Garamond (Literary Fiction)",
+    "palatino": "Warm Palatino (Fantasy & Historical)",
+    "baskerville": "Crisp Baskerville (Mystery & Nonfiction)",
+    "sans_serif": "Modern Sans + Serif (Contemporary)",
+    "mono_serif": "Tech Mono + Serif (Sci-Fi & LitRPG)",
+}
+
+_FONT_PAIRING_STACKS = {
+    "garamond": (_GARAMOND_SERIF, _GARAMOND_SERIF),
+    "palatino": (_CLASSIC_SERIF, _CLASSIC_SERIF),
+    "baskerville": (_BASKERVILLE_SERIF, _BASKERVILLE_SERIF),
+    "sans_serif": (_CLASSIC_SERIF, _GEOMETRIC_SANS),
+    "mono_serif": (_TRANSITIONAL_SERIF, _MONO),
+}
 
 
 class Edition:
@@ -87,7 +115,8 @@ class Edition:
                  scene_break="* * *", display_transform="uppercase",
                  display_tracking="0.08em", display_weight="normal",
                  chapter_number=False, border_style="none",
-                 drop_cap_style="classic", drop_cap_letter=""):
+                 drop_cap_style="classic", drop_cap_letter="",
+                 font_pairing="edition"):
         self.tier = tier
         self.key = key
         self.label = label
@@ -107,6 +136,7 @@ class Edition:
         self.border_style = border_style
         self.drop_cap_style = drop_cap_style if drop_cap else "none"
         self.drop_cap_letter = drop_cap_letter if drop_cap else ""
+        self.font_pairing = font_pairing
 
     @property
     def is_illustrated(self):
@@ -220,7 +250,7 @@ class EditionError(Exception):
 
 
 def resolve(tier=None, edition=None, border_color=None, border_style=None,
-            drop_cap_style=None, drop_cap_letter=None):
+            drop_cap_style=None, drop_cap_letter=None, font_pairing=None):
     """Resolve front matter into an Edition. Defaults to tier 1."""
     tier = (str(tier).strip().lower() if tier else CLEAN)
     edition_key = str(edition).strip().lower() if edition else None
@@ -244,7 +274,7 @@ def resolve(tier=None, edition=None, border_color=None, border_style=None,
             )
         base = _BY_EDITION[edition_key]
 
-    if not any((border_color, border_style, drop_cap_style, drop_cap_letter)):
+    if not any((border_color, border_style, drop_cap_style, drop_cap_letter, font_pairing)):
         return base
 
     custom = copy.copy(base)
@@ -254,6 +284,15 @@ def resolve(tier=None, edition=None, border_color=None, border_style=None,
         custom.border_style = str(border_style).strip().lower()
         if custom.border_style != "none":
             custom.chapter_rule = True
+    if font_pairing and str(font_pairing).strip():
+        fp_key = str(font_pairing).strip().lower()
+        if fp_key not in FONT_PAIRINGS:
+            raise EditionError(
+                f"unknown font_pairing {fp_key!r} - choose one of: {', '.join(FONT_PAIRINGS)}"
+            )
+        custom.font_pairing = fp_key
+        if fp_key in _FONT_PAIRING_STACKS:
+            custom.body_font, custom.display_font = _FONT_PAIRING_STACKS[fp_key]
     # Drop letters are a Tier 2+ feature; Tier 1 Clean never sets drop caps.
     if tier != CLEAN:
         if drop_cap_style and str(drop_cap_style).strip().lower() in DROP_CAP_STYLES:
@@ -277,4 +316,5 @@ def from_meta(meta, tier_override=None, edition_override=None):
         border_style=meta.get("border_style"),
         drop_cap_style=meta.get("drop_cap_style"),
         drop_cap_letter=meta.get("drop_cap_letter"),
+        font_pairing=meta.get("font_pairing"),
     )

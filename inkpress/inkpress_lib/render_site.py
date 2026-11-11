@@ -14,7 +14,7 @@ the page still renders, just with no nav or footer.
 import json
 import re
 
-from . import art, body, editions, inline
+from . import art, body, editions, inline, render_print
 
 DEFAULT_SITE_NAME = "Built By Josh Studio"
 DEFAULT_BASE_URL = "https://builtbyjoshstudio.com"
@@ -37,7 +37,53 @@ BASE_CSS_MINIMAL = """.dispatch-body .scene-break {
     font-style: italic;
     opacity: 0.85;
   }
-  .dispatch-body blockquote p { text-indent: 0; }"""
+  .dispatch-body blockquote p { text-indent: 0; }
+  .dispatch-body .part-divider {
+    text-align: center;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+    margin: 3rem 0 1.5rem;
+  }
+  .dispatch-body .callout {
+    margin: 1.6em 0;
+    padding: 1em 1.25em;
+    border: 1px solid currentColor;
+  }
+  .dispatch-body .callout p { margin: 0 0 0.55em; text-indent: 0; }
+  .dispatch-body .callout p:last-child { margin-bottom: 0; }
+  .dispatch-body .callout-system {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 0.92rem;
+    background: rgba(128, 128, 128, 0.08);
+  }
+  .dispatch-body .callout-letter {
+    font-style: italic;
+    border: none;
+    border-left: 2px solid currentColor;
+  }
+  .dispatch-body .inline-figure {
+    margin: 1.8em 0;
+    text-align: center;
+  }
+  .dispatch-body .inline-figure img { max-width: 100%; height: auto; }
+  .dispatch-body .inline-figure figcaption {
+    margin-top: 0.5em;
+    font-size: 0.88rem;
+    font-style: italic;
+    opacity: 0.78;
+  }
+  .dispatch-backmatter {
+    margin-top: 3.2rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid rgba(128, 128, 128, 0.3);
+  }
+  .dispatch-backmatter .newsletter-cta {
+    margin-top: 1.5rem;
+    padding: 1.1rem 1.3rem;
+    border: 1px solid currentColor;
+    text-align: center;
+  }"""
 
 # Everything above plus a readable standalone layout, used when no donor page
 # supplies the site's own stylesheet.
@@ -189,7 +235,11 @@ def _schema_blocks(document, page_url, meta, base_url):
 def _edition_css(edition):
     """Tier styling for the web page: fonts, ornament colour, drop cap."""
     rules = [
+        f"  .dispatch-body {{ font-family: {edition.body_font}; }}",
         f"  .dispatch-body .scene-break {{ color: {edition.accent}; }}",
+        f"  .dispatch-body .part-divider {{ font-family: {edition.display_font}; color: {edition.accent}; }}",
+        f"  .dispatch-body .callout {{ border-color: {edition.accent}; }}",
+        f"  .dispatch-backmatter .newsletter-cta {{ border-color: {edition.accent}; }}",
         f"  .dispatch-header h1 {{ font-family: {edition.display_font};"
         f" font-weight: {edition.display_weight};"
         f" letter-spacing: {edition.display_tracking}; }}",
@@ -267,6 +317,11 @@ def _chapters_html(document, edition):
 
     for chapter in document.chapters:
         parts = []
+
+        if getattr(chapter, "part_title", None):
+            parts.append(
+                f'      <div class="part-divider">{inline.render(chapter.part_title)}</div>'
+            )
 
         if edition.art:
             svg = art.render(
@@ -384,6 +439,16 @@ def render(document, chrome=None, base_url=DEFAULT_BASE_URL, path_prefix="writin
         )
 
     article_body = _chapters_html(document, edition)
+    back_sections = render_print.render_back_matter_sections(
+        meta, section_class="dispatch-backmatter-section", heading_tag="h2"
+    )
+    if back_sections:
+        article_body = (
+            article_body
+            + '\n\n      <aside class="dispatch-backmatter">\n'
+            + "\n".join(back_sections)
+            + "\n      </aside>"
+        )
 
     nav_block = f"\n  {chrome['nav']}\n" if chrome.get("nav") else ""
     footer_block = f"\n  {chrome['footer']}\n" if chrome.get("footer") else ""

@@ -38,8 +38,15 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 from inkpress_lib import __version__, editions, inline  # noqa: E402
+from inkpress_lib import license as license_mod  # noqa: E402
 from inkpress_lib import manuscript as ms  # noqa: E402
-from inkpress_lib import pipeline, render_print, structure, validate  # noqa: E402
+from inkpress_lib import (  # noqa: E402
+    pipeline,
+    project,
+    render_print,
+    structure,
+    validate,
+)
 
 SAMPLE_PATH = HERE / "manuscripts" / "sample-manuscript.md"
 PREFS_PATH = Path.home() / ".inkpress_prefs.json"
@@ -66,6 +73,13 @@ DROP_CAP_STYLE_BY_LABEL = {
 DROP_LETTER_CHOICES = ["Auto (1st)"] + [
     chr(c) for c in range(ord("A"), ord("Z") + 1)
 ]
+
+FONT_PAIRING_CHOICES = [
+    editions.FONT_PAIRING_LABELS[key] for key in editions.FONT_PAIRINGS
+]
+FONT_PAIRING_BY_LABEL = {
+    editions.FONT_PAIRING_LABELS[key]: key for key in editions.FONT_PAIRINGS
+}
 
 TRIM_CHOICES = ("6x9", "5.5x8.5", "5.25x8", "5x8")
 _TRIM_ASPECT = {
@@ -102,9 +116,26 @@ META_FIELDS = (
     ("author", "Author"),
     ("publisher", "Publisher"),
     ("date", "Date"),
+    ("isbn", "ISBN"),
     ("description", "Description"),
     ("dedication", "Dedication"),
+    ("epigraph", "Epigraph"),
     ("copyright", "Copyright"),
+    ("also_by", "Also By"),
+    ("acknowledgments", "Acknowledgments"),
+    ("about_author", "About the Author"),
+    ("newsletter_cta", "Newsletter CTA"),
+    ("newsletter_url", "Newsletter URL"),
+)
+
+MATTER_SECTIONS = (
+    ("dedication", "Dedication", "Centered italic page after Copyright (supports multiple lines)."),
+    ("epigraph", "Epigraph", "Opening quotation page before Chapter 1."),
+    ("copyright", "Copyright", "Leave blank for an automatic © page (+ ISBN if entered)."),
+    ("also_by", "Also By", "Front-matter list of your other books, one title per line."),
+    ("acknowledgments", "Acknowledgments", "Back-matter acknowledgments section."),
+    ("about_author", "About Author", "Back-matter author biography."),
+    ("newsletter_cta", "Reader CTA", "End-of-book reader magnet / mailing list call-to-action."),
 )
 
 # Modern Dark Obsidian Studio Palette
@@ -661,7 +692,7 @@ def _make_card(parent, title=None, subtitle=None, pad=12):
 
 
 class InkpressApp(ttk.Frame):
-    def __init__(self, master, initial_manuscript=None):
+    def __init__(self, master, initial_manuscript=None, license_path=None):
         _configure_studio_theme(master)
         super().__init__(master, padding=0)
         self.grid(sticky="nsew")
@@ -681,6 +712,12 @@ class InkpressApp(ttk.Frame):
         self._drop_cap_widgets = []
         self._left_pill_buttons = []
         self._right_pill_buttons = []
+        self._matter_pill_buttons = {}
+        self._active_matter_key = "dedication"
+        self._syncing_matter_text = False
+
+        self.license_path = Path(license_path) if license_path else None
+        self.license_info = license_mod.load_saved_license(self.license_path)
 
         self.manuscript_var = tk.StringVar()
         self.out_var = tk.StringVar(value=str(HERE / "build"))
@@ -694,6 +731,7 @@ class InkpressApp(ttk.Frame):
             value=editions.DROP_CAP_STYLE_LABELS["none"]
         )
         self.drop_cap_letter_var = tk.StringVar(value=DROP_LETTER_CHOICES[0])
+        self.font_pairing_var = tk.StringVar(value=FONT_PAIRING_CHOICES[0])
         self.status_var = tk.StringVar(
             value="Drop a manuscript (.md, .docx, .txt) above or click Load Sample."
         )
@@ -743,8 +781,10 @@ class InkpressApp(ttk.Frame):
 
         for key in ("title", "subtitle", "author"):
             self.meta_vars[key].trace_add("write", lambda *_args: self._draw_page_preview())
+        self.cover_var.trace_add("write", lambda *_args: self._draw_page_preview())
 
         master.bind("<Control-o>", lambda _e: self._choose_manuscript())
+        master.bind("<Control-s>", lambda _e: self._save_project())
         master.bind("<Control-Return>", lambda _e: self._start_build())
         master.bind("<F5>", lambda _e: self._start_build())
 
@@ -777,6 +817,8 @@ class InkpressApp(ttk.Frame):
             self.tier_var.set(data["tier"])
         if data.get("edition") in EDITION_CHOICES:
             self.edition_var.set(data["edition"])
+        if data.get("font_pairing") in FONT_PAIRING_CHOICES:
+            self.font_pairing_var.set(data["font_pairing"])
         if data.get("border_style") in BORDER_STYLE_CHOICES:
             self.border_style_var.set(data["border_style"])
         if data.get("border_color"):
@@ -795,6 +837,7 @@ class InkpressApp(ttk.Frame):
             "trim": self.trim_var.get().strip(),
             "tier": self.tier_var.get(),
             "edition": self.edition_var.get(),
+            "font_pairing": self.font_pairing_var.get(),
             "border_style": self.border_style_var.get(),
             "border_color": self.border_color_var.get().strip(),
             "drop_cap_style": self.drop_cap_style_var.get(),
@@ -805,6 +848,131 @@ class InkpressApp(ttk.Frame):
             PREFS_PATH.write_text(json.dumps(data, indent=2), encoding="utf-8")
         except OSError:
             pass
+
+    def is_pro_unlocked(self):
+        """Return True when a valid Studio Pro or Founder license key is active."""
+        return bool(self.license_info and self.license_info.get("valid"))
+
+    def _refresh_license_badge(self):
+        if not hasattr(self, "license_badge_btn"):
+            return
+        if self.is_pro_unlocked():
+            plan = self.license_info.get("plan", "PRO")
+            self.license_badge_btn.configure(
+                text=f"✦  STUDIO {plan}",
+                bg="#133326",
+                fg="#34D399",
+                activebackground="#194432",
+                activeforeground="#34D399",
+            )
+        else:
+            self.license_badge_btn.configure(
+                text="FREE STARTER  ·  Unlock Pro",
+                bg="#231D2E",
+                fg="#C4B5FD",
+                activebackground="#2E2540",
+                activeforeground="#FFFFFF",
+            )
+
+    def _open_license_dialog(self, reason_msg=""):
+        """Open a sleek dark Studio Pro offline license activation dialog."""
+        dlg = tk.Toplevel(self.winfo_toplevel())
+        dlg.title("Inkpress Studio Pro — Offline License")
+        dlg.configure(bg=BG_CARD)
+        dlg.resizable(False, False)
+        dlg.transient(self.winfo_toplevel())
+        dlg.grab_set()
+        _apply_windows_dark_titlebar(dlg)
+
+        wrap = tk.Frame(dlg, bg=BG_CARD, padx=22, pady=18)
+        wrap.pack(fill="both", expand=True)
+
+        tk.Label(
+            wrap,
+            text="INKPRESS STUDIO PRO",
+            bg=BG_CARD,
+            fg=INK_DARK,
+            font=("Segoe UI", 12, "bold"),
+            anchor="w",
+        ).pack(fill="x")
+
+        sub_txt = (
+            reason_msg
+            or "Free Starter exports Tier 1 Clean books. Unlock Studio Pro for Tier 2 & 3 Framed Editions, "
+            "custom colored borders, drop letters, font pairings, direct KDP PDF export, and buyer ZIP packages."
+        )
+        tk.Label(
+            wrap,
+            text=sub_txt,
+            bg=BG_CARD,
+            fg=INK_BODY if reason_msg else INK_MUTED,
+            justify="left",
+            wraplength=420,
+            font=("Segoe UI", 9),
+        ).pack(fill="x", pady=(6, 14))
+
+        email_var = tk.StringVar(
+            value=(self.license_info.get("email", "") if self.license_info else "")
+        )
+        key_var = tk.StringVar(
+            value=(self.license_info.get("key", "") if self.license_info else "")
+        )
+        feedback_var = tk.StringVar(
+            value=(
+                f"Active license: {self.license_info['plan']} ({self.license_info['key']})"
+                if self.is_pro_unlocked()
+                else "100% offline verification — enter your INKP-XXXX-XXXX-XXXX-XXXX key below."
+            )
+        )
+
+        tk.Label(wrap, text="Buyer Email (optional)", bg=BG_CARD, fg=INK_MUTED, font=("Segoe UI", 8, "bold")).pack(anchor="w")
+        ttk.Entry(wrap, textvariable=email_var, width=48).pack(fill="x", pady=(3, 10))
+
+        tk.Label(wrap, text="License Key", bg=BG_CARD, fg=INK_MUTED, font=("Segoe UI", 8, "bold")).pack(anchor="w")
+        key_entry = ttk.Entry(wrap, textvariable=key_var, width=48)
+        key_entry.pack(fill="x", pady=(3, 8))
+        key_entry.focus_set()
+
+        fb_lbl = tk.Label(
+            wrap,
+            textvariable=feedback_var,
+            bg=BG_CARD,
+            fg="#34D399" if self.is_pro_unlocked() else INK_MUTED,
+            justify="left",
+            wraplength=420,
+            font=("Segoe UI", 8, "bold"),
+        )
+        fb_lbl.pack(fill="x", pady=(2, 14))
+
+        btn_row = tk.Frame(wrap, bg=BG_CARD)
+        btn_row.pack(fill="x")
+
+        def _do_activate():
+            try:
+                info = license_mod.save_license(
+                    key_var.get(), email=email_var.get(), license_path=self.license_path
+                )
+            except ValueError as err:
+                fb_lbl.configure(fg="#F87171")
+                feedback_var.set(str(err))
+                return
+            self.license_info = info
+            self._refresh_license_badge()
+            self.write(f"Studio {info['plan']} unlocked ({info['key']}).", "ok")
+            dlg.destroy()
+
+        def _do_deactivate():
+            license_mod.clear_license(self.license_path)
+            self.license_info = None
+            self._refresh_license_badge()
+            fb_lbl.configure(fg=INK_MUTED)
+            feedback_var.set("Returned to Free Starter tier.")
+
+        ttk.Button(btn_row, text="Activate Key", style="Primary.TButton", command=_do_activate).pack(side="left")
+        if self.is_pro_unlocked():
+            ttk.Button(btn_row, text="Deactivate", command=_do_deactivate).pack(side="left", padx=(8, 0))
+        ttk.Button(btn_row, text="Close", command=dlg.destroy).pack(side="right")
+        key_entry.bind("<Return>", lambda _e: _do_activate())
 
     # ---------------------------------------------------------------- layout
 
@@ -841,17 +1009,24 @@ class InkpressApp(ttk.Frame):
             font=("Segoe UI", 7, "bold"),
         ).grid(row=0, column=2, sticky="w", padx=(10, 12))
 
-        tk.Label(
+        self.license_badge_btn = tk.Button(
             banner,
-            text="EPUB 3  ·  KDP Print Interior  ·  Web Reader",
-            bg="#090B0E",
-            fg="#64748B",
+            text="FREE STARTER  ·  Unlock Pro",
+            bd=0,
+            relief="flat",
+            highlightthickness=0,
+            padx=10,
+            pady=3,
+            cursor="hand2",
             font=("Segoe UI", 8, "bold"),
-        ).grid(row=0, column=3, sticky="e", padx=(0, 14))
+            command=self._open_license_dialog,
+        )
+        self.license_badge_btn.grid(row=0, column=3, sticky="e", padx=(0, 12))
+        self._refresh_license_badge()
 
         tk.Label(
             banner,
-            text="Ctrl+O Open   ·   F5 Format",
+            text="Ctrl+O Open  ·  Ctrl+S Save Project  ·  F5 Format",
             bg="#131722",
             fg="#7E8B9F",
             padx=8,
@@ -1026,6 +1201,7 @@ class InkpressApp(ttk.Frame):
             if (len(dc_letter_raw) == 1 and dc_letter_raw.isalnum())
             else ""
         )
+        fp_key = FONT_PAIRING_BY_LABEL.get(self.font_pairing_var.get(), "edition")
         return editions.resolve(
             tier,
             edition_key if tier == editions.ILLUSTRATED else None,
@@ -1033,6 +1209,7 @@ class InkpressApp(ttk.Frame):
             border_style=b_style,
             drop_cap_style=dc_style,
             drop_cap_letter=dc_letter,
+            font_pairing=fp_key,
         )
 
     def _sync_edition_state(self, reset_from_tier=True):
@@ -1112,21 +1289,26 @@ class InkpressApp(ttk.Frame):
             self.swatch_canvas.create_rectangle(22, 0, 44, 16, fill=resolved.accent, outline="")
 
         features = [editions.BORDER_STYLE_LABELS.get(resolved.border_style, "No Border")]
+        if resolved.font_pairing != "edition":
+            features.append(resolved.font_pairing)
         if resolved.drop_cap:
             letter_disp = resolved.drop_cap_letter or self._first_paragraph_letter()
-            features.append(f"drop letter '{letter_disp}' ({resolved.drop_cap_style})")
+            features.append(f"drop '{letter_disp}' ({resolved.drop_cap_style})")
         if resolved.chapter_rule:
             features.append("chapter rules")
         if hasattr(self, "tier_hint"):
             self.tier_hint.configure(
-                text=f"Accent: {resolved.accent.upper()}  ·  Scene break: {resolved.scene_break}  ·  {', '.join(features)}"
+                text=f"Accent: {resolved.accent.upper()}  ·  Scene: {resolved.scene_break}  ·  {', '.join(features)}"
             )
         if hasattr(self, "page_canvas"):
             self._draw_page_preview()
 
     def _switch_left_tab(self, idx):
+        self._flush_matter_editor()
         self.left_notebook.select(idx)
         self._update_left_pills()
+        if idx == 1:
+            self._load_matter_editor(self._active_matter_key)
 
     def _update_left_pills(self, *_args):
         if not hasattr(self, "left_notebook") or not self._left_pill_buttons:
@@ -1180,7 +1362,7 @@ class InkpressApp(ttk.Frame):
         card.columnconfigure(0, weight=1)
         card.rowconfigure(1, weight=1)
 
-        # Sleek segmented pill bar (replaces 1990s protruding folder tabs)
+        # Sleek 4-tab segmented pill bar
         pill_bar = tk.Frame(
             card,
             bg=BG_PILL_TROUGH,
@@ -1189,8 +1371,8 @@ class InkpressApp(ttk.Frame):
             highlightthickness=1,
             highlightbackground="#1F2636",
         )
-        pill_bar.grid(row=0, column=0, sticky="ew", pady=(0, 12))
-        tab_titles = ("Book Details", "Borders & Style", "Outputs & Export")
+        pill_bar.grid(row=0, column=0, sticky="ew", pady=(0, 6))
+        tab_titles = ("Book & Cover", "Front & Back", "Style & Fonts", "Export")
         for idx, label in enumerate(tab_titles):
             pill_bar.columnconfigure(idx, weight=1)
             btn = tk.Button(
@@ -1199,7 +1381,7 @@ class InkpressApp(ttk.Frame):
                 bd=0,
                 relief="flat",
                 highlightthickness=0,
-                padx=8,
+                padx=6,
                 pady=5,
                 cursor="hand2",
                 font=("Segoe UI", 8, "bold"),
@@ -1211,73 +1393,234 @@ class InkpressApp(ttk.Frame):
         self.left_notebook = _TabDeck(card, on_change=self._update_left_pills)
         self.left_notebook.grid(row=1, column=0, sticky="nsew")
 
-        details_tab = tk.Frame(self.left_notebook, bg=BG_CARD, padx=4, pady=4)
+        details_tab = tk.Frame(self.left_notebook, bg=BG_CARD, padx=4, pady=2)
         details_tab.columnconfigure(1, weight=1)
         details_tab.columnconfigure(3, weight=1)
 
-        style_tab = tk.Frame(self.left_notebook, bg=BG_CARD, padx=4, pady=4)
+        matter_tab = tk.Frame(self.left_notebook, bg=BG_CARD, padx=4, pady=2)
+        matter_tab.columnconfigure(0, weight=1)
+        matter_tab.rowconfigure(2, weight=1)
+
+        style_tab = tk.Frame(self.left_notebook, bg=BG_CARD, padx=4, pady=2)
         style_tab.columnconfigure(1, weight=1)
 
-        outputs_tab = tk.Frame(self.left_notebook, bg=BG_CARD, padx=4, pady=4)
+        outputs_tab = tk.Frame(self.left_notebook, bg=BG_CARD, padx=4, pady=2)
         outputs_tab.columnconfigure(1, weight=1)
 
         self._populate_details_tab(details_tab)
+        self._populate_matter_tab(matter_tab)
         self._populate_style_tab(style_tab)
         self._populate_outputs_tab(outputs_tab)
 
-        self.left_notebook.add(details_tab, text="Book Details")
-        self.left_notebook.add(style_tab, text="Borders & Style")
-        self.left_notebook.add(outputs_tab, text="Outputs")
+        self.left_notebook.add(details_tab, text="Book & Cover")
+        self.left_notebook.add(matter_tab, text="Front & Back")
+        self.left_notebook.add(style_tab, text="Style & Fonts")
+        self.left_notebook.add(outputs_tab, text="Export")
         self._update_left_pills()
 
     def _populate_details_tab(self, box):
         r = 0
         for key, label in (("title", "Title"), ("subtitle", "Subtitle")):
-            ttk.Label(box, text=label).grid(row=r, column=0, sticky="w", pady=4)
+            ttk.Label(box, text=label).grid(row=r, column=0, sticky="w", pady=3)
             ttk.Entry(box, textvariable=self.meta_vars[key]).grid(
-                row=r, column=1, columnspan=3, sticky="ew", padx=(8, 0), pady=4
+                row=r, column=1, columnspan=3, sticky="ew", padx=(8, 0), pady=3
             )
             r += 1
 
         paired = (
             ("author", "Author", "publisher", "Publisher"),
-            ("date", "Date", "dedication", "Dedication"),
+            ("date", "Date", "isbn", "ISBN"),
         )
         for k1, l1, k2, l2 in paired:
-            ttk.Label(box, text=l1).grid(row=r, column=0, sticky="w", pady=4)
+            ttk.Label(box, text=l1).grid(row=r, column=0, sticky="w", pady=3)
             ttk.Entry(box, textvariable=self.meta_vars[k1]).grid(
-                row=r, column=1, sticky="ew", padx=(8, 12), pady=4
+                row=r, column=1, sticky="ew", padx=(8, 12), pady=3
             )
-            ttk.Label(box, text=l2).grid(row=r, column=2, sticky="w", pady=4)
+            ttk.Label(box, text=l2).grid(row=r, column=2, sticky="w", pady=3)
             ttk.Entry(box, textvariable=self.meta_vars[k2]).grid(
-                row=r, column=3, sticky="ew", padx=(8, 0), pady=4
+                row=r, column=3, sticky="ew", padx=(8, 0), pady=3
             )
             r += 1
 
-        for key, label in (("description", "Description"), ("copyright", "Copyright")):
-            ttk.Label(box, text=label).grid(row=r, column=0, sticky="w", pady=4)
-            ttk.Entry(box, textvariable=self.meta_vars[key]).grid(
-                row=r, column=1, columnspan=3, sticky="ew", padx=(8, 0), pady=4
-            )
-            r += 1
-
-        ttk.Label(
-            box,
-            text="Prefilled from your manuscript (.md or .docx). Leave Copyright blank for an automatic © page.",
-            style="Muted.TLabel",
-            wraplength=410,
-        ).grid(row=r, column=0, columnspan=4, sticky="w", pady=(10, 0))
-
-    def _populate_style_tab(self, box):
-        r = 0
-        ttk.Label(box, text="TYPOGRAPHY TIER & EDITION", style="Section.TLabel").grid(
-            row=r, column=0, columnspan=3, sticky="w", pady=(0, 4)
+        ttk.Label(box, text="Description").grid(row=r, column=0, sticky="w", pady=3)
+        ttk.Entry(box, textvariable=self.meta_vars["description"]).grid(
+            row=r, column=1, columnspan=3, sticky="ew", padx=(8, 0), pady=3
         )
         r += 1
 
-        ttk.Label(box, text="Tier").grid(row=r, column=0, sticky="w", pady=3)
+        tk.Frame(box, bg=BORDER_CARD, height=1).grid(
+            row=r, column=0, columnspan=4, sticky="ew", pady=(6, 6)
+        )
+        r += 1
+
+        ttk.Label(box, text="COVER ARTWORK (OPTIONAL)", style="Section.TLabel").grid(
+            row=r, column=0, columnspan=4, sticky="w", pady=(0, 3)
+        )
+        r += 1
+
+        cover_row = tk.Frame(box, bg=BG_CARD)
+        cover_row.grid(row=r, column=0, columnspan=4, sticky="ew", pady=2)
+        cover_row.columnconfigure(0, weight=1)
+        ttk.Entry(cover_row, textvariable=self.cover_var).grid(
+            row=0, column=0, sticky="ew", padx=(0, 6)
+        )
+        ttk.Button(cover_row, text="Browse...", command=self._choose_cover).grid(
+            row=0, column=1, padx=(0, 4)
+        )
+        ttk.Button(cover_row, text="Clear", command=self._clear_cover).grid(
+            row=0, column=2
+        )
+        r += 1
+
+        ttk.Label(
+            box,
+            text="Leave Cover blank to generate Inkpress's framed typographic SVG cover, or attach a .jpg/.png/.svg cover (1600×2560+ px recommended). Press Ctrl+S to save per-book settings.",
+            style="Muted.TLabel",
+            wraplength=415,
+        ).grid(row=r, column=0, columnspan=4, sticky="w", pady=(6, 0))
+
+    def _populate_matter_tab(self, box):
+        ttk.Label(
+            box,
+            text="FRONT & BACK MATTER BUILDER",
+            style="Section.TLabel",
+        ).grid(row=0, column=0, sticky="w", pady=(0, 4))
+
+        # Two rows of compact section pills for all 7 publishing sections
+        pills_wrap = tk.Frame(box, bg=BG_CARD)
+        pills_wrap.grid(row=1, column=0, sticky="ew", pady=(0, 6))
+        for idx, (sec_key, sec_label, _hint) in enumerate(MATTER_SECTIONS):
+            row_i = 0 if idx < 4 else 1
+            col_i = idx if idx < 4 else (idx - 4)
+            pills_wrap.columnconfigure(col_i, weight=1)
+            btn = tk.Button(
+                pills_wrap,
+                text=sec_label,
+                bd=0,
+                relief="flat",
+                highlightthickness=1,
+                padx=6,
+                pady=4,
+                cursor="hand2",
+                font=("Segoe UI", 8, "bold"),
+                command=lambda k=sec_key: self._select_matter_section(k),
+            )
+            btn.grid(
+                row=row_i,
+                column=col_i,
+                sticky="ew",
+                padx=(0 if col_i == 0 else 3, 0),
+                pady=(0, 3),
+            )
+            self._matter_pill_buttons[sec_key] = btn
+
+        editor_frame = tk.Frame(
+            box,
+            bg=BG_SUBTLE,
+            highlightthickness=1,
+            highlightbackground=BORDER_INPUT,
+        )
+        editor_frame.grid(row=2, column=0, sticky="nsew", pady=(0, 6))
+        editor_frame.columnconfigure(0, weight=1)
+        editor_frame.rowconfigure(0, weight=1)
+
+        self.matter_text = tk.Text(
+            editor_frame,
+            height=6,
+            wrap="word",
+            bg=BG_SUBTLE,
+            fg=INK_DARK,
+            insertbackground=INK_DARK,
+            relief="flat",
+            padx=8,
+            pady=6,
+            font=("Segoe UI", 9),
+            undo=True,
+        )
+        self.matter_text.grid(row=0, column=0, sticky="nsew")
+        m_scroll = ttk.Scrollbar(
+            editor_frame, orient="vertical", command=self.matter_text.yview
+        )
+        m_scroll.grid(row=0, column=1, sticky="ns")
+        self.matter_text.configure(yscrollcommand=m_scroll.set)
+        self.matter_text.bind("<KeyRelease>", lambda _e: self._flush_matter_editor())
+        self.matter_text.bind("<FocusOut>", lambda _e: self._flush_matter_editor())
+
+        url_row = tk.Frame(box, bg=BG_CARD)
+        url_row.grid(row=3, column=0, sticky="ew", pady=(0, 4))
+        url_row.columnconfigure(1, weight=1)
+        ttk.Label(url_row, text="CTA Link URL:").grid(row=0, column=0, sticky="w", padx=(0, 6))
+        ttk.Entry(url_row, textvariable=self.meta_vars["newsletter_url"]).grid(
+            row=0, column=1, sticky="ew"
+        )
+
+        self.matter_hint_var = tk.StringVar()
+        ttk.Label(
+            box,
+            textvariable=self.matter_hint_var,
+            style="Muted.TLabel",
+            wraplength=415,
+        ).grid(row=4, column=0, sticky="w")
+        self._select_matter_section("dedication")
+
+    def _select_matter_section(self, key):
+        self._flush_matter_editor()
+        self._active_matter_key = key
+        self._load_matter_editor(key)
+
+    def _load_matter_editor(self, key):
+        if not hasattr(self, "matter_text"):
+            return
+        self._syncing_matter_text = True
+        try:
+            self.matter_text.delete("1.0", "end")
+            val = self.meta_vars[key].get()
+            if val:
+                self.matter_text.insert("1.0", val)
+        finally:
+            self._syncing_matter_text = False
+        self._refresh_matter_pills()
+
+    def _flush_matter_editor(self):
+        if self._syncing_matter_text or not hasattr(self, "matter_text"):
+            return
+        val = self.matter_text.get("1.0", "end-1c").strip()
+        self.meta_vars[self._active_matter_key].set(val)
+        self._refresh_matter_pills()
+
+    def _refresh_matter_pills(self):
+        hint_map = {k: h for k, _l, h in MATTER_SECTIONS}
+        populated = []
+        for sec_key, sec_label, _hint in MATTER_SECTIONS:
+            has_val = bool(self.meta_vars[sec_key].get().strip())
+            if has_val:
+                populated.append(sec_label)
+            btn = self._matter_pill_buttons.get(sec_key)
+            if not btn:
+                continue
+            is_active = sec_key == self._active_matter_key
+            dot = " •" if has_val else ""
+            btn.configure(
+                text=f"{sec_label}{dot}",
+                bg=ACCENT_CRIMSON if is_active else ("#1C2638" if has_val else "#151A25"),
+                fg="#FFFFFF" if is_active else ("#6EE7B7" if has_val else INK_MUTED),
+                highlightbackground=ACCENT_CRIMSON if is_active else "#252E42",
+            )
+        active_hint = hint_map.get(self._active_matter_key, "")
+        summary = ", ".join(populated) if populated else "Auto Copyright only"
+        if hasattr(self, "matter_hint_var"):
+            self.matter_hint_var.set(f"{active_hint}  (Populated: {summary})")
+
+    def _populate_style_tab(self, box):
+        r = 0
+        ttk.Label(box, text="TYPOGRAPHY TIER, EDITION & FONTS", style="Section.TLabel").grid(
+            row=r, column=0, columnspan=3, sticky="w", pady=(0, 3)
+        )
+        r += 1
+
+        ttk.Label(box, text="Tier").grid(row=r, column=0, sticky="w", pady=2)
         tier_row = tk.Frame(box, bg=BG_CARD)
-        tier_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
+        tier_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
         tier_row.columnconfigure(0, weight=1)
 
         tier_box = ttk.Combobox(
@@ -1294,21 +1637,35 @@ class InkpressApp(ttk.Frame):
         trim_cb.bind("<<ComboboxSelected>>", lambda _e: self._refresh_kdp_and_preview())
         r += 1
 
-        ttk.Label(box, text="Edition").grid(row=r, column=0, sticky="w", pady=3)
+        ttk.Label(box, text="Edition").grid(row=r, column=0, sticky="w", pady=2)
         self.edition_box = ttk.Combobox(
             box, textvariable=self.edition_var, values=EDITION_CHOICES, state="disabled"
         )
-        self.edition_box.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
+        self.edition_box.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
         self.edition_box.bind("<<ComboboxSelected>>", lambda _event: self._sync_edition_state())
         r += 1
 
+        ttk.Label(box, text="Font pairing").grid(row=r, column=0, sticky="w", pady=2)
+        self.font_pairing_box = ttk.Combobox(
+            box,
+            textvariable=self.font_pairing_var,
+            values=FONT_PAIRING_CHOICES,
+            state="readonly",
+        )
+        self.font_pairing_box.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
+        self.font_pairing_box.bind(
+            "<<ComboboxSelected>>",
+            lambda _e: self._sync_edition_state(reset_from_tier=False),
+        )
+        r += 1
+
         tk.Frame(box, bg=BORDER_CARD, height=1).grid(
-            row=r, column=0, columnspan=3, sticky="ew", pady=(6, 6)
+            row=r, column=0, columnspan=3, sticky="ew", pady=(3, 3)
         )
         r += 1
 
         drop_hdr_row = tk.Frame(box, bg=BG_CARD)
-        drop_hdr_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(0, 4))
+        drop_hdr_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(0, 2))
         ttk.Label(
             drop_hdr_row,
             text="FIRST PARAGRAPH DROP LETTER",
@@ -1326,9 +1683,9 @@ class InkpressApp(ttk.Frame):
         self.drop_tier_badge.pack(side="left", padx=(8, 0))
         r += 1
 
-        ttk.Label(box, text="Drop letter").grid(row=r, column=0, sticky="w", pady=3)
+        ttk.Label(box, text="Drop letter").grid(row=r, column=0, sticky="w", pady=2)
         drop_row = tk.Frame(box, bg=BG_CARD)
-        drop_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
+        drop_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
         drop_row.columnconfigure(0, weight=1)
 
         self.drop_cap_style_box = ttk.Combobox(
@@ -1363,32 +1720,32 @@ class InkpressApp(ttk.Frame):
         r += 1
 
         tk.Frame(box, bg=BORDER_CARD, height=1).grid(
-            row=r, column=0, columnspan=3, sticky="ew", pady=(6, 6)
+            row=r, column=0, columnspan=3, sticky="ew", pady=(3, 3)
         )
         r += 1
 
         ttk.Label(box, text="COLORED PAGE & COVER BORDERS", style="Section.TLabel").grid(
-            row=r, column=0, columnspan=3, sticky="w", pady=(0, 4)
+            row=r, column=0, columnspan=3, sticky="w", pady=(0, 2)
         )
         r += 1
 
-        ttk.Label(box, text="Border style").grid(row=r, column=0, sticky="w", pady=3)
+        ttk.Label(box, text="Border style").grid(row=r, column=0, sticky="w", pady=2)
         border_cb = ttk.Combobox(
             box,
             textvariable=self.border_style_var,
             values=BORDER_STYLE_CHOICES,
             state="readonly",
         )
-        border_cb.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
+        border_cb.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
         border_cb.bind(
             "<<ComboboxSelected>>",
             lambda _e: self._sync_edition_state(reset_from_tier=False),
         )
         r += 1
 
-        ttk.Label(box, text="Border color").grid(row=r, column=0, sticky="w", pady=3)
+        ttk.Label(box, text="Border color").grid(row=r, column=0, sticky="w", pady=2)
         palette_row = tk.Frame(box, bg=BG_CARD)
-        palette_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=3)
+        palette_row.grid(row=r, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=2)
 
         for idx, (_name, hex_code) in enumerate(editions.COLOR_PRESETS):
             sw = tk.Button(
@@ -1417,11 +1774,11 @@ class InkpressApp(ttk.Frame):
             box,
             bg="#0F131B",
             padx=8,
-            pady=6,
+            pady=4,
             highlightthickness=1,
             highlightbackground="#1E2534",
         )
-        swatch_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(8, 0))
+        swatch_row.grid(row=r, column=0, columnspan=3, sticky="ew", pady=(3, 0))
         self.swatch_canvas = tk.Canvas(
             swatch_row,
             width=44,
@@ -1438,7 +1795,7 @@ class InkpressApp(ttk.Frame):
             fg=INK_MUTED,
             justify="left",
             anchor="w",
-            wraplength=345,
+            wraplength=365,
             font=("Segoe UI", 8),
         )
         self.tier_hint.grid(row=0, column=1, sticky="w")
@@ -1506,32 +1863,37 @@ class InkpressApp(ttk.Frame):
 
         bar = tk.Frame(wrap, bg="#090B0E", padx=16, pady=10)
         bar.grid(row=1, column=0, sticky="ew")
-        bar.columnconfigure(3, weight=1)
+        bar.columnconfigure(4, weight=1)
 
         self.format_button = ttk.Button(
             bar, text="✦  Format Book", style="Primary.TButton", command=self._start_build
         )
         self.format_button.grid(row=0, column=0)
 
+        self.save_project_button = ttk.Button(
+            bar, text="Save Project", command=self._save_project
+        )
+        self.save_project_button.grid(row=0, column=1, padx=(8, 0))
+
         self.open_button = ttk.Button(
             bar, text="Open Folder", command=self._open_output, state="disabled"
         )
-        self.open_button.grid(row=0, column=1, padx=(10, 0))
+        self.open_button.grid(row=0, column=2, padx=(6, 0))
 
         self.preview_print_button = ttk.Button(
             bar, text="Preview Print", command=self._preview_print, state="disabled"
         )
-        self.preview_print_button.grid(row=0, column=2, padx=(6, 0))
+        self.preview_print_button.grid(row=0, column=3, padx=(6, 0))
 
         self.preview_web_button = ttk.Button(
             bar, text="Preview Web", command=self._preview_web, state="disabled"
         )
-        self.preview_web_button.grid(row=0, column=3, sticky="w", padx=(6, 0))
+        self.preview_web_button.grid(row=0, column=4, sticky="w", padx=(6, 0))
 
         self.progress = ttk.Progressbar(
             bar, mode="determinate", maximum=100, value=0, length=220
         )
-        self.progress.grid(row=0, column=4, sticky="e", padx=(14, 0))
+        self.progress.grid(row=0, column=5, sticky="e", padx=(14, 0))
 
     # ---------------------------------------------------- right column studio
 
@@ -1830,11 +2192,23 @@ class InkpressApp(ttk.Frame):
             else "The First Round"
         )
 
-        heading_face = (
-            "Consolas"
-            if edition.key == editions.SYSTEMFALL
-            else ("Arial" if edition.key == editions.VANTABLACK else "Georgia")
-        )
+        fp_key = getattr(edition, "font_pairing", "edition")
+        if fp_key == "mono_serif":
+            heading_face = "Consolas"
+        elif fp_key == "sans_serif":
+            heading_face = "Segoe UI"
+        elif fp_key == "baskerville":
+            heading_face = "Baskerville Old Face"
+        elif fp_key == "palatino":
+            heading_face = "Palatino Linotype"
+        elif fp_key == "garamond":
+            heading_face = "Garamond"
+        else:
+            heading_face = (
+                "Consolas"
+                if edition.key == editions.SYSTEMFALL
+                else ("Arial" if edition.key == editions.VANTABLACK else "Georgia")
+            )
         heading_style = "bold" if edition.display_weight == "800" else "normal"
 
         trim_key = self.trim_var.get().strip() or "6x9"
@@ -1882,11 +2256,17 @@ class InkpressApp(ttk.Frame):
             scale=scale,
         )
 
+        cover_file = self.cover_var.get().strip()
+        cover_hdr = (
+            f"CUSTOM COVER: {Path(cover_file).name[:18]}"
+            if cover_file
+            else "TYPOGRAPHIC COVER"
+        )
         canvas.create_text(
             cx0 + page_w // 2,
             sy0 - 11,
-            text="TYPOGRAPHIC COVER",
-            fill="#64748B",
+            text=cover_hdr,
+            fill="#34D399" if cover_file else "#64748B",
             font=("Segoe UI", 7, "bold"),
         )
 
@@ -2192,6 +2572,24 @@ class InkpressApp(ttk.Frame):
             self.manuscript_var.set(path)
             self._load_manuscript()
 
+    def _choose_cover(self):
+        path = filedialog.askopenfilename(
+            title="Choose a cover image (.jpg, .png, .svg)",
+            initialdir=str(Path(self.manuscript_var.get()).parent)
+            if self.manuscript_var.get()
+            else str(HERE),
+            filetypes=[
+                ("Cover Images", "*.jpg *.jpeg *.png *.svg"),
+                ("All files", "*.*"),
+            ],
+        )
+        if path:
+            self.cover_var.set(path)
+            self.write(f"Cover file attached: {Path(path).name}", "ok")
+
+    def _clear_cover(self):
+        self.cover_var.set("")
+
     def _choose_out(self):
         path = filedialog.askdirectory(
             title="Where should the files go?",
@@ -2208,20 +2606,67 @@ class InkpressApp(ttk.Frame):
         if path:
             self.chrome_var.set(path)
 
+    def _collect_project_settings(self):
+        """Collect all current book metadata, front/back matter, and style settings."""
+        self._flush_matter_editor()
+        settings = {key: var.get().strip() for key, var in self.meta_vars.items()}
+        tier = TIER_BY_LABEL.get(self.tier_var.get(), editions.CLEAN)
+        settings["tier"] = tier
+        if tier == editions.ILLUSTRATED:
+            settings["edition"] = EDITION_BY_LABEL.get(
+                self.edition_var.get(), editions.ASHVEIL
+            )
+        fp_key = FONT_PAIRING_BY_LABEL.get(self.font_pairing_var.get(), "edition")
+        if fp_key and fp_key != "edition":
+            settings["font_pairing"] = fp_key
+        b_style = BORDER_STYLE_BY_LABEL.get(self.border_style_var.get())
+        if b_style:
+            settings["border_style"] = b_style
+        b_color = self.border_color_var.get().strip()
+        if b_color:
+            settings["border_color"] = b_color
+        dc_style = DROP_CAP_STYLE_BY_LABEL.get(self.drop_cap_style_var.get())
+        if dc_style:
+            settings["drop_cap_style"] = dc_style
+        dc_letter_raw = self.drop_cap_letter_var.get().strip()
+        if len(dc_letter_raw) == 1 and dc_letter_raw.isalnum():
+            settings["drop_cap_letter"] = dc_letter_raw.upper()
+        trim = self.trim_var.get().strip()
+        if trim:
+            settings["trim"] = trim
+        cover = self.cover_var.get().strip()
+        if cover:
+            settings["cover"] = cover
+        return settings
+
+    def _save_project(self):
+        """Save per-book settings to <manuscript-stem>.inkpress.json next to the manuscript."""
+        raw_ms = self.manuscript_var.get().strip()
+        if not raw_ms or not Path(raw_ms).is_file():
+            self._switch_right_tab(1)
+            self.write("Load a manuscript first before saving a project sidecar.", "warn")
+            return None
+        sidecar = project.save_project(raw_ms, self._collect_project_settings())
+        self._save_prefs()
+        self.status_var.set(f"Saved project settings to {sidecar.name}.")
+        self.write(f"Saved per-book project: {sidecar}", "ok")
+        return sidecar
+
     def _refresh_kdp_and_preview(self):
         doc = self.current_document
         if doc:
             trim = self.trim_var.get().strip() or "6x9"
             stats = estimate_kdp_stats(doc.word_count, len(doc.chapters), trim=trim)
+            kdp_flag = "" if stats["pages"] >= 24 else " (<24p)"
             self.kdp_summary_var.set(
-                f"KDP ({trim}): ~{stats['pages']} pp  ·  "
-                f"Gutter {stats['gutter']}  ·  "
+                f"{trim} · ~{stats['pages']} pp{kdp_flag} · "
+                f"Gutter {stats['gutter']} · "
                 f"Spine {stats['spine_in']:.3f}\""
             )
         self._draw_page_preview()
 
     def _load_manuscript(self):
-        """Read the file, prefill details, and populate the chapter inspector."""
+        """Read the file, merge any .inkpress.json project sidecar, and populate the UI."""
         path = Path(self.manuscript_var.get())
         if not path.is_file():
             self.status_var.set("That file could not be found.")
@@ -2229,6 +2674,10 @@ class InkpressApp(ttk.Frame):
 
         try:
             parsed = ms.load(path)
+            sidecar_meta = project.load_project(path)
+            for s_key, s_val in sidecar_meta.items():
+                if s_val not in (None, "", []):
+                    parsed.meta[s_key] = s_val
             doc = structure.build(parsed)
         except ms.ManuscriptError as error:
             self.status_var.set("Could not read that manuscript.")
@@ -2253,6 +2702,10 @@ class InkpressApp(ttk.Frame):
         self.edition_var.set(editions.EDITION_LABELS.get(edition_key, EDITION_CHOICES[0]))
         self._sync_edition_state(reset_from_tier=True)
 
+        fp_key = str(parsed.meta.get("font_pairing", "edition")).strip().lower()
+        self.font_pairing_var.set(
+            editions.FONT_PAIRING_LABELS.get(fp_key, FONT_PAIRING_CHOICES[0])
+        )
         if parsed.meta.get("border_style"):
             bs_key = str(parsed.meta["border_style"]).strip().lower()
             if bs_key in editions.BORDER_STYLE_LABELS:
@@ -2277,6 +2730,8 @@ class InkpressApp(ttk.Frame):
         cover_val = str(parsed.meta.get("cover", "")).strip()
         self.cover_var.set(cover_val)
 
+        self._load_matter_editor(self._active_matter_key)
+
         for item in self.chapter_tree.get_children():
             self.chapter_tree.delete(item)
 
@@ -2286,11 +2741,14 @@ class InkpressApp(ttk.Frame):
                 if ch.implicit or ch.display_number is None
                 else str(ch.display_number)
             )
-            note = (
-                "Implicit dispatch"
-                if ch.implicit
-                else ("Front/Back matter" if ch.display_number is None else "Chapter")
-            )
+            if ch.implicit:
+                note = "Implicit dispatch"
+            elif ch.display_number is None:
+                note = "Front/Back matter"
+            elif getattr(ch, "part_title", None):
+                note = f"Part: {inline.plain(ch.part_title)[:18]}"
+            else:
+                note = "Chapter"
             self.chapter_tree.insert(
                 "",
                 "end",
@@ -2304,11 +2762,15 @@ class InkpressApp(ttk.Frame):
             if len(doc.chapters) != 1
             else ("no chapter breaks" if not doc.has_real_chapters else "1 chapter")
         )
+        sidecar_note = " (+ saved project)" if sidecar_meta else ""
         self.status_var.set(
-            f"Loaded {path.name} — {chapter_text}, {doc.word_count:,} words (~{stats['pages']} paperback pages)."
+            f"Loaded {path.name}{sidecar_note} — {chapter_text}, {doc.word_count:,} words (~{stats['pages']} paperback pages)."
         )
         self._refresh_kdp_and_preview()
-        self.write(f"Loaded {path.name} ({chapter_text}, {doc.word_count:,} words).", "muted")
+        self.write(
+            f"Loaded {path.name}{sidecar_note} ({chapter_text}, {doc.word_count:,} words).",
+            "muted",
+        )
 
     def _open_output(self):
         if self.last_out_dir and not open_folder(self.last_out_dir):
@@ -2326,9 +2788,26 @@ class InkpressApp(ttk.Frame):
 
     # ------------------------------------------------------------------ build
 
+    def _pro_features_requested(self, tier, border_style, font_pairing, pdf, package):
+        """Return a list of Studio Pro features currently selected for export."""
+        reasons = []
+        if tier != editions.CLEAN:
+            reasons.append(editions.TIER_LABELS.get(tier, tier))
+        if border_style and border_style != "none":
+            reasons.append("Colored Page Borders")
+        if font_pairing and font_pairing != "edition":
+            reasons.append("Custom Font Pairing")
+        if pdf:
+            reasons.append("Direct KDP PDF Export")
+        if package:
+            reasons.append("Buyer ZIP Package")
+        return reasons
+
     def _start_build(self):
         if self.busy:
             return
+
+        self._flush_matter_editor()
 
         source = Path(self.manuscript_var.get())
         if not source.is_file():
@@ -2346,6 +2825,9 @@ class InkpressApp(ttk.Frame):
         trim = self.trim_var.get().strip()
         if trim:
             overrides["trim"] = trim
+        fp_key = FONT_PAIRING_BY_LABEL.get(self.font_pairing_var.get(), "edition")
+        if fp_key and fp_key != "edition":
+            overrides["font_pairing"] = fp_key
         b_style = BORDER_STYLE_BY_LABEL.get(self.border_style_var.get())
         if b_style:
             overrides["border_style"] = b_style
@@ -2372,6 +2854,22 @@ class InkpressApp(ttk.Frame):
             if tier == editions.ILLUSTRATED
             else None
         )
+
+        if not self.is_pro_unlocked():
+            pro_used = self._pro_features_requested(tier, b_style, fp_key, pdf, package)
+            if pro_used:
+                summary = ", ".join(pro_used)
+                self._switch_right_tab(1)
+                self.write(
+                    f"Studio Pro required to export: {summary}. "
+                    "Enter your license key or switch to Tier 1 Clean (no borders / PDF / ZIP) for Free Starter export.",
+                    "warn",
+                )
+                self._open_license_dialog(
+                    f"Studio Pro is required to export: {summary}.\n\n"
+                    "Enter your INKP-XXXX-XXXX-XXXX-XXXX license key below, or switch to Tier 1 Clean to export for free."
+                )
+                return
 
         self._save_prefs()
         self._switch_right_tab(1)

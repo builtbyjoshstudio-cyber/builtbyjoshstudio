@@ -27,16 +27,32 @@ from pathlib import Path
 FRONT_MATTER_FENCE = "---"
 
 # Block kinds
+PART = "part"
 CHAPTER = "chapter"
 SECTION = "section"
 SCENE_BREAK = "scene_break"
 BLOCKQUOTE = "blockquote"
+ULIST = "ulist"
+OLIST = "olist"
+CALLOUT = "callout"
+IMAGE = "image"
 PARAGRAPH = "paragraph"
 
 _SCENE_BREAK_RE = re.compile(
     r"^\s*(?:(?:\*\s*){3,}|(?:#\s*){3,}|#|---+|_{3,}|(?:~\s*){3,})\s*$"
 )
 _LIST_ITEM_RE = re.compile(r"^\s*-\s+(.*)$")
+_ULIST_LINE_RE = re.compile(r"^\s*[-*+]\s+(.+)$")
+_OLIST_LINE_RE = re.compile(r"^\s*\d+[.)]\s+(.+)$")
+_CALLOUT_OPEN_RE = re.compile(r"^:::\s*([a-zA-Z0-9_\-]+)?\s*$")
+_IMAGE_LINE_RE = re.compile(
+    r'^!\[([^\]]*)\]\(([^)\s]+)(?:\s+["\']([^"\']*)["\'])?\)\s*$'
+)
+_PART_HEADING_RE = re.compile(
+    r"^(?:part|act|book|volume)\s+(?:[0-9]+|[ivxlcdm]+|one|two|three|four|"
+    r"five|six|seven|eight|nine|ten)\b",
+    re.IGNORECASE,
+)
 _CHAPTER_NUM_RE = (
     r"(?:[0-9]+|[ivxlcdm]+|one|two|three|four|five|six|seven|eight|nine|ten|"
     r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|"
@@ -129,7 +145,27 @@ def parse_front_matter(lines):
         key = key.strip()
         value = value.strip()
 
-        if not value:
+        if value in ("|", ">"):
+            block_lines = []
+            while index < len(lines):
+                peek_raw = lines[index]
+                peek_stripped = peek_raw.strip()
+                if peek_stripped == FRONT_MATTER_FENCE:
+                    break
+                if not peek_stripped:
+                    block_lines.append("")
+                    index += 1
+                    continue
+                if peek_raw.startswith(("  ", "\t")):
+                    indent_len = 2 if peek_raw.startswith("  ") else 1
+                    block_lines.append(peek_raw[indent_len:].rstrip())
+                    index += 1
+                    continue
+                break
+            joiner = "\n" if value == "|" else " "
+            meta[key] = joiner.join(block_lines).strip()
+            pending_list_key = None
+        elif not value:
             meta[key] = []
             pending_list_key = key
         else:
@@ -153,9 +189,15 @@ def parse_blocks(lines, offset=0):
     buffer_kind = PARAGRAPH
     buffer_line = offset + 1
     has_explicit_h2 = any(raw.strip().startswith("## ") for raw in lines)
+    seen_body_block = False
+
+    in_callout = False
+    callout_variant = "box"
+    callout_lines = []
+    callout_start_line = offset + 1
 
     def flush():
-        nonlocal buffer, buffer_kind
+        nonlocal buffer, buffer_kind, seen_body_block
         if buffer:
             text = "\n".join(buffer).strip()
             if text:
@@ -168,12 +210,40 @@ def parse_blocks(lines, offset=0):
                     blocks.append(Block(CHAPTER, text, buffer_line))
                 else:
                     blocks.append(Block(buffer_kind, text, buffer_line))
+                seen_body_block = True
         buffer = []
         buffer_kind = PARAGRAPH
 
     for position, raw in enumerate(lines):
         line_number = offset + position + 1
         stripped = raw.strip()
+
+        if in_callout:
+            if stripped == ":::":
+                body_text = "\n".join(callout_lines).strip()
+                if body_text:
+                    blocks.append(
+                        Block(
+                            CALLOUT,
+                            f"{callout_variant}\n{body_text}",
+                            callout_start_line,
+                        )
+                    )
+                    seen_body_block = True
+                in_callout = False
+                callout_lines = []
+            else:
+                callout_lines.append(stripped)
+            continue
+
+        callout_match = _CALLOUT_OPEN_RE.match(stripped)
+        if callout_match:
+            flush()
+            in_callout = True
+            callout_variant = (callout_match.group(1) or "box").strip().lower()
+            callout_lines = []
+            callout_start_line = line_number
+            continue
 
         if not stripped:
             flush()
@@ -182,21 +252,37 @@ def parse_blocks(lines, offset=0):
         if _SCENE_BREAK_RE.match(stripped):
             flush()
             blocks.append(Block(SCENE_BREAK, "", line_number))
+            seen_body_block = True
+            continue
+
+        img_match = _IMAGE_LINE_RE.match(stripped)
+        if img_match:
+            flush()
+            alt_txt = img_match.group(1).strip()
+            src_txt = img_match.group(2).strip()
+            cap_txt = (img_match.group(3) or "").strip()
+            blocks.append(Block(IMAGE, f"{src_txt}\t{alt_txt}\t{cap_txt}", line_number))
+            seen_body_block = True
             continue
 
         if stripped.startswith("### "):
             flush()
             blocks.append(Block(SECTION, stripped[4:].strip(), line_number))
+            seen_body_block = True
             continue
 
         if stripped.startswith("## "):
             flush()
             blocks.append(Block(CHAPTER, stripped[3:].strip(), line_number))
+            seen_body_block = True
             continue
 
         if stripped.startswith("# "):
-            # A single leading H1 is the title; front matter owns that, so skip it.
             flush()
+            h1_text = stripped[2:].strip()
+            if _PART_HEADING_RE.match(h1_text) or seen_body_block:
+                blocks.append(Block(PART, h1_text, line_number))
+                seen_body_block = True
             continue
 
         if stripped.startswith(">"):
@@ -207,12 +293,37 @@ def parse_blocks(lines, offset=0):
             buffer.append(stripped.lstrip(">").strip())
             continue
 
-        if buffer_kind == BLOCKQUOTE:
+        ulist_match = _ULIST_LINE_RE.match(raw)
+        if ulist_match:
+            if buffer_kind != ULIST:
+                flush()
+                buffer_kind = ULIST
+                buffer_line = line_number
+            buffer.append(ulist_match.group(1).strip())
+            continue
+
+        olist_match = _OLIST_LINE_RE.match(raw)
+        if olist_match:
+            if buffer_kind != OLIST:
+                flush()
+                buffer_kind = OLIST
+                buffer_line = line_number
+            buffer.append(olist_match.group(1).strip())
+            continue
+
+        if buffer_kind in (BLOCKQUOTE, ULIST, OLIST):
             flush()
 
         if not buffer:
             buffer_line = line_number
         buffer.append(stripped)
+
+    if in_callout and callout_lines:
+        body_text = "\n".join(callout_lines).strip()
+        if body_text:
+            blocks.append(
+                Block(CALLOUT, f"{callout_variant}\n{body_text}", callout_start_line)
+            )
 
     flush()
     return blocks
@@ -273,12 +384,15 @@ def _read_docx(path):
     paragraphs = []
     for p_node in root.iter(f"{_W_NS}p"):
         style = ""
+        has_numpr = False
         ppr = p_node.find(f"{_W_NS}pPr")
         if ppr is not None:
             pstyle = ppr.find(f"{_W_NS}pStyle")
             if pstyle is not None:
                 raw_style = pstyle.get(f"{_W_NS}val", "")
                 style = re.sub(r"[\s\-_]+", "", raw_style).lower()
+            if ppr.find(f"{_W_NS}numPr") is not None:
+                has_numpr = True
 
         chunks = []
         for child in p_node:
@@ -301,11 +415,13 @@ def _read_docx(path):
         text = "".join(chunks).strip()
         if not text:
             continue
-        paragraphs.append((style, text))
+        paragraphs.append((style, text, has_numpr))
 
+    has_heading2 = any(st == "heading2" for st, _, _ in paragraphs)
     lines = []
     in_front_matter = False
-    for index, (style, text) in enumerate(paragraphs):
+    prev_was_list = False
+    for index, (style, text, has_numpr) in enumerate(paragraphs):
         if index == 0 and text == FRONT_MATTER_FENCE:
             in_front_matter = True
             lines.append(FRONT_MATTER_FENCE)
@@ -317,21 +433,43 @@ def _read_docx(path):
                 lines.append("")
             continue
 
-        if style == "title":
+        is_ordered_list = style.startswith("listnumber")
+        is_bullet_list = has_numpr or style in ("listparagraph", "listbullet") or style.startswith("listbullet")
+        if prev_was_list and not (is_ordered_list or is_bullet_list):
+            lines.append("")
+            prev_was_list = False
+
+        if is_ordered_list:
+            lines.append(f"1. {text.replace(chr(10), ' ')}")
+            prev_was_list = True
+        elif is_bullet_list:
+            lines.append(f"- {text.replace(chr(10), ' ')}")
+            prev_was_list = True
+        elif style == "title":
             doc_meta.setdefault("title", text)
             lines.extend([f"# {text}", ""])
         elif style == "subtitle":
             doc_meta.setdefault("subtitle", text)
+        elif style == "heading1" and (has_heading2 or _PART_HEADING_RE.match(text)):
+            lines.extend([f"# {text}", ""])
         elif style in ("heading1", "heading2"):
             lines.extend([f"## {text}", ""])
         elif style == "heading3":
             lines.extend([f"### {text}", ""])
-        elif style in ("quote", "intensequote", "blocktext"):
+        elif style == "intensequote":
+            lines.append("::: box")
+            for qline in text.split("\n"):
+                lines.append(qline.strip())
+            lines.extend([":::", ""])
+        elif style in ("quote", "blocktext"):
             for qline in text.split("\n"):
                 lines.append(f"> {qline.strip()}")
             lines.append("")
         else:
             lines.extend([text, ""])
+
+    if prev_was_list:
+        lines.append("")
 
     return doc_meta, lines
 

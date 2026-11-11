@@ -15,6 +15,7 @@ Trim size, margins and gutter come from front matter:
     margin: 0.75in
     gutter: 0.25in      extra inner margin for the bound edge
 """
+import re
 import shutil
 import subprocess
 import tempfile
@@ -91,6 +92,7 @@ def render_pdf(html_path, pdf_path=None, renderer=None):
                 "--headless",
                 "--disable-gpu",
                 "--no-pdf-header-footer",
+                "--print-to-pdf-no-header",
                 f"--user-data-dir={user_data_dir}",
                 f"--print-to-pdf={pdf_path}",
                 html_path.as_uri(),
@@ -146,6 +148,90 @@ def _copyright_text(meta):
     return line
 
 
+def multiline_paragraphs(raw_text, extra_attrs=""):
+    """Render multi-line metadata text into HTML <p> blocks with <br /> line breaks."""
+    text = str(raw_text or "").strip()
+    if not text:
+        return []
+    attr_part = f" {extra_attrs.strip()}" if extra_attrs.strip() else ""
+    out = []
+    for chunk in re.split(r"\n\s*\n", text):
+        lines = [inline.render(ln.strip()) for ln in chunk.split("\n") if ln.strip()]
+        if lines:
+            out.append(f"<p{attr_part}>" + "<br />".join(lines) + "</p>")
+    return out
+
+
+def _copyright_paragraphs(meta, extra_attrs=""):
+    """Build rendered <p> lines for the copyright page, including ISBN if supplied."""
+    base = _copyright_text(meta)
+    paras = multiline_paragraphs(base, extra_attrs=extra_attrs)
+    isbn = str(meta.get("isbn", "") or "").strip()
+    if isbn and isbn not in base:
+        attr_part = f" {extra_attrs.strip()}" if extra_attrs.strip() else ""
+        paras.append(f"<p{attr_part}>ISBN: {inline.escape(isbn)}</p>")
+    return paras
+
+
+def resolve_image_path(src, document):
+    """Return a local Path for an inline image src, or None if src is a remote URL."""
+    s = str(src or "").strip()
+    if not s or s.startswith(("http://", "https://", "data:")):
+        return None
+    p = Path(s)
+    if not p.is_absolute() and getattr(document, "source_path", None):
+        candidate = Path(document.source_path).parent / p
+        return candidate
+    return p
+
+
+def has_back_matter(meta):
+    """Return True when structured back-matter fields are populated."""
+    return any(
+        str(meta.get(key, "") or "").strip()
+        for key in ("acknowledgments", "about_author", "newsletter_cta", "newsletter_url")
+    )
+
+
+def render_back_matter_sections(meta, section_class="backmatter-page", heading_tag="h2"):
+    """Render Acknowledgments, About the Author, and Newsletter CTA sections."""
+    sections = []
+    ack = str(meta.get("acknowledgments", "") or "").strip()
+    if ack:
+        paras = "\n  ".join(multiline_paragraphs(ack))
+        sections.append(
+            f'<section class="{section_class}">\n'
+            f"  <{heading_tag}>Acknowledgments</{heading_tag}>\n"
+            f"  {paras}\n"
+            "</section>"
+        )
+
+    about = str(meta.get("about_author", "") or "").strip()
+    cta = str(meta.get("newsletter_cta", "") or "").strip()
+    cta_url = str(meta.get("newsletter_url", "") or "").strip()
+    if about or cta or cta_url:
+        parts = []
+        if about:
+            parts.append(f"  <{heading_tag}>About the Author</{heading_tag}>")
+            for p_html in multiline_paragraphs(about):
+                parts.append(f"  {p_html}")
+        if cta or cta_url:
+            cta_bits = []
+            if cta:
+                for p_html in multiline_paragraphs(cta):
+                    cta_bits.append(f"    {p_html}")
+            if cta_url:
+                safe_href = inline.escape_attr(cta_url)
+                safe_label = inline.escape(cta_url)
+                cta_bits.append(
+                    f'    <p class="cta-link"><a href="{safe_href}">{safe_label}</a></p>'
+                )
+            parts.append('  <div class="newsletter-cta">\n' + "\n".join(cta_bits) + "\n  </div>")
+        sections.append(f'<section class="{section_class}">\n' + "\n".join(parts) + "\n</section>")
+
+    return sections
+
+
 def _scene_break_html(edition):
     return (
         f'<p class="scene-break" role="separator">'
@@ -167,12 +253,16 @@ def build_css(document, edition=None):
     # size. Without this the file is laid out at browser-window width, which
     # makes absolute-unit spacing and ::first-line rules look wrong even when
     # they are correct for print.
+    sheet_selectors = (
+        ".titlepage, .copyright-page, .dedication-page, .epigraph-page, "
+        ".also-by-page, .toc-page, .part-page, .chapter, .backmatter-page"
+    )
     screen = f"""@media screen {{
   body {{
     background: #d9d9dc;
     padding: 24px 0;
   }}
-  .titlepage, .copyright-page, .dedication-page, .toc-page, .chapter {{
+  {sheet_selectors} {{
     width: {trim_width};
     min-height: {trim_height};
     margin: 0 auto 24px;
@@ -244,7 +334,7 @@ def build_css(document, edition=None):
     chapter_rule = ""
     if edition.chapter_rule:
         chapter_rule = f"""
-.chapter h2::after {{
+.chapter h2::after, .backmatter-page h2::after {{
   content: "";
   display: block;
   width: 2.2em;
@@ -288,23 +378,29 @@ def build_css(document, edition=None):
     b_style = getattr(edition, "border_style", "none")
     if b_style == "double":
         border_css = f"""
-.titlepage, .copyright-page, .dedication-page, .toc-page, .chapter {{
+{sheet_selectors} {{
   outline: 3.5px double {edition.accent};
   outline-offset: -0.36in;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }}
 """
     elif b_style == "single":
         border_css = f"""
-.titlepage, .copyright-page, .dedication-page, .toc-page, .chapter {{
+{sheet_selectors} {{
   outline: 1.5px solid {edition.accent};
   outline-offset: -0.36in;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }}
 """
     elif b_style == "rules":
         border_css = f"""
-.titlepage, .chapter {{
+.titlepage, .part-page, .chapter, .backmatter-page {{
   border-top: 2px solid {edition.accent};
   border-bottom: 1px solid {edition.accent};
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }}
 """
 
@@ -322,6 +418,7 @@ def build_css(document, edition=None):
 }}
 
 @page :left {{
+  margin-left: {margin};
   margin-right: calc({margin} + {gutter});
   @top-left {{
     content: "{author}";
@@ -335,6 +432,7 @@ def build_css(document, edition=None):
 
 @page :right {{
   margin-left: calc({margin} + {gutter});
+  margin-right: {margin};
   @top-right {{
     content: "{title}";
     font-family: {edition.display_font};
@@ -345,7 +443,7 @@ def build_css(document, edition=None):
   }}
 }}
 
-/* Front matter carries no running heads or folios. */
+/* Front matter and part dividers carry no running heads or folios. */
 @page blank {{ @top-left {{ content: "" }} @top-right {{ content: "" }} @bottom-center {{ content: "" }} }}
 
 html {{
@@ -373,6 +471,20 @@ body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }}
+.also-by-page {{
+  page: blank;
+  page-break-after: always;
+  text-align: center;
+  padding-top: 1.8in;
+}}
+.also-by-page h2 {{
+  font-family: {edition.display_font};
+  font-size: 11pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 1.2em;
+}}
+.also-by-page p {{ text-indent: 0; margin: 0 0 0.55em; font-style: italic; }}
 .copyright-page {{
   page: blank;
   page-break-after: always;
@@ -382,14 +494,14 @@ body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
   padding-top: 4.2in;
 }}
 .copyright-page p {{ text-indent: 0; margin: 0 0 0.8em; }}
-.dedication-page {{
+.dedication-page, .epigraph-page {{
   page: blank;
   page-break-after: always;
   text-align: center;
   font-style: italic;
   padding-top: 2.4in;
 }}
-.dedication-page p {{ text-indent: 0; }}
+.dedication-page p, .epigraph-page p {{ text-indent: 0; margin: 0 auto 0.75em; max-width: 3.6in; }}
 .toc-page {{
   page: blank;
   page-break-after: always;
@@ -415,6 +527,14 @@ body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
   text-align: left;
   font-size: 10.5pt;
 }}
+.toc-page li.toc-part {{
+  font-family: {edition.display_font};
+  font-size: 9.5pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: {edition.accent};
+  margin: 1.1em 0 0.35em;
+}}
 .toc-page a {{
   color: inherit;
   text-decoration: none;
@@ -428,8 +548,35 @@ body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
   margin-right: 0.75em;
 }}
 
+.part-page {{
+  page: blank;
+  page-break-before: right;
+  page-break-after: always;
+  text-align: center;
+  padding-top: 2.8in;
+}}
+.part-page h1 {{
+  font-family: {edition.display_font};
+  font-size: 19pt;
+  font-weight: {edition.display_weight};
+  letter-spacing: {edition.display_tracking};
+  text-transform: {edition.display_transform};
+  color: {edition.accent};
+}}
+.part-divider {{
+  font-family: {edition.display_font};
+  font-size: 13pt;
+  letter-spacing: {edition.display_tracking};
+  text-transform: {edition.display_transform};
+  text-align: center;
+  text-indent: 0;
+  margin: 2em 0 1.2em;
+  color: {edition.accent};
+}}
+
 .chapter {{ page-break-before: right; }}
-.chapter h2 {{
+.backmatter-page {{ page: blank; page-break-before: always; padding-top: 1.2in; }}
+.chapter h2, .backmatter-page h2 {{
   font-family: {edition.display_font};
   font-size: 15pt;
   font-weight: {edition.display_weight};
@@ -442,6 +589,25 @@ body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
   break-after: avoid;
   page-break-after: avoid;
 }}
+.backmatter-page h2 {{ margin-top: 0.4in; margin-bottom: 1.4em; }}
+.backmatter-page p {{ text-indent: 0; margin: 0 0 0.85em; }}
+.newsletter-cta {{
+  margin: 1.8em auto 0;
+  padding: 1em 1.2em;
+  border: 1px solid {edition.accent};
+  text-align: center;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}}
+.newsletter-cta p {{ text-indent: 0; margin: 0 0 0.5em; text-align: center; }}
+.newsletter-cta p:last-child {{ margin-bottom: 0; }}
+.newsletter-cta .cta-link a {{
+  font-family: {edition.display_font};
+  color: {edition.accent};
+  text-decoration: none;
+  font-weight: bold;
+}}
+
 .chapter h3 {{
   font-size: 11.5pt;
   font-style: italic;
@@ -452,10 +618,10 @@ body {{ margin: 0; line-height: 1.42; text-align: justify; hyphens: auto; }}
 }}
 
 p {{ margin: 0; text-indent: 1.4em; orphans: 2; widows: 2; }}
-h2 + p, h3 + p, blockquote + p, .scene-break + p, .chapter-number + p, .opening {{ text-indent: 0; }}
+h2 + p, h3 + p, blockquote + p, ul + p, ol + p, aside + p, figure + p, .scene-break + p, .chapter-number + p, .part-divider + p, .opening {{ text-indent: 0; }}
 /* Small caps on the opening line only. Scoped to the sheet width so it can
    never run away across a full browser window. */
-h2 + p::first-line, .opening::first-line {{ font-variant: small-caps; letter-spacing: 0.04em; }}
+.chapter h2 + p::first-line, .opening::first-line {{ font-variant: small-caps; letter-spacing: 0.04em; }}
 
 .scene-break {{
   text-align: center;
@@ -468,6 +634,43 @@ h2 + p::first-line, .opening::first-line {{ font-variant: small-caps; letter-spa
    narrow measure would otherwise stretch its word spacing into visible rivers. */
 blockquote {{ margin: 1.2em 2.2em; font-size: 10.5pt; font-style: italic; text-align: left; }}
 blockquote p {{ text-indent: 0; }}
+ul, ol {{ margin: 0.9em 0 0.9em 2.2em; padding: 0; text-align: left; }}
+li {{ margin: 0.28em 0; }}
+.callout {{
+  margin: 1.2em 1.1em;
+  padding: 0.85em 1.1em;
+  border: 1px solid {edition.accent};
+  text-align: left;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}}
+.callout p {{ text-indent: 0; margin: 0 0 0.5em; }}
+.callout p:last-child {{ margin-bottom: 0; }}
+.callout-system {{
+  font-family: "Cascadia Mono", Consolas, "Courier New", monospace;
+  font-size: 9.5pt;
+  border: 1.5px solid {edition.accent};
+  background: rgba(128, 128, 128, 0.06);
+}}
+.callout-letter {{
+  font-style: italic;
+  border: none;
+  border-left: 2px solid {edition.accent};
+  padding: 0.35em 1.2em;
+}}
+.inline-figure {{
+  margin: 1.4em 0;
+  text-align: center;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}}
+.inline-figure img {{ max-width: 100%; max-height: 5.5in; height: auto; }}
+.inline-figure figcaption {{
+  margin-top: 0.45em;
+  font-size: 9.5pt;
+  font-style: italic;
+  color: #444;
+}}
 code {{ font-family: "Courier New", monospace; font-size: 9.5pt; }}
 {drop_cap}{chapter_rule}{chapter_number}{opener_art}{border_css}"""
 
@@ -478,31 +681,51 @@ def render(document, css_override=None, edition=None):
     meta = document.meta
     css = css_override if css_override is not None else build_css(document, edition)
 
+    front_sections = []
+    if str(meta.get("also_by", "") or "").strip():
+        author_heading = f"Also by {meta['author']}" if meta.get("author") else "Also by the Author"
+        also_paras = "\n  ".join(multiline_paragraphs(meta["also_by"]))
+        front_sections.append(
+            '<section class="also-by-page">\n'
+            f"  <h2>{inline.escape(author_heading)}</h2>\n"
+            f"  {also_paras}\n"
+            "</section>"
+        )
+
     title_bits = [f'  <h1>{inline.render(document.title)}</h1>']
     if meta.get("subtitle"):
         title_bits.append(f'  <p class="subtitle">{inline.render(meta["subtitle"])}</p>')
     title_bits.append(f'  <p class="author">{inline.escape(meta.get("author", ""))}</p>')
-
-    front_sections = [
+    front_sections.append(
         f'<section class="titlepage">\n{chr(10).join(title_bits)}\n</section>'
-    ]
-    copyright_line = _copyright_text(meta)
-    if copyright_line:
+    )
+
+    copyright_paras = _copyright_paragraphs(meta)
+    if copyright_paras:
         front_sections.append(
-            '<section class="copyright-page">\n'
-            f"  <p>{inline.render(copyright_line)}</p>\n"
-            "</section>"
+            '<section class="copyright-page">\n  '
+            + "\n  ".join(copyright_paras)
+            + "\n</section>"
         )
-    if meta.get("dedication"):
+    if str(meta.get("dedication", "") or "").strip():
+        ded_paras = "\n  ".join(multiline_paragraphs(meta["dedication"]))
         front_sections.append(
-            '<section class="dedication-page">\n'
-            f'  <p>{inline.render(str(meta["dedication"]))}</p>\n'
-            "</section>"
+            f'<section class="dedication-page">\n  {ded_paras}\n</section>'
         )
+    if str(meta.get("epigraph", "") or "").strip():
+        epi_paras = "\n  ".join(multiline_paragraphs(meta["epigraph"]))
+        front_sections.append(
+            f'<section class="epigraph-page">\n  {epi_paras}\n</section>'
+        )
+
     toc_setting = str(meta.get("toc", "true")).strip().lower()
     if document.has_real_chapters and len(document.chapters) > 1 and toc_setting not in ("false", "none", "no"):
         toc_rows = []
         for chapter in document.chapters:
+            if getattr(chapter, "part_title", None):
+                toc_rows.append(
+                    f'    <li class="toc-part">{inline.render(chapter.part_title)}</li>'
+                )
             num_span = (
                 f'<span class="toc-num">{chapter.display_number}.</span>'
                 if chapter.display_number is not None
@@ -522,8 +745,21 @@ def render(document, css_override=None, edition=None):
 
     scene_break = _scene_break_html(edition)
 
+    def _print_image_resolver(src):
+        local = resolve_image_path(src, document)
+        if local is not None and local.is_file():
+            return local.resolve().as_uri()
+        return src
+
     chapters = []
     for chapter in document.chapters:
+        if getattr(chapter, "part_title", None):
+            chapters.append(
+                '<section class="part-page">\n'
+                f"  <h1>{inline.render(chapter.part_title)}</h1>\n"
+                "</section>"
+            )
+
         opener = []
 
         if edition.art:
@@ -552,9 +788,12 @@ def render(document, css_override=None, edition=None):
             chapter.blocks, heading_level=3, indent="  ",
             scene_break=scene_break, drop_cap=edition.drop_cap,
             drop_cap_letter=getattr(edition, "drop_cap_letter", None),
+            image_resolver=_print_image_resolver,
         )
         inner = "\n".join(part for part in (opener + prose) if part)
         chapters.append(f'<section class="chapter">\n{inner}\n</section>')
+
+    back_sections = render_back_matter_sections(meta)
 
     trim_width, trim_height = _trim_dimensions(meta.get("trim", DEFAULT_TRIM))
     note = (
@@ -562,6 +801,8 @@ def render(document, css_override=None, edition=None):
         f"{trim_width} &times; {trim_height}. Each sheet below is one page. "
         "Print to PDF with margins set to None.</p>"
     )
+
+    back_block = ("\n\n" + "\n".join(back_sections)) if back_sections else ""
 
     return f"""<!DOCTYPE html>
 <html lang="{inline.escape_attr(meta.get('language', 'en'))}">
@@ -576,7 +817,7 @@ def render(document, css_override=None, edition=None):
 {note}
 {chr(10).join(front_sections)}
 
-{chr(10).join(chapters)}
+{chr(10).join(chapters)}{back_block}
 </body>
 </html>
 """

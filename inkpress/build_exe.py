@@ -147,9 +147,9 @@ def find_csc():
     return None
 
 
-def _csharp_source(fallback_dir, preferred_pythonw):
-    esc_dir = str(fallback_dir).replace("\\", "\\\\").replace('"', '\\"')
-    esc_pyw = str(preferred_pythonw).replace("\\", "\\\\").replace('"', '\\"')
+def _csharp_source(fallback_dir, preferred_pythonw, portable=False):
+    esc_dir = "" if portable else str(fallback_dir).replace("\\", "\\\\").replace('"', '\\"')
+    esc_pyw = "" if portable else str(preferred_pythonw).replace("\\", "\\\\").replace('"', '\\"')
     return f"""using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -160,8 +160,9 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-[assembly: AssemblyTitle("inkpress")]
-[assembly: AssemblyProduct("inkpress")]
+[assembly: AssemblyTitle("Inkpress Studio")]
+[assembly: AssemblyProduct("Inkpress Book Formatting Studio")]
+[assembly: AssemblyCompany("Built By Josh Studio")]
 [assembly: AssemblyVersion("1.0.0.0")]
 
 internal static class Program
@@ -231,13 +232,26 @@ internal static class Program
         string local = Path.Combine(baseDir, "inkpress_app.py");
         if (File.Exists(local)) return local;
 
-        string fallback = Path.Combine("{esc_dir}", "inkpress_app.py");
-        if (File.Exists(fallback)) return fallback;
+        string appSub = Path.Combine(baseDir, "app", "inkpress_app.py");
+        if (File.Exists(appSub)) return appSub;
+
+        if (!string.IsNullOrEmpty("{esc_dir}"))
+        {{
+            string fallback = Path.Combine("{esc_dir}", "inkpress_app.py");
+            if (File.Exists(fallback)) return fallback;
+        }}
         return null;
     }}
 
-    private static string FindPython()
+    private static string FindBundledPython()
     {{
+        string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+        string bundledRuntime = Path.Combine(baseDir, "runtime", "pythonw.exe");
+        if (File.Exists(bundledRuntime)) return bundledRuntime;
+
+        string bundledPy = Path.Combine(baseDir, "python", "pythonw.exe");
+        if (File.Exists(bundledPy)) return bundledPy;
+
         string preferred = "{esc_pyw}";
         if (!string.IsNullOrEmpty(preferred) && File.Exists(preferred)) return preferred;
         return "pythonw.exe";
@@ -289,7 +303,7 @@ internal static class Program
                 sb.Append(QuoteArg(a));
             }}
 
-            string[] candidates = new string[] {{ FindPython(), "pyw.exe", "pythonw.exe", "python.exe" }};
+            string[] candidates = new string[] {{ FindBundledPython(), "pyw.exe", "pythonw.exe", "python.exe" }};
             foreach (string exe in candidates)
             {{
                 try
@@ -335,7 +349,7 @@ internal static class Program
 """
 
 
-def build_exe(exe_path=EXE_PATH, ico_path=ICO_PATH):
+def build_exe(exe_path=EXE_PATH, ico_path=ICO_PATH, portable=False):
     """Generate inkpress.ico and compile inkpress.exe. Returns exe_path."""
     ico_path = write_icon(ico_path)
     exe_path = Path(exe_path)
@@ -350,7 +364,7 @@ def build_exe(exe_path=EXE_PATH, ico_path=ICO_PATH):
 
     with tempfile.TemporaryDirectory() as tmp:
         cs_file = Path(tmp) / "Launcher.cs"
-        cs_file.write_text(_csharp_source(HERE, preferred_pyw), encoding="utf-8")
+        cs_file.write_text(_csharp_source(HERE, preferred_pyw, portable=portable), encoding="utf-8")
         cmd = [
             csc,
             "/nologo",
