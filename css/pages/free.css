@@ -46,7 +46,7 @@
 .home-tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .home-tool-card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 2rem; display: flex; flex-direction: column; box-shadow: var(--shadow); transition: transform 0.25s, box-shadow 0.25s; }
 .home-tool-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-.home-tool-thumb { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; display: block; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 1.3rem; }
+.home-tool-thumb { width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; display: block; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 1.3rem; }
 .home-tool-card h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: var(--tynkr-text, var(--ink)); margin-bottom: 0.7rem; letter-spacing: -0.01em; }
 .home-tool-card p { font-family: var(--font-ui); font-size: 0.92rem; line-height: 1.65; color: var(--ink-2); margin-bottom: 1.6rem; flex: 1; }
 .home-tool-btn { align-self: flex-start; display: inline-block; background: var(--tynkr-accent, var(--accent)); color: var(--accent-ink); font-family: var(--font-ui); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 1.6rem; text-decoration: none; border: 1px solid var(--line); box-shadow: var(--shadow); transition: transform 0.15s, box-shadow 0.15s; }
