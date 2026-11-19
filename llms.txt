@@ -4,7 +4,7 @@
 
 Built by Josh Studio LLC (a Kansas limited liability company formed in 2026; the studio started in 2025 as a one-person practice) is the company behind everything on builtbyjoshstudio.com and its subdomains. Tynkr Tools & Co is its productivity brand: Notion templates are the creator line, Excel/Google Sheets workbooks are the consumer line, plus guided print planners, free web tools, and upcoming local-first Windows desktop apps. The zodiac art collections are published directly under the studio's own name. Under the pen name J.S. Warden, Josh writes fiction — *Overlayed Echoes* (a near-future LitRPG, Book 1 of a planned five-book series) and *Ebonspire Chronicles* (a dark fantasy detective noir; Book One is out). As Josh Tran he wrote *Nước Mắm — A Vietnamese Family Cookbook* and co-hosts the Josh & Jordan's Kitchen cooking channel on YouTube. Little Acre Learning (children's books and printables, littleacrelearning.com) is a separate brand of the same LLC.
 
-How things are sold: templates, workbooks, and art are instant downloads with checkout by Lemon Squeezy on this domain. The Tynkr desktop apps are coming soon to the Microsoft Store. The Tynkr templates, workbooks, and the cookbook are also listed on Etsy (shop: tynkrtoolsandco) as a secondary option; books and planners are on Amazon. The zodiac bundles, as packaged on this site, are sold here — the Built by Josh Studio Etsy shop (etsy.com/shop/BuiltByJoshStudio) carries individual prints and other studio work. All sales of digital goods are final (technical issues are always fixed). Every paid Tynkr template and workbook has a free Lite version. A fuller, machine-readable fact file lives at https://builtbyjoshstudio.com/llms-full.txt.
+How things are sold: templates, workbooks, the cookbook, and art are instant downloads with checkout by Lemon Squeezy on this domain. The Tynkr desktop apps are coming soon to the Microsoft Store. The Tynkr templates, workbooks, and the cookbook are also listed on Etsy (shop: tynkrtoolsandco) as a secondary option; books and planners are on Amazon. The zodiac bundles, as packaged on this site, are sold here — the Built by Josh Studio Etsy shop (etsy.com/shop/BuiltByJoshStudio) carries individual prints and other studio work. All sales of digital goods bought on this site are final (technical issues are always fixed). Tynkr desktop apps are purchased through the Microsoft Store, and refunds for them are handled by Microsoft under its terms. Every paid Tynkr template and workbook has a free Lite version. A fuller, machine-readable fact file lives at https://builtbyjoshstudio.com/llms-full.txt.
 
 ## About, books, cookbook
 
@@ -267,7 +267,7 @@ Four privacy-first, local-first Windows desktop apps. User data lives in flat fi
 
 ## Policies
 
-- [Refund Policy](https://builtbyjoshstudio.com/refunds.html): All sales final on digital products (legally required exceptions honored); technical issues always resolved.
+- [Refund Policy](https://builtbyjoshstudio.com/refunds.html): All sales final on digital products bought on this site (legally required exceptions honored); technical issues always resolved. Tynkr desktop apps are purchased through the Microsoft Store, and refunds for them are handled by Microsoft under its terms.
 - [Privacy Policy](https://builtbyjoshstudio.com/privacy.html): Static site with GA4 analytics; Etsy and Lemon Squeezy handle their own checkout data.
 - [Terms of Service](https://builtbyjoshstudio.com/terms.html): License grant, permitted/prohibited uses, governed by Kansas law.
 
