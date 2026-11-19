@@ -13,3 +13,8 @@
 .policy-page p { color: var(--ink-2); margin-bottom: 0.85rem; }
 .policy-page p:last-child { margin-bottom: 0; }
 .policy-page a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+/* The shared privacy policy body (also copied to tools.builtbyjoshstudio.com as /css/policy.css) */
+.policy-page .policy-body ul { list-style: disc; padding-left: 1.4rem; margin: 0 0 0.85rem; color: var(--ink-2); }
+.policy-page .policy-body li { margin-bottom: 0.5rem; }
+.policy-page .policy-body strong { color: var(--ink); }
+.policy-page .last-updated.meta { text-transform: none; letter-spacing: normal; font-weight: 400; }
