@@ -268,7 +268,7 @@ Four privacy-first, local-first Windows desktop apps. User data lives in flat fi
 ## Policies
 
 - [Refund Policy](https://builtbyjoshstudio.com/refunds.html): All sales final on digital products bought on this site (legally required exceptions honored); technical issues always resolved. Tynkr desktop apps are purchased through the Microsoft Store, and refunds for them are handled by Microsoft under its terms.
-- [Privacy Policy](https://builtbyjoshstudio.com/privacy.html): Static site with GA4 analytics; Etsy and Lemon Squeezy handle their own checkout data.
+- [Privacy Policy](https://builtbyjoshstudio.com/privacy.html): Static site with GA4 analytics; Etsy, Lemon Squeezy and the Microsoft Store handle their own checkout data; the Microsoft Store shares no buyer names or emails with us.
 - [Terms of Service](https://builtbyjoshstudio.com/terms.html): License grant, permitted/prohibited uses, governed by Kansas law.
 
 ## Contact
