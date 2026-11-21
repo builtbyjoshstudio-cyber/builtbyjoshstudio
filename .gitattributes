@@ -17,3 +17,8 @@
 *.mp4 binary
 *.mov binary
 *.webm binary
+
+# Text files served by the site: always LF, on every OS and autocrlf setting.
+*.css text eol=lf
+*.html text eol=lf
+*.js text eol=lf
