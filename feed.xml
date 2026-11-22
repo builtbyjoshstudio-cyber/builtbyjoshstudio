@@ -55,24 +55,6 @@
     <description>The 50/30/20 rule explained — what goes in each bucket, why it doesn't fit every cost of living, and the step most calculators skip: ideal vs. what you spend.</description>
   </item>
   <item>
-    <title>How to Convert Between Active Dry, Instant, and Fresh Yeast</title>
-    <link>https://builtbyjoshstudio.com/blog/yeast-converter.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/yeast-converter.html</guid>
-    <pubDate>Sun, 07 Jun 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>How to swap one yeast for another — the ratios, why active dry, instant, and fresh aren't interchangeable gram-for-gram, and how the swap affects your rise.</description>
-  </item>
-  <item>
-    <title>How to Actually Calculate the Cost Per Serving of a Recipe</title>
-    <link>https://builtbyjoshstudio.com/blog/cost-per-serving-calculator.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/cost-per-serving-calculator.html</guid>
-    <pubDate>Sun, 07 Jun 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>A step-by-step guide to what a dish really costs to make — package prices to per-serving math, waste allowances, and the mistakes that throw the number off.</description>
-  </item>
-  <item>
     <title>How to Track Etsy and Gumroad Income in Notion (Without a Spreadsheet Mess)</title>
     <link>https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html</link>
     <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html</guid>
@@ -82,69 +64,6 @@
     <description>Etsy and Gumroad pay on different schedules with different fees. How to track gross, fees, and real net per platform in Notion — and see what you really earned.</description>
   </item>
   <item>
-    <title>Why More Home Cooks Should Batch Broths: The Single Best Habit I've Ever Built</title>
-    <link>https://builtbyjoshstudio.com/blog/why-home-cooks-should-batch-broths.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/why-home-cooks-should-batch-broths.html</guid>
-    <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>Why batching broth weekly pays off for a home cook: real cost and time numbers, plus the techniques that make it work — fat removal, double-strain, demi-glace.</description>
-  </item>
-  <item>
-    <title>The Perfect Roast Pull Temp Calculator: When to Pull Brisket, Duck &amp; Venison Off the Heat</title>
-    <link>https://builtbyjoshstudio.com/blog/perfect-roast-pull-temp-calculator.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/perfect-roast-pull-temp-calculator.html</guid>
-    <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>Free carryover cooking calculator: the exact pull-from-heat temp for brisket, duck breast, venison, fish, and steak — resting handled. No signup, no ads.</description>
-  </item>
-  <item>
-    <title>Cook the Way You Want to Cook: A Home Cook's Case Against Culinary Purism</title>
-    <link>https://builtbyjoshstudio.com/blog/cook-the-way-you-want-to-cook.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/cook-the-way-you-want-to-cook.html</guid>
-    <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>A daily home cook's argument for cooking the way you want to cook. The only rules worth following are food safety and a few real technique rules. Everything else is yours.</description>
-  </item>
-  <item>
-    <title>The Baking Pan Swap Calculator: Why Pan Math Shouldn't Be a Guess</title>
-    <link>https://builtbyjoshstudio.com/blog/baking-pan-swap-calculator.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/baking-pan-swap-calculator.html</guid>
-    <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>Convert any recipe between pan sizes — square, round, rectangle, muffin tin, Bundt — with an instant scaling multiplier and bake-time warning. Free, no signup.</description>
-  </item>
-  <item>
-    <title>What I Actually Keep in My Kitchen: The Seven-Ingredient System Behind Daily Cooking</title>
-    <link>https://builtbyjoshstudio.com/blog/what-i-actually-keep-in-my-kitchen.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/what-i-actually-keep-in-my-kitchen.html</guid>
-    <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>The pantry list and broth-based weekly system that lets me cook from scratch every night. Plus the honest tired-night meals: fried bologna and scrambled eggs.</description>
-  </item>
-  <item>
-    <title>The Reverse Roasting Timeline Calculator: Why Cooking Math Is Harder Than It Looks</title>
-    <link>https://builtbyjoshstudio.com/blog/reverse-roasting-timeline-calculator.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/reverse-roasting-timeline-calculator.html</guid>
-    <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>Free calculator that tells you exactly when to start cooking based on your target dinner time — turkey, prime rib, pork shoulder, salmon, and more. No signup, no ads.</description>
-  </item>
-  <item>
-    <title>How I Make Phở at Home: The Two-Day Method, the Spinach Nobody Talks About, and Why I'm Not a Purist</title>
-    <link>https://builtbyjoshstudio.com/blog/how-i-make-pho-two-day-method.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/how-i-make-pho-two-day-method.html</guid>
-    <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>A home cook's two-day, stock-first phở bò — every step explained, honest non-traditional choices included (spinach in the bowl), plus a one-day shortcut.</description>
-  </item>
-  <item>
     <title>The 30-Minute Solopreneur Setup: A Free System for Tracking Your Business Without Subscriptions</title>
     <link>https://builtbyjoshstudio.com/blog/30-minute-solopreneur-setup-free-system.html</link>
     <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/30-minute-solopreneur-setup-free-system.html</guid>
@@ -152,15 +71,6 @@
     <dc:creator>Josh</dc:creator>
     <category>Templates &amp; Workbooks</category>
     <description>Build a solopreneur tracking system in 30 minutes with free Notion and spreadsheet templates — clients, money, content. No subscriptions, no email gates.</description>
-  </item>
-  <item>
-    <title>How I Actually Cook Rice: The Finger Method , the Rinse, and Why I Don't Use a Measuring Cup</title>
-    <link>https://builtbyjoshstudio.com/blog/how-i-cook-rice-finger-method.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/how-i-cook-rice-finger-method.html</guid>
-    <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>The Vietnamese finger method for rice-cooker water, from someone who has cooked rice a few thousand times. Jasmine rice, rice cooker, no measuring cup required.</description>
   </item>
   <item>
     <title>Free Home Buying Spreadsheet: Mortgage Affordability + Down Payment Calculator</title>
@@ -181,42 +91,6 @@
     <description>Why every Tynkr Tools &amp; Co paid template has a real free Lite version — and the difference between a Lite, a trial, a demo, and crippleware.</description>
   </item>
   <item>
-    <title>The Meat Thawing Planner: Real Thermodynamics, Real Food Safety, and the Step Holiday Cooks Get Wrong Most Often</title>
-    <link>https://builtbyjoshstudio.com/blog/meat-thawing-planner.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/meat-thawing-planner.html</guid>
-    <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>A free calculator for safe meat thawing using real protein-specific thermal math. Refrigerator and cold-water methods, USDA-compliant, with built-in food safety guardrails.</description>
-  </item>
-  <item>
-    <title>How I Learned to Cook: From Watching My Dad to Wrapping Gỏi Cuốn on a Tuesday</title>
-    <link>https://builtbyjoshstudio.com/blog/how-i-learned-to-cook.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/how-i-learned-to-cook.html</guid>
-    <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>Watching my dad cook most nights, the first dish I made alone at twelve, and why I still cook gỏi cuốn on weeknights — on learning to cook by absorbing it.</description>
-  </item>
-  <item>
-    <title>The Dough Hydration Calculator: Baker's Percentages, Flour Absorbency Math, and a Tool I Built Without Ever Baking My Own Bread</title>
-    <link>https://builtbyjoshstudio.com/blog/dough-hydration-calculator.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/dough-hydration-calculator.html</guid>
-    <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>Free baker's-percentage calculator for bread, pizza, pasta, and noodle dough — flour absorbency warnings, egg conversion for fresh pasta, kansui math for ramen.</description>
-  </item>
-  <item>
-    <title>The Brine Calculator: Precise Salt Math for Wet and Dry Brining</title>
-    <link>https://builtbyjoshstudio.com/blog/brine-calculator.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/brine-calculator.html</guid>
-    <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>Build notes on the brine calculator: why brining math matters, what it handles — salt type, protein weight, brine strength, time — and how it fits the kit.</description>
-  </item>
-  <item>
     <title>Free Budget Spreadsheet for Excel and Google Sheets: Try Before You Buy</title>
     <link>https://builtbyjoshstudio.com/blog/free-budget-spreadsheet-excel-google-sheets.html</link>
     <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/free-budget-spreadsheet-excel-google-sheets.html</guid>
@@ -224,15 +98,6 @@
     <dc:creator>Josh</dc:creator>
     <category>Templates &amp; Workbooks</category>
     <description>A real free budget spreadsheet for Excel and Google Sheets. Try the Lite version before upgrading — monthly tracking, January–December tabs, formatted and ready to use.</description>
-  </item>
-  <item>
-    <title>Building the Universal Recipe Scaler: A Local-First, Ad-Free Kitchen Utility</title>
-    <link>https://builtbyjoshstudio.com/blog/building-the-universal-recipe-scaler.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/building-the-universal-recipe-scaler.html</guid>
-    <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Kitchen &amp; Cooking</category>
-    <description>How I built a free, instant recipe scaler — vanilla HTML/CSS/JS, no backend, localStorage, JSON-LD — the regex problem, scale-lock logic, and the glass UI.</description>
   </item>
   <item>
     <title>Free Notion Templates for Creators: Try the Lite OS Stack</title>
