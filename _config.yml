@@ -1,3 +1,9 @@
 exclude:
   - HANDOFF.md
   - HANDOFF-*.md
+  - tools
+  - templates
+  - images/zodiac/western-signs-manifest.json
+  - images/zodiac/realms/manifest.json
+  - images/zodiac/chinese/manifest.json
+  - images/zodiac/chinese-realms/manifest.json
