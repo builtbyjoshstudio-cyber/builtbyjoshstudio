@@ -21,7 +21,7 @@ FEED_URL = SITE + "feed.xml"
 CHANNEL_TITLE = "The Studio Blog \u2014 Built by Josh Studio"
 CHANNEL_LINK = SITE + "blog.html"
 CHANNEL_DESC = ("Template walkthroughs, personal-finance and creator-business explainers, free-tool build notes, "
-                "food essays from the studio kitchen, and tabletop notes \u2014 from Built by Josh Studio LLC "
+                "and tabletop notes \u2014 from Built by Josh Studio LLC "
                 "(Tynkr Tools & Co).")
 CATEGORY = {"Templates": "Templates & Workbooks", "Learning": "Personal Finance & Creator Business",
             "Projects": "Kitchen & Cooking", "Money & Business": "Money & Business Tools", "Tabletop & RPG": "Tabletop & RPG"}

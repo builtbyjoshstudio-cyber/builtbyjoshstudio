@@ -4,10 +4,10 @@
   <title>The Studio Blog — Built by Josh Studio</title>
   <link>https://builtbyjoshstudio.com/blog.html</link>
   <atom:link href="https://builtbyjoshstudio.com/feed.xml" rel="self" type="application/rss+xml" />
-  <description>Template walkthroughs, personal-finance and creator-business explainers, free-tool build notes, food essays from the studio kitchen, and tabletop notes — from Built by Josh Studio LLC (Tynkr Tools &amp; Co).</description>
+  <description>Template walkthroughs, personal-finance and creator-business explainers, free-tool build notes, and tabletop notes — from Built by Josh Studio LLC (Tynkr Tools &amp; Co).</description>
   <language>en-us</language>
   <copyright>Built by Josh Studio LLC</copyright>
-  <lastBuildDate>Fri, 18 Sep 2026 00:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 19 Aug 2026 00:00:00 +0000</lastBuildDate>
   <generator>tools/blog_rss_build.py</generator>
   <item>
     <title>Free Tabletop RPG Tools: An Initiative Tracker and a Dice Roller for the Real Table</title>
