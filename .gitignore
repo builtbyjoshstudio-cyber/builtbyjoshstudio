@@ -1,0 +1,6 @@
+__pycache__/
+.netlify/
+tools/_*
+graphify-out/
+.claude/
+/CLAUDE.md
