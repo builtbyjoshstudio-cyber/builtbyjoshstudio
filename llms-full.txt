@@ -164,12 +164,13 @@ How things are sold: templates, workbooks, the cookbook, and art are instant dow
 
 ## Desktop apps — Tynkr Tools & Co (coming soon)
 
-Four privacy-first, local-first Windows desktop apps. User data lives in flat files on the user's machine — no cloud, no accounts, no subscriptions. Site: https://tynkr.builtbyjoshstudio.com/ (its own index: https://tynkr.builtbyjoshstudio.com/llms.txt)
+Five privacy-first, local-first Windows desktop apps. User data stays in files on the user's machine — no cloud, no accounts, no subscriptions. Site: https://tynkr.builtbyjoshstudio.com/ (its own index: https://tynkr.builtbyjoshstudio.com/llms.txt)
 
 - [Tynkr Ledger — Personal Finance OS](https://tynkr.builtbyjoshstudio.com/ledger/): Transactions, budgets, bills, debt payoff, and net worth on your own disk.
 - [Tynkr Vault — Second Brain OS](https://tynkr.builtbyjoshstudio.com/vault/): Notes, tasks, and weekly reviews as plain Markdown files you own, with fast fuzzy search.
 - [Tynkr Hearth — Homebuyer OS](https://tynkr.builtbyjoshstudio.com/hearth/): The whole home purchase, mapped — mortgage math, down payment planning, cash-to-close, roadmap, document tracker.
 - [Tynkr Forge — Small Business OS](https://tynkr.builtbyjoshstudio.com/forge/): Invoicing, CRM, purchase orders, contracts, expenses with receipts, and proposals in one app.
+- [Tynkr Inkpress — Book Formatting](https://tynkr.builtbyjoshstudio.com/inkpress/): Turn a manuscript into an EPUB 3 ebook, a KDP-sized print PDF and an author-site web page on your Windows PC — live previews, preflight checks, no account or telemetry.
 
 ## Beyond the studio
 
@@ -206,7 +207,7 @@ Email: josh@builtbyjoshstudio.com (the founder answers support directly)
 - Refunds: all sales on digital goods bought on this site are final (legally required exceptions honored); technical issues are always fixed. Free Lite versions let buyers try before buying. Tynkr desktop apps are purchased through the Microsoft Store, and refunds for them are handled by Microsoft under its terms.
 - Licensing: personal use; zodiac art may be printed for personal use and in limited runs — extended commercial runs need a license from the studio.
 - Free browser tools: three hubs (kitchen on cooking.builtbyjoshstudio.com; money & business on tools.builtbyjoshstudio.com; tabletop & RPG on writing.builtbyjoshstudio.com). Free, ad-free, local-first, no signup, nothing you type is collected.
-- Desktop apps (tynkr.builtbyjoshstudio.com): Tynkr Ledger, Vault, Hearth, Forge — privacy-first, local-first Windows apps (flat files, no cloud, no accounts, no subscriptions). Pre-launch; launch notifications via the Substack newsletter.
+- Desktop apps (tynkr.builtbyjoshstudio.com): Tynkr Ledger, Vault, Hearth, Forge, Inkpress — five privacy-first Windows apps (files on your machine, no cloud, no accounts, no subscriptions, no telemetry sent to us). Pre-launch; launch notifications via the Substack newsletter.
 - Analytics/infra: static GitHub Pages sites; GA4 only; no ads; no third-party trackers beyond analytics; AI crawlers are permitted (see robots.txt).
 
 ## Product fact sheets (pulled from each page's structured data)
