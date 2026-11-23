@@ -9,13 +9,11 @@ How things are sold: templates, workbooks, the cookbook, and art are instant dow
 ## About, books, cookbook
 
 - [About the studio and Josh](https://builtbyjoshstudio.com/about.html): Canonical About page: the founder's background, how the studio is organized (Built by Josh Studio LLC as the company, Tynkr Tools & Co as its productivity brand, zodiac art under the studio's own name, fiction as J.S. Warden, the cookbook as Josh Tran, Little Acre Learning for kids), both YouTube channels, and how to reach the studio.
-- [Books — J.S. Warden fiction](https://writing.builtbyjoshstudio.com/books/): Fiction under the pen name J.S. Warden — Overlayed Echoes (near-future LitRPG, Book 1 of a planned five-book series; Kindle $5.99, paperback $12.99, hardcover $23.99, free on Kindle Unlimited; Amazon B0H3826V21) and Ebonspire Chronicles (dark fantasy detective noir, Book One; Kindle $7.99 at https://www.amazon.com/dp/B0H8BRT4NF, free on Kindle Unlimited, paperback $14.99, hardcover $25.99; a completely separate world from Overlayed Echoes).
-- [Overlayed Echoes — free sample (Chapter One)](https://writing.builtbyjoshstudio.com/books/overlayed-echoes-preview/): The complete first chapter of Overlayed Echoes, the near-future LitRPG by J.S. Warden, free to read online with no sign-up. The full novel is on Amazon in Kindle, paperback and hardcover, and free on Kindle Unlimited.
-- [Ebonspire Chronicles — free sample (Chapter One)](https://writing.builtbyjoshstudio.com/books/ebonspire-chronicles-preview/): The complete first chapter of Ebonspire Chronicles, the dark fantasy detective noir by J.S. Warden, free to read online with no sign-up. The full novel is on Amazon in Kindle, paperback and hardcover, and free on Kindle Unlimited.
+- [Books — J.S. Warden fiction](https://writing.builtbyjoshstudio.com/books/): Fiction under the pen name J.S. Warden — Overlayed Echoes (near-future LitRPG, Book 1 of a planned five-book series; Kindle $5.99, paperback $12.99, hardcover $23.99, free on Kindle Unlimited; Amazon B0H3826V21) and Ebonspire Chronicles (dark fantasy detective noir, Book One; Kindle $7.99 at https://www.amazon.com/dp/B0H8BRT4NF, free on Kindle Unlimited, paperback $14.99, hardcover $25.99; a completely separate world from Overlayed Echoes). Writing site index: https://writing.builtbyjoshstudio.com/llms.txt.
 - [Nước Mắm — A Vietnamese Family Cookbook](https://cooking.builtbyjoshstudio.com/cookbook/): A 56-page Vietnamese family cookbook by Josh Tran (his own name, not the pen name) — fish sauce and core sauces, summer rolls, bún bowls, over-rice dishes, fried spring rolls, bánh mì, and a twelve-hour phở, balanced by tasting rather than measuring. $3.99 ebook (EPUB + PDF, instant download); also on Kindle at $3.99 (https://www.amazon.com/dp/B0HBCXTLWD) and on Etsy at $3.99 (https://www.etsy.com/listing/4551851115/nc-mm-vietnamese-family-cookbook-o). Paperback: $7.99 on Amazon (https://www.amazon.com/dp/B0HBL7HZYN; 80 pages, 5 x 8 in, ISBN 979-8188988173, published July 25, 2026). Companion cooking channel: Josh & Jordan's Kitchen on YouTube (https://www.youtube.com/@joshandjordanskitchen).
-- [Cooking — the Josh & Jordan's Kitchen hub](https://cooking.builtbyjoshstudio.com/): The cooking section landing page: cook-along videos (short version plus the full real-time cook), the Nước Mắm cookbook, fifteen kitchen essays and tool write-ups, and free kitchen calculators. The kitchen cooks by taste rather than by measurement.
+- [Cooking — the Josh & Jordan's Kitchen hub](https://cooking.builtbyjoshstudio.com/): The cooking section landing page: cook-along videos (short version plus the full real-time cook), the Nước Mắm cookbook, fifteen kitchen essays and tool write-ups, and free kitchen calculators. The kitchen cooks by taste rather than by measurement. Cooking site index: https://cooking.builtbyjoshstudio.com/llms.txt.
 - [Kitchen Videos — Josh & Jordan's Kitchen cooks](https://cooking.builtbyjoshstudio.com/videos/): Every cook from the Josh & Jordan's Kitchen YouTube channel in two versions: a short version embedded on the page, and a link to the full real-time cook with nothing sped up. Currently: Sugar Cookie Cups (same method as the chocolate chip cups, a well pressed into each cup while hot: 4-minute version, 10-minute full bake), Rotisserie Chicken Stock (from the breakdown's carcass, vegetables sweated before any liquid, 13 hours on low: 11-minute cut, 35-minute uncut cook), Chocolate Chip Cookie Cups (bite-sized, made from the cookie dough in a mini muffin pan: 6-minute version, 11-minute real-time bake), How to Break Down a Rotisserie Chicken With No Waste (5-minute version, 10-minute real-time breakdown; the first of five meals from one chicken), Chocolate Chip Cookie Dough (Jordan's first bake: under-3-minute version, 9-minute complete bake), Steak & Pepper Rice Bowls (15-minute cut, 27-minute real-time cook), Ground Beef Taco Bowls (15-minute cut, 28-minute real-time cook), How to Condition a Wood Cutting Board (2-minute everyday board care) and How to Oil an End Grain Cutting Board (5-minute deep-drink revival), Chunky Guacamole (3-minute sped-up version, 10-minute real-time cook), One-Skillet Spicy Sausage Hash (15-minute cut, 82-minute uncut) and Ground Beef Bulgogi Bowls (15-minute cut, 44-minute uncut). No measurements — the cooking is done by taste. Videos load only when clicked.
-- [Built by Josh Studio — home](https://builtbyjoshstudio.com/): The studio's front door: Tynkr Tools & Co templates and workbooks, free Lite versions, the zodiac art collections, planners, books, and the cookbook.
+- [Built by Josh Studio — home](https://builtbyjoshstudio.com/): The studio's front door: Tynkr Tools & Co templates and workbooks, free Lite versions, the zodiac art collections, and planners.
 
 ## Tynkr Tools & Co — Notion templates (creator line, $19.99 each; Full Stack $68.99)
 
@@ -34,7 +32,7 @@ How things are sold: templates, workbooks, the cookbook, and art are instant dow
 
 ## Free Lite versions
 
-- [Free Lite versions & free web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both workbooks ($0 on Lemon Squeezy — real working tools, no signup beyond checkout), plus the studio's free browser utilities at tools.builtbyjoshstudio.com, cooking.builtbyjoshstudio.com/tools/, and writing.builtbyjoshstudio.com/tabletop/. Each Lite includes a 35% upgrade discount toward the full version.
+- [Free Lite versions & free web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both workbooks ($0 on Lemon Squeezy — real working tools, no signup beyond checkout), plus the studio's free money & business browser tools at tools.builtbyjoshstudio.com. Each Lite includes a 35% upgrade discount toward the full version.
 
 ## Tynkr Tools & Co — Guided Series print planners (paperback on Amazon, PDF on Etsy)
 
@@ -143,56 +141,11 @@ How things are sold: templates, workbooks, the cookbook, and art are instant dow
 
 - [Resources — video briefings & deep dives](https://builtbyjoshstudio.com/resources/): Thirteen short YouTube briefings on the Tynkr templates and workbooks (Creator OS Full Stack, the budget and home-buying workbooks, launch and content-planning strategy, and five 'A Look Inside' Creator OS walkthroughs), embedded with transcript-style summaries.
 
-## Writing — Overlayed Echoes companion fiction (J.S. Warden)
-
-- [Field Dispatches — Overlayed Echoes companion fiction](https://writing.builtbyjoshstudio.com/writing/): In-world companion fiction for the novel Overlayed Echoes by J.S. Warden — short 'recovered log' pieces narrated by the five friends before, after, and long after the first session. They deepen the world and lead readers to the book.
-- [The Director's Voice: Five Things I Got Right Before We Started](https://writing.builtbyjoshstudio.com/writing/directors-voice.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — a game master's pride, and his quiet dread, in the hour before the first session.
-- [The Things I Let Go: Five Things I Noticed About My Brother Tonight](https://writing.builtbyjoshstudio.com/writing/the-things-i-let-go.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — what a sister sees in her brother in the hour before the first session.
-- [No Footnotes Required: Five Reasons This Is Going to Be Great, Probably, Shut Up](https://writing.builtbyjoshstudio.com/writing/no-footnotes-required.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — jokes as armor, and the friends who stopped asking, in the hour before the first session.
-- [Counting the Exits: Five Things I Checked Before I Let Us Begin](https://writing.builtbyjoshstudio.com/writing/counting-the-exits.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — the guardian counts the exits one last time before five friends step inside.
-- [The End of Worry: Five Things I'd Already Checked Twice](https://writing.builtbyjoshstudio.com/writing/end-of-worry.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — the medic runs her checklist one last time before the world starts.
-- [The Glitch in the Soul: Five Things We Learned When the Simulation Started Writing Back](https://writing.builtbyjoshstudio.com/writing/corruption-of-immersion.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — what five friends learned when the simulation started writing back.
-- [Seven Feet of Silver: Five Things About Being Seven Feet Tall](https://writing.builtbyjoshstudio.com/writing/seven-feet-of-silver.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — the careful guardian spends one night as a seven-foot war god, all five friends back in one room.
-- [Exactly As Designed: Five Things That Worked Exactly As Designed](https://writing.builtbyjoshstudio.com/writing/exactly-as-designed.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — the medic braced for the chip to fail; her checklist came up clean, so she put the clipboard down.
-- [The Dagger Flip: Five Reasons I Was Right and Kael Was Also Right, Don't Tell Him](https://writing.builtbyjoshstudio.com/writing/the-dagger-flip.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — the joker gets the dagger flip he begged for and friendly-fires his own teammate on a natural one.
-- [The Edge of My Chair: Five Things I Noticed From the Edge of My Chair](https://writing.builtbyjoshstudio.com/writing/edge-of-my-chair.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — the mage watches from the edge of her chair, cataloguing the gifts her brother hid in the code.
-- [The Load-Bearing Grin: Five Things I Told Myself Were Nothing](https://writing.builtbyjoshstudio.com/writing/load-bearing-grin.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — the game master lists five things he told himself were nothing, the night his world bent its own rules.
-- [The Questions I'm Saving Up](https://writing.builtbyjoshstudio.com/writing/the-questions-im-saving-up.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — the guardian stacks his questions and steps into the tunnel first, as the job he is for starts to slip.
-- [Try Again Later](https://writing.builtbyjoshstudio.com/writing/try-again-later.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — a healer meets the one thing she has never failed at, refusing her, mid-session in the dark.
-- [The Joke That Didn't Land](https://writing.builtbyjoshstudio.com/writing/the-joke-that-didnt-land.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — the glove comes off and the pain stays, and something walks around the wall of jokes like it is not there.
-- [What I Said to My Brother](https://writing.builtbyjoshstudio.com/writing/what-i-said-to-my-brother.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — a sister sees everything, says almost none of it, and keeps her brother's fear for him.
-- [The Bit Is the Only Load-Bearing Thing in the Building](https://writing.builtbyjoshstudio.com/writing/the-bit-is-load-bearing.html): An in-world dispatch from Overlayed Echoes, a near-future LitRPG by J.S. Warden — the game master's panic word fails, and the smile is the only wall left standing.
-
-### The five friends — character profiles
-
-- [Overlayed Echoes characters](https://writing.builtbyjoshstudio.com/writing/characters/): Profiles of the five friends — Kael, Theo, Angela, Marcus, and Lena — from the near-future LitRPG by J.S. Warden.
-- [Kael](https://writing.builtbyjoshstudio.com/writing/characters/kael.html): Meet Kael, the game master of Overlayed Echoes — the quiet one who holds the story together. From J.S. Warden's near-future LitRPG.
-- [Theo](https://writing.builtbyjoshstudio.com/writing/characters/theo.html): Meet Theo, the guardian of Overlayed Echoes — the one who stands in front. A character profile from J.S. Warden's near-future LitRPG.
-- [Angela](https://writing.builtbyjoshstudio.com/writing/characters/angela.html): Meet Angela, the healer of Overlayed Echoes — kind but sharp, a nurse who settles a room. A character profile from J.S. Warden's near-future LitRPG.
-- [Marcus](https://writing.builtbyjoshstudio.com/writing/characters/marcus.html): Meet Marcus, the trickster of Overlayed Echoes — chaos personified; he laughs so no one asks the next question. From J.S. Warden's near-future LitRPG.
-- [Lena](https://writing.builtbyjoshstudio.com/writing/characters/lena.html): Meet Lena, the mage of Overlayed Echoes — quiet, watchful, all explosive magic; Kael's sister. From J.S. Warden's near-future LitRPG.
-
 ## Free web tools (free, ad-free, local-first, no signup)
 
-- [Kitchen & cooking tools hub](https://cooking.builtbyjoshstudio.com/tools/): Kitchen calculators.
-- [Money & business tools hub](https://tools.builtbyjoshstudio.com/money/): Personal-finance and small-business calculators.
-- [Tabletop & RPG tools hub](https://writing.builtbyjoshstudio.com/tabletop/): Game-night tools.
-- [The tools' own index](https://tools.builtbyjoshstudio.com/llms.txt)
-
-### Kitchen & cooking
-
-- [Air Fryer Conversion Calculator](https://cooking.builtbyjoshstudio.com/tools/air-fryer-conversion-calculator/): Convert any oven recipe to air fryer settings — temperature, time, and when to check, tuned by food type. Fahrenheit or Celsius. Free, ad-free, no signup.
-- [Brine Calculator](https://cooking.builtbyjoshstudio.com/tools/brine-calculator/): Calculate wet or dry brines for turkey, chicken, pork, and more. Get precise salt amounts, water ratios, sugar options, and brining time recommendations.
-- [Cookware & Pan Guide](https://cooking.builtbyjoshstudio.com/tools/cookware-pan-guide/): Select the best cookware material and pan shape for any cooking task. Interactive advisor, material explorer, and care guidelines. Free, ad-free, local-first.
-- [Cost Per Serving Calculator](https://cooking.builtbyjoshstudio.com/tools/cost-per-serving-calculator/): Free cost per serving calculator. Enter what you used, the pack size, and the pack price to get total recipe cost and price per serving. No signup, no ads.
-- [Dough Hydration Calculator](https://cooking.builtbyjoshstudio.com/tools/dough-hydration-calculator/): Calculate dough hydration and baker's percentages for bread, pizza, and pasta. Get flour, water, and salt by weight with absorbency warnings. Free, ad-free.
-- [Meat Thawing Planner](https://cooking.builtbyjoshstudio.com/tools/meat-thawing-planner/): Calculate safe meat thawing times for turkey, chicken, beef, and pork using USDA fridge and cold-water methods, with food-safety warnings. Free and ad-free.
-- [Pan Swap Calculator](https://cooking.builtbyjoshstudio.com/tools/pan-swap-calculator/): Instantly convert cake recipes between muffin, Bundt, round, square, and rectangular pans. Get exact multipliers and bake-time warnings. Free and ad-free.
-- [Perfect Roast Pull Temp](https://cooking.builtbyjoshstudio.com/tools/perfect-roast-pull-temp-calculator/): Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.
-- [Recipe Nutrition Calculator](https://cooking.builtbyjoshstudio.com/tools/recipe-nutrition-calculator/): Paste ingredients to calculate per-serving calories, macronutrients, and generate an Estimated Nutrition Facts label. Free, ad-free, local-first.
-- [Pork Roast Cooking Time Calculator](https://cooking.builtbyjoshstudio.com/tools/reverse-roasting-calculator/): Pork roast cooking time, worked backward from dinner — enter a pork loin, shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.
-- [Universal Recipe Scaler](https://cooking.builtbyjoshstudio.com/tools/universal-recipe-scaler/): Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.
-- [Yeast Converter](https://cooking.builtbyjoshstudio.com/tools/yeast-converter/): Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards. Free, ad-free.
+- [Kitchen & cooking tools hub](https://cooking.builtbyjoshstudio.com/tools/): Kitchen calculators — [cooking site index](https://cooking.builtbyjoshstudio.com/llms.txt).
+- [Money & business tools hub](https://tools.builtbyjoshstudio.com/money/): Personal-finance and small-business calculators — [tools site index](https://tools.builtbyjoshstudio.com/llms.txt).
+- [Tabletop & RPG tools hub](https://writing.builtbyjoshstudio.com/tabletop/): Game-night tools — [writing site index](https://writing.builtbyjoshstudio.com/llms.txt).
 
 ### Money & business
 
@@ -208,20 +161,6 @@ How things are sold: templates, workbooks, the cookbook, and art are instant dow
 - [Quarterly Tax Estimator](https://tools.builtbyjoshstudio.com/quarterly-tax-estimator/): Estimate your quarterly self-employment tax payments — SE tax plus federal income tax from your expected profit, with all four due dates. Free, ad-free, no signup.
 - [Savings Goal Calculator](https://tools.builtbyjoshstudio.com/savings-goal-calculator/): See exactly when you'll hit a savings goal at your monthly pace — with interest counted — plus what to save per month to hit it in 1, 2, or 3 years. Free, ad-free, no signup.
 - [Take-Home Pay Calculator](https://tools.builtbyjoshstudio.com/take-home-pay-calculator/): See what your salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month. Free, ad-free, no signup.
-
-### Tabletop & RPG
-
-- [Character Name Generator](https://writing.builtbyjoshstudio.com/tabletop/character-name-generator/): Generate original fantasy character names in four styles — flowing, guttural, short, or noble. Six fresh names per click, keep the good ones. Free, ad-free.
-- [Dice Roller](https://writing.builtbyjoshstudio.com/tabletop/dice-roller/): Roll d4 to d100 with full dice notation — 3d6+2, 4d6 keep highest 3, advantage and disadvantage. Roll history included. Free, ad-free, no signup.
-- [Initiative Tracker](https://writing.builtbyjoshstudio.com/tabletop/initiative-tracker/): Track turn order, rounds, HP, and conditions for any tabletop RPG combat — D&D, Pathfinder, or any system. Saves between sessions. Free, ad-free, no signup.
-- [Loot Generator](https://writing.builtbyjoshstudio.com/tabletop/loot-generator/): Generate flavorful, system-free treasure in one click — objects with texture and history, no rules text. Perfect for any tabletop RPG. Free, ad-free.
-- [NPC Generator](https://writing.builtbyjoshstudio.com/tabletop/npc-generator/): Generate a complete NPC in one click — name, occupation, quirk, motivation, and a secret. Sends straight to your session notes. Free, ad-free, any system.
-- [Plot Hook Generator](https://writing.builtbyjoshstudio.com/tabletop/plot-hook-generator/): Generate one-line adventure hooks with a built-in twist — session starters for any tabletop RPG. One click, keep the good ones. Free, ad-free.
-- [Random Table Roller](https://writing.builtbyjoshstudio.com/tabletop/random-table-roller/): Paste or build your own random tables — d20 taverns, d100 loot — then roll on them with one tap. Weighted ranges, saved tables. Free, ad-free, no signup.
-- [Session Notes & NPC Log](https://writing.builtbyjoshstudio.com/tabletop/session-notes/): Keep session notes, NPC names, and loot for your TTRPG campaign — saved in your browser between sessions, exportable to Markdown. Free, ad-free, no signup.
-- [Tavern Generator](https://writing.builtbyjoshstudio.com/tabletop/tavern-generator/): Generate a complete fantasy tavern in one click — name, atmosphere, a patron worth talking to, tonight's rumor, and what's on the menu. Free, ad-free.
-- [Wargame Score Tracker](https://writing.builtbyjoshstudio.com/tabletop/wargame-score-tracker/): Track victory points, command points, secondaries, and battle rounds for two players in any miniature wargame. Saves mid-game. Free, ad-free, no signup.
-
 
 ## Desktop apps — Tynkr Tools & Co (coming soon)
 
@@ -284,14 +223,6 @@ Edition: EBook — $7.99 at https://www.amazon.com/dp/B0H8BRT4NF
 Edition: Paperback — $14.99 at https://www.amazon.com/dp/B0H8BH8BPZ (ISBN 979-8186602613)
 Edition: Hardcover — $25.99 at https://www.amazon.com/dp/B0H8C6YPGD (ISBN 979-8186608318)
 Amazon editions are sold and shipped by Amazon (Amazon's prices and policies apply).
-### Nước Mắm (book)
-URL: https://cooking.builtbyjoshstudio.com/cookbook/
-Author: Josh Tran
-Edition: EBook — $3.99 at https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3
-Edition: EBook — $3.99 at https://www.amazon.com/dp/B0HBCXTLWD
-Edition: Paperback — $7.99 at https://www.amazon.com/dp/B0HBL7HZYN (ISBN 979-8188988173)
-Amazon editions are sold and shipped by Amazon (Amazon's prices and policies apply).
-
 ### The Guided Wedding Planner (book)
 URL: https://builtbyjoshstudio.com/planners/guided-wedding-planner.html
 Author: Tynkr Tools & Co
