@@ -4,20 +4,11 @@
   <title>The Studio Blog — Built by Josh Studio</title>
   <link>https://builtbyjoshstudio.com/blog.html</link>
   <atom:link href="https://builtbyjoshstudio.com/feed.xml" rel="self" type="application/rss+xml" />
-  <description>Template walkthroughs, personal-finance and creator-business explainers, free-tool build notes, and tabletop notes — from Built by Josh Studio LLC (Tynkr Tools &amp; Co).</description>
+  <description>Template walkthroughs, personal-finance and creator-business explainers, and free-tool build notes — from Built by Josh Studio LLC (Tynkr Tools &amp; Co).</description>
   <language>en-us</language>
   <copyright>Built by Josh Studio LLC</copyright>
   <lastBuildDate>Wed, 19 Aug 2026 00:00:00 +0000</lastBuildDate>
   <generator>tools/blog_rss_build.py</generator>
-  <item>
-    <title>Free Tabletop RPG Tools: An Initiative Tracker and a Dice Roller for the Real Table</title>
-    <link>https://builtbyjoshstudio.com/blog/free-tabletop-rpg-tools.html</link>
-    <guid isPermaLink="true">https://builtbyjoshstudio.com/blog/free-tabletop-rpg-tools.html</guid>
-    <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
-    <dc:creator>Josh</dc:creator>
-    <category>Tabletop &amp; RPG</category>
-    <description>Free browser tabletop RPG tools: an initiative tracker that remembers your encounter between sessions and a full-notation dice roller. No ads, no signup.</description>
-  </item>
   <item>
     <title>How to Make a Professional Invoice (Free, No Signup)</title>
     <link>https://builtbyjoshstudio.com/blog/invoice-generator.html</link>

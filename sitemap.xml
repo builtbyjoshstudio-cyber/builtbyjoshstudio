@@ -20,24 +20,6 @@
   </url>
 
   <!-- BOOKS -->
-  <url>
-    <loc>https://builtbyjoshstudio.com/books.html</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/ebonspire-chronicles-preview.html</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/overlayed-echoes-preview.html</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
 
   <!-- GUIDED PLANNERS -->
   <url>
@@ -720,155 +702,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/blog/free-tabletop-rpg-tools.html</loc>
-    <lastmod>2026-08-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
 
   <!-- OVERLAYED ECHOES — FREE PREVIEW -->
 
   <!-- EBONSPIRE CHRONICLES — FREE PREVIEW -->
 
   <!-- FIELD DISPATCHES (writing) -->
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/</loc>
-    <lastmod>2026-08-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/directors-voice.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/the-things-i-let-go.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/no-footnotes-required.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/counting-the-exits.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/end-of-worry.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/corruption-of-immersion.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/seven-feet-of-silver.html</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/exactly-as-designed.html</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/the-dagger-flip.html</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/edge-of-my-chair.html</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/load-bearing-grin.html</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/the-questions-im-saving-up.html</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/try-again-later.html</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/the-joke-that-didnt-land.html</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/what-i-said-to-my-brother.html</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/the-bit-is-load-bearing.html</loc>
-    <lastmod>2026-08-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
   <!-- CHARACTERS (writing) -->
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/characters/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/characters/kael.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/characters/theo.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/characters/angela.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/characters/marcus.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://builtbyjoshstudio.com/writing/characters/lena.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
 </urlset>
