@@ -202,3 +202,7 @@ Disallow: /*.json$
 Allow: /
 
 Sitemap: https://builtbyjoshstudio.com/sitemap.xml
+
+# LLMs
+# https://builtbyjoshstudio.com/llms.txt
+# https://builtbyjoshstudio.com/llms-full.txt

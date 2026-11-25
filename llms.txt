@@ -1,197 +1,114 @@
 # Built by Josh Studio
 
-> Built by Josh Studio LLC is a one-person creative studio in Kansas. It publishes Notion OS templates and Excel/Google Sheets workbooks under its Tynkr Tools & Co brand, zodiac digital art under its own name, fiction as J.S. Warden, the Nước Mắm cookbook as Josh Tran, guided print planners, and a suite of free browser tools — all built by a single founder.
+> Creative & technical studio in Kansas — built from the ground up by one person (Josh): Tynkr Tools & Co Notion OS templates, Excel + Google Sheets workbooks, The Guided Series print planners, Tynkr local-first Windows desktop apps, zodiac digital art print bundles, J.S. Warden fiction, the Nước Mắm cookbook, Josh & Jordan's Kitchen videos, and free browser utilities.
 
-Built by Josh Studio LLC (a Kansas limited liability company formed in 2026; the studio started in 2025 as a one-person practice) is the company behind everything on builtbyjoshstudio.com and its subdomains. Tynkr Tools & Co is its productivity brand: Notion templates are the creator line, Excel/Google Sheets workbooks are the consumer line, plus guided print planners, free web tools, and upcoming local-first Windows desktop apps. The zodiac art collections are published directly under the studio's own name. Under the pen name J.S. Warden, Josh writes fiction — *Overlayed Echoes* (a near-future LitRPG, Book 1 of a planned five-book series) and *Ebonspire Chronicles* (a dark fantasy detective noir; Book One is out). As Josh Tran he wrote *Nước Mắm — A Vietnamese Family Cookbook* and co-hosts the Josh & Jordan's Kitchen cooking channel on YouTube. Little Acre Learning (children's books and printables, littleacrelearning.com) is a separate brand of the same LLC.
+## About & Authority
 
-How things are sold: templates, workbooks, the cookbook, and art are instant downloads with checkout by Lemon Squeezy on this domain (the cookbook on cooking.builtbyjoshstudio.com). The Tynkr desktop apps are coming soon to the Microsoft Store. The Tynkr templates, workbooks, and the cookbook are also listed on Etsy (shop: tynkrtoolsandco) as a secondary option; books and planners are on Amazon. The zodiac bundles, as packaged on this site, are sold here — the Built by Josh Studio Etsy shop (etsy.com/shop/BuiltByJoshStudio) carries individual prints and other studio work. All sales of digital goods bought on this site are final (technical issues are always fixed). Tynkr desktop apps are purchased through the Microsoft Store, and refunds for them are handled by Microsoft under its terms. Every paid Tynkr template and workbook has a free Lite version. A fuller, machine-readable fact file lives at https://builtbyjoshstudio.com/llms-full.txt.
+- **Legal entity**: Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138), formed in 2026; studio began in 2025.
+- **Founder**: Josh — solo developer, author, designer, and support contact across all studio lines. `support@builtbyjoshstudio.com` is answered directly by the founder.
+- **Studio network (five canonical sites)**:
+  - Root commerce, templates, planners, zodiac art & blog: https://builtbyjoshstudio.com/
+  - Desktop apps (Tynkr Tools & Co): https://tynkr.builtbyjoshstudio.com/ (index: https://tynkr.builtbyjoshstudio.com/llms.txt)
+  - Cooking, recipes, cookbook & kitchen tools: https://cooking.builtbyjoshstudio.com/ (index: https://cooking.builtbyjoshstudio.com/llms.txt)
+  - Money & business browser tools: https://tools.builtbyjoshstudio.com/money/ (index: https://tools.builtbyjoshstudio.com/llms.txt)
+  - Fiction by J.S. Warden & tabletop RPG tools: https://writing.builtbyjoshstudio.com/ (index: https://writing.builtbyjoshstudio.com/llms.txt)
+- **Full studio index**: https://builtbyjoshstudio.com/llms-full.txt (includes complete product fact sheets and visible FAQs).
+- **Primary pages on this site**:
+  - [Home](https://builtbyjoshstudio.com/)
+  - [Products Hub](https://builtbyjoshstudio.com/products/)
+  - [Guided Planners Hub](https://builtbyjoshstudio.com/planners/)
+  - [Zodiac Art Collections](https://builtbyjoshstudio.com/collections/)
+  - [Free Lite Versions & Tools](https://builtbyjoshstudio.com/free/)
+  - [Studio Blog](https://builtbyjoshstudio.com/blog.html) · [RSS](https://builtbyjoshstudio.com/feed.xml)
+  - [Resources](https://builtbyjoshstudio.com/resources/)
+  - [About](https://builtbyjoshstudio.com/about.html)
+  - [Legal Hub](https://builtbyjoshstudio.com/legal/)
 
-## About, books, cookbook
+## Studio Catalog Matrices (At-a-Glance)
 
-- [About the studio and Josh](https://builtbyjoshstudio.com/about.html): Canonical About page: the founder's background, how the studio is organized (Built by Josh Studio LLC as the company, Tynkr Tools & Co as its productivity brand, zodiac art under the studio's own name, fiction as J.S. Warden, the cookbook as Josh Tran, Little Acre Learning for kids), both YouTube channels, and how to reach the studio.
-- [Books — J.S. Warden fiction](https://writing.builtbyjoshstudio.com/books/): Fiction under the pen name J.S. Warden — Overlayed Echoes (near-future LitRPG, Book 1 of a planned five-book series; Kindle $5.99, paperback $12.99, hardcover $23.99, free on Kindle Unlimited; Amazon B0H3826V21) and Ebonspire Chronicles (dark fantasy detective noir, Book One; Kindle $7.99 at https://www.amazon.com/dp/B0H8BRT4NF, free on Kindle Unlimited, paperback $14.99, hardcover $25.99; a completely separate world from Overlayed Echoes). Writing site index: https://writing.builtbyjoshstudio.com/llms.txt.
-- [Nước Mắm — A Vietnamese Family Cookbook](https://cooking.builtbyjoshstudio.com/cookbook/): A 56-page Vietnamese family cookbook by Josh Tran (his own name, not the pen name) — fish sauce and core sauces, summer rolls, bún bowls, over-rice dishes, fried spring rolls, bánh mì, and a twelve-hour phở, balanced by tasting rather than measuring. $3.99 ebook (EPUB + PDF, instant download); also on Kindle at $3.99 (https://www.amazon.com/dp/B0HBCXTLWD) and on Etsy at $3.99 (https://www.etsy.com/listing/4551851115/nc-mm-vietnamese-family-cookbook-o). Paperback: $7.99 on Amazon (https://www.amazon.com/dp/B0HBL7HZYN; 80 pages, 5 x 8 in, ISBN 979-8188988173, published July 25, 2026). Companion cooking channel: Josh & Jordan's Kitchen on YouTube (https://www.youtube.com/@joshandjordanskitchen).
-- [Cooking — the Josh & Jordan's Kitchen hub](https://cooking.builtbyjoshstudio.com/): The cooking section landing page: cook-along videos (short version plus the full real-time cook), the Nước Mắm cookbook, fifteen kitchen essays and tool write-ups, and free kitchen calculators. The kitchen cooks by taste rather than by measurement. Cooking site index: https://cooking.builtbyjoshstudio.com/llms.txt.
-- [Kitchen Videos — Josh & Jordan's Kitchen cooks](https://cooking.builtbyjoshstudio.com/videos/): Every cook from the Josh & Jordan's Kitchen YouTube channel in two versions: a short version embedded on the page, and a link to the full real-time cook with nothing sped up. Currently: Sugar Cookie Cups (same method as the chocolate chip cups, a well pressed into each cup while hot: 4-minute version, 10-minute full bake), Rotisserie Chicken Stock (from the breakdown's carcass, vegetables sweated before any liquid, 13 hours on low: 11-minute cut, 35-minute uncut cook), Chocolate Chip Cookie Cups (bite-sized, made from the cookie dough in a mini muffin pan: 6-minute version, 11-minute real-time bake), How to Break Down a Rotisserie Chicken With No Waste (5-minute version, 10-minute real-time breakdown; the first of five meals from one chicken), Chocolate Chip Cookie Dough (Jordan's first bake: under-3-minute version, 9-minute complete bake), Steak & Pepper Rice Bowls (15-minute cut, 27-minute real-time cook), Ground Beef Taco Bowls (15-minute cut, 28-minute real-time cook), How to Condition a Wood Cutting Board (2-minute everyday board care) and How to Oil an End Grain Cutting Board (5-minute deep-drink revival), Chunky Guacamole (3-minute sped-up version, 10-minute real-time cook), One-Skillet Spicy Sausage Hash (15-minute cut, 82-minute uncut) and Ground Beef Bulgogi Bowls (15-minute cut, 44-minute uncut). No measurements — the cooking is done by taste. Videos load only when clicked.
-- [Built by Josh Studio — home](https://builtbyjoshstudio.com/): The studio's front door: Tynkr Tools & Co templates and workbooks, free Lite versions, the zodiac art collections, and planners.
+### Tynkr Tools & Co — Notion Templates (Creator OS Line)
 
-## Tynkr Tools & Co — Notion templates (creator line, $19.99 each; Full Stack $68.99)
+All five Creator OS templates work on the free version of Notion, ship with instant download and lifetime updates, and offer $0 Lite versions with an upgrade discount inside the downloaded files.
 
-- [Creator Business OS](https://builtbyjoshstudio.com/products/creator-business-os.html): Notion CRM for solo creators — contacts, leads, deals, deliverables, invoices. One-time $19.99. Free Lite version available.
-- [Creator Content OS](https://builtbyjoshstudio.com/products/creator-content-os.html): Notion content planning system — library, pipeline, calendar, repurposing, performance tracking. One-time $19.99. Free Lite version available.
-- [Creator Finance OS](https://builtbyjoshstudio.com/products/creator-finance-os.html): Notion finance tracker for creators — revenue, expenses, budgets, debt payoff, tax estimates. One-time $19.99. Free Lite version available.
-- [Creator Launch OS](https://builtbyjoshstudio.com/products/creator-launch-os.html): Notion launch planner with a six-phase workflow for product launches. One-time $19.99. Free Lite version available.
-- [Creator Product OS](https://builtbyjoshstudio.com/products/creator-product-os.html): Notion product catalog — files, listings across platforms, bundles, version log, support tracking. One-time $19.99. Free Lite version available.
-- [Creator OS Full Stack](https://builtbyjoshstudio.com/products/creator-os-full-stack.html): All five Creator OS Notion templates bundled for $68.99 — $30.96 less than the five separately at $19.99 each. A free Sampler is offered on this page.
+| Product | One-Time Price | Focus | URL |
+|---|---|---|---|
+| Creator Content OS | $19.99 | 7 connected workspaces (Library, Pipeline, Calendar, Campaigns, Repurposing, Assets, Performance) | https://builtbyjoshstudio.com/products/creator-content-os.html |
+| Creator Business OS | $19.99 | Solo creator & freelancer CRM (contacts, leads, deals, clients, deliverables, offers, invoices) | https://builtbyjoshstudio.com/products/creator-business-os.html |
+| Creator Finance OS | $19.99 | Revenue, expenses, budgets, savings goals, debt payoff, quarterly tax estimator | https://builtbyjoshstudio.com/products/creator-finance-os.html |
+| Creator Launch OS | $19.99 | 6-phase launch workflow, tasks, assets, promo content, live command center | https://builtbyjoshstudio.com/products/creator-launch-os.html |
+| Creator Product OS | $19.99 | Digital product catalog, files, multi-platform listings, bundles, version history, support log | https://builtbyjoshstudio.com/products/creator-product-os.html |
+| Creator OS Full Stack | $68.99 | All 5 standalone Creator OS workspaces in one bundle (saves $30.96 off $99.95 total) | https://builtbyjoshstudio.com/products/creator-os-full-stack.html |
 
-## Tynkr Tools & Co — Excel + Google Sheets workbooks (consumer line, $22.99 each)
+### Tynkr Tools & Co — Spreadsheet Workbooks (Consumer Line)
 
-- [Ultimate Budget Workbook](https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html): 23-tab Excel + Google Sheets budget system with sinking funds, debt payoff, net worth tracker, 50/30/20 analyzer. One-time $22.99 (both platforms in one bundle). Free Lite version available.
-- [Home Buying & Mortgage Workbook](https://builtbyjoshstudio.com/products/home-buying-mortgage-workbook.html): 15-tab home buying spreadsheet with affordability analysis, amortization, rent vs buy break-even, closing-cost estimator. Excel + Google Sheets, one-time $22.99. Free Lite version available.
-- [Products index — Tynkr Tools & Co](https://builtbyjoshstudio.com/products/): All paid Tynkr templates and workbooks in one place: five Creator OS Notion templates ($19.99 each), the Creator OS Full Stack bundle ($68.99), and the two Excel + Google Sheets workbooks ($22.99 each).
+Every workbook ships as one combined bundle containing both Excel and Google Sheets formats (no single-platform editions).
 
-## Free Lite versions
+| Workbook | One-Time Price | Tabs | Core Coverage | URL |
+|---|---|---|---|---|
+| Ultimate Budget Workbook | $22.99 | 23 | Control Panel, dashboard, monthly budgets, bills, debt payoff, sinking funds, net worth, 50/30/20 | https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html |
+| Home Buying & Mortgage Workbook | $22.99 | 15 | Affordability, DTI, rent vs. buy, 3-loan comparison, amortization, closing costs, home scorer | https://builtbyjoshstudio.com/products/home-buying-mortgage-workbook.html |
 
-- [Free Lite versions & free web tools](https://builtbyjoshstudio.com/free/): Free Lite versions of all five Creator OS Notion templates and both workbooks ($0 on Lemon Squeezy — real working tools, no signup beyond checkout), plus the studio's free money & business browser tools at tools.builtbyjoshstudio.com. Each Lite includes a 35% upgrade discount toward the full version.
+### Free Lite Versions
 
-## Tynkr Tools & Co — Guided Series print planners (paperback on Amazon, PDF on Etsy)
+- [Free Lite Hub](https://builtbyjoshstudio.com/free/): $0 email-delivered Lite editions of every Creator OS Notion template and spreadsheet workbook via Lemon Squeezy, each carrying a 35% upgrade discount code inside the downloaded files.
 
-- [Guided Series planners index](https://builtbyjoshstudio.com/planners/): All Guided Series paperbacks — undated 8.5 x 11 guided workbooks, print companions to the digital tools. Paperbacks on Amazon; print-it-yourself PDFs on Etsy.
-- [The Guided Budget Planner](https://builtbyjoshstudio.com/planners/guided-budget-planner.html): Undated 12-month expense tracker, bill organizer & debt payoff workbook. $14.99 paperback on Amazon (B0H6ZQ8K5S); $7.99 print-it-yourself PDF on Etsy.
-- [The Guided Home Buying Workbook](https://builtbyjoshstudio.com/planners/guided-home-buying-workbook.html): Undated first-time buyer's companion — affordability, mortgage, closing & new-owner costs. $12.99 paperback on Amazon (B0H6WLQYTN); $7.99 PDF on Etsy.
-- [The Guided Wedding Planner](https://builtbyjoshstudio.com/planners/guided-wedding-planner.html): Undated couple's companion — budget, guest list, vendors, timeline & day-of. $12.99 paperback on Amazon (B0H6RCRT65); $7.99 PDF on Etsy.
-- [The Guided Debt Payoff Planner](https://builtbyjoshstudio.com/planners/guided-debt-payoff-planner.html): Undated snowball & avalanche workbook — balance trackers, monthly check-ins & progress charts. $12.99 paperback on Amazon (B0H7CDKJ3X); $7.99 PDF on Etsy.
-- [The Guided Savings Planner](https://builtbyjoshstudio.com/planners/guided-savings-planner.html): Undated money challenge workbook — 52-week, 100-envelope & no-spend trackers plus an emergency fund plan. $12.99 paperback on Amazon (B0H8DNCHY1); $7.99 print-it-yourself PDF on Etsy.
+### Tynkr Tools & Co — The Guided Series Print Planners
 
-## Zodiac art — Built by Josh Studio (instant digital downloads, sold on this site)
+Undated 8.5 × 11 inch paperbacks printed on demand by Amazon, with printable $7.99 PDF editions on Etsy.
 
-- [Zodiac art collections — index](https://builtbyjoshstudio.com/collections/): Western zodiac signs, Western Realms, Chinese zodiac animals, and the all-in-one landscape bundles. Per-sign Western bundles $10.99; per-sign Western Realms $7.99; per-animal Chinese bundles $6.99; all-in-one Chinese Zodiac Realms $10.99; all-in-one Western Landscapes $7.99. Instant digital download; sold on this site.
-- [Chinese zodiac art — all 12 animals](https://builtbyjoshstudio.com/collections/chinese-zodiac-art.html): Hub for the 12 Chinese zodiac animal bundles (Rat through Pig) rendered as Lunar Guardians — $6.99 per animal, plus the all-in-one Chinese Zodiac Realms bundle at $10.99.
+| Planner | Pages | Paperback (Amazon) | PDF (Etsy) | URL |
+|---|---|---|---|---|
+| The Guided Budget Planner | 150 | $14.99 | $7.99 | https://builtbyjoshstudio.com/planners/guided-budget-planner.html |
+| The Guided Debt Payoff Planner | 98 | $12.99 | $7.99 | https://builtbyjoshstudio.com/planners/guided-debt-payoff-planner.html |
+| The Guided Home Buying Workbook | 101 | $12.99 | $7.99 | https://builtbyjoshstudio.com/planners/guided-home-buying-workbook.html |
+| The Guided Savings Planner | 98 | $12.99 | $7.99 | https://builtbyjoshstudio.com/planners/guided-savings-planner.html |
+| The Guided Wedding Planner | 97 | $12.99 | $7.99 | https://builtbyjoshstudio.com/planners/guided-wedding-planner.html |
 
-### Western zodiac sign bundles ($10.99 per sign)
+### Zodiac Art — Digital Print Bundles (Built by Josh Studio)
 
-- [Aries Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/aries-zodiac-art.html): Aries wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
-- [Taurus Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/taurus-zodiac-art.html): Taurus wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
-- [Gemini Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/gemini-zodiac-art.html): Gemini wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
-- [Cancer Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/cancer-zodiac-art.html): Cancer wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
-- [Libra Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/libra-zodiac-art.html): Libra wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
-- [Leo Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/leo-zodiac-art.html): Leo wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
-- [Virgo Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/virgo-zodiac-art.html): Virgo wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
-- [Scorpio Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/scorpio-zodiac-art.html): Scorpio wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
-- [Sagittarius Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/sagittarius-zodiac-art.html): Sagittarius wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
-- [Aquarius Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/aquarius-zodiac-art.html): Aquarius wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
-- [Pisces Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/pisces-zodiac-art.html): Pisces wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
-- [Capricorn Zodiac Art Bundle — 144 Print-Ready Files](https://builtbyjoshstudio.com/collections/capricorn-zodiac-art.html): Capricorn wall art & zodiac art prints — 144 print-ready files, 14 art styles, 24 designs. Instant download for $10.99, print-on-demand license included.
+Instant-download 300 DPI PNG + JPG files (1:1, 4:5, 2:3 print ratios, up to 6000 × 9000 px, sRGB) with personal use + limited POD up to 100 prints per design.
 
-### Western Realms — landscape bundles ($7.99 per sign)
+| Collection Line | Scope | Files | Price | Entry Page |
+|---|---|---|---|---|
+| Western Zodiac Sign Bundles | 12 individual signs (Aries–Pisces) | 144 files / sign (24 designs, 14 styles) | $10.99 / sign | https://builtbyjoshstudio.com/collections/aries-zodiac-art.html |
+| Western Realms Bundles | 12 individual signs (Aries–Pisces) | 48 files / sign (4 realms × 2 variants) | $7.99 / sign | https://builtbyjoshstudio.com/collections/aries-zodiac-realms.html |
+| Chinese Zodiac Lunar Guardians | 12 individual animals (Rat–Pig) | 48 files / animal (8 designs, 2 styles) | $6.99 / animal | https://builtbyjoshstudio.com/collections/chinese-zodiac-art.html |
+| Chinese Zodiac Realms Collection | All 12 animals combined | 144 files (24 designs across 12 realms) | $10.99 bundle | https://builtbyjoshstudio.com/collections/chinese-zodiac-realms.html |
+| Western Landscapes Collection | All 12 Western signs combined | 72 files (12 oil-painted mythic realms) | $7.99 bundle | https://builtbyjoshstudio.com/collections/zodiac-landscapes.html |
 
-- [Aries Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/aries-zodiac-realms.html): Aries Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
-- [Taurus Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/taurus-zodiac-realms.html): Taurus Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
-- [Gemini Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/gemini-zodiac-realms.html): Gemini Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
-- [Cancer Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/cancer-zodiac-realms.html): Cancer Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
-- [Leo Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/leo-zodiac-realms.html): Leo Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
-- [Virgo Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/virgo-zodiac-realms.html): Virgo Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
-- [Libra Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/libra-zodiac-realms.html): Libra Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
-- [Scorpio Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/scorpio-zodiac-realms.html): Scorpio Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
-- [Sagittarius Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/sagittarius-zodiac-realms.html): Sagittarius Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
-- [Capricorn Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/capricorn-zodiac-realms.html): Capricorn Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
-- [Aquarius Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/aquarius-zodiac-realms.html): Aquarius Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
-- [Pisces Western Realms Bundle — 48 Print-Ready Landscape Files](https://builtbyjoshstudio.com/collections/pisces-zodiac-realms.html): Pisces Western Realms art — 4 landscape realm designs, 2 variants each, 48 print-ready files. Instant download for $7.99, print-on-demand license included.
+## Desktop Apps — Tynkr Tools & Co
 
-### Chinese zodiac animal bundles ($6.99 per animal)
+Privacy-first, local-first Windows desktop software (data stays in local files on your machine — no cloud, no accounts, no subscriptions; pay-once model through the Microsoft Store). Full documentation and suite comparison: https://tynkr.builtbyjoshstudio.com/
 
-- [Rat Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/rat-chinese-zodiac-art.html): Year of the Rat art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
-- [Ox Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/ox-chinese-zodiac-art.html): Year of the Ox art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
-- [Tiger Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/tiger-chinese-zodiac-art.html): Year of the Tiger art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
-- [Rabbit Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/rabbit-chinese-zodiac-art.html): Year of the Rabbit art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
-- [Dragon Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/dragon-chinese-zodiac-art.html): Year of the Dragon art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
-- [Snake Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/snake-chinese-zodiac-art.html): Year of the Snake art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
-- [Horse Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/horse-chinese-zodiac-art.html): Year of the Horse art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
-- [Goat Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/goat-chinese-zodiac-art.html): Year of the Goat art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
-- [Monkey Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/monkey-chinese-zodiac-art.html): Year of the Monkey art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
-- [Rooster Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/rooster-chinese-zodiac-art.html): Year of the Rooster art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
-- [Dog Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/dog-chinese-zodiac-art.html): Year of the Dog art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
-- [Pig Chinese Zodiac Art Bundle — 48 Print-Ready Files](https://builtbyjoshstudio.com/collections/pig-chinese-zodiac-art.html): Year of the Pig art prints — 48 print-ready files, 2 art styles, 8 original designs. Instant download for $6.99, print-on-demand license included.
+- [Tynkr Ledger — Personal Finance OS](https://tynkr.builtbyjoshstudio.com/ledger/): Local-first budgeting, transaction ledger, bills, debt payoff, and net worth tracking.
+- [Tynkr Vault — Second Brain OS](https://tynkr.builtbyjoshstudio.com/vault/): Local-first Markdown notes, tasks, tags, and fast fuzzy search on your own disk.
+- [Tynkr Hearth — Homebuyer OS](https://tynkr.builtbyjoshstudio.com/hearth/): Local-first mortgage comparison, down payment tracking, cash-to-close math, roadmap, and document checklist.
+- [Tynkr Forge — Small Business OS](https://tynkr.builtbyjoshstudio.com/forge/): Local-first invoicing, CRM, purchase orders, contracts, expenses, and proposals in one workspace.
+- [Tynkr Inkpress — Book Formatting](https://tynkr.builtbyjoshstudio.com/inkpress/): Turn a manuscript into an EPUB 3 ebook, KDP print PDF, and author-site web page on Windows — no cloud, no accounts, no subscriptions.
 
-### All-in-one landscape bundles
+## Writing, Cooking & Free Web Tools (Sister Subdomains)
 
-- [Chinese Zodiac Realms Bundle — All 12 Animals in One Collection](https://builtbyjoshstudio.com/collections/chinese-zodiac-realms.html): Chinese Zodiac Realms bundle — all 12 animal realms in one landscape-style collection, print-ready. Instant download, $10.99, print-on-demand license included.
-- [Western Landscapes Bundle — 12 Mythic Realms in One Collection](https://builtbyjoshstudio.com/collections/zodiac-landscapes.html): Western Landscapes bundle — 12 oil-painted zodiac landscapes, one mythic realm per sign, print-ready. Instant download, $7.99, print-on-demand license included.
+- **Writing & Tabletop (`writing.builtbyjoshstudio.com`)**:
+  - [Writing Hub](https://writing.builtbyjoshstudio.com/) & [Books Hub](https://writing.builtbyjoshstudio.com/books/): *Overlayed Echoes* (near-future LitRPG novel by J.S. Warden — Kindle $5.99 / KU, paperback $12.99, hardcover $23.99), *Ebonspire Chronicles* (dark fantasy detective noir by J.S. Warden — Kindle $7.99 / KU, paperback $14.99, hardcover $25.99), plus interactive companion fiction.
+  - [Tabletop & RPG Web Tools](https://writing.builtbyjoshstudio.com/tabletop/): Free, ad-free, local-first game-night utilities (initiative tracker, dice roller, session notes, random tables, character/NPC/tavern/plot hook/loot generators, wargame score tracker).
+- **Cooking (`cooking.builtbyjoshstudio.com`)**:
+  - [Cooking Hub](https://cooking.builtbyjoshstudio.com/) & [Kitchen Videos](https://cooking.builtbyjoshstudio.com/videos/): *Nước Mắm: Simple Vietnamese Home Cooking* cookbook by Josh Tran ($3.99 digital / $7.99 paperback) and Josh & Jordan's Kitchen on YouTube — no-talking videos filmed as tight method cuts and minimally cut full-process sessions at normal speed (Josh covers savory home cooking and Vietnamese staples; Jordan covers baking, breads, and pastries).
+  - [Kitchen & Cooking Web Tools](https://cooking.builtbyjoshstudio.com/tools/): Free, ad-free, local-first kitchen calculators (scaling, dough hydration, brine ratios, thawing, pan swap, nutrition, roast timing, cost per serving).
+- **Money & Business (`tools.builtbyjoshstudio.com`)**:
+  - [Money & Business Web Tools](https://tools.builtbyjoshstudio.com/money/): Free, ad-free, local-first personal finance and small-business calculators (50/30/20 budget, debt payoff, compound interest, emergency fund, freelance rate, home affordability, invoice generator, loan payment, profit margin, quarterly tax, savings goal, take-home pay).
 
-## Blog — templates & workbooks
+## Studio Blog & Guides (On-Site Articles)
 
-- [The 30-Minute Solopreneur Setup: A Free System for Tracking Your Business Without Subscriptions](https://builtbyjoshstudio.com/blog/30-minute-solopreneur-setup-free-system.html): Build a solopreneur tracking system in 30 minutes with free Notion and spreadsheet templates — clients, money, content. No subscriptions, no email gates.
-- [Free Home Buying Spreadsheet: Mortgage Affordability + Down Payment Calculator](https://builtbyjoshstudio.com/blog/free-home-buying-spreadsheet-mortgage-affordability.html): Free home buying spreadsheet with mortgage affordability and down payment calculators — Excel and Google Sheets. Try the Lite version before upgrading.
-- [Free Budget Spreadsheet for Excel and Google Sheets: Try Before You Buy](https://builtbyjoshstudio.com/blog/free-budget-spreadsheet-excel-google-sheets.html): A real free budget spreadsheet for Excel and Google Sheets. Try the Lite version before upgrading — monthly tracking, January–December tabs, formatted and ready to use.
-- [Free Notion Templates for Creators: Try the Lite OS Stack](https://builtbyjoshstudio.com/blog/free-notion-templates-for-creators.html): Five free Notion templates for creators and solopreneurs — content, business, finance, launch, and product systems. Try the Lite OS stack on Etsy or Notion Marketplace.
-- [Home Buying Spreadsheet That Covers Your Entire Purchase](https://builtbyjoshstudio.com/blog/home-buying-mortgage-workbook.html): A 15-tab Excel and Google Sheets workbook for first-time home buyers. Affordability, mortgage comparison, amortization, closing costs, and rent vs. buy — one system.
-- [A Budget Spreadsheet That Tracks Your Entire Financial Life](https://builtbyjoshstudio.com/blog/ultimate-budget-workbook.html): Why monthly budgets stop working after two months, and what a complete system looks like: budget, net worth, debt payoff, and sinking funds in one workbook.
-- [How to Build a Notion Content System That Actually Works for Creators](https://builtbyjoshstudio.com/blog/notion-content-os-for-creators.html): A complete Notion content OS for creators and solopreneurs. Plan, create, schedule, repurpose, and track content performance — all from one workspace.
-- [How to Run a Creator Business in Notion Without Hiring a Team](https://builtbyjoshstudio.com/blog/notion-business-os-for-creators.html): A complete Notion CRM and business OS for creators and solopreneurs. Track contacts, leads, deals, deliverables, invoices, and partnerships in one workspace.
-- [How to Track Creator Business Finances in Notion Without an Accountant](https://builtbyjoshstudio.com/blog/notion-finance-os-for-creators.html): A complete Notion finance OS for creators and solopreneurs. Track revenue, expenses, budgets, savings goals, debt payoff, and taxes — all in one workspace.
-- [How to Plan and Execute a Product Launch in Notion as a Solo Creator](https://builtbyjoshstudio.com/blog/notion-launch-os-for-creators.html): A complete Notion launch OS for creators and solopreneurs. Plan timelines, manage tasks, track assets, coordinate promo content, and launch without the chaos.
-- [How to Manage a Digital Product Catalog in Notion as a Solo Creator](https://builtbyjoshstudio.com/blog/notion-product-os-for-creators.html): A complete Notion product OS for digital sellers. Track products, files, platform listings, bundles, version history, and support issues in one workspace.
-- [The Complete Notion Operating System for Running a Creator Business](https://builtbyjoshstudio.com/blog/complete-notion-os-for-creator-business.html): Run your whole creator business from one Notion workspace — content, business, finances, launches, products. Five connected templates, free Lite versions.
-- [How to Track Etsy and Gumroad Income in Notion (Without a Spreadsheet Mess)](https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html): Etsy and Gumroad pay on different schedules with different fees. How to track gross, fees, and real net per platform in Notion — and see what you really earned.
+- **Templates & Workbooks**: [Sinking Funds](https://builtbyjoshstudio.com/blog/sinking-funds-explained.html) · [Zero-Based Budget Excel](https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html) · [First-Time Homebuyer Mistakes](https://builtbyjoshstudio.com/blog/first-time-homebuyer-mistakes.html) · [Mortgage Closing Costs Checklist](https://builtbyjoshstudio.com/blog/mortgage-closing-costs-checklist.html) · [Etsy & Gumroad Income in Notion](https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html) · [Plan a Year of Content](https://builtbyjoshstudio.com/blog/how-to-plan-content-year-without-burnout.html) · [Digital Product Launch Checklist](https://builtbyjoshstudio.com/blog/digital-product-launch-checklist.html) · [Organize Digital Product Files & SKUs](https://builtbyjoshstudio.com/blog/organize-digital-product-files-skus.html) · [Notion CRM Setup for Freelancers](https://builtbyjoshstudio.com/blog/notion-crm-setup-freelancers.html) · [Monthly Money Reset Checklist](https://builtbyjoshstudio.com/blog/monthly-money-reset-checklist.html) · [What "Lite" Actually Means](https://builtbyjoshstudio.com/blog/what-lite-actually-means.html) · [Free Notion Templates for Creators](https://builtbyjoshstudio.com/blog/free-notion-templates-for-creators.html) · [Free Notion Templates (No Email)](https://builtbyjoshstudio.com/blog/free-notion-templates-creators-no-email.html) · [Free Budget Spreadsheet](https://builtbyjoshstudio.com/blog/free-budget-spreadsheet-excel-google-sheets.html) · [Free Home Buying Spreadsheet](https://builtbyjoshstudio.com/blog/free-home-buying-spreadsheet-mortgage-affordability.html)
+- **Personal Finance & Solopreneurship**: [Why Solo Creators Stay Stuck Under $5K/Month](https://builtbyjoshstudio.com/blog/why-solo-creators-stay-stuck-under-5k.html) · [Launch Without an Audience](https://builtbyjoshstudio.com/blog/how-to-launch-digital-product-without-audience.html) · [Quarterly Estimated Taxes for Creators](https://builtbyjoshstudio.com/blog/quarterly-estimated-taxes-solo-creators.html) · [30-Minute Solopreneur Setup](https://builtbyjoshstudio.com/blog/30-minute-solopreneur-setup-free-system.html) · [Why 50/30/20 Is Outdated in 2026](https://builtbyjoshstudio.com/blog/50-30-20-rule-outdated-budgeting-2026.html) · [How Much House Can You Afford](https://builtbyjoshstudio.com/blog/how-much-house-can-you-actually-afford.html)
+- **Free Money & Business Tool Build Notes**: [Building Our Money & Business Tools](https://builtbyjoshstudio.com/blog/free-personal-finance-small-business-tools.html) · [Building the Invoice Generator](https://builtbyjoshstudio.com/blog/free-invoice-generator-browser-privacy.html) · [Snowball vs. Avalanche Debt Math](https://builtbyjoshstudio.com/blog/debt-snowball-vs-avalanche-calculator.html) · [Real Cost of Freelancing](https://builtbyjoshstudio.com/blog/freelance-hourly-rate-self-employment-tax.html) · [28/36 House Affordability Math](https://builtbyjoshstudio.com/blog/home-affordability-28-36-rule-pmi.html)
 
-## Blog — personal finance & creator business
+## Beyond the Studio & Commerce Facts
 
-- [What "Lite" Actually Means: Why I Built Free Versions of Every Paid Template](https://builtbyjoshstudio.com/blog/what-lite-actually-means.html): Why every Tynkr Tools & Co paid template has a real free Lite version — and the difference between a Lite, a trial, a demo, and crippleware.
-- [How to Plan a Year of Content Without Burning Out](https://builtbyjoshstudio.com/blog/how-to-plan-content-year-without-burnout.html): A realistic framework for planning a year of content as a solo creator — without the calendar collapse most planners cause. Built around capacity, not ambition.
-- [The Real Reason Most Solo Creators Stay Stuck Under $5K/Month](https://builtbyjoshstudio.com/blog/why-solo-creators-stay-stuck-under-5k.html): The real reasons solo creators plateau below $5K/mo — and the systems that move past it. An honest operations look, not a guru pitch.
-- [How to Launch a Digital Product Without an Audience](https://builtbyjoshstudio.com/blog/how-to-launch-digital-product-without-audience.html): No email list, no following, no launch? Here's how to sell your first digital product from zero — a realistic playbook for audience-less launches.
-- [The 50/30/20 Rule Is Outdated — Here's What Actually Works in 2026](https://builtbyjoshstudio.com/blog/50-30-20-rule-outdated-budgeting-2026.html): The 50/30/20 budget worked when rent didn't eat half your income. Here's why the rule breaks in 2026 — and what to budget with instead.
-- [How Much House Can You Actually Afford? (The Honest Math)](https://builtbyjoshstudio.com/blog/how-much-house-can-you-actually-afford.html): Lenders calculate affordability one way. Real life calculates it another. Here's the honest math behind home affordability — including the costs lenders don't include.
-- [Sinking Funds Explained: How to Budget for Expenses That Aren't Monthly](https://builtbyjoshstudio.com/blog/sinking-funds-explained.html): A sinking fund is how you stop letting predictable expenses wreck your budget. What they are, how to set them up, and the categories most people miss.
-- [Zero-Based Budget Excel Template + How to Build One (2026)](https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html): Build a zero-based budget in Excel step by step — every dollar gets a job. Grab the free starter template, the formulas, and a full setup walkthrough.
-- [First-Time Homebuyer Mistakes: The Mortgage Math Most Buyers Skip](https://builtbyjoshstudio.com/blog/first-time-homebuyer-mistakes.html): The expensive mistakes first-time homebuyers make because they skip the real math — affordability, true monthly cost, closing costs, and rent vs. buy. No fluff.
-
-## Blog — free money & business tools (build notes)
-
-- [How to Set Your Freelance Rate (Without Underpricing Yourself)](https://builtbyjoshstudio.com/blog/freelance-rate-calculator.html): Work out a freelance hourly rate from the take-home income you want — after self-employment tax, expenses, and unbillable hours. The math and the mistakes.
-- [Debt Snowball vs. Avalanche: Which Pays Off Faster?](https://builtbyjoshstudio.com/blog/debt-payoff-calculator.html): Snowball for momentum, avalanche for math — both debt payoff methods explained, plus a hybrid, how to choose, and why an extra payment beats either method.
-- [The 50/30/20 Budget, Checked Against What You Actually Spend](https://builtbyjoshstudio.com/blog/budget-calculator.html): The 50/30/20 rule explained — what goes in each bucket, why it doesn't fit every cost of living, and the step most calculators skip: ideal vs. what you spend.
-- [How to Make a Professional Invoice (Free, No Signup)](https://builtbyjoshstudio.com/blog/invoice-generator.html): What every invoice needs, how to add your letterhead, the line-item and tax math, and how to save a PDF — with a free in-browser tool that never uploads data.
-
-## Blog — index
-
-- [The Studio Blog — index](https://builtbyjoshstudio.com/blog.html): All posts: template walkthroughs, personal-finance and creator-business explainers, and money-tool notes.
-
-## Resources
-
-- [Resources — video briefings & deep dives](https://builtbyjoshstudio.com/resources/): Thirteen short YouTube briefings on the Tynkr templates and workbooks (Creator OS Full Stack, the budget and home-buying workbooks, launch and content-planning strategy, and five 'A Look Inside' Creator OS walkthroughs), embedded with transcript-style summaries.
-
-## Free web tools (free, ad-free, local-first, no signup)
-
-- [Kitchen & cooking tools hub](https://cooking.builtbyjoshstudio.com/tools/): Kitchen calculators — [cooking site index](https://cooking.builtbyjoshstudio.com/llms.txt).
-- [Money & business tools hub](https://tools.builtbyjoshstudio.com/money/): Personal-finance and small-business calculators — [tools site index](https://tools.builtbyjoshstudio.com/llms.txt).
-- [Tabletop & RPG tools hub](https://writing.builtbyjoshstudio.com/tabletop/): Game-night tools — [writing site index](https://writing.builtbyjoshstudio.com/llms.txt).
-
-### Money & business
-
-- [Budget Calculator](https://tools.builtbyjoshstudio.com/budget-calculator/): A 50/30/20 budget calculator comparing the ideal split to what you actually spend — see where you're over and what to fix. Free, ad-free, no signup.
-- [Compound Interest Calculator](https://tools.builtbyjoshstudio.com/compound-interest-calculator/): See how a starting amount plus monthly contributions grows with compound interest — total contributed vs. growth, year by year. Free, ad-free, no signup.
-- [Debt Payoff Calculator](https://tools.builtbyjoshstudio.com/debt-payoff-calculator/): See your debt-free date and total interest with snowball, avalanche, and hybrid methods compared side by side. Free, ad-free, no signup.
-- [Emergency Fund Calculator](https://tools.builtbyjoshstudio.com/emergency-fund-calculator/): Find your emergency fund target from your real monthly expenses, see how covered you are today, and get the date you'll be fully funded. Free, ad-free, no signup.
-- [Freelance Rate Calculator](https://tools.builtbyjoshstudio.com/freelance-rate-calculator/): Calculate the freelance hourly rate you need to hit your income goal — after self-employment tax, expenses, and non-billable time. Free, ad-free.
-- [Home Affordability Calculator](https://tools.builtbyjoshstudio.com/home-affordability-calculator/): See how much house you can afford from your income, debts, and down payment — the 28/36 rule with conservative, standard, and stretch price ranges. Free, ad-free, no signup.
-- [Invoice Generator](https://tools.builtbyjoshstudio.com/invoice-generator/): Create an invoice in your browser — add your letterhead, line items, and tax, then print or save as PDF. No signup, nothing uploaded. Free, ad-free.
-- [Loan Payment Calculator](https://tools.builtbyjoshstudio.com/loan-payment-calculator/): See your monthly payment, total interest, and payoff date for any auto or personal loan — and how much an extra payment saves. Free, ad-free, no signup.
-- [Profit Margin Calculator](https://tools.builtbyjoshstudio.com/profit-margin-calculator/): See your real profit per sale after platform fees — margin, markup, break-even price, and the exact price for your target margin. Free, ad-free, no signup.
-- [Quarterly Tax Estimator](https://tools.builtbyjoshstudio.com/quarterly-tax-estimator/): Estimate your quarterly self-employment tax payments — SE tax plus federal income tax from your expected profit, with all four due dates. Free, ad-free, no signup.
-- [Savings Goal Calculator](https://tools.builtbyjoshstudio.com/savings-goal-calculator/): See exactly when you'll hit a savings goal at your monthly pace — with interest counted — plus what to save per month to hit it in 1, 2, or 3 years. Free, ad-free, no signup.
-- [Take-Home Pay Calculator](https://tools.builtbyjoshstudio.com/take-home-pay-calculator/): See what your salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month. Free, ad-free, no signup.
-
-## Desktop apps — Tynkr Tools & Co (coming soon)
-
-Five privacy-first, local-first Windows desktop apps. User data stays in files on the user's machine — no cloud, no accounts, no subscriptions. Site: https://tynkr.builtbyjoshstudio.com/ (its own index: https://tynkr.builtbyjoshstudio.com/llms.txt)
-
-- [Tynkr Ledger — Personal Finance OS](https://tynkr.builtbyjoshstudio.com/ledger/): Transactions, budgets, bills, debt payoff, and net worth on your own disk.
-- [Tynkr Vault — Second Brain OS](https://tynkr.builtbyjoshstudio.com/vault/): Notes, tasks, and weekly reviews as plain Markdown files you own, with fast fuzzy search.
-- [Tynkr Hearth — Homebuyer OS](https://tynkr.builtbyjoshstudio.com/hearth/): The whole home purchase, mapped — mortgage math, down payment planning, cash-to-close, roadmap, document tracker.
-- [Tynkr Forge — Small Business OS](https://tynkr.builtbyjoshstudio.com/forge/): Invoicing, CRM, purchase orders, contracts, expenses with receipts, and proposals in one app.
-- [Tynkr Inkpress — Book Formatting](https://tynkr.builtbyjoshstudio.com/inkpress/): Turn a manuscript into an EPUB 3 ebook, a KDP-sized print PDF and an author-site web page on your Windows PC — live previews, preflight checks, no account or telemetry.
-
-## Beyond the studio
-
-- [Overlayed Echoes on Amazon](https://www.amazon.com/dp/B0H3826V21): Near-future LitRPG novel by J.S. Warden (Book 1 of a planned five-book series). Kindle $5.99, paperback $12.99, hardcover $23.99, free on Kindle Unlimited.
-- [Ebonspire Chronicles on Amazon](https://www.amazon.com/dp/B0H8BRT4NF): Dark fantasy detective noir by J.S. Warden, Book One. Kindle $7.99 (free on Kindle Unlimited), paperback $14.99, hardcover $25.99.
-- [J.S. Warden author page on Amazon](https://www.amazon.com/stores/author/B0FPQ3RWWF): All fiction by the pen name.
-- [Tales of Ink & Shadows Studio on YouTube](https://www.youtube.com/@TalesofInkShadowsStudio): The fiction/studio channel — writing, the studio process, book ambience.
-- [Josh & Jordan's Kitchen on YouTube](https://www.youtube.com/@joshandjordanskitchen): The cooking channel — Real Home Cooking & Baking. Josh handles savory home cooking (weeknight staples, American comfort food, and the Vietnamese classics he grew up with); Jordan handles the oven (fresh breads, sweet treats, pastries, baking fundamentals). Pairs with the Nước Mắm cookbook.
-- [Tynkr Tools & Co on Etsy](https://tynkrtoolsandco.etsy.com): The same Tynkr templates, workbooks, planner PDFs, and the cookbook, as a secondary storefront.
-- [Built by Josh Studio on Etsy](https://www.etsy.com/shop/BuiltByJoshStudio): Individual zodiac prints and other studio work (the zodiac bundles as packaged on this site are sold on this site).
-- [Built by Josh Studio on Redbubble](https://www.redbubble.com/people/BBJStudio/shop): The twelve western-sign celestial artworks on finished goods — posters, canvas prints, apparel, home goods (one design per sign; the digital bundles are sold on this site).
-- [Tynkr Tools & Co newsletter on Substack](https://tynkrtoolsco.substack.com/): The studio's newsletter and launch list.
-- [Linktree](https://linktr.ee/builtbyjoshstudio): All studio links in one place.
-- [Little Acre Learning](https://littleacrelearning.com/): Children's books and printables — a separate brand of Built by Josh Studio LLC.
-
-## Policies
-
-- [Refund Policy](https://builtbyjoshstudio.com/refunds.html): All sales final on digital products bought on this site (legally required exceptions honored); technical issues always resolved. Tynkr desktop apps are purchased through the Microsoft Store, and refunds for them are handled by Microsoft under its terms.
-- [Privacy Policy](https://builtbyjoshstudio.com/privacy.html): Static site with GA4 analytics; Etsy, Lemon Squeezy and the Microsoft Store handle their own checkout data; the Microsoft Store shares no buyer names or emails with us.
-- [Terms of Service](https://builtbyjoshstudio.com/terms.html): License grant, permitted/prohibited uses, governed by Kansas law.
+- **Checkout**: Lemon Squeezy (`builtbyjoshstudio.lemonsqueezy.com`) is the primary checkout for templates, workbooks, the cookbook, and digital zodiac art bundles with instant delivery and no account required. Etsy (`tynkrtoolsandco.etsy.com` and `etsy.com/shop/BuiltByJoshStudio`) is a secondary storefront; Amazon carries print paperbacks and books; Redbubble (`redbubble.com/people/BBJStudio/shop`) carries celestial zodiac designs on finished goods; Microsoft Store handles Tynkr desktop app purchases.
+- **Policies**: [Refund Policy](https://builtbyjoshstudio.com/refunds.html) (digital sales final with legally required exceptions; technical issues fixed; Microsoft handles desktop app refunds) · [Privacy Policy](https://builtbyjoshstudio.com/privacy.html) · [Terms of Service](https://builtbyjoshstudio.com/terms.html)
+- **Other studio properties**: [Little Acre Learning](https://littleacrelearning.com/) (children's books & printables — separate brand of Built by Josh Studio LLC) · [Substack Newsletter](https://tynkrtoolsco.substack.com/) · [YouTube — Josh & Jordan's Kitchen](https://www.youtube.com/@joshandjordanskitchen) · [YouTube — Tales of Ink & Shadows Studio](https://www.youtube.com/@TalesofInkShadowsStudio) · [Linktree](https://linktr.ee/builtbyjoshstudio)
 
 ## Contact
 
-Email: josh@builtbyjoshstudio.com (the founder answers support directly)
+- Email: `support@builtbyjoshstudio.com` (direct founder support)

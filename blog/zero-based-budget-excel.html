@@ -20,326 +20,343 @@
   <link rel="alternate" type="application/rss+xml" title="The Studio Blog — Built by Josh Studio" href="https://builtbyjoshstudio.com/feed.xml" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Zero-Based Budget Excel Template + How to Build One (2026)" />
-  <meta property="og:description" content="Build a zero-based budget in Excel — the method, the formulas, and the 8-step walkthrough. Plus the prebuilt 23-tab workbook if you'd rather skip the build." />
+  <meta property="og:title" content="Zero-Based Budget in Excel — Free Template + How-To (2026)" />
+  <meta property="og:description" content="Build a zero-based budget in Excel step by step — every dollar gets a job. Grab the free starter template, the formulas, and a full setup walkthrough." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html" />
   <meta property="og:site_name" content="Built by Josh Studio" />
   <meta property="og:image" content="https://builtbyjoshstudio.com/images/products/ultimate-budget-workbook.webp" />
+  <meta property="og:image:alt" content="Zero-Based Budget in Excel — Free Template + How-To (2026)" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Zero-Based Budget Excel Template + How to Build One (2026)" />
-  <meta name="twitter:description" content="Build a zero-based budget in Excel — the method, the formulas, and the 8-step walkthrough. Plus the prebuilt 23-tab workbook if you'd rather skip the build." />
+  <meta name="twitter:title" content="Zero-Based Budget in Excel — Free Template + How-To (2026)" />
+  <meta name="twitter:description" content="Build a zero-based budget in Excel step by step — every dollar gets a job. Grab the free starter template, the formulas, and a full setup walkthrough." />
   <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/products/ultimate-budget-workbook.webp" />
 
-  <!-- Schema.org FAQPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What does zero-based budgeting mean?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Zero-based budgeting is a budgeting method where every dollar of income is assigned a specific job — spending, saving, investing, or debt payoff — until the difference between income and total allocations equals zero. The method doesn't mean spending zero dollars; it means leaving zero dollars unassigned at the end of the allocation."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is zero-based budgeting good for beginners?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Zero-based budgeting works well for beginners because it forces a decision on every dollar rather than relying on vague guidelines. The main risk is creating too many categories or underestimating variable expenses like groceries and utilities. Starting with 8 to 12 categories and adjusting after two or three months is the most sustainable approach."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How is zero-based budgeting different from the 50/30/20 rule?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The 50/30/20 rule is a high-level allocation framework — 50% of income to needs, 30% to wants, 20% to savings and debt. Zero-based budgeting is a line-by-line method where every dollar is assigned to a specific category. The two can work together: 50/30/20 sets the overall allocation, and zero-based budgeting fills in the specific categories within each bucket."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can you do zero-based budgeting in Google Sheets?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Every formula used in a zero-based budget works identically in Google Sheets, including SUM, variance calculations, and conditional formatting. The only meaningful difference is slightly different menu paths for features like Named Ranges and Tables, but the underlying logic is the same."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What's the biggest reason zero-based budgets fail?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The biggest reason zero-based budgets fail is category drift — starting with a clean list of categories and letting it balloon to 20+ categories over a few months. The second biggest reason is formula breakage between monthly sheets, where carrying the structure forward introduces errors that aren't caught until the numbers stop reconciling. Both are architecture problems, not discipline problems."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do I need a budgeting app if I have a zero-based budget spreadsheet?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. A well-built zero-based budget spreadsheet replaces the core functionality of most budgeting apps — category tracking, variance reporting, and month-over-month comparison. Apps add value when real-time bank syncing matters or when sharing finances with someone who won't open a spreadsheet."
-        }
-      }
-    ]
-  }
-  </script>
 
-  <!-- Schema.org Article -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Zero-Based Budget Excel Template + How to Build One (2026)",
-    "description": "Build a zero-based budget in Excel from scratch — the method, the formulas, and the step-by-step walkthrough. Works in Google Sheets too.",
-    "author": {
-      "@type": "Person", "@id": "https://builtbyjoshstudio.com/about.html#josh",
-      "name": "Josh",
-      "url": "https://builtbyjoshstudio.com/about.html"
-    },
-    "publisher": {
-      "@type": "Organization", "@id": "https://builtbyjoshstudio.com/#organization",
-      "name": "Built by Josh Studio LLC",
-      "url": "https://builtbyjoshstudio.com"
-    },
-    "datePublished": "2026-04-25",
-    "dateModified": "2026-04-25",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html"
-    },
-    "articleSection": "Personal Finance"
-  }
-  </script>
 
-  <!-- Schema.org HowTo -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to Build a Zero-Based Budget in Excel",
-    "description": "Build a zero-based budget in Excel from scratch using an income section, categorized expense rows, variance formulas, and a summary sheet.",
-    "totalTime": "PT3H",
-    "step": [
-      {
-        "@type": "HowToStep",
-        "position": 1,
-        "name": "Set up the income section",
-        "text": "Create an income section with each income source listed in column A and the amount in column B. Add a total row using SUM to consolidate all income sources."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 2,
-        "name": "Build the expense category table",
-        "text": "Create a four-column table with Category, Planned, Actual, and Variance columns. List each expense category (Housing, Transportation, Food, etc.) and enter planned dollar allocations in the Planned column."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 3,
-        "name": "Write the variance formula",
-        "text": "In the Variance column, enter a formula that subtracts Actual from Planned. Positive numbers indicate under budget; negative numbers indicate over budget."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 4,
-        "name": "Add conditional formatting",
-        "text": "Apply a red-yellow-green color scale to the Variance column using Home → Conditional Formatting → Color Scales. This makes over-budget categories visually obvious at a glance."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 5,
-        "name": "Calculate the zero-based total",
-        "text": "Below the expense table, create a Total Allocated row that sums all Planned values, then an Unassigned row that subtracts Total Allocated from Total Income. The Unassigned cell must equal zero for the budget to be truly zero-based."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 6,
-        "name": "Add savings and debt rows",
-        "text": "Treat savings, sinking funds, and extra debt payments as expense categories, not leftovers. Any remaining Unassigned dollars must be routed to one of these categories until the total equals zero."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 7,
-        "name": "Duplicate for each month",
-        "text": "Right-click the tab, select Move or Copy, check Create a Copy, and rename to the new month. This preserves formula structure without breaking cross-sheet references."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 8,
-        "name": "Build a summary sheet",
-        "text": "Create a Summary tab that references the Total Income, Total Allocated, and Variance from each month's sheet. This provides a twelve-month view of budget performance over time."
-      }
-    ]
-  }
-  </script>
 
-  <!-- Schema.org BreadcrumbList -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://builtbyjoshstudio.com/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Blog",
-        "item": "https://builtbyjoshstudio.com/blog.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "How to Build a Zero-Based Budget in Excel"
-      }
-    ]
-  }
-  </script>
 
-  <!-- Schema.org Product -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "sku": "tynkr-budget-bundle",
-    "name": "Ultimate Budget Workbook",
-    "description": "A 23-tab budget spreadsheet template for Excel and Google Sheets. Covers monthly zero-based budgets, a Control Panel, auto-updating dashboard, net worth tracker, sinking funds, debt payoff planner, 50/30/20 analyzer, and full year-over-year comparison.",
-    "brand": {
-      "@type": "Brand",
-      "name": "Tynkr Tools & Co"
-    },
-    "category": "Spreadsheet Template",
-    "image": "https://builtbyjoshstudio.com/images/products/ultimate-budget-workbook.webp",
-    "url": "https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html",
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "USD",
-      "lowPrice": "22.99",
-      "highPrice": "22.99",
-      "offerCount": 1,
-      "availability": "https://schema.org/InStock",
-      "url": "https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html",
-      "shippingDetails": {
-        "@type": "OfferShippingDetails",
-        "shippingRate": {
-          "@type": "MonetaryAmount",
-          "value": "0",
-          "currency": "USD"
-        },
-        "shippingDestination": {
-          "@type": "DefinedRegion",
-          "addressCountry": "US"
-        },"deliveryTime":{"@type":"ShippingDeliveryTime","handlingTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"},"transitTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"}}},
-      "hasMerchantReturnPolicy": {
-        "@type": "MerchantReturnPolicy",
-        "applicableCountry": "US",
-        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-      }
-    }
-  }
-  </script>
 
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/components.css" />
   <link rel="stylesheet" href="/css/layouts.css" />
 
   <link rel="stylesheet" href="/css/mobile-nav.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": "https://builtbyjoshstudio.com/#organization",
-    "name": "Built by Josh Studio LLC",
-    "alternateName": ["BBJ Studio", "Built by Josh Studio"],
-    "legalName": "Built by Josh Studio LLC",
-    "url": "https://builtbyjoshstudio.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
-      "width": 512,
-      "height": 512
-    },
-    "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
-    "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under its own name and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. Templates, workbooks, the cookbook, and art are instant digital downloads. Everything is built by a single founder.",
-    "founder": {
-      "@type": "Person", "@id": "https://builtbyjoshstudio.com/about.html#josh",
-      "name": "Josh"
-    },
-    "foundingDate": "2026-05-13",
-    "foundingLocation": {
-      "@type": "Place",
-      "address": {
-        "@type": "PostalAddress",
-        "addressRegion": "KS",
-        "addressCountry": "US"
-      }
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "KS",
-      "addressCountry": "US"
-    },
-    "areaServed": "Worldwide",
-    "knowsAbout": [
-      "Zodiac digital art",
-      "Western zodiac",
-      "Chinese zodiac",
-      "Notion templates",
-      "Personal finance spreadsheets",
-      "Digital product design",
-      "Print-on-demand licensing"
-    ],
-    "brand": [
-      {
-        "@type": "Brand",
-        "name": "Built by Josh Studio",
-        "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads."
-      },
-      {
-        "@type": "Brand",
-        "name": "Tynkr Tools & Co",
-        "description": "Notion OS templates and Excel and Google Sheets workbooks for creators, solopreneurs, and personal-finance milestones."
-      }
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "josh@builtbyjoshstudio.com",
-      "contactType": "customer support",
-      "areaServed": "Worldwide",
-      "availableLanguage": "English"
-    },
-    "sameAs": [
-      "https://linktr.ee/builtbyjoshstudio",
-      "https://tynkrtoolsco.substack.com/",
-      "https://www.youtube.com/@TalesofInkShadowsStudio",
-      "https://www.youtube.com/@joshandjordanskitchen",
-      "https://tynkrtoolsandco.etsy.com",
-      "https://www.etsy.com/shop/BuiltByJoshStudio",
-      "https://www.redbubble.com/people/BBJStudio/shop"
-    ],
-    "identifier": [
-      {
-        "@type": "PropertyValue",
-        "propertyID": "Kansas Business ID",
-        "value": "10076138"
-      }
-    ]
-  }
-  </script>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://builtbyjoshstudio.com/#organization",
+      "name": "Built by Josh Studio LLC",
+      "legalName": "Built by Josh Studio LLC",
+      "alternateName": [
+        "BBJ Studio",
+        "Built by Josh Studio"
+      ],
+      "url": "https://builtbyjoshstudio.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+      "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under its own name and Notion OS templates, Excel and Google Sheets workbooks, and local-first Windows apps under the Tynkr Tools & Co brand.",
+      "foundingDate": "2025",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "KS",
+        "addressCountry": "US"
+      },
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Kansas Business ID",
+          "value": "10076138"
+        }
+      ],
+      "founder": {
+        "@id": "https://builtbyjoshstudio.com/about.html#josh"
+      },
+      "email": "mailto:support@builtbyjoshstudio.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "support@builtbyjoshstudio.com",
+        "contactType": "customer support",
+        "areaServed": "Worldwide",
+        "availableLanguage": "English"
+      },
+      "sameAs": [
+        "https://linktr.ee/builtbyjoshstudio",
+        "https://tynkrtoolsco.substack.com/",
+        "https://www.youtube.com/@TalesofInkShadowsStudio",
+        "https://www.youtube.com/@joshandjordanskitchen",
+        "https://tynkrtoolsandco.etsy.com",
+        "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "https://www.redbubble.com/people/BBJStudio/shop",
+        "https://builtbyjoshstudio.lemonsqueezy.com/",
+        "https://www.amazon.com/dp/B0H3826V21"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://builtbyjoshstudio.com/#website",
+      "name": "Built by Josh Studio",
+      "url": "https://builtbyjoshstudio.com/",
+      "description": "Notion OS templates, Excel and Google Sheets workbooks, guided print planners, zodiac digital art collections, and local-first tools from Built by Josh Studio LLC.",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": "https://builtbyjoshstudio.com/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://builtbyjoshstudio.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://builtbyjoshstudio.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Build a Zero-Based Budget in Excel"
+        }
+      ],
+      "@id": "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html#breadcrumb"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html#webpage",
+      "url": "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html",
+      "name": "Zero-Based Budget in Excel — Free Template + How-To (2026)",
+      "description": "Build a zero-based budget in Excel step by step — every dollar gets a job. Grab the free starter template, the formulas, and a full setup walkthrough.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://builtbyjoshstudio.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html#product"
+      },
+      "primaryImageOfPage": "https://builtbyjoshstudio.com/images/products/ultimate-budget-workbook.webp"
+    },
+    {
+      "@type": "Product",
+      "sku": "tynkr-budget-bundle",
+      "name": "Ultimate Budget Workbook",
+      "description": "A 23-tab budget spreadsheet template for Excel and Google Sheets. Covers monthly zero-based budgets, a Control Panel, auto-updating dashboard, net worth tracker, sinking funds, debt payoff planner, 50/30/20 analyzer, and full year-over-year comparison.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Tynkr Tools & Co"
+      },
+      "category": "Spreadsheet Template",
+      "image": "https://builtbyjoshstudio.com/images/products/ultimate-budget-workbook.webp",
+      "url": "https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "22.99",
+        "highPrice": "22.99",
+        "offerCount": 1,
+        "availability": "https://schema.org/InStock",
+        "url": "https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html",
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "0",
+            "currency": "USD"
+          },
+          "shippingDestination": {
+            "@type": "DefinedRegion",
+            "addressCountry": "US"
+          },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            },
+            "transitTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            }
+          }
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "US",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+        },
+        "seller": {
+          "@id": "https://builtbyjoshstudio.com/#organization"
+        }
+      },
+      "@id": "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html#product",
+      "manufacturer": {
+        "@id": "https://builtbyjoshstudio.com/#organization"
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "Zero-Based Budget Excel Template + How to Build One (2026)",
+      "description": "Build a zero-based budget in Excel from scratch — the method, the formulas, and the step-by-step walkthrough. Works in Google Sheets too.",
+      "author": {
+        "@type": "Person",
+        "@id": "https://builtbyjoshstudio.com/about.html#josh",
+        "name": "Josh",
+        "url": "https://builtbyjoshstudio.com/about.html"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://builtbyjoshstudio.com/#organization",
+        "name": "Built by Josh Studio LLC",
+        "url": "https://builtbyjoshstudio.com"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html"
+      },
+      "articleSection": "Personal Finance"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does zero-based budgeting mean?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Zero-based budgeting is a budgeting method where every dollar of income is assigned a specific job — spending, saving, investing, or debt payoff — until the difference between income and total allocations equals zero. The method doesn't mean spending zero dollars; it means leaving zero dollars unassigned at the end of the allocation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is zero-based budgeting good for beginners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Zero-based budgeting works well for beginners because it forces a decision on every dollar rather than relying on vague guidelines. The main risk for beginners is creating too many categories or underestimating variable expenses like groceries and utilities. Starting with 8 to 12 categories and adjusting after two or three months is the most sustainable approach."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is zero-based budgeting different from the 50/30/20 rule?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The 50/30/20 rule is a high-level allocation framework — 50% of income to needs, 30% to wants, 20% to savings and debt. Zero-based budgeting is a line-by-line method where every dollar is assigned to a specific category. The two can work together: 50/30/20 sets the overall allocation, and zero-based budgeting fills in the specific categories within each bucket."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you do zero-based budgeting in Google Sheets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every formula in this post works identically in Google Sheets, including SUM, variance calculations, and conditional formatting. The only meaningful difference is that Google Sheets uses slightly different menu paths for features like Named Ranges and Tables, but the underlying logic is the same. Most premium budget workbooks ship in both Excel and Google Sheets editions for this reason."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the biggest reason zero-based budgets fail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The biggest reason zero-based budgets fail is category drift — starting with a clean list of categories and letting it balloon to 20+ categories over a few months. The second biggest reason is formula breakage between monthly sheets, where carrying the structure forward introduces errors that aren't caught until the numbers stop reconciling. Both are architecture problems, not discipline problems."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a budgeting app if I have a zero-based budget spreadsheet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A well-built zero-based budget spreadsheet replaces the core functionality of most budgeting apps — category tracking, variance reporting, and month-over-month comparison. Apps add value when real-time bank syncing matters to you or when you share finances with someone who won't open a spreadsheet. For solo budgeting with full customization, a spreadsheet typically wins on flexibility and cost."
+          }
+        }
+      ],
+      "@id": "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html#faq"
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Build a Zero-Based Budget in Excel",
+      "description": "Build a zero-based budget in Excel from scratch using an income section, categorized expense rows, variance formulas, and a summary sheet.",
+      "totalTime": "PT3H",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Set up the income section",
+          "text": "Create an income section with each income source listed in column A and the amount in column B. Add a total row using SUM to consolidate all income sources."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Build the expense category table",
+          "text": "Create a four-column table with Category, Planned, Actual, and Variance columns. List each expense category (Housing, Transportation, Food, etc.) and enter planned dollar allocations in the Planned column."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Write the variance formula",
+          "text": "In the Variance column, enter a formula that subtracts Actual from Planned. Positive numbers indicate under budget; negative numbers indicate over budget."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Add conditional formatting",
+          "text": "Apply a red-yellow-green color scale to the Variance column using Home → Conditional Formatting → Color Scales. This makes over-budget categories visually obvious at a glance."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Calculate the zero-based total",
+          "text": "Below the expense table, create a Total Allocated row that sums all Planned values, then an Unassigned row that subtracts Total Allocated from Total Income. The Unassigned cell must equal zero for the budget to be truly zero-based."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Add savings and debt rows",
+          "text": "Treat savings, sinking funds, and extra debt payments as expense categories, not leftovers. Any remaining Unassigned dollars must be routed to one of these categories until the total equals zero."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 7,
+          "name": "Duplicate for each month",
+          "text": "Right-click the tab, select Move or Copy, check Create a Copy, and rename to the new month. This preserves formula structure without breaking cross-sheet references."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 8,
+          "name": "Build a summary sheet",
+          "text": "Create a Summary tab that references the Total Income, Total Allocated, and Variance from each month's sheet. This provides a twelve-month view of budget performance over time."
+        }
+      ],
+      "@id": "https://builtbyjoshstudio.com/blog/zero-based-budget-excel.html#howto"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -363,6 +380,7 @@
     </div>
   </nav>
 
+  <main>
   <!-- ARTICLE HEADER -->
   <div class="wrap">
   <header class="article-header bhead">
@@ -738,6 +756,7 @@
   </div>
 
   <p class="studio-sig">Built by Tynkr Tools &amp; Co — Budget smarter. Create better. Plan further.</p>
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -756,7 +775,7 @@
       <li><a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener">Substack</a></li>
       <li><a href="https://www.youtube.com/@joshandjordanskitchen" target="_blank" rel="noopener">YouTube</a></li>
       <li><a href="https://cooking.builtbyjoshstudio.com/videos/">Kitchen Videos</a></li>
-      <li><a href="mailto:josh@builtbyjoshstudio.com">Contact</a></li>
+      <li><a href="mailto:support@builtbyjoshstudio.com">Contact</a></li>
       <li><a href="../refunds.html">Refunds</a></li>
       <li><a href="../privacy.html">Privacy</a></li>
       <li><a href="../terms.html">Terms</a></li>

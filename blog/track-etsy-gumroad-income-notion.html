@@ -14,235 +14,270 @@
   <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to Track Etsy and Gumroad Income in Notion</title>
-  <meta name="description" content="Etsy and Gumroad pay on different schedules with different fees. How to track gross, fees, and real net per platform in Notion — and see what you really earned." />
+  <meta name="description" content="Etsy and Gumroad deposit net payouts on different schedules. Learn how to log gross revenue, platform fees, and true net profit cleanly inside Notion." />
   <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html" />
   <link rel="alternate" type="application/rss+xml" title="The Studio Blog — Built by Josh Studio" href="https://builtbyjoshstudio.com/feed.xml" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="How to Track Etsy and Gumroad Income in Notion" />
-  <meta property="og:description" content="Your payout isn't your income. Here's how to track gross, fees, and real net per platform in Notion so you know what you actually made on Etsy and Gumroad." />
+  <meta property="og:description" content="Etsy and Gumroad deposit net payouts on different schedules. Learn how to log gross revenue, platform fees, and true net profit cleanly inside Notion." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html" />
   <meta property="og:site_name" content="Built by Josh Studio" />
   <meta property="og:image" content="https://builtbyjoshstudio.com/images/products/creator-finance-os.webp" />
+  <meta property="og:image:alt" content="How to Track Etsy and Gumroad Income in Notion" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="How to Track Etsy and Gumroad Income in Notion" />
-  <meta name="twitter:description" content="Etsy and Gumroad pay out on different schedules and each takes its own cut. Track gross, fees, and real net per platform in Notion." />
+  <meta name="twitter:description" content="Etsy and Gumroad deposit net payouts on different schedules. Learn how to log gross revenue, platform fees, and true net profit cleanly inside Notion." />
   <meta name="twitter:image" content="https://builtbyjoshstudio.com/images/products/creator-finance-os.webp" />
 
-  <!-- Schema.org Article -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "How to Track Etsy and Gumroad Income in Notion (Without a Spreadsheet Mess)",
-    "description": "Etsy and Gumroad pay out on different schedules and each takes its own cut. Here's how to track gross, fees, and real net income per platform in Notion — so you know what you actually earned.",
-    "author": {
-      "@type": "Person", "@id": "https://builtbyjoshstudio.com/about.html#josh",
-      "name": "Josh",
-      "url": "https://builtbyjoshstudio.com/about.html"
-    },
-    "publisher": {
-      "@type": "Organization", "@id": "https://builtbyjoshstudio.com/#organization",
-      "name": "Built by Josh Studio LLC",
-      "url": "https://builtbyjoshstudio.com"
-    },
-    "mainEntityOfPage": "https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html",
-    "image": "https://builtbyjoshstudio.com/images/products/creator-finance-os.webp",
-    "datePublished": "2026-06-03",
-    "dateModified": "2026-06-03"
-  }
-  </script>
 
-  <!-- Schema.org Product (related to this article) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "sku": "tynkr-creator-finance-os",
-    "name": "Creator Finance OS",
-    "description": "A complete Notion finance operating system for solo creators, freelancers, and digital product sellers. Track revenue, expenses, budgets, savings goals, debt payoff, annual trends, and tax estimates in one connected workspace.",
-    "brand": {
-      "@type": "Brand",
-      "name": "Tynkr Tools & Co"
-    },
-    "category": "Notion Template",
-    "image": "https://builtbyjoshstudio.com/images/products/creator-finance-os.webp",
-    "url": "https://builtbyjoshstudio.com/products/creator-finance-os.html",
-    "offers": {
-      "@type": "Offer",
-      "url": "https://builtbyjoshstudio.com/products/creator-finance-os.html",
-      "availability": "https://schema.org/InStock",
-      "price": "19.99",
-      "priceCurrency": "USD",
-      "shippingDetails": {
-        "@type": "OfferShippingDetails",
-        "shippingRate": {
-          "@type": "MonetaryAmount",
-          "value": "0",
-          "currency": "USD"
-        },
-        "shippingDestination": {
-          "@type": "DefinedRegion",
-          "addressCountry": "US"
-        },"deliveryTime":{"@type":"ShippingDeliveryTime","handlingTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"},"transitTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"}}},
-      "hasMerchantReturnPolicy": {
-        "@type": "MerchantReturnPolicy",
-        "applicableCountry": "US",
-        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-      }
-    }
-  }
-  </script>
 
-  <!-- Schema.org FAQPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Why is my Etsy or Gumroad payout different from what I earned?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Each platform deducts its own fees before the money reaches your bank — Etsy takes listing, transaction, and payment-processing fees, and Gumroad takes a flat percentage plus processing. The deposit you see is net of those cuts, so tracking only your bank deposits hides what you grossed and what you paid in fees. Recording gross, fees, and net separately for each sale shows the real picture."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I track income from multiple platforms in one place?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Use a single income log with a Platform property (Etsy, Gumroad, YouTube, client work, and so on) and separate fields for gross amount, platform fees, and net. Filtering or grouping by platform then shows which channel actually earns the most after fees, not just which one deposits the most."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do Etsy and Gumroad pay out on the same schedule?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. Payout timing differs by platform and by your settings — deposits can be daily, weekly, or on a delay, and a sale made in one month can land in your bank the next. Logging income by the date of the sale rather than the date of the deposit keeps your monthly totals accurate."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How much should I set aside for taxes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A common rule of thumb is to set aside roughly 25–30 percent of net self-employment income for taxes, but the right number depends on your total income, location, and filing situation. This is general information, not tax advice — confirm your own number with a qualified tax professional."
-        }
-      }
-    ]
-  }
-  </script>
 
-  <!-- Schema.org BreadcrumbList -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://builtbyjoshstudio.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://builtbyjoshstudio.com/blog.html" },
-      { "@type": "ListItem", "position": 3, "name": "How to Track Etsy and Gumroad Income in Notion (Without a Spreadsheet Mess)", "item": "https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html" }
-    ]
-  }
-  </script>
 
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/components.css" />
   <link rel="stylesheet" href="/css/layouts.css" />
   <link rel="stylesheet" href="/css/mobile-nav.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": "https://builtbyjoshstudio.com/#organization",
-    "name": "Built by Josh Studio LLC",
-    "alternateName": ["BBJ Studio", "Built by Josh Studio"],
-    "legalName": "Built by Josh Studio LLC",
-    "url": "https://builtbyjoshstudio.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
-      "width": 512,
-      "height": 512
-    },
-    "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
-    "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under its own name and Notion OS templates and personal finance workbooks under the Tynkr Tools & Co brand. Templates, workbooks, the cookbook, and art are instant digital downloads. Everything is built by a single founder.",
-    "founder": {
-      "@type": "Person", "@id": "https://builtbyjoshstudio.com/about.html#josh",
-      "name": "Josh"
-    },
-    "foundingDate": "2026-05-13",
-    "foundingLocation": {
-      "@type": "Place",
-      "address": {
-        "@type": "PostalAddress",
-        "addressRegion": "KS",
-        "addressCountry": "US"
-      }
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "KS",
-      "addressCountry": "US"
-    },
-    "areaServed": "Worldwide",
-    "knowsAbout": [
-      "Zodiac digital art",
-      "Western zodiac",
-      "Chinese zodiac",
-      "Notion templates",
-      "Personal finance spreadsheets",
-      "Digital product design",
-      "Print-on-demand licensing"
-    ],
-    "brand": [
-      {
-        "@type": "Brand",
-        "name": "Built by Josh Studio",
-        "description": "Original digital zodiac art bundles — Western signs, Chinese signs, zodiac landscapes, and zodiac realms — sold as print-ready, POD-licensed digital downloads."
-      },
-      {
-        "@type": "Brand",
-        "name": "Tynkr Tools & Co",
-        "description": "Notion OS templates and Excel and Google Sheets workbooks for creators, solopreneurs, and personal-finance milestones."
-      }
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "josh@builtbyjoshstudio.com",
-      "contactType": "customer support",
-      "areaServed": "Worldwide",
-      "availableLanguage": "English"
-    },
-    "sameAs": [
-      "https://linktr.ee/builtbyjoshstudio",
-      "https://tynkrtoolsco.substack.com/",
-      "https://www.youtube.com/@TalesofInkShadowsStudio",
-      "https://www.youtube.com/@joshandjordanskitchen",
-      "https://tynkrtoolsandco.etsy.com",
-      "https://www.etsy.com/shop/BuiltByJoshStudio",
-      "https://www.redbubble.com/people/BBJStudio/shop"
-    ],
-    "identifier": [
-      {
-        "@type": "PropertyValue",
-        "propertyID": "Kansas Business ID",
-        "value": "10076138"
-      }
-    ]
-  }
-  </script>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://builtbyjoshstudio.com/#organization",
+      "name": "Built by Josh Studio LLC",
+      "legalName": "Built by Josh Studio LLC",
+      "alternateName": [
+        "BBJ Studio",
+        "Built by Josh Studio"
+      ],
+      "url": "https://builtbyjoshstudio.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+      "description": "Built by Josh Studio LLC is a Kansas-based independent creative studio that publishes original zodiac digital art under its own name and Notion OS templates, Excel and Google Sheets workbooks, and local-first Windows apps under the Tynkr Tools & Co brand.",
+      "foundingDate": "2025",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "KS",
+        "addressCountry": "US"
+      },
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Kansas Business ID",
+          "value": "10076138"
+        }
+      ],
+      "founder": {
+        "@id": "https://builtbyjoshstudio.com/about.html#josh"
+      },
+      "email": "mailto:support@builtbyjoshstudio.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "support@builtbyjoshstudio.com",
+        "contactType": "customer support",
+        "areaServed": "Worldwide",
+        "availableLanguage": "English"
+      },
+      "sameAs": [
+        "https://linktr.ee/builtbyjoshstudio",
+        "https://tynkrtoolsco.substack.com/",
+        "https://www.youtube.com/@TalesofInkShadowsStudio",
+        "https://www.youtube.com/@joshandjordanskitchen",
+        "https://tynkrtoolsandco.etsy.com",
+        "https://www.etsy.com/shop/BuiltByJoshStudio",
+        "https://www.redbubble.com/people/BBJStudio/shop",
+        "https://builtbyjoshstudio.lemonsqueezy.com/",
+        "https://www.amazon.com/dp/B0H3826V21"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://builtbyjoshstudio.com/#website",
+      "name": "Built by Josh Studio",
+      "url": "https://builtbyjoshstudio.com/",
+      "description": "Notion OS templates, Excel and Google Sheets workbooks, guided print planners, zodiac digital art collections, and local-first tools from Built by Josh Studio LLC.",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": "https://builtbyjoshstudio.com/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://builtbyjoshstudio.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://builtbyjoshstudio.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Track Etsy and Gumroad Income in Notion (Without a Spreadsheet Mess)",
+          "item": "https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html"
+        }
+      ],
+      "@id": "https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html#breadcrumb"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html#webpage",
+      "url": "https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html",
+      "name": "How to Track Etsy and Gumroad Income in Notion",
+      "description": "Etsy and Gumroad deposit net payouts on different schedules. Learn how to log gross revenue, platform fees, and true net profit cleanly inside Notion.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://builtbyjoshstudio.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html#product"
+      },
+      "primaryImageOfPage": "https://builtbyjoshstudio.com/images/products/creator-finance-os.webp"
+    },
+    {
+      "@type": "Product",
+      "sku": "tynkr-creator-finance-os",
+      "name": "Creator Finance OS",
+      "description": "A complete Notion finance operating system for solo creators, freelancers, and digital product sellers. Track revenue, expenses, budgets, savings goals, debt payoff, annual trends, and tax estimates in one connected workspace.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Tynkr Tools & Co"
+      },
+      "category": "Notion Template",
+      "image": "https://builtbyjoshstudio.com/images/products/creator-finance-os.webp",
+      "url": "https://builtbyjoshstudio.com/products/creator-finance-os.html",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://builtbyjoshstudio.com/products/creator-finance-os.html",
+        "availability": "https://schema.org/InStock",
+        "price": "19.99",
+        "priceCurrency": "USD",
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "0",
+            "currency": "USD"
+          },
+          "shippingDestination": {
+            "@type": "DefinedRegion",
+            "addressCountry": "US"
+          },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            },
+            "transitTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            }
+          }
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "US",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+        },
+        "seller": {
+          "@id": "https://builtbyjoshstudio.com/#organization"
+        }
+      },
+      "@id": "https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html#product",
+      "manufacturer": {
+        "@id": "https://builtbyjoshstudio.com/#organization"
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "How to Track Etsy and Gumroad Income in Notion (Without a Spreadsheet Mess)",
+      "description": "Etsy and Gumroad pay out on different schedules and each takes its own cut. Here's how to track gross, fees, and real net income per platform in Notion — so you know what you actually earned.",
+      "author": {
+        "@type": "Person",
+        "@id": "https://builtbyjoshstudio.com/about.html#josh",
+        "name": "Josh",
+        "url": "https://builtbyjoshstudio.com/about.html"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://builtbyjoshstudio.com/#organization",
+        "name": "Built by Josh Studio LLC",
+        "url": "https://builtbyjoshstudio.com"
+      },
+      "mainEntityOfPage": "https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html",
+      "image": "https://builtbyjoshstudio.com/images/products/creator-finance-os.webp",
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why is my Etsy or Gumroad payout different from what I earned?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each platform deducts its own fees before the money reaches your bank — Etsy takes listing, transaction, and payment-processing fees, and Gumroad takes a flat percentage plus processing. The deposit is net of those cuts, so tracking only deposits hides both your gross sales and your fees. Recording gross, fees, and net separately fixes that."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I track income from multiple platforms in one place?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use one income log with a Platform property and separate fields for gross, fees, and net. Grouping by platform then shows which channel actually earns the most after fees — not just which one deposits the most."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do Etsy and Gumroad pay out on the same schedule?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Payout timing differs by platform and by your settings, and a sale made in one month can land in your bank the next. Logging income by the date of the sale rather than the deposit keeps your monthly totals accurate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much should I set aside for taxes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A common rule of thumb is to set aside roughly 25–30% of net self-employment income, but the right number depends on your total income, location, and filing situation. See the note below."
+          }
+        }
+      ],
+      "@id": "https://builtbyjoshstudio.com/blog/track-etsy-gumroad-income-notion.html#faq"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -266,6 +301,7 @@
     </div>
   </nav>
 
+  <main>
   <!-- ARTICLE HEADER -->
   <div class="wrap">
   <header class="article-header bhead">
@@ -441,7 +477,7 @@
     <h2>Know what you actually earned — <span class="hi">not just what landed.</span></h2>
     <p class="cta-sub">Creator Finance OS tracks gross, fees, and net across every platform you sell on, so your income is finally a number you can trust.</p>
     <a href="../products/creator-finance-os.html" class="btn-etsy btn btn--primary">View Creator Finance OS →</a>
-    <div class="contact">Questions? Reach out at <a href="mailto:josh@builtbyjoshstudio.com">josh@builtbyjoshstudio.com</a></div>
+    <div class="contact">Questions? Reach out at <a href="mailto:support@builtbyjoshstudio.com">support@builtbyjoshstudio.com</a></div>
   </section>
 
   <div class="back-to-blog">
@@ -449,6 +485,7 @@
   </div>
 
   <p class="studio-sig">Built by Tynkr Tools &amp; Co — Budget smarter. Create better. Plan further.</p>
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -467,7 +504,7 @@
       <li><a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener">Substack</a></li>
       <li><a href="https://www.youtube.com/@joshandjordanskitchen" target="_blank" rel="noopener">YouTube</a></li>
       <li><a href="https://cooking.builtbyjoshstudio.com/videos/">Kitchen Videos</a></li>
-      <li><a href="mailto:josh@builtbyjoshstudio.com">Contact</a></li>
+      <li><a href="mailto:support@builtbyjoshstudio.com">Contact</a></li>
       <li><a href="../refunds.html">Refunds</a></li>
       <li><a href="../privacy.html">Privacy</a></li>
       <li><a href="../terms.html">Terms</a></li>
