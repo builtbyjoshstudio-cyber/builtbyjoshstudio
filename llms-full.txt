@@ -92,7 +92,7 @@ Privacy-first, local-first Windows desktop software (data stays in local files o
   - [Writing Hub](https://writing.builtbyjoshstudio.com/) & [Books Hub](https://writing.builtbyjoshstudio.com/books/): *Overlayed Echoes* (near-future LitRPG novel by J.S. Warden — Kindle $5.99 / KU, paperback $12.99, hardcover $23.99), *Ebonspire Chronicles* (dark fantasy detective noir by J.S. Warden — Kindle $7.99 / KU, paperback $14.99, hardcover $25.99), plus interactive companion fiction.
   - [Tabletop & RPG Web Tools](https://writing.builtbyjoshstudio.com/tabletop/): Free, ad-free, local-first game-night utilities (initiative tracker, dice roller, session notes, random tables, character/NPC/tavern/plot hook/loot generators, wargame score tracker).
 - **Cooking (`cooking.builtbyjoshstudio.com`)**:
-  - [Cooking Hub](https://cooking.builtbyjoshstudio.com/) & [Kitchen Videos](https://cooking.builtbyjoshstudio.com/videos/): *Nước Mắm: Simple Vietnamese Home Cooking* cookbook by Josh Tran ($3.99 digital / $7.99 paperback) and Josh & Jordan's Kitchen on YouTube — no-talking videos filmed as tight method cuts and minimally cut full-process sessions at normal speed (Josh covers savory home cooking and Vietnamese staples; Jordan covers baking, breads, and pastries).
+  - [Cooking Hub](https://cooking.builtbyjoshstudio.com/) & [Kitchen Videos](https://cooking.builtbyjoshstudio.com/videos/): *Nước Mắm: Simple Vietnamese Home Cooking* cookbook by Josh Tran ($3.49 direct digital / $7.99 paperback) and Josh & Jordan's Kitchen on YouTube — no-talking videos filmed as tight method cuts and minimally cut full-process sessions at normal speed (Josh covers savory home cooking and Vietnamese staples; Jordan covers baking, breads, and pastries).
   - [Kitchen & Cooking Web Tools](https://cooking.builtbyjoshstudio.com/tools/): Free, ad-free, local-first kitchen calculators (scaling, dough hydration, brine ratios, thawing, pan swap, nutrition, roast timing, cost per serving).
 - **Money & Business (`tools.builtbyjoshstudio.com`)**:
   - [Money & Business Web Tools](https://tools.builtbyjoshstudio.com/money/): Free, ad-free, local-first personal finance and small-business calculators (50/30/20 budget, debt payoff, compound interest, emergency fund, freelance rate, home affordability, invoice generator, loan payment, profit margin, quarterly tax, savings goal, take-home pay).
@@ -562,7 +562,7 @@ Refunds: all sales final on digital goods; technical issues always fixed. Checko
 URL: https://cooking.builtbyjoshstudio.com/cookbook/
 Author: Josh Tran
 What it is: A Vietnamese family cookbook: 56 pages of simple, home-style cooking taught the way a family actually cooks — fish sauce and the sauces that run the whole book, summer rolls, bún bowls, over-rice dishes, fried spring rolls, bánh mì, and a twelve-hour phở. Ratios are starting points, balanced by tasting, not measuring.
-Edition: EBook — $3.99 at https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3
+Edition: EBook — $3.49 at https://builtbyjoshstudio.lemonsqueezy.com/checkout/buy/b6341e82-a171-4fdd-9b03-43956c74cea3
 Edition: EBook — $3.99 at https://www.amazon.com/dp/B0HBCXTLWD
 Edition: EBook — $3.99 at https://www.etsy.com/listing/4551851115/nc-mm-vietnamese-family-cookbook-o
 Edition: Paperback — $7.99 at https://www.amazon.com/dp/B0HBL7HZYN (ISBN 979-8188988173)
